@@ -1,10 +1,13 @@
 import React from 'react'
+import { Button } from 'semantic-ui-react'
 
-type Props = {}
+type Props = { 
+  text: string,
+}
 
 const NavButton = (props: Props) => {
   return (
-    <div>NavButton</div>
+    <Button basic content={props.text}></Button>
   )
 }
 
