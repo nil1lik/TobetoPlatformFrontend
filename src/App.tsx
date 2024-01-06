@@ -1,11 +1,13 @@
-import RouteDefinitions from "./components/Routes/RouteDefinitions";
+import React from "react";
+import Navbar from "./layouts/Navbar/Navbar";
+import { Container } from "semantic-ui-react";
 
 function App() {
 	return (
 		<>
-			{/* Navbar */}
-			<RouteDefinitions />
-			{/* Footer */}
+			<Navbar />
+			<Container>
+			</Container>
 		</>
 	);
 }
