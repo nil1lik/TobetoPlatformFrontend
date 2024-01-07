@@ -1,5 +1,6 @@
-import React from "react";
-import { MenuItem, Menu, MenuMenu, Button, Image, Container } from "semantic-ui-react";
+import NavButton from './NavButton'
+import { Button, Dropdown, Image, Menu } from 'semantic-ui-react'
+
 
 const Navbar = () => {
   const containerStyle = {
@@ -9,28 +10,32 @@ const Navbar = () => {
     justifyContent: 'center',
   };
 
+const Navbar = (props: Props) => {
+  const logoSrc = process.env.PUBLIC_URL + "/images/tobeto-logo.png"
+  const options = [
+    { key: 1, text: 'Profil Bilgileri', value: 1 },
+    { key: 2, text: 'Oturumu Kapat', value: 2 },
+  ]
   return (
-    <Menu className="menu" size="large" borderless>
-      <MenuItem className="menuitem">
-        <Image src="Images/tobeto-logo.png" size="small" />
-      </MenuItem>
-
-      <Container style={containerStyle}>
-        <MenuItem name="Anasayfa" style={{ fontWeight: "bold" }} />
-        <MenuItem name="Profilim" style={{ fontWeight: "bold" }} />
-        <MenuItem name="Değerlendirmeler" style={{ fontWeight: "bold" }} />
-        <MenuItem name="Katalog" style={{ fontWeight: "bold" }} />
-        <MenuItem name="Takvim" style={{ fontWeight: "bold" }} />
-        <MenuItem name="İstanbul Kodluyor" style={{ fontWeight: "bold" }} />
-      </Container>
-
-      <MenuMenu>
-        <MenuItem>
-          <Button primary>Giriş Yap</Button>
-        </MenuItem>
-      </MenuMenu>
+    <Menu pointing secondary size='huge'>
+      <Menu.Item>
+        <Image src={logoSrc} size='small' />
+      </Menu.Item>
+      <Menu.Item style={{ flexGrow: 12 }}>
+        <Button.Group style={{ margin: 'auto' }}>
+          <NavButton text={'Ana Sayfa'} />
+          <NavButton text={'Profilim'} />
+          <NavButton text={'Değerlendirmeler'} />
+          <NavButton text={'Katalog'} />
+          <NavButton text={'Takvim'} />
+          <NavButton text={'İstanbul Kodluyor'} />
+        </Button.Group>
+      </Menu.Item>
+      <Menu.Item>
+        <Dropdown text='Kullanıcı' options={options} item />
+      </Menu.Item>
     </Menu>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar

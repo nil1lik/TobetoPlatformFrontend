@@ -1,35 +1,12 @@
 body {
   margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: bold;
-  font-size: 50px;
+  font-family: 'Poppins', sans-serif !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
-}
-
-
-.menu {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 100px;
-  
-}
-
-.ui.menu.menuitem.menuitem {
-  margin: 0 20px;
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: bold;
-  text-align: center;
-  display: flex;
-  align-items: center;
-}
-
-.menuitem:hover {
-  background-color: purple;
-  color: white;
 }
 
