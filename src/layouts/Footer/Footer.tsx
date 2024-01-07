@@ -12,7 +12,7 @@ const Footer = (props: Props) => {
           <Image src={logoSrc} size="small" />
         </Menu.Item>
         <Menu.Item position="right">
-          <Button style={{ backgroundColor:"#ffffff", color:"#000000", borderRadius:"20px", fontSize:"14px", fontWeight:"800"}}>Bize Ulaşın</Button>
+          <Button className="button">Bize Ulaşın</Button>
         </Menu.Item>
       </Container>
     </Menu>

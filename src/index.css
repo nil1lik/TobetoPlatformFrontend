@@ -1,12 +1,56 @@
 body {
   margin: 0;
-  font-family: 'Poppins', sans-serif !important;
+  font-family: "Poppins", sans-serif !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.ui.button.button {
+  background-color: #ffffff;
+  color: #000000;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 800;
 }
 
+.ui.button.button:hover {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.ui.content-cont {
+  box-shadow: 0 7px 29px rgba(0, 0, 0, 0.13);
+  border-radius: 12px;
+}
+
+.survey-cont {
+  background-color: #e6e6e6;
+  color: #6a359f;
+  font-weight: 500;
+  font-size: 1.3em;
+  border-radius: 12px;
+}
+
+.card-notify {
+  border-left: 6px solid #076b34 !important;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 1px 15px 1px rgba(0, 0, 0, 0.25);
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  padding: 14px;
+}
+
+.app-card-notify::after{
+  min-width: 140px;
+    position: absolute;
+    background-color: #076b34;
+    color: #fff;
+    content: "Kabul Edildi";
+    top: 12px;
+    right: -4px;
+    padding: 4px 8px;
+    border-radius: 16px 0 0 16px;
+    font-size: 12px;
+}

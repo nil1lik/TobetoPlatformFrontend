@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import {
   Item,
   ItemContent,
@@ -15,7 +15,7 @@ type Props = {
   headerText1?: string;
   headerText2?: string;
   description: string;
-  subDescription: string;
+  subDescription: ReactNode;
   imageSize?: imageSize;
 };
 
@@ -47,7 +47,7 @@ type Props = {
             style={{
               fontSize: "30px",
               fontWeight: 400,
-              color: "#4D4D4D",
+              color: "#282828",
               marginBottom: "1.25rem",
               contrast: "8.45",
             }}
@@ -56,10 +56,9 @@ type Props = {
           </ItemDescription>
           <ItemExtra
             style={{
-              fontSize: "24px",
-              fontWeight: 500,
-              color: "#1C1917",
-              contrast: "17.48",
+              color: "#282828",
+              fontWeight: 600,
+              fontSize: "2em",
             }}
           >
             {props.subDescription}
