@@ -1,14 +1,7 @@
 import NavButton from './NavButton'
 import { Button, Dropdown, Image, Menu } from 'semantic-ui-react'
 
-
-const Navbar = () => {
-  const containerStyle = {
-    textAlign: 'center',
-    flexDirection: 'row',
-    height: '100%',
-    justifyContent: 'center',
-  };
+type Props = {}
 
 const Navbar = (props: Props) => {
   const logoSrc = process.env.PUBLIC_URL + "/images/tobeto-logo.png"
