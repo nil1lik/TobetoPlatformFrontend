@@ -26,5 +26,4 @@ const ApplicationCard = (props: Props) => {
     </div>
   );
 };
-
 export default ApplicationCard;

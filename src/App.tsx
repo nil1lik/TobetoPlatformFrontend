@@ -2,12 +2,12 @@ import { Route, Routes } from "react-router-dom";
 import Platform from "./pages/Platform/Platform";
 import Footer from "./layouts/Footer/Footer";
 import { Container } from "semantic-ui-react";
-import Navbar from "./layouts/Navbar/Navbar";
+import Navigation from "./layouts/Navbar/Navigation";
 
 function App() {
   return (
     <>
-      <Navbar />
+      <Navigation />
       <Container>
         <Routes>
           <Route path="/" element={<Platform />} />
