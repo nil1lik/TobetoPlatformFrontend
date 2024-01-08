@@ -13,7 +13,7 @@ const divStyle = {
 
 const Footer = (props: Props) => {
   return (
-    <Menu pointing secondary size="huge" fixed="bottom" style={{ ...divStyle, backgroundColor: "#9b33ff" }}>
+    <Menu pointing secondary size="huge" style={{ ...divStyle, backgroundColor: "#9b33ff" }}>
       <Container>
         <Menu.Item>
           <Image src={logoSrc} size="tiny" />
