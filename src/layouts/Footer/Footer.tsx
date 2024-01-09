@@ -2,7 +2,7 @@ import React from "react";
 import { Button, Container, Image, Menu } from "semantic-ui-react";
 
 type Props = {};
-const logoSrc = process.env.PUBLIC_URL + "/images/logo-yatay-beyaz.png";
+const logoSrc = process.env.PUBLIC_URL + "/images/Tebeto-logo-yatay-beyaz.png";
 
 const divStyle = {
   height: '100px', 

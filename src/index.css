@@ -160,3 +160,30 @@ body {
   font-size: 80px;
   font-weight: 700;
 }
+
+.profile-edit {
+  display: flex;
+}
+
+.profile-edit-nav {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-edit-nav-btn {
+  margin-bottom: 8px;
+  padding: 16px 8px !important;
+  font-size: 14px;
+  font-weight: 700 !important;
+  text-decoration: none;
+  color: #828282;
+}
+.profile-edit-nav-btn:hover {
+  color: #9933ff;
+}
+
+.profile-edit-nav-btn:focus {
+  color: #9933ff;
+  font-weight: 800 !important;
+  border-right: 3px solid #93f !important;
+}
