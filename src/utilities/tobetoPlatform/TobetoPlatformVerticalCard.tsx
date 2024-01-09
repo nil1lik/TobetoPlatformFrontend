@@ -1,6 +1,7 @@
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 
+
 type Props = {image: string, text: string, description: string, buttonText: string}
 
 const TobetoPlatformVerticalCard = (props: Props) => {

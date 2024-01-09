@@ -1,5 +1,5 @@
-import { Container } from "react-bootstrap";
-import Figure from "react-bootstrap/Figure";
+import { Container, Figure } from "react-bootstrap";
+
 type Props = {};
 
 const SurveyNotFound = (props: Props) => {
@@ -8,7 +8,7 @@ const SurveyNotFound = (props: Props) => {
     <div>
       <Container className="survey-cont d-flex justify-content-center align-items-center">
         <Figure className="d-flex flex-column justify-content-center align-items-center">
-          <Figure.Image width="200px" height="200px" src={logoSrc} fluid  />
+          <Figure.Image width="200px" height="200px" src={logoSrc} fluid />
           <Figure.Caption style={{ color: "#6a359f" }}>
             Atanmış herhangi bir anketiniz bulunmamaktadır
           </Figure.Caption>

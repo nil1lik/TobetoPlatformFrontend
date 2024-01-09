@@ -1,8 +1,7 @@
-import { Button, Container, Image } from "react-bootstrap";
 import TobetoPlatformVerticalCard from "../../utilities/tobetoPlatform/TobetoPlatformVerticalCard";
 import { url } from "inspector";
 import { Link } from "react-router-dom";
-import Education from "../../pages/Education/Education";
+import { Button } from "react-bootstrap";
 
 type Props = {};
 

@@ -12,29 +12,29 @@ const panes = [
     render: () => <TabPane attached={false}>
       <Container>
         <Row>
-        <Col weight="33.3%"><ApplicationCard 
-      cardHeader='İstanbul Kodluyor Bilgilendirme' 
-      cardDescription='İstanbul Kodluyor Başvuru Formu onaylandı.' 
-      cardText='İstanbul Kodluyor Belge Yükleme Formu onaylandı.'/></Col>
-        <Col><ApplicationCard 
-      cardHeader='İstanbul Kodluyor Bilgilendirme' 
-      cardDescription='İstanbul Kodluyor Başvuru Formu onaylandı.' 
-      cardText='İstanbul Kodluyor Belge Yükleme Formu onaylandı.'/></Col>
-      </Row>
+          <Col weight="33.3%"><ApplicationCard
+            cardHeader='İstanbul Kodluyor Bilgilendirme'
+            cardDescription='İstanbul Kodluyor Başvuru Formu onaylandı.'
+            cardText='İstanbul Kodluyor Belge Yükleme Formu onaylandı.' /></Col>
+          <Col><ApplicationCard
+            cardHeader='İstanbul Kodluyor Bilgilendirme'
+            cardDescription='İstanbul Kodluyor Başvuru Formu onaylandı.'
+            cardText='İstanbul Kodluyor Belge Yükleme Formu onaylandı.' /></Col>
+        </Row>
       </Container>
-      </TabPane>,   
-  }, 
+    </TabPane>,
+  },
   {
     menuItem: 'Eğitimlerim',
-    render: () => <TabPane attached={false}><EducationCard/></TabPane>,
+    render: () => <TabPane attached={false}><EducationCard /></TabPane>,
   },
   {
     menuItem: 'Duyuru ve Haberlerim',
-    render: () => <TabPane attached={false}><AnnouncementCard cardHeader='İstanbul Kodluyor Bilgilendirme' cardDescription='İstanbul Kodluyor Başvuru Formu onaylandı.' cardText='İstanbul Kodluyor Belge Yükleme Formu onaylandı.'/></TabPane>,
+    render: () => <TabPane attached={false}><AnnouncementCard cardHeader='İstanbul Kodluyor Bilgilendirme' cardDescription='İstanbul Kodluyor Başvuru Formu onaylandı.' cardText='İstanbul Kodluyor Belge Yükleme Formu onaylandı.' /></TabPane>,
   },
   {
     menuItem: 'Anketlerim',
-    render: () => <TabPane attached={false}><SurveyNotFound/></TabPane>,
+    render: () => <TabPane attached={false}><SurveyNotFound /></TabPane>,
   },
 ]
 
