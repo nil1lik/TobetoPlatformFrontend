@@ -1,6 +1,8 @@
 import { Button, Container, Image } from "react-bootstrap";
 import TobetoPlatformVerticalCard from "../../utilities/tobetoPlatform/TobetoPlatformVerticalCard";
 import { url } from "inspector";
+import { Link } from "react-router-dom";
+import Education from "../../pages/Education/Education";
 
 type Props = {};
 
@@ -33,10 +35,12 @@ const EducationCard = (props: Props) => {
           buttonText="Eğitime Git"
         />
       </div>
+      <Link to={"/egitimlerim"}>
       <div style={{ width: "fit-content", margin: "0 auto" , textAlign:"center", fontSize: "12px", fontWeight: "600", color:"#828282", cursor: "pointer"}}>
         <Button style={{backgroundImage:'url("https://tobeto.com/_next/static/media/showMore.f5ba3f81.svg")', width:"48px", height:"48px", borderRadius:"50%", backgroundSize:"cover"}} variant="light">  </Button>
         <p>Daha Fazla Göster</p>
       </div>
+      </Link>
     </>
   );
 };

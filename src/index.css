@@ -138,3 +138,25 @@ body {
   color: #9933ff !important;
   font-weight: bolder;
 }
+
+.edu-banner {
+  margin-bottom: 1.5em;
+}
+
+.edu-banner-cont {
+  display: flex;
+  align-items: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 50%;
+  justify-content: flex-start;
+  margin-bottom: 1.5em;
+  height: 200px;
+}
+
+.banner-text {
+  margin-left: 20vw;
+  color: #fff;
+  font-size: 80px;
+  font-weight: 700;
+}
