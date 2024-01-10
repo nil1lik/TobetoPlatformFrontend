@@ -1,8 +1,7 @@
 import React from "react";
 import { Field, Form, Formik } from "formik";
 import FormikInput from "../../utilities/FormikInput/FormikInput";
-import { Container } from "semantic-ui-react";
-import { Col, Row } from "react-bootstrap";
+import { Col, Row, TabContainer } from "react-bootstrap";
 
 type Props = {};
 
@@ -26,15 +25,18 @@ const GradutionEdit = (props: Props) => {
         }}
       >
         <Form>
-          <Container>
+          <TabContainer>
             <Row>
               <Col>
               <label className="input-label-text" style={{display: 'block', marginBottom: '5px' }}>Eğitim Durumu*</label>
-                <Field
-                  as="select"
-                  placeHolder="Seviye Seçiniz"
-                  className="custom-field form-select"
-                >
+              <Field
+                as="select"
+                name="degree"
+                className="custom-field form-select"
+              >
+                <option value="" disabled hidden>
+                  Seviye Seçiniz*
+                </option>
                   <option>Lisans</option>
                   <option>Ön Lisans</option>
                   <option>Yüksek Lisans</option>
@@ -80,7 +82,7 @@ const GradutionEdit = (props: Props) => {
             <button type="submit" className="button-save py-2 mb-3 mt-4 d-inline-block ">
               Kaydet
             </button>
-          </Container>
+          </TabContainer>
           
         </Form>
       </Formik>
