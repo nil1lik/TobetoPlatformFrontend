@@ -5,7 +5,7 @@ import { Col, Row, TabContainer } from "react-bootstrap";
 
 type Props = {};
 
-const GradutionEdit = (props: Props) => {
+const Settings = (props: Props) => {
   const initialValues = {
     oldPass: "",
     newPass: "",
@@ -46,10 +46,10 @@ const GradutionEdit = (props: Props) => {
               </Col>
             </Row>
             <Row>
-            <Col><button type="submit" className="button-settings-save py-2 mb-3 mt-4 d-inline-block " style={{backgroundColor:"#9933ff"}}>
+            <Col><button type="submit" className="button-settings py-2 mb-3 mt-4 d-inline-block " style={{backgroundColor:"#9933ff"}}>
               Şifre Değiştir
             </button></Col>
-            <Col><button type="submit" className="button-settings-end py-2 mb-3 mt-4 d-inline-block " style={{backgroundColor:"#fc5c46"}}>
+            <Col><button type="submit" className="button-settings py-2 mb-3 mt-4 d-inline-block " style={{backgroundColor:"#fc5c46"}}>
               Üyeliği Sonlandır
             </button></Col></Row>
           </TabContainer>
@@ -59,4 +59,4 @@ const GradutionEdit = (props: Props) => {
   );
 };
 
-export default GradutionEdit;
+export default Settings;
