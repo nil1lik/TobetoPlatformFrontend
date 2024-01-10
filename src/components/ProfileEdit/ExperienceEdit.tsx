@@ -6,13 +6,14 @@ type Props = {};
 
 const ExperienceEdit = (props: Props) => {
   const initialValues = {
-    degree: "",
-    univercityName: "",
-    department: "",
+    organizationName: "",
+    position: "",
+    sector: "",
+    city: "",
     startDate: new Date(),
     endDate: new Date(),
-    graduationDate: new Date(),
-    toggle: "Devam ediyorum",
+    description:"",
+    toggle: "Çalışmaya Devam Ediyorum",
   };
 
   return (
@@ -87,7 +88,7 @@ const ExperienceEdit = (props: Props) => {
                 />
                 <label>
                   <Field type="checkbox" name="checked" value="One" />
-                  Devam ediyorum
+                  Çalışmaya Devam Ediyorum
                 </label>
               </Col>
             </Row>
