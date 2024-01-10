@@ -264,3 +264,13 @@ body {
   font-weight: 500;
   text-align: left;
 }
+
+.textarea-style{
+  border: 1px solid #b3a6c0!important;
+  position: relative;
+  height: 135px;
+}
+
+.input-style{
+  border: 1px solid #b3a6c0!important;
+}
