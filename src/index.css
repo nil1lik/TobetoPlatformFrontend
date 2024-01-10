@@ -242,6 +242,18 @@ body {
   height: 35px;
 }
 
+.button-settings{
+  box-shadow: none;
+  border-radius: 25px;
+  color: white;
+  font-weight: 800;
+  text-align: center;
+  font-size: 14px;
+  border:none;
+  width: 100%;
+  height: 35px;
+}
+
 .button-save:hover{
   background: #7a29cc;
 }
