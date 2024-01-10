@@ -1,7 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import Platform from "./pages/Platform/Platform";
 import Footer from "./layouts/Footer/Footer";
-import { Container } from "semantic-ui-react";
 import Navigation from "./layouts/Navbar/Navigation";
 import Education from "./pages/Education/Education";
 import Announcement from "./pages/Announcement/Announcement";
@@ -10,6 +9,17 @@ import Evaluation from "./pages/Evaluation/Evaluation";
 import Catalog from "./pages/Catalog/Catalog";
 import Calendar from "./pages/Calendar/Calendar";
 import ProfileEdit from "./pages/ProfileEdit/ProfileEdit";
+import ProfileInformationEdit from "./components/ProfileEdit/ProfileInformationEdit";
+import ExperienceEdit from "./components/ProfileEdit/ExperienceEdit";
+import GradutionEdit from "./components/ProfileEdit/GradutionEdit";
+import SkillEdit from "./components/ProfileEdit/SkillEdit";
+import CertificateEdit from "./components/ProfileEdit/CertificateEdit";
+import SocialMediaAccountEdit from "./components/ProfileEdit/SocialMediaAccountEdit";
+import LanguageEdit from "./components/ProfileEdit/LanguageEdit";
+import Settings from "./components/ProfileEdit/Settings";
+
+
+const profileEditUrl = "/profilim/profilimi-duzenle";
 
 function App() {
   return (
@@ -25,6 +35,35 @@ function App() {
           <Route path="/egitimlerim" element={<Education />} />
           <Route path="/duyurular" element={<Announcement />} />
           <Route path="/profilim/profilimi-duzenle" element={<ProfileEdit />} />
+          <Route
+                path={profileEditUrl + "/kisisel-bilgilerim"}
+                element={<ProfileInformationEdit />}
+              />
+              <Route
+                path={profileEditUrl + "/deneyimlerim"}
+                element={<ExperienceEdit />}
+              />
+              <Route
+                path={profileEditUrl + "/egitimlerim"}
+                element={<GradutionEdit />}
+              />
+              <Route
+                path={profileEditUrl + "/yetkinliklerim"}
+                element={<SkillEdit />}
+              />
+              <Route
+                path={profileEditUrl + "/sertifikalarim"}
+                element={<CertificateEdit />}
+              />
+              <Route
+                path={profileEditUrl + "/medya-hesaplarim"}
+                element={<SocialMediaAccountEdit />}
+              />
+              <Route
+                path={profileEditUrl + "/yabanci-dil"}
+                element={<LanguageEdit />}
+              />
+              <Route path={profileEditUrl + "ayarlar"} element={<Settings />} />
         </Routes>
       {/* </Container> */}
       <Footer />
