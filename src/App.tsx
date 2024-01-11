@@ -10,6 +10,9 @@ import Evaluation from "./pages/Evaluation/Evaluation";
 import Catalog from "./pages/Catalog/Catalog";
 import Calendar from "./pages/Calendar/Calendar";
 import ProfileEdit from "./pages/ProfileEdit/ProfileEdit";
+import SocialMediaAccountEdit from "./components/ProfileEdit/SocialMediaAccountEdit";
+import CertificateEdit from "./components/ProfileEdit/CertificateEdit";
+import GradutionEdit from "./components/ProfileEdit/GradutionEdit";
 
 function App() {
   return (
@@ -24,7 +27,7 @@ function App() {
           <Route path="/takvim" element={<Calendar />} />
           <Route path="/egitimlerim" element={<Education />} />
           <Route path="/duyurular" element={<Announcement />} />
-          <Route path="/profilim/profilimi-duzenle" element={<ProfileEdit />} />
+          <Route path="/profilim/profilimi-duzenle" element={<ProfileEdit />} /> 
         </Routes>
       {/* </Container> */}
       <Footer />
