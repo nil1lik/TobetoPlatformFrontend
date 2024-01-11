@@ -3,6 +3,11 @@ body {
   font-family: "Poppins", sans-serif !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  
+}
+
+.body-height{
+  height: 805px;
 }
 
 .ui.button.button {
@@ -279,7 +284,7 @@ body {
 
 .input-label-text{
   color: #828282;
-  font-size: 16px ;
+  font-size: 14px ;
   font-weight: 500;
   text-align: left;
 }
@@ -292,4 +297,91 @@ body {
 
 .input-style{
   border: 1px solid #b3a6c0!important;
+}
+
+.card-b{
+  border: none!important;
+  box-shadow: none;
+}
+
+.col-control {
+  margin-top: 50px!important;
+  justify-content: center!important;
+  align-items: center!important;
+  text-align: right; 
+}
+
+.my-grade {
+  box-shadow: 0 10px 24px 0 hsla(0,0%,9%,.05);
+  background-color: #fff;
+  padding: 12px 18px;
+  margin-top: 8px;
+}
+
+.grade-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.grade-header .grade-date {
+  color: rgba(153,51,255,.66);
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+}
+
+.grade-header .grade-degree {
+  color: rgba(153,51,255,.66);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.grade-details {
+  display: flex;
+  gap: 1.5em;
+  justify-content: flex-start;
+  margin-top: 0.5em;
+  align-items: baseline;
+  position: relative;
+}
+
+.grade-details-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  min-width: 25%;
+}
+
+.grade-details-col .grade-details-header {
+  color: #828282!important;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.grade-details-content {
+  color: #171717!important;
+  font-size: 16px;
+  font-weight: 500;
+  text-transform: capitalize;
+  word-break: break-word;
+}
+
+.g-del {
+  top: 25%!important;
+}
+
+.grade-delete {
+  display: flex;
+  align-items: flex-end;
+  position: absolute;
+  right: -31px;
+}
+
+.grade-delete:after {
+  /* content: url(/trash.svg); */
+  background-color: #fc6d6d;
+  width: 24px;
+  height: 24px;
+  padding-top: 3px;
 }
