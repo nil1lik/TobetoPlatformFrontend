@@ -1,7 +1,7 @@
 import React from "react";
 import { Field, Form, Formik } from "formik";
 import FormikInput from "../../utilities/FormikInput/FormikInput";
-import { Col, Row, TabContainer } from "react-bootstrap";
+import { Col, Container, Row, TabContainer } from "react-bootstrap";
 
 type Props = {};
 
@@ -13,7 +13,7 @@ const GradutionEdit = (props: Props) => {
     startDate: new Date(),
     endDate: new Date(),
     graduationDate: new Date(),
-    toggle : "Devam ediyorum"
+    toggle: "Devam ediyorum",
   };
 
   return (
@@ -25,18 +25,23 @@ const GradutionEdit = (props: Props) => {
         }}
       >
         <Form>
-          <TabContainer>
+          <Container>
             <Row>
               <Col>
-              <label className="input-label-text" style={{display: 'block', marginBottom: '5px' }}>Eğitim Durumu*</label>
-              <Field
-                as="select"
-                name="degree"
-                className="custom-field form-select"
-              >
-                <option value="" disabled hidden>
-                  Seviye Seçiniz*
-                </option>
+                <label
+                  className="input-label-text"
+                  style={{ display: "block", marginBottom: "5px" }}
+                >
+                  Eğitim Durumu*
+                </label>
+                <Field
+                  as="select"
+                  name="degree"
+                  className="custom-field form-select"
+                >
+                  <option value="" disabled hidden>
+                    Seviye Seçiniz*
+                  </option>
                   <option>Lisans</option>
                   <option>Ön Lisans</option>
                   <option>Yüksek Lisans</option>
@@ -53,7 +58,11 @@ const GradutionEdit = (props: Props) => {
             </Row>
             <Row>
               <Col>
-                <FormikInput name="price" label="Bölüm*" placeHolder="Yazılım" />
+                <FormikInput
+                  name="price"
+                  label="Bölüm*"
+                  placeHolder="Yazılım"
+                />
               </Col>
               <Col>
                 <FormikInput
@@ -74,18 +83,45 @@ const GradutionEdit = (props: Props) => {
               <Col></Col>
             </Row>
             <Row>
-            <label>
-              <Field type="checkbox" name="checked" value="One" />
-              Devam ediyorum
-            </label>
+              <label>
+                <Field type="checkbox" name="checked" value="One" />
+                Devam ediyorum
+              </label>
             </Row>
-            <button type="submit" className="button-save py-2 mb-3 mt-4 d-inline-block ">
+            <button
+              type="submit"
+              className="button-save py-2 mb-3 mt-4 d-inline-block "
+            >
               Kaydet
             </button>
-          </TabContainer>
-          
+          </Container>
         </Form>
       </Formik>
+      <Container>
+        <div className="my-grade">
+          <div className="grade-header">
+            <label className="grade-date">2016-2021</label>
+            <label className="grade-degree">Lisans</label>
+          </div>
+          <div className="grade-details">
+            <div className="grade-details-col">
+              <label className="grade-details-header">Üniversite</label>
+              <label className="grade-details-content">
+                Mersin Üniversitesi
+              </label>
+            </div>
+            <div className="grade-details-col">
+              <label className="grade-details-header">Bölüm</label>
+              <label className="grade-details-content">
+                Bilgisayar Mühendisliği
+              </label>
+            </div>
+            <button className="grade-delete g-del">
+            <i className="bi bi-trash3"></i>
+            </button>
+          </div>
+        </div>
+      </Container>
     </div>
   );
 };
