@@ -225,6 +225,10 @@ body {
   transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 
+.form-control:focus{
+  box-shadow: 0 0 0 0.25rem rgba(153,51,255,.25) !important;
+}
+
 .form-control:disabled {
   opacity: 1;
 }
