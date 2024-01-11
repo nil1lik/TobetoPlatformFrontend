@@ -1,4 +1,4 @@
-import { Card, Col, Container, Nav, Row } from "react-bootstrap";
+import { Card, Col, Container, Nav, Row, TabContainer } from "react-bootstrap";
 import ProfileEditSidebar from "../../layouts/ProfileEditSidebar/ProfileEditSidebar";
 import { Route, Routes } from "react-router";
 import ProfileInformationEdit from "../../components/ProfileEdit/ProfileInformationEdit";
@@ -22,23 +22,23 @@ const ProfileEdit = (props: Props) => {
   const renderContent = () => {
     switch (activeTab) {
       case "kisiselbilgilerim":
-        return <Card.Body><ProfileInformationEdit/></Card.Body>;
+        return <ProfileInformationEdit/>;
       case "deneyimlerim":
-        return <Card.Body><ExperienceEdit/></Card.Body>;
+        return <ExperienceEdit/>
       case "egitimhayatim":
-        return <Card.Body><GradutionEdit/></Card.Body>;
+        return <GradutionEdit/>
       case "yetkinliklerim":
-        return <Card.Body><SkillEdit/></Card.Body>;
+        return <SkillEdit/>
       case "sertifikalarım":
-        return <Card.Body><CertificateEdit/></Card.Body>;
+        return <CertificateEdit/>
       case "medya":
-        return <Card.Body><SocialMediaAccountEdit/></Card.Body>;
+        return <SocialMediaAccountEdit/>
       case "yabancı dillerim":
-        return <Card.Body><LanguageEdit/></Card.Body>;
+        return <LanguageEdit/>
       case "ayarlar":
-        return <Card.Body><Settings/></Card.Body>;
+        return <Settings/>
       default:
-        return <Card.Body>İçerik bulunamadı.</Card.Body>;
+        return "İçerik bulunamadı."
     }
   };
 
@@ -46,8 +46,8 @@ const ProfileEdit = (props: Props) => {
     <div>
       <Container>
         <Row>
-          <Col xs={3}>
-          <Nav className="flex-column">
+          <Col xs={3} className="col-control">
+          <Nav className="flex-column ">
             <Nav.Link onClick={() => setActiveTab("kisiselbilgilerim")}>Kişisel Bilgilerim</Nav.Link>
             <Nav.Link onClick={() => setActiveTab("deneyimlerim")}>Deneyimlerim</Nav.Link>
             <Nav.Link onClick={() => setActiveTab("egitimhayatim")}>Eğitim Hayatım</Nav.Link>
@@ -59,12 +59,14 @@ const ProfileEdit = (props: Props) => {
           </Nav>
           </Col>
           <Col xs={9}>
-          <Card>
+          <Card className="card-b">
+          <Card.Body>
             {renderContent()}
+            </Card.Body>
           </Card>
          </Col>
         </Row>
-      </Container>
+        </Container>
     </div>
   );
 };

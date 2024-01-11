@@ -26,6 +26,7 @@ function App() {
     <>
       <Navigation />
       {/* <Container> */}
+      <div className="body-height">
         <Routes>
           <Route path="/" element={<Platform />} />
           <Route path="/profilim" element={<Profile />} />
@@ -65,6 +66,7 @@ function App() {
               />
               <Route path={profileEditUrl + "ayarlar"} element={<Settings />} />
         </Routes>
+        </div>
       {/* </Container> */}
       <Footer />
     </>
