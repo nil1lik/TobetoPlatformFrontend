@@ -88,7 +88,7 @@ const ProfileInformationEdit = (props: Props) => {
             </Row>
             <Row>
               <Col>
-                <label htmlFor="birthdate">İlçe</label>
+                <label className='input-label-text' htmlFor="birthdate">İlçe</label>
                 {/* <ProfileInput type='text' name='birthdate' label='İl*' placeholder='İl' /> */}
                 <Field className="form-control my-custom-input" as="select" name='İl' label='İl*' >
                   <option selected disabled>Seçiniz</option>
@@ -98,7 +98,7 @@ const ProfileInformationEdit = (props: Props) => {
                 </Field>
               </Col>
               <Col>
-                <label htmlFor="birthdate">İlçe</label>
+                <label className='input-label-text' htmlFor="birthdate">İlçe</label>
                 {/* <ProfileInput type='text' name='birthdate' label='İlçe*' placeholder='İlçe' /> */}
                 <Field className="form-control my-custom-input" as="select" name='İlçe' label='İlçe*' >
                   <option selected disabled>Seçiniz</option>
@@ -110,13 +110,13 @@ const ProfileInformationEdit = (props: Props) => {
             </Row>
             <Row>
               <Col>
-                <label htmlFor="street">Mahalle / Sokak</label>
+                <label className='input-label-text' htmlFor="street">Mahalle / Sokak</label>
                 <Field className="form-control my-custom-input" rows="5" as="textarea" id="street" name="street"></Field>
               </Col>
             </Row>
             <Row>
               <Col>
-                <label htmlFor="street">Hakkımda</label>
+                <label className='input-label-text' htmlFor="street">Hakkımda</label>
                 <Field className="form-control my-custom-input" rows="5" as="textarea" id="street" name="street"></Field>
               </Col>
             </Row>
