@@ -29,7 +29,9 @@ const ProfileInformationEdit = (props: Props) => {
 
   return (
     <div className="container mt-5">
-      <Image src={process.env.PUBLIC_URL + "/images/pp.png"} roundedCircle style={{ margin: "0 auto", display: "block" }} />
+      <div className='information-photo-cont'>
+      <Image src={process.env.PUBLIC_URL + "/images/pp.png"} roundedCircle style={{width: "100%" }} />
+      </div>
       <Formik
         initialValues={initialValues}
         onSubmit={(values) => {
@@ -88,7 +90,7 @@ const ProfileInformationEdit = (props: Props) => {
               <Col>
                 <label htmlFor="birthdate">İlçe</label>
                 {/* <ProfileInput type='text' name='birthdate' label='İl*' placeholder='İl' /> */}
-                <Field className="form-control" as="select" name='İl' label='İl*' >
+                <Field className="form-control my-custom-input" as="select" name='İl' label='İl*' >
                   <option selected disabled>Seçiniz</option>
                   <option>İl1</option>
                   <option>İl2</option>
@@ -98,7 +100,7 @@ const ProfileInformationEdit = (props: Props) => {
               <Col>
                 <label htmlFor="birthdate">İlçe</label>
                 {/* <ProfileInput type='text' name='birthdate' label='İlçe*' placeholder='İlçe' /> */}
-                <Field className="form-control" as="select" name='İlçe' label='İlçe*' >
+                <Field className="form-control my-custom-input" as="select" name='İlçe' label='İlçe*' >
                   <option selected disabled>Seçiniz</option>
                   <option>İlçe1</option>
                   <option>İlçe2</option>
@@ -109,13 +111,13 @@ const ProfileInformationEdit = (props: Props) => {
             <Row>
               <Col>
                 <label htmlFor="street">Mahalle / Sokak</label>
-                <Field className="form-control" rows="5" as="textarea" id="street" name="street"></Field>
+                <Field className="form-control my-custom-input" rows="5" as="textarea" id="street" name="street"></Field>
               </Col>
             </Row>
             <Row>
               <Col>
                 <label htmlFor="street">Hakkımda</label>
-                <Field className="form-control" rows="5" as="textarea" id="street" name="street"></Field>
+                <Field className="form-control my-custom-input" rows="5" as="textarea" id="street" name="street"></Field>
               </Col>
             </Row>
             <Row>

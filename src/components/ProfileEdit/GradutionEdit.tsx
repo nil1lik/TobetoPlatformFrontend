@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Field, Form, Formik } from "formik";
 import FormikInput from "../../utilities/FormikInput/FormikInput";
 import { Col, Container, Row } from "react-bootstrap";
@@ -6,6 +6,7 @@ import { Col, Container, Row } from "react-bootstrap";
 type Props = {};
 
 const GradutionEdit = (props: Props) => {
+
   const initialValues = {
     degree: "",
     univercityName: "",
@@ -66,6 +67,7 @@ const GradutionEdit = (props: Props) => {
               </Col>
               <Col>
                 <FormikInput
+                  type="date"
                   name="stock"
                   label="Başlangıç Yılı*"
                   placeHolder="Başlangıç Yılını Seçiniz"
@@ -75,6 +77,7 @@ const GradutionEdit = (props: Props) => {
             <Row>
               <Col>
                 <FormikInput
+                  type="date"
                   name="stock"
                   label="Mezuniyet Yılı*"
                   placeHolder="Mezuniyet Yılını Seçiniz"
