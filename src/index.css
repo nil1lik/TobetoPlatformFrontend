@@ -386,7 +386,7 @@ body {
 }
 
 .g-del {
-  top: 25% !important;
+  top: 40% !important;
 }
 
 .grade-delete {
@@ -394,6 +394,7 @@ body {
   align-items: flex-end;
   position: absolute;
   right: -31px;
+  border:0;
 }
 
 .grade-delete:after {
@@ -434,7 +435,7 @@ body {
 }
 
 .input-linkedin {
-  background: url("/public/images/linkedin-social.svg") no-repeat scroll 7px 6px;
+  background: url("/public/Images/linkedin-social.svg") no-repeat scroll 7px 6px;
   padding-left: 2.5em !important;
   background-size: 1.5em 1.5em;
 }
@@ -553,7 +554,7 @@ table {
 }
 
 .png_icon:before {
-  background-image: url(/public/images/png.png);
+  background-image: url("/public/Images/png.png");
   background-size: 20px 20px;
   display: inline-block;
   width: 20px;
@@ -655,7 +656,7 @@ table {
 }
 
 .lang-title:before {
-  content: url(https://tobeto.com/globe.svg);
+  content: url("https://tobeto.com/globe.svg");
   color: #828282;
   display: flex;
   margin-right: 8px;
@@ -680,7 +681,7 @@ table {
 }
 
 .lang-degree-symbol.main-lang:before {
-  content: url(https://tobeto.com/home.svg);
+  content: url("https://tobeto.com/home.svg");
   display: flex;
   margin-top: 8px;
 }
@@ -706,7 +707,7 @@ table {
 }
 
 .information-photo-cont::after {
-  content: url("../public/images/edit.svg");
+  content: url("/public/Images/edit.svg");
   position: absolute;
   width: 2em;
   height: 2em;
@@ -744,5 +745,41 @@ table {
 .trash-icon {
   width: 17px;
 }
+
+/*Profil Deneyimlerim
+ Üç Nokta ve Delete Butonu*/
+.grade-info {
+  display: flex;
+  align-items: flex-end;
+  position: absolute;
+  right: -31px;
+  top: -10%;
+  border: 0;
+}
+
+.grade-info-img {
+  content: url("/public/Images/alert-circle.png");
+  display: flex;
+    background-color: #ac59ff;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    justify-content: center;
+    padding-top: 1px;
+}
+
+
+.grade-delete-img
+{
+  content: url(/public/Images/trash.png);
+  background-color: #fc6d6d;
+  display: flex;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    justify-content: center;
+    padding-top: 1px;
+}
+/**/
 
 /* Yetkinliklerim END -eren*/
