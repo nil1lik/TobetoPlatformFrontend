@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import React from "react";
 import Platform from "./pages/Platform/Platform";
 import Footer from "./layouts/Footer/Footer";
 import Navigation from "./layouts/Navbar/Navigation";
@@ -17,6 +17,7 @@ import CertificateEdit from "./components/ProfileEdit/CertificateEdit";
 import SocialMediaAccountEdit from "./components/ProfileEdit/SocialMediaAccountEdit";
 import LanguageEdit from "./components/ProfileEdit/LanguageEdit";
 import Settings from "./components/ProfileEdit/Settings";
+import { Route, Routes } from "react-router-dom";
 
 
 const profileEditUrl = "/profilim/profilimi-duzenle";

@@ -2,7 +2,7 @@ import {ErrorMessage, Field} from "formik";
 import React from "react";
 
 type Props = {
-	label: string;
+	label?: string;
 	name: string;
 	type?: string;
 	placeHolder?: string;

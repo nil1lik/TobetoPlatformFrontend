@@ -10,6 +10,7 @@ import SocialMediaAccountEdit from "../../components/ProfileEdit/SocialMediaAcco
 import LanguageEdit from "../../components/ProfileEdit/LanguageEdit";
 import Settings from "../../components/ProfileEdit/Settings";
 import { useState } from "react";
+import React from "react";
 
 type Props = {};
 

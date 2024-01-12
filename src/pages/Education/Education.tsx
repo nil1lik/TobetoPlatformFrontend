@@ -1,3 +1,4 @@
+import React from "react";
 import TobetoPlatformBannerTop from "../../utilities/tobetoPlatform/TobetoPlatformBannerTop";
 import TobetoPlatformDropdown from "../../utilities/tobetoPlatform/TobetoPlatformDropdown";
 import TobetoPlatformSearchBar from "../../utilities/tobetoPlatform/TobetoPlatformSearchBar";

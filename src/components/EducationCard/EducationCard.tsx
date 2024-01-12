@@ -2,6 +2,8 @@ import TobetoPlatformVerticalCard from "../../utilities/tobetoPlatform/TobetoPla
 import { url } from "inspector";
 import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
+import React from "react";
+
 
 type Props = {};
 
