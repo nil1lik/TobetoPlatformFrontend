@@ -1,10 +1,13 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 type Props = {}
 
 const Profile = (props: Props) => {
   return (
-    <div>Profile</div>
+    <Link to={"/profilim/profilimi-duzenle"}>
+      <div>Profile</div>
+    </Link>
   )
 }
 
