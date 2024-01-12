@@ -1,13 +1,19 @@
+*, :after, :before {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
+  height: 100%;
   font-family: "Poppins", sans-serif !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  
+  display: block;
 }
 
 .body-height{
-  height: 805px;
+  height: auto;
+  flex-direction: column;
 }
 
 .ui.button.button {
@@ -389,3 +395,5 @@ body {
   height: 24px;
   padding-top: 3px;
 }
+
+
