@@ -36,7 +36,7 @@ const ExperienceEdit = (props: Props) => {
               </Col>
               <Col>
                 <FormikInput
-                  name="description"
+                  name="position"
                   label="Pozisyon*"
                   placeHolder="Front-End Developer"
                 />
@@ -45,7 +45,7 @@ const ExperienceEdit = (props: Props) => {
             <Row>
               <Col>
                 <FormikInput
-                  name="price"
+                  name="sector"
                   label="Sektör*"
                   placeHolder="Yazılım"
                 />
@@ -59,7 +59,7 @@ const ExperienceEdit = (props: Props) => {
                 </label>
                 <Field
                   as="select"
-                  name="degree"
+                  name="city"
                   className="custom-field form-select input-style"
                 >
                   <option value="" disabled hidden>
@@ -75,14 +75,14 @@ const ExperienceEdit = (props: Props) => {
             <Row>
               <Col>
                 <FormikInput
-                  name="stock"
+                  name="startDate"
                   label="İş Başlangıcı*"
                   placeHolder="gg.aa.yyyy"
                 />
               </Col>
               <Col>
                 <FormikInput
-                  name="stock"
+                  name="endDate"
                   label="İş Bitiş*"
                   placeHolder="gg.aa.yyyy"
                 />

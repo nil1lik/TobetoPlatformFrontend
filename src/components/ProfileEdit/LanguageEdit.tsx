@@ -83,6 +83,7 @@ const LanguageEdit = (props: Props) => {
         <Container>
           <div className="row">
             <div className="my-langs section-p tobeto-light-bg">
+
               <div className="lang-edit">
                 <div className="lang-info">
                   <div className="lang-title">

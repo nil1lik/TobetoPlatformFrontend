@@ -422,12 +422,16 @@ body {
   position: relative;
 }
 
+.lang-edit:hover {
+  border:2px solid #fc6d6d;
+}
+
 .lang, .lang-edit {
   box-shadow: 0 10px 24px 0 hsla(0,0%,9%,.05);
   background-color: #fff;
   border-radius: 50px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
   padding: 5px 16px;
 }   

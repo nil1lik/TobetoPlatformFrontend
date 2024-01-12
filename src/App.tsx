@@ -11,7 +11,7 @@ import Calendar from "./pages/Calendar/Calendar";
 import ProfileEdit from "./pages/ProfileEdit/ProfileEdit";
 import ProfileInformationEdit from "./components/ProfileEdit/ProfileInformationEdit";
 import ExperienceEdit from "./components/ProfileEdit/ExperienceEdit";
-import GradutionEdit from "./components/ProfileEdit/GradutionEdit";
+import GradutionEdit from "./components/ProfileEdit/GraduationEdit";
 import SkillEdit from "./components/ProfileEdit/SkillEdit";
 import CertificateEdit from "./components/ProfileEdit/CertificateEdit";
 import SocialMediaAccountEdit from "./components/ProfileEdit/SocialMediaAccountEdit";

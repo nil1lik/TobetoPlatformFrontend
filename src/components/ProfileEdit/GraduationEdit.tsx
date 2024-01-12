@@ -5,7 +5,7 @@ import { Col, Container, Row, TabContainer } from "react-bootstrap";
 
 type Props = {};
 
-const GradutionEdit = (props: Props) => {
+const GraduationEdit = (props: Props) => {
   const initialValues = {
     degree: "",
     univercityName: "",
@@ -50,7 +50,7 @@ const GradutionEdit = (props: Props) => {
               </Col>
               <Col>
                 <FormikInput
-                  name="description"
+                  name="univercityName"
                   label="Üniversite*"
                   placeHolder="Kampüs 365"
                 />
@@ -59,14 +59,14 @@ const GradutionEdit = (props: Props) => {
             <Row>
               <Col>
                 <FormikInput
-                  name="price"
+                  name="department"
                   label="Bölüm*"
                   placeHolder="Yazılım"
                 />
               </Col>
               <Col>
                 <FormikInput
-                  name="stock"
+                  name="graduationDate"
                   label="Başlangıç Yılı*"
                   placeHolder="Başlangıç Yılını Seçiniz"
                 />
@@ -75,7 +75,7 @@ const GradutionEdit = (props: Props) => {
             <Row>
               <Col>
                 <FormikInput
-                  name="stock"
+                  name="endDate"
                   label="Mezuniyet Yılı*"
                   placeHolder="Mezuniyet Yılını Seçiniz"
                 />
@@ -126,4 +126,4 @@ const GradutionEdit = (props: Props) => {
   );
 };
 
-export default GradutionEdit;
+export default GraduationEdit;
