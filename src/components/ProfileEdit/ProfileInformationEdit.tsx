@@ -70,7 +70,7 @@ const ProfileInformationEdit = (props: Props) => {
                 </Row>
               </Col>
               <Col>
-                <ProfileInput type='date' name='birthdate' label='Doğum Tarihiniz*' placeholder='Telefon Numaranız' />
+                <ProfileInput type='date' name='birthdate' label='Doğum Tarihiniz*' placeholder='Doğum tarihiniz' />
               </Col>
             </Row>
             <Row>
