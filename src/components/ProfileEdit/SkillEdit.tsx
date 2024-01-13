@@ -34,25 +34,25 @@ const SkillEdit = (props: Props) => {
       <Card className='inline-card'>
         <Card.Body className='inline-card-body'>
           This is some text within a card body.
-          <Button variant='danger' className='delete-btn'>
-            <img src={process.env.PUBLIC_URL + "/images/trash.svg"} className='trash-icon' />
-          </Button>
+          <button className="grade-delete g-del">
+              <i className="grade-delete-img"></i>
+            </button>
         </Card.Body>
       </Card>
       <Card className='inline-card'>
         <Card.Body className='inline-card-body'>
           This is some text within a card body.
-          <Button variant='danger' className='delete-btn'>
-            <img src={process.env.PUBLIC_URL + "/images/trash.svg"} className='trash-icon' />
-          </Button>
+          <button className="grade-delete g-del">
+              <i className="grade-delete-img"></i>
+            </button>
         </Card.Body>
       </Card>
       <Card className='inline-card'>
         <Card.Body className='inline-card-body'>
           This is some text within a card body.
-          <Button variant='danger' className='delete-btn'>
-            <img src={process.env.PUBLIC_URL + "/images/trash.svg"} className='trash-icon' />
-          </Button>
+          <button className="grade-delete g-del">
+              <i className="grade-delete-img"></i>
+            </button>
         </Card.Body>
       </Card>
     </>

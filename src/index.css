@@ -1,20 +1,21 @@
-*,
-:after,
-:before {
-  box-sizing: border-box;
-}
-
 body {
-  margin: 0;
-  height: 100%;
   font-family: "Poppins", sans-serif !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  display: block;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 905px; /* Minimum sayfa yüksekliği */
 }
 
-.body-height {
-  height: 805px;
+main {
+  flex-grow: 1;
+  margin-bottom: auto;
+}
+
+footer {
+  margin-top: auto;
 }
 
 .ui.button.button {
@@ -134,24 +135,6 @@ body {
   flex-wrap: wrap;
 }
 
-.custom-navbar {
-  height: 80px;
-}
-
-.nav-style {
-  font-size: 15.2px;
-  font-weight: bold;
-}
-
-.nav-style .nav-link:hover {
-  color: #9933ff !important;
-}
-
-.nav-style .nav-link:focus {
-  color: #9933ff !important;
-  font-weight: bolder;
-}
-
 .edu-banner {
   margin-bottom: 1.5em;
 }
@@ -176,30 +159,6 @@ body {
 
 .profile-edit {
   display: flex;
-}
-
-.profile-edit-nav {
-  display: flex;
-  flex-direction: column;
-}
-
-.profile-edit-nav-btn {
-  margin-bottom: 8px;
-  padding: 16px 8px !important;
-  font-size: 14px;
-  font-weight: 700 !important;
-  text-decoration: none;
-  color: #828282;
-}
-
-.profile-edit-nav-btn:hover {
-  color: #9933ff;
-}
-
-.profile-edit-nav-btn:focus {
-  color: #9933ff;
-  font-weight: 800 !important;
-  border-right: 3px solid #93f !important;
 }
 
 .custom-field {
@@ -395,6 +354,7 @@ body {
   position: absolute;
   right: -31px;
   border:0;
+  background-color: #ffffff;
 }
 
 .grade-delete:after {
@@ -435,7 +395,7 @@ body {
 }
 
 .input-linkedin {
-  background: url("/public/Images/linkedin-social.svg") no-repeat scroll 7px 6px;
+  background: url("/public/images/linkedin-social.svg") no-repeat scroll 7px 6px;
   padding-left: 2.5em !important;
   background-size: 1.5em 1.5em;
 }
@@ -554,7 +514,7 @@ table {
 }
 
 .png_icon:before {
-  background-image: url("/public/Images/png.png");
+  background-image: url("/public/images/png.png");
   background-size: 20px 20px;
   display: inline-block;
   width: 20px;
@@ -613,7 +573,7 @@ table {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  padding: 5px 16px;
+  padding: 15px 5px;
 }
 
 .lang-info,
@@ -659,12 +619,20 @@ table {
   color: hsla(0, 0%, 51%, .8);
 }
 
-.lang-title:before {
+.lang-title-img {
+  content: url("https://tobeto.com/globe.svg");
+  color: #828282;
+  display: flex;
+  margin-right: 13px;
+}
+
+
+/* .lang-title:before {
   content: url("https://tobeto.com/globe.svg");
   color: #828282;
   display: flex;
   margin-right: 8px;
-}
+} */
 
 .lang-degree-symbol.main-lang {
   position: relative;
@@ -690,7 +658,7 @@ table {
   margin-top: 8px;
 }
 
-.delete-lang {
+.delete-lang{
   display: none;
   position: absolute;
   background-color: #fc6d6d;
@@ -698,7 +666,24 @@ table {
   height: 24px;
   padding: 14px;
   border-radius: 50%;
-  left: -14px;
+  left: -22px;
+}
+
+
+.delete-lang-img{
+  content: url("/public/images/trash.png");
+  background-color: #fc6d6d;
+  visibility: hidden;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  justify-content: center;
+  margin-top: -2px;
+
+}
+
+.lang-edit:hover .delete-lang-img{
+  visibility: visible;
 }
 
 /* Kişisel Bilgilerim START -eren */
@@ -711,7 +696,7 @@ table {
 }
 
 .information-photo-cont::after {
-  content: url("/public/Images/edit.svg");
+  content: url("/public/images/edit.svg");
   position: absolute;
   width: 2em;
   height: 2em;
@@ -759,10 +744,11 @@ table {
   right: -31px;
   top: -10%;
   border: 0;
+  background-color: #ffffff;
 }
 
 .grade-info-img {
-  content: url("/public/Images/alert-circle.png");
+  content: url("/public/images/alert-circle.png");
   display: flex;
     background-color: #ac59ff;
     width: 20px;
@@ -770,12 +756,13 @@ table {
     border-radius: 50%;
     justify-content: center;
     padding-top: 1px;
+    
 }
 
 
 .grade-delete-img
 {
-  content: url(/public/Images/trash.png);
+  content: url("/public/images/trash.png");
   background-color: #fc6d6d;
   display: flex;
     width: 20px;
@@ -787,3 +774,88 @@ table {
 /**/
 
 /* Yetkinliklerim END -eren*/
+
+/* Exam */
+.card.cv-box {
+  background: #fff;
+  box-shadow: 0 7px 29px rgba(0, 0, 0, 0.13);
+  border-radius: 12px;
+  margin-top: 1em;
+}
+
+.cv-padding {
+  padding: 22px;
+}
+
+.exams {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1em;
+  gap: 1em;
+}
+
+.my-3 {
+  margin-top: 0.75rem !important;
+  margin-bottom: 0.75rem !important;
+}
+
+.card-body .exams .exam-card {
+  position: relative;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 1px 15px 1px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  padding: 8px 14px;
+  transition: 0.3s;
+}
+
+.card-img.exam-time {
+  content: "";
+  background-image: url("/public/images/examTime.svg");
+  background-repeat: no-repeat;
+  background-size: 1.2em 1.2em;
+  width: 1.2em;
+  height: 1.2em;
+  display: block;
+}
+ 
+.card-img.status-done {
+  content: "";
+  background-image: url("/public/images/status-done.svg");
+  width: 1.5em;
+  height: 1.5em;
+  display: inline-block;
+  vertical-align: middle;
+  background-size: 1.5em 1.5em;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  right: -4px;
+  position: absolute;
+}
+
+.exam-icon-text{
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 600;
+}
+
+/* Yetkinliklerim END -eren*/
+
+/* SocialMedia Button */
+.social-delete {
+  content: url(/public/images/trash.png);
+  display: flex;
+  background-color: #fc6d6d;
+  width: 27px;
+  height: 27px;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  padding-top: 3px;
+}
+.btn{
+  padding-top: 0 !important;
+}

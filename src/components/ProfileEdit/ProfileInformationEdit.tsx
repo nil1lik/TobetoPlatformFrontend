@@ -121,10 +121,10 @@ const ProfileInformationEdit = (props: Props) => {
               </Col>
             </Row>
             <Row>
-              <label>
-                <Field type="checkbox" name="checked" value="One" />
-                Devam ediyorum
-              </label>
+            <label>
+                  <Field type="checkbox" name="checked" value="One" />
+                  Devam Ediyorum
+                </label>
             </Row>
             <button type="submit" className="button-save py-2 mb-3 mt-4 d-inline-block ">
               Kaydet
