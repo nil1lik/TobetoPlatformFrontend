@@ -37,8 +37,12 @@
 
   .my-3:hover {
     cursor: pointer;
-    scale: 1.02;
-    transition: .3s;
+    transform: scale(1.02);
+    transition: transform 0.3s;
+  }
+  
+  .my-3 {
+    transition: transform 0.3s;
   }
   
   .card-img.exam-time {
