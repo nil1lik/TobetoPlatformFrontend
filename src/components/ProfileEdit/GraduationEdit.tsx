@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Field, Form, Formik } from "formik";
-import FormikInput from "../../utilities/FormikInput/FormikInput";
+import FormikInput from "../../utilities/FormikInput";
 import { Col, Container, Row, TabContainer } from "react-bootstrap";
-import YearPicker from "../../utilities/FormikInput/YearPicker";
+import YearPicker from "../../utilities/YearPicker";
 
 type Props = {};
 

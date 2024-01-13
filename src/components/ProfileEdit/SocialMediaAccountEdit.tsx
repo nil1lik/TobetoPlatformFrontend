@@ -1,7 +1,7 @@
 import React from "react";
 import { Form, Formik, Field } from "formik";
 import { Col, Container, Row } from "react-bootstrap";
-import FormikInput from "../../utilities/FormikInput/FormikInput";
+import FormikInput from "../../utilities/FormikInput";
 
 type Props = {};
 

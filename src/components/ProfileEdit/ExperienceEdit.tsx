@@ -1,6 +1,6 @@
 import { Field, Form, Formik } from "formik";
 import { Col, Container, Row, TabContainer } from "react-bootstrap";
-import FormikInput from "../../utilities/FormikInput/FormikInput";
+import FormikInput from "../../utilities/FormikInput";
 import React from "react";
 
 type Props = {};
@@ -77,6 +77,7 @@ const ExperienceEdit = (props: Props) => {
             <Row>
               <Col>
                 <FormikInput
+                  type="date"
                   name="startDate"
                   label="İş Başlangıcı*"
                   placeHolder="gg.aa.yyyy"
@@ -84,6 +85,7 @@ const ExperienceEdit = (props: Props) => {
               </Col>
               <Col>
                 <FormikInput
+                  type="date"
                   name="endDate"
                   label="İş Bitiş*"
                   placeHolder="gg.aa.yyyy"

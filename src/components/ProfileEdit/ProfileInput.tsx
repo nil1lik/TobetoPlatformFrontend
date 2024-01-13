@@ -1,6 +1,6 @@
 import React from 'react'
 import { Field } from 'formik'
-import FormikInput from '../../utilities/FormikInput/FormikInput'
+import FormikInput from '../../utilities/FormikInput'
 
 type Props = {
     className?: string,
