@@ -143,7 +143,7 @@ const GraduationEdit = (props: Props) => {
               </label>
             </div>
             <button className="grade-delete g-del">
-              <i className="bi bi-trash3"></i>
+              <i className="grade-delete-img"></i>
             </button>
           </div>
         </div>

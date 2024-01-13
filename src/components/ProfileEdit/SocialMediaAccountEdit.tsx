@@ -63,12 +63,7 @@ const SocialMediaAccountEdit = (props: Props) => {
 
                     <Col xs={1}>
                       <button className="btn social-delete">
-                        <img
-                          src={
-                            process.env.PUBLIC_URL + "/images/social-delete.svg"
-                          }
-                          style={{ width: 20 }}
-                        />
+                        <i className="grade-delete-img"></i>
                       </button>
                     </Col>
                     <Col xs={1}>
