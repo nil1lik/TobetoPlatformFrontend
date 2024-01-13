@@ -1,11 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import { Field, Form, Formik } from "formik";
 import FormikInput from "../../utilities/FormikInput/FormikInput";
 import { Col, Container, Row, TabContainer } from "react-bootstrap";
+import YearPicker from "../../utilities/FormikInput/YearPicker";
 
 type Props = {};
 
 const GraduationEdit = (props: Props) => {
+  const [selectedStartDate, setSelectedStartDate] = useState<Date | null>(null);
+  const [selectedEndDate, setSelectedEndDate] = useState<Date | null>(null);
+
+  const handleStartDateChange = (date: Date | null) => {
+    setSelectedStartDate(date);
+  };
+
+  const handleEndDateChange = (date: Date | null) => {
+    setSelectedEndDate(date);
+  };
+
   const initialValues = {
     degree: "",
     univercityName: "",
@@ -65,20 +77,34 @@ const GraduationEdit = (props: Props) => {
                 />
               </Col>
               <Col>
-                <FormikInput
-                  name="graduationDate"
+                <YearPicker
                   label="Başlangıç Yılı*"
-                  placeHolder="Başlangıç Yılını Seçiniz"
+                  name="startDate"
+                  placeholder="Başlangıç yılını seçiniz"
+                  selectedDate={selectedStartDate}
+                  onYearChange={handleStartDateChange}
                 />
+                <label>
+                  {selectedStartDate
+                    ? selectedStartDate.getFullYear()
+                    : "Seçilmedi"}
+                </label>
               </Col>
             </Row>
             <Row>
               <Col>
-                <FormikInput
-                  name="endDate"
+                <YearPicker
                   label="Mezuniyet Yılı*"
-                  placeHolder="Mezuniyet Yılını Seçiniz"
+                  name="endDate"
+                  placeholder="Mezuniyet yılını seçiniz"
+                  selectedDate={selectedEndDate}
+                  onYearChange={handleEndDateChange}
                 />
+                <label>
+                  {selectedEndDate
+                    ? selectedEndDate.getFullYear()
+                    : "Seçilmedi"}
+                </label>
               </Col>
               <Col></Col>
             </Row>
@@ -117,7 +143,7 @@ const GraduationEdit = (props: Props) => {
               </label>
             </div>
             <button className="grade-delete g-del">
-            <i className="bi bi-trash3"></i>
+              <i className="bi bi-trash3"></i>
             </button>
           </div>
         </div>
