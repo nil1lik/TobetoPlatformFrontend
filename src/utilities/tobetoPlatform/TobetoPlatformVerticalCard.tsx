@@ -6,7 +6,8 @@ type Props = {image: string, text: string, description: string, buttonText: stri
 
 const TobetoPlatformVerticalCard = (props: Props) => {
   return (
-    <div><Card className='card' style={{ width: '16rem' }}>
+    <div>
+    <Card className='card' style={{ width: '16rem' }}>
     <Card.Img className='card-img' src={props.image} />
     <Card.Body>
       <Card.Title>{props.text} </Card.Title>

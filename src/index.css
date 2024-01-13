@@ -1,4 +1,6 @@
-*, :after, :before {
+*,
+:after,
+:before {
   box-sizing: border-box;
 }
 
@@ -144,6 +146,7 @@ body {
 .nav-style .nav-link:hover {
   color: #9933ff !important;
 }
+
 .nav-style .nav-link:focus {
   color: #9933ff !important;
   font-weight: bolder;
@@ -188,6 +191,7 @@ body {
   text-decoration: none;
   color: #828282;
 }
+
 .profile-edit-nav-btn:hover {
   color: #9933ff;
 }
@@ -237,8 +241,8 @@ body {
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
-.form-control:focus{
-  box-shadow: 0 0 0 0.25rem rgba(153,51,255,.25) !important;
+.form-control:focus {
+  box-shadow: 0 0 0 0.25rem rgba(153, 51, 255, .25) !important;
 }
 
 .form-control:disabled {
@@ -382,7 +386,7 @@ body {
 }
 
 .g-del {
-  top: 25% !important;
+  top: 40% !important;
 }
 
 .grade-delete {
@@ -390,6 +394,7 @@ body {
   align-items: flex-end;
   position: absolute;
   right: -31px;
+  border:0;
 }
 
 .grade-delete:after {
@@ -449,7 +454,7 @@ body {
 }
 
 .mt-1 {
-  margin-top: 0.25rem!important;
+  margin-top: 0.25rem !important;
 }
 
 .mt-5 {
@@ -459,6 +464,7 @@ body {
 .my-2 {
   margin-bottom: 0.25rem !important;
 }
+
 .col-12 {
   flex: 0 0 auto;
   width: 100%;
@@ -475,14 +481,16 @@ body {
   padding: 2em 0;
   border-radius: 8px;
 }
+
 .tobeto-light-bg {
   border-radius: 12px;
   position: relative;
   border: 1px solid #f8f3fb;
   background-color: #fbf9fc;
   margin-bottom: 2em;
-  margin-top: 0.5em!important;
+  margin-top: 0.5em !important;
 }
+
 .row.certificate {
   flex-shrink: 0;
   max-width: 100%;
@@ -496,7 +504,7 @@ body {
   justify-content: space-between;
   color: #93f;
   font-size: 28px;
-  font-weight: 500; 
+  font-weight: 500;
 }
 
 
@@ -509,8 +517,10 @@ body {
   background-color: #f9fafb !important;
 }
 
-.corpTable thead, .corpTable thead tr, .corpTable thead tr th {
-  background-color: #dcdcdc!important;
+.corpTable thead,
+.corpTable thead tr,
+.corpTable thead tr th {
+  background-color: #dcdcdc !important;
 }
 
 .mt-8 {
@@ -537,12 +547,14 @@ table {
   color: #667085;
 }
 
-.corpTable tbody, .corpTable tbody tr, .corpTable tbody tr td {
-  background-color: #eee!important;
+.corpTable tbody,
+.corpTable tbody tr,
+.corpTable tbody tr td {
+  background-color: #eee !important;
 }
 
 .png_icon:before {
-  background-image: url(/public/images/png.png);
+  background-image: url("/public/images/png.png");
   background-size: 20px 20px;
   display: inline-block;
   width: 20px;
@@ -589,17 +601,23 @@ table {
   position: relative;
 }
 
-.lang, .lang-edit {
-  box-shadow: 0 10px 24px 0 hsla(0,0%,9%,.05);
+.lang-edit:hover {
+  border:2px solid #fc6d6d;
+}
+
+.lang,
+.lang-edit {
+  box-shadow: 0 10px 24px 0 hsla(0, 0%, 9%, .05);
   background-color: #fff;
   border-radius: 50px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
   padding: 5px 16px;
-}   
+}
 
-.lang-info, .lang-title {
+.lang-info,
+.lang-title {
   display: flex;
   align-items: center;
 }
@@ -608,20 +626,23 @@ table {
   gap: 8px;
 }
 
-.lang-info, .lang-title {
+.lang-info,
+.lang-title {
   display: flex;
   align-items: center;
 }
 
 .flex-column {
-  flex-direction: column!important;
+  flex-direction: column !important;
 }
 
 .d-flex {
-  display: flex!important;
+  display: flex !important;
 }
 
-*, :after, :before {
+*,
+:after,
+:before {
   box-sizing: border-box;
 }
 
@@ -635,11 +656,11 @@ table {
 .lang-title .lang-degree {
   font-size: 12px;
   font-weight: 500;
-  color: hsla(0,0%,51%,.8);
+  color: hsla(0, 0%, 51%, .8);
 }
 
 .lang-title:before {
-  content: url(https://tobeto.com/globe.svg);
+  content: url("https://tobeto.com/globe.svg");
   color: #828282;
   display: flex;
   margin-right: 8px;
@@ -664,7 +685,7 @@ table {
 }
 
 .lang-degree-symbol.main-lang:before {
-  content: url(https://tobeto.com/home.svg);
+  content: url("https://tobeto.com/home.svg");
   display: flex;
   margin-top: 8px;
 }
@@ -680,7 +701,157 @@ table {
   left: -14px;
 }
 
+/* Kişisel Bilgilerim START -eren */
+.information-photo-cont {
+  position: relative;
+  margin: 0 auto;
+  display: block;
+  width: 148px;
+  height: 148px;
+}
 
-  
+.information-photo-cont::after {
+  content: url("/public/images/edit.svg");
+  position: absolute;
+  width: 2em;
+  height: 2em;
+  border-radius: 50%;
+  background-color: #fff;
+  bottom: 8px;
+  right: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
 
+/* Kişisel Bilgilerim END -eren */
+
+/* Yetkinliklerim START -eren*/
+.inline-card {
+  box-shadow: 0 10px 24px 0 hsla(0, 0%, 9%, .05);
+  background-color: #fff;
+  padding: 12px 18px;
+  border: none !important;
+}
+
+.inline-card-body {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0 !important;
+}
+
+.delete-btn {
+  border-radius: 8px !important;
+}
+
+.trash-icon {
+  width: 17px;
+}
+
+/*Profil Deneyimlerim
+ Üç Nokta ve Delete Butonu*/
+.grade-info {
+  display: flex;
+  align-items: flex-end;
+  position: absolute;
+  right: -31px;
+  top: -10%;
+  border: 0;
+}
+
+.grade-info-img {
+  content: url("/public/images/alert-circle.png");
+  display: flex;
+    background-color: #ac59ff;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    justify-content: center;
+    padding-top: 1px;
+}
+
+
+.grade-delete-img
+{
+  content: url(/public/images/trash.png);
+  background-color: #fc6d6d;
+  display: flex;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    justify-content: center;
+    padding-top: 1px;
+}
+/**/
+
+/* Yetkinliklerim END -eren*/
+
+/* Exam */
+.card.cv-box {
+  background: #fff;
+  box-shadow: 0 7px 29px rgba(0, 0, 0, 0.13);
+  border-radius: 12px;
+  margin-top: 1em;
+}
+
+.cv-padding {
+  padding: 22px;
+}
+
+.exams {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1em;
+  gap: 1em;
+}
+
+.my-3 {
+  margin-top: 0.75rem !important;
+  margin-bottom: 0.75rem !important;
+}
+
+.card-body .exams .exam-card {
+  position: relative;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 1px 15px 1px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  padding: 8px 14px;
+  transition: 0.3s;
+}
+
+.card-img.exam-time {
+  content: "";
+  background-image: url(/public/images/examTime.svg);
+  background-repeat: no-repeat;
+  background-size: 1.2em 1.2em;
+  width: 1.2em;
+  height: 1.2em;
+  display: block;
+}
+ 
+.card-img.status-done {
+  content: "";
+  background-image: url(/public/images/status-done.svg);
+  width: 1.5em;
+  height: 1.5em;
+  display: inline-block;
+  vertical-align: middle;
+  background-size: 1.5em 1.5em;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  right: -4px;
+  position: absolute;
+}
+
+.exam-icon-text{
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 600;
+}
 
