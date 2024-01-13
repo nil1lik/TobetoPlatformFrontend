@@ -31,6 +31,7 @@ const Platform = (props: Props) => {
           />
           <PlatformTab />
         </Container>
+        
       </div>
     </>
   );
