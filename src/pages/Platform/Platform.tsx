@@ -3,7 +3,6 @@ import TobetoPlatformItem from "../../utilities/tobetoPlatform/TobetoPlatformIte
 import imageSize from "../../enums/imageSize";
 import { Container } from "semantic-ui-react";
 import PlatformTab from "../../components/PlatformTab/PlatformTab";
-import Exam from "../../components/Exam/Exam";
 type Props = {};
 
 const Platform = (props: Props) => {
@@ -30,12 +29,9 @@ const Platform = (props: Props) => {
             description="Ücretsiz eğitimlerle, geleceğin mesleklerinde sen de yerini al."
             subDescription={["Aradığın ", <span style={{color: "#00d29b"}}>“</span>, "İŞ" ,<span style={{color: "#00d29b"}}>“</span>, " burada!"]}
           />
-          <PlatformTab /> 
+          <PlatformTab />
         </Container>
       </div>
-      <Container className="content-cont">
-        <Exam></Exam>
-      </Container>
     </>
   );
 };
