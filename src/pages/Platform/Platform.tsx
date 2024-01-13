@@ -4,6 +4,7 @@ import imageSize from "../../enums/imageSize";
 import { Container } from "semantic-ui-react";
 import PlatformTab from "../../components/PlatformTab/PlatformTab";
 import Exam from "../../components/Exam/Exam";
+import ProfileCard from "../../components/ProfileCard/ProfileCard";
 type Props = {};
 
 const Platform = (props: Props) => {
@@ -33,8 +34,13 @@ const Platform = (props: Props) => {
           <PlatformTab /> 
         </Container>
       </div>
+      <br></br>
       <Container className="content-cont">
         <Exam></Exam>
+      </Container>
+      <br></br>
+      <Container>
+          <ProfileCard></ProfileCard>
       </Container>
     </>
   );
