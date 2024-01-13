@@ -29,17 +29,16 @@ const Navigation = (props: Props) => {
           İstanbul Kodluyor
         </Link>
       </Nav>
-      <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-        <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-        <NavDropdown.Item href="#action/3.2">
-          Another action
-        </NavDropdown.Item>
-        <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-        <NavDropdown.Divider />
-        <NavDropdown.Item href="#action/3.4">
-          Separated link
-        </NavDropdown.Item>
+      <div className="btn-group header-avatar">
+          <img className="dropdown-img" src="/images/pp.png"></img>
+      <NavDropdown className="dropdown-toggle nav-link dropdown-text " title="Muhammed KURT" id="basic-nav-dropdown">
+        <NavDropdown.Item className="dropdown-menu.show.profile" href="#action/3.1">Profil Bilgileri</NavDropdown.Item>
+        <NavDropdown.Item className="dropdown-menu.show.profile" href="#action/3.2">Oturumu Kapat</NavDropdown.Item>
       </NavDropdown>
+      <div className="btn-group header-avatar">
+          <img className="dropdown-toggle-img" src="/public/images/navbar-dropdown-toggle.svg"></img>
+      </div>
+      </div>
     </Navbar>
   );
 };
