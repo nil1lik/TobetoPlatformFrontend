@@ -1,6 +1,7 @@
 import { Field, Form, Formik } from "formik";
-import { Col, Row, TabContainer } from "react-bootstrap";
-import FormikInput from "../../utilities/FormikInput/FormikInput";
+import { Col, Container, Row, TabContainer } from "react-bootstrap";
+import FormikInput from "../../utilities/FormikInput";
+import React from "react";
 
 type Props = {};
 
@@ -12,7 +13,7 @@ const ExperienceEdit = (props: Props) => {
     city: "",
     startDate: new Date(),
     endDate: new Date(),
-    description:"",
+    description: "",
     toggle: "Çalışmaya Devam Ediyorum",
   };
 
@@ -36,7 +37,7 @@ const ExperienceEdit = (props: Props) => {
               </Col>
               <Col>
                 <FormikInput
-                  name="description"
+                  name="position"
                   label="Pozisyon*"
                   placeHolder="Front-End Developer"
                 />
@@ -45,7 +46,7 @@ const ExperienceEdit = (props: Props) => {
             <Row>
               <Col>
                 <FormikInput
-                  name="price"
+                  name="sector"
                   label="Sektör*"
                   placeHolder="Yazılım"
                 />
@@ -59,12 +60,13 @@ const ExperienceEdit = (props: Props) => {
                 </label>
                 <Field
                   as="select"
-                  name="degree"
+                  name="city"
                   className="custom-field form-select input-style"
                 >
                   <option value="" disabled hidden>
                     İl Seçiniz*
                   </option>
+                  <option>İl Seçiniz</option>
                   <option>Adana</option>
                   <option>Adıyaman</option>
                   <option>Afyonkarahisar</option>
@@ -75,14 +77,16 @@ const ExperienceEdit = (props: Props) => {
             <Row>
               <Col>
                 <FormikInput
-                  name="stock"
+                  type="date"
+                  name="startDate"
                   label="İş Başlangıcı*"
                   placeHolder="gg.aa.yyyy"
                 />
               </Col>
               <Col>
                 <FormikInput
-                  name="stock"
+                  type="date"
+                  name="endDate"
                   label="İş Bitiş*"
                   placeHolder="gg.aa.yyyy"
                 />
@@ -100,7 +104,10 @@ const ExperienceEdit = (props: Props) => {
                 >
                   İş Açıklaması*
                 </label>
-                <textarea  name="description"  className="custom-field form-control textarea-style" /> 
+                <textarea
+                  name="description"
+                  className="custom-field form-control textarea-style"
+                />
               </Col>
             </Row>
             <button
@@ -112,6 +119,41 @@ const ExperienceEdit = (props: Props) => {
           </TabContainer>
         </Form>
       </Formik>
+      <Container>
+        <div className="my-grade">
+          <div className="grade-header">
+            <label className="grade-date">2016-2021 - Devam Ediyor</label>
+          </div>
+          <div className="grade-details">
+            <div className="grade-details-col">
+              <label className="grade-details-header">Kurum Adı</label>
+              <label className="grade-details-content">Tobeto</label>
+            </div>
+            <div className="grade-details-col">
+              <label className="grade-details-header">Pozisyon</label>
+              <label className="grade-details-content">
+                Back-End Developer
+              </label>
+            </div>
+            <div className="grade-details-col">
+              <label className="grade-details-header">Sektör</label>
+              <label className="grade-details-content">Yazılım</label>
+            </div>
+            <div className="grade-details-col">
+              <label className="grade-details-header">Şehir</label>
+              <label className="grade-details-content">Afyonkarahisar</label>
+              <div>
+                <button className="grade-info">
+                  <i className="grade-info-img"></i>
+                </button>
+                <button className="grade-delete g-del">
+                  <i className="grade-delete-img"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </Container>
     </div>
   );
 };

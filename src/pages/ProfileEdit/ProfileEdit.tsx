@@ -3,13 +3,14 @@ import ProfileEditSidebar from "../../layouts/ProfileEditSidebar/ProfileEditSide
 import { Route, Routes } from "react-router";
 import ProfileInformationEdit from "../../components/ProfileEdit/ProfileInformationEdit";
 import ExperienceEdit from "../../components/ProfileEdit/ExperienceEdit";
-import GradutionEdit from "../../components/ProfileEdit/GradutionEdit";
+import GradutionEdit from "../../components/ProfileEdit/GraduationEdit";
 import SkillEdit from "../../components/ProfileEdit/SkillEdit";
 import CertificateEdit from "../../components/ProfileEdit/CertificateEdit";
 import SocialMediaAccountEdit from "../../components/ProfileEdit/SocialMediaAccountEdit";
 import LanguageEdit from "../../components/ProfileEdit/LanguageEdit";
 import Settings from "../../components/ProfileEdit/Settings";
 import { useState } from "react";
+import React from "react";
 
 type Props = {};
 

@@ -435,7 +435,7 @@ body {
 }
 
 .input-linkedin {
-  background: url("/public/images/linkedin-social.svg") no-repeat scroll 7px 6px;
+  background: url("/public/Images/linkedin-social.svg") no-repeat scroll 7px 6px;
   padding-left: 2.5em !important;
   background-size: 1.5em 1.5em;
 }
@@ -855,3 +855,4 @@ table {
   font-weight: 600;
 }
 
+/* Yetkinliklerim END -eren*/

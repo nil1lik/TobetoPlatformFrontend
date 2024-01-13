@@ -1,6 +1,6 @@
 import React from "react";
 import { Field, Form, Formik } from "formik";
-import FormikInput from "../../utilities/FormikInput/FormikInput";
+import FormikInput from "../../utilities/FormikInput";
 import { Col, Row, TabContainer } from "react-bootstrap";
 
 type Props = {};

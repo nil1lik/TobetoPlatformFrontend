@@ -1,11 +1,22 @@
 import React, { useState } from "react";
 import { Field, Form, Formik } from "formik";
-import FormikInput from "../../utilities/FormikInput/FormikInput";
-import { Col, Container, Row } from "react-bootstrap";
+import FormikInput from "../../utilities/FormikInput";
+import { Col, Container, Row, TabContainer } from "react-bootstrap";
+import YearPicker from "../../utilities/YearPicker";
 
 type Props = {};
 
-const GradutionEdit = (props: Props) => {
+const GraduationEdit = (props: Props) => {
+  const [selectedStartDate, setSelectedStartDate] = useState<Date | null>(null);
+  const [selectedEndDate, setSelectedEndDate] = useState<Date | null>(null);
+
+  const handleStartDateChange = (date: Date | null) => {
+    setSelectedStartDate(date);
+  };
+
+  const handleEndDateChange = (date: Date | null) => {
+    setSelectedEndDate(date);
+  };
 
   const initialValues = {
     degree: "",
@@ -51,7 +62,7 @@ const GradutionEdit = (props: Props) => {
               </Col>
               <Col>
                 <FormikInput
-                  name="description"
+                  name="univercityName"
                   label="Üniversite*"
                   placeHolder="Kampüs 365"
                 />
@@ -60,28 +71,40 @@ const GradutionEdit = (props: Props) => {
             <Row>
               <Col>
                 <FormikInput
-                  name="price"
+                  name="department"
                   label="Bölüm*"
                   placeHolder="Yazılım"
                 />
               </Col>
               <Col>
-                <FormikInput
-                  type="date"
-                  name="stock"
+                <YearPicker
                   label="Başlangıç Yılı*"
-                  placeHolder="Başlangıç Yılını Seçiniz"
+                  name="startDate"
+                  placeholder="Başlangıç yılını seçiniz"
+                  selectedDate={selectedStartDate}
+                  onYearChange={handleStartDateChange}
                 />
+                <label>
+                  {selectedStartDate
+                    ? selectedStartDate.getFullYear()
+                    : "Seçilmedi"}
+                </label>
               </Col>
             </Row>
             <Row>
               <Col>
-                <FormikInput
-                  type="date"
-                  name="stock"
+                <YearPicker
                   label="Mezuniyet Yılı*"
-                  placeHolder="Mezuniyet Yılını Seçiniz"
+                  name="endDate"
+                  placeholder="Mezuniyet yılını seçiniz"
+                  selectedDate={selectedEndDate}
+                  onYearChange={handleEndDateChange}
                 />
+                <label>
+                  {selectedEndDate
+                    ? selectedEndDate.getFullYear()
+                    : "Seçilmedi"}
+                </label>
               </Col>
               <Col></Col>
             </Row>
@@ -120,7 +143,7 @@ const GradutionEdit = (props: Props) => {
               </label>
             </div>
             <button className="grade-delete g-del">
-            <i className="bi bi-trash3"></i>
+              <i className="bi bi-trash3"></i>
             </button>
           </div>
         </div>
@@ -129,4 +152,4 @@ const GradutionEdit = (props: Props) => {
   );
 };
 
-export default GradutionEdit;
+export default GraduationEdit;

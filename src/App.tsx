@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import React from "react";
 import Platform from "./pages/Platform/Platform";
 import Footer from "./layouts/Footer/Footer";
 import Navigation from "./layouts/Navbar/Navigation";
@@ -11,12 +11,13 @@ import Calendar from "./pages/Calendar/Calendar";
 import ProfileEdit from "./pages/ProfileEdit/ProfileEdit";
 import ProfileInformationEdit from "./components/ProfileEdit/ProfileInformationEdit";
 import ExperienceEdit from "./components/ProfileEdit/ExperienceEdit";
-import GradutionEdit from "./components/ProfileEdit/GradutionEdit";
+import GradutionEdit from "./components/ProfileEdit/GraduationEdit";
 import SkillEdit from "./components/ProfileEdit/SkillEdit";
 import CertificateEdit from "./components/ProfileEdit/CertificateEdit";
 import SocialMediaAccountEdit from "./components/ProfileEdit/SocialMediaAccountEdit";
 import LanguageEdit from "./components/ProfileEdit/LanguageEdit";
 import Settings from "./components/ProfileEdit/Settings";
+import { Route, Routes } from "react-router-dom";
 
 
 const profileEditUrl = "/profilim/profilimi-duzenle";
