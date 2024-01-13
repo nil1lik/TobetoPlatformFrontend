@@ -1,6 +1,4 @@
 import { Card, Col, Container, Nav, Navbar, Row, TabContainer } from "react-bootstrap";
-import ProfileEditSidebar from "../../layouts/ProfileEditSidebar/ProfileEditSidebar";
-import { Route, Routes } from "react-router";
 import ProfileInformationEdit from "../../components/ProfileEdit/ProfileInformationEdit";
 import ExperienceEdit from "../../components/ProfileEdit/ExperienceEdit";
 import GradutionEdit from "../../components/ProfileEdit/GraduationEdit";
