@@ -24,7 +24,7 @@ const YearPicker: React.FC<YearPickerProps> = ({
       <label className="input-label-text">{label}</label>
       <DatePicker
         selected={selectedDate}
-        onChange={(date) => {
+        onChange={(date:any) => {
           onYearChange(date);
         }}
         dateFormat="yyyy"
