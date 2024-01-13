@@ -1,20 +1,21 @@
-*,
-:after,
-:before {
-  box-sizing: border-box;
-}
-
 body {
-  margin: 0;
-  height: 100%;
   font-family: "Poppins", sans-serif !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  display: block;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 905px; /* Minimum sayfa yüksekliği */
 }
 
-.body-height {
-  height: 805px;
+main {
+  flex-grow: 1;
+  margin-bottom: auto;
+}
+
+footer {
+  margin-top: auto;
 }
 
 .ui.button.button {
