@@ -35,7 +35,9 @@ const ProfileCard = (props: Props) => {
             <br />
             Öğrenmeye Başla
           </h1>
+          <Link to="/">
           <button className="btnCard  w-100 ">Başla</button>
+          </Link>
         </div>
       </div>
     </div>
