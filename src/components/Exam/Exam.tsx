@@ -1,8 +1,6 @@
 import React from "react";
 import { Card, Row } from "react-bootstrap";
-import { Label } from "semantic-ui-react";
-import PlatformTab from "../PlatformTab/PlatformTab";
-import ApplicationCard from "../Application/ApplicationCard";
+import "../../components/Exam/exam.css"
 
 type Props = {};
 
