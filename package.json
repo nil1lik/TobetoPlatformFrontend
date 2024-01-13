@@ -57,6 +57,7 @@
     ]
   },
   "devDependencies": {
+    "@svgr/webpack": "^8.1.0",
     "@types/react-datepicker": "^4.19.5"
   }
 }
