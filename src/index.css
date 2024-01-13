@@ -435,7 +435,7 @@ body {
 }
 
 .input-linkedin {
-  background: url("/public/Images/linkedin-social.svg") no-repeat scroll 7px 6px;
+  background: url("/public/images/linkedin-social.svg") no-repeat scroll 7px 6px;
   padding-left: 2.5em !important;
   background-size: 1.5em 1.5em;
 }
@@ -554,7 +554,7 @@ table {
 }
 
 .png_icon:before {
-  background-image: url("/public/Images/png.png");
+  background-image: url("/public/images/png.png");
   background-size: 20px 20px;
   display: inline-block;
   width: 20px;
@@ -711,7 +711,7 @@ table {
 }
 
 .information-photo-cont::after {
-  content: url("/public/Images/edit.svg");
+  content: url("/public/images/edit.svg");
   position: absolute;
   width: 2em;
   height: 2em;
@@ -762,7 +762,7 @@ table {
 }
 
 .grade-info-img {
-  content: url("/public/Images/alert-circle.png");
+  content: url("/public/images/alert-circle.png");
   display: flex;
     background-color: #ac59ff;
     width: 20px;
@@ -775,7 +775,7 @@ table {
 
 .grade-delete-img
 {
-  content: url(/public/Images/trash.png);
+  content: url(/public/images/trash.png);
   background-color: #fc6d6d;
   display: flex;
     width: 20px;
