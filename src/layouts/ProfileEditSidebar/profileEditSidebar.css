@@ -1,0 +1,36 @@
+.profile-edit-nav-btn {
+  margin-bottom: 8px;
+  padding: 16px 8px !important;
+  font-size: 14px;
+  font-weight: 700 !important;
+  text-decoration: none;
+  color: #828282;
+}
+
+.profile-edit-nav-btn:hover {
+  color: #9933ff;
+}
+
+.profile-edit-nav-btn:focus {
+  color: #9933ff;
+  font-weight: 800 !important;
+  border-right: 3px solid #93f !important;
+}
+
+.profile-edit-nav {
+  display: table;
+  flex-direction: column;
+}
+
+.profile-sidebar-text {
+  font-size: 16px;
+  font-weight: 500;
+  color: #828282;
+  display: flex;
+  align-items: center;
+}
+
+.profile-sidebar-text::before {
+margin-right: 0.5rem;
+font-size: 20px;
+}

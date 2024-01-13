@@ -1,4 +1,4 @@
-import { Card, Col, Container, Nav, Row, TabContainer } from "react-bootstrap";
+import { Card, Col, Container, Nav, Navbar, Row, TabContainer } from "react-bootstrap";
 import ProfileEditSidebar from "../../layouts/ProfileEditSidebar/ProfileEditSidebar";
 import { Route, Routes } from "react-router";
 import ProfileInformationEdit from "../../components/ProfileEdit/ProfileInformationEdit";
@@ -11,13 +11,14 @@ import LanguageEdit from "../../components/ProfileEdit/LanguageEdit";
 import Settings from "../../components/ProfileEdit/Settings";
 import { useState } from "react";
 import React from "react";
+import "../../layouts/ProfileEditSidebar/profileEditSidebar.css"
 
 type Props = {};
 
 const profileEditUrl = "/profilim/profilimi-duzenle";
 
 const ProfileEdit = (props: Props) => {
-  const [activeTab, setActiveTab] = useState("kisiselbilgilerim");
+  const [activeTab, setActiveTab] = useState<string>("kisiselbilgilerim");
 
 
   const renderContent = () => {
@@ -48,16 +49,16 @@ const ProfileEdit = (props: Props) => {
       <Container>
         <Row>
           <Col xs={3} className="col-control">
-          <Nav className="flex-column ">
-            <Nav.Link onClick={() => setActiveTab("kisiselbilgilerim")}>Kişisel Bilgilerim</Nav.Link>
-            <Nav.Link onClick={() => setActiveTab("deneyimlerim")}>Deneyimlerim</Nav.Link>
-            <Nav.Link onClick={() => setActiveTab("egitimhayatim")}>Eğitim Hayatım</Nav.Link>
-            <Nav.Link onClick={() => setActiveTab("yetkinliklerim")}>Yetkinliklerim</Nav.Link>
-            <Nav.Link onClick={() => setActiveTab("sertifikalarım")}>Sertifikalarım</Nav.Link>
-            <Nav.Link onClick={() => setActiveTab("medya")}>Medya Hesaplarım</Nav.Link>
-            <Nav.Link onClick={() => setActiveTab("yabancı dillerim")}>Yabancı Dillerim</Nav.Link>
-            <Nav.Link onClick={() => setActiveTab("ayarlar")}>Ayarlar</Nav.Link>
-          </Nav>
+          <Navbar className="flex-column profile-edit-nav" >
+            <Nav.Link className="profile-edit-nav-btn profile-sidebar-text bi bi-person" onClick={() => setActiveTab("kisiselbilgilerim")}> Kişisel Bilgilerim</Nav.Link>
+            <Nav.Link className="profile-edit-nav-btn profile-sidebar-text bi bi-briefcase" onClick={() => setActiveTab("deneyimlerim")}> Deneyimlerim</Nav.Link>
+            <Nav.Link className="profile-edit-nav-btn profile-sidebar-text bi bi-book" onClick={() => setActiveTab("egitimhayatim")}> Eğitim Hayatım</Nav.Link>
+            <Nav.Link className="profile-edit-nav-btn profile-sidebar-text bi bi-code-slash" onClick={() => setActiveTab("yetkinliklerim")}> Yetkinliklerim</Nav.Link>
+            <Nav.Link className="profile-edit-nav-btn profile-sidebar-text bi bi-award" onClick={() => setActiveTab("sertifikalarım")}> Sertifikalarım</Nav.Link>
+            <Nav.Link className="profile-edit-nav-btn profile-sidebar-text bi bi-linkedin" onClick={() => setActiveTab("medya")}> Medya Hesaplarım</Nav.Link>
+            <Nav.Link className="profile-edit-nav-btn profile-sidebar-text bi bi-translate" onClick={() => setActiveTab("yabancı dillerim")}> Yabancı Dillerim</Nav.Link>
+            <Nav.Link className="profile-edit-nav-btn profile-sidebar-text bi bi-gear" onClick={() => setActiveTab("ayarlar")}> Ayarlar</Nav.Link>
+          </Navbar>
           </Col>
           <Col xs={9}>
           <Card className="card-b">

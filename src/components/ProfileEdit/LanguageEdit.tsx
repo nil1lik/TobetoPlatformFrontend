@@ -87,6 +87,7 @@ const LanguageEdit = (props: Props) => {
               <div className="lang-edit">
                 <div className="lang-info">
                   <div className="lang-title">
+                  <i className="lang-title-img "></i>
                     <div className="d-flex flex-column ">
                       <span className="lang-name">İngilizce</span>
                       <span className="lang-degree">
@@ -96,7 +97,9 @@ const LanguageEdit = (props: Props) => {
                   </div>
                 </div>
                 <span className="lang-degree-symbol main-lang"></span>
-                <span className="delete-lang"> </span>
+                <button className="btn delete-lang">
+                <i className="delete-lang-img "></i>
+                      </button>
               </div>
             </div>
           </div>
