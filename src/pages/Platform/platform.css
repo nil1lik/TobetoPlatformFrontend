@@ -1,0 +1,18 @@
+
+
+.ist-kod-png {
+    margin: 16px 0px;
+    width: 300px !important;
+    height: 160px !important;
+}
+
+.dot-purple-svg {
+
+}
+
+.platform-item-cont {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+}
