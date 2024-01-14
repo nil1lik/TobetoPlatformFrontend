@@ -5,6 +5,7 @@ import PlatformTab from "../../components/PlatformTab/PlatformTab";
 import Exam from "../../components/Exam/Exam";
 import { Col, Container, Row } from "react-bootstrap";
 import "./platform.css";
+import ProfileCard from "../../components/ProfileCard/ProfileCard";
 
 type Props = {};
 
@@ -39,7 +40,7 @@ const Platform = (props: Props) => {
       </Container>
       <br></br>
       <Container>
-          
+          <ProfileCard/>
       </Container>
     </>
   );
