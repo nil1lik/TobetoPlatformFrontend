@@ -85,6 +85,11 @@ b, strong {
     line-height: 35px; 
 }
 
+.dashboard-card .btn:hover {
+    background-color: #7a29cc;
+    color: white;
+}
+
 .dashboard-card1 {
     min-height: 380px;
     -webkit-backdrop-filter: blur(40px);
@@ -157,6 +162,11 @@ b, strong {
     font-weight: 700;
     display: inline-block;
     line-height: 35px; 
+}
+
+.dashboard-card-slim .btn:hover{
+    background-color: #d0d0cf;
+    color: black;
 }
 
 .platformIcon:before {
