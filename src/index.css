@@ -7,6 +7,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 905px; /* Minimum sayfa yüksekliği */
+  overflow-y: scroll;
 }
 
 main {
@@ -71,7 +72,7 @@ footer {
 .card {
   display: flex;
   flex-direction: column;
-  border-radius: 8px !important;
+  /* border-radius: 8px !important; */
   border: 3px solid transparent;
   background-color: #f1f1f1;
   box-shadow: 0 1px 15px 2px rgba(0, 0, 0, 0.27);
