@@ -194,7 +194,7 @@ b, strong {
 }
 
 .dashboard-card4 {
-    min-height: 300px;
+    min-height: 320px;
     -webkit-backdrop-filter: blur(40px);
     backdrop-filter: blur(40px);
     border-radius: 0 30px 40px 40px;
@@ -204,13 +204,14 @@ b, strong {
     z-index: 1;
     border: none;
     align-items: center;
+    margin-bottom: 100px;
 }
 
 
 .dashboard-card4 label {
     text-align: center;
     font-weight: 700;
-    font-size: 1.5em;
+    font-size: 24px;
     color: #fff;
 }
 
