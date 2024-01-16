@@ -1,6 +1,5 @@
 .h1 {
     font-size: 24px!important;
-    line-height: 28.8;
     text-align: center;
     letter-spacing: normal;
     color: white!important;
@@ -60,7 +59,6 @@
 }
 
 .btnCard {
-    display: inline-block;
     text-align: center;
     vertical-align: middle;
     color:white;

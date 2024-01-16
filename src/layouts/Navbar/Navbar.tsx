@@ -1,15 +1,12 @@
 import React from 'react'
 import NavButton from './NavButton'
 import { Button, Dropdown, Image, Menu } from 'semantic-ui-react'
+import DropdownItem from './DropdownItem'
 
 type Props = {}
 
 const Navbar = (props: Props) => {
   const logoSrc = process.env.PUBLIC_URL + "/images/tobeto-logo.png"
-  const options = [
-    { key: 1, text: 'Profil Bilgileri', value: 1 },
-    { key: 2, text: 'Oturumu Kapat', value: 2 },
-  ]
   return (
     <Menu pointing secondary size='huge'>
       <Menu.Item>
@@ -26,7 +23,7 @@ const Navbar = (props: Props) => {
         </Button.Group>
       </Menu.Item>
       <Menu.Item>
-        <Dropdown text='Kullanıcı' options={options} item />
+        <DropdownItem/>
       </Menu.Item>
     </Menu>
   )

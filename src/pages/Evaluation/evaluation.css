@@ -1,0 +1,235 @@
+.text-center {
+    text-align: center!important;
+}
+
+.mw-5xl {
+    max-width: 64rem;
+}
+
+.mx-auto {
+    margin-right: auto!important;
+    margin-left: auto!important;
+}
+
+.text-secondary1 {
+    font-size: 36px!important;
+    --bs-text-opacity: 1;
+    color: #9933ff !important; 
+    font-weight: normal !important;
+}
+
+.fw-normal {
+    font-weight: 400!important;
+}
+
+.text-info1 {
+    font-size: 36px!important;
+    --bs-text-opacity: 1;
+    color: #4d4d4d!important;
+    font-weight: normal !important;
+    margin-right: 5px;
+}
+
+/*-------------------------------------------------------------*/
+
+.dashboard-card {
+    min-height: 300px;
+    -webkit-backdrop-filter: blur(40px);
+    backdrop-filter: blur(40px);
+    border-radius: 0 30px 40px 40px;
+    padding: 2em 10%;
+    box-shadow: 0 40px 80px rgba(24,32,79,.25), inset 0 0 0 0.5px hsla(0,0%,100%,.5);
+    background: linear-gradient(209.21deg,#3c0b8c 13.57%,#e3a6fe 98.38%)!important;
+    z-index: 1;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dashboard-card label {
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.5em;
+    color: #fff;
+}
+
+.dashboard-card p {
+    text-align: center;
+    color: #fff;
+    font-size: 1.25em;
+}
+
+p {
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+b, strong {
+    margin-left: 5px;
+    font-weight: bolder;
+}
+
+.dashboard-card .btn {
+    width: max-content;
+    border-radius: 25px;
+    background-color: #9933ff;
+    color: #fff!important;
+    text-align: center!important;
+    height: 35px;
+    font-size: 14px;
+    padding: 8px 16px;
+    font-weight: 700;
+    display: inline-block;
+    line-height: 35px; 
+}
+
+.dashboard-card .btn:hover {
+    background-color: #7a29cc;
+    color: white;
+}
+
+.dashboard-card1 {
+    min-height: 380px;
+    -webkit-backdrop-filter: blur(40px);
+    backdrop-filter: blur(40px);
+    border-radius: 0 30px 40px 40px;
+    padding: 2em 10%;
+    box-shadow: 0 40px 80px rgba(24,32,79,.25), inset 0 0 0 0.5px hsla(0,0%,100%,.5);
+    background: linear-gradient(209.21deg,#1d0b8c 13.57%,#bda6fe 98.38%)!important;
+    z-index: 1;
+    border: none;
+    align-items: center;
+}
+
+.equal-box {
+    width: 100%!important;
+    height: 100%!important;
+}
+
+.dashboard-card1 label {
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.5em;
+    color: #fff;
+}
+
+.dashboard-card1 p {
+    text-align: center;
+    width: 75%;
+    color: #fff;
+    font-size: 1.25em;
+}
+
+.text-white {
+    --bs-text-opacity: 1;
+    color: white!important;
+    display: inline-block;
+}
+
+.dashboard-card-slim {
+    -webkit-backdrop-filter: blur(40px);
+    backdrop-filter: blur(40px);
+    min-height: 64px;
+    max-height: 64px;
+    padding: 8px 16px;
+    border-radius: 50px;
+    box-shadow: 0 40px 80px rgba(24,32,79,.25), inset 0 0 0 0.5px hsla(0,0%,100%,.5);
+    background: linear-gradient(209.21deg,#1d0b8c 13.57%,#bda6fe 98.38%)!important;
+    z-index: 1;
+    border: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.dashboard-card-slim label {
+    color: #fff;
+}
+
+.dashboard-card-slim .btn {
+    width: max-content;
+    border-radius: 25px;
+    background-color: #fff;
+    color: black;
+    text-align: center!important;
+    height: 35px;
+    font-size: 14px;
+    padding: 8px 16px;
+    font-weight: 700;
+    display: inline-block;
+    line-height: 35px; 
+}
+
+.dashboard-card-slim .btn:hover{
+    background-color: #d0d0cf;
+    color: black;
+}
+
+.platformIcon:before {
+    content: "";
+    background-image: url("/public/images/platform-icon.png");
+    background-size: 3em 3em;
+    display: inline-block;
+    width: 3em;
+    height: 3em;
+    margin-top: 6px;
+    margin-right: 15px;
+}
+
+/*-----------------------------------------------------------------------*/
+
+.gradient-line3{
+    background: linear-gradient(180deg,#93f,#953dac 27.08%,#fff);
+    width: 12px;
+    height: 180px;
+    margin: 0 auto;
+}
+
+.mt-5 {
+    margin-top: 1.25rem!important;
+}
+
+.dashboard-card4 {
+    min-height: 320px;
+    -webkit-backdrop-filter: blur(40px);
+    backdrop-filter: blur(40px);
+    border-radius: 0 30px 40px 40px;
+    padding: 2em 0;
+    box-shadow: 0 40px 80px rgba(24,32,79,.25), inset 0 0 0 0.5px hsla(0,0%,100%,.5);
+    background: linear-gradient(109.6deg,#ad1deb 11.2%,#6e72fc 91.1%);
+    z-index: 1;
+    border: none;
+    align-items: center;
+    margin-bottom: 100px;
+}
+
+
+.dashboard-card4 label {
+    text-align: center;
+    font-weight: 700;
+    font-size: 24px;
+    color: #fff;
+}
+
+.dashboard-card4 p {
+    width: 75%;
+    text-align: center;
+    align-items: center;
+    color: #fff;
+    font-size: 1.25em;
+    display: block;
+}
+
+.dashboard-card4, .equal-box {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+i:hover {
+    color: #ffdd40!important;
+}

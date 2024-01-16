@@ -6,9 +6,8 @@ type Props = {};
 
 const Exam = (props: Props) => {
   return (
-
-
       <div className="row cv-box cv-padding">
+
         <div className="col-12 position-relative">
           <Card.Text>Sınavlarım</Card.Text>
         </div>

@@ -2,6 +2,7 @@ import React from "react";
 import { Image, Nav, NavDropdown, Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./navbar.css"
+import DropdownItem from "./DropdownItem";
 
 type Props = {};
 const logo = process.env.PUBLIC_URL + "/images/tobeto-logo.png"
@@ -25,20 +26,11 @@ const Navigation = (props: Props) => {
         <Link to={"/takvim"} className="navbar-tab">
           Takvim
         </Link>
-        <Link to={"/istanbulkodluyor"} className="navbar-tab">
+        <Link to={"https://tobeto.com/istanbul-kodluyor"} className="navbar-tab">
           İstanbul Kodluyor
         </Link>
       </Nav>
-      <div className="btn-group header-avatar">
-          <img className="dropdown-img" src="/images/pp.png"></img>
-      <NavDropdown className="dropdown-toggle nav-link dropdown-text " title="Muhammed KURT" id="basic-nav-dropdown">
-        <NavDropdown.Item className="dropdown-menu.show.profile" href="#action/3.1">Profil Bilgileri</NavDropdown.Item>
-        <NavDropdown.Item className="dropdown-menu.show.profile" href="#action/3.2">Oturumu Kapat</NavDropdown.Item>
-      </NavDropdown>
-      <div className="btn-group header-avatar">
-          <img className="dropdown-toggle-img" src="/public/images/navbar-dropdown-toggle.svg"></img>
-      </div>
-      </div>
+      <DropdownItem/>
     </Navbar>
   );
 };
