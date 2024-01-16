@@ -35,16 +35,12 @@
     transition: 0.3s;
   }
 
-  .my-3:hover {
+  .card.card-transition:hover{
     cursor: pointer;
     transform: scale(1.02);
     transition: transform 0.3s;
   }
-  
-  .my-3 {
-    transition: transform 0.3s;
-  }
-  
+
   .card-img.exam-time {
     content: "";
     background-image: url("/public/images/examTime.svg");
