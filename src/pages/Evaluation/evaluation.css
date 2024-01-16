@@ -75,7 +75,7 @@ b, strong {
     width: max-content;
     border-radius: 25px;
     background-color: #9933ff;
-    color: #fff;
+    color: #fff!important;
     text-align: center!important;
     height: 35px;
     font-size: 14px;

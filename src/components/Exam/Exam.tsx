@@ -6,14 +6,13 @@ type Props = {};
 
 const Exam = (props: Props) => {
   return (
-
-
       <div className="row cv-box cv-padding">
+
         <div className="col-12 position-relative">
           <Card.Text>Sınavlarım</Card.Text>
         </div>
         <div className="exams my-3">
-          <Card>
+          <Card className="card-transition">
             <Card.Body className="exam-card card-title h5">
               <Card.Title>
                 Herkes İçin Kodlama 1A Değerlendirme Sınavı

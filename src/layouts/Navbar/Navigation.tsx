@@ -26,9 +26,9 @@ const Navigation = (props: Props) => {
         <Link to={"/takvim"} className="navbar-tab">
           Takvim
         </Link>
-        <a href={"https://tobeto.com/istanbul-kodluyor"} className="navbar-tab">
+        <Link to={"https://tobeto.com/istanbul-kodluyor"} className="navbar-tab">
           İstanbul Kodluyor
-        </a>
+        </Link>
       </Nav>
       <DropdownItem/>
     </Navbar>

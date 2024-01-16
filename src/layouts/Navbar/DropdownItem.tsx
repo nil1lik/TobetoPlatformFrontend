@@ -17,20 +17,14 @@ const DropdownItem = (props: Props) => {
           <Dropdown.Item href="#/action-2">Oturumu Kapat</Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown> */}
-      <Dropdown>
+      <Dropdown >
         <div className="d-none d-xxl-block">
           <div className="d-flex justify-space-between align-items-center">
             <div className="mx-3 gap-1em align-items-center d-flex">
               <span className="tbt-gradient"></span>
             </div>
             <div className="btn-group header-avatar">
-            <Dropdown.Toggle className="bg-transparent">
-                <button
-                  type="button"
-                  className="btn p-0 fw-normal b-r-35 text-end d-flex align-items-center"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="true"
-                >
+            <Dropdown.Toggle className="bg-transparent p-0 fw-normal b-r-35 text-end d-flex align-items-center">
                   <div className="me-2">
                     <span className="dropdown-pp">
                       <span className="dropdown-pp-2">
@@ -70,17 +64,14 @@ const DropdownItem = (props: Props) => {
                       ></path>
                     </svg>
                   </span>
-                </button>
                 </Dropdown.Toggle>
-              <Dropdown.Menu>
+              <Dropdown.Menu className=" dropdown-trans">
                 <Dropdown.Item href="/profilim" className="dropdown-item profil-dropdown">
                     Profil Bilgileri
                 </Dropdown.Item>
                 <Dropdown.Divider />
-                <Dropdown.Item href="#/action-2">
-                  <a className="dropdown-item profil-dropdown" href="#">
-                    Oturumu Kapat
-                  </a>
+                <Dropdown.Item href="#/action-2" className="dropdown-item profil-dropdown">
+                  Oturumu Kapat
                 </Dropdown.Item>
               </Dropdown.Menu>
             </div>
