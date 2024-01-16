@@ -125,12 +125,51 @@
     content: "";
     cursor: default;
 }
-.profileMediaCont{
+
+.profileMediaCont {
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
     gap: 1rem;
 }
-.mediaAccountPhoto{
+
+.mediaAccountPhoto {
     width: 53px;
+}
+
+.successModelCont .col:nth-child(2) {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.successModelCont .row {
+    align-items: center;
+}
+
+.successModelCont .mediaAccountPhoto {
+    width: 90%;
+    display: block;
+    margin: 0 auto;
+}
+
+.profileLabel {
+    display: flex;
+    align-items: center;
+}
+
+.profileLabelBadge .badge {
+    color: #fff;
+    font-size: 10px;
+    min-width: 32px;
+    padding: 4px 8px;
+    text-align: center;
+    margin-right: 8px;
+    border-radius: 5px;
+}
+
+.profileLabelText {
+    font-size: 13px;
+    color: #000;
+    font-weight: 500;
 }
