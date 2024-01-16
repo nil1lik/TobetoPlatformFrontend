@@ -11,13 +11,13 @@ body {
 }
 
 main {
-  flex-grow: 1;
-  margin-bottom: auto;
+  flex-grow: 1!important;
 }
 
 footer {
-  margin-top: auto;
+  margin-top: auto!important;
 }
+
 
 .ui.button.button {
   background-color: #ffffff;
@@ -98,6 +98,18 @@ footer {
   border-radius: 20px 20px 0 0;
 }
 
+
+.card-img-edu {
+  height: 181px;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: 50%;
+  border-radius: 20px 20px 0 0;
+  object-fit: cover;
+}
+
+/* sınavlarım için */
 .card .card-title {
   color: #515151;
   font-size: 14px;
@@ -106,10 +118,22 @@ footer {
   line-height: normal;
 }
 
+/* education kart için  */
+.card .card-title-edu {
+  color: #515151;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  height: 40px;
+  text-align: left;
+}
+
 .platform-course-date {
   font-size: 12px !important;
   color: #787878 !important;
   font-weight: 500 !important;
+  text-align: left;
 }
 
 .card .card-body .apply-button {
@@ -123,11 +147,12 @@ footer {
   font-size: 14px;
   transition: 0.5s;
   border-style: none;
+  height: 35px!important;
 }
 
 .card .card-body .apply-button:hover {
   background-color: #9933ff;
-  color: #ffffff;
+  color: #ffffff!important;
 }
 
 .card-container {
