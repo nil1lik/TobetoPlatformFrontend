@@ -1,11 +1,12 @@
 import React from 'react'
 import { Button, Card, Col, Container, Image, Row } from 'react-bootstrap'
-import ProfilePreInfoBox from '../../components/Profile/ProfilePreInfoBox/ProfilePreInfoBox'
+import ProfilePreInfoBox from '../../components/Profile/ProfileLeft/ProfilePreInfoBox/ProfilePreInfoBox'
 import './profile.css'
 import ProfileBox from '../../components/Profile/ProfileBox'
-import ProfilePreInfo from '../../components/Profile/ProfilePreInfoBox/ProfilePreInfo'
-import ProfileRoundItem from '../../components/Profile/ProfileRoundItem'
-import ProfileMediaAccounts from '../../components/Profile/ProfileMediaAccounts'
+import ProfilePreInfo from '../../components/Profile/ProfileLeft/ProfilePreInfoBox/ProfilePreInfo'
+import ProfileRoundItem from '../../components/Profile/ProfileLeft/ProfileRoundItem'
+import ProfileMediaAccounts from '../../components/Profile/ProfileLeft/ProfileMediaAccounts'
+import ProfileSuccessModel from '../../components/Profile/ProfileRight/ProfileSuccessModel/ProfileSuccessModel'
 
 
 type Props = {
@@ -17,6 +18,7 @@ const Profile = (props: Props) => {
   return (
     <Container>
       <Row>
+        {/* PROFILE LEFT START */}
         <Col className='col-4'>
           <Row>
             <Col className='col-12'>
@@ -74,16 +76,34 @@ const Profile = (props: Props) => {
             </Col>
           </Row>
         </Col>
-
+        {/* PROFILE LEFT END */}
+        {/* PROFILE RIGHT START */}
         <Col className='col-8' style={{ backgroundColor: 'blue' }}>
           <Row>
-            <Col className='col-12'>Tobeto İşte Başarı Modeli</Col>
-            <Col className='col-12'>Tobeto Seviye Testlerim</Col>
-            <Col className='col-12'> Yetkinlik Rozetlerim</Col>
-            <Col className='col-12'>Aktivite Haritam</Col>
-            <Col className='col-12'>Eğitim Hayatım ve Deneyimlerim</Col>
+            <Col className='col-12'>
+              <ProfileBox titleClass='profileBoxTitle' title='Tobeto İşte Başarı Modelim'>
+                <ProfileSuccessModel />
+              </ProfileBox>
+            </Col>
+            <Col className='col-12'>
+              <ProfileBox titleClass='profileBoxTitle' title='Tobeto Seviye Testlerim'>
+              </ProfileBox>
+            </Col>
+            <Col className='col-12'>
+              <ProfileBox titleClass='profileBoxTitle' title='Yetkinlik Rozetlerim'>
+              </ProfileBox>
+            </Col>
+            <Col className='col-12'>
+              <ProfileBox titleClass='profileBoxTitle' title='Aktivite Haritam'>
+              </ProfileBox>
+            </Col>
+            <Col className='col-12'>
+              <ProfileBox titleClass='profileBoxTitle' title='Eğitim Hayatım ve Deneyimlerim'>
+              </ProfileBox>
+            </Col>
           </Row>
         </Col>
+        {/* PROFILE RIGHT END */}
       </Row>
     </Container>
     // <Link to={'/profilim/profilimi-duzenle'}>
