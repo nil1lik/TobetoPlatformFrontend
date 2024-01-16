@@ -56,40 +56,81 @@
     color: #181818;
     word-break: break-all;
 }
-.profileSkillCont{
+
+.profileRoundItemCont {
     display: flex;
     flex-direction: column;
     gap: 1rem;
 }
-.profileSkill{
+
+.profileRoundItem {
     padding: 10px 20px;
     background: #fff;
-    box-shadow: 2px 10px 24px hsla(0,0%,9%,.12);
+    box-shadow: 2px 10px 24px hsla(0, 0%, 9%, .12);
     border-radius: 54px;
     text-align: left;
     width: 100%;
 }
 
-.profileSkillName{
+.profileSkillName {
     font-size: 15px;
     font-weight: 500;
     color: #828282;
     text-transform: capitalize;
 }
-.profileSkillLevel{
+
+.profileSkillLevel {
     font-size: 12px;
     font-weight: 500;
-    color: hsla(0,0%,51%,.8);
+    color: hsla(0, 0%, 51%, .8);
 }
 
-.profileLangCont{
+.profileLangCont {
     padding: 10px 20px;
     background: #fff;
-    box-shadow: 2px 10px 24px hsla(0,0%,9%,.12);
+    box-shadow: 2px 10px 24px hsla(0, 0%, 9%, .12);
     border-radius: 54px;
     text-align: left;
     width: 100%;
     display: flex;
     align-items: center;
     gap: 0.5rem;
+}
+
+.profileBox.card .card-title {
+    font-weight: 600;
+    font-size: 18px;
+    color: #323232;
+    margin: 0;
+}
+
+.hover:hover {
+    background: #93f;
+    color: #fff;
+}
+
+.profileCertificate {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    word-break: break-all;
+}
+
+.profileCertificate::after {
+    background-image: url(../../../public/images/png.png);
+    background-size: 20px 20px;
+    display: inline-block;
+    min-width: 20px;
+    height: 20px;
+    content: "";
+    cursor: default;
+}
+.profileMediaCont{
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+.mediaAccountPhoto{
+    width: 53px;
 }

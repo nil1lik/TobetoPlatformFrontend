@@ -1,16 +1,18 @@
 import React from 'react'
-import { Button, Card, Col, Container, Row } from 'react-bootstrap'
+import { Button, Card, Col, Container, Image, Row } from 'react-bootstrap'
 import ProfilePreInfoBox from '../../components/Profile/ProfilePreInfoBox/ProfilePreInfoBox'
-import "./profile.css"
+import './profile.css'
 import ProfileBox from '../../components/Profile/ProfileBox'
-import ProfileSkill from '../../components/Profile/ProfileSkill'
-import ProfileLanguage from '../../components/Profile/ProfileLanguage'
 import ProfilePreInfo from '../../components/Profile/ProfilePreInfoBox/ProfilePreInfo'
+import ProfileRoundItem from '../../components/Profile/ProfileRoundItem'
+import ProfileMediaAccounts from '../../components/Profile/ProfileMediaAccounts'
 
 
-type Props = {}
+type Props = {
+}
 
 const Profile = (props: Props) => {
+  const png = process.env.PUBLIC_URL + `/images/png.png`;
 
   return (
     <Container>
@@ -21,50 +23,59 @@ const Profile = (props: Props) => {
               <ProfilePreInfoBox profilePhotoSrc='pp2.png' />
             </Col>
             <Col className='col-12'>
-              <ProfileBox title='Hakkımda'>
+              <ProfileBox titleClass='profileBoxTitle' title='Hakkımda'>
                 <Card.Text>
-                  Some quick example text to build on the card title and make up the
-                  bulk of the card's content.
+                  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Labore eius corrupti tempora unde ea facilis! Ratione neque quibusdam fugiat doloremque.
                 </Card.Text>
               </ProfileBox>
             </Col>
             <Col className='col-12'>
-              <ProfileBox title='Yetkinliklerim'>
-                <div className='profileSkillCont'>
-                  <ProfileSkill skillName="HTML" />
-                  <ProfileSkill skillName='CSS' />
-                  <ProfileSkill skillName='JAVASCRİPT' />
+              <ProfileBox titleClass='profileBoxTitle' title='Yetkinliklerim'>
+                <div className='profileRoundItemCont'>
+                  <ProfileRoundItem className="profileRoundItem">
+                    {<Card.Text>HTML</Card.Text>}
+                  </ProfileRoundItem>
+                  <ProfileRoundItem className="profileRoundItem">
+                    {<Card.Text>CSS</Card.Text>}
+                  </ProfileRoundItem>
+                  <ProfileRoundItem className="profileRoundItem">
+                    {<Card.Text>JavaScript</Card.Text>}
+                  </ProfileRoundItem>
                 </div>
               </ProfileBox>
             </Col>
             <Col className='col-12'>
-              <ProfileBox title='Yabancı Diller'>
-                  {/* <ProfileLanguage iconSrc='globe.svg' header='Ingilizce' value='Derdimi Anlatacak Kadar'/> */}
-                  <div className='profileSkillCont'>
-                  <ProfilePreInfo cardContClass='profileLangCont' iconContClass='' headerClass='profileSkillName' valueClass='profileSkillLevel' iconSrc="globe.svg" header='İngilizce' value='Orta Seviye'/>
-                  </div>
+              <ProfileBox titleClass='profileBoxTitle' title='Yabancı Diller'>
+                <div className='profileRoundItemCont'>
+                  <ProfilePreInfo cardContClass='profileLangCont' iconContClass='' headerClass='profileSkillName' valueClass='profileSkillLevel' iconSrc='globe.svg' header='İngilizce' value='Orta Seviye' />
+                </div>
               </ProfileBox>
             </Col>
             <Col className='col-12'>
-              <ProfileBox title='Sertifikalarım'>
-                <Card.Text>
-                  Some quick example text to build on the card title and make up the
-                  bulk of the card's content.
-                </Card.Text>
+              <ProfileBox titleClass='profileBoxTitle' title='Sertifikalarım'>
+                <div className='profileRoundItemCont'>
+                  <ProfileRoundItem className="profileRoundItem hover">
+                    {<Card.Text className='profileCertificate'>Lorem, ipsum dolor.</Card.Text>}
+                  </ProfileRoundItem>
+                  <ProfileRoundItem className="profileRoundItem hover">
+                    {<Card.Text className='profileCertificate'>Lorem ipsum dolor sit amet consectetur adipisicing elit.</Card.Text>}
+                  </ProfileRoundItem>
+                </div>
               </ProfileBox>
             </Col>
             <Col className='col-12'>
-              <ProfileBox title='Medya Hesaplarım'>
-                <Card.Text>
-                  Some quick example text to build on the card title and make up the
-                  bulk of the card's content.
-                </Card.Text>
+              <ProfileBox titleClass='profileBoxTitle' title='Medya Hesaplarım'>
+                <div className='profileMediaCont'>
+                  <ProfileMediaAccounts imageSrc="cv-github.svg" className='mediaAccountPhoto' />
+                  <ProfileMediaAccounts imageSrc="cv-linkedn.svg" className='mediaAccountPhoto' />
+                  <ProfileMediaAccounts imageSrc="cv-behance.svg" className='mediaAccountPhoto' />
+                </div>
               </ProfileBox>
             </Col>
           </Row>
         </Col>
 
-        <Col className='col-8' style={{ backgroundColor: "blue" }}>
+        <Col className='col-8' style={{ backgroundColor: 'blue' }}>
           <Row>
             <Col className='col-12'>Tobeto İşte Başarı Modeli</Col>
             <Col className='col-12'>Tobeto Seviye Testlerim</Col>
@@ -75,7 +86,7 @@ const Profile = (props: Props) => {
         </Col>
       </Row>
     </Container>
-    // <Link to={"/profilim/profilimi-duzenle"}>
+    // <Link to={'/profilim/profilimi-duzenle'}>
     //   <div>Profile</div>
     // </Link>
   )
