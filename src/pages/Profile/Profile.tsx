@@ -7,6 +7,7 @@ import ProfilePreInfo from '../../components/Profile/ProfileLeft/ProfilePreInfoB
 import ProfileRoundItem from '../../components/Profile/ProfileLeft/ProfileRoundItem'
 import ProfileMediaAccounts from '../../components/Profile/ProfileLeft/ProfileMediaAccounts'
 import ProfileSuccessModel from '../../components/Profile/ProfileRight/ProfileSuccessModel/ProfileSuccessModel'
+import { Link } from 'react-router-dom'
 
 
 type Props = {
@@ -17,6 +18,7 @@ const Profile = (props: Props) => {
 
   return (
     <Container>
+      <Link to={"/profilim/profilimi-duzenle"}>Düzenle</Link>
       <Row>
         {/* PROFILE LEFT START */}
         <Col className='col-4'>
