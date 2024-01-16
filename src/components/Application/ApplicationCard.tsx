@@ -15,7 +15,7 @@ const ApplicationCard = (props: Props) => {
     <div>
       <Card className="app-card-notify card-notify">
         <Card.Body>
-          <Card.Title>{props.cardHeader}</Card.Title>
+          <Card.Title className="mb-3">{props.cardHeader}</Card.Title>
           <Card.Subtitle className="mb-2 text-muted">
             {props.cardDescription}
           </Card.Subtitle>
