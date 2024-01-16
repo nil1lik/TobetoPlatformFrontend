@@ -7,7 +7,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 905px; /* Minimum sayfa yüksekliği */
-  overflow-y: scroll;
+  overflow-y: scroll; 
 }
 
 main {
