@@ -51,7 +51,7 @@ const DropdownItem = (props: Props) => {
                     </span>
                   </div>
                   <div className="me-3">
-                    <p className="mb-0 name">Nil Firdevs Birlik</p>
+                    <p className="mb-0 name">Pair 1</p>
                   </div>
                   <span>
                     <svg
