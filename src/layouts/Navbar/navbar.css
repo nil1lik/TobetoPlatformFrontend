@@ -46,7 +46,7 @@
 
 .d-xxl-block {
   display: block!important;
-  
+  font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
 }
 
 .d-none {
@@ -62,7 +62,6 @@
 }
 
 /*Dropdown tobeto logo*/
-
 .gap-1em{
   gap: 1em;
 }
@@ -88,7 +87,6 @@
   box-shadow: 2px 10px 24px hsla(0,0%,9%,.12);
 }
 /*Dropdown Div Button*/
-
 .btn-group {
   border-radius: 25px;
 }
@@ -105,7 +103,6 @@
   padding: 7px 10px;
   display: inline-flex;
   align-items: center;
-  
 }
 
 /*Dropdown Button*/
@@ -123,12 +120,17 @@
 }
 
 .btn{
-  border-color: #fff !important;
+  border: 2px solid #fff !important;
   color: #000000 !important;
 }
 
+.btn:hover{
+  transition: 2s ;
+  border-color: #93f !important;
+}
+
 .btn.show{
-  border-color: #000000 !important;
+  border-color: #93f !important;
 }
 
 .b-r-35 {
@@ -208,12 +210,14 @@
   max-height: 100%;
 }
 .rounded-circle {
-  border-radius: 50%!important;
+  border-radius: 50% !important;
 }
 /*Dropdown liste*/
-
-.dropdown-menu.show {
-  display: block;
+.dropdown-menu.show{
+  background-color: #93f !important;
+  border-width: 1px;
+  border-color: #fff;
+  width: 100%;
 }
 
 .dropdown-menu[data-bs-popper] {
@@ -222,31 +226,29 @@
   margin-top: var(--bs-dropdown-spacer);
 }
 
-.dropdown-menu.show {
-  display: block;
-  background-color: #93f!important;
-  border-width: 1px;
-  border-color: #fff;
-  width: 100%;
-}
-
-.profil-dropdown {
+.profil-dropdown{
   font-size: 14px;
-  color: #fbf9fc!important;
+  color: #fbf9fc !important;
 }
 
 .profil-dropdown:hover {
-  color: #000000!important;
+  color: #000000 !important;
+}
+
+.dropdown-divider{
+  border-top: 3px solid #6a359f !important;
 }
 
 /*Dropdown Toggle*/
 .dropdown-toggle::after{
+  visibility: visible;
   display: none !important;
-    margin-left: 0.255em;
-    vertical-align: 0.255em;
-    content: "";
-    border-top: 0.3em solid;
-    border-right: 0.3em solid transparent;
-    border-bottom: 0;
-    border-left: 0.3em solid transparent;
+  margin-left: 0.255em;
+  vertical-align: 0.255em;
+  content: "";
+  border-top: 0.3em solid;
+  border-right: 0.3em solid transparent;
+  border-bottom: 0;
+  border-left: 0.3em solid transparent;
+  
 }

@@ -17,7 +17,7 @@ const DropdownItem = (props: Props) => {
           <Dropdown.Item href="#/action-2">Oturumu Kapat</Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown> */}
-      <Dropdown>
+      <Dropdown >
         <div className="d-none d-xxl-block">
           <div className="d-flex justify-space-between align-items-center">
             <div className="mx-3 gap-1em align-items-center d-flex">
@@ -45,7 +45,7 @@ const DropdownItem = (props: Props) => {
                     </span>
                   </div>
                   <div className="me-3">
-                    <p className="mb-0 name">Pair 1</p>
+                    <p className="mb-0 name">Muhammed KURT</p>
                   </div>
                   <span>
                     <svg
@@ -65,7 +65,7 @@ const DropdownItem = (props: Props) => {
                     </svg>
                   </span>
                 </Dropdown.Toggle>
-              <Dropdown.Menu>
+              <Dropdown.Menu className=" dropdown-trans">
                 <Dropdown.Item href="/profilim" className="dropdown-item profil-dropdown">
                     Profil Bilgileri
                 </Dropdown.Item>
