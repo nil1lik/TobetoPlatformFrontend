@@ -37,9 +37,7 @@ const DropdownItem = (props: Props) => {
                       </span>
                       <img
                         alt=""
-                        src="/images/tobetouserlogo.png"
-                        decoding="async"
-                        data-nimg="intrinsic"
+                        src="/www.pair1.online/images/tobetouserlogo.png"
                         className="dropdown-pp-img-2 cv-pp-img"
                       ></img>
                     </span>
