@@ -19,7 +19,6 @@ const EducationDetail = (props: Props) => {
                   <img
                     className="detail-header-image"
                     src={
-                      process.env.PUBLIC_URL +
                       "https://tobeto.s3.cloud.ngn.com.tr/23_EAH_1_45f7232003.jpg"
                     }
                   />
@@ -138,7 +137,6 @@ const EducationDetail = (props: Props) => {
                       <div className="locked">
                         <img
                           src={
-                            process.env.PUBLIC_URL +
                             "https://tobeto.s3.cloud.ngn.com.tr/23_EAH_1_45f7232003.jpg"
                           }
                         />
