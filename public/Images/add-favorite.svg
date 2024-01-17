@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="200" height="200" viewBox="0 0 200 200">
+  <defs>
+    <clipPath id="clip-Bookmark_İkon_-_1">
+      <rect width="200" height="200"/>
+    </clipPath>
+  </defs>
+  <g id="Bookmark_İkon_-_1" data-name="Bookmark İkon - 1" clip-path="url(#clip-Bookmark_İkon_-_1)">
+    <rect width="200" height="200" fill="#fff"/>
+    <g id="Group_5725" data-name="Group 5725" transform="translate(-1007.164 -980.861)">
+      <g id="Group_5724" data-name="Group 5724" transform="translate(1031.164 985.861)">
+        <path id="Path_2194" data-name="Path 2194" d="M1031.164,985.861v190l76-61.75,76,61.75v-190Z" transform="translate(-1031.164 -985.861)" fill="none" stroke="#7f7f7f" stroke-linecap="round" stroke-linejoin="round" stroke-width="10"/>
+      </g>
+    </g>
+  </g>
+</svg>

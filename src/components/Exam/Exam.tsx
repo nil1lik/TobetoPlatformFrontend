@@ -12,9 +12,9 @@ const Exam = (props: Props) => {
           <Card.Text>Sınavlarım</Card.Text>
         </div>
         <div className="exams my-3">
-          <Card>
+          <Card className="card-transition">
             <Card.Body className="exam-card card-title h5">
-              <Card.Title>
+              <Card.Title> 
                 Herkes İçin Kodlama 1A Değerlendirme Sınavı
               </Card.Title>
               <Card.Img className="status-done"

@@ -146,7 +146,7 @@ footer {
 }
 
 .card .card-body .apply-button {
-  padding: 0.5rem 3rem;
+  padding:2rem 3rem 0rem 3rem;
   background-color: #d9d9d9;
   text-align: center;
   color: #282828;
@@ -158,6 +158,7 @@ footer {
   border-style: none;
   height: 35px!important;
 }
+
 
 .card .card-body .apply-button:hover {
   background-color: #9933ff;
