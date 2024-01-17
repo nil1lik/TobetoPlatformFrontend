@@ -18,6 +18,7 @@ import SocialMediaAccountEdit from "./components/ProfileEdit/SocialMediaAccountE
 import LanguageEdit from "./components/ProfileEdit/LanguageEdit";
 import Settings from "./components/ProfileEdit/Settings";
 import { Route, Routes } from "react-router-dom";
+import EducationDetail from "./pages/Education/EducationDetail";
 
 
 const profileEditUrl = "/profilim/profilimi-duzenle";
@@ -37,6 +38,7 @@ function App() {
           <Route path="/egitimlerim" element={<Education />} />
           <Route path="/duyurular" element={<Announcement />} />
           <Route path="/profilim/profilimi-duzenle" element={<ProfileEdit />} />
+          <Route path="/education-detail" element={<EducationDetail />} />
           <Route
                 path={profileEditUrl + "/kisisel-bilgilerim"}
                 element={<ProfileInformationEdit />}
