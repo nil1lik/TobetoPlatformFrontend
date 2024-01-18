@@ -6,9 +6,12 @@ import ApplicationCard from "../Application/ApplicationCard";
 import { Col, Container, Row, Tab, Tabs } from "react-bootstrap";
 import "./platformTab.css"
 
-type Props = {};
+type Props = {
+};
 
 const PlatformTab = (props: Props) => {
+  const announcementIconSrc = process.env.PUBLIC_URL + `/images/announcementDate.svg`;
+
   return (
     <Tabs
       defaultActiveKey="basvurular"
@@ -40,11 +43,36 @@ const PlatformTab = (props: Props) => {
         <EducationCard />
       </Tab>
       <Tab eventKey="duyuru-haber" title="Duyuru ve Haberlerim">
-        <AnnouncementCard
-          cardHeader="İstanbul Kodluyor Bilgilendirme"
-          cardDescription="İstanbul Kodluyor Başvuru Formu onaylandı."
-          cardText="İstanbul Kodluyor Belge Yükleme Formu onaylandı."
-        />
+        <Row>
+          <AnnouncementCard
+            announcementType="Duyuru"
+            announcementEducation="İstanbul Kodluyor"
+            announcementHeader="Ocak Ayı Tercih Formu Bilgilendirmesi"
+            annoucementDateIcon={announcementIconSrc}
+            announcementDate="12.01.2024"
+          />
+          <AnnouncementCard
+            announcementType="Duyuru"
+            announcementEducation="İstanbul Kodluyor"
+            announcementHeader="Ocak Ayı Tercih Formu Bilgilendirmesi"
+            annoucementDateIcon={announcementIconSrc}
+            announcementDate="12.01.2024"
+          />
+          <AnnouncementCard
+            announcementType="Duyuru"
+            announcementEducation="İstanbul Kodluyor"
+            announcementHeader="Ocak Ayı Tercih Formu Bilgilendirmesi"
+            annoucementDateIcon={announcementIconSrc}
+            announcementDate="12.01.2024"
+          />
+          <AnnouncementCard
+            announcementType="Duyuru"
+            announcementEducation="İstanbul Kodluyor"
+            announcementHeader="Ocak Ayı Tercih Formu Bilgilendirmesi"
+            annoucementDateIcon={announcementIconSrc}
+            announcementDate="12.01.2024"
+          />
+        </Row>
       </Tab>
       <Tab eventKey="anket" title="Anketlerim">
         <SurveyNotFound />
