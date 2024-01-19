@@ -20,6 +20,7 @@ import Settings from "./components/ProfileEdit/Settings";
 import { Route, Routes } from "react-router-dom";
 import EducationDetail from "./pages/Education/EducationDetail";
 import CalendarDetail from "./pages/Calendar/CalendarDetail";
+import Login from "./pages/Login/Login";
 
 
 const profileEditUrl = "/profilim/profilimi-duzenle";
@@ -32,6 +33,7 @@ function App() {
       <div className="body-height">
         <Routes>
           <Route path="/" element={<Platform />} />
+          <Route path="/giris" element={<Login />} />
           <Route path="/profilim" element={<Profile />} />
           <Route path="/degerlendirmeler" element={<Evaluation />} />
           <Route path="/katalog" element={<Catalog />} />
