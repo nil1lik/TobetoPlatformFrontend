@@ -1,0 +1,35 @@
+.filter-left {
+    background: #fff;
+    box-shadow: 2px 10px 24px hsla(0,0%,9%,.12);
+    padding: 2em 1em;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 2em;
+}
+
+.label-header{
+    font-size: 18px;
+    color: #828282;
+    font-weight: 500;
+}
+
+.cal-filter-input {
+    height: 42px;
+    border: 2px solid #ddd!important;
+    padding: 8px 12px;
+}
+
+.edu-status-filter {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 8px;
+}
+
+.check-class{
+    font-size: 12!important;
+    color: black!important;
+    font-weight: normal!important;
+}
