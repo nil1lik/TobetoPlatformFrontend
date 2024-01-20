@@ -3,7 +3,7 @@ import React from "react";
 import { Button, Form, Image, Row } from "react-bootstrap";
 import FormikInput from "../../utilities/FormikInput";
 
-type Props = { image: string };
+type Props = { image: string, formClassName: string };
 
 const LoginForm = (props: Props) => {
   const initialValues = {};
@@ -15,7 +15,7 @@ const LoginForm = (props: Props) => {
         console.log(values);
       }}
     >
-      <Form className="loginform-cont">
+      <Form className={props.formClassName}>
         <Row>
           <Image className="login-form-img" src={formLogo} />
         </Row>

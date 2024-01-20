@@ -4,6 +4,7 @@ import { Container } from "react-bootstrap";
 import "./login.css";
 import LoginForm from "../../components/Login/LoginForm";
 import { Link } from "react-router-dom";
+import AppForm from "../../components/Login/AppForm";
 
 type Props = {};
 
@@ -13,7 +14,7 @@ const Login = (props: Props) => {
       <LoginPageBox className="login-box">
         <div className="div">
         <div className="center">
-          <LoginForm image="tobeto-logo.png" />
+          <LoginForm formClassName="loginform-cont" image="tobeto-logo.png" />
           <Link className="forget-pass-btn" to="/sifremi-unuttum">Şifremi Unuttum</Link>
         </div>
         <div className="center">
@@ -24,7 +25,7 @@ const Login = (props: Props) => {
         </div>
       </LoginPageBox>
       <LoginPageBox className="app-box">
-        <LoginForm image="istanbulKodluyor.png" />
+        <AppForm />
       </LoginPageBox>
     </Container>
   );
