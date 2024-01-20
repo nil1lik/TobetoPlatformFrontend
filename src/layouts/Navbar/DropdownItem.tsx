@@ -68,7 +68,7 @@ const DropdownItem = (props: Props) => {
                     Profil Bilgileri
                 </Dropdown.Item>
                 <Dropdown.Divider />
-                <Dropdown.Item href="#/action-2" className="dropdown-item profil-dropdown">
+                <Dropdown.Item href="/giris" className="dropdown-item profil-dropdown">
                   Oturumu Kapat
                 </Dropdown.Item>
               </Dropdown.Menu>
