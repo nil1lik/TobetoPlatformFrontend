@@ -8,7 +8,7 @@
 .login-form-img {
   object-fit: scale-down;
   width: 200px !important;
-  height: 120px !important;
+  height: 90px !important;
   align-items: center;
   justify-content: center;
 }
@@ -22,9 +22,17 @@
   background-color: #ffffff;
   padding: 1rem;
   border-radius: 1em;
+  width: 550px;
 }
 
 .loginform-cont {
+  /* display: flex;
+  flex-direction: column;
+  justify-content: center; */
+}
+
+.center {
+  text-align: center;
 }
 
 .loginform-cont::after {
@@ -53,12 +61,13 @@
 
 @keyframes rainbow-border {
     0% {
-      background-position: 50% 0%;
-      transform: rotate(0deg);
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
     }
     100% {
-      background-position: 50% 100%;
-      transform: rotate(360deg);
+      background-position: 200% 50%;
     }
   }
 
@@ -73,3 +82,34 @@
   padding: 1rem;
   border-radius: 1em;
 }
+
+.div {
+  padding-left: 3rem;
+  padding-right: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.row-btn {
+  display: flex;
+  justify-content: center;
+}
+
+.row-btn button {
+  width: 95%;
+}
+
+.forget-pass-btn {
+  --bs-text-opacity: 1;
+  color: var(--bs-secondary-color);
+  text-decoration: none;
+}
+
+.register-btn {
+  --bs-text-opacity: 1;
+    color: var(--bs-secondary-color)!important;
+    text-decoration: none;
+    font-weight: 700;
+}
+
