@@ -12,7 +12,8 @@ type Props = {
 
 const AnnouncementCard = (props: Props) => {
   return (
-    <Card className="card-notify col-md-4 col-12 my-4 mx-4">
+    <div className="col-md-4 col-12">
+    <Card className="card-notify">
       <Card.Body className="announcementInfoTop">
         <span>{props.announcementType}</span>
         <span>{props.announcementEducation}</span>
@@ -30,6 +31,7 @@ const AnnouncementCard = (props: Props) => {
         </Link>
       </Card.Body>
     </Card>
+    </div>
   );
 };
 

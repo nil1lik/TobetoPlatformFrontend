@@ -4,7 +4,9 @@
     height: 120px !important;
     margin-top: 70px;
 }
-
+.tab-content{
+    padding: 1rem;
+}
 .dot-purple-svg {}
 
 .platform-item-cont {
@@ -84,13 +86,14 @@
     font-weight: 400;
     line-height: normal;
 }
+
 .announcementHeader.card-body {
     color: #767676;
     font-size: 14px;
     font-style: normal;
     font-weight: 600;
     line-height: normal;
-    min-height: 45px!important;
+    min-height: 45px !important;
     -webkit-line-clamp: 2;
     display: -webkit-box;
     -webkit-box-orient: vertical;
@@ -111,4 +114,19 @@
 .announcementReadMore {
     color: #9397a0;
     text-decoration: none;
+}
+
+.announcementReadMore:hover {
+    color: #00956e;
+}
+@media (min-width: 1400px) {
+
+    .container,
+    .container-lg,
+    .container-md,
+    .container-sm,
+    .container-xl,
+    .container-xxl {
+        max-width: 1140px !important;
+    }
 }

@@ -12,9 +12,9 @@ type Props = {};
 const Platform = (props: Props) => {
   return (
     <>
-      <Container>
+      <Container className="main-cont">
         <Row className="justify-content-center align-items-center">
-          <Col className="col-12 col-md-10">
+          <Col className="col-12 col-md-12">
             <Container className="main-cont">
               <Row>
                 <Row>
