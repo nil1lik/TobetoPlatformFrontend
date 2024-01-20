@@ -848,5 +848,5 @@ table {
 .chatExample{
   width: 400px;
   height: 85vh;
-  object-fit: cover;
+  object-fit: contain;
 }
