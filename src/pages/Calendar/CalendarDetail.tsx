@@ -19,7 +19,7 @@ const CalendarDetail = (props: Props) => {
         <Col xs={3}>
           <div className="filter-left equal-box">
             <div className="d-flex flex-column">
-              <label className="label-header">Eğitim arama</label>
+              <label className="label-header">Eğitim Arama</label>
               <input
                 type="text"
                 placeholder="Eğitim arayın.."
@@ -28,17 +28,46 @@ const CalendarDetail = (props: Props) => {
             </div>
             <div className="d-flex flex-column">
               <label className="label-header">Eğitmen</label>
-              <Dropdown>
-                <Dropdown.Toggle variant="success" id="dropdown-basic">
-                  Eğitmen arayın...
+              <Dropdown className=" calender-select dropdown-calendar">
+                <Dropdown.Toggle variant="success" id="dropdown-basic" className="btn-calendar dropdown-toggle-calendar">
+                  <div className="css-14cgata-control">
+                    <div className="css-hlgwow">
+                      <div className="css-1jqq78o-placeholder" >Eğitmen Seçiniz...</div>
+                    </div>
+                  <div className="css-1wy0on6">
+                  <span className="dropdown-indicatorSeparator"></span>
+                  <span className="dropdown-indicatorContainer">
+                  <svg
+                    xmlns="/images/navbar-dropdown-toggle.svg"
+                    width={20}
+                    height={20}
+                    viewBox="3 2 20 20"
+                    fill="none"
+                    className="dropdown-toggle-svg"
+                  >
+                    <path
+                      d="M6 9L12 15L18 9"
+                      strokeWidth={2}
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="dropdown-toggle-svg-path"
+                    ></path>
+                  </svg>
+                </span>
+                  </div>
+                  </div>
                 </Dropdown.Toggle>
-
-                <Dropdown.Menu>
-                  <Dropdown.Item href="#/action-1">Engin Demirog</Dropdown.Item>
-                  <Dropdown.Item href="#/action-2">
-                    Halit Enes Kalaycı
-                  </Dropdown.Item>
-                  <Dropdown.Item href="#/action-3">İrem hoca</Dropdown.Item>
+                
+                <Dropdown.Menu className="dropdown-menu-calendar">
+                  <Dropdown.Item className="dropdown-item insturctor-dropdown-calendar" href="#/action-1">Engin Demirog</Dropdown.Item>
+                  <Dropdown.Item className="dropdown-item insturctor-dropdown-calendar" href="#/action-2"> Halit Enes Kalaycı</Dropdown.Item>
+                  <Dropdown.Item className="dropdown-item insturctor-dropdown-calendar" href="#/action-3">İrem hoca</Dropdown.Item>
+                  <Dropdown.Item className="dropdown-item insturctor-dropdown-calendar" href="#/action-1">Engin Demirog</Dropdown.Item>
+                  <Dropdown.Item className="dropdown-item insturctor-dropdown-calendar" href="#/action-2"> Halit Enes Kalaycı</Dropdown.Item>
+                  <Dropdown.Item className="dropdown-item insturctor-dropdown-calendar" href="#/action-3">İrem hoca</Dropdown.Item>
+                  <Dropdown.Item className="dropdown-item insturctor-dropdown-calendar" href="#/action-1">Engin Demirog</Dropdown.Item>
+                  <Dropdown.Item className="dropdown-item insturctor-dropdown-calendar" href="#/action-2"> Halit Enes Kalaycı</Dropdown.Item>
+                  <Dropdown.Item className="dropdown-item insturctor-dropdown-calendar" href="#/action-3">İrem hoca</Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
             </div>
@@ -50,26 +79,30 @@ const CalendarDetail = (props: Props) => {
                     <div key={`inline-${type}`} className="mb-3">
                       <Form.Check
                         inline
-                        label="Bitmiş dersler"
+                        label="Bitmiş Dersler"
                         id={`inline-${type}-1`}
+                        className="form-check-label form-check-input form-check-input-calendar form-check-label-calendar "
                       />
                       <br />
                       <Form.Check
                         inline
-                        label="Devam eden dersler"
+                        label="Devam Eden Dersler"
                         id={`inline-${type}-1`}
+                        className="form-check-label form-check-input form-check-input-calendar form-check-label-calendar "
                       />
                       <br />
                       <Form.Check
                         inline
-                        label="Satın alınmış dersler"
+                        label="Satın Alınmış Dersler"
                         id={`inline-${type}-1`}
+                        className="form-check-label form-check-input form-check-input-calendar form-check-label-calendar "
                       />
                       <br />
                       <Form.Check
                         inline
-                        label="Başlanmamış dersler"
+                        label="Başlanmamış ersler"
                         id={`inline-${type}-1`}
+                        className="form-check-label form-check-input form-check-input-calendar form-check-label-calendar "
                       />
                     </div>
                   ))}

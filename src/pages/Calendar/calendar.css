@@ -9,27 +9,285 @@
     gap: 2em;
 }
 
-.label-header{
-    font-size: 18px;
-    color: #828282;
-    font-weight: 500;
-}
-
-.cal-filter-input {
+.cal-filter-input{
     height: 42px;
-    border: 2px solid #ddd!important;
+    outline: auto;
+    border: 0px !important;
+    outline-color: #cccccc !important;
     padding: 8px 12px;
+    font-size: 16px;
 }
 
-.edu-status-filter {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin-top: 8px;
+.cal-filter-input:focus{
+    transition: 2s;
+    outline-color: #9933ff !important;
 }
 
 .check-class{
-    font-size: 12!important;
     color: black!important;
     font-weight: normal!important;
+}
+
+/*Dropdown*/
+
+.btn.btn-calendar{
+    width: 100%;
+    text-align: left;
+    background-color: #fff !important;
+    border-radius: 0.2rem !important;
+    border: 2px solid #cccccc !important;
+    color:#828282 !important;
+    padding: 0 0;
+}
+
+.btn.btn-calendar:hover{
+    transition: 1s;
+    /* border-color: #828282 !important; */
+    border-color: #9933ff !important;
+}
+
+.btn.btn-calendar.show{
+    border-color: #9933ff !important;
+}
+
+.dropdown-indicatorSeparator{
+    align-self: stretch;
+    width: 2px;
+    background-color: rgb(204, 204, 204);
+    margin-bottom: 8px;
+    margin-top: 8px;
+    box-sizing: border-box;
+}
+
+/*dropdown toggle*/
+.dropdown-toggle.dropdown-toggle-calendar{
+    min-height: 38px;
+    height: 42px;
+}
+.dropdown-toggle.dropdown-toggle-calendar::after{
+    display: none;
+}
+
+.css-14cgata-control {
+    display: flex;
+    flex: 1 1 0%;
+    flex-wrap: wrap;
+}
+
+.css-hlgwow {
+    -webkit-box-align: center;
+    align-items: center;
+    display: grid;
+    flex: 1 1 0%;
+    flex-wrap: wrap;
+    position: relative;
+    overflow: hidden;
+    padding: 2px 8px;
+    box-sizing: border-box;
+}
+
+.css-1wy0on6 {
+    -webkit-box-align: center;
+    align-items: center;
+    align-self: stretch;
+    display: flex;
+    flex-shrink: 0;
+    box-sizing: border-box;
+}
+
+.dropdown-indicatorContainer {
+    display: flex;
+    transition: color 150ms ease 0s;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+.dropdown-toggle-svg-path{
+    stroke: #cccccc;
+}
+
+.btn.btn-calendar:hover .dropdown-toggle-svg-path{
+    stroke: #9933ff;
+    transition: 1s;
+}
+
+.btn.btn-calendar.show .dropdown-toggle-svg-path{
+    stroke: #9933ff;
+}
+
+.css-1jqq78o-placeholder {
+    grid-area: 1 / 1 / 2 / 3;
+    color: rgb(128, 128, 128);
+    margin-left: 2px;
+    margin-right: 2px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+/*Dropdown Menu*/
+.dropdown-menu.dropdown-menu-calendar{
+    width: 100%;
+    overflow-y: auto;
+    min-height: 100px;
+    max-height: 225px;
+}
+
+.dropdown-menu.dropdown-menu-calendar.show{
+    border-color: #9933ff;
+    background-color: #fff;
+    
+}
+
+.dropdown-item.insturctor-dropdown-calendar{
+    color: #000000;
+    font-size: 16px;
+}
+
+.dropdown-item.insturctor-dropdown-calendar:hover {
+    background-color: #9933ff;
+    color: #fff;
+}
+
+.dropdown-menu.dropdown-menu-calendar::-webkit-scrollbar {
+    width: 10px;
+  }
+
+.dropdown-menu.dropdown-menu-calendar::-webkit-scrollbar-thumb:hover{
+    background-color: #9933ff;
+}
+
+.dropdown-menu.dropdown-menu-calendar::-webkit-scrollbar-track{
+    background-color: #cccccc;
+    border-radius: 2rem;
+}
+
+.dropdown-menu.dropdown-menu-calendar::-webkit-scrollbar-track:focus{
+    background-color: #828282;
+}
+
+.dropdown-menu.dropdown-menu-calendar:active::-webkit-scrollbar-track{
+    background-color: #828282;
+}
+
+.dropdown-menu:active .btn.btn-calendar{
+    border-color: #000000 !important;
+}
+
+/* Calender EducationStatus*/
+
+.label-header{
+    margin-bottom: 8px !important;
+    color: #828282 !important;
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.form-check-input input {
+    margin-right: 0.5rem !important;
+    margin-top: 0.25rem !important;
+    border-color: #cccccc;
+}
+
+.form-check-label.form-check-label-calendar{
+    width: 100% !important;
+    align-items: flex-end !important;
+    height: none !important;
+    display: flex;
+    border: none;
+}
+
+.form-check-input[type=checkbox] {
+    height: 1.5em;
+    width: 1.5em;
+    
+}
+
+/*---------------------------Calender Design------------------------------*/
+
+/*Calender Button*/
+.fc-today-button{
+    border: 2px solid #828282 !important;
+    border-radius: 2rem !important;
+    background-color: #fff !important;
+    color: #828282 !important;
+    font-size: 15px !important;
+    opacity: 1 !important;
+}
+
+.fc-today-button:hover{
+    border-color: #cccccc !important;
+}
+
+.fc-button-group {
+    border: 2px solid #828282 !important;
+    border-radius: 20px !important;
+    display: inline-flex;
+    position: relative;
+    vertical-align: middle;
+}
+
+.fc-button-group button{
+    background-color: transparent !important;
+    color: #828282 !important;
+    border: none !important;
+}
+
+.fc .fc-button-primary:focus{
+    box-shadow: none !important;
+}
+
+.fc .fc-button:focus {
+    box-shadow: none !important;
+}
+
+.fc-direction-ltr .fc-button-group>.fc-button:not(:last-child) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.fc-direction-ltr .fc-button-group>.fc-button:not(:last-child):after {
+    content: "";
+    width: 1px;
+    height: 22px;
+    background: #828282;
+    display: block;
+    margin-left: 1em;
+    opacity: .5;
+}
+
+/*-------------------------------------------------------------------------------*/
+
+/*Calender toolbar Title*/
+.fc .fc-toolbar-title {
+    color: #828282;
+    font-weight: 400!important;
+}
+
+/*-------------------------------------------------------------------------------*/
+
+/*Calender Day*/
+.fc .fc-col-header-cell-cushion {
+    display: inline-block;
+    padding: 2px 4px;
+    color: #9933ff;
+    font-weight: 600!important;
+    text-decoration: none !important;
+}
+
+/*Calender Day Number*/
+.fc .fc-daygrid-day-top{
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.fc .fc-daygrid-day-number{
+    margin-right: auto;
+    text-decoration: none;
+    color: #282828;
+    font-weight: 500;
+    font-size: 14px;
+    padding: 4px;
+    position: relative;
+    z-index: 4;
 }
