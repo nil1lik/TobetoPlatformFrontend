@@ -828,3 +828,25 @@ table {
 .btn{
   padding-top: 0 !important;
 }
+
+.chat-cont{
+  position: fixed;
+  bottom: 20px;
+  right: 15px;
+  cursor: pointer;
+}
+.chatOpen{
+  background-color: #9933FF;
+  padding: 1rem;
+  border-radius: 50%;
+}
+.chatOpenIcon{
+  width: 30px;
+  height: 30px;
+}
+
+.chatExample{
+  width: 400px;
+  height: 85vh;
+  object-fit: cover;
+}

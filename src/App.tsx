@@ -21,6 +21,7 @@ import { Route, Routes } from "react-router-dom";
 import EducationDetail from "./pages/Education/EducationDetail";
 import CalendarDetail from "./pages/Calendar/CalendarDetail";
 import Login from "./pages/Login/Login";
+import ChatBot from "./layouts/ChatBot/ChatBot";
 
 const profileEditUrl = "/profilim/profilimi-duzenle";
 
@@ -52,6 +53,7 @@ function App() {
         </Routes>
       </div>
       {/* </Container> */}
+      <ChatBot />
       <Footer />
     </>
   );
