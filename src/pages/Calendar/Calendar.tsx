@@ -5,6 +5,7 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import allLocales from "@fullcalendar/core/locales-all";
 import { EventContentArg } from '@fullcalendar/core';
+import { DayCellContainer, addWeeks } from '@fullcalendar/core/internal';
 
 type Props = {
   id: string,
@@ -30,14 +31,16 @@ const Calendar = (props: Props) => {
       </>
     )
   }
+
+  
   return (
     <>
       <FullCalendar
         plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
         headerToolbar={{
-          left: "prev,next today",
+          left: `today prev,next`,
           center: "title",
-          right: "dayGridMonth, timeGridWeek, timeGridDay"
+          right: "dayGridMonth,timeGridWeek,timeGridDay"
         }}
         locales={allLocales}
         locale={"tr"}
@@ -53,6 +56,7 @@ const Calendar = (props: Props) => {
           today: "Bugün",
           week: "Hafta"
         }}
+        dayHeaderFormat={{weekday:'long'}}
       />
     </>
   );

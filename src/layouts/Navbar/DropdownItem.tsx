@@ -13,7 +13,7 @@ const DropdownItem = (props: Props) => {
               <span className="tbt-gradient"></span>
             </div>
             <div className="btn-group header-avatar">
-              <Dropdown.Toggle className="bg-transparent p-0 fw-normal b-r-35 text-end d-flex align-items-center">
+              <Dropdown.Toggle className="bg-transparent p-0 fw-normal b-r-35 text-end d-flex dropdown-toggle-navbar btn-navbar align-items-center">
                 <div className="me-2">
                   <span className="dropdown-pp">
                     <span className="dropdown-pp-2">
@@ -52,17 +52,17 @@ const DropdownItem = (props: Props) => {
                   </svg>
                 </span>
               </Dropdown.Toggle>
-              <Dropdown.Menu className=" dropdown-trans">
+              <Dropdown.Menu className=" dropdown-trans dropdown-menu-navbar">
                 <Dropdown.Item
                   href="/profilim"
-                  className="dropdown-item profil-dropdown"
+                  className="dropdown-item profil-dropdown-navbar"
                 >
                   Profil Bilgileri
                 </Dropdown.Item>
                 <Dropdown.Divider />
                 <Dropdown.Item
                   href="/giris"
-                  className="dropdown-item profil-dropdown"
+                  className="dropdown-item profil-dropdown-navbar"
                 >
                   Oturumu Kapat
                 </Dropdown.Item>
