@@ -6,6 +6,7 @@ import interactionPlugin from "@fullcalendar/interaction";
 import allLocales from "@fullcalendar/core/locales-all";
 import { EventContentArg } from '@fullcalendar/core';
 import { DayCellContainer, addWeeks } from '@fullcalendar/core/internal';
+import { start } from 'repl';
 
 type Props = {
   id: string,
@@ -24,13 +25,14 @@ const Calendar = (props: Props) => {
 
   const renderEventContent =(eventContent:EventContentArg)=>{
     return(
-      <>
-        <b>{eventContent.timeText}</b>
-        <b>{props.title} {eventContent.event.title}</b>
-        <b>{props.instructor}</b>
-      </>
+      <div className='d-flex flex-column ms-4 my-1'>
+        <span>{props.start.split("T")[1]/*eventContent.timeText*/}</span>
+        <span className='text-truncate'>{props.title} {/*eventContent.event.title*/}</span>
+        <span className='text-truncate'>{props.instructor}</span>
+      </div>
     )
   }
+
 
   
   return (
@@ -56,6 +58,15 @@ const Calendar = (props: Props) => {
           today: "Bugün",
           week: "Hafta"
         }}
+         events={
+         [
+           {id:props.id,title:props.title,start:props.start},
+           {id:'4',title:props.title, start:'2024-01-09',end:'2024-01-09'},
+           {id:'2',title:props.title, start:'2024-01-09T13:15:00',end:'2024-01-09T15:00:00'},
+           {id:'3',title:props.title, start:'2024-01-29'}
+        ]
+      }
+
         dayHeaderFormat={{weekday:'long'}}
       />
     </>
