@@ -1,0 +1,162 @@
+.form-cont {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+}
+
+.login-form-img {
+  object-fit: scale-down;
+  width: 200px !important;
+  height: 90px !important;
+  align-items: center;
+  justify-content: center;
+}
+
+.loginform-cont .row:nth-child(1) {
+  justify-content: center;
+}
+
+.login-box {
+  position: relative;
+  background-color: #ffffff;
+  padding: 1rem;
+  border-radius: 1em;
+  width: 100%;
+}
+
+.loginform-cont {
+  /* display: flex;
+  flex-direction: column;
+  justify-content: center; */
+}
+
+.center {
+  text-align: center;
+}
+
+.loginform-cont::after {
+  content: "";
+  position: absolute;
+  border-radius: 1em;
+  animation: rainbow-border 4s linear infinite;
+  background: radial-gradient(
+    circle,
+    #0ebeff,
+    #ffdd40,
+    #ae63e4,
+    #47cf73,
+    #0ebeff,
+    #ffdd40,
+    #ae63e4,
+    #47cf73
+);
+  width: calc(100% + 10px);
+  height: calc(100% + 10px);
+  top: -5px;
+  left: -5px;
+  background-size: 200% 200%;
+  z-index: -1;
+}
+
+@keyframes rainbow-border {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 200% 50%;
+    }
+  }
+
+.form-btn {
+  width: 420px !important;
+  height: 35px !important;
+}
+
+.app-box {
+  background-color: #ffffff;
+  position: relative;
+  padding: 1rem;
+  border-radius: 1em;
+  width: 100%;
+}
+
+.app-div {
+  background-image: url("../../../public/images/appform.jpg");
+  height: 450px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: end;
+  justify-content: center;
+  padding-bottom: 70px;
+}
+
+.app-btn {
+  min-width: 200px;
+    line-height: 18px;
+    min-width: 140px;
+    background-color: #1e0f41;
+    color: #0fcdfa;
+    border-radius: 25px;
+    padding: 0.70rem 0.875rem;
+    font-weight: 700;
+    border: none;
+}
+
+.app-link {
+  text-decoration: none;
+  color: unset;
+}
+
+.app-link:hover {
+  color: unset;
+}
+.app-div::after {
+  content: "";
+  position: absolute;
+  animation: rainbow-border 4s linear infinite;
+  background: linear-gradient(135deg,#1e0f41,#0fcdfa,#87ff87,#1e0f41,#0fcdfa,#87ff87);
+  width: calc(100% + 10px);
+  height: calc(100% + 10px);
+  top: -5px;
+  left: -5px;
+  background-size: 200% 200%;
+  z-index: -1;
+  border-radius: 1em; 
+}
+
+.div {
+  padding-left: 3rem;
+  padding-right: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.row-btn {
+  display: flex;
+  justify-content: center;
+}
+
+.row-btn button {
+  width: 95%;
+}
+
+.forget-pass-btn {
+  --bs-text-opacity: 1;
+  color: var(--bs-secondary-color);
+  text-decoration: none;
+}
+
+.register-btn {
+  --bs-text-opacity: 1;
+    color: var(--bs-secondary-color)!important;
+    text-decoration: none;
+    font-weight: 700;
+}
+

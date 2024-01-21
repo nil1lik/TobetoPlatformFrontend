@@ -8,6 +8,9 @@ import ProfileRoundItem from '../../components/Profile/ProfileLeft/ProfileRoundI
 import ProfileMediaAccounts from '../../components/Profile/ProfileLeft/ProfileMediaAccounts'
 import ProfileSuccessModel from '../../components/Profile/ProfileRight/ProfileSuccessModel/ProfileSuccessModel'
 import { Link } from 'react-router-dom'
+import ProfileBadge from '../../components/Profile/ProfileRight/ProfileBadge'
+import ProfileExam from '../../components/Profile/ProfileRight/ProfileExam'
+import ProfileEducationMap from '../../components/Profile/ProfileRight/ProfileEducationMap'
 
 
 type Props = {
@@ -18,7 +21,14 @@ const Profile = (props: Props) => {
 
   return (
     <Container>
-      <Link to={"/profilim/profilimi-duzenle"}>Düzenle</Link>
+      <Row>
+        <Col xs={12} style={{ textAlign: "right" }}>
+          <Link to={"/profilim/profilimi-duzenle"}>
+            <span className='profileEditButton'></span>
+          </Link>
+          <span className='profileShareButton'></span>
+        </Col>
+      </Row>
       <Row>
         {/* PROFILE LEFT START */}
         <Col className='col-4'>
@@ -89,10 +99,23 @@ const Profile = (props: Props) => {
             </Col>
             <Col className='col-12'>
               <ProfileBox titleClass='profileBoxTitle' title='Tobeto Seviye Testlerim'>
+              <div className='profileExamsCont'>
+                <ProfileExam profileExamName='Herkes için Kodlama 1B Değerlendirme Sınavı' profileExamDate='12-10-2023' profileExamPoint='88.00'/>
+                <ProfileExam profileExamName='Front End' profileExamDate='12-10-2023' profileExamPoint='88.00'/>
+                <ProfileExam profileExamName='Herkes için Kodlama 1B Değerlendirme Sınavı' profileExamDate='17-11-2023' profileExamPoint='88.00'/>
+                <ProfileExam profileExamName='Back End' profileExamDate='17-11-2023' profileExamPoint='88.00'/>
+              </div>
               </ProfileBox>
             </Col>
             <Col className='col-12'>
               <ProfileBox titleClass='profileBoxTitle' title='Yetkinlik Rozetlerim'>
+                <div className='profileBadgeMainCont'>
+                  <ProfileBadge imageSrc='istanbulkodluyorbadge.jpg' />
+                  <ProfileBadge imageSrc='isbecerileribadge.jpg' />
+                  <ProfileBadge imageSrc='isyönetimibecerileribadge.jpg' />
+                  <ProfileBadge imageSrc='isyönetimibecerileribadge2.jpg' />
+                  <ProfileBadge imageSrc='kisiselgelisimbadge.jpg' />
+                </div>
               </ProfileBox>
             </Col>
             <Col className='col-12'>
@@ -101,6 +124,7 @@ const Profile = (props: Props) => {
             </Col>
             <Col className='col-12'>
               <ProfileBox titleClass='profileBoxTitle' title='Eğitim Hayatım ve Deneyimlerim'>
+                <ProfileEducationMap />
               </ProfileBox>
             </Col>
           </Row>

@@ -1,7 +1,26 @@
 .preInfoBox.card {
     border-top-left-radius: 12px;
     border-top-right-radius: 12px;
+    background: #fff;
+    box-shadow: 0 7px 29px rgba(0, 0, 0, .13);
+    border-radius: 12px;
+    margin-top: 1em;
     border: none;
+}
+
+.profileEditButton::after {
+    content: url("../../../public/images/edit2.svg");
+    width: 25px;
+    height: 25px;
+    margin-right: 1rem;
+    cursor: pointer;
+}
+
+.profileShareButton::after {
+    content: url("../../../public/images/share.svg");
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
 }
 
 .preInfoBox .card-body:nth-child(1) {
@@ -12,6 +31,15 @@
 .preInfoBox .card-img {
     width: 128px;
     height: 128px;
+    z-index: 1;
+}
+
+.profileBox.card {
+    background: #fff;
+    box-shadow: 0 7px 29px rgba(0, 0, 0, .13);
+    border-radius: 12px;
+    margin-top: 1em;
+    border: none;
 }
 
 .profileBox hr {
@@ -21,7 +49,32 @@
     border-top: 2px solid;
     opacity: .4;
 }
-
+.preInfoPhotoCont{
+    width: 100%;
+    padding-bottom: 100%; /* 1:1 en-boy oranı sağlar */
+    position: relative;
+    overflow: hidden;
+}
+.preInfoPhotoCont::after{
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, #8E44AD, #C39BD3, #8E44AD);
+    background-size: 200% 200%;
+    animation: gradientAnimation 5s linear infinite;
+}
+@keyframes gradientAnimation {
+    0% {
+      background-position: 0% 0%;
+    }
+    100% {
+      background-position: 200% 200%;
+    }
+  }
 .preInfoPhoto {
     margin: 0 auto;
 }
@@ -172,4 +225,226 @@
     font-size: 13px;
     color: #000;
     font-weight: 500;
+}
+
+.examCont {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    box-shadow: 2px 10px 24px hsla(0, 0%, 9%, .12);
+    background-color: #fff;
+    padding: 0.75em;
+    align-items: flex-start;
+    justify-content: space-between;
+    border-radius: 12px;
+    transition: .3s;
+    border: 2px solid transparent;
+}
+
+.profileExamsCont {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 1em;
+    gap: 1em;
+}
+.examInfo{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+}
+.examName {
+    color: #828282;
+    font-weight: 500;
+}
+
+.examDate {
+    color: #828282;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.profileBadgeMainCont {
+    display: flex;
+    gap: 8px;
+}
+
+.profileBadgeCont {
+    width: fit-content;
+    background: #fff;
+    border-radius: 12px;
+    padding: 1em;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
+
+.profileBadge {
+    width: 53px;
+    height: 53px;
+}
+
+
+
+
+
+
+
+/* Timeline */
+.timeline {
+    height: 300px;
+    overflow-x: auto;
+    cursor: default;
+}
+.timeline .line {
+    height: 6px;
+    width: -moz-fit-content;
+    width: fit-content;
+    min-width: 100%;
+    background: #ccc;
+    border-radius: 5px;
+    margin: auto;
+    top: 50%;
+    transform: translateY(-50%);
+    gap: 248px;
+    position: relative;
+    display: flex;
+    cursor: default;
+}
+.timeline .line .circle {
+    width: 20px;
+    height: 20px;
+    background: #a442ff;
+    border-radius: 15px;
+    position: relative;
+    top: -7px;
+    border: 3px solid #fff;
+    cursor: default;
+}
+.timeline .line .circle2 {
+    width: 20px;
+    height: 20px;
+    background: #488ff6;
+    border-radius: 15px;
+    position: relative;
+    top: -7px;
+    border: 3px solid #fff;
+    cursor: default;
+}
+.timeline .line .circle2 {
+    width: 20px;
+    height: 20px;
+    background: #488ff6;
+    border-radius: 15px;
+    position: relative;
+    top: -7px;
+    border: 3px solid #fff;
+    cursor: default;
+}
+.timeline .line .circle:first-child .before {
+    margin-right: 5px;
+    padding: 0 0 2em;
+    position: relative;
+    min-height: 100px;
+}
+.timeline .line .circle:first-child .before .content {
+    position: absolute;
+    top: -16px;
+    left: 8px!important;
+    cursor: default;
+}
+.timeline .line .circle:first-child .before .content ul {
+    list-style: none;
+    margin-left: 0!important;
+    padding-left: 4px;
+    width: -moz-max-content;
+    width: max-content;
+    max-width: 150px;
+}
+.timeline .line .circle:first-child .before .content ul li {
+    font-size: 12px;
+    text-align: left;
+}
+.timeline .line .circle2 .after {
+    border-right: 3px solid #488ff6;
+    margin-right: 5px;
+    padding: 2em 0 0;
+    position: relative;
+    min-height: 100px;
+    cursor: default;
+}
+
+.timeline .line .circle2 .after .content {
+    position: absolute;
+    top: 50px;
+    right: 8px;
+    cursor: default;
+}
+
+.timeline .line .circle2 .after .content ul {
+    list-style: none;
+    margin-left: 0!important;
+    padding-left: 4px;
+    width: -moz-max-content;
+    width: max-content;
+    max-width: 150px;
+}
+
+.timeline .line .circle2 .after .content ul li {
+    font-size: 12px;
+    text-align: right;
+}
+
+.timeline .line .circle2 {
+    width: 20px;
+    height: 20px;
+    background: #488ff6;
+    border-radius: 15px;
+    position: relative;
+    top: -7px;
+    border: 3px solid #fff;
+    cursor: default;
+}
+
+.timeline .line .circle2 .after {
+    border-right: 3px solid #488ff6;
+    margin-right: 5px;
+    padding: 2em 0 0;
+    position: relative;
+    min-height: 100px;
+    cursor: default;
+}
+
+.timeline .line .circle2 .after .content {
+    position: absolute;
+    top: 50px;
+    right: 8px;
+    cursor: default;
+}
+
+.timeline .line .circle2 .after .content ul {
+    list-style: none;
+    margin-left: 0!important;
+    padding-left: 4px;
+    width: -moz-max-content;
+    width: max-content;
+    max-width: 150px;
+}
+
+.timeline .line .circle2 .after .content ul li {
+    font-size: 12px;
+    text-align: right;
+}
+
+.timeline .line .circle .before {
+    transform: translateY(-100%);
+    border-left: 3px solid #a442ff;
+    margin-left: 5px;
+    padding: 0 0 2em;
+    position: relative;
+    min-height: 100px;
+    cursor: default;
+}
+
+
+.text-truncate{
+    overflow: unset !important;
 }

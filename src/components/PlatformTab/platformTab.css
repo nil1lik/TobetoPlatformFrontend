@@ -10,7 +10,13 @@
     color: #282828;
     background-color: transparent;
     border: none;
+    border-color: none;
     position: relative;
+}
+
+.platform-tab .nav-link:hover{
+    border-color: transparent !important;
+    color: #282828;
 }
 
 .platform-tab.nav-tabs {

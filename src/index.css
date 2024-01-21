@@ -7,7 +7,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 905px; /* Minimum sayfa yüksekliği */
-  overflow-y: scroll;
+  overflow-y: scroll; 
 }
 
 main {
@@ -17,7 +17,6 @@ main {
 footer {
   margin-top: auto!important;
 }
-
 
 .ui.button.button {
   background-color: #ffffff;
@@ -296,7 +295,7 @@ footer {
 }
 
 .input-label-text {
-  color: #828282;
+  color: #bbbbbb;
   font-size: 14px;
   font-weight: 500;
   text-align: left;
@@ -827,4 +826,26 @@ table {
 }
 .btn{
   padding-top: 0 !important;
+}
+
+.chat-cont{
+  position: fixed;
+  bottom: 20px;
+  right: 15px;
+  cursor: pointer;
+}
+.chatOpen{
+  background-color: #9933FF;
+  padding: 1rem;
+  border-radius: 50%;
+}
+.chatOpenIcon{
+  width: 30px;
+  height: 30px;
+}
+
+.chatExample{
+  width: 400px;
+  height: 85vh;
+  object-fit: contain;
 }
