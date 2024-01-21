@@ -202,6 +202,32 @@
     
 }
 
+.checkEventEnded .form-check-input:checked {
+    background-color: #ff442b !important;
+    border-color: #b62f1e !important;
+}
+
+.checkEventBuyed .form-check-input:checked {
+    background-color: #5fbf9f !important;
+    border-color: #128961 !important;
+}
+
+.checkEventContinue .form-check-input:checked {
+    background-color: #fac059 !important;
+    border-color: #fbad24 !important;
+}
+
+.checkEventNotStarted .form-check-input:checked {
+    background-color: #9933ff !important;
+    border-color: #6118ab !important;
+}
+
+/* 
+.form-check-input:checked {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+} */
+
 /*---------------------------Calender Design------------------------------*/
 
 /*Calender Button*/
@@ -290,4 +316,67 @@
     padding: 4px;
     position: relative;
     z-index: 4;
+}
+
+/*EventComponent*/
+.fc-event .fc-event-main{
+    padding: 6px 6px 6px 0px !important;
+    color: #000000 !important;
+    white-space: pre-line;
+    
+}
+
+.fc-day-grid-event-harness{
+    position: relative;
+}
+
+.fc-daygrid-day-events{
+    max-height: 172px!important;
+    min-height: 120px!important;
+}
+
+.fc-event div {
+    position: relative;
+    z-index: 2;
+    font-weight: 500;
+}
+
+.ms-4 {
+    margin-left: 1rem!important;
+}
+
+.my-1 {
+    margin-top: 0.25rem!important;
+    margin-bottom: 0.25rem!important;
+}
+
+.flex-column {
+    flex-direction: column!important;
+}
+
+.d-flex {
+    display: flex!important;
+}
+
+.fc-event .eventEnded{
+    border: 2px solid #ff442b!important;
+    border-radius: 4px!important;
+    background-color: rgba(255,68,43,.3)!important;
+    color: #141414!important;
+}
+
+.fc-event.fc-event-draggable{
+    cursor: default;
+}
+
+.text-truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.fc-daygrid-dot-event {
+    align-items: center !important;
+    display: none !important;
+    padding: none !important;
 }
