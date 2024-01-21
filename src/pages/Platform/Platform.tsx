@@ -49,7 +49,7 @@ const Platform = (props: Props) => {
                 <Row>
                   <PlatformTab />
                 </Row>
-              </Row>
+              </Row> 
             </Container>
             <Container className="content-cont">
               <Exam />

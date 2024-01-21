@@ -1,0 +1,34 @@
+.info-section {
+  padding-top: 0;
+  padding-right: 0;
+  padding-bottom: 15px;
+  padding-left: 0;
+}
+
+.activity-detail-info{
+    margin-top: 22px;
+}
+
+.activity-detail-info i {
+  margin-top: 2px;
+  margin-right: 7.5px;
+  margin-bottom: 0;
+  margin-left: 0;
+  
+}
+
+.info-section#last-section {
+  padding-top: 9px !important;
+  padding-right: 0 !important;
+  padding-bottom: 5px !important;
+  padding-left: 0 !important;
+}
+
+strong {
+  font-weight: 600 !important;
+}
+
+label{
+  margin-left: 4px;
+}
+
