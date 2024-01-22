@@ -2,21 +2,27 @@ import { Field, Form, Formik } from "formik";
 import { Container, Row, Col } from "react-bootstrap";
 import React, { useEffect, useState } from "react";
 import LanguageLevelService from "../../services/languageLevelService";
+import { getLanguageLevel } from "../../models/requests/language/getLanguageLevel";
 
 type Props = {
 };
 
 const LanguageEdit = (props: Props) => {
   const [languageLevels, setLanguageLevels] = useState<any[]>([]);
+  const initialValues: getLanguageLevel = {
+    id: 0,
+    name: ""
+  };
 
   useEffect(() => {
     const languageLevelService = new LanguageLevelService();
     languageLevelService
       .getLanguageLevel()
       .then((result) => {
-        if (result.data.data) {
-          setLanguageLevels(result.data.data);
-        } else {
+        if (result.data.items) {
+          setLanguageLevels(result.data.items);
+        } 
+        else {
           console.error("API'den dil seviyeleri alınamadı.");
         }
       })
@@ -24,11 +30,6 @@ const LanguageEdit = (props: Props) => {
         console.error("API isteği sırasında bir hata oluştu:", error);
       });
   }, []);
-
-  const initialValues = {
-    language: "",
-    level: "",
-  };
 
   return (
     <div>
@@ -93,7 +94,6 @@ const LanguageEdit = (props: Props) => {
                   ))}
                 </Field>
                 {/* Diğer alanlar için girişler */}
-                <button type="submit">Gönder</button>
               </Col>
             </Row>
             <button

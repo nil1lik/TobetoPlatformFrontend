@@ -2,8 +2,10 @@ import { Field, Form, Formik } from "formik";
 import React, { useEffect, useState } from "react";
 import { Button, Card } from "react-bootstrap";
 import SkillService from "../../services/skillService";
+import { getSkill } from "../../models/requests/skill/getSkill";
 
 type Props = {};
+const initialValues: getSkill = {id: 0, name: ""};
 
 const SkillEdit = (props: Props) => {
   const [skills, setSkills] = useState([]);
@@ -22,9 +24,6 @@ const SkillEdit = (props: Props) => {
         console.error("API isteği sırasında bir hata oluştu:", error);
       });
   }, []);
-  
-
-  const initialValues = {};
 
   return (
     <>

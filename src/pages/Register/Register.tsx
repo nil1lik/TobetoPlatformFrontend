@@ -32,6 +32,7 @@ function Register({ }: Props) {
                 .then((result) => {
                   // Kayıt başarılı olduğunda yapılacak işlemler
                   console.log("Kullanıcı başarıyla kaydedildi:", result.data);
+                  localStorage.setItem("token", result.data.token)
                 })
                 .catch((error) => {
                   // Hata durumunda yapılacak işlemler

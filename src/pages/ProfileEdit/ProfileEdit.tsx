@@ -46,7 +46,7 @@ const ProfileEdit = (props: Props) => {
     <div>
       <Container>
         <Row className="justify-content-center">
-          <Col xs={2} className="col-control">
+          <Col xs={3} className="col-control">
           <Navbar className="flex-column profile-edit-nav" >
             <Nav.Link className="profile-edit-nav-btn profile-sidebar-text bi bi-person" onClick={() => setActiveTab("kisiselbilgilerim")}> Kişisel Bilgilerim</Nav.Link>
             <Nav.Link className="profile-edit-nav-btn profile-sidebar-text bi bi-briefcase" onClick={() => setActiveTab("deneyimlerim")}> Deneyimlerim</Nav.Link>
@@ -58,7 +58,7 @@ const ProfileEdit = (props: Props) => {
             <Nav.Link className="profile-edit-nav-btn profile-sidebar-text bi bi-gear" onClick={() => setActiveTab("ayarlar")}> Ayarlar</Nav.Link>
           </Navbar>
           </Col>
-          <Col xs={7}>
+          <Col xs={8}>
           <Card className="card-b">
           <Card.Body>
             {renderContent()}
