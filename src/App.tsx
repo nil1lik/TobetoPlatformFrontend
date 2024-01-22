@@ -22,6 +22,7 @@ import EducationDetail from "./pages/Education/EducationDetail";
 import CalendarDetail from "./pages/Calendar/CalendarDetail";
 import Login from "./pages/Login/Login";
 import ChatBot from "./layouts/ChatBot/ChatBot";
+import Register from "./pages/Register/Register";
 
 const profileEditUrl = "/profilim/profilimi-duzenle";
 
@@ -34,6 +35,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Platform />} />
           <Route path="/giris" element={<Login />} />
+          <Route path="/kayit-ol" element={<Register/>} />
           <Route path="/profilim" element={<Profile />} />
           <Route path="/degerlendirmeler" element={<Evaluation />} />
           <Route path="/katalog" element={<Catalog />} />
