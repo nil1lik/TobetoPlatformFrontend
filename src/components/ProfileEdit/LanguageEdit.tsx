@@ -1,10 +1,30 @@
 import { Field, Form, Formik } from "formik";
 import { Container, Row, Col } from "react-bootstrap";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import LanguageLevelService from "../../services/languageLevelService";
 
-type Props = {};
+type Props = {
+};
 
 const LanguageEdit = (props: Props) => {
+  const [languageLevels, setLanguageLevels] = useState<any[]>([]);
+
+  useEffect(() => {
+    const languageLevelService = new LanguageLevelService();
+    languageLevelService
+      .getLanguageLevel()
+      .then((result) => {
+        if (result.data.data) {
+          setLanguageLevels(result.data.data);
+        } else {
+          console.error("API'den dil seviyeleri alınamadı.");
+        }
+      })
+      .catch((error) => {
+        console.error("API isteği sırasında bir hata oluştu:", error);
+      });
+  }, []);
+
   const initialValues = {
     language: "",
     level: "",
@@ -66,11 +86,14 @@ const LanguageEdit = (props: Props) => {
                   <option value="" disabled hidden>
                     Seviye Seçiniz*
                   </option>
-                  <option>Temel Seviye (A1, A2)</option>
-                  <option>Orta Seviye (B1, B2)</option>
-                  <option>İleri Seviye (C1, C2)</option>
-                  <option>Anadil</option>
+                  {languageLevels.map((level:any) => (
+                    <option key={level.id} value={level.id}>
+                      {level.name}
+                    </option>
+                  ))}
                 </Field>
+                {/* Diğer alanlar için girişler */}
+                <button type="submit">Gönder</button>
               </Col>
             </Row>
             <button
@@ -87,7 +110,7 @@ const LanguageEdit = (props: Props) => {
               <div className="lang-edit">
                 <div className="lang-info">
                   <div className="lang-title">
-                  <i className="lang-title-img "></i>
+                    <i className="lang-title-img "></i>
                     <div className="d-flex flex-column ">
                       <span className="lang-name">İngilizce</span>
                       <span className="lang-degree">
@@ -98,8 +121,8 @@ const LanguageEdit = (props: Props) => {
                 </div>
                 <span className="lang-degree-symbol main-lang"></span>
                 <button className="btn delete-lang">
-                <i className="delete-lang-img "></i>
-                      </button>
+                  <i className="delete-lang-img "></i>
+                </button>
               </div>
             </div>
           </div>
