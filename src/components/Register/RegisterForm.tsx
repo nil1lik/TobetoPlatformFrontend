@@ -1,12 +1,35 @@
 import { Field, Formik } from "formik";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Form, Image, Row } from "react-bootstrap";
 import FormikInput from "../../utilities/FormikInput";
+import UserService from "../../services/userService";
 
 type Props = { image: string, formClassName: string };
 
 const RegisterForm = (props: Props) => {
-  const initialValues = {};
+  const initialValues = {
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+  };
+  // const [users, setUsers] = useState<any[]>([]);
+
+  // useEffect(() => {
+  //   const languageLevelService = new UserService();
+  //   UserService
+  //     .addUser()
+  //     .then((result) => {
+  //       if (result.data.data) {
+  //         setUsers(result.data.data);
+  //       } else {
+  //         console.error("API'den dil seviyeleri alınamadı.");
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       console.error("API isteği sırasında bir hata oluştu:", error);
+  //     });
+  // }, []);
   const formLogo = process.env.PUBLIC_URL + `/images/${props.image}`;
   return (
     <Formik
@@ -22,21 +45,21 @@ const RegisterForm = (props: Props) => {
         <Row>
           <FormikInput
             type="text"
-            name="e-posta"
+            name="firstName"
             label=""
             placeHolder="Ad*"
           />
           <FormikInput
-            type="password"
-            name="password"
+            type="text"
+            name="lastName"
             label=""
             placeHolder="Soyad*"
           />
           <FormikInput
-            type="password"
-            name="password"
+            type="e-posta"
+            name="email"
             label=""
-            placeHolder="E-posta*"
+            placeHolder="E-mail*"
           />
           <FormikInput
             type="password"
@@ -44,12 +67,12 @@ const RegisterForm = (props: Props) => {
             label=""
             placeHolder="Şifre*"
           />
-          <FormikInput
+          {/* <FormikInput
             type="password"
-            name="password"
+            name="passwordHash"
             label=""
             placeHolder="Şifre Tekrar*"
-          />
+          /> */}
         </Row>
         <Row className="row-btn">
           <button
