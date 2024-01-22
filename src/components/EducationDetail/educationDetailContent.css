@@ -1,0 +1,149 @@
+
+.activity-largeImageFileName.activity-video {
+  height: 400px;
+}
+
+.activity-largeImageFileName {
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
+  overflow: hidden;
+  position: relative;
+}
+
+.activity-largeImageFileName img {
+  width: 100%;
+  height: auto;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  right: auto;
+  bottom: auto;
+  z-index: 1;
+}
+
+.activity-unit-detail {
+  padding: 20px 20px;
+}
+
+.unit-detail-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 15px;
+  display: block;
+  margin-left: -4px;
+}
+
+.unit-detail-col-default {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 20px;
+  color: #818181; 
+}
+
+.text-green {
+  color: #3dcb79 !important;
+}
+
+.ss-icon {
+  display: inline-block;
+  vertical-align: middle;
+  font-family: "SSStandard";
+  font-style: normal;
+}
+
+.unit-detail-col {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 20px;
+}
+
+.ant-space {
+  width: 100%;
+  gap: 8px;
+}
+
+.ant-btn {
+  border-color: #9933ff !important;
+  color: #9933ff !important;
+}
+
+.ant-btn-lg {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600 !important;
+}
+
+.ant-btn.ant-btn-lg {
+  font-size: 16px;
+  height: 40px;
+  padding: 6.428571428571429px 15px;
+  border-radius: 8px;
+}
+
+.ant-btn.ant-btn-block {
+  width: 100%;
+}
+
+.education-subtitle {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 18px;
+  color: #000;
+  margin-top: -15px;
+  margin-bottom: -27px;
+}
+
+.accordion .accordion-item {
+  border: 0px !important;
+}
+
+.education-type {
+  color: #818181;
+  font-weight: 500;
+  font-size: 12px;
+  margin-left: -17px;
+  margin-top: -12px;
+}
+
+.accordion-button {
+  background: transparent !important;
+  box-shadow: none !important;
+  font-size: 16px !important;
+  color: #000 !important;
+  font-weight: 900;
+}
+
+.completed-icon {
+  margin: -37px 44px;
+  float: right;
+  width: 13px;
+  height: 13px;
+  background-size: 100% !important;
+  vertical-align: middle;
+}
+
+.activity-card {
+  margin-top: -5px;
+  border-radius: 9px;
+}
+
+.accordion-button::after {
+  position: absolute;
+  left: -8px;
+  z-index: 1;
+}
+
+.col-lg-5{
+  margin-left: -50px;
+}
+
+.activity-row{
+  margin-right: -4rem !important;
+
+}
+
+.ant-btn-text{
+  margin-top: 5kepx;
+}
