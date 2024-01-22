@@ -5,19 +5,18 @@ import "./educationDetailHeader.css";
 type Props = {
   imageUrl: string;
   educationName: string;
-  likeCount: string;
-  educationPoint: string;
+  likeCount: number;
+  educationPoint: number;
   completionRate: string;
 };
 
 const EducationDetailHeader = (props: Props) => {
-  const educationImage = process.env.PUBLIC_URL + `/images/${props.imageUrl}`;
-  const deneme = "https://" + props.imageUrl; //düzenle
+  const educationImage = "https://" + props.imageUrl; //düzenle
   return (
     <Container>
       <Row className="education-detail-header">
         <Col lg={1}>
-          <img className="activity-image" src={deneme} />
+          <img className="activity-image" src={educationImage} />
         </Col>
 
         <Col lg={11}>
@@ -82,12 +81,12 @@ const EducationDetailHeader = (props: Props) => {
               </Row>
             </Col>
             <Row>
-              <Col className="col-xs-12">
+              <Col>
                 <div className="activity-progress-bar">
-                  <div className="progress-bar">
-                    <ProgressBar
-                      now={100}
-                    ></ProgressBar>
+                  <div className="ant-progress-outer">
+                    <div className="progress-bar">
+                      <ProgressBar className="ant-progress-bg" now={100} />
+                    </div>
                   </div>
                   <label className="completion-rate">
                     {props.completionRate}%

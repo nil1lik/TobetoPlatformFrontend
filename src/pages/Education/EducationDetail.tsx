@@ -15,14 +15,14 @@ const EducationDetail = (props: Props) => {
           <EducationDetailHeader
             imageUrl="tobeto.s3.cloud.ngn.com.tr/23_EAH_1_45f7232003.jpg"
             educationName="Dr. Ecmel Ayral'dan Hoşgeldin Mesajı"
-            likeCount="257"
-            educationPoint="100"
+            likeCount={257}
+            educationPoint={100}
             completionRate="100"
           />
         </Card.Body>
         <Card.Body>
           <EducationDetailTab />
-        </Card.Body>
+        </Card.Body> 
       </Card>
     </div>
   );

@@ -1,11 +1,3 @@
-.row {
-  margin-right: -0.5rem !important;
-  margin-left: -0.5rem !important;
-}
-
-.accordion-container {
-  margin-top: 20px;
-}
 
 .activity-largeImageFileName.activity-video {
   height: 400px;
@@ -46,7 +38,7 @@
   display: inline-block;
   vertical-align: middle;
   margin-right: 20px;
-  color: #818181;
+  color: #818181; 
 }
 
 .text-green {
@@ -74,7 +66,6 @@
 .ant-btn {
   border-color: #9933ff !important;
   color: #9933ff !important;
-  text-align: center;
 }
 
 .ant-btn-lg {
@@ -92,16 +83,11 @@
 }
 
 .ant-btn.ant-btn-block {
-  width: 150%;
-}
-
-.accordion {
-  background-color: transparent !important;
-  border: 0px;
+  width: 100%;
 }
 
 .education-subtitle {
-  font-weight: 400;
+  font-weight: 500;
   font-size: 16px;
   line-height: 18px;
   color: #000;
@@ -126,15 +112,10 @@
   box-shadow: none !important;
   font-size: 16px !important;
   color: #000 !important;
+  font-weight: 900;
 }
 
-.education-title {
-  font-size: 1px !important;
-  line-height: 18px;
-  font-weight: 600px !important;
-}
-
-.icon {
+.completed-icon {
   margin: -37px 44px;
   float: right;
   width: 13px;
@@ -148,14 +129,21 @@
   border-radius: 9px;
 }
 
-.accordion-col {
-  margin-left: -20px;
-}
-
 .accordion-button::after {
   position: absolute;
   left: -8px;
-  z-index: 1; 
+  z-index: 1;
 }
 
+.col-lg-5{
+  margin-left: -50px;
+}
 
+.activity-row{
+  margin-right: -4rem !important;
+
+}
+
+.ant-btn-text{
+  margin-top: 5px;
+}

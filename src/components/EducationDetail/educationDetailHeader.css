@@ -9,10 +9,10 @@
   max-width: 100%;
 }
 
-.education-name{
+.education-name {
   font-size: 18px;
   font-weight: 600;
-  color: #000; 
+  color: #000;
 }
 
 .date-info-container {
@@ -65,14 +65,13 @@
 .education-admiration {
   gap: 8px;
   display: flex;
-  margin-left: 190px;
+  margin-left: 236px;
 }
-
 .ant-space-align-center {
   align-items: center;
 }
 
-.activity-score {
+.activity-score { 
   padding: 8px 5px;
   font-size: 16px;
   font-weight: 600;
@@ -103,7 +102,7 @@
 .like-button {
   font-size: 30px;
   width: 68px;
-  margin-left: -34px; 
+  margin-left: -34px;
 }
 
 .like .like-area span {
@@ -127,51 +126,60 @@
 }
 
 .like-img {
-    display: block;
-    font-weight: 600;
-    color: #000;
-    cursor: pointer;
-    overflow: visible;
-    width: 68px;
-  }
+  display: block;
+  font-weight: 600;
+  color: #000;
+  cursor: pointer;
+  overflow: visible;
+  width: 68px;
+}
 
-  .like-text {
-    font-size: 30px;
-    z-index: 1;
-    transform: translate(0.2em,-0.15ex);
-    margin-right: 17px;
-    line-height: 1;
+.like-text {
+  font-size: 30px;
+  z-index: 1;
+  transform: translate(0.2em, -0.15ex);
+  margin-right: 17px;
+  line-height: 1;
 }
 
 .activity-favorite {
-    width: 35px;
-    height: 35px;
-    display: inline-block;
-    vertical-align: middle;
-    cursor: pointer;
+  width: 35px;
+  height: 35px;
+  display: inline-block;
+  vertical-align: middle;
+  cursor: pointer;
 }
 
-.add-favorite{
-    width: 100%;
-    height: 100%;
-    display: block;
-    background-size: 100% !important;
+.add-favorite {
+  width: 100%;
+  height: 100%;
+  display: block;
+  background-size: 100% !important;
 }
 
 .progress-bar {
-    height: 6.5px !important;
-    background: linear-gradient(to right, #2ddfff, #b7df2d);
-    display: inline-block;
-    position: relative;
-    margin: 0;
-    padding: 0;
-  }
-
-  .education-detail-header {
-    margin-bottom: -9px; 
-  }
-
-  .completion-rate {
-    color: #565656;
-    float: right;
+  height: 6.5px !important;
+  background: linear-gradient(to right, #2ddfff, #b7df2d);
+  display: inline-block;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  border-radius: 7px !important;
 }
+
+.education-detail-header.row {
+  margin: 10px -64px -9px -61px;
+}
+
+.completion-rate {
+  color: #565656;
+  float: right;
+  margin-top: -13px;
+}
+
+.ant-progress-outer {
+  margin-right: calc(-2em - 20px);
+  padding-right: calc(2em + 20px);
+  width: 100%;
+}
+

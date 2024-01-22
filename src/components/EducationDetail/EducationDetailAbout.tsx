@@ -18,39 +18,69 @@ const EducationDetailAbout = (props: Props) => {
         <div className="info-section">
           <Row>
             <Col lg={2}>
+              <img
+                className="sg-icon sg-start-date"
+                src="/images/start-date.png"
+              />
               <strong>Başlangıç</strong>
             </Col>
-            <Col lg={10}>{props.startDate}</Col>  
+            <Col lg={10}>{props.startDate}</Col>
           </Row>
           <Row>
-            <Col lg={2}><strong>Bitiş</strong></Col>
+            <Col lg={2}>
+              <img
+                className="hidden-icon sg-icon sg-start-date"
+                src="/images/start-date.png"
+              />
+              <strong>Bitiş</strong>
+            </Col>
             <Col lg={10}> {props.endDate}</Col>
           </Row>
-           </div>
-           <div className="info-section row">
-            <Col lg={2}><strong>Geçirdiğin Süre</strong></Col>
-            <Col lg={10}>{props.timeSpent}</Col> 
-           </div>
-           <div className="info-section row">
-            <Col lg={2}><strong>Tahmini Süre</strong></Col>
-            <Col lg={10}>{props.estimatedDuration}</Col> 
-           </div>
-           <div className="info-section row">
-            <Col lg={2}><strong>Kategori</strong></Col>
-            <Col lg={10}>{props.category}</Col> 
-           </div>
-           <div className="info-section row">
-            <Col lg={2}><strong>İçerik</strong></Col>
-            <Col lg={10}></Col> 
-           </div>
-           <div className="info-section file row">
-            <Col lg={2}><label>Video</label></Col>
-            <Col lg={10}></Col>
-           </div>
-           <div id="last-section" className="info-section row">
-           <Col lg={2}><strong>Üretici Firma</strong></Col>
-            <Col lg={10}><a className="btn-change">{props.company}</a></Col> 
-           </div>
+        </div>
+        <div className="info-section row">
+          <Col lg={2}>
+            <img className="sg-icon sg-stopwatch" src="/images/stopwatch.png" />
+            <strong>Geçirdiğin Süre</strong>
+          </Col>
+          <Col lg={10}>{props.timeSpent}</Col>
+        </div>
+        <div className="info-section row">
+          <Col lg={2}>
+            <img className="sg-icon sg-stopwatch" src="/images/stopwatch.png" />
+            <strong>Tahmini Süre</strong>
+          </Col>
+          <Col lg={10}>{props.estimatedDuration}</Col>
+        </div>
+        <div className="info-section row">
+          <Col lg={2}>
+            <img className="sg-icon sg-tag" src="/images/price-tag.png" />
+            <strong>Kategori</strong>
+          </Col>
+          <Col lg={10}>{props.category}</Col>
+        </div>
+        <div className="info-section row">
+          <Col lg={2}>
+          <img className="sg-icon sg-file" src="/images/file.png" />
+            <strong>İçerik</strong>
+          </Col>
+          <Col lg={10}>1</Col>
+        </div>
+        <div className="info-section file row">
+          <Col lg={2}>
+          <img className="hidden-icon sg-icon sg-file" src="/images/file.png" />
+            <label>Video</label>
+          </Col>
+          <Col lg={10}>1</Col>
+        </div>
+        <div id="last-section" className="info-section row">
+          <Col lg={2}>
+            <img className="sg-icon sg-briefcase" src="/images/briefcase.png" />
+            <strong>Üretici Firma</strong>
+          </Col>
+          <Col lg={10}>
+            <a className="btn-change">{props.company}</a>
+          </Col>
+        </div>
       </div>
     </Container>
   );

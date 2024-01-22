@@ -24,8 +24,8 @@ const EducationDetailContent = (props: Props) => {
   return (
     <Container>
       <div className="accordion-container">
-        <Row>
-          <Col className="accordion-col" lg={5}>
+        <Row className="activity-row">
+          <Col className="col-lg-5">
             <Accordion defaultActiveKey="0">
               <AccordionItem eventKey="0">
                 <AccordionHeader className="education-title">
@@ -38,7 +38,7 @@ const EducationDetailContent = (props: Props) => {
                       {props.educationType} - {props.educationTime}
                     </AccordionBody>
 
-                    <img className="icon" src={completedIcon} />
+                    <img className="completed-icon" src={completedIcon} />
                   </AccordionBody>
                   <AccordionBody className="education-subtitle" role="button">
                     {props.educationSubTitle}
@@ -46,7 +46,7 @@ const EducationDetailContent = (props: Props) => {
                       {props.educationType} - {props.educationTime}
                     </AccordionBody>
 
-                    <img className="icon" src={completedIcon} />
+                    <img className="completed-icon" src={completedIcon} />
                   </AccordionBody>
                 </div>
               </AccordionItem>
@@ -57,7 +57,7 @@ const EducationDetailContent = (props: Props) => {
                   <AccordionBody className="education-type">
                     {props.educationType} - {props.educationTime}
                   </AccordionBody>
-                  <img className="icon" src={completedIcon} />
+                  <img className="completed-icon" src={completedIcon} />
                 </AccordionBody>
               </AccordionItem>
             </Accordion>
@@ -90,14 +90,12 @@ const EducationDetailContent = (props: Props) => {
                         </Col>
                         <Col lg={3}>
                           <div className="ant-space ant-space-vertical">
-                            <div className="ant-space-item">
                               <button
                                 type="button"
                                 className="ant-btn ant-btn-default ant-btn-lg ant-btn-block btn"
                               >
-                                <label>DETAY</label>
-                              </button>
-                            </div>
+                                <label className="ant-btn-text">DETAY</label>
+                              </button> 
                           </div>
                         </Col>
                       </Row>

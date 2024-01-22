@@ -9,7 +9,7 @@ type Props = {};
 const EducationDetailTab = (props: Props) => {
   return (
     <Tabs
-      defaultActiveKey="icerik"
+      defaultActiveKey="content"
       transition={false}
       id="noanim-tab-example"
       className="mb3 educationDetailTab"
@@ -18,13 +18,13 @@ const EducationDetailTab = (props: Props) => {
         <Container>
           <Row>
             <Col>
-              <EducationDetailContent
+              <EducationDetailContent 
                 educationTitle="Dr. Ecmel Ayral'dan Hoşgeldin Mesajı"
                 educationSubTitle="Hoşgeldin Mesajı"
-                educationType="video"
+                educationType="Video"
                 educationTime="3 dk"
               /> 
-            </Col>
+            </Col> 
           </Row>
         </Container>
       </Tab>
@@ -33,10 +33,10 @@ const EducationDetailTab = (props: Props) => {
           <Row>
             <Col>
               <EducationDetailAbout
-                startDate="1 ocak"
-                endDate="1 aralık"
-                timeSpent="3 saat"
-                estimatedDuration="4 saat"
+                startDate="21 EYL 2023 12:20"
+                endDate="31 ARA 2023 23:59"
+                timeSpent="2 dk"
+                estimatedDuration="3 dk"
                 category="Genel"
                 company="Enocta"
               />
