@@ -13,7 +13,7 @@ const RegisterForm = (props: Props) => {
     email: "",
     password: "",
   };
-  // const [users, setUsers] = useState<any[]>([]);
+  const [users, setUsers] = useState<any[]>([]);
 
   // useEffect(() => {
   //   const languageLevelService = new UserService();
