@@ -30,14 +30,16 @@ const Calendar = (props: Props) => {
         <span className='text-truncate'>{props.title} {/*eventContent.event.title*/}</span>
         <span className='text-truncate'>{props.instructor}</span>
       </div>
+      
     )
+    
   }
 
 
   
   return (
     <>
-      <FullCalendar
+      <FullCalendar dayCellClassNames={"eventEnded eventNotStarted"}
         plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
         headerToolbar={{
           left: `today prev,next`,
@@ -47,7 +49,7 @@ const Calendar = (props: Props) => {
         locales={allLocales}
         locale={"tr"}
         selectable={true}
-        editable={true}
+        editable={false}    
         eventContent={renderEventContent}
         initialEvents={[initialEvent]} 
         buttonText={{
@@ -58,15 +60,26 @@ const Calendar = (props: Props) => {
           today: "Bugün",
           week: "Hafta"
         }}
-         events={
-         [
-           {id:props.id,title:props.title,start:props.start},
-           {id:'4',title:props.title, start:'2024-01-09',end:'2024-01-09'},
-           {id:'2',title:props.title, start:'2024-01-09T13:15:00',end:'2024-01-09T15:00:00'},
-           {id:'3',title:props.title, start:'2024-01-29'}
-        ]
-      }
-
+        initialView={"dayGridMonth"}
+        dayMaxEvents={2}
+        
+        events={
+           [
+             {id:props.id,title:props.title,start:props.start},
+             {id:'2',title:props.title, start:'2024-01-09', end:'2024-01-09'},
+             {id:'3',title:props.title, start:'2024-01-09', end:'2024-01-09'},
+             {id:'4',title:props.title, start:'2024-01-09', end:'2024-01-09'},
+             {id:'5',title:props.title, start:'2024-01-09', end:'2024-01-09'},
+             {id:'6',title:props.title, start:'2024-01-09', end:'2024-01-09'},
+             {id:'7',title:props.title, start:'2024-01-09', end:'2024-01-09'},
+             {id:'8',title:props.title, start:'2024-01-29'},
+             {id:'9',title:props.title, start:'2024-01-29'},
+             {id:'10',title:props.title, start:'2024-01-29'},
+             {id:'11',title:props.title, start:'2024-01-29'},
+             {id:'12',title:props.title, start:'2024-01-29'}
+           ]
+         }
+                
         dayHeaderFormat={{weekday:'long'}}
       />
     </>

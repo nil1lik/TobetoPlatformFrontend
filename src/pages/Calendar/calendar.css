@@ -358,11 +358,18 @@
     display: flex!important;
 }
 
-.fc-event .eventEnded{
+.eventEnded .fc-event-past {
     border: 2px solid #ff442b!important;
     border-radius: 4px!important;
     background-color: rgba(255,68,43,.3)!important;
     color: #141414!important;
+}
+
+.eventNotStarted .fc-event-future {
+    border: 2px solid #5c6cc1!important;
+    border-radius: 4px!important;
+    background-color: rgba(92,108,193,.3)!important;
+    color: #2b42bd!important;
 }
 
 .fc-event.fc-event-draggable{
@@ -375,8 +382,6 @@
     white-space: nowrap;
 }
 
-.fc-daygrid-dot-event {
-    align-items: center !important;
-    display: none !important;
-    padding: none !important;
+.fc .fc-day-today{
+    background-color: #fff !important;
 }
