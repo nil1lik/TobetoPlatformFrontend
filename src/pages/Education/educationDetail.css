@@ -6,3 +6,9 @@
     box-shadow: none;
     margin-top: 20px;
 } 
+
+@font-face {
+    font-family: 'SSStandard';
+    src: url('../../../public/fonts/ss-standard.woff') format('woff');
+    /* Diğer formatlar için gerekirse ekleyebilirsiniz (eot, ttf, svg, vb.) */
+  }

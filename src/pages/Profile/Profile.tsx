@@ -34,7 +34,7 @@ const Profile = (props: Props) => {
         <Col className='col-4'>
           <Row>
             <Col className='col-12'>
-              <ProfilePreInfoBox profilePhotoSrc='pp2.png' />
+              <ProfilePreInfoBox profilePhotoSrc='pp.png' />
             </Col>
             <Col className='col-12'>
               <ProfileBox titleClass='profileBoxTitle' title='Hakkımda'>
