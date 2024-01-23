@@ -1,10 +1,10 @@
-export interface getLanguage{
+export interface Language{
     id: number,
     languageLevelId? : number,
     name: string,
 }
 
-export interface getLanguageLevel{
+export interface LanguageLevel{
     id: number,
     name: string,
 }

@@ -1,14 +1,36 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Form, Formik, Field } from "formik";
 import { Col, Container, Row } from "react-bootstrap";
 import FormikInput from "../../utilities/FormikInput";
+import SocialMediaAccountService from "../../services/socialMediaAccountService";
 
 type Props = {};
 
 const SocialMediaAccountEdit = (props: Props) => {
+
+  const [socialMediaAccounts, setsocialMediaAccounts] = useState<any[]>([])
+
   const initialValues = {
     inputUrl: "",
   };
+
+  useEffect(() => {
+    const socialMediaAccountService = new SocialMediaAccountService();
+    socialMediaAccountService
+    .getSocialMediaCategories()
+    .then((result) => {
+      if (result.data.items) {
+        setsocialMediaAccounts(result.data.items);
+      } else {
+        console.error("API'den dil seviyeleri alınamadı.");
+      }
+    })
+    .catch((error) => {
+      console.error("API isteği sırasında bir hata oluştu:", error);
+    });
+  }, [])
+  
+
 
   return (
     <div className="container mt-5">
@@ -23,13 +45,11 @@ const SocialMediaAccountEdit = (props: Props) => {
             <Row className="align-items-center">
               <Col lg={4}>
                 <Field as="select" className="custom-field form-select">
-                  <option value="">Seçiniz*</option>
-                  <option value="Instagram">Instagram</option>
-                  <option value="Twitter">Twitter</option>
-                  <option value="LinkedIn">LinkedIn</option>
-                  <option value="Behance">Behance</option>
-                  <option value="Dribble">Dribble</option>
-                  <option value="Github">Github</option>{" "}
+                {socialMediaAccounts.map((socialMedia: any) => (
+                    <option key={socialMedia.id} value={socialMedia.id}>
+                      {socialMedia.name}
+                    </option>
+                  ))}
                 </Field>
               </Col>
               <Col lg={8}>
