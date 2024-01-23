@@ -7,15 +7,12 @@ import YearPicker from "../../utilities/YearPicker";
 type Props = {};
 
 const GraduationEdit = (props: Props) => {
-  const [selectedStartDate, setSelectedStartDate] = useState<Date | null>(null);
-  const [selectedEndDate, setSelectedEndDate] = useState<Date | null>(null);
+  const [selectedStartDate, setSelectedStartDate] = useState<Date | null >(new Date());
+  const [isEndDateDisabled, setIsEndDateDisabled] = useState<boolean>(true);
 
   const handleStartDateChange = (date: Date | null) => {
     setSelectedStartDate(date);
-  };
-
-  const handleEndDateChange = (date: Date | null) => {
-    setSelectedEndDate(date);
+    setIsEndDateDisabled(!date); 
   };
 
   const initialValues = {
@@ -80,34 +77,26 @@ const GraduationEdit = (props: Props) => {
                 <YearPicker
                   label="Başlangıç Yılı*"
                   name="startDate"
-                  placeholder="Başlangıç yılını seçiniz"
-                  selectedDate={selectedStartDate}
+                  selected={selectedStartDate}
                   onYearChange={handleStartDateChange}
+                  placeHolder="Başlangıç yılını seçiniz"
                 />
-                <label>
-                  {selectedStartDate
-                    ? selectedStartDate.getFullYear()
-                    : "Seçilmedi"}
-                </label>
               </Col>
             </Row>
             <Row>
               <Col>
                 <YearPicker
-                  label="Mezuniyet Yılı*"
-                  name="endDate"
-                  placeholder="Mezuniyet yılını seçiniz"
-                  selectedDate={selectedEndDate}
-                  onYearChange={handleEndDateChange}
+                 label="Mezuniyet Yılı*"
+                 name="endDate"
+                 selected={new Date()} 
+                 onYearChange={(date) => console.log(date)} 
+                 isDisabled={isEndDateDisabled}
+                 placeHolder="Mezuniyet yılını seçiniz"
                 />
-                <label>
-                  {selectedEndDate
-                    ? selectedEndDate.getFullYear()
-                    : "Seçilmedi"}
-                </label>
               </Col>
               <Col></Col>
             </Row>
+            <br/>
             <Row>
               <label>
                 <Field type="checkbox" name="checked" value="One" />
