@@ -1,57 +1,43 @@
-// YearPicker.tsx
-import React from "react";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-import { ErrorMessage, Field } from "formik";
+import React, { useState } from 'react';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import moment from 'moment';
+import 'moment/locale/tr';
 
-type YearPickerProps = {
-  label?: string;
+type DatePickerComponentProps = {
+  label: string;
   name: string;
-  placeholder?: string;
-  selectedDate: Date | null;
+  selected: Date | null;
   onYearChange: (date: Date | null) => void;
+  isDisabled?: boolean;
+  placeHolder: string;
 };
 
-const YearPicker: React.FC<YearPickerProps> = ({
-  label,
-  name,
-  placeholder,
-  selectedDate,
-  onYearChange,
-}) => {
+const YearPicker: React.FC<DatePickerComponentProps> = (props: DatePickerComponentProps) => {
+  const [selectedDate, setStartDate] = useState<Date | null>(props.selected);
+
+  const handleDateChange = (date: Date | null) => {
+    setStartDate(date);
+    props.onYearChange(date);
+  };
+
   return (
-    <div className="mb-3">
-      <label className="input-label-text">{label}</label>
+    <div>
+      <label className="input-label-text">{props.label}</label>
+      <br />
       <DatePicker
+        className="my-custom-date"
+        name={props.name}
+        placeholderText={props.placeHolder}
         selected={selectedDate}
-        onChange={(date:any) => {
-          onYearChange(date);
-        }}
-        dateFormat="yyyy"
+        onChange={handleDateChange}
         showYearPicker
-        placeholderText={placeholder}
-        customInput={<YearPickerInput value={selectedDate} onClick={onYearChange} />}
+        dateFormat="yyyy"
+        disabled={props.isDisabled}
+        isClearable 
       />
-      <Field type="hidden" name={name} value={null} />
-      <ErrorMessage name={name}>
-        {(message) => <span className="text-danger">{message}</span>}
-      </ErrorMessage>
     </div>
   );
 };
-
-type YearPickerInputProps = {
-  value: Date | null;
-  onClick: (date: Date | null) => void;
-};
-
-const YearPickerInput: React.FC<YearPickerInputProps> = ({ value, onClick }) => (
-    <button
-    className="my-custom-datepicker-input"
-    onClick={() => onClick(value instanceof Date ? value : null)}
-  >
-    {value instanceof Date ? value.getFullYear() : "Yılı Seçiniz"}
-  </button>  
-);
 
 export default YearPicker;

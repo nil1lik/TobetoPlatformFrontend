@@ -5,17 +5,21 @@ import SkillService from "../../services/skillService";
 import { getSkill } from "../../models/requests/skill/getSkill";
 
 type Props = {};
-const initialValues: getSkill = {id: 0, name: ""};
+const initialValues: getSkill = {
+  id: 0, 
+  name: ""
+};
 
 const SkillEdit = (props: Props) => {
-  const [skills, setSkills] = useState([]);
+  const [skills, setSkills] = useState<any[]>([]);
 
   useEffect(() => {
-    let skillService = new SkillService();
-    skillService.getSkill()
+    const skillService = new SkillService();
+    skillService.
+      getSkill()
       .then((result) => {
-        if (result.data.data) {
-          setSkills(result.data);
+        if (result.data.items) {
+          setSkills(result.data.items);
         } else {
           console.error("API'den beceri verileri alınamadı.");
         }
@@ -30,12 +34,12 @@ const SkillEdit = (props: Props) => {
       <Formik
         initialValues={initialValues}
         onSubmit={(values) => {
-          console.log(values);
+          console.log(values) 
         }}
       >
          <Form>
           <Field as="select" name="value" className="form-control">
-            <option value="" disabled>
+            <option value="" disabled selected>
               Seçiniz
             </option>
             {skills.map((skill:any) => (
@@ -52,17 +56,7 @@ const SkillEdit = (props: Props) => {
           </button>
         </Form>
       </Formik>
-      {skills.map((skill: any) => (
-        <Card key={skill.id} className="inline-card">
-          <Card.Body className="inline-card-body">
-            {skill.name}
-            <button className="grade-delete g-del">
-              <i className="grade-delete-img"></i>
-            </button>
-          </Card.Body>
-        </Card>
-      ))}
-
+        
       <Card className="inline-card">
         <Card.Body className="inline-card-body">
           This is some text within a card body.

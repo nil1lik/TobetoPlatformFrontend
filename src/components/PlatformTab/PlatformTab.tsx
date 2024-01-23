@@ -1,16 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import EducationCard from "../EducationCard/EducationCard";
 import SurveyNotFound from "../Survey/SurveyNotFound";
 import AnnouncementCard from "../Announcement/AnnouncementCard";
 import ApplicationCard from "../Application/ApplicationCard";
 import { Col, Container, Row, Tab, Tabs } from "react-bootstrap";
 import "./platformTab.css"
+import AnnouncementService from "../../services/announcementService";
 
 type Props = {
 };
 
 const PlatformTab = (props: Props) => {
   const announcementIconSrc = process.env.PUBLIC_URL + `/images/announcementDate.svg`;
+  const [announcement, setAnnouncement] = useState<any[]>([])
+  useEffect(()=> {
+    const announcementService = new AnnouncementService();
+    announcementService.getAnnouncement()
+    .then((result) => {setAnnouncement(result.data.items)})
+  },[]);
 
   return (
     <Tabs
@@ -44,34 +51,18 @@ const PlatformTab = (props: Props) => {
       </Tab>
       <Tab eventKey="duyuru-haber" title="Duyuru ve Haberlerim">
         <Row>
-          <AnnouncementCard
-            announcementType="Duyuru"
-            announcementEducation="İstanbul Kodluyor"
-            announcementHeader="Ocak Ayı Tercih Formu Bilgilendirmesi"
+          {
+            announcement.map((announcement)=> (
+              <AnnouncementCard
+            announcementType={announcement.announcementTypeName}
+            announcementName={announcement.name}
+            announcementTitle={announcement.title}
             annoucementDateIcon={announcementIconSrc}
-            announcementDate="12.01.2024 "
+            announcementDate={announcement.createdDate}
+            announcementDescription={announcement.description}
           />
-          <AnnouncementCard
-            announcementType="Duyuru"
-            announcementEducation="İstanbul Kodluyor"
-            announcementHeader="Ocak Ayı Tercih Formu Bilgilendirmesi"
-            annoucementDateIcon={announcementIconSrc}
-            announcementDate="12.01.2024 "
-          />
-          <AnnouncementCard
-            announcementType="Duyuru"
-            announcementEducation="İstanbul Kodluyor"
-            announcementHeader="Ocak Ayı Tercih Formu Bilgilendirmesi"
-            annoucementDateIcon={announcementIconSrc}
-            announcementDate="12.01.2024 "
-          />
-          <AnnouncementCard
-            announcementType="Duyuru"
-            announcementEducation="İstanbul Kodluyor"
-            announcementHeader="Ocak Ayı Tercih Formu Bilgilendirmesi"
-            annoucementDateIcon={announcementIconSrc}
-            announcementDate="12.01.2024 "
-          />
+            ))
+          }
         </Row>
       </Tab>
       <Tab eventKey="anket" title="Anketlerim">

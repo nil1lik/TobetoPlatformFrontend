@@ -1,6 +1,5 @@
 import React from "react";
 import TobetoPlatformItem from "../../utilities/tobetoPlatform/TobetoPlatformItem";
-import imageSize from "../../enums/imageSize";
 import PlatformTab from "../../components/PlatformTab/PlatformTab";
 import Exam from "../../components/Exam/Exam";
 import { Col, Container, Row } from "react-bootstrap";
