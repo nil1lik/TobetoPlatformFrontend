@@ -173,7 +173,7 @@ const ProfileInformationEdit = (props: Props) => {
                 </label>
                 {/* <ProfileInput type='text' name='birthdate' label='İl*' placeholder='İl' /> */}
                 <Field
-                  className="form-control my-custom-input"
+                  className="form-control my-custom-select"
                   as="select"
                   name="İl"
                   label="İl*"
@@ -184,7 +184,7 @@ const ProfileInformationEdit = (props: Props) => {
                 >
                   <option value={"Şehir Seçiniz"} selected disabled>Şehir Seçiniz*</option>
                   {city.map((city: any) => (
-                    <option key={city.id} value={city.id}>
+                    <option className="my-custom-option" key={city.id} value={city.id}>
                       {city.name}
                     </option>
                   ))}
@@ -196,7 +196,7 @@ const ProfileInformationEdit = (props: Props) => {
                 </label>
                 {/* <ProfileInput type='text' name='birthdate' label='İlçe*' placeholder='İlçe' /> */}
                 <Field
-                  className="form-control my-custom-input"
+                  className="form-control my-custom-select"
                   as="select"
                   name="İlçe"
                   label="İlçe*"
@@ -205,7 +205,7 @@ const ProfileInformationEdit = (props: Props) => {
                     İlçe Seçiniz*
                   </option>
                   {districts.map((districts: any) => (
-                    <option key={districts} value={districts.id}>
+                    <option className="my-custom-option" key={districts} value={districts.id}>
                       {districts}
                     </option>
                   ))}

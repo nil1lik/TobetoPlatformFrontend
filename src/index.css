@@ -217,6 +217,27 @@ footer {
   position: relative;
 }
 
+.my-custom-select{
+  height: 50px;
+  border-radius: 2rem !important;
+  border: 1px solid #cccccc !important;
+  position: relative;
+}
+
+.my-custom-select select:active{
+  overflow: hidden !important;
+}
+
+.my-custom-select::-webkit-scrollbar-track{
+  background-color: #828282 !important;
+  border-radius: 2rem;
+}
+
+.my-custom-select::-webkit-scrollbar-thumb{
+  background-color: #9933FF !important;
+}
+
+
 .form-control {
   display: block;
   width: 100%;
@@ -849,3 +870,27 @@ table {
   height: 85vh;
   object-fit: contain;
 }
+
+::-webkit-scrollbar{
+  width: 10px;
+  background-color: #cccccc;
+  border-radius: 2rem;
+}
+
+::-webkit-scrollbar-thumb{
+  background-color: #828282;
+  border-radius: 2rem;
+}
+
+::-webkit-scrollbar-thumb:hover{
+  background-color: #9933ff;
+}
+
+::-webkit-scrollbar-track{
+  background-color: #cccccc;
+  border-radius: 2rem;
+}
+
+::-webkit-scrollbar-track:active{
+  background-color: #828282;
+} 
