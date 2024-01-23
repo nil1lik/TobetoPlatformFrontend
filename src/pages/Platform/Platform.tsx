@@ -14,9 +14,8 @@ const Platform = (props: Props) => {
       <Container className="main-cont">
         <Row className="justify-content-center align-items-center">
           <Col className="col-12 col-md-12">
-            <Container className="main-cont">
+            <Container>
               <Row>
-                <Row>
                   <Col className="col-12 text-center mt-5">
                     <div className="mw-5xl mx-auto">
                       <h3>
@@ -27,12 +26,11 @@ const Platform = (props: Props) => {
                       <h4 className="fw-normal text-info1">Pair 1</h4>
                     </div>
                     <TobetoPlatformItem
-                      imageClass="dot-purple-svg"
-                      imageSrc="dot-purple.e0e5c9d8.svg"
+                      // imageClass="dot-purple-svg"
+                      // imageSrc="dot-purple.e0e5c9d8.svg"
                       text="Yeni nesil öğrenme deneyimi ile Tobeto kariyer yolculuğunda senin yanında!"
                     />
                   </Col>
-                </Row>
               </Row>
               <Row className="content-cont text-center">
                 <Row>

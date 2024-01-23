@@ -4,9 +4,11 @@
     height: 120px !important;
     margin-top: 70px;
 }
-.tab-content{
+
+.tab-content {
     padding: 1rem;
 }
+
 /* .dot-purple-svg {} */
 
 .platform-item-cont {
@@ -120,6 +122,7 @@
 .announcementReadMore:hover {
     color: #00956e;
 }
+
 @media (min-width: 1400px) {
 
     .container,
@@ -130,4 +133,23 @@
     .container-xxl {
         max-width: 1140px !important;
     }
+}
+
+.main-cont {
+    position: relative;
+}
+
+.main-cont::before {
+    content: '';
+    background: url('../../../public/images/dot-purple.e0e5c9d8.svg');
+    background-size: cover;
+    position: absolute;
+    top: 2rem;
+    right: -4rem;
+    width: 150px;
+    height: 150px;
+}
+
+.main-cont .row:nth-child(1) {
+    margin: 1.25rem 0;
 }

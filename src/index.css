@@ -6,16 +6,17 @@ body {
   padding: 0;
   display: flex;
   flex-direction: column;
-  min-height: 905px; /* Minimum sayfa yüksekliği */
-  overflow-y: scroll; 
+  min-height: 905px;
+  /* Minimum sayfa yüksekliği */
+  overflow-y: scroll;
 }
 
 main {
-  flex-grow: 1!important;
+  flex-grow: 1 !important;
 }
 
 footer {
-  margin-top: auto!important;
+  margin-top: auto !important;
 }
 
 .ui.button.button {
@@ -118,11 +119,11 @@ footer {
   text-align: left;
 }
 
-.card .card-text{
+.card .card-text {
   text-align: left;
 }
 
-.text-muted{
+.text-muted {
   text-align: left;
 }
 
@@ -145,7 +146,7 @@ footer {
 }
 
 .card .card-body .apply-button {
-  padding:2rem 3rem 0rem 3rem;
+  padding: 2rem 3rem 0rem 3rem;
   background-color: #d9d9d9;
   text-align: center;
   color: #282828;
@@ -155,13 +156,13 @@ footer {
   font-size: 14px;
   transition: 0.5s;
   border-style: none;
-  height: 35px!important;
+  height: 35px !important;
 }
 
 
 .card .card-body .apply-button:hover {
   background-color: #9933ff;
-  color: #ffffff!important;
+  color: #ffffff !important;
 }
 
 .card-container {
@@ -397,7 +398,7 @@ footer {
   align-items: flex-end;
   position: absolute;
   right: -31px;
-  border:0;
+  border: 0;
   background-color: #ffffff;
 }
 
@@ -606,7 +607,7 @@ table {
 }
 
 .lang-edit:hover {
-  border:2px solid #fc6d6d;
+  border: 2px solid #fc6d6d;
 }
 
 .lang,
@@ -702,7 +703,7 @@ table {
   margin-top: 8px;
 }
 
-.delete-lang{
+.delete-lang {
   display: none;
   position: absolute;
   background-color: #fc6d6d;
@@ -714,7 +715,7 @@ table {
 }
 
 
-.delete-lang-img{
+.delete-lang-img {
   content: url("/public/images/trash.png");
   background-color: #fc6d6d;
   visibility: hidden;
@@ -726,7 +727,7 @@ table {
 
 }
 
-.lang-edit:hover .delete-lang-img{
+.lang-edit:hover .delete-lang-img {
   visibility: visible;
 }
 
@@ -794,27 +795,27 @@ table {
 .grade-info-img {
   content: url("/public/images/alert-circle.png");
   display: flex;
-    background-color: #ac59ff;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    justify-content: center;
-    padding-top: 1px;
-    
+  background-color: #ac59ff;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  justify-content: center;
+  padding-top: 1px;
+
 }
 
 
-.grade-delete-img
-{
+.grade-delete-img {
   content: url("/public/images/trash.png");
   background-color: #fc6d6d;
   display: flex;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    justify-content: center;
-    padding-top: 1px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  justify-content: center;
+  padding-top: 1px;
 }
+
 /**/
 
 /* Yetkinliklerim END -eren*/
@@ -833,27 +834,30 @@ table {
   align-items: center;
   padding-top: 3px;
 }
-.btn{
+
+.btn {
   padding-top: 0 !important;
 }
 
-.chat-cont{
+.chat-cont {
   position: fixed;
   bottom: 20px;
   right: 15px;
   cursor: pointer;
 }
-.chatOpen{
+
+.chatOpen {
   background-color: #9933FF;
   padding: 1rem;
   border-radius: 50%;
 }
-.chatOpenIcon{
+
+.chatOpenIcon {
   width: 30px;
   height: 30px;
 }
 
-.chatExample{
+.chatExample {
   width: 400px;
   height: 85vh;
   object-fit: contain;
