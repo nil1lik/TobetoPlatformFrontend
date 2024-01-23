@@ -1,16 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Card, Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import AnnouncementService from "../../services/announcementService";
 
 type Props = {
   announcementType: string,
   announcementEducation: string,
-  announcementHeader: string,
+  announcementTitle: string,
   annoucementDateIcon: string,
   announcementDate: string,
+  announcementDescription?: string
 };
 
 const AnnouncementCard = (props: Props) => {
+
   return (
     <div className="col-md-4 col-12">
     <Card className="card-notify">
@@ -19,7 +22,7 @@ const AnnouncementCard = (props: Props) => {
         <span>{props.announcementEducation}</span>
       </Card.Body>
       <Card.Body className="announcementHeader">
-        <span>{props.announcementHeader}</span>
+        <span>{props.announcementTitle}</span>
       </Card.Body>
       <Card.Body className="announcementInfoBottom">
         <span>
