@@ -7,7 +7,7 @@
 .tab-content{
     padding: 1rem;
 }
-.dot-purple-svg {}
+/* .dot-purple-svg {} */
 
 .platform-item-cont {
     display: flex;
@@ -114,6 +114,7 @@
 .announcementReadMore {
     color: #9397a0;
     text-decoration: none;
+    cursor: pointer;
 }
 
 .announcementReadMore:hover {
