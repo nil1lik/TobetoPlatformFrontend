@@ -217,6 +217,15 @@ footer {
   position: relative;
 }
 
+.my-custom-date {
+  width: 324px;
+  height: 50px;
+  border-radius: 8px !important;
+  border: 1px solid #b3a6c0 !important;
+  position: relative;
+  padding: 10px;
+}
+
 .form-control {
   display: block;
   width: 100%;
