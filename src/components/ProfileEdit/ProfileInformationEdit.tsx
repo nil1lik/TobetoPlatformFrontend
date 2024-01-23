@@ -45,6 +45,25 @@ const ProfileInformationEdit = (props: Props) => {
       });
   }, []);
 
+  const [districts, setDistricts] = useState([]);
+
+  const fetchDistricts = (cityId: any) => {
+    const cityService = new CityService();
+  cityService
+    .getDistrict(cityId)
+    .then((result) => {
+      if (result.data.districts) {
+        setDistricts(result.data.districts);
+      } else {
+        console.error("API'den İlçeler Alınamadı.");
+      }
+    })
+    .catch((error) => {
+      console.error("API isteği sırasında bir hata oluştu:", error);
+    });
+  };  
+
+
   return (
     <div className="container mt-5">
       <div className="information-photo-cont">
@@ -158,10 +177,12 @@ const ProfileInformationEdit = (props: Props) => {
                   as="select"
                   name="İl"
                   label="İl*"
+                  onChange={(e: any) => {
+                    const selectedCityId = e.target.value;
+                    fetchDistricts(selectedCityId);
+                  }}
                 >
-                  <option disabled selected>
-                    Şehir Seçiniz*
-                  </option>
+                  <option value={"Şehir Seçiniz"} selected disabled>Şehir Seçiniz*</option>
                   {city.map((city: any) => (
                     <option key={city.id} value={city.id}>
                       {city.name}
@@ -180,12 +201,12 @@ const ProfileInformationEdit = (props: Props) => {
                   name="İlçe"
                   label="İlçe*"
                 >
-                  <option selected disabled>
-                    Seçiniz
+                  <option disabled>
+                    İlçe Seçiniz*
                   </option>
-                  {city.map((city: any) => (
-                    <option key={city.value} value={city.value}>
-                      {city.name}
+                  {districts.map((districts: any) => (
+                    <option key={districts} value={districts.id}>
+                      {districts}
                     </option>
                   ))}
                 </Field>
