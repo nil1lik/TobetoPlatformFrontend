@@ -1,28 +1,46 @@
 import { Field, Form, Formik } from "formik";
 import { Container, Row, Col } from "react-bootstrap";
 import React, { useEffect, useState } from "react";
-import LanguageLevelService from "../../services/languageLevelService";
-import { getLanguageLevel } from "../../models/requests/language/getLanguageLevel";
+import { getLanguage, getLanguageLevel } from "../../models/requests/language/getLanguageLevel";
+import LanguageService from "../../services/languageServices";
 
-type Props = {
-};
+type Props = {};
 
 const LanguageEdit = (props: Props) => {
   const [languageLevels, setLanguageLevels] = useState<any[]>([]);
-  const initialValues: getLanguageLevel = {
+  const [languages, setLanguages] = useState<any[]>([]);
+  
+  // Initial values should be an object, not an array of objects
+  const initialValues: getLanguage = {
     id: 0,
-    name: ""
+    languageLevelId: 1,
+    name: "",
   };
 
   useEffect(() => {
-    const languageLevelService = new LanguageLevelService();
+    const languageLevelService = new LanguageService();
+
+    // Fetching languages
+    languageLevelService
+      .getLanguage()
+      .then((result) => {
+        if (result.data.items) {
+          setLanguages(result.data.items);
+        } else {
+          console.error("API'den dil seviyeleri alınamadı.");
+        }
+      })
+      .catch((error) => {
+        console.error("API isteği sırasında bir hata oluştu:", error);
+      });
+
+    // Fetching language levels
     languageLevelService
       .getLanguageLevel()
       .then((result) => {
         if (result.data.items) {
           setLanguageLevels(result.data.items);
-        } 
-        else {
+        } else {
           console.error("API'den dil seviyeleri alınamadı.");
         }
       })
@@ -51,31 +69,11 @@ const LanguageEdit = (props: Props) => {
                   <option value="" disabled hidden>
                     Dil Seçiniz*
                   </option>
-                  <option>Almanca</option>
-                  <option>Arapça</option>
-                  <option>Çekçe</option>
-                  <option>Çince (Mandarin)</option>
-                  <option>Danca</option>
-                  <option>Fince</option>
-                  <option>Fransızca</option>
-                  <option>Hindi</option>
-                  <option>Hollandaca</option>
-                  <option>İbranice</option>
-                  <option>İngilizce</option>
-                  <option>İspanyolca</option>
-                  <option>İsveççe</option>
-                  <option>İtalyanca</option>
-                  <option>Japonca</option>
-                  <option>Korece</option>
-                  <option>Lehçe</option>
-                  <option>Macarca</option>
-                  <option>Norveççe</option>
-                  <option>Portekizce</option>
-                  <option>Romence</option>
-                  <option>Rusça</option>
-                  <option>Türkçe</option>
-                  <option>Vietnamca</option>
-                  <option>Yunanca</option>
+                  {languages.map((language: any) => (
+                    <option key={language.id} value={language.id}>
+                      {language.name}
+                    </option>
+                  ))}
                 </Field>
               </Col>
               <Col>
@@ -87,7 +85,7 @@ const LanguageEdit = (props: Props) => {
                   <option value="" disabled hidden>
                     Seviye Seçiniz*
                   </option>
-                  {languageLevels.map((level:any) => (
+                  {languageLevels.map((level: any) => (
                     <option key={level.id} value={level.id}>
                       {level.name}
                     </option>
@@ -104,6 +102,7 @@ const LanguageEdit = (props: Props) => {
             </button>
           </Form>
         </Formik>
+        {/* Bu kısım, API'den alınan verileri göstermek için kullanılan örnek bir bileşen gibi görünüyor. */}
         <Container>
           <div className="row">
             <div className="my-langs section-p tobeto-light-bg">
