@@ -54,11 +54,12 @@ const PlatformTab = (props: Props) => {
           {
             announcement.map((announcement)=> (
               <AnnouncementCard
-            announcementType={announcement.AnnouncementTypeName}
-            announcementEducation={announcement.name}
+            announcementType={announcement.announcementTypeName}
+            announcementName={announcement.name}
             announcementTitle={announcement.title}
             annoucementDateIcon={announcementIconSrc}
             announcementDate={announcement.createdDate}
+            announcementDescription={announcement.description}
           />
             ))
           }
