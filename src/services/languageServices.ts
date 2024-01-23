@@ -1,4 +1,5 @@
 import axios from "axios"
+import { Language } from "../models/requests/language/getLanguageLevel"
 
 export default class LanguageService{
     getLanguage(){
@@ -6,5 +7,8 @@ export default class LanguageService{
     }
     getLanguageLevel(){
         return axios.get("http://localhost:5278/api/LanguageLevels?PageIndex=0&PageSize=5")
-      }
+    }
+    updateLanguage(language:Language){
+        return axios.put("http://localhost:5278/api/Languages",language)
+    }
 }

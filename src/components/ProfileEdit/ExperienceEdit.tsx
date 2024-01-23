@@ -1,11 +1,14 @@
 import { Field, Form, Formik } from "formik";
 import { Col, Container, Row, TabContainer } from "react-bootstrap";
 import FormikInput from "../../utilities/FormikInput";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import CityService from "../../services/CityService";
+import { error } from "console";
 
 type Props = {};
 
 const ExperienceEdit = (props: Props) => {
+  const [city, setCity] = useState<any[]>([]);
   const initialValues = {
     organizationName: "",
     position: "",
@@ -16,6 +19,22 @@ const ExperienceEdit = (props: Props) => {
     description: "",
     toggle: "Çalışmaya Devam Ediyorum",
   };
+
+  useEffect(() => {
+    const cityService = new CityService();
+    cityService
+      .getCity()
+      .then((result) => {
+        if (result.data.items) {
+          setCity(result.data.items);
+        } else {
+          console.error("API'den Şehirler Alınamadı.");
+        }
+      })
+      .catch((error) => {
+        console.error("API isteği sırasında bir hata oluştu:", error);
+      });
+  }, []);
 
   return (
     <div>
@@ -59,18 +78,19 @@ const ExperienceEdit = (props: Props) => {
                   Şehir Seçiniz*
                 </label>
                 <Field
+                  className="custom-field form-select input-style"
                   as="select"
                   name="city"
-                  className="custom-field form-select input-style"
+                  label="city*"
                 >
-                  <option value="" disabled hidden>
-                    İl Seçiniz*
+                  <option value={""} disabled selected>
+                    Şehir Seçiniz*
                   </option>
-                  <option>İl Seçiniz</option>
-                  <option>Adana</option>
-                  <option>Adıyaman</option>
-                  <option>Afyonkarahisar</option>
-                  <option>Ağrı</option>
+                  {city.map((city: any) => (
+                    <option key={city.id} value={city.id}>
+                      {city.name}
+                    </option>
+                  ))}
                 </Field>
               </Col>
             </Row>
