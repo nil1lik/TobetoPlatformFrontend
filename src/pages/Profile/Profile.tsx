@@ -119,7 +119,7 @@ const Profile = (props: Props) => {
               </ProfileBox>
             </Col>
             <Col className='col-12'>
-              <ProfileBox titleClass='profileBoxTitle' title='Aktivite Haritam'>
+              <ProfileBox titleClass='profileBoxTitle' title='Aktivite Haritam'>dsad
               </ProfileBox>
             </Col>
             <Col className='col-12'>
