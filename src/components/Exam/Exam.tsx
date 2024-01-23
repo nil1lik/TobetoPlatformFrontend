@@ -1,37 +1,50 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Card, Row } from "react-bootstrap";
-import "../../components/Exam/exam.css"
+import "../../components/Exam/exam.css";
+import ExamService from "../../services/examService";
 
 type Props = {};
 
 const Exam = (props: Props) => {
-  return (
-      <div className="row cv-box cv-padding">
+  const [exam, setExam] = useState<any[]>([]);
+  useEffect(() => {
+    const examService = new ExamService();
+    examService.getExam().then((result) => {
+      setExam(result.data.items);
+    });
+  }, []);
 
-        <div className="col-12 position-relative">
-          <Card.Text>Sınavlarım</Card.Text>
-        </div>
-        <div className="exams my-3">
-          <Card className="card-transition">
+  return (
+    <div className="row cv-box cv-padding">
+      <div className="col-12 position-relative">
+        <Card.Text>Sınavlarım</Card.Text>
+      </div>
+      <div className="exams my-3">
+        <Card className="card-transition">
+          {exam.map((exam) => (
             <Card.Body className="exam-card card-title h5">
-              <Card.Title> 
-                Herkes İçin Kodlama 1A Değerlendirme Sınavı
-              </Card.Title>
-              <Card.Img className="status-done"
-                  src={process.env.PUBLIC_URL + "/images/status-done.svg"} />
+              <Card.Title>{exam.name}</Card.Title>
+              <Card.Img
+                className="status-done"
+                src={process.env.PUBLIC_URL + "/images/status-done.svg"}
+              />
               <Card.Subtitle className="mb-2 text-muted">
-                Herkes İçin Kodlama - 1A
+                {exam.description}
               </Card.Subtitle>
               <div className="exam-icon-text">
-              <Card.Img
+                <Card.Img
                   className="exam-time"
-                  src={process.env.PUBLIC_URL + "/images/examTime.svg"}/>
-                  <Card.Text className="exam-time-text">45 Dakika</Card.Text>
-                  </div>
+                  src={process.env.PUBLIC_URL + "/images/examTime.svg"}
+                />
+                <Card.Text className="exam-time-text">
+                  {exam.duration}
+                  </Card.Text>
+              </div>
             </Card.Body>
-          </Card>
-        </div>
+          ))}
+        </Card>
       </div>
+    </div>
   );
 };
 
