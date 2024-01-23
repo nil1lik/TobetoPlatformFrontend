@@ -49,28 +49,28 @@ const PlatformTab = (props: Props) => {
             announcementEducation="İstanbul Kodluyor"
             announcementHeader="Ocak Ayı Tercih Formu Bilgilendirmesi"
             annoucementDateIcon={announcementIconSrc}
-            announcementDate="12.01.2024"
+            announcementDate="12.01.2024 "
           />
           <AnnouncementCard
             announcementType="Duyuru"
             announcementEducation="İstanbul Kodluyor"
             announcementHeader="Ocak Ayı Tercih Formu Bilgilendirmesi"
             annoucementDateIcon={announcementIconSrc}
-            announcementDate="12.01.2024"
+            announcementDate="12.01.2024 "
           />
           <AnnouncementCard
             announcementType="Duyuru"
             announcementEducation="İstanbul Kodluyor"
             announcementHeader="Ocak Ayı Tercih Formu Bilgilendirmesi"
             annoucementDateIcon={announcementIconSrc}
-            announcementDate="12.01.2024"
+            announcementDate="12.01.2024 "
           />
           <AnnouncementCard
             announcementType="Duyuru"
             announcementEducation="İstanbul Kodluyor"
             announcementHeader="Ocak Ayı Tercih Formu Bilgilendirmesi"
             annoucementDateIcon={announcementIconSrc}
-            announcementDate="12.01.2024"
+            announcementDate="12.01.2024 "
           />
         </Row>
       </Tab>
