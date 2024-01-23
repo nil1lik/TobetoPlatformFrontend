@@ -1,7 +1,10 @@
 import { Field, Form, Formik } from "formik";
 import { Container, Row, Col } from "react-bootstrap";
 import React, { useEffect, useState } from "react";
-import { getLanguage, getLanguageLevel } from "../../models/requests/language/getLanguageLevel";
+import {
+  Language,
+  LanguageLevel,
+} from "../../models/requests/language/getLanguageLevel";
 import LanguageService from "../../services/languageServices";
 
 type Props = {};
@@ -9,19 +12,18 @@ type Props = {};
 const LanguageEdit = (props: Props) => {
   const [languageLevels, setLanguageLevels] = useState<any[]>([]);
   const [languages, setLanguages] = useState<any[]>([]);
-  
-  // Initial values should be an object, not an array of objects
-  const initialValues: getLanguage = {
+
+  const initialValues: Language = {
     id: 0,
     languageLevelId: 1,
     name: "",
   };
 
   useEffect(() => {
-    const languageLevelService = new LanguageService();
+    const languageService = new LanguageService();
 
     // Fetching languages
-    languageLevelService
+    languageService
       .getLanguage()
       .then((result) => {
         if (result.data.items) {
@@ -35,7 +37,7 @@ const LanguageEdit = (props: Props) => {
       });
 
     // Fetching language levels
-    languageLevelService
+    languageService
       .getLanguageLevel()
       .then((result) => {
         if (result.data.items) {
@@ -47,6 +49,7 @@ const LanguageEdit = (props: Props) => {
       .catch((error) => {
         console.error("API isteği sırasında bir hata oluştu:", error);
       });
+    //post
   }, []);
 
   return (
@@ -55,6 +58,19 @@ const LanguageEdit = (props: Props) => {
         <Formik
           initialValues={initialValues}
           onSubmit={(values) => {
+            const languageService = new LanguageService();
+            languageService
+              .updateLanguage(values)
+              .then((result) => {
+                if (result.data.items) {
+                  setLanguageLevels(result.data.items);
+                } else {
+                  console.error("API'den dil seviyeleri alınamadı.");
+                }
+              })
+              .catch((error) => {
+                console.error("API isteği sırasında bir hata oluştu:", error);
+              });
             console.log(values);
           }}
         >
@@ -66,9 +82,6 @@ const LanguageEdit = (props: Props) => {
                   name="language"
                   className="custom-field form-select"
                 >
-                  <option value="" disabled hidden>
-                    Dil Seçiniz*
-                  </option>
                   {languages.map((language: any) => (
                     <option key={language.id} value={language.id}>
                       {language.name}
