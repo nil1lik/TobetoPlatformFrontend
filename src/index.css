@@ -56,6 +56,11 @@ footer {
   padding: 14px;
 }
 
+.card-notify.card:hover{
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6);
+  transform: scale(1.05);
+}
+
 .app-card-notify::after {
   min-width: 140px;
   position: absolute;
@@ -81,7 +86,7 @@ footer {
   margin-bottom: 1em;
 }
 
-.education-card.card:hover {
+.education-card:hover {
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6);
   transform: scale(1.05);
   border-color:#9933ff !important;
@@ -97,11 +102,6 @@ footer {
   height: 320px;
   transition: 0.5s;
   margin-bottom: 1em;
-}
-
-.card:hover{
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6);
-  transform: scale(1.05);
 }
 
 .card-body {

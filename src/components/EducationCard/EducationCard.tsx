@@ -39,9 +39,9 @@ const EducationCard = (props: Props) => {
       <Link to={"/egitimlerim"}>
       <div style={{ width: "fit-content", margin: "0 auto" , textAlign:"center", fontSize: "12px", fontWeight: "600", color:"#828282", cursor: "pointer", marginBottom:"20px"}}>
         <Button style={{backgroundImage:'url("https://tobeto.com/_next/static/media/showMore.f5ba3f81.svg")', width:"48px", height:"48px", borderRadius:"50%", backgroundSize:"cover"}} variant="light">  </Button>
-        <p>Daha Fazla Göster</p>
       </div>
       </Link>
+      <p>Daha Fazla Göster</p>
     </>
   );
 };
