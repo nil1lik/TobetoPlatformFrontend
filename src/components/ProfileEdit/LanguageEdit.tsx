@@ -82,6 +82,9 @@ const LanguageEdit = (props: Props) => {
                   name="language"
                   className="custom-field form-select"
                 >
+                  <option value="" selected disabled>
+                    Dili Seçiniz*
+                  </option>
                   {languages.map((language: any) => (
                     <option key={language.id} value={language.id}>
                       {language.name}

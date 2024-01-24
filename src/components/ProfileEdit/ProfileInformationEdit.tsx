@@ -218,8 +218,8 @@ const ProfileInformationEdit = (props: Props) => {
                   Mahalle / Sokak
                 </label>
                 <Field
-                  className="form-control my-custom-input"
-                  rows="5"
+                  className="form-control my-custom-input textarea-style"
+                  rows="10"
                   as="textarea"
                   id="street"
                   name="street"
@@ -232,7 +232,7 @@ const ProfileInformationEdit = (props: Props) => {
                   Hakkımda
                 </label>
                 <Field
-                  className="form-control my-custom-input"
+                  className="form-control my-custom-input textarea-style"
                   rows="5"
                   as="textarea"
                   id="street"

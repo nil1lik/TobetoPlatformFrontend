@@ -7,8 +7,7 @@ import SocialMediaAccountService from "../../services/socialMediaAccountService"
 type Props = {};
 
 const SocialMediaAccountEdit = (props: Props) => {
-
-  const [socialMediaAccounts, setsocialMediaAccounts] = useState<any[]>([])
+  const [socialMediaAccounts, setsocialMediaAccounts] = useState<any[]>([]);
 
   const initialValues = {
     inputUrl: "",
@@ -17,20 +16,18 @@ const SocialMediaAccountEdit = (props: Props) => {
   useEffect(() => {
     const socialMediaAccountService = new SocialMediaAccountService();
     socialMediaAccountService
-    .getSocialMediaCategories()
-    .then((result) => {
-      if (result.data.items) {
-        setsocialMediaAccounts(result.data.items);
-      } else {
-        console.error("API'den dil seviyeleri alınamadı.");
-      }
-    })
-    .catch((error) => {
-      console.error("API isteği sırasında bir hata oluştu:", error);
-    });
-  }, [])
-  
-
+      .getSocialMediaCategories()
+      .then((result) => {
+        if (result.data.items) {
+          setsocialMediaAccounts(result.data.items);
+        } else {
+          console.error("API'den dil seviyeleri alınamadı.");
+        }
+      })
+      .catch((error) => {
+        console.error("API isteği sırasında bir hata oluştu:", error);
+      });
+  }, []);
 
   return (
     <div className="container mt-5">
@@ -44,8 +41,15 @@ const SocialMediaAccountEdit = (props: Props) => {
           <Container>
             <Row className="align-items-center">
               <Col lg={4}>
-                <Field as="select" className="custom-field form-select">
-                {socialMediaAccounts.map((socialMedia: any) => (
+                <Field
+                  as="select"
+                  className="custom-field form-select"
+                  name="socialMedia" // Başlangıçta bir değer yoksa, buradaki name özelliğini kullanabilirsiniz.
+                >
+                  <option value="" selected disabled>
+                    Seçiniz
+                  </option>
+                  {socialMediaAccounts.map((socialMedia: any) => (
                     <option key={socialMedia.id} value={socialMedia.id}>
                       {socialMedia.name}
                     </option>
