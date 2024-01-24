@@ -167,6 +167,7 @@
     align-items: center;
     justify-content: space-between;
     word-break: break-all;
+    cursor: pointer;
 }
 
 .profileCertificate::after {
@@ -188,6 +189,7 @@
 
 .mediaAccountPhoto {
     width: 53px;
+    cursor: pointer;
 }
 
 .successModelCont .col:nth-child(2) {

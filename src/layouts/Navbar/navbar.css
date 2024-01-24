@@ -8,17 +8,13 @@
 
 .navbar-tab {
   display: block;
-  padding: var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x);
   font-size: var(--bs-nav-link-font-size);
-  font-weight: var(--bs-nav-link-font-weight);
-  color: var(--bs-nav-link-color);
   text-decoration: none;
-  background: 0 0;
-  border: 0;
-  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
-    border-color 0.15s ease-in-out;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
   padding-left: 0.5rem;
   padding-right: 1rem;
+  font-weight: 500;
+  color: #282828!important;
 }
 
 .nav-style .navbar-tab:hover {
@@ -27,7 +23,7 @@
 
 .nav-style .navbar-tab:focus {
   color: #9933ff !important;
-  font-weight: bolder;
+  font-weight: 700;
 }
 
 .custom-navbar {
@@ -98,7 +94,7 @@
 }
 
 .header-avatar {
-  background: #f8f9fa;
+  /* background: #f8f9fa; */
   border-radius: 35px;
   padding: 7px 10px;
   display: inline-flex;

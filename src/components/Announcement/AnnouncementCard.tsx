@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import AnnouncementService from "../../services/announcementService";
-import {Card, Image, Modal } from "react-bootstrap";
+import { Card, Image, Modal } from "react-bootstrap";
 
 type Props = {
   announcementType: string,
@@ -24,17 +24,20 @@ const AnnouncementCard = (props: Props) => {
   return (
     <div className="col-md-4 col-12">
       <Card className="card-notify">
-        <Card.Body className="announcementInfoTop">
-          <span>{props.announcementType}</span>
-          <span>{props.announcementName}</span>
-        </Card.Body>
-        <Card.Body className="announcementHeader">
-          <span>{props.announcementTitle}</span>
-        </Card.Body>
+        <div className="announcementTopCont">
+          <Card.Body className="announcementInfoTop">
+            <span>{props.announcementType}</span>
+            <span>{props.announcementName}</span>
+          </Card.Body>
+          <Card.Body className="announcementHeader">
+            <span>{props.announcementTitle}</span>
+          </Card.Body>
+        </div>
         <Card.Body className="announcementInfoBottom">
           <span>
-            <Image src={props.annoucementDateIcon} />
-            {`${day}-${month}-${year}`}
+            <Image src={props.annoucementDateIcon} className="dateIcon"/>
+            {/* {`${day}-${month}-${year}`} */}
+            {props.announcementDate}
           </span>
           <span className="announcementReadMore" onClick={handleShow}>
             Devamını Oku
@@ -47,10 +50,10 @@ const AnnouncementCard = (props: Props) => {
         </Modal.Header>
         <Modal.Body>
           {`${props.announcementDescription}`.split('\n').map((line, index) => (
-              <>
-                <p key={index} className="modal-text">{line}</p><p><br /></p>
-              </>
-            ))
+            <>
+              <p key={index} className="modal-text">{line}</p><p><br /></p>
+            </>
+          ))
           }
         </Modal.Body>
       </Modal>

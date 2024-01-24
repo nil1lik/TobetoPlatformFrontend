@@ -20,8 +20,8 @@ const ApplicationCard = (props: Props) => {
             {props.cardDescription}
           </Card.Subtitle>
           <Card.Text>{props.cardText}</Card.Text>
-          <Card.Link href="#">{props.cardLink1}</Card.Link>
-          <Card.Link href="#">{props.cardLink1}</Card.Link>
+          <Card.Link href="#" style={{display: "none"}}>{props.cardLink1}</Card.Link>
+          <Card.Link href="#" style={{display: "none"}}>{props.cardLink1}</Card.Link>
         </Card.Body>
       </Card>
     </div>

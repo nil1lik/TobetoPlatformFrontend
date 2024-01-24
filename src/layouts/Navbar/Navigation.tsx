@@ -8,8 +8,10 @@ type Props = {};
 const logo = process.env.PUBLIC_URL + "/images/tobeto-logo.png"
 const Navigation = (props: Props) => {
   return (
-    <Navbar expand="lg" className=" justify-content-between custom-navbar" bg="light" data-bs-theme="light">
-      <Image src={logo} width={170} height={35}></Image>
+    <Navbar expand="lg" className=" justify-content-between custom-navbar" bg="white" data-bs-theme="light">
+      <Link to={"/"}>
+        <Image src={logo} width={170} height={35}></Image>
+      </Link>
       <Nav className="nav-style">
         <Link to={"/"} className="navbar-tab">
           Anasayfa
@@ -30,7 +32,7 @@ const Navigation = (props: Props) => {
           İstanbul Kodluyor
         </Link>
       </Nav>
-      <DropdownItem/>
+      <DropdownItem />
     </Navbar>
   );
 };

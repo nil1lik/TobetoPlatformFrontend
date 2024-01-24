@@ -3,7 +3,9 @@ import { Col, Row } from 'react-bootstrap'
 import ProfileMediaAccounts from '../../ProfileLeft/ProfileMediaAccounts'
 import ProfileSuccessModelBadge from './ProfileSuccessModelBadge'
 
-type Props = {}
+type Props = {
+  
+}
 
 const ProfileSuccessModel = (props: Props) => {
   return (

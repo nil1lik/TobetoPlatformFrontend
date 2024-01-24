@@ -23,7 +23,7 @@ const Platform = (props: Props) => {
                         <label className="fw-normal text-info1">'ya</label>
                         <label className="fw-normal text-info1">hoş geldin</label>
                       </h3>
-                      <h4 className="fw-normal text-info1">Pair 1</h4>
+                      <h4 className="fw-normal text-info1 text-info2">Pair 1</h4>
                     </div>
                     <TobetoPlatformItem
                       // imageClass="dot-purple-svg"
@@ -32,20 +32,16 @@ const Platform = (props: Props) => {
                     />
                   </Col>
               </Row>
-              <Row className="content-cont text-center">
-                <Row>
+              <Row className="content-cont">
                   <TobetoPlatformItem
                     imageClass="ist-kod-png"
                     imageSrc="istanbulKodluyor.png"
                     text="Ücretsiz eğitimlerle, geleceğin mesleklerinde sen de yerini al."
                   />
-                  <label className="header-text-quot mt-4 mb-4">
+                  <label className="header-text-quot mb-4">
                     Aradığın <span className="quot">"</span>İş<span className="quot">"</span>  Burada!
                   </label>
-                </Row>
-                <Row>
                   <PlatformTab />
-                </Row>
               </Row> 
             </Container>
             <Container className="content-cont">

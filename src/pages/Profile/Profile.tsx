@@ -80,9 +80,9 @@ const Profile = (props: Props) => {
             <Col className='col-12'>
               <ProfileBox titleClass='profileBoxTitle' title='Medya Hesaplarım'>
                 <div className='profileMediaCont'>
-                  <ProfileMediaAccounts imageSrc="cv-github.svg" className='mediaAccountPhoto' />
-                  <ProfileMediaAccounts imageSrc="cv-linkedn.svg" className='mediaAccountPhoto' />
-                  <ProfileMediaAccounts imageSrc="cv-behance.svg" className='mediaAccountPhoto' />
+                  <ProfileMediaAccounts imageSrc="cv-github.svg" className='mediaAccountPhoto' Link='https://www.github.com'/>
+                  <ProfileMediaAccounts imageSrc="cv-linkedn.svg" className='mediaAccountPhoto' Link='https://www.linkedin.com'/>
+                  <ProfileMediaAccounts imageSrc="cv-behance.svg" className='mediaAccountPhoto' Link='https://www.behance.net'/>
                 </div>
               </ProfileBox>
             </Col>

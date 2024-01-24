@@ -12,8 +12,8 @@ type Props = {
 
 const TobetoPlatformVerticalCard = (props: Props) => {
   return (
-    <div>
-      <Card className="education-card" style={{ width: "16rem" }}>
+    <div className="col-md-3 col-12 mb-4">
+      <Card className="education-card">
         <Card.Img className="card-img-edu" src={props.image} />
         <Card.Body>
           <Card.Title className="card-title-edu">{props.text} </Card.Title>
@@ -21,7 +21,7 @@ const TobetoPlatformVerticalCard = (props: Props) => {
             {props.description}
           </Card.Text>
           <Link to={"/education-detail"}>
-          <Button className="apply-button w-100">{props.buttonText} </Button>
+          <Button className="educationButton apply-button w-100">{props.buttonText} </Button>
           </Link> 
         </Card.Body>
       </Card>
