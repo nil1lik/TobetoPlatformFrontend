@@ -9,6 +9,7 @@ import {
   Col,
   Container,
   Row,
+  Tooltip,
 } from "react-bootstrap";
 
 type Props = {
@@ -21,6 +22,7 @@ type Props = {
 
 const EducationDetailContent = (props: Props) => {
   const completedIcon = "/images/completed.svg";
+
   return (
     <Container>
       <div className="accordion-container">
@@ -68,7 +70,10 @@ const EducationDetailContent = (props: Props) => {
               <Col>
                 <div className="activity-content-info">
                   <div className="activity-largeImageFileName activity-video">
-                    <img src="https://tobeto.s3.cloud.ngn.com.tr/23_EAH_1_45f7232003.jpg" />
+                    <div className="locked">
+                      <img src="https://tobeto.s3.cloud.ngn.com.tr/23_EAH_1_45f7232003.jpg" />
+                      <i className="ss-icon ss-lock" /> 
+                    </div>
                   </div>
                   <Card className="activity-card">
                     <div className="activity-unit-detail">
@@ -84,18 +89,18 @@ const EducationDetailContent = (props: Props) => {
                             {/* {props.point} PUAN */} 100 PUAN
                           </div>
                           <div className="unit-detail-col unit-detail-col-status last-child text-green">
-                            <i className="ss-icon ss-like"></i>
+                            <i className="ss-icon ss-like" />
                             Tebrikler, tamamladın!
                           </div>
                         </Col>
                         <Col lg={3}>
                           <div className="ant-space ant-space-vertical">
-                              <button
-                                type="button"
-                                className="ant-btn ant-btn-default ant-btn-lg ant-btn-block btn"
-                              >
-                                <label className="ant-btn-text">DETAY</label>
-                              </button> 
+                            <button
+                              type="button"
+                              className="ant-btn ant-btn-default ant-btn-lg ant-btn-block btn"
+                            >
+                              <label className="ant-btn-text">DETAY</label>
+                            </button>
                           </div>
                         </Col>
                       </Row>
