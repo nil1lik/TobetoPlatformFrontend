@@ -13,7 +13,7 @@ type Props = {
 const TobetoPlatformVerticalCard = (props: Props) => {
   return (
     <div>
-      <Card className="card" style={{ width: "16rem" }}>
+      <Card className="education-card" style={{ width: "16rem" }}>
         <Card.Img className="card-img-edu" src={props.image} />
         <Card.Body>
           <Card.Title className="card-title-edu">{props.text} </Card.Title>
@@ -30,3 +30,6 @@ const TobetoPlatformVerticalCard = (props: Props) => {
 };
 
 export default TobetoPlatformVerticalCard;
+
+
+
