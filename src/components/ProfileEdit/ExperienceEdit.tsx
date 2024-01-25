@@ -1,5 +1,5 @@
 import { Field, Form, Formik } from "formik";
-import { Col, Container, Row, TabContainer } from "react-bootstrap";
+import { Col, Container, Dropdown, FormSelect, Row, TabContainer } from "react-bootstrap";
 import FormikInput from "../../utilities/FormikInput";
 import React, { useEffect, useState } from "react";
 import CityService from "../../services/CityService";
@@ -26,6 +26,7 @@ const ExperienceEdit = (props: Props) => {
       .getCity()
       .then((result) => {
         if (result.data.items) {
+          console.log(result.data.items);
           setCity(result.data.items);
         } else {
           console.error("API'den Şehirler Alınamadı.");
@@ -35,6 +36,36 @@ const ExperienceEdit = (props: Props) => {
         console.error("API isteği sırasında bir hata oluştu:", error);
       });
   }, []);
+
+  const [cityName,setCityName] =useState([])
+
+  const getCityName = (cityId: any) => {
+    const cityService = new CityService();
+  cityService
+    .getCityId(cityId)
+    .then((result) => {
+      if (result.data) {
+        console.log(result.data.name)
+        setCityName(result.data.name);
+      } else {
+        console.error("API'den İlçeler Alınamadı.");
+      }
+    })
+    .catch((error) => {
+      console.error("API isteği sırasında bir hata oluştu:", error);
+    });
+  };  
+
+  
+
+  
+
+  const handleCitySelect = (selectedCityKey:any, event:Object) => {
+    // Seçilen şehiri state'e kaydet
+    console.log(selectedCityKey);
+    getCityName(selectedCityKey);
+  };
+  
 
   return (
     <div>
@@ -71,28 +102,79 @@ const ExperienceEdit = (props: Props) => {
                 />
               </Col>
               <Col>
-                <label
-                  className="input-label-text"
-                  style={{ display: "block", marginBottom: "5px" }}
-                >
-                  Şehir Seçiniz*
+                <label className="input-label-text">Şehir Seçiniz*</label>
+                <Dropdown title="Şehir Seçiniz..." aria-live="polite"  onSelect={handleCitySelect} className=" calender-select dropdown-profil">
+                  <Dropdown.Toggle 
+                    aria-selected
+                    variant="success"
+                    id="dropdown-basic"
+                    className="btn-profil dropdown-toggle-profil"                
+                  >
+                    <div className="css-14cgata-control">
+                      <div className="css-hlgwow">Şehir Seçiniz...</div>
+                      <div className="css-1wy0on6">
+                        <span className="dropdown-indicatorSeparator"></span>
+                        <span className="dropdown-indicatorContainer">
+                          <svg
+                            xmlns="/images/navbar-dropdown-toggle.svg"
+                            width={20}
+                            height={20}
+                            viewBox="3 2 20 20"
+                            fill="none"
+                            className="dropdown-toggle-svg"
+                          >
+                            <path
+                              d="M6 9L12 15L18 9"
+                              strokeWidth={2}
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              className="dropdown-toggle-svg-path"
+                            ></path>
+                          </svg>
+                        </span>
+                      </div>
+                    </div>
+                  </Dropdown.Toggle>
+
+                  <Dropdown.Menu  className="dropdown-menu-profil">
+                    {city.map((city: any) => (
+                      <Dropdown.Item 
+                        className="dropdown-item dropdown-item-profil"
+                        key={city.id}
+                        eventKey={city.id}
+                      >
+                        {city.name}
+                      </Dropdown.Item>
+                    ))}
+                  </Dropdown.Menu>
+                </Dropdown>
+              </Col>
+              {/* <Col>
+                <label className="input-label-text" htmlFor="birthdate">
+                  İl
                 </label>
                 <Field
-                  className="custom-field form-select input-style"
+                  className="option form-control my-custom-select"
                   as="select"
-                  name="city"
-                  label="city*"
+                  name="İl"
+                  label="İl*"
                 >
-                  <option value={""} disabled selected>
-                    Şehir Seçiniz*
-                  </option>
+                  <option value={"Şehir Seçiniz"} selected disabled>Şehir Seçiniz*</option>
+                  {city.map((city: any) => (
+                    <option className="my-custom-option" key={city.id} value={city.id}>
+                      {city.name}
+                    </option>
+                  ))}
+                </Field>
+              </Col> 
+               <FormSelect className="my-formselect-custom">
+              <option value={"Şehir Seçiniz"} selected disabled>Şehir Seçiniz*</option>
                   {city.map((city: any) => (
                     <option key={city.id} value={city.id}>
                       {city.name}
                     </option>
                   ))}
-                </Field>
-              </Col>
+              </FormSelect> */}
             </Row>
             <Row>
               <Col>

@@ -42,7 +42,6 @@
 
 .btn.btn-calendar:hover{
     transition: 1s;
-    /* border-color: #828282 !important; */
     border-color: #9933ff !important;
 }
 
@@ -152,7 +151,7 @@
     width: 10px;
   }
 
-.dropdown-menu.dropdown-menu-calendar::-webkit-scrollbar-thumb:hover{
+.dropdown-menu.dropdown-menu-calendar:hover::-webkit-scrollbar-thumb{
     background-color: #9933ff;
 }
 
@@ -163,6 +162,10 @@
 
 .dropdown-menu.dropdown-menu-calendar::-webkit-scrollbar-track:focus{
     background-color: #828282;
+}
+
+.dropdown-menu.dropdown-menu-calendar:hover::-webkit-scrollbar-track{
+    background-color: #cccccc;
 }
 
 .dropdown-menu.dropdown-menu-calendar:active::-webkit-scrollbar-track{
@@ -222,30 +225,22 @@
     border-color: #6118ab !important;
 }
 
-/* 
-.form-check-input:checked {
-    background-color: #0d6efd;
-    border-color: #0d6efd;
-} */
-
 /*---------------------------Calender Design------------------------------*/
 
 /*Calender Button*/
 .fc-today-button{
-    border: 2px solid #828282 !important;
+    border: 2px solid #9933ff !important;
     border-radius: 2rem !important;
-    background-color: #fff !important;
-    color: #828282 !important;
+    background-color: #28064b !important;
+    color: #fff !important;
     font-size: 15px !important;
     opacity: 1 !important;
-}
-
-.fc-today-button:hover{
-    border-color: #cccccc !important;
+    cursor: pointer;
 }
 
 .fc-button-group {
-    border: 2px solid #828282 !important;
+    border: 2px solid #9933ff !important;
+    background-color:#28064b !important ;
     border-radius: 20px !important;
     display: inline-flex;
     position: relative;
@@ -254,7 +249,7 @@
 
 .fc-button-group button{
     background-color: transparent !important;
-    color: #828282 !important;
+    color: #fff !important;
     border: none !important;
 }
 
@@ -276,19 +271,43 @@
     content: "";
     width: 1px;
     height: 22px;
-    background: #828282;
+    background: #9933ff;
     display: block;
     margin-left: 1em;
     opacity: .5;
 }
 
+.fc .fc-day{
+    background-color: #fff;
+}
+
+.fc .fc-day-today{
+    background-color: #fff !important;
+}
+
+.fc .fc-daygrid-bg-harness .fc-highlight{
+    background: none;
+}
+.fc .fc-dayGridMonth-view .fc-scroll-grid{
+    border-color: #000000 !important;
+}
+
+.fc *{
+    box-sizing: border-box;
+    border-color: #9933ff !important;
+}
 /*-------------------------------------------------------------------------------*/
 
 /*Calender toolbar Title*/
 .fc .fc-toolbar-title {
-    color: #828282;
-    font-weight: 400!important;
+    border: 2px solid #9933ff;
+    border-radius: 2rem;
+    background-color: #28064b;
+    color: #fff ;
+    padding: 0px 0.5rem !important;
+    font-weight: 200!important;
 }
+
 
 /*-------------------------------------------------------------------------------*/
 
@@ -296,9 +315,13 @@
 .fc .fc-col-header-cell-cushion {
     display: inline-block;
     padding: 2px 4px;
-    color: #9933ff;
+    color: #fff;
     font-weight: 600!important;
     text-decoration: none !important;
+}
+
+.fc .fc-col-header-cell{
+    background-color: #28064b !important;
 }
 
 /*Calender Day Number*/
@@ -358,18 +381,25 @@
     display: flex!important;
 }
 
-.eventEnded .fc-event-past {
-    border: 2px solid #ff442b!important;
+ .eventEnded .fc-event-past  {
+    border: 2px solid #2a2a2a!important;
     border-radius: 4px!important;
-    background-color: rgba(255,68,43,.3)!important;
-    color: #141414!important;
+    background-color: #494949!important;
 }
 
+.eventEnded .fc-event-past span{
+    color: #fff;
+}
+
+
 .eventNotStarted .fc-event-future {
-    border: 2px solid #5c6cc1!important;
+    border: 2px solid #9933ff!important;
     border-radius: 4px!important;
-    background-color: rgba(92,108,193,.3)!important;
-    color: #2b42bd!important;
+    background-color: #28064b!important;
+}
+
+.eventNotStarted .fc-event-future span{
+    color: #fff ;
 }
 
 .fc-event.fc-event-draggable{
@@ -382,6 +412,13 @@
     white-space: nowrap;
 }
 
-.fc .fc-day-today{
-    background-color: #fff !important;
+.eventToday .fc-event-today{
+    color: #fff ;
+    text-decoration: none;
+}
+
+.eventToday .fc-event-today {
+    border: 2px solid #28064b!important;
+    border-radius: 4px!important;
+    background-color: #9933ff!important;
 }
