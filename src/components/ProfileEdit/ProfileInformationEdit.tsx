@@ -233,7 +233,7 @@ const ProfileInformationEdit = (props: Props) => {
                             xmlns="/images/navbar-dropdown-toggle.svg"
                             width={20}
                             height={20}
-                            viewBox="3 2 20 20"
+                            viewBox="3 2 20 20" 
                             fill="none"
                             className="dropdown-toggle-svg"
                           >
