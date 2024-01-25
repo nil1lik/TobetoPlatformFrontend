@@ -19,17 +19,31 @@ footer {
   margin-top: auto !important;
 }
 
-.ui.button.button {
+.footer-style{
+  height: 100px; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #9b33ff!important;
+}
+
+.footer-button.btn {
   background-color: #ffffff;
   color: #000000;
   border-radius: 20px;
   font-size: 14px;
-  font-weight: 800;
+  font-weight: 700;
+  text-align: center;
+  align-items: center;
+  display: inline-block; 
+  height: 28px;
+  vertical-align: middle;
 }
 
-.ui.button.button:hover {
-  background-color: #ffffff;
-  color: #000000;
+
+.footer-button.btn:hover {
+  background-color: white;
+  color: black;
 }
 
 .ui.content-cont {

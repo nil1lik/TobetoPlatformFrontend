@@ -1,30 +1,40 @@
 // Register.tsx
-import React from 'react';
-import LoginPageBox from '../../components/Login/LoginPageBox';
-import AppForm from '../../components/Login/AppForm';
-import { Container, Row } from 'react-bootstrap';
-import FormikInput from '../../utilities/FormikInput';
-import { Formik, Form } from 'formik';
-import UserService from '../../services/userService';
-import { userData } from '../../models/requests/user/userData';
+import React from "react";
+import LoginPageBox from "../../components/Login/LoginPageBox";
+import AppForm from "../../components/Login/AppForm";
+import { Container, Image, Row } from "react-bootstrap";
+import FormikInput from "../../utilities/FormikInput";
+import { Formik, Form } from "formik";
+import UserService from "../../services/userService";
+import { userData } from "../../models/requests/user/userData";
+import { object, string } from "yup";
 
-type Props = {};
+type Props = {  formClassName?: string};
 
-// Tip belirtilen initialValues
-const initialValues: userData = {
-  firstName: "",
-  lastName: "",
-  email: "",
-  password: "",
-};
+function Register(props: Props) {
+  const initialValues: userData = {
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+  };
 
-function Register({ }: Props) {
+  const validationSchema = object({
+    firstName: string().required("İsim alanı zorunludur.").min(3).max(50),
+    lastName: string().required("Soyisim alanı zorunludur.").max(30),
+    email: string()
+      .required("Email alanı zorunludur.")
+      .email("Lütfen geçerli bir e-posta adresi giriniz."),
+    password: string().required().min(8, "En az sekiz karakter olmalıdır"),
+  });
+
   return (
     <Container className="form-cont">
       <LoginPageBox className="login-box">
-        <div className="center">
+        <div className="center loginform-cont">
           <Formik
             initialValues={initialValues}
+            validationSchema={validationSchema}
             onSubmit={(values) => {
               const userService = new UserService();
               userService
@@ -32,17 +42,20 @@ function Register({ }: Props) {
                 .then((result) => {
                   // Kayıt başarılı olduğunda yapılacak işlemler
                   console.log("Kullanıcı başarıyla kaydedildi:", result.data);
-                  localStorage.setItem("token", result.data.token)
+                  localStorage.setItem("token", result.data.token);
                 })
                 .catch((error) => {
                   // Hata durumunda yapılacak işlemler
-                  console.error("Kullanıcı kaydı sırasında bir hata oluştu:", error);
+                  console.error(
+                    "Kullanıcı kaydı sırasında bir hata oluştu:",
+                    error
+                  );
                 });
             }}
           >
-            <Form>
+            <Form className={props.formClassName}>
               <Row>
-                {/* <Image className="login-form-img" src={formLogo} /> */}
+                <Image className="login-form-img" src="/images/tobeto-logo.png"/>
               </Row>
               <Row>
                 <FormikInput
@@ -58,7 +71,7 @@ function Register({ }: Props) {
                   placeHolder="Soyad*"
                 />
                 <FormikInput
-                  type="email"  // "e-posta" -> "email" olarak değiştirildi
+                  type="email" // "e-posta" -> "email" olarak değiştirildi
                   name="email"
                   label=""
                   placeHolder="E-posta*"
