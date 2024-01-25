@@ -1,28 +1,39 @@
 import React from "react";
-import { Button, Container, Image, Menu } from "semantic-ui-react";
+import { Button, Container, Image, Navbar } from "react-bootstrap";
 
 type Props = {};
 const logoSrc = process.env.PUBLIC_URL + "/images/Tebeto-logo-yatay-beyaz.png";
 
 const divStyle = {
-  height: '100px', 
-  display: 'flex', 
-  alignItems: 'center', 
-  justifyContent: 'center',
+  
 };
 
 const Footer = (props: Props) => {
   return (
-    <Menu pointing secondary size="huge" style={{ ...divStyle, backgroundColor: "#9b33ff" }}>
-      <Container>
-        <Menu.Item>
-          <Image src={logoSrc} size="tiny" />
-        </Menu.Item>
-        <Menu.Item position="right">
-          <Button className="button">Bize Ulaşın</Button>
-        </Menu.Item>
-      </Container>
-    </Menu>
+    // <Menu pointing secondary size="huge" style={{ ...divStyle, backgroundColor:  }}>
+    //   <Container>
+    //     <Menu.Item>
+    //       <Image src={logoSrc} size="tiny" />
+    //     </Menu.Item>
+    //     <Menu.Item position="right">
+    //       <Button className="button">Bize Ulaşın</Button>
+    //     </Menu.Item>
+    //   </Container>
+    // </Menu>
+    <div className="footer-style">
+        <Container className="col-12 col-md-10">
+          <div className="d-flex justify-content-between align-items-center">
+            <Image
+              src={logoSrc}
+              width="100"
+              height="20"
+              className="d-inline-block align-top"
+              alt="React Bootstrap logo"
+            />
+            <Button className="footer-button">Bize Ulaşın</Button>
+          </div>
+        </Container>
+      </div>
   );
 };
 
