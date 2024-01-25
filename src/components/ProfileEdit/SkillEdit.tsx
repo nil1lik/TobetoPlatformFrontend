@@ -40,9 +40,9 @@ const SkillEdit = (props: Props) => {
         initialValues={initialValues}
         onSubmit={handleSkillSubmit}
       >
-        <Form>
-          <Field as="select" name="name" className="form-control">
-            <option value="" disabled>
+         <Form>
+          <Field as="select" name="value" className="form-control my-custom-select">
+            <option value="" disabled selected>
               Seçiniz
             </option>
             {skills.map((skill) => (

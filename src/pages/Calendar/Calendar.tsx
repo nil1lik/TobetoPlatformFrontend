@@ -35,11 +35,9 @@ const Calendar = (props: Props) => {
     
   }
 
-
-  
   return (
     <>
-      <FullCalendar dayCellClassNames={"eventEnded eventNotStarted"}
+      <FullCalendar dayCellClassNames={"eventEnded eventNotStarted eventToday"}
         plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
         headerToolbar={{
           left: `today prev,next`,
@@ -65,7 +63,6 @@ const Calendar = (props: Props) => {
         
         events={
            [
-             {id:props.id,title:props.title,start:props.start},
              {id:'2',title:props.title, start:'2024-01-09', end:'2024-01-09'},
              {id:'3',title:props.title, start:'2024-01-09', end:'2024-01-09'},
              {id:'4',title:props.title, start:'2024-01-09', end:'2024-01-09'},
