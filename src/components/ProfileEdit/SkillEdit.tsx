@@ -2,47 +2,55 @@ import { Field, Form, Formik } from "formik";
 import React, { useEffect, useState } from "react";
 import { Button, Card } from "react-bootstrap";
 import SkillService from "../../services/skillService";
-import { getSkill } from "../../models/requests/skill/getSkill";
+import skillService from "../../services/skillService";
+import {
+  GetSkill,
+  GetSkillItem,
+} from "../../models/responses/skill/getSkillResponse";
 
 type Props = {};
-const initialValues: getSkill = {
-  id: 0, 
-  name: ""
+const initialValues: GetSkillItem = {
+  id: 0,
+  name: "",
 };
 
 const SkillEdit = (props: Props) => {
-  const [skills, setSkills] = useState<any[]>([]);
+  const [skills, setSkills] = useState<GetSkillItem[]>([]);
+  const [selectedSkills, setSelectedSkills] = useState<GetSkillItem[]>([]);
 
   useEffect(() => {
-    const skillService = new SkillService();
-    skillService.
-      getSkill()
-      .then((result) => {
-        if (result.data.items) {
+    const fetchSkills = async () => {
+      try {
+        const result = await SkillService.getAll();
+        if (result.data && result.data.items) {
           setSkills(result.data.items);
+          console.log(result.data.items);
         } else {
           console.error("API'den beceri verileri alınamadı.");
         }
-      })
-      .catch((error) => {
+      } catch (error) {
         console.error("API isteği sırasında bir hata oluştu:", error);
-      });
+      }
+    };
+    fetchSkills();
   }, []);
 
+  const handleSkillSubmit = (values: GetSkillItem) => {
+    console.log("Seçilen beceri:", values);
+    setSelectedSkills((prevSkills) => [...prevSkills, values]);
+  };
   return (
     <>
       <Formik
         initialValues={initialValues}
-        onSubmit={(values) => {
-          console.log(values) 
-        }}
+        onSubmit={handleSkillSubmit}
       >
-         <Form>
-          <Field as="select" name="value" className="form-control">
-            <option value="" disabled selected>
+        <Form>
+          <Field as="select" name="name" className="form-control">
+            <option value="" disabled>
               Seçiniz
             </option>
-            {skills.map((skill:any) => (
+            {skills.map((skill) => (
               <option key={skill.id} value={skill.name}>
                 {skill.name}
               </option>
@@ -56,23 +64,17 @@ const SkillEdit = (props: Props) => {
           </button>
         </Form>
       </Formik>
-        
-      <Card className="inline-card">
-        <Card.Body className="inline-card-body">
-          This is some text within a card body.
-          <button className="grade-delete g-del">
-            <i className="grade-delete-img"></i>
-          </button>
-        </Card.Body>
-      </Card>
-      <Card className="inline-card">
-        <Card.Body className="inline-card-body">
-          This is some text within a card body.
-          <button className="grade-delete g-del">
-            <i className="grade-delete-img"></i>
-          </button>
-        </Card.Body>
-      </Card>
+
+      {selectedSkills.map((selectedSkill, index) => (
+        <Card key={index} className="inline-card">
+          <Card.Body className="inline-card-body">
+            {selectedSkill.name}
+            <button className="grade-delete g-del">
+              <i className="grade-delete-img"></i>
+            </button>
+          </Card.Body>
+        </Card>
+      ))}
     </>
   );
 };

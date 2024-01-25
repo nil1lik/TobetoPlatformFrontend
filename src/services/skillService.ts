@@ -1,7 +1,28 @@
-import axios from "axios"
+// import axios from "axios"
 
-export default class SkillService{
-  getSkill(){
-    return axios.get("http://localhost:5278/api/Skills?PageIndex=0&PageSize=25")
+import { GetSkill } from "../models/responses/skill/getSkillResponse";
+import { BaseService } from "./baseService";
+import {BASE_API_URL} from "../environment/environment";
+import { AddSkillRequest } from "../models/requests/skill/addSkillRequest";
+import { UpdateSkillRequest } from "../models/requests/skill/updateSkillRequest";
+import { GetByIdSkillResponse } from "../models/responses/skill/getByIdSkillResponse";
+import { AddSkillResponse } from "../models/responses/skill/addSkillResponse";
+import { UpdateSkillResponse } from "../models/responses/skill/updateSkillResponse";
+
+class SkillService extends BaseService<
+  GetSkill,
+  GetByIdSkillResponse,
+  AddSkillRequest,
+  UpdateSkillRequest,
+  AddSkillResponse,
+  UpdateSkillResponse
+>{
+  constructor(){
+    super();
+    this.apiUrl = BASE_API_URL + "Skills";
   }
+  getByFilter() {}
 }
+
+export default new SkillService();
+
