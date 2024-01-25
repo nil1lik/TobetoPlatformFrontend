@@ -14,8 +14,8 @@ export class BaseService<
 		this.apiUrl = "";
 	}
 
-	getAll(): Promise<AxiosResponse<GetAllType, any>> {
-		return axios.get<GetAllType>(this.apiUrl + "?PageIndex=0&PageSize=25");
+	getAll(pageIndex: number, pageSize: number): Promise<AxiosResponse<GetAllType, any>> {
+		return axios.get<GetAllType>(this.apiUrl+`?PageIndex=${pageIndex}&PageSize=${pageSize}`);
 	}
 
 	getById(id: number): Promise<AxiosResponse<GetByIdType, any>> {

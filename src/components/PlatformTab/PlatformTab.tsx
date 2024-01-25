@@ -6,17 +6,20 @@ import ApplicationCard from "../Application/ApplicationCard";
 import { Col, Container, Row, Tab, Tabs } from "react-bootstrap";
 import "./platformTab.css"
 import AnnouncementService from "../../services/announcementService";
+import { GetAnnouncementItem } from "../../models/responses/announcement/getAnnouncement";
 
 type Props = {
 };
 
 const PlatformTab = (props: Props) => {
   const announcementIconSrc = process.env.PUBLIC_URL + `/images/announcementDate.svg`;
-  const [announcement, setAnnouncement] = useState<any[]>([])
+  const [announcement, setAnnouncement] = useState<GetAnnouncementItem[]>([])
   useEffect(()=> {
-    const announcementService = new AnnouncementService();
-    announcementService.getAnnouncement()
-    .then((result) => {setAnnouncement(result.data.items)})
+    const fetchSkills = async () => {
+    const result = await AnnouncementService.getByFilter(0,5);
+    setAnnouncement(result.data.items);
+    };
+    fetchSkills();
   },[]);
 
   return (

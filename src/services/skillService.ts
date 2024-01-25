@@ -21,7 +21,10 @@ class SkillService extends BaseService<
     super();
     this.apiUrl = BASE_API_URL + "Skills";
   }
-  getByFilter() {}
+  
+  getByFilter(pageIndex: number = 0, pageSize: number = 25) {
+    return this.getAll(pageIndex, pageSize); 
+  }
 }
 
 export default new SkillService();

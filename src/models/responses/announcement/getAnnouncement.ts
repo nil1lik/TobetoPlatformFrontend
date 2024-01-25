@@ -1,8 +1,12 @@
-export interface getAnnouncement {
+export interface GetAnnouncementItem {
     id: number,
     name: string,
-    announcementTypeName: string,
-    description: string,
+    announcementTypeName: string, 
     title: string,
     createdDate: Date
+    description: string,
 };
+
+export interface GetAnnouncement{
+    items : GetAnnouncementItem[];
+}

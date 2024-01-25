@@ -21,13 +21,8 @@ const SkillEdit = (props: Props) => {
   useEffect(() => {
     const fetchSkills = async () => {
       try {
-        const result = await SkillService.getAll();
-        if (result.data && result.data.items) {
+        const result = await SkillService.getByFilter(1, 25);
           setSkills(result.data.items);
-          console.log(result.data.items);
-        } else {
-          console.error("API'den beceri verileri alınamadı.");
-        }
       } catch (error) {
         console.error("API isteği sırasında bir hata oluştu:", error);
       }

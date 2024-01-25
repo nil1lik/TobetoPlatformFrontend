@@ -4,12 +4,12 @@ import AnnouncementService from "../../services/announcementService";
 import { Card, Image, Modal } from "react-bootstrap";
 
 type Props = {
-  announcementType: string,
-  announcementName: string,
-  announcementTitle: string,
-  annoucementDateIcon: string,
-  announcementDate: string,
-  announcementDescription: string
+  announcementType: string;
+  announcementName: string;
+  announcementTitle: string;
+  annoucementDateIcon?: string;
+  announcementDate: Date;
+  announcementDescription: string;
 };
 
 const AnnouncementCard = (props: Props) => {
@@ -17,9 +17,6 @@ const AnnouncementCard = (props: Props) => {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
-  const formattedDate = props.announcementDate.split('T')[0];
-  const [year, month, day] = formattedDate.split('-');
 
   return (
     <div className="col-md-4 col-12">
@@ -35,9 +32,11 @@ const AnnouncementCard = (props: Props) => {
         </div>
         <Card.Body className="announcementInfoBottom">
           <span>
-            <Image src={props.annoucementDateIcon} className="dateIcon"/>
-            {/* {`${day}-${month}-${year}`} */}
-            {props.announcementDate}
+            <Image
+              src={props.annoucementDateIcon?.toString()}
+              className="dateIcon"
+            />
+            {new Date(props.announcementDate).toLocaleDateString("tr-TR")}
           </span>
           <span className="announcementReadMore" onClick={handleShow}>
             Devamını Oku
@@ -46,15 +45,21 @@ const AnnouncementCard = (props: Props) => {
       </Card>
       <Modal size="lg" show={show} onHide={handleClose} centered>
         <Modal.Header closeButton>
-          <Modal.Title style={{ fontWeight: "600" }}>{props.announcementTitle}</Modal.Title>
+          <Modal.Title style={{ fontWeight: "600" }}>
+            {props.announcementTitle}
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {`${props.announcementDescription}`.split('\n').map((line, index) => (
+          {`${props.announcementDescription}`.split("\n").map((line, index) => (
             <>
-              <p key={index} className="modal-text">{line}</p><p><br /></p>
+              <p key={index} className="modal-text">
+                {line}
+              </p>
+              <p>
+                <br />
+              </p>
             </>
-          ))
-          }
+          ))}
         </Modal.Body>
       </Modal>
     </div>
