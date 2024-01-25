@@ -280,7 +280,7 @@ const ProfileInformationEdit = (props: Props) => {
                     İlçe Seçiniz*
                   </option>
                   {districts.map((districts: any) => (
-                    <option key={districts} value={districts.id}>
+                    <option className="my-custom-option" key={districts} value={districts.id}>
                       {districts}
                     </option>
                   ))}
