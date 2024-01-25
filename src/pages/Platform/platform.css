@@ -158,7 +158,6 @@ label {
   background-repeat: no-repeat;
   background-size: contain;
   background-position: 50%;
-  border-radius: 25px 25px 0 0 !important;
 }
 
 .card-img-edu {
@@ -346,7 +345,7 @@ label {
   background-size: cover;
   position: absolute;
   top: 2rem;
-  right: -4rem;
+  right: -15rem;
   width: 150px;
   height: 150px;
 }
