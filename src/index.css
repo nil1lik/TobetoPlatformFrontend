@@ -53,7 +53,7 @@ footer {
 }
 
 .banner-text {
-  margin-left: 20vw;
+  margin-left: 10vw;
   color: #fff;
   font-size: 80px;
   font-weight: 700;
@@ -112,7 +112,7 @@ footer {
 }
 
 .form-control:focus {
-  box-shadow: 0 0 0 0.25rem rgba(153, 51, 255, .25) !important;
+  box-shadow: 0 0 0 0.25rem rgba(153, 51, 255, 0.25) !important;
 }
 
 .form-control:disabled {
@@ -163,7 +163,7 @@ footer {
 }
 
 .button-settings-end:hover {
-  background: #d64e3c
+  background: #d64e3c;
 }
 
 .button-save:hover {
@@ -281,9 +281,9 @@ footer {
   --bs-gutter-y: 0;
   display: flex;
   flex-wrap: wrap;
-  margin-top: calc(-1*var(--bs-gutter-y));
-  margin-right: calc(-.5*var(--bs-gutter-x));
-  margin-left: calc(-.5*var(--bs-gutter-x));
+  margin-top: calc(-1 * var(--bs-gutter-y));
+  margin-right: calc(-0.5 * var(--bs-gutter-x));
+  margin-left: calc(-0.5 * var(--bs-gutter-x));
 }
 
 .my-langs {
@@ -378,7 +378,6 @@ footer {
   font-weight: 500;
 }
 
-
 .uploadText {
   color: #828282;
   font-size: 16px;
@@ -443,7 +442,6 @@ table {
   background-size: contain;
   background-repeat: no-repeat;
   cursor: pointer;
-
 }
 
 .trashIcon:before {
@@ -478,7 +476,7 @@ table {
 
 .lang,
 .lang-edit {
-  box-shadow: 0 10px 24px 0 hsla(0, 0%, 9%, .05);
+  box-shadow: 0 10px 24px 0 hsla(0, 0%, 9%, 0.05);
   background-color: #fff;
   border-radius: 50px;
   display: flex;
@@ -527,7 +525,7 @@ table {
 .lang-title .lang-degree {
   font-size: 12px;
   font-weight: 500;
-  color: hsla(0, 0%, 51%, .8);
+  color: hsla(0, 0%, 51%, 0.8);
 }
 
 .lang-title-img {
@@ -536,7 +534,6 @@ table {
   display: flex;
   margin-right: 13px;
 }
-
 
 /* .lang-title:before {
   content: url("https://tobeto.com/globe.svg");
@@ -580,7 +577,6 @@ table {
   left: -22px;
 }
 
-
 .delete-lang-img {
   content: url("/public/images/trash.png");
   background-color: #fc6d6d;
@@ -590,7 +586,6 @@ table {
   border-radius: 50%;
   justify-content: center;
   margin-top: -2px;
-
 }
 
 .lang-edit:hover .delete-lang-img {
@@ -625,7 +620,7 @@ table {
 
 /* Yetkinliklerim START -eren*/
 .inline-card {
-  box-shadow: 0 10px 24px 0 hsla(0, 0%, 9%, .05);
+  box-shadow: 0 10px 24px 0 hsla(0, 0%, 9%, 0.05);
   background-color: #fff;
   padding: 12px 18px;
   border: none !important;
@@ -667,9 +662,7 @@ table {
   border-radius: 50%;
   justify-content: center;
   padding-top: 1px;
-
 }
-
 
 .grade-delete-img {
   content: url("/public/images/trash.png");
@@ -713,7 +706,7 @@ table {
 }
 
 .chatOpen {
-  background-color: #9933FF;
+  background-color: #9933ff;
   padding: 1rem;
   border-radius: 50%;
 }
@@ -728,3 +721,47 @@ table {
   height: 85vh;
   object-fit: contain;
 }
+
+/*TobetoPlatformSearchBar*/
+.form-control.mr-sm-2 {
+  background: #fff;
+  border-radius: 100px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
+  padding: 2px 1em;
+  width: 100%;
+  display: inline-flex;
+  justify-content: space-between;
+}
+
+.mr-sm-2::placeholder {
+  font-size: 14px;
+  padding: 0;
+}
+
+.search-btn {
+  background: transparent !important;
+  border: none !important;
+}
+
+/*TobetoPlatformSearchBar*/
+
+/* TobetoPlatformDropdown */
+.select-control {
+  border-radius: 2em !important;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  border: 3px solid transparent;
+  text-align: center;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  color: #333333;
+  min-width: 200px;
+  margin-left: 0;
+}
+.select-text {
+  grid-area: 1/1/2/3;
+  color: hsl(0, 0%, 50%); 
+  margin-left: 2px;
+  margin-right: 2px;
+  box-sizing: border-box;
+}
+/* TobetoPlatformDropdown */
