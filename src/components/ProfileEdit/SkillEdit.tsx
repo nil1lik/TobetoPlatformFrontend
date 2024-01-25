@@ -38,7 +38,7 @@ const SkillEdit = (props: Props) => {
         }}
       >
          <Form>
-          <Field as="select" name="value" className="form-control">
+          <Field as="select" name="value" className="form-control my-custom-select">
             <option value="" disabled selected>
               Seçiniz
             </option>
