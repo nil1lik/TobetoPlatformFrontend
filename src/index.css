@@ -19,12 +19,12 @@ footer {
   margin-top: auto !important;
 }
 
-.footer-style{
-  height: 100px; 
+.footer-style {
+  height: 100px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #9b33ff!important;
+  background-color: #9b33ff !important;
 }
 
 .footer-button.btn {
@@ -39,7 +39,6 @@ footer {
   height: 35px;
   vertical-align: middle;
 }
-
 
 .footer-button.btn:hover {
   background-color: white;
@@ -67,7 +66,7 @@ footer {
 }
 
 .banner-text {
-  margin-left: 20vw;
+  margin-left: 150px;
   color: #fff;
   font-size: 80px;
   font-weight: 700;
@@ -126,7 +125,7 @@ footer {
 }
 
 .form-control:focus {
-  box-shadow: 0 0 0 0.25rem rgba(153, 51, 255, .25) !important;
+  box-shadow: 0 0 0 0.25rem rgba(153, 51, 255, 0.25) !important;
 }
 
 .form-control:disabled {
@@ -177,7 +176,7 @@ footer {
 }
 
 .button-settings-end:hover {
-  background: #d64e3c
+  background: #d64e3c;
 }
 
 .button-save:hover {
@@ -295,9 +294,9 @@ footer {
   --bs-gutter-y: 0;
   display: flex;
   flex-wrap: wrap;
-  margin-top: calc(-1*var(--bs-gutter-y));
-  margin-right: calc(-.5*var(--bs-gutter-x));
-  margin-left: calc(-.5*var(--bs-gutter-x));
+  margin-top: calc(-1 * var(--bs-gutter-y));
+  margin-right: calc(-0.5 * var(--bs-gutter-x));
+  margin-left: calc(-0.5 * var(--bs-gutter-x));
 }
 
 .my-langs {
@@ -392,7 +391,6 @@ footer {
   font-weight: 500;
 }
 
-
 .uploadText {
   color: #828282;
   font-size: 16px;
@@ -457,7 +455,6 @@ table {
   background-size: contain;
   background-repeat: no-repeat;
   cursor: pointer;
-
 }
 
 .trashIcon:before {
@@ -492,7 +489,7 @@ table {
 
 .lang,
 .lang-edit {
-  box-shadow: 0 10px 24px 0 hsla(0, 0%, 9%, .05);
+  box-shadow: 0 10px 24px 0 hsla(0, 0%, 9%, 0.05);
   background-color: #fff;
   border-radius: 50px;
   display: flex;
@@ -541,7 +538,7 @@ table {
 .lang-title .lang-degree {
   font-size: 12px;
   font-weight: 500;
-  color: hsla(0, 0%, 51%, .8);
+  color: hsla(0, 0%, 51%, 0.8);
 }
 
 .lang-title-img {
@@ -550,7 +547,6 @@ table {
   display: flex;
   margin-right: 13px;
 }
-
 
 /* .lang-title:before {
   content: url("https://tobeto.com/globe.svg");
@@ -594,7 +590,6 @@ table {
   left: -22px;
 }
 
-
 .delete-lang-img {
   content: url("/public/images/trash.png");
   background-color: #fc6d6d;
@@ -604,7 +599,6 @@ table {
   border-radius: 50%;
   justify-content: center;
   margin-top: -2px;
-
 }
 
 .lang-edit:hover .delete-lang-img {
@@ -639,7 +633,7 @@ table {
 
 /* Yetkinliklerim START -eren*/
 .inline-card {
-  box-shadow: 0 10px 24px 0 hsla(0, 0%, 9%, .05);
+  box-shadow: 0 10px 24px 0 hsla(0, 0%, 9%, 0.05);
   background-color: #fff;
   padding: 12px 18px;
   border: none !important;
@@ -681,9 +675,7 @@ table {
   border-radius: 50%;
   justify-content: center;
   padding-top: 1px;
-
 }
-
 
 .grade-delete-img {
   content: url("/public/images/trash.png");
@@ -727,7 +719,7 @@ table {
 }
 
 .chatOpen {
-  background-color: #9933FF;
+  background-color: #9933ff;
   padding: 1rem;
   border-radius: 50%;
 }
@@ -743,55 +735,55 @@ table {
   object-fit: contain;
 }
 
-::-webkit-scrollbar{
+::-webkit-scrollbar {
   width: 10px;
 }
 
-::-webkit-scrollbar-thumb{
+::-webkit-scrollbar-thumb {
   background-color: #828282;
   border-radius: 2rem;
 }
 
-::-webkit-scrollbar-thumb:hover{
+::-webkit-scrollbar-thumb:hover {
   background-color: #9933ff;
 }
 
-::-webkit-scrollbar-track{
+::-webkit-scrollbar-track {
   background-color: #cccccc;
   border-radius: 2rem;
 }
 
-*::-webkit-scrollbar-track:active{
+*::-webkit-scrollbar-track:active {
   background-color: #828282;
-} 
+}
 
-.my-custom-select{
+.my-custom-select {
   height: 50px;
   border-radius: 8px !important;
   border: 1px solid #b3a6c0 !important;
   position: relative;
 }
 
-.my-custom-select::-webkit-scrollbar-thumb:hover{
+.my-custom-select::-webkit-scrollbar-thumb:hover {
   background-color: #9933ff !important;
 }
 
-.my-custom-select::-webkit-scrollbar-track:hover{
+.my-custom-select::-webkit-scrollbar-track:hover {
   background-color: #d4a9ff !important;
   border-radius: 8px !important;
 }
 
-.dropdown-menu{
-  padding:0px !important;
+.dropdown-menu {
+  padding: 0px !important;
 }
 
-.dropdown-item.dropdown-select-text{
+.dropdown-item.dropdown-select-text {
   text-align: center;
   background-color: #cccccc !important;
   color: #828282 !important;
 }
 
-.dropdown-menu.dropdown-menu-profil{
+.dropdown-menu.dropdown-menu-profil {
   width: 100%;
   border-radius: 6px;
   overflow: auto;
@@ -799,68 +791,67 @@ table {
   max-height: 225px;
 }
 
-.dropdown-menu.dropdown-menu-profil.show{
+.dropdown-menu.dropdown-menu-profil.show {
   border-color: #9933ff;
   background-color: #fff;
 }
 
-.dropdown-item.dropdown-item-profil{
+.dropdown-item.dropdown-item-profil {
   background-color: #fff;
   color: #000000;
 }
 
-.dropdown-item.dropdown-item-profil:hover{
+.dropdown-item.dropdown-item-profil:hover {
   background-color: #9933ff;
   color: #fff;
 }
 
-.dropdown-menu.dropdown-menu-profil::-webkit-scrollbar
-{
+.dropdown-menu.dropdown-menu-profil::-webkit-scrollbar {
   border-radius: 0rem 1rem 1rem 0rem;
   background: linear-gradient(#cccccc 50%, #fff 50%) !important;
 }
 
-.dropdown-menu.dropdown-menu-profil.show::-webkit-scrollbar{
+.dropdown-menu.dropdown-menu-profil.show::-webkit-scrollbar {
   width: 10px;
 }
 
-.dropdown-menu.dropdown-menu-profil.show::-webkit-scrollbar-thumb{
+.dropdown-menu.dropdown-menu-profil.show::-webkit-scrollbar-thumb {
   border-radius: 2rem;
 }
 
-.dropdown-menu.dropdown-menu-profil:hover::-webkit-scrollbar-thumb{
-  background-color: #9933FF !important;
+.dropdown-menu.dropdown-menu-profil:hover::-webkit-scrollbar-thumb {
+  background-color: #9933ff !important;
 }
 
-.dropdown-menu.dropdown-menu-profil::-webkit-scrollbar-track{
+.dropdown-menu.dropdown-menu-profil::-webkit-scrollbar-track {
   background-color: #cccccc;
   border-radius: 3rem;
 }
 
-.dropdown-menu.dropdown-menu-profil:hover::-webkit-scrollbar-track{
+.dropdown-menu.dropdown-menu-profil:hover::-webkit-scrollbar-track {
   background-color: #828282;
 }
 
-.btn.btn-profil{
+.btn.btn-profil {
   width: 100%;
   text-align: left;
   background-color: #fff !important;
   border-radius: 8px !important;
   border: 1px solid #b3a6c0 !important;
-  color:#828282 !important;
+  color: #828282 !important;
   padding: 0 0;
 }
 
-.btn.btn-profil:hover{
+.btn.btn-profil:hover {
   transition: 1s;
   border-color: #9933ff !important;
 }
 
-.btn.btn-profil.show{
+.btn.btn-profil.show {
   border-color: #9933ff !important;
 }
 
-.dropdown-indicatorSeparator{
+.dropdown-indicatorSeparator {
   align-self: stretch;
   width: 2px;
   background-color: rgb(204, 204, 204);
@@ -869,29 +860,29 @@ table {
   box-sizing: border-box;
 }
 
-.dropdown-toggle.dropdown-toggle-profil{
+.dropdown-toggle.dropdown-toggle-profil {
   min-height: 38px;
   height: 50px;
 }
-.dropdown-toggle.dropdown-toggle-profil::after{
+.dropdown-toggle.dropdown-toggle-profil::after {
   display: none;
 }
 
-.dropdown-toggle-svg-path{
+.dropdown-toggle-svg-path {
   stroke: #cccccc;
 }
 
-.btn.btn-profil:hover .dropdown-toggle-svg-path{
+.btn.btn-profil:hover .dropdown-toggle-svg-path {
   stroke: #9933ff;
   transition: 1s;
 }
 
-.btn.btn-profil.show .dropdown-toggle-svg-path{
+.btn.btn-profil.show .dropdown-toggle-svg-path {
   stroke: #9933ff;
 }
 
 .css-1jqq78o-placeholder {
-  grid-area: 1 / 1 / 2 / 3; 
+  grid-area: 1 / 1 / 2 / 3;
   color: rgb(128, 128, 128);
   margin-left: 2px;
   margin-right: 2px;
@@ -900,16 +891,6 @@ table {
 }
 
 /*TobetoPlatformSearchBar*/
-.form-control.mr-sm-2 {
-  background: #fff;
-  border-radius: 100px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
-  padding: 2px 1em;
-  width: 100%;
-  display: inline-flex;
-  justify-content: space-between;
-}
-
 .mr-sm-2::placeholder {
   font-size: 14px;
   padding: 0;
@@ -920,6 +901,26 @@ table {
   border: none !important;
 }
 
+.search-box {
+  background: #fff;
+  border-radius: 100px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
+  padding: 2px 1em;
+  width: 100%;
+  display: inline-flex;
+  justify-content: space-between;
+}
+
+.mr-sm-2 {
+  background: none;
+  border: none !important;
+  padding: 0;
+  outline: none;
+  font-size: 16px;
+}
+.w-100 {
+  width: 100% !important;
+}
 /*TobetoPlatformSearchBar*/
 
 /* TobetoPlatformDropdown */
@@ -936,7 +937,7 @@ table {
 }
 .select-text {
   grid-area: 1/1/2/3;
-  color: hsl(0, 0%, 50%); 
+  color: hsl(0, 0%, 50%);
   margin-left: 2px;
   margin-right: 2px;
   box-sizing: border-box;
