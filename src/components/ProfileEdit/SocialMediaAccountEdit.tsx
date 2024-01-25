@@ -2,31 +2,28 @@ import React, { useEffect, useState } from "react";
 import { Form, Formik, Field } from "formik";
 import { Col, Container, Row } from "react-bootstrap";
 import FormikInput from "../../utilities/FormikInput";
+import { GetSocialMediaAccountItem } from "../../models/responses/socialMediaAccount/getSocialMediaAccount";
 import SocialMediaAccountService from "../../services/socialMediaAccountService";
 
 type Props = {};
 
 const SocialMediaAccountEdit = (props: Props) => {
-  const [socialMediaAccounts, setsocialMediaAccounts] = useState<any[]>([]);
+  const [socialMediaAccounts, setsocialMediaAccounts] = useState<GetSocialMediaAccountItem[]>([]);
 
   const initialValues = {
     inputUrl: "",
   };
 
   useEffect(() => {
-    const socialMediaAccountService = new SocialMediaAccountService();
-    socialMediaAccountService
-      .getSocialMediaCategories()
-      .then((result) => {
-        if (result.data.items) {
-          setsocialMediaAccounts(result.data.items);
-        } else {
-          console.error("API'den dil seviyeleri alınamadı.");
-        }
-      })
-      .catch((error) => {
+    const fetchSocialMediaAccount = async () => {
+      try {
+        const result = await SocialMediaAccountService.getAllCategory(0, 6);
+        setsocialMediaAccounts(result.data.items)
+      } catch (error) {
         console.error("API isteği sırasında bir hata oluştu:", error);
-      });
+      }
+    }; 
+    fetchSocialMediaAccount();
   }, []);
 
   return (
