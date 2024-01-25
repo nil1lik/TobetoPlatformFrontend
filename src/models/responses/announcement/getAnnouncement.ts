@@ -9,4 +9,4 @@ export interface GetAnnouncementItem {
 
 export interface GetAnnouncement{
     items : GetAnnouncementItem[];
-}
+}  

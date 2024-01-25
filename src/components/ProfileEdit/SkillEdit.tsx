@@ -5,7 +5,7 @@ import SkillService from "../../services/skillService";
 import skillService from "../../services/skillService";
 import {
   GetSkill,
-  GetSkillItem,
+  GetSkillItem, 
 } from "../../models/responses/skill/getSkillResponse";
 
 type Props = {};

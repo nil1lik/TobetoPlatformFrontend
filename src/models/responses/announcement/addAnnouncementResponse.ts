@@ -1,1 +1,1 @@
-export interface AddAnnouncementResponse{}
+export interface AddAnnouncementResponse{} 

@@ -891,7 +891,7 @@ table {
 }
 
 .css-1jqq78o-placeholder {
-  grid-area: 1 / 1 / 2 / 3;
+  grid-area: 1 / 1 / 2 / 3; 
   color: rgb(128, 128, 128);
   margin-left: 2px;
   margin-right: 2px;
@@ -899,5 +899,46 @@ table {
   font-size: 16px;
 }
 
+/*TobetoPlatformSearchBar*/
+.form-control.mr-sm-2 {
+  background: #fff;
+  border-radius: 100px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
+  padding: 2px 1em;
+  width: 100%;
+  display: inline-flex;
+  justify-content: space-between;
+}
 
+.mr-sm-2::placeholder {
+  font-size: 14px;
+  padding: 0;
+}
 
+.search-btn {
+  background: transparent !important;
+  border: none !important;
+}
+
+/*TobetoPlatformSearchBar*/
+
+/* TobetoPlatformDropdown */
+.select-control {
+  border-radius: 2em !important;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  border: 3px solid transparent;
+  text-align: center;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  color: #333333;
+  min-width: 200px;
+  margin-left: 0;
+}
+.select-text {
+  grid-area: 1/1/2/3;
+  color: hsl(0, 0%, 50%); 
+  margin-left: 2px;
+  margin-right: 2px;
+  box-sizing: border-box;
+}
+/* TobetoPlatformDropdown */
