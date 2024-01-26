@@ -67,7 +67,7 @@ const SocialMediaAccountEdit = (props: Props) => {
 
             <Row>
               <Col xs={10}>
-                <div className="col-12 my-2 mt-5">
+                <div className="col-12 my-2">
                   <label
                     className="input-label-text"
                     style={{ display: "block", marginBottom: "5px" }}

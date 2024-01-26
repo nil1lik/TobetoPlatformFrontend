@@ -7,16 +7,17 @@ import { Col, Container, Row, Tab, Tabs } from "react-bootstrap";
 import "./platformTab.css"
 import AnnouncementService from "../../services/announcementService";
 import { GetAnnouncementItem } from "../../models/responses/announcement/getAnnouncement";
+import { GetAnnouncementTypeItem } from "../../models/responses/announcement/getAnnouncementTypeList";
 
 type Props = {
 };
 
 const PlatformTab = (props: Props) => {
   const announcementIconSrc = process.env.PUBLIC_URL + `/images/announcementDate.svg`;
-  const [announcement, setAnnouncement] = useState<GetAnnouncementItem[]>([])
+  const [announcement, setAnnouncement] = useState<GetAnnouncementTypeItem[]>([])
   useEffect(()=> {
     const fetchSkills = async () => {
-    const result = await AnnouncementService.getByFilter(0,5);
+    const result = await AnnouncementService.getAllAnnouncementTypeList(0,3);
     setAnnouncement(result.data.items);
     };
     fetchSkills();

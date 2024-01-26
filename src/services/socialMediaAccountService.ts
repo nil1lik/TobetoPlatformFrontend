@@ -18,16 +18,18 @@ class SocialMediaAccountService extends BaseService<
   UpdateSocialMediaAccountRequest
 >
 {
+  public  SocialMediaAccountUrl : string
   constructor(){
     super();
-    this.apiUrl = BASE_API_URL + "SocialMediaCategories/"
+    this.apiUrl = BASE_API_URL + "SocialMediaAccounts"
+    this.SocialMediaAccountUrl = BASE_API_URL+ "SocialMediaCategories"
   }
   getByFilter(pageIndex: number=0, pageSize: number=1) {
     return this.getAll(pageIndex, pageSize)
   }
 
   getAllCategory(pageIndex: number=0, pageSize: number=6): Promise<AxiosResponse<GetAllSocialMediaCategory, any>> {
-		return axios.get<GetAllSocialMediaCategory>(this.apiUrl+`?PageIndex=${pageIndex}&PageSize=${pageSize}`);
+		return axios.get<GetAllSocialMediaCategory>(this.dtoUrl+`?PageIndex=${pageIndex}&PageSize=${pageSize}`);
 	}
 }
 

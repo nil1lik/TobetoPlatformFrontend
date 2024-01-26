@@ -9,9 +9,11 @@ export class BaseService<
 	UpdateResponseType,
 > {
 	public apiUrl: string;
+	public dtoUrl?: string;
 
 	constructor() {
 		this.apiUrl = "";
+		this.dtoUrl ="";
 	}
 
 	getAll(pageIndex: number, pageSize: number): Promise<AxiosResponse<GetAllType, any>> {

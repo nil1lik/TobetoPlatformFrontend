@@ -8,7 +8,7 @@ const CertificateEdit = (props: Props) => {
   const initialValues = {};
 
   return (
-    <div>
+    <div className="container mt-5">
       <Formik
         initialValues={initialValues}
         onSubmit={(values) => {

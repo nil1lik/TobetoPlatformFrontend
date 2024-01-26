@@ -5,7 +5,7 @@ import SkillService from "../../services/skillService";
 import skillService from "../../services/skillService";
 import {
   GetSkill,
-  GetSkillItem, 
+  GetSkillItem,
 } from "../../models/responses/skill/getSkillResponse";
 
 type Props = {};
@@ -22,7 +22,7 @@ const SkillEdit = (props: Props) => {
     const fetchSkills = async () => {
       try {
         const result = await SkillService.getByFilter(0, 25);
-          setSkills(result.data.items);
+        setSkills(result.data.items);
       } catch (error) {
         console.error("API isteği sırasında bir hata oluştu:", error);
       }
@@ -35,13 +35,20 @@ const SkillEdit = (props: Props) => {
     setSelectedSkills((prevSkills) => [...prevSkills, values]);
   };
   return (
-    <>
-      <Formik
-        initialValues={initialValues}
-        onSubmit={handleSkillSubmit}
-      >
-         <Form>
-          <Field as="select" name="value" className="form-control my-custom-select">
+    <div className="container mt-5">
+      <Formik initialValues={initialValues} onSubmit={handleSkillSubmit}>
+        <Form>
+          <label
+            className="input-label-text"
+            style={{ display: "block", marginBottom: "5px" }}
+          >
+            Yetkinlik*
+          </label>
+          <Field
+            as="select"
+            name="value"
+            className="form-control my-custom-select"
+          >
             <option value="" disabled selected>
               Seçiniz
             </option>
@@ -70,7 +77,7 @@ const SkillEdit = (props: Props) => {
           </Card.Body>
         </Card>
       ))}
-    </>
+    </div>
   );
 };
 
