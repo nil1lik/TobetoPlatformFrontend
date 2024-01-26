@@ -29,7 +29,7 @@ class SocialMediaAccountService extends BaseService<
   }
 
   getAllCategory(pageIndex: number=0, pageSize: number=6): Promise<AxiosResponse<GetAllSocialMediaCategory, any>> {
-		return axios.get<GetAllSocialMediaCategory>(this.dtoUrl+`?PageIndex=${pageIndex}&PageSize=${pageSize}`);
+		return axios.get<GetAllSocialMediaCategory>(this.SocialMediaAccountUrl+`?PageIndex=${pageIndex}&PageSize=${pageSize}`);
 	}
 }
 
