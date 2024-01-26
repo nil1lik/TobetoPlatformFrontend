@@ -2,7 +2,7 @@ import { Field, Form, Formik } from "formik";
 import { Col, Container, Dropdown, FormSelect, Row, TabContainer } from "react-bootstrap";
 import FormikInput from "../../utilities/FormikInput";
 import React, { useEffect, useState } from "react";
-import CityService from "../../services/CityService";
+import CityService from "../../services/cityService";
 import { error } from "console";
 
 type Props = {};
@@ -20,41 +20,41 @@ const ExperienceEdit = (props: Props) => {
     toggle: "Çalışmaya Devam Ediyorum",
   };
 
-  useEffect(() => {
-    const cityService = new CityService();
-    cityService
-      .getCity()
-      .then((result) => {
-        if (result.data.items) {
-          console.log(result.data.items);
-          setCity(result.data.items);
-        } else {
-          console.error("API'den Şehirler Alınamadı.");
-        }
-      })
-      .catch((error) => {
-        console.error("API isteği sırasında bir hata oluştu:", error);
-      });
-  }, []);
+  // useEffect(() => {
+  //   const cityService = new CityService();
+  //   cityService
+  //     .getCity()
+  //     .then((result) => {
+  //       if (result.data.items) {
+  //         console.log(result.data.items);
+  //         setCity(result.data.items);
+  //       } else {
+  //         console.error("API'den Şehirler Alınamadı.");
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       console.error("API isteği sırasında bir hata oluştu:", error);
+  //     });
+  // }, []);
 
-  const [cityName,setCityName] =useState([])
+  // const [cityName,setCityName] =useState([])
 
-  const getCityName = (cityId: any) => {
-    const cityService = new CityService();
-  cityService
-    .getCityId(cityId)
-    .then((result) => {
-      if (result.data) {
-        console.log(result.data.name)
-        setCityName(result.data.name);
-      } else {
-        console.error("API'den İlçeler Alınamadı.");
-      }
-    })
-    .catch((error) => {
-      console.error("API isteği sırasında bir hata oluştu:", error);
-    });
-  };  
+  // const getCityName = (cityId: any) => {
+  //   const cityService = new CityService();
+  // cityService
+  //   .getCityId(cityId)
+  //   .then((result) => {
+  //     if (result.data) {
+  //       console.log(result.data.name)
+  //       setCityName(result.data.name);
+  //     } else {
+  //       console.error("API'den İlçeler Alınamadı.");
+  //     }
+  //   })
+  //   .catch((error) => {
+  //     console.error("API isteği sırasında bir hata oluştu:", error);
+  //   });
+  // };  
 
   
 
@@ -63,12 +63,12 @@ const ExperienceEdit = (props: Props) => {
   const handleCitySelect = (selectedCityKey:any, event:Object) => {
     // Seçilen şehiri state'e kaydet
     console.log(selectedCityKey);
-    getCityName(selectedCityKey);
+    // getCityName(selectedCityKey);
   };
   
 
   return (
-    <div>
+    <div className="container mt-5">
       <Formik
         initialValues={initialValues}
         onSubmit={(values) => {

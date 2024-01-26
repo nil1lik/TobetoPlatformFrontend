@@ -3,6 +3,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import React, { useEffect, useState } from "react";
 import LanguageService from "../../services/languageServices";
 import { GetLanguageItem } from "../../models/responses/language/getLanguage";
+import SelectBox from "../SelectBox";
 
 type Props = {};
 
@@ -68,7 +69,8 @@ const LanguageEdit = (props: Props) => {
                 </Field>
               </Col>
               <Col>
-                <Field
+              <SelectBox defaultText="Seviye Seçiniz*" selectBoxArray={selectedlanguageLevels} />
+                {/* <Field
                   as="select"
                   name="level"
                   className="custom-field form-select"
@@ -81,7 +83,7 @@ const LanguageEdit = (props: Props) => {
                       {level.name}
                     </option>
                   ))}
-                </Field>
+                </Field> */}
                 {/* Diğer alanlar için girişler */}
               </Col>
             </Row>

@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import { Form, Formik, Field } from "formik";
 import { Col, Container, Row } from "react-bootstrap";
 import FormikInput from "../../utilities/FormikInput";
-import { GetSocialMediaAccountItem } from "../../models/responses/socialMediaAccount/getSocialMediaAccount";
 import SocialMediaAccountService from "../../services/socialMediaAccountService";
+import { GetSocialMediaCategoryItem } from "../../models/responses/socialMediaAccount/getAllSocialMediaCategory";
 
 type Props = {};
 
 const SocialMediaAccountEdit = (props: Props) => {
-  const [socialMediaAccounts, setsocialMediaAccounts] = useState<GetSocialMediaAccountItem[]>([]);
+  const [socialMediaAccounts, setsocialMediaAccounts] = useState<GetSocialMediaCategoryItem[]>([]);
 
   const initialValues = {
     inputUrl: "",
@@ -67,7 +67,7 @@ const SocialMediaAccountEdit = (props: Props) => {
 
             <Row>
               <Col xs={10}>
-                <div className="col-12 my-2 mt-5">
+                <div className="col-12 my-2">
                   <label
                     className="input-label-text"
                     style={{ display: "block", marginBottom: "5px" }}
