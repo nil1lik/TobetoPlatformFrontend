@@ -1,9 +1,7 @@
 import { Field, Form, Formik } from "formik";
-import { Col, Container, Dropdown, FormSelect, Row, TabContainer } from "react-bootstrap";
+import { Col, Container, Dropdown, Row, TabContainer } from "react-bootstrap";
 import FormikInput from "../../utilities/FormikInput";
-import React, { useEffect, useState } from "react";
-import CityService from "../../services/cityService";
-import { error } from "console";
+import React, { useState } from "react";
 
 type Props = {};
 
