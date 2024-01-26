@@ -4,6 +4,7 @@ import { Col, Container, Dropdown, Image, Row } from "react-bootstrap";
 import ProfileInput from "./ProfileInput";
 import { countries } from "./countries";
 import CityService from "../../services/CityService";
+import SelectBox from "./SelectBox";
 
 type Props = {};
 
@@ -49,40 +50,40 @@ const ProfileInformationEdit = (props: Props) => {
 
   const fetchDistricts = (cityId: any) => {
     const cityService = new CityService();
-  cityService
-    .getDistrict(cityId)
-    .then((result) => {
-      if (result.data.districts) {
-        setDistricts(result.data.districts);
-      } else {
-        console.error("API'den İlçeler Alınamadı.");
-      }
-    })
-    .catch((error) => {
-      console.error("API isteği sırasında bir hata oluştu:", error);
-    });
-  };  
+    cityService
+      .getDistrict(cityId)
+      .then((result) => {
+        if (result.data.districts) {
+          setDistricts(result.data.districts);
+        } else {
+          console.error("API'den İlçeler Alınamadı.");
+        }
+      })
+      .catch((error) => {
+        console.error("API isteği sırasında bir hata oluştu:", error);
+      });
+  };
 
-  const [cityName,setCityName] =useState([])
+  const [cityName, setCityName] = useState([])
 
   const getCityName = (cityId: any) => {
     const cityService = new CityService();
-  cityService
-    .getCityId(cityId)
-    .then((result) => {
-      if (result.data) {
-        setCityName(result.data.name);
-      } else {
-        console.error("API'den İlçeler Alınamadı.");
-      }
-    })
-    .catch((error) => {
-      console.error("API isteği sırasında bir hata oluştu:", error);
-    });
-  };  
+    cityService
+      .getCityId(cityId)
+      .then((result) => {
+        if (result.data) {
+          setCityName(result.data.name);
+        } else {
+          console.error("API'den İlçeler Alınamadı.");
+        }
+      })
+      .catch((error) => {
+        console.error("API isteği sırasında bir hata oluştu:", error);
+      });
+  };
 
 
-  const handleCitySelect = (selectedCityKey:any, event:Object) => {
+  const handleCitySelect = (selectedCityKey: any, event: Object) => {
     // Seçilen şehiri state'e kaydet
     getCityName(selectedCityKey);
     fetchDistricts(selectedCityKey);
@@ -134,7 +135,8 @@ const ProfileInformationEdit = (props: Props) => {
 
                     </Field> */}
                     {/* </select> */}
-                    <Field as="select" name="value" className="form-control">
+
+                    {/* <Field as="select" name="value" className="form-control">
                       {countries.map((country: any) => (
                         <option
                           key={country.name}
@@ -142,7 +144,7 @@ const ProfileInformationEdit = (props: Props) => {
                           label={country.name}
                         />
                       ))}
-                    </Field>
+                    </Field> */}
                   </Col>
                   <Col className="col-11">
                     <ProfileInput
@@ -264,11 +266,12 @@ const ProfileInformationEdit = (props: Props) => {
                     ))}
                   </Dropdown.Menu>
                 </Dropdown>
+                {/* <SelectBox defaultText="Şehir Seçiniz*" selectBoxArray={city} /> */}
               </Col>
               <Col>
-                <label className="input-label-text" htmlFor="birthdate">
+                {/* <label className="input-label-text" htmlFor="birthdate">
                   İlçe
-                </label>
+                </label> */}
                 {/* <ProfileInput type='text' name='birthdate' label='İlçe*' placeholder='İlçe' /> */}
                 <Field
                   className="form-control my-custom-select"
@@ -285,6 +288,7 @@ const ProfileInformationEdit = (props: Props) => {
                     </option>
                   ))}
                 </Field>
+                {/* <SelectBox defaultText="İçe Seçiniz*" selectBoxArray={districts} /> */}
               </Col>
             </Row>
             <Row>

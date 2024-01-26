@@ -3,7 +3,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import React, { useEffect, useState } from "react";
 import LanguageService from "../../services/languageServices";
 import { GetLanguageItem } from "../../models/responses/language/getLanguage";
-import SelectBox from "../SelectBox";
+import SelectBox from "./SelectBox";
 
 type Props = {};
 
@@ -12,33 +12,33 @@ const LanguageEdit = (props: Props) => {
   const [languages, setLanguages] = useState<any[]>([]);
   const [selectedLanguages, setSelectedLanguages] = useState<GetLanguageItem[]>([]);
 
-  const initialValues =  {  
+  const initialValues = {
     id: 0,
-    name: "",  
+    name: "",
   };
 
   useEffect(() => {
-    const fetchLanguages = async() => {
-      try{
-        const result = await LanguageService.getByFilter(0,25);
+    const fetchLanguages = async () => {
+      try {
+        const result = await LanguageService.getByFilter(0, 25);
         setLanguages(result.data.items);
-      }catch(error){
+      } catch (error) {
         console.log("API isteği sırasında bir hata oluştu:", error);
       }
     };
-    fetchLanguages(); 
+    fetchLanguages();
 
 
-  const fetchLanguageLavel = async() => {
-    try{
-      const result = await LanguageService.getLanguageLevel(0,5);
-      setLanguageLevels(result.data.items);
-    }catch(error){
-      console.log("API isteği sırasında bir hata oluştu:", error);
-    }
-  }; 
-  fetchLanguageLavel();
-}, []); 
+    const fetchLanguageLavel = async () => {
+      try {
+        const result = await LanguageService.getLanguageLevel(0, 5);
+        setLanguageLevels(result.data.items);
+      } catch (error) {
+        console.log("API isteği sırasında bir hata oluştu:", error);
+      }
+    };
+    fetchLanguageLavel();
+  }, []);
 
   const handleLanguageSubmit = (values: GetLanguageItem) => {
     console.log("Seçilen dil: ", values);
@@ -49,11 +49,13 @@ const LanguageEdit = (props: Props) => {
       <Container className="mt-5">
         <Formik
           initialValues={initialValues}
-          onSubmit={(handleLanguageSubmit) }>
+          onSubmit={(handleLanguageSubmit)}>
           <Form>
             <Row>
               <Col>
-                <Field
+                <SelectBox defaultText="Dil Seçiniz*" selectBoxArray={languages} />
+
+                {/* <Field
                   as="select"
                   name="language"
                   className="custom-field form-select"
@@ -66,10 +68,12 @@ const LanguageEdit = (props: Props) => {
                       {language.name}
                     </option> 
                   ))}
-                </Field>
+                </Field> */}
               </Col>
               <Col>
-              <SelectBox defaultText="Seviye Seçiniz*" selectBoxArray={selectedlanguageLevels} />
+
+                <SelectBox defaultText="Seviye Seçiniz*" selectBoxArray={selectedlanguageLevels} />
+
                 {/* <Field
                   as="select"
                   name="level"

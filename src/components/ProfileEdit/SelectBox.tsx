@@ -3,7 +3,9 @@ import React from 'react'
 
 type Props = {
     defaultText: string;
-    selectBoxArray: {id: number, name: string}[];
+    selectBoxArray: {id: number, name: any, selectBoxArray: any}[];
+    // selectBoxSubArrayName: string;
+    // selectBoxSubArray?: {id: number}[];
 }
 
 const SelectBox = (props: Props) => {
@@ -18,7 +20,7 @@ const SelectBox = (props: Props) => {
             </option>
             {props.selectBoxArray.map((element: any) => (
                 <option key={element.id} value={element.id}>
-                    {element.name}
+                    {element.name || element.selectBoxArray}
                 </option>
             ))}
         </Field>)
