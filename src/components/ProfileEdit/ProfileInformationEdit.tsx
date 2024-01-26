@@ -3,90 +3,95 @@ import { Field, Form, Formik } from "formik";
 import { Col, Container, Dropdown, Image, Row } from "react-bootstrap";
 import ProfileInput from "./ProfileInput";
 import { countries } from "./countries";
-import CityService from "../../services/CityService";
+import { GetCityItem } from "../../models/responses/city/getCityResponse";
+import CityService from "../../services/cityService";
+import DistrictService from "../../services/districtService";
+import { GetDistrictItem } from "../../models/responses/district/getDistrictResponse";
 
 type Props = {};
+const initialValues: 
+GetCityItem={
+  id:0,
+  name: ""
+},
+
+other = {
+  firstname: "",
+  lastname: "",
+  value: "", // This corresponds to the selected country
+  phone: "",
+  birthdate: "",
+  "identity-number": "",
+  email: "",
+  country: "", // Assuming this field corresponds to the country, you may need to adjust it
+  street: "",
+  checked: false, // Assuming this field corresponds to the checkbox
+  degree: "",
+  univercityName: "",
+  department: "",
+  startDate: new Date(),
+  endDate: new Date(),
+  graduationDate: new Date(),
+  toggle: "Devam ediyorum",
+};
 
 const ProfileInformationEdit = (props: Props) => {
-  const [city, setCity] = useState<any[]>([]);
-  const initialValues = {
-    firstname: "",
-    lastname: "",
-    value: "", // This corresponds to the selected country
-    phone: "",
-    birthdate: "",
-    "identity-number": "",
-    email: "",
-    country: "", // Assuming this field corresponds to the country, you may need to adjust it
-    street: "",
-    checked: false, // Assuming this field corresponds to the checkbox
-    degree: "",
-    univercityName: "",
-    department: "",
-    startDate: new Date(),
-    endDate: new Date(),
-    graduationDate: new Date(),
-    toggle: "Devam ediyorum",
-  };
-
-  useEffect(() => {
-    const cityService = new CityService();
-    cityService
-      .getCity()
-      .then((result) => {
-        if (result.data.items) {
-          setCity(result.data.items);
-        } else {
-          console.error("API'den Şehirler Alınamadı.");
-        }
-      })
-      .catch((error) => {
-        console.error("API isteği sırasında bir hata oluştu:", error);
-      });
-  }, []);
-
-  const [districts, setDistricts] = useState([]);
-
-  const fetchDistricts = (cityId: any) => {
-    const cityService = new CityService();
-  cityService
-    .getDistrict(cityId)
-    .then((result) => {
-      if (result.data.districts) {
-        setDistricts(result.data.districts);
-      } else {
-        console.error("API'den İlçeler Alınamadı.");
-      }
-    })
-    .catch((error) => {
-      console.error("API isteği sırasında bir hata oluştu:", error);
-    });
-  };  
-
+  
+  const [city, setCity] = useState<GetCityItem[]>([]);
+  const [districts, setDistricts] = useState<GetDistrictItem[]>([]);
   const [cityName,setCityName] =useState([])
 
-  const getCityName = (cityId: any) => {
-    const cityService = new CityService();
-  cityService
-    .getCityId(cityId)
-    .then((result) => {
-      if (result.data) {
-        setCityName(result.data.name);
-      } else {
-        console.error("API'den İlçeler Alınamadı.");
+  useEffect(() => {
+    const fetchCities = async () => {
+      try {
+        const result = await CityService.getByFilter(0,81);
+        console.log(result.data.items);
+        setCity(result.data.items);
+      } catch (error) {
+        console.error("API isteği sırasında bir hata oluştu:",error);
       }
-    })
-    .catch((error) => {
-      console.error("API isteği sırasında bir hata oluştu:", error);
-    });
-  };  
+    };
+      fetchCities();
+  }, []);
+
+  
+
+  // useEffect(() => {
+  //   const fetchDistrict = async (cityId:any) => {
+  //     try {
+  //       const result = await DistrictService.getById()
+  //       setCity(result.data.items);
+  //     } catch (error) {
+  //       console.error("API isteği sırasında bir hata oluştu:",error);
+  //     }
+  //   };
+  //     fetchDistrict();
+  // }, []);
+  
+
+  // const getCityName = (cityId: any) => {
+  //   const cityService = new CityService();
+  // cityService
+  //   .getCityId(cityId)
+  //   .then((result) => {
+  //     if (result.data) {
+  //       setCityName(result.data.name);
+  //     } else {
+  //       console.error("API'den İlçeler Alınamadı.");
+  //     }
+  //   })
+  //   .catch((error) => {
+  //     console.error("API isteği sırasında bir hata oluştu:", error);
+  //   });
+  // };  
 
 
   const handleCitySelect = (selectedCityKey:any, event:Object) => {
     // Seçilen şehiri state'e kaydet
-    getCityName(selectedCityKey);
-    fetchDistricts(selectedCityKey);
+    // getCityName(selectedCityKey);
+    // fetchDistricts(selectedCityKey);
   };
+
 
 
   return (
@@ -217,7 +222,7 @@ const ProfileInformationEdit = (props: Props) => {
               </Col> */}
               <Col>
                 <label className="input-label-text">Şehir Seçiniz*</label>
-                <Dropdown aria-live="polite"  onSelect={handleCitySelect} className=" calender-select dropdown-profil">
+                <Dropdown aria-live="polite" onSelect={handleCitySelect} className=" calender-select dropdown-profil">
                   <Dropdown.Toggle 
                     aria-selected
                     variant="success"
