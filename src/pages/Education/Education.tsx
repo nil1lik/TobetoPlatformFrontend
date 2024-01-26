@@ -17,7 +17,7 @@ const Education = (props: Props) => {
         spanText="Eğitimlerim"
       />
       <Container>
-        <div className="filter-section mt-3">
+        <div className="filter-section mt-3"> 
           <Row>
             <Col className="col-md-5 col-12 mb-4">
               <TobetoPlatformSearchBar />

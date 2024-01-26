@@ -915,11 +915,17 @@ table {
   background: none;
   border: none !important;
   padding: 0;
-  outline: none;
+  outline: none !important;
   font-size: 16px;
 }
 .w-100 {
   width: 100% !important;
+}
+
+.search-icon{
+  width: 33px;
+  height: 33px;
+  fill: none;
 }
 /*TobetoPlatformSearchBar*/
 
