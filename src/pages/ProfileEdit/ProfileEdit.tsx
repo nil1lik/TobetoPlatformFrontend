@@ -11,6 +11,7 @@ import { useState } from "react";
 import React from "react";
 import "../../layouts/ProfileEditSidebar/profileEditSidebar.css"
 import SidebarButton from "../../components/ProfileEdit/SidebarButton";
+import { sidebarElements } from "../../constants/sidebarElements";
 
 type Props = {};
 
@@ -22,17 +23,6 @@ const ProfileEdit = (props: Props) => {
   const handleActiveTab = (text: string) => {
     setActiveTab(text);
   }
-
-  const sidebarElements = [
-    { name: "Kişisel Bilgilerim", value: "kisiselbilgilerim" },
-    { name: "Deneyimlerim", value: "deneyimlerim" },
-    { name: "Yetkinliklerim", value: "yetkinliklerim" },
-    { name: "Sertifikalarım", value: "sertifikalarım" },
-    { name: "Medya", value: "medya" },
-    { name: "Yabancı Dillerim", value: "yabancı dillerim" },
-    { name: "Ayarlar", value: "ayarlar" },
-    { name: "Test", value: "test" },
-  ];
 
   const renderContent = () => {
     switch (activeTab) {
@@ -77,7 +67,6 @@ const ProfileEdit = (props: Props) => {
                     setActiveTab={() => handleActiveTab(element.value)} />
                 ))
               }
-
             </Navbar>
           </Col>
           <Col xs={8}>
