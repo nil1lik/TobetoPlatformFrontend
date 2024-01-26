@@ -1,6 +1,4 @@
-import { GetAllDistrictByIdCity } from '../models/responses/city/getAllDistrictByIdCityResponse';
-import { GetDistrict } from '../models/responses/district/getDistrictResponse';
-//import axios from "axios"
+import { GetAllDistrictByIdCity, GetAllDistrictByIdCityItem} from '../models/responses/city/getAllDistrictByIdCityResponse';
 import { BaseService } from "./baseService";
 import { GetByIdCityResponse } from "../models/responses/city/getByIdCityResponse";
 import { GetCity } from "../models/responses/city/getCityResponse";
@@ -9,6 +7,7 @@ import { UpdateCityResponse } from "../models/responses/city/updateCityResponse"
 import { AddCityRequest } from "../models/requests/city/addCityRequest";
 import { UpdateCityRequest } from "../models/requests/city/updateCityRequest";
 import { BASE_API_URL } from "../environment/environment";
+import axios, { AxiosResponse } from 'axios';
 
 class CityService extends BaseService<
   GetCity,
@@ -22,14 +21,16 @@ class CityService extends BaseService<
   constructor(){
     super();
     this.apiUrl = BASE_API_URL + "Cities";
-    // this.dtoUrl= BASE_API_URL + "District"
+    this.dtoUrl= this.apiUrl + "/getDistrict";
   }
 
   getByFilter(pageIndex: number= 0, pageSize: number=81){
     return this.getAll(pageIndex,pageSize);
   }
   
-  
+  getAllDistrictByCityId(id: any): Promise<AxiosResponse<GetAllDistrictByIdCity, any>> {
+		return axios.get<GetAllDistrictByIdCity>(this.dtoUrl + "/" + id);
+	}
 }
 
 export default new CityService();
