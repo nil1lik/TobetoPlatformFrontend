@@ -18,7 +18,12 @@ const SelectBox: React.FC<Props> = (props) => {
         <select onChange={handleSelectChange} className='option form-control my-custom-select'>
             <option disabled selected>{props.defaultText}</option>
             {props.selectBoxArray.map(element => (
-                <option key={element.id || String(element)} value={element.id} className='form-control my-custom-input'>{element.name || String(element)}</option>
+                <option
+                    key={element.id || String(element)}
+                    value={element.id}
+                    className='form-control my-custom-input'>{
+                        element.name || String(element)}
+                </option>
             ))}
         </select>
     );
