@@ -10,6 +10,7 @@ import Settings from "../../components/ProfileEdit/Settings";
 import { useState } from "react";
 import React from "react";
 import "../../layouts/ProfileEditSidebar/profileEditSidebar.css"
+import SidebarButton from "../../components/ProfileEdit/SidebarButton";
 
 type Props = {};
 
@@ -18,25 +19,39 @@ const profileEditUrl = "/profilim/profilimi-duzenle";
 const ProfileEdit = (props: Props) => {
   const [activeTab, setActiveTab] = useState<string>("kisiselbilgilerim");
 
+  const handleActiveTab = (text: string) => {
+    setActiveTab(text);
+  }
+
+  const sidebarElements = [
+    { name: "Kişisel Bilgilerim", value: "kisiselbilgilerim" },
+    { name: "Deneyimlerim", value: "deneyimlerim" },
+    { name: "Yetkinliklerim", value: "yetkinliklerim" },
+    { name: "Sertifikalarım", value: "sertifikalarım" },
+    { name: "Medya", value: "medya" },
+    { name: "Yabancı Dillerim", value: "yabancı dillerim" },
+    { name: "Ayarlar", value: "ayarlar" },
+    { name: "Test", value: "test" },
+  ];
 
   const renderContent = () => {
     switch (activeTab) {
       case "kisiselbilgilerim":
-        return <ProfileInformationEdit/>;
+        return <ProfileInformationEdit />;
       case "deneyimlerim":
-        return <ExperienceEdit/>
+        return <ExperienceEdit />
       case "egitimhayatim":
-        return <GradutionEdit/>
+        return <GradutionEdit />
       case "yetkinliklerim":
-        return <SkillEdit/>
+        return <SkillEdit />
       case "sertifikalarım":
-        return <CertificateEdit/>
+        return <CertificateEdit />
       case "medya":
-        return <SocialMediaAccountEdit/>
+        return <SocialMediaAccountEdit />
       case "yabancı dillerim":
-        return <LanguageEdit/>
+        return <LanguageEdit />
       case "ayarlar":
-        return <Settings/>
+        return <Settings />
       default:
         return "İçerik bulunamadı."
     }
@@ -47,26 +62,33 @@ const ProfileEdit = (props: Props) => {
       <Container>
         <Row className="justify-content-center">
           <Col xs={3} className="col-control">
-          <Navbar className="flex-column profile-edit-nav" >
-            <Nav.Link className="profile-edit-nav-btn profile-sidebar-text bi bi-person" onClick={() => setActiveTab("kisiselbilgilerim")}> Kişisel Bilgilerim</Nav.Link>
+            <Navbar className="flex-column profile-edit-nav" >
+              {/* <Nav.Link className="profile-edit-nav-btn profile-sidebar-text bi bi-person" onClick={() => setActiveTab("kisiselbilgilerim")}> Kişisel Bilgilerim</Nav.Link>
             <Nav.Link className="profile-edit-nav-btn profile-sidebar-text bi bi-briefcase" onClick={() => setActiveTab("deneyimlerim")}> Deneyimlerim</Nav.Link>
             <Nav.Link className="profile-edit-nav-btn profile-sidebar-text bi bi-book" onClick={() => setActiveTab("egitimhayatim")}> Eğitim Hayatım</Nav.Link>
             <Nav.Link className="profile-edit-nav-btn profile-sidebar-text bi bi-code-slash" onClick={() => setActiveTab("yetkinliklerim")}> Yetkinliklerim</Nav.Link>
             <Nav.Link className="profile-edit-nav-btn profile-sidebar-text bi bi-award" onClick={() => setActiveTab("sertifikalarım")}> Sertifikalarım</Nav.Link>
             <Nav.Link className="profile-edit-nav-btn profile-sidebar-text bi bi-linkedin" onClick={() => setActiveTab("medya")}> Medya Hesaplarım</Nav.Link>
             <Nav.Link className="profile-edit-nav-btn profile-sidebar-text bi bi-translate" onClick={() => setActiveTab("yabancı dillerim")}> Yabancı Dillerim</Nav.Link>
-            <Nav.Link className="profile-edit-nav-btn profile-sidebar-text bi bi-gear" onClick={() => setActiveTab("ayarlar")}> Ayarlar</Nav.Link>
-          </Navbar>
+            <Nav.Link className="profile-edit-nav-btn profile-sidebar-text bi bi-gear" onClick={() => setActiveTab("ayarlar")}> Ayarlar</Nav.Link> */}
+              {
+                sidebarElements.map((element, index) => (
+                  <SidebarButton key={index} name={element.name}
+                    setActiveTab={() => handleActiveTab(element.value)} />
+                ))
+              }
+
+            </Navbar>
           </Col>
           <Col xs={8}>
-          <Card className="card-b">
-          <Card.Body>
-            {renderContent()}
-            </Card.Body>
-          </Card>
-         </Col>
+            <Card className="card-b">
+              <Card.Body>
+                {renderContent()}
+              </Card.Body>
+            </Card>
+          </Col>
         </Row>
-        </Container>
+      </Container>
     </div>
   );
 };
