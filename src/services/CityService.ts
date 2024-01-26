@@ -1,4 +1,4 @@
-import { GetAllDistrictByIdCity, GetAllDistrictByIdCityItem} from '../models/responses/city/getAllDistrictByIdCityResponse';
+import { GetAllDistrictByIdCity} from '../models/responses/city/getAllDistrictByIdCityResponse';
 import { BaseService } from "./baseService";
 import { GetByIdCityResponse } from "../models/responses/city/getByIdCityResponse";
 import { GetCity } from "../models/responses/city/getCityResponse";
@@ -28,7 +28,7 @@ class CityService extends BaseService<
     return this.getAll(pageIndex,pageSize);
   }
   
-  getAllDistrictByCityId(id: any): Promise<AxiosResponse<GetAllDistrictByIdCity, any>> {
+  getDistrictsBySelectedCityId(id: any): Promise<AxiosResponse<GetAllDistrictByIdCity, any>> {
 		return axios.get<GetAllDistrictByIdCity>(this.dtoUrl + "/" + id);
 	}
 }
