@@ -3,14 +3,22 @@ import { Field, Form, Formik } from "formik";
 import { Col, Container, Dropdown, Image, Row } from "react-bootstrap";
 import ProfileInput from "./ProfileInput";
 import { countries } from "./countries";
+import { GetCityItem } from "../../models/responses/city/getCityResponse";
 import CityService from "../../services/CityService";
-import SelectBox from "./SelectBox";
-
+import DistrictService from "../../services/districtService";
+import { GetDistrictItem } from "../../models/responses/district/getDistrictResponse";
+// import { GetAllDistrictByIdCity, GetDistrictByIdCityItem, districtItem } from "../../models/responses/city/getAllDistrictByIdCityResponse";
+import {
+  GetAllDistrictByIdCity,
+  GetAllDistrictByIdCityItem,
+  GetDistrictByIdCityNameItem
+} from "../../models/responses/city/getAllDistrictByIdCityResponse";
 type Props = {};
-
-const ProfileInformationEdit = (props: Props) => {
-  const [city, setCity] = useState<any[]>([]);
-  const initialValues = {
+const initialValues: GetCityItem = {
+    id: 0,
+    name: "",
+  },
+  other = {
     firstname: "",
     lastname: "",
     value: "", // This corresponds to the selected country
@@ -30,65 +38,60 @@ const ProfileInformationEdit = (props: Props) => {
     toggle: "Devam ediyorum",
   };
 
+const ProfileInformationEdit = (props: Props) => {
+  const [city, setCity] = useState<GetCityItem[]>([]);
+  const [getDistrictByCityId, setGetDistrictByCityId] = useState<GetAllDistrictByIdCityItem[]>([]);
+  const [cityName , setCityName] = useState<any>();
+  const [districtName, setDistrict] = useState<any>();
+
+  //Dropdown City List
   useEffect(() => {
-    const cityService = new CityService();
-    cityService
-      .getCity()
-      .then((result) => {
-        if (result.data.items) {
-          setCity(result.data.items);
-        } else {
-          console.error("API'den Şehirler Alınamadı.");
-        }
-      })
-      .catch((error) => {
+    const fetchCities = async () => {
+      try {
+        const result = await CityService.getByFilter(0, 81);
+        console.log(result);
+        setCity(result.data.items);
+
+      } catch (error) {
         console.error("API isteği sırasında bir hata oluştu:", error);
-      });
+      }
+    };
+    fetchCities();
   }, []);
 
-  const [districts, setDistricts] = useState([]);
-
-  const fetchDistricts = (cityId: any) => {
-    const cityService = new CityService();
-    cityService
-      .getDistrict(cityId)
-      .then((result) => {
-        if (result.data.districts) {
-          setDistricts(result.data.districts);
-        } else {
-          console.error("API'den İlçeler Alınamadı.");
-        }
-      })
-      .catch((error) => {
-        console.error("API isteği sırasında bir hata oluştu:", error);
-      });
+  // Dropdown District List
+  const fetchDistrict = async (cityId: any) => {
+    try {
+      const result = await CityService.getAllDistrictByCityId(cityId);
+      
+      setGetDistrictByCityId(result.data.districts);
+    } catch (error) {
+      console.error("API isteği sırasında bir hata oluştu:", error);
+    }
   };
 
-  const [cityName, setCityName] = useState([])
-
-  const getCityName = (cityId: any) => {
-    const cityService = new CityService();
-    cityService
-      .getCityId(cityId)
-      .then((result) => {
-        if (result.data) {
-          setCityName(result.data.name);
-        } else {
-          console.error("API'den İlçeler Alınamadı.");
-        }
-      })
-      .catch((error) => {
+  //Dropdown Selected City Name
+  const fetchCityName = async (cityNameId:any) => {
+      try {
+        const result = await CityService.getById(cityNameId);
+        setCityName(result.data);
+        
+      } catch (error) {
         console.error("API isteği sırasında bir hata oluştu:", error);
-      });
-  };
-
+      }
+    };
 
   const handleCitySelect = (selectedCityKey: any, event: Object) => {
-    // Seçilen şehiri state'e kaydet
-    getCityName(selectedCityKey);
-    fetchDistricts(selectedCityKey);
+    fetchDistrict(selectedCityKey);
+    fetchCityName(selectedCityKey);
   };
 
+  
+  const handleDistrictSelect = (selectedDistrictKey: any, event: Object) => {
+    setDistrict(selectedDistrictKey);
+  };
+
+  console.log(cityName)
 
   return (
     <div className="container mt-5">
@@ -219,15 +222,18 @@ const ProfileInformationEdit = (props: Props) => {
               </Col> */}
               <Col>
                 <label className="input-label-text">Şehir Seçiniz*</label>
-                <Dropdown aria-live="polite"  onSelect={handleCitySelect} className=" calender-select dropdown-profil">
-                  <Dropdown.Toggle 
+                <Dropdown
+                  onSelect={handleCitySelect}
+                  className=" calender-select dropdown-profil"
+                >
+                  <Dropdown.Toggle
                     aria-selected
                     variant="success"
                     id="dropdown-basic"
-                    className="btn-profil dropdown-toggle-profil"                
+                    className="btn-profil dropdown-toggle-profil"
                   >
                     <div className="css-14cgata-control">
-                      <div className="css-hlgwow">{cityName.length===0 ? "Şehir Seçiniz..." : cityName}</div>
+                      <div className="css-hlgwow">{cityName===undefined ? "Şehir Seçiniz..." : cityName.name}</div> 
                       <div className="css-1wy0on6">
                         <span className="dropdown-indicatorSeparator"></span>
                         <span className="dropdown-indicatorContainer">
@@ -235,7 +241,7 @@ const ProfileInformationEdit = (props: Props) => {
                             xmlns="/images/navbar-dropdown-toggle.svg"
                             width={20}
                             height={20}
-                            viewBox="3 2 20 20" 
+                            viewBox="3 2 20 20"
                             fill="none"
                             className="dropdown-toggle-svg"
                           >
@@ -253,9 +259,11 @@ const ProfileInformationEdit = (props: Props) => {
                   </Dropdown.Toggle>
 
                   <Dropdown.Menu className="dropdown-menu-profil">
-                    <Dropdown.Item className="dropdown-select-text" disabled>--Şehir Seçiniz--</Dropdown.Item>
+                    <Dropdown.Item className="dropdown-select-text" disabled>
+                      --Şehir Seçiniz--
+                    </Dropdown.Item>
                     {city.map((city: any) => (
-                      <Dropdown.Item 
+                      <Dropdown.Item
                         className="dropdown-item dropdown-item-profil"
                         key={city.id}
                         eventKey={city.id}
@@ -269,26 +277,56 @@ const ProfileInformationEdit = (props: Props) => {
                 {/* <SelectBox defaultText="Şehir Seçiniz*" selectBoxArray={city} /> */}
               </Col>
               <Col>
-                {/* <label className="input-label-text" htmlFor="birthdate">
-                  İlçe
-                </label> */}
-                {/* <ProfileInput type='text' name='birthdate' label='İlçe*' placeholder='İlçe' /> */}
-                <Field
-                  className="form-control my-custom-select"
-                  as="select"
-                  name="İlçe"
-                  label="İlçe*"
+                <label className="input-label-text">İlçe Seçiniz*</label>
+                <Dropdown
+                  onSelect={handleDistrictSelect}
+                  className=" calender-select dropdown-profil"
                 >
-                  <option disabled selected>
-                    İlçe Seçiniz*
-                  </option>
-                  {districts.map((districts: any) => (
-                    <option className="my-custom-option" key={districts} value={districts.id}>
-                      {districts}
-                    </option>
-                  ))}
-                </Field>
-                {/* <SelectBox defaultText="İçe Seçiniz*" selectBoxArray={districts} /> */}
+                  <Dropdown.Toggle
+                    aria-selected
+                    variant="success"
+                    id="dropdown-basic"
+                    className="btn-profil dropdown-toggle-profil"
+                  >
+                    <div className="css-14cgata-control">
+                      <div className="css-hlgwow">{districtName===undefined ? "İlçe Seçiniz..." : districtName}</div>
+                      <div className="css-1wy0on6">
+                        <span className="dropdown-indicatorSeparator"></span>
+                        <span className="dropdown-indicatorContainer">
+                          <svg
+                            xmlns="/images/navbar-dropdown-toggle.svg"
+                            width={20}
+                            height={20}
+                            viewBox="3 2 20 20"
+                            fill="none"
+                            className="dropdown-toggle-svg"
+                          >
+                            <path
+                              d="M6 9L12 15L18 9"
+                              strokeWidth={2}
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              className="dropdown-toggle-svg-path"
+                            ></path>
+                          </svg>
+                        </span>
+                      </div>
+                    </div>
+                  </Dropdown.Toggle>
+
+                  <Dropdown.Menu className="dropdown-menu-profil">
+                    
+                    {getDistrictByCityId.map((districts: any) => (
+                      <Dropdown.Item
+                        className="dropdown-item dropdown-item-profil"
+                        key={districts}
+                        eventKey={districts}
+                      >
+                        {districts}
+                      </Dropdown.Item>
+                    ))}
+                  </Dropdown.Menu>
+                </Dropdown>
               </Col>
             </Row>
             <Row>
