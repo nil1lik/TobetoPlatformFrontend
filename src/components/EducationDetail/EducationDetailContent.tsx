@@ -8,8 +8,7 @@ import {
   Card,
   Col,
   Container,
-  Row,
-  Tooltip,
+  Row
 } from "react-bootstrap";
 
 type Props = {

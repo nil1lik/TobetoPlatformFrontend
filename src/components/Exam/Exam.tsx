@@ -2,17 +2,29 @@ import React, { useEffect, useState } from "react";
 import { Card, Row } from "react-bootstrap";
 import "../../components/Exam/exam.css";
 import ExamService from "../../services/examService";
+import { GetExamItem } from "../../models/responses/exam/getExam";
 
 type Props = {};
 
 const Exam = (props: Props) => {
-  const [exam, setExam] = useState<any[]>([]);
+  const [exam, setExams] = useState<GetExamItem[]>([]);
+
   useEffect(() => {
-    const examService = new ExamService();
-    examService.getExam().then((result) => {
-      setExam(result.data.items);
-    });
+    const fetchExam = async () => {
+      try {
+        const result = await ExamService.getByFilter(0, 1);
+          setExams(result.data.items);
+      } catch (error) {
+        console.error("API isteği sırasında bir hata oluştu:", error);
+      }
+    };
+    fetchExam();
   }, []);
+
+  //   examService.getExam().then((result) => {
+  //     setExam(result.data.items);
+  //   });
+  // }, []);
 
   return (
     <div className="row cv-box cv-padding">

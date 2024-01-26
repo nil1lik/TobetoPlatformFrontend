@@ -1,79 +1,54 @@
 import { Field, Form, Formik } from "formik";
 import { Container, Row, Col } from "react-bootstrap";
 import React, { useEffect, useState } from "react";
-import {
-  Language,
-  LanguageLevel,
-} from "../../models/requests/language/getLanguageLevel";
 import LanguageService from "../../services/languageServices";
+import { GetLanguageItem } from "../../models/responses/language/getLanguage";
 
 type Props = {};
 
 const LanguageEdit = (props: Props) => {
-  const [languageLevels, setLanguageLevels] = useState<any[]>([]);
+  const [selectedlanguageLevels, setLanguageLevels] = useState<any[]>([]);
   const [languages, setLanguages] = useState<any[]>([]);
+  const [selectedLanguages, setSelectedLanguages] = useState<GetLanguageItem[]>([]);
 
-  const initialValues: Language = {
+  const initialValues =  {  
     id: 0,
-    languageLevelId: 1,
-    name: "",
+    name: "",  
   };
 
   useEffect(() => {
-    const languageService = new LanguageService();
+    const fetchLanguages = async() => {
+      try{
+        const result = await LanguageService.getByFilter(0,25);
+        setLanguages(result.data.items);
+      }catch(error){
+        console.log("API isteği sırasında bir hata oluştu:", error);
+      }
+    };
+    fetchLanguages(); 
 
-    // Fetching languages
-    languageService
-      .getLanguage()
-      .then((result) => {
-        if (result.data.items) {
-          setLanguages(result.data.items);
-        } else {
-          console.error("API'den dil seviyeleri alınamadı.");
-        }
-      })
-      .catch((error) => {
-        console.error("API isteği sırasında bir hata oluştu:", error);
-      });
 
-    // Fetching language levels
-    languageService
-      .getLanguageLevel()
-      .then((result) => {
-        if (result.data.items) {
-          setLanguageLevels(result.data.items);
-        } else {
-          console.error("API'den dil seviyeleri alınamadı.");
-        }
-      })
-      .catch((error) => {
-        console.error("API isteği sırasında bir hata oluştu:", error);
-      });
-    //post
-  }, []);
+  const fetchLanguageLavel = async() => {
+    try{
+      const result = await LanguageService.getLanguageLevel(0,5);
+      setLanguageLevels(result.data.items);
+    }catch(error){
+      console.log("API isteği sırasında bir hata oluştu:", error);
+    }
+  }; 
+  fetchLanguageLavel();
+}, []); 
 
+  const handleLanguageSubmit = (values: GetLanguageItem) => {
+    console.log("Seçilen dil: ", values);
+    setSelectedLanguages((prevLanguages) => [...prevLanguages, values]);
+  };
   return (
     <div>
       <Container className="mt-5">
         <Formik
           initialValues={initialValues}
-          onSubmit={(values) => {
-            const languageService = new LanguageService();
-            languageService
-              .updateLanguage(values)
-              .then((result) => {
-                if (result.data.items) {
-                  setLanguageLevels(result.data.items);
-                } else {
-                  console.error("API'den dil seviyeleri alınamadı.");
-                }
-              })
-              .catch((error) => {
-                console.error("API isteği sırasında bir hata oluştu:", error);
-              });
-            console.log(values);
-          }}
-        >
+          onSubmit={(handleLanguageSubmit) }>
           <Form>
             <Row>
               <Col>
@@ -88,7 +63,7 @@ const LanguageEdit = (props: Props) => {
                   {languages.map((language: any) => (
                     <option key={language.id} value={language.id}>
                       {language.name}
-                    </option>
+                    </option> 
                   ))}
                 </Field>
               </Col>
@@ -98,10 +73,10 @@ const LanguageEdit = (props: Props) => {
                   name="level"
                   className="custom-field form-select"
                 >
-                  <option value="" disabled hidden>
+                  <option value=""  disabled hidden>
                     Seviye Seçiniz*
                   </option>
-                  {languageLevels.map((level: any) => (
+                  {selectedlanguageLevels.map((level: any) => (
                     <option key={level.id} value={level.id}>
                       {level.name}
                     </option>

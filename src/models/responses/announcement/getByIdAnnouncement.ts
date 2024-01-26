@@ -1,1 +1,1 @@
-export interface GetByIdAnnouncement{}
+export interface GetByIdAnnouncement{} 

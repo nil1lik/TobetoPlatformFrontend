@@ -68,7 +68,7 @@ const ExperienceEdit = (props: Props) => {
   
 
   return (
-    <div>
+    <div className="container mt-5">
       <Formik
         initialValues={initialValues}
         onSubmit={(values) => {

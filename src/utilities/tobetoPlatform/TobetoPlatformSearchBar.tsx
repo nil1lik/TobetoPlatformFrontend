@@ -1,24 +1,17 @@
 import React from "react";
-import { Button, Col, Form, Image, Row } from "react-bootstrap";
+import { Button, Col, Form, InputGroup, Row } from "react-bootstrap";
 
-type Props = {}
+type Props = {};
 
 const TobetoPlatformSearchBar = (props: Props) => {
   return (
-    <div>
-      <Form>
-        <Row>
-          <Col xs="auto">
-            <Form.Control
-              type="text"
-              placeholder="Search"
-              className=" mr-sm-2"
-            />
-          </Col>
-        </Row>
-      </Form>
+    <div className="searchBox search-box">
+      <Form.Control type="text" placeholder="Arama" className="w-100 mr-sm-2" />
+      <Button className="search-btn">
+        <img src="../images/search.svg" />
+      </Button>
     </div>
-  )
-}
+  );
+};
 
-export default TobetoPlatformSearchBar
+export default TobetoPlatformSearchBar;
