@@ -4,7 +4,6 @@ import { Col, Container, Dropdown, Image, Row } from "react-bootstrap";
 import ProfileInput from "./ProfileInput";
 import { countries } from "./countries";
 import { GetCityItem } from "../../models/responses/city/getCityResponse";
-import CityService from "../../services/cityService";
 import DistrictService from "../../services/districtService";
 import { GetDistrictItem } from "../../models/responses/district/getDistrictResponse";
 // import { GetAllDistrictByIdCity, GetDistrictByIdCityItem, districtItem } from "../../models/responses/city/getAllDistrictByIdCityResponse";
@@ -13,6 +12,9 @@ import {
   GetAllDistrictByIdCityItem,
   GetDistrictByIdCityNameItem
 } from "../../models/responses/city/getAllDistrictByIdCityResponse";
+import CityService from "../../services/cityService";
+
+
 type Props = {};
 const initialValues: GetCityItem = {
     id: 0,
@@ -63,7 +65,6 @@ const ProfileInformationEdit = (props: Props) => {
   const fetchDistrict = async (cityId: any) => {
     try {
       const result = await CityService.getAllDistrictByCityId(cityId);
-      
       setGetDistrictByCityId(result.data.districts);
     } catch (error) {
       console.error("API isteği sırasında bir hata oluştu:", error);
