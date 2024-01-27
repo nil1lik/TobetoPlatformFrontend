@@ -1,0 +1,15 @@
+.announcement-card-line {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+}
+
+.page-item.active .page-link {
+    background-color:green!important;
+    border: none;
+    color: #fff;
+}
