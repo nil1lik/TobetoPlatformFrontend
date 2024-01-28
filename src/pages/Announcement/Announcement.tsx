@@ -27,6 +27,8 @@ const Announcement = (props: Props) => {
     fetchAnnouncement();
   }, []);
 
+  
+
   return (
     <>
       <TobetoPlatformBannerTop
@@ -56,7 +58,9 @@ const Announcement = (props: Props) => {
                 showDefaultOption={true}
               />
             </Col>
-            <Col></Col>
+            <Col>
+              <button className="announcement-btn" />
+            </Col>
           </Row>
         </div>
         <Row className="announcement-card-line">
@@ -72,12 +76,12 @@ const Announcement = (props: Props) => {
           ))}
         </Row>
         <Row className="pagination">
-        <Pagination>
-          <Pagination.Prev />
-          <Pagination.Item>{1}</Pagination.Item>
-          <Pagination.Item>{2}</Pagination.Item>
-          <Pagination.Next />
-        </Pagination>
+          <Pagination>
+              <Pagination.Prev className="pagi-prev"/>
+              <Pagination.Item active>{1}</Pagination.Item>
+              <Pagination.Item>{2}</Pagination.Item>
+              <Pagination.Next className="pagi-next"/>
+          </Pagination>
         </Row>
       </Container>
     </>
