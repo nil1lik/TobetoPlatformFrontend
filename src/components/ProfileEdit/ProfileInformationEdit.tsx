@@ -3,13 +3,20 @@ import { Field, Form, Formik } from "formik";
 import { Col, Container, Image, Row } from "react-bootstrap";
 import ProfileInput from "./ProfileInput";
 import { GetCityItem } from "../../models/responses/city/getCityResponse";
-import CityService from "../../services/CityService";
+import CityService from "../../services/cityService";
 import SelectBox from "./SelectBox";
+import UserProfileService from "../../services/userProfileService";
+import { GetByIdUser } from "../../models/responses/user/getByIdUser";
+import { ProfileDto } from "../../models/responses/user/profileDto";
 
 type Props = {};
-const initialValues: GetCityItem = {
+const initialValues: ProfileDto = {
+    // items: [],
     id: 0,
     name: "",
+    firstname: "",
+    lastname: "",
+    status: false,
 },
     other = {
         firstname: "",
@@ -35,7 +42,27 @@ const ProfileInformationEdit2 = (props: Props) => {
     const [cities, setCities] = useState<GetCityItem[]>([]);
     // const [selectedCityId, setSelectedCityId] = useState<number | null>(null);
     const [districts, setDistricts] = useState<any[]>([]);
+    const [profileData, setProfileData] = useState<GetByIdUser>();
 
+    const getUser = async (userId: number) => {
+        try {
+            const result = await UserProfileService.GetById(userId);
+            setProfileData(result.data)
+            console.log(typeof result.data.firstName);
+        } catch (error) {
+            console.log("Id ile kullanıcı alınırken hata oluştu.", error);
+        }
+    }
+
+    const fetchCities = async () => {
+        try {
+            const result = await CityService.getByFilter(0, 81);
+            setCities(result.data.items);
+
+        } catch (error) {
+            console.error("API isteği sırasında bir hata oluştu:", error);
+        }
+    };
 
     const handleCityId = async (cityId: number) => {
         // setSelectedCityId(cityId);
@@ -49,17 +76,12 @@ const ProfileInformationEdit2 = (props: Props) => {
     }
 
     useEffect(() => {
-        const fetchCities = async () => {
-            try {
-                const result = await CityService.getByFilter(0, 81);
-                setCities(result.data.items);
-
-            } catch (error) {
-                console.error("API isteği sırasında bir hata oluştu:", error);
-            }
-        };
         fetchCities();
+        getUser(1);
     }, []);
+
+
+
 
     return (
         <div className="container mt-5">
@@ -84,6 +106,7 @@ const ProfileInformationEdit2 = (props: Props) => {
                                     name="firstname"
                                     label="Adınız"
                                     placeholder="Adınız"
+                                    value={profileData?.firstName || "Adınız"}
                                 />
                             </Col>
                             <Col>
@@ -92,6 +115,7 @@ const ProfileInformationEdit2 = (props: Props) => {
                                     name="lastname"
                                     label="Soyadınız"
                                     placeholder="Soyadınız"
+                                    value={profileData?.lastName || "Soyadınız"}
                                 />
                             </Col>
                         </Row>
@@ -122,6 +146,7 @@ const ProfileInformationEdit2 = (props: Props) => {
                                             name="phone"
                                             label="Telefon"
                                             placeholder="Telefon Numaranız"
+                                            value={"+905555555555"}
                                         />
                                     </Col>
                                 </Row>
@@ -132,6 +157,7 @@ const ProfileInformationEdit2 = (props: Props) => {
                                     name="birthdate"
                                     label="Doğum Tarihiniz*"
                                     placeholder="Doğum tarihiniz"
+                                    value="01.01.2000"
                                 />
                             </Col>
                         </Row>

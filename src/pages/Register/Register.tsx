@@ -5,14 +5,15 @@ import AppForm from "../../components/Login/AppForm";
 import { Container, Image, Row } from "react-bootstrap";
 import FormikInput from "../../utilities/FormikInput";
 import { Formik, Form } from "formik";
-import UserService from "../../services/userService";
-import { userData } from "../../models/requests/user/userData";
+import UserService from "../../services/userProfileService";
 import { object, string } from "yup";
+import { userRegisterRequest } from "../../models/requests/user/userRegisterRequest";
+import UserRegisterService from "../../services/userRegisterService";
 
 type Props = {  formClassName?: string};
 
 function Register(props: Props) {
-  const initialValues: userData = {
+  const initialValues: userRegisterRequest = {
     firstName: "",
     lastName: "",
     email: "",
@@ -36,7 +37,7 @@ function Register(props: Props) {
             initialValues={initialValues}
             validationSchema={validationSchema}
             onSubmit={(values) => {
-              const userService = new UserService();
+              const userService = new UserRegisterService();
               userService
                 .addUser(values)
                 .then((result) => {
