@@ -17,7 +17,7 @@ const Education = (props: Props) => {
         spanText="Eğitimlerim"
       />
       <Container>
-        <div className="filter-section mt-3">
+        <div className="filter-section mt-3"> 
           <Row>
             <Col className="col-md-5 col-12 mb-4">
               <TobetoPlatformSearchBar />
@@ -25,17 +25,19 @@ const Education = (props: Props) => {
             <Col>
               <TobetoPlatformDropdown
                 dropdownName="Kurum Seçiniz"
-                act1="İstanbul Kodluyor"
-                showDefaultOption={true}
+                opt={["İstanbul Kodluyor"]}
+                showDefaultOption={true} 
               />
             </Col>
             <Col>
               <TobetoPlatformDropdown
                 dropdownName="Sıralama"
-                act1="Adına Göre (A-Z)"
-                act2="Adına Göre (Z-A)"
-                act3="Tarihe Göre (Y-E)"
-                act4="Tarihe Göre (E-Y)"
+                // act1="Adına Göre (A-Z)"
+                // act2="Adına Göre (Z-A)"
+                // act3="Tarihe Göre (Y-E)"
+                // act4="Tarihe Göre (E-Y)"
+                opt={["Adına Göre (A-Z)", "Adına Göre (Z-A)", "Tarihe Göre (Y-E)","Tarihe Göre (E-Y)"]}
+
               />
             </Col>
             <Col></Col>
@@ -49,7 +51,7 @@ const Education = (props: Props) => {
             </div>
           </div>
           <div className="col-12">
-            <EducationCard></EducationCard>
+            {/* <EducationCard></EducationCard> */} 
           </div>
         </Row>
       </Container>

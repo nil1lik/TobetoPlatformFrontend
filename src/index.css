@@ -35,7 +35,7 @@ footer {
   font-weight: 700;
   text-align: center;
   align-items: center;
-  display: inline-block; 
+  display: inline-block;
   height: 35px;
   vertical-align: middle;
 }
@@ -915,11 +915,17 @@ table {
   background: none;
   border: none !important;
   padding: 0;
-  outline: none;
+  outline: none !important;
   font-size: 16px;
 }
 .w-100 {
   width: 100% !important;
+}
+
+.search-icon {
+  width: 33px;
+  height: 33px;
+  fill: none;
 }
 /*TobetoPlatformSearchBar*/
 
@@ -944,3 +950,12 @@ table {
 }
 
 /* TobetoPlatformDropdown */
+
+/* Show more button*/
+.show-more {
+  width: "48px"; 
+  height: "48px";
+  border-radius: "50%";
+  background-size: "cover";
+  variant:"light"; 
+}

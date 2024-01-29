@@ -29,7 +29,7 @@ const Announcement = (props: Props) => {
 
   
 
-  return (
+  return ( 
     <>
       <TobetoPlatformBannerTop
         url="https://tobeto.com/_next/static/media/edu-banner3.d7dc50ac.svg"
@@ -44,17 +44,14 @@ const Announcement = (props: Props) => {
             <Col>
               <TobetoPlatformDropdown
                 dropdownName="Organizasyon"
-                act1="İstanbul Kodluyor"
+                opt={["İstanbul Kodluyor"]}
                 showDefaultOption={true}
-              />
+              /> 
             </Col>
             <Col>
               <TobetoPlatformDropdown
                 dropdownName="Sıralama"
-                act1="Adına Göre (A-Z)"
-                act2="Adına Göre (Z-A)"
-                act3="Tarihe Göre (Y-E)"
-                act4="Tarihe Göre (E-Y)"
+                opt={["Adına Göre (A-Z)", "Adına Göre (Z-A)", "Tarihe Göre (Y-E)","Tarihe Göre (E-Y)"]}
                 showDefaultOption={true}
               />
             </Col>

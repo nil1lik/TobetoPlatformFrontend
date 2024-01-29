@@ -1,22 +1,22 @@
-import React from 'react'
-import { Tab, Tabs } from 'react-bootstrap'
+import React from "react";
+import { Tab, Tabs } from "react-bootstrap";
 
-type Props = {}
-
+type Props = {};
 
 const TobetoPlatformTab = (props: Props) => {
   return (
     <Tabs
-    defaultActiveKey="educations"
+      defaultActiveKey="educations"
       transition={false}
       id="noanim-tab-example"
-      className="mb3 TobetoPlatformTab"
+      className="mb3 tobetoPlatformTab"
     >
-        <Tab eventKey="educations" title = "Tüm Eğitimlerim"></Tab>
-        <Tab eventKey="continue" title = "Devam Ettiklerim"></Tab>
-        <Tab eventKey="completed" title = "Tamamladıklarım"></Tab>
+      <Tab eventKey="educations" title="Tüm Eğitimlerim"></Tab>
+      <Tab eventKey="continue" title="Devam Ettiklerim"></Tab>
+      <Tab eventKey="completed" title="Tamamladıklarım"></Tab>
     </Tabs>
-  )
-}
+  );
+};
 
-export default TobetoPlatformTab; 
+export default TobetoPlatformTab;
+
