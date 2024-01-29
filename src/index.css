@@ -35,7 +35,7 @@ footer {
   font-weight: 700;
   text-align: center;
   align-items: center;
-  display: inline-block; 
+  display: inline-block;
   height: 35px;
   vertical-align: middle;
 }
@@ -922,7 +922,7 @@ table {
   width: 100% !important;
 }
 
-.search-icon{
+.search-icon {
   width: 33px;
   height: 33px;
   fill: none;
@@ -950,3 +950,12 @@ table {
 }
 
 /* TobetoPlatformDropdown */
+
+/* Show more button*/
+.show-more {
+  width: "48px"; 
+  height: "48px";
+  border-radius: "50%";
+  background-size: "cover";
+  variant:"light"; 
+}

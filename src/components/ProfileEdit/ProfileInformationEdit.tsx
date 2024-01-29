@@ -58,7 +58,7 @@ const ProfileInformationEdit2 = (props: Props) => {
                 console.error("API isteği sırasında bir hata oluştu:", error);
             }
         };
-        fetchCities();
+        fetchCities();  
     }, []);
 
     return (

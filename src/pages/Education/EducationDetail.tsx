@@ -1,7 +1,6 @@
 import React from "react";
 import { Card, Col, Container, Row, Tab, Tabs } from "react-bootstrap";
 import "./educationDetail.css";
-import ProgressBar from "react-bootstrap/ProgressBar";
 import EducationDetailTab from "../../components/EducationDetail/EducationDetailTab";
 import EducationDetailHeader from "../../components/EducationDetail/EducationDetailHeader";
 
