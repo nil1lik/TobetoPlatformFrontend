@@ -13,14 +13,13 @@ const educationButtonText = "Eğitime Git";
 const EducationCard = (props: Props) => {
   return (
     <>
-        <TobetoPlatformVerticalCard
-          image={props.image}
-          text={props.text}
-          date={props.date}
-          buttonText={educationButtonText}
-        />
-      
+      <TobetoPlatformVerticalCard
+        image={props.image}
+        text={props.text}
+        date={props.date}
+        buttonText={educationButtonText}
+      />
     </>
-  ); 
+  );
 };
 export default EducationCard;

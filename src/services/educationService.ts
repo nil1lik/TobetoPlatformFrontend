@@ -19,7 +19,7 @@ UpdateEducationResponse
     super();
     this.apiUrl = BASE_API_URL + "EducationPaths"; 
   }
-  getByFilter(pageIndex:number=0, pageSize: number=10){
+  getByFilter(pageIndex:number=0, pageSize: number=16){
     return this.getAll(pageIndex, pageSize);
   }
 } 

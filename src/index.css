@@ -908,7 +908,7 @@ table {
   padding: 2px 1em;
   width: 100%;
   display: inline-flex;
-  justify-content: space-between;
+  align-items: end;
 }
 
 .mr-sm-2 {
@@ -923,8 +923,8 @@ table {
 }
 
 .search-icon {
-  width: 33px;
-  height: 33px;
+  width: 30px;
+  height: 30px;
   fill: none;
 }
 /*TobetoPlatformSearchBar*/
@@ -974,13 +974,34 @@ table {
   font-weight: 600;
   color: #828282;
   cursor: pointer;
- 
 }
 
-.show-more-text{
+.show-more-text {
   font-size: 12px;
   font-weight: 600;
-  color: #828282; 
+  color: #828282;
   cursor: pointer;
 }
 /* Show more button*/
+
+/* delete-filter */
+.filter-btn {
+  justify-content: center;
+  background-color: #fff;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
+  border: none;
+  padding: 8px;
+  border-radius: 2em;
+  content: url();
+}
+
+.filter-btn:before {
+  content: "";
+  background-image: url(/public/images/read.c10d9cc3.svg);
+  background-repeat: no-repeat;
+  background-size: 1.5em 1.5em;
+  width: 1.5em;
+  height: 1.5em;
+  display: block;
+}
+/* delete-filter */

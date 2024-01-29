@@ -3,7 +3,6 @@ import { Card, Col, Container, Row, Tab, Tabs } from "react-bootstrap";
 import EducationDetailContent from "./EducationDetailContent";
 import EducationDetailAbout from "./EducationDetailAbout";
 import "./educationDetailTab.css" 
-
 type Props = {};
 
 const EducationDetailTab = (props: Props) => {
