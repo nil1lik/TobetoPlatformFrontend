@@ -10,7 +10,6 @@ import { GetAnnouncementTypeItem } from "../../models/responses/announcement/get
 import { Link } from "react-router-dom";
 import { GetEducationItem } from "../../models/responses/education/getEducation";
 import educationService from "../../services/educationService";
-import EducationDetailAbout from "../EducationDetail/EducationDetailAbout";
 
 type Props = {};
 
@@ -80,7 +79,7 @@ const PlatformTab = (props: Props) => {
             />
           ))}
         </Row>
-        <Link to={"/egitimlerim"} style={{ textDecoration: "none" }}>
+        <Link to={"/egitimlerim/"} style={{ textDecoration: "none" }}>
           <div className="show-more">
             <Button className="show-more-button"></Button>
             <p className="show-more-text">{showMoreText}</p>
@@ -100,10 +99,10 @@ const PlatformTab = (props: Props) => {
             />
           ))}
           <Link to={"/duyurular"} style={{ textDecoration: "none" }}>
-          <div className="show-more">
-            <Button className="show-more-button"></Button>
-            <p className="show-more-text">{showMoreText}</p>
-          </div>
+            <div className="show-more">
+              <Button className="show-more-button"></Button>
+              <p className="show-more-text">{showMoreText}</p>
+            </div>
           </Link>
         </Row>
       </Tab>

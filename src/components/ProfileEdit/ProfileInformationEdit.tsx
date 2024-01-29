@@ -43,7 +43,7 @@ const initialValues: ProfileDto = {
         street: "",
         checked: false, // Assuming this field corresponds to the checkbox
         degree: "",
-        univercityName: "",
+        universityName: "",
         department: "",
         startDate: new Date(),
         endDate: new Date(),
