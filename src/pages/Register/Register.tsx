@@ -9,6 +9,7 @@ import UserService from "../../services/userProfileService";
 import { object, string } from "yup";
 import { userRegisterRequest } from "../../models/requests/user/userRegisterRequest";
 import UserRegisterService from "../../services/userRegisterService";
+import { EmailValidationMessageRule, FirstNameValidationMessageRule, LastNameValidationMessageRule, PasswordValidationMessageRule } from "../../utilities/validationMessageRules/validationMessageRules";
 
 type Props = {  formClassName?: string};
 
@@ -21,12 +22,10 @@ function Register(props: Props) {
   };
 
   const validationSchema = object({
-    firstName: string().required("İsim alanı zorunludur.").min(3).max(50),
-    lastName: string().required("Soyisim alanı zorunludur.").max(30),
-    email: string()
-      .required("Email alanı zorunludur.")
-      .email("Lütfen geçerli bir e-posta adresi giriniz."),
-    password: string().required().min(8, "En az sekiz karakter olmalıdır"),
+    firstName: FirstNameValidationMessageRule.firstName,
+    lastName: LastNameValidationMessageRule.lastName,
+    email: EmailValidationMessageRule.email,
+    password: PasswordValidationMessageRule.password,
   });
 
   return (

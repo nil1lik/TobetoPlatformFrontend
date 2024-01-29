@@ -8,6 +8,19 @@ import SelectBox from "./SelectBox";
 import UserProfileService from "../../services/userProfileService";
 import { GetByIdUser } from "../../models/responses/user/getByIdUser";
 import { ProfileDto } from "../../models/responses/user/profileDto";
+import { date, object, string } from "yup";
+import { BirthdateValidationMessageRule, EmailValidationMessageRule, FirstNameValidationMessageRule, IdentityNumberValidationMessageRule, LastNameValidationMessageRule, PhoneValidationMessageRule, TextAreaValidationMessageRule } from "../../utilities/validationMessageRules/validationMessageRules";
+
+const validationSchema = object({
+    firstName: FirstNameValidationMessageRule.firstName,
+    lastName: LastNameValidationMessageRule.lastName,
+    phone: PhoneValidationMessageRule.phone,
+    birthdate: BirthdateValidationMessageRule.birthdate,
+    identityNumber: IdentityNumberValidationMessageRule.identityNumber,
+    email: EmailValidationMessageRule.email, 
+    street: TextAreaValidationMessageRule.street,
+    aboutMe: TextAreaValidationMessageRule.aboutMe,
+  });
 
 type Props = {};
 const initialValues: ProfileDto = {
@@ -19,12 +32,12 @@ const initialValues: ProfileDto = {
     status: false,
 },
     other = {
-        firstname: "",
-        lastname: "",
+        firstName: "",
+        lastName: "",
         value: "", // This corresponds to the selected country
         phone: "",
         birthdate: "",
-        "identity-number": "",
+        identityNumber: "",
         email: "",
         country: "", // Assuming this field corresponds to the country, you may need to adjust it
         street: "",
@@ -93,6 +106,7 @@ const ProfileInformationEdit2 = (props: Props) => {
                 />
             </div>
             <Formik
+                validationSchema={validationSchema}
                 initialValues={initialValues}
                 onSubmit={(values) => {
                 }}
@@ -103,7 +117,7 @@ const ProfileInformationEdit2 = (props: Props) => {
                             <Col>
                                 <ProfileInput
                                     type="text"
-                                    name="firstname"
+                                    name="firstName"
                                     label="Adınız"
                                     placeholder="Adınız"
                                     value={profileData?.firstName || "Adınız"}
@@ -112,7 +126,7 @@ const ProfileInformationEdit2 = (props: Props) => {
                             <Col>
                                 <ProfileInput
                                     type="text"
-                                    name="lastname"
+                                    name="lastName"
                                     label="Soyadınız"
                                     placeholder="Soyadınız"
                                     value={profileData?.lastName || "Soyadınız"}
@@ -165,7 +179,7 @@ const ProfileInformationEdit2 = (props: Props) => {
                             <Col>
                                 <ProfileInput
                                     type="text"
-                                    name="identity-number"
+                                    name="identityNumber"
                                     label="TC Kimlik No*"
                                     placeholder="TC Kimlik No"
                                 />
@@ -183,7 +197,7 @@ const ProfileInformationEdit2 = (props: Props) => {
                             <Col>
                                 <ProfileInput
                                     type="text"
-                                    name="birthdate"
+                                    name="country"
                                     label="Ülke*"
                                     placeholder="Ülke"
                                 />
@@ -215,15 +229,15 @@ const ProfileInformationEdit2 = (props: Props) => {
                         </Row>
                         <Row>
                             <Col>
-                                <label className="input-label-text" htmlFor="street">
+                                <label className="input-label-text" htmlFor="aboutMe">
                                     Hakkımda
                                 </label>
                                 <Field
                                     className="form-control my-custom-input textarea-style"
                                     rows="5"
                                     as="textarea"
-                                    id="street"
-                                    name="street"
+                                    id="aboutMe"
+                                    name="aboutMe"
                                 ></Field>
                             </Col>
                         </Row>
