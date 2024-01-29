@@ -6,7 +6,7 @@ type Props = {
   startDate: string;
   endDate: string;
   timeSpent: string;
-  estimatedDuration: string;
+  estimatedDuration: string; 
   category: string;
   company: string;
 };
@@ -70,7 +70,7 @@ const EducationDetailAbout = (props: Props) => {
           <img className="hidden-icon sg-icon sg-file" src="/images/file.png" />
             <label>Video</label>
           </Col>
-          <Col lg={10}>1</Col>
+          <Col lg={10}>1</Col> 
         </div>
         <div id="last-section" className="info-section row">
           <Col lg={2}>

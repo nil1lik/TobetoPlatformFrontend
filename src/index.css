@@ -951,11 +951,36 @@ table {
 
 /* TobetoPlatformDropdown */
 
-/* Show more button*/
-.show-more {
-  width: "48px"; 
-  height: "48px";
-  border-radius: "50%";
-  background-size: "cover";
-  variant:"light"; 
+/* Show more button/text - PlatformTab*/
+.show-more-button {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-size: cover;
+  background-image: url("https://tobeto.com/_next/static/media/showMore.f5ba3f81.svg");
+  background-color: #fff !important;
+  border: none;
+  cursor: pointer;
+  display: block;
 }
+
+.show-more {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 600;
+  color: #828282;
+  cursor: pointer;
+ 
+}
+
+.show-more-text{
+  font-size: 12px;
+  font-weight: 600;
+  color: #828282; 
+  cursor: pointer;
+}
+/* Show more button*/
