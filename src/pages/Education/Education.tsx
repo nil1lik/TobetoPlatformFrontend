@@ -24,12 +24,14 @@ const Education = (props: Props) => {
             </Col>
             <Col>
               <TobetoPlatformDropdown
+                dropdownName="Kurum Seçiniz"
                 act1="İstanbul Kodluyor"
                 showDefaultOption={true}
               />
             </Col>
             <Col>
               <TobetoPlatformDropdown
+                dropdownName="Sıralama"
                 act1="Adına Göre (A-Z)"
                 act2="Adına Göre (Z-A)"
                 act3="Tarihe Göre (Y-E)"

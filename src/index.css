@@ -937,15 +937,16 @@ table {
   text-align: center;
   font-size: 14px !important;
   font-weight: 600 !important;
-  color: #333333;
+  color: hsl(0, 0%, 50%) !important;
   min-width: 200px;
   margin-left: 0;
 }
 .select-text {
   grid-area: 1/1/2/3;
-  color: hsl(0, 0%, 50%);
   margin-left: 2px;
   margin-right: 2px;
   box-sizing: border-box;
+  display: none;
 }
+
 /* TobetoPlatformDropdown */

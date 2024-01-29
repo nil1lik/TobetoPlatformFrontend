@@ -5,8 +5,9 @@ type Props = {
   showDefaultOption?: boolean;
   act1?: string;
   act2?: string;
-  act3?: string; 
+  act3?: string;
   act4?: string;
+  dropdownName: string;
 };
 
 const TobetoPlatformDropdown = (props: Props) => {
@@ -14,15 +15,14 @@ const TobetoPlatformDropdown = (props: Props) => {
     <div>
       <Form.Select className="select-control">
         {props.showDefaultOption && (
-          <option className="select-text" disabled>
-            Kurum Seçiniz
+          <option className="select-text" selected disabled>
+            {props.dropdownName}
           </option>
         )}
         {props.act1 && <option>{props.act1}</option>}
         {props.act2 && <option>{props.act2}</option>}
         {props.act3 && <option>{props.act3}</option>}
         {props.act4 && <option>{props.act4}</option>}
-
       </Form.Select>
       {/* <Dropdown as={ButtonGroup}>
         <Button variant="success">{props.splitBtn}</Button>

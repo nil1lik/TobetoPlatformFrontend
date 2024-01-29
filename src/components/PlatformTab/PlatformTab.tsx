@@ -68,7 +68,7 @@ const PlatformTab = (props: Props) => {
               announcementDescription={announcement.description}
             />
           ))}
-          <Link to={"/egitimlerim"} style={{ textDecoration: "none" }}>
+          <Link to={"/duyurular"} style={{ textDecoration: "none" }}>
             <div
               style={{
                 width: "fit-content",

@@ -3,7 +3,7 @@ import { Field, Form, Formik } from "formik";
 import { Col, Container, Image, Row } from "react-bootstrap";
 import ProfileInput from "./ProfileInput";
 import { GetCityItem } from "../../models/responses/city/getCityResponse";
-import CityService from "../../services/cityService";
+import CityService from "../../services/CityService";
 import SelectBox from "./SelectBox";
 
 type Props = {};
