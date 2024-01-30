@@ -26,7 +26,7 @@ const ProfileInput = (props: Props) => {
         name={props.name}
         label={props.label}
         placeHolder={props.placeholder}
-        value={props.value || ""}
+        value={props.value}
     />
     )
 }
