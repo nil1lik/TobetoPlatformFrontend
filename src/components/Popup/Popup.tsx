@@ -33,16 +33,16 @@ const Popup = (props: Props) => {
             {props.duration && <p>{props.duration}</p>}
           </>
         ))}
-        {props.button && <button>Raporu Görüntüle</button>}
+        {props.button && <button className="btnCard  w-100">Raporu Görüntüle</button>}
       </Modal.Body>
     </Modal>
   );
 };
 
-Popup.defaultProps = {
-  title: "",
-  description: "",
-  button: false,
-};
+// Popup.defaultProps = {
+//   title: "",
+//   description: "",
+//   button: false,
+// };
 
 export default Popup;

@@ -4,6 +4,7 @@ import { Col, Container, Row } from "react-bootstrap";
 import FormikInput from "../../utilities/FormikInput";
 import SocialMediaAccountService from "../../services/socialMediaAccountService";
 import { GetSocialMediaCategoryItem } from "../../models/responses/socialMediaAccount/getAllSocialMediaCategory";
+import SelectBox from "./SelectBox";
 
 type Props = {};
 
@@ -38,7 +39,8 @@ const SocialMediaAccountEdit = (props: Props) => {
           <Container>
             <Row className="align-items-center">
               <Col lg={4}>
-                <Field
+                <SelectBox defaultText="Seçiniz" selectBoxArray={socialMediaAccounts} className="mb-3"/>
+                {/* <Field
                   as="select"
                   className="custom-field form-select"
                   name="socialMedia" // Başlangıçta bir değer yoksa, buradaki name özelliğini kullanabilirsiniz.
@@ -51,7 +53,7 @@ const SocialMediaAccountEdit = (props: Props) => {
                       {socialMedia.name}
                     </option>
                   ))}
-                </Field>
+                </Field> */}
               </Col>
               <Col lg={8}>
                 <FormikInput name="inputUrl" placeHolder="https://" />

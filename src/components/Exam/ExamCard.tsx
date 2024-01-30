@@ -41,6 +41,7 @@ const ExamCard = (props: Props) => {
         title={props.name}
         description={props.description}
         duration={props.duration}
+        button={true}
         show={show}
         hide={handleClose}
       />

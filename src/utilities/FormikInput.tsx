@@ -12,7 +12,9 @@ type Props = {
 const FormikInput = (props: Props) => {
   return (
     <div className="mb-3">
-      <label className="input-label-text">{props.label}</label>
+      {
+       props.label && <label className="input-label-text">{props.label}</label>
+      } 
       <Field
         name={props.name}
         type={props.type || "text"}
