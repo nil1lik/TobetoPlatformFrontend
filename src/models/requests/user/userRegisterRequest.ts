@@ -1,4 +1,4 @@
-export interface userData {
+export interface userRegisterRequest {
     firstName:"",
     lastName:"",
     email:"",

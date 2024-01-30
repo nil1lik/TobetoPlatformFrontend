@@ -8,5 +8,5 @@ export interface GetAnnouncementTypeItem {
 };
 
 export interface GetAnnouncementTypeList{
-    items : GetAnnouncementTypeItem[];
-}
+    items : GetAnnouncementTypeItem[]; 
+} 

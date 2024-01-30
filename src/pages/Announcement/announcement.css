@@ -5,11 +5,70 @@
 
 .pagination {
     display: flex;
-    justify-content: center;
+    justify-content: center !important;
 }
 
-.page-item.active .page-link {
-    background-color:green!important;
-    border: none;
-    color: #fff;
+.page-link {
+    border-radius: 30% !important;
+    display: flex; 
+    width: 32px;
+    height: 32px;
+
 }
+
+.page-link span {
+    display: inline-block; /* Gerekirse */
+    text-align: center;
+}
+
+.page-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.75rem 0.200rem !important;
+}
+
+.pagi-prev .page-link {
+    background-color: black;
+}
+
+.pagi-next .page-link {
+    background-color: black;
+}
+
+.pagi-prev .page-link {
+    color: white;
+    content: url(/public/images/chevron-left-light.svg);
+    display: flex;
+    margin: auto;
+    align-items: center;
+    justify-content: center;
+    object-fit: cover;
+}
+
+.pagi-next .page-link {
+    color: white;
+    content: url(/public/images/chevron-right-light.svg);
+    display: flex;
+    margin: auto;
+    align-items: center;
+    justify-content: center;
+    object-fit: cover;
+}
+
+
+
+/* 
+.read-hide {
+    background-image: url(/public/images/read-unread.269c37dc.svg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    box-shadow: 0 0 20px rgba(0,0,0,.25);
+    border: none;
+    padding: 8px;
+    border-radius: 2em;
+} */
+
+
+

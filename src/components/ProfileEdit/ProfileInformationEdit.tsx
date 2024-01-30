@@ -3,27 +3,47 @@ import { Field, Form, Formik } from "formik";
 import { Col, Container, Image, Row } from "react-bootstrap";
 import ProfileInput from "./ProfileInput";
 import { GetCityItem } from "../../models/responses/city/getCityResponse";
-import CityService from "../../services/CityService";
+import CityService from "../../services/cityService";
 import SelectBox from "./SelectBox";
+import UserProfileService from "../../services/userProfileService";
+import { GetByIdUser } from "../../models/responses/user/getByIdUser";
+import { ProfileDto } from "../../models/responses/user/profileDto";
+import { date, object, string } from "yup";
+import { BirthdateValidationMessageRule, EmailValidationMessageRule, FirstNameValidationMessageRule, IdentityNumberValidationMessageRule, LastNameValidationMessageRule, PhoneValidationMessageRule, TextAreaValidationMessageRule } from "../../utilities/validationMessageRules/validationMessageRules";
+
+const validationSchema = object({
+    firstName: FirstNameValidationMessageRule.firstName,
+    lastName: LastNameValidationMessageRule.lastName,
+    phone: PhoneValidationMessageRule.phone,
+    birthdate: BirthdateValidationMessageRule.birthdate,
+    identityNumber: IdentityNumberValidationMessageRule.identityNumber,
+    email: EmailValidationMessageRule.email, 
+    street: TextAreaValidationMessageRule.street,
+    aboutMe: TextAreaValidationMessageRule.aboutMe,
+  });
 
 type Props = {};
-const initialValues: GetCityItem = {
+const initialValues: ProfileDto = {
+    // items: [],
     id: 0,
     name: "",
+    firstname: "",
+    lastname: "",
+    status: false,
 },
     other = {
-        firstname: "",
-        lastname: "",
+        firstName: "",
+        lastName: "",
         value: "", // This corresponds to the selected country
         phone: "",
         birthdate: "",
-        "identity-number": "",
+        identityNumber: "",
         email: "",
         country: "", // Assuming this field corresponds to the country, you may need to adjust it
         street: "",
         checked: false, // Assuming this field corresponds to the checkbox
         degree: "",
-        univercityName: "",
+        universityName: "",
         department: "",
         startDate: new Date(),
         endDate: new Date(),
@@ -35,7 +55,27 @@ const ProfileInformationEdit2 = (props: Props) => {
     const [cities, setCities] = useState<GetCityItem[]>([]);
     // const [selectedCityId, setSelectedCityId] = useState<number | null>(null);
     const [districts, setDistricts] = useState<any[]>([]);
+    const [profileData, setProfileData] = useState<GetByIdUser>();
 
+    const getUser = async (userId: number) => {
+        try {
+            const result = await UserProfileService.GetById(userId);
+            setProfileData(result.data)
+            console.log(typeof result.data.firstName);
+        } catch (error) {
+            console.log("Id ile kullanıcı alınırken hata oluştu.", error);
+        }
+    }
+
+    const fetchCities = async () => {
+        try {
+            const result = await CityService.getByFilter(0, 81);
+            setCities(result.data.items);
+
+        } catch (error) {
+            console.error("API isteği sırasında bir hata oluştu:", error);
+        }
+    };
 
     const handleCityId = async (cityId: number) => {
         // setSelectedCityId(cityId);
@@ -49,17 +89,12 @@ const ProfileInformationEdit2 = (props: Props) => {
     }
 
     useEffect(() => {
-        const fetchCities = async () => {
-            try {
-                const result = await CityService.getByFilter(0, 81);
-                setCities(result.data.items);
-
-            } catch (error) {
-                console.error("API isteği sırasında bir hata oluştu:", error);
-            }
-        };
         fetchCities();
+        getUser(1);
     }, []);
+
+
+
 
     return (
         <div className="container mt-5">
@@ -71,6 +106,7 @@ const ProfileInformationEdit2 = (props: Props) => {
                 />
             </div>
             <Formik
+                validationSchema={validationSchema}
                 initialValues={initialValues}
                 onSubmit={(values) => {
                 }}
@@ -81,17 +117,19 @@ const ProfileInformationEdit2 = (props: Props) => {
                             <Col>
                                 <ProfileInput
                                     type="text"
-                                    name="firstname"
+                                    name="firstName"
                                     label="Adınız"
                                     placeholder="Adınız"
+                                    value={profileData?.firstName || "Adınız"}
                                 />
                             </Col>
                             <Col>
                                 <ProfileInput
                                     type="text"
-                                    name="lastname"
+                                    name="lastName"
                                     label="Soyadınız"
                                     placeholder="Soyadınız"
+                                    value={profileData?.lastName || "Soyadınız"}
                                 />
                             </Col>
                         </Row>
@@ -122,6 +160,7 @@ const ProfileInformationEdit2 = (props: Props) => {
                                             name="phone"
                                             label="Telefon"
                                             placeholder="Telefon Numaranız"
+                                            value={"+905555555555"}
                                         />
                                     </Col>
                                 </Row>
@@ -132,6 +171,7 @@ const ProfileInformationEdit2 = (props: Props) => {
                                     name="birthdate"
                                     label="Doğum Tarihiniz*"
                                     placeholder="Doğum tarihiniz"
+                                    value="01.01.2000"
                                 />
                             </Col>
                         </Row>
@@ -139,7 +179,7 @@ const ProfileInformationEdit2 = (props: Props) => {
                             <Col>
                                 <ProfileInput
                                     type="text"
-                                    name="identity-number"
+                                    name="identityNumber"
                                     label="TC Kimlik No*"
                                     placeholder="TC Kimlik No"
                                 />
@@ -157,7 +197,7 @@ const ProfileInformationEdit2 = (props: Props) => {
                             <Col>
                                 <ProfileInput
                                     type="text"
-                                    name="birthdate"
+                                    name="country"
                                     label="Ülke*"
                                     placeholder="Ülke"
                                 />
@@ -189,15 +229,15 @@ const ProfileInformationEdit2 = (props: Props) => {
                         </Row>
                         <Row>
                             <Col>
-                                <label className="input-label-text" htmlFor="street">
+                                <label className="input-label-text" htmlFor="aboutMe">
                                     Hakkımda
                                 </label>
                                 <Field
                                     className="form-control my-custom-input textarea-style"
                                     rows="5"
                                     as="textarea"
-                                    id="street"
-                                    name="street"
+                                    id="aboutMe"
+                                    name="aboutMe"
                                 ></Field>
                             </Col>
                         </Row>

@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import AnnouncementService from "../../services/announcementService";
+import React, { useState } from "react";
 import { Card, Image, Modal } from "react-bootstrap";
+import Popup from "../Popup/Popup";
 
 type Props = {
   announcementType: string;
@@ -43,7 +42,18 @@ const AnnouncementCard = (props: Props) => {
           </span>
         </Card.Body>
       </Card>
-      <Modal size="lg" show={show} onHide={handleClose} centered>
+
+      <Popup title={props.announcementTitle} description={props.announcementDescription} show={show} hide={handleClose}/>
+
+
+
+
+
+
+
+
+
+      {/* <Modal size="lg" show={show} onHide={handleClose} centered>
         <Modal.Header closeButton>
           <Modal.Title style={{ fontWeight: "600" }}>
             {props.announcementTitle}
@@ -61,7 +71,7 @@ const AnnouncementCard = (props: Props) => {
             </>
           ))}
         </Modal.Body>
-      </Modal>
+      </Modal> */}
     </div>
   );
 };
