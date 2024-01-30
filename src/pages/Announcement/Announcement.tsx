@@ -27,7 +27,7 @@ const Announcement = (props: Props) => {
     fetchAnnouncement();
   }, []);
 
-  return ( 
+  return (
     <>
       <TobetoPlatformBannerTop
         url="https://tobeto.com/_next/static/media/edu-banner3.d7dc50ac.svg"
@@ -44,17 +44,22 @@ const Announcement = (props: Props) => {
                 dropdownName="Organizasyon"
                 opt={["İstanbul Kodluyor"]}
                 showDefaultOption={true}
-              /> 
+              />
             </Col>
             <Col>
               <TobetoPlatformDropdown
                 dropdownName="Sıralama"
-                opt={["Adına Göre (A-Z)", "Adına Göre (Z-A)", "Tarihe Göre (Y-E)","Tarihe Göre (E-Y)"]}
+                opt={[
+                  "Adına Göre (A-Z)",
+                  "Adına Göre (Z-A)",
+                  "Tarihe Göre (Y-E)",
+                  "Tarihe Göre (E-Y)",
+                ]}
                 showDefaultOption={true}
               />
             </Col>
             <Col>
-              <button className="announcement-btn" />
+              <button className="filter-btn" />
             </Col>
           </Row>
         </div>
@@ -72,10 +77,10 @@ const Announcement = (props: Props) => {
         </Row>
         <Row className="pagination">
           <Pagination>
-              <Pagination.Prev className="pagi-prev"/>
-              <Pagination.Item active>{1}</Pagination.Item>
-              <Pagination.Item>{2}</Pagination.Item>
-              <Pagination.Next className="pagi-next"/>
+            <Pagination.Prev className="pagi-prev" />
+            <Pagination.Item active>{1}</Pagination.Item>
+            <Pagination.Item>{2}</Pagination.Item>
+            <Pagination.Next className="pagi-next" />
           </Pagination>
         </Row>
       </Container>
