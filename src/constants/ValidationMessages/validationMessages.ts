@@ -17,7 +17,7 @@ export const emailMustBeValid = "Lütfen geçerli bir e-posta adresi giriniz.";
 export const emailValidRegex = /.*@.*/;
 
 export const phoneRegExp = /^(05\d{9})$/;
-export const phoneMustBeValid = "Geçerli bir Türkiye cep telefonu numarası giriniz";
+export const phoneMustBeValid = "Geçerli bir cep telefonu numarası giriniz.";
 
 export const identityNumberLength = 11;
 export const identityNumberLengthMessage = "TC Kimlik Numarası 11 karakter olmalıdır.";
@@ -26,4 +26,8 @@ export const inputRequired= "Bu alan zorunludur.";
 export const textAreaLength = 300;
 export const textAreaLengthMessage = "Maksimum 300 karakter girilebilir."
 
+export const experienceInputsMinLength = 5;
+export const experienceInputMinLengthMessage = "En az 5 karakter girmelisiniz.";
+export const experienceInputsMaxLength = 50;
+export const experienceInputMaxLengthMessage = "En az 50 karakter girebilirsiniz.";
 
