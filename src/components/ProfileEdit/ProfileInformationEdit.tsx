@@ -120,7 +120,7 @@ const ProfileInformationEdit2 = (props: Props) => {
                                     name="firstName"
                                     label="Adınız"
                                     placeholder="Adınız"
-                                    value={profileData?.firstName || "Adınız"}
+                                    // value={profileData?.firstName || "Adınız"}
                                 />
                             </Col>
                             <Col>
@@ -129,7 +129,7 @@ const ProfileInformationEdit2 = (props: Props) => {
                                     name="lastName"
                                     label="Soyadınız"
                                     placeholder="Soyadınız"
-                                    value={profileData?.lastName || "Soyadınız"}
+                                    // value={profileData?.lastName || "Soyadınız"}
                                 />
                             </Col>
                         </Row>
@@ -160,7 +160,7 @@ const ProfileInformationEdit2 = (props: Props) => {
                                             name="phone"
                                             label="Telefon"
                                             placeholder="Telefon Numaranız"
-                                            value={"+905555555555"}
+                                            // value={"+905555555555"}
                                         />
                                     </Col>
                                 </Row>
@@ -171,7 +171,6 @@ const ProfileInformationEdit2 = (props: Props) => {
                                     name="birthdate"
                                     label="Doğum Tarihiniz*"
                                     placeholder="Doğum tarihiniz"
-                                    value="01.01.2000"
                                 />
                             </Col>
                         </Row>
