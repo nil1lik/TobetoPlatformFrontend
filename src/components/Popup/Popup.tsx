@@ -5,6 +5,7 @@ type Props = {
   title: string;
   description: string;
   button?: boolean;
+  duration?: string;
   show: boolean;
   hide: () => void
 };
@@ -29,6 +30,7 @@ const Popup = (props: Props) => {
             <p>
               <br />
             </p>
+            {props.duration && <p>{props.duration}</p>}
           </>
         ))}
         {props.button && <button>Raporu Görüntüle</button>}

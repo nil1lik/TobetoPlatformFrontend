@@ -4,7 +4,6 @@ import FormikInput from '../../utilities/FormikInput'
 
 type Props = {
     className?: string,
-    as?: string,
     type: string,
     name: string,
     label: string,
