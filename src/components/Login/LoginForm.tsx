@@ -2,8 +2,15 @@ import { Field, Formik } from "formik";
 import React from "react";
 import { Button, Form, Image, Row } from "react-bootstrap";
 import FormikInput from "../../utilities/FormikInput";
+import { UserInformationValidationMessageRule } from "../../utilities/validationMessageRules/validationMessageRules";
+import { object } from "yup";
 
 type Props = { image: string, formClassName: string };
+
+const validationSchema = object({
+  email: UserInformationValidationMessageRule.email,
+  password: UserInformationValidationMessageRule.password,
+});
 
 const LoginForm = (props: Props) => {
   const initialValues = {};
@@ -11,6 +18,7 @@ const LoginForm = (props: Props) => {
   return (
     <Formik
       initialValues={initialValues}
+      validationSchema={validationSchema}
       onSubmit={(values) => {
         console.log(values);
       }}
@@ -22,7 +30,7 @@ const LoginForm = (props: Props) => {
         <Row>
           <FormikInput
             type="text"
-            name="e-posta"
+            name="email"
             label=""
             placeHolder="E-posta"
           />
