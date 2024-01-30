@@ -18,8 +18,9 @@ const validationSchema = object({
     birthdate: UserInformationValidationMessageRule.birthdate,
     identityNumber: UserInformationValidationMessageRule.identityNumber,
     email: UserInformationValidationMessageRule.email, 
-    street: UserInformationValidationMessageRule.street,
-    aboutMe: UserInformationValidationMessageRule.aboutMe,
+    country: UserInformationValidationMessageRule.country,
+    street: UserInformationValidationMessageRule.textArea,
+    aboutMe: UserInformationValidationMessageRule.textArea,
   });
 
 type Props = {};

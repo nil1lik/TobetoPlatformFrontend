@@ -7,12 +7,18 @@ import {
   GetSkill,
   GetSkillItem,
 } from "../../models/responses/skill/getSkillResponse";
+import { object } from "yup";
+import { UserInformationValidationMessageRule } from "../../utilities/validationMessageRules/validationMessageRules";
 
 type Props = {};
 const initialValues: GetSkillItem = {
   id: 0,
   name: "",
 };
+
+const validationSchema = object({
+  value: UserInformationValidationMessageRule.dropboxes
+})
 
 const SkillEdit = (props: Props) => {
   const [skills, setSkills] = useState<GetSkillItem[]>([]);
