@@ -1,3 +1,5 @@
+import { experienceInputsMaxLength, experienceInputMaxLengthMessage, userFirstnameMaxLengthMessage } from './../../constants/ValidationMessages/validationMessages';
+import { number, string } from "yup";
 import {
   identityNumberLength,
   identityNumberLengthMessage,
@@ -5,9 +7,6 @@ import {
   textAreaLengthMessage,
   userLastnameMinLength,
   userLastnameMinLengthMessage,
-} from "./../../constants/ValidationMessages/validationMessages";
-import { number, string } from "yup";
-import {
   emailMustBeValid,
   inputRequired,
   emailValidRegex,
@@ -22,13 +21,16 @@ import {
   userFirstnameMinLengthMessage,
   userLastnameMaxLength,
   userLastnameMaxLengthMessage,
+  experienceInputsMinLength,
+  experienceInputMinLengthMessage,
 } from "../../constants/ValidationMessages/validationMessages";
+import { yupToFormErrors } from 'formik';
 
 export const UserInformationValidationMessageRule = {
   firstName: string()
     .required(inputRequired)
     .min(userFirstnameMinLength, userFirstnameMinLengthMessage)
-    .max(userFirstnameMaxLength),
+    .max(userFirstnameMaxLength, userFirstnameMaxLengthMessage),
   lastName: string()
     .required(inputRequired)
     .min(userLastnameMinLength, userLastnameMinLengthMessage)
@@ -56,15 +58,20 @@ export const UserInformationValidationMessageRule = {
   phone: string()
     .required(inputRequired)
     .matches(phoneRegExp, phoneMustBeValid),
-  identityNumber: number()
+  identityNumber: string()
     .required(inputRequired)
     .max(identityNumberLength, identityNumberLengthMessage)
     .min(identityNumberLength, identityNumberLengthMessage),
   birthdate: string().required(inputRequired),
-  street: string()
-    .required(inputRequired)
+  country: string().required(inputRequired),
+  textArea: string()
     .max(textAreaLength, textAreaLengthMessage),
-  aboutMe: string()
-    .required(inputRequired)
-    .max(textAreaLength, textAreaLengthMessage),
+  experienceInputs: string()
+  .required(inputRequired)
+  .min(experienceInputsMinLength, experienceInputMinLengthMessage)
+  .max(experienceInputsMaxLength, experienceInputMaxLengthMessage),
+  dates: string()
+  .required(inputRequired),
+  dropboxes: string()
+  .required(inputRequired),
 };

@@ -12,15 +12,16 @@ import { UserInformationValidationMessageRule } from "../../utilities/validation
 import FormikInput from "../../utilities/FormikInput";
 
 const validationSchema = object({
-  firstName: UserInformationValidationMessageRule.firstName,
-  lastName: UserInformationValidationMessageRule.lastName,
-  phone: UserInformationValidationMessageRule.phone,
-  birthdate: UserInformationValidationMessageRule.birthdate,
-  identityNumber: UserInformationValidationMessageRule.identityNumber,
-  email: UserInformationValidationMessageRule.email,
-  street: UserInformationValidationMessageRule.street,
-  aboutMe: UserInformationValidationMessageRule.aboutMe,
-});
+    firstName: UserInformationValidationMessageRule.firstName,
+    lastName: UserInformationValidationMessageRule.lastName,
+    phone: UserInformationValidationMessageRule.phone,
+    birthdate: UserInformationValidationMessageRule.birthdate,
+    identityNumber: UserInformationValidationMessageRule.identityNumber,
+    email: UserInformationValidationMessageRule.email, 
+    country: UserInformationValidationMessageRule.country,
+    street: UserInformationValidationMessageRule.textArea,
+    aboutMe: UserInformationValidationMessageRule.textArea,
+  });
 
 type Props = {};
 
@@ -129,7 +130,7 @@ const ProfileInformationEdit2 = (props: Props) => {
                   </Col>
                   <Col className="col-11">
                     <FormikInput
-                      type="tel"
+                      type="number"
                       name="phone"
                       label="Telefon"
                       placeHolder="Telefon Numaranız"
@@ -149,7 +150,7 @@ const ProfileInformationEdit2 = (props: Props) => {
             <Row>
               <Col>
                 <FormikInput
-                  type="text"
+                  type="number"
                   name="identityNumber"
                   label="TC Kimlik No*"
                   placeHolder="TC Kimlik No"
