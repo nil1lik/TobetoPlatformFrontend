@@ -9,7 +9,7 @@ import UserService from "../../services/userProfileService";
 import { object, string } from "yup";
 import { userRegisterRequest } from "../../models/requests/user/userRegisterRequest";
 import UserRegisterService from "../../services/userRegisterService";
-import { EmailValidationMessageRule, FirstNameValidationMessageRule, LastNameValidationMessageRule, PasswordValidationMessageRule } from "../../utilities/validationMessageRules/validationMessageRules";
+import { UserInformationValidationMessageRule } from "../../utilities/validationMessageRules/validationMessageRules";
 
 type Props = {  formClassName?: string};
 
@@ -22,10 +22,10 @@ function Register(props: Props) {
   };
 
   const validationSchema = object({
-    firstName: FirstNameValidationMessageRule.firstName,
-    lastName: LastNameValidationMessageRule.lastName,
-    email: EmailValidationMessageRule.email,
-    password: PasswordValidationMessageRule.password,
+    firstName: UserInformationValidationMessageRule.firstName,
+    lastName: UserInformationValidationMessageRule.lastName,
+    email: UserInformationValidationMessageRule.email,
+    password: UserInformationValidationMessageRule.password,
   });
 
   return (

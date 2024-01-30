@@ -9,17 +9,17 @@ import UserProfileService from "../../services/userProfileService";
 import { GetByIdUser } from "../../models/responses/user/getByIdUser";
 import { ProfileDto } from "../../models/responses/user/profileDto";
 import { date, object, string } from "yup";
-import { BirthdateValidationMessageRule, EmailValidationMessageRule, FirstNameValidationMessageRule, IdentityNumberValidationMessageRule, LastNameValidationMessageRule, PhoneValidationMessageRule, TextAreaValidationMessageRule } from "../../utilities/validationMessageRules/validationMessageRules";
+import { UserInformationValidationMessageRule } from "../../utilities/validationMessageRules/validationMessageRules";
 
 const validationSchema = object({
-    firstName: FirstNameValidationMessageRule.firstName,
-    lastName: LastNameValidationMessageRule.lastName,
-    phone: PhoneValidationMessageRule.phone,
-    birthdate: BirthdateValidationMessageRule.birthdate,
-    identityNumber: IdentityNumberValidationMessageRule.identityNumber,
-    email: EmailValidationMessageRule.email, 
-    street: TextAreaValidationMessageRule.street,
-    aboutMe: TextAreaValidationMessageRule.aboutMe,
+    firstName: UserInformationValidationMessageRule.firstName,
+    lastName: UserInformationValidationMessageRule.lastName,
+    phone: UserInformationValidationMessageRule.phone,
+    birthdate: UserInformationValidationMessageRule.birthdate,
+    identityNumber: UserInformationValidationMessageRule.identityNumber,
+    email: UserInformationValidationMessageRule.email, 
+    street: UserInformationValidationMessageRule.street,
+    aboutMe: UserInformationValidationMessageRule.aboutMe,
   });
 
 type Props = {};

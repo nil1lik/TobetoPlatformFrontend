@@ -3,7 +3,7 @@ import { Field, Form, Formik, yupToFormErrors } from "formik";
 import FormikInput from "../../utilities/FormikInput";
 import { Col, Row, TabContainer } from "react-bootstrap";
 import { object, string } from "yup";
-import { NewPasswordValidationMessageRule, OldPasswordValidationMessageRule, RepeatNewPasswordValidationMessageRule } from "../../utilities/validationMessageRules/validationMessageRules";
+import { UserInformationValidationMessageRule } from "../../utilities/validationMessageRules/validationMessageRules";
 
 type Props = {};
 
@@ -15,9 +15,9 @@ const Settings = (props: Props) => {
   };
 
   const validationSchema = object({
-    oldPass: OldPasswordValidationMessageRule.oldPass,
-    newPass: NewPasswordValidationMessageRule.newPass,
-    repeatNewPass: RepeatNewPasswordValidationMessageRule.repeatNewPass,
+    oldPass: UserInformationValidationMessageRule.oldPass,
+    newPass: UserInformationValidationMessageRule.newPass,
+    repeatNewPass: UserInformationValidationMessageRule.repeatNewPass,
   });
   
   return (

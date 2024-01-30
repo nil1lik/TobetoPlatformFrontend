@@ -27,8 +27,6 @@ const Announcement = (props: Props) => {
     fetchAnnouncement();
   }, []);
 
-  
-
   return ( 
     <>
       <TobetoPlatformBannerTop
