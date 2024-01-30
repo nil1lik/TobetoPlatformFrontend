@@ -1,4 +1,4 @@
-import { experienceInputsMaxLength, experienceInputMaxLengthMessage } from './../../constants/ValidationMessages/validationMessages';
+import { experienceInputsMaxLength, experienceInputMaxLengthMessage, userFirstnameMaxLengthMessage } from './../../constants/ValidationMessages/validationMessages';
 import { number, string } from "yup";
 import {
   identityNumberLength,
@@ -30,7 +30,7 @@ export const UserInformationValidationMessageRule = {
   firstName: string()
     .required(inputRequired)
     .min(userFirstnameMinLength, userFirstnameMinLengthMessage)
-    .max(userFirstnameMaxLength, userLastnameMaxLengthMessage),
+    .max(userFirstnameMaxLength, userFirstnameMaxLengthMessage),
   lastName: string()
     .required(inputRequired)
     .min(userLastnameMinLength, userLastnameMinLengthMessage)

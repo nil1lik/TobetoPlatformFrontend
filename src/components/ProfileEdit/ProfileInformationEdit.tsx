@@ -157,7 +157,7 @@ const ProfileInformationEdit2 = (props: Props) => {
                                     </Col>
                                     <Col className="col-11">
                                         <ProfileInput
-                                            type="tel"
+                                            type="number"
                                             name="phone"
                                             label="Telefon"
                                             placeholder="Telefon Numaranız"
@@ -178,7 +178,7 @@ const ProfileInformationEdit2 = (props: Props) => {
                         <Row>
                             <Col>
                                 <ProfileInput
-                                    type="text"
+                                    type="number"
                                     name="identityNumber"
                                     label="TC Kimlik No*"
                                     placeholder="TC Kimlik No"
