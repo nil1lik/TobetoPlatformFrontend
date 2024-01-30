@@ -1,11 +1,12 @@
-export interface ProfileDto extends GetCityItem{
+export interface ProfileDto {
     // items: GetCityItem[];
+    id: 0,
     firstname: "",
     lastname: "",
     status: false,
 }
 
-export interface GetCityItem{
+export interface GetCityItem {
     id: number;
     name: string;
 }
