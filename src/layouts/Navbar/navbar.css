@@ -17,11 +17,11 @@
   color: #282828!important;
 }
 
-.nav-style .navbar-tab:hover {
+.navbar-tab:hover {
   color: #9933ff !important;
 }
 
-.nav-style .navbar-tab:focus {
+.navbar-tab:focus {
   color: #9933ff !important;
   font-weight: 700;
 }
@@ -35,6 +35,9 @@
   font-weight: bold;
 }
 
+.ml-auto{
+  margin-left: auto;
+}
 
 
 /*Dropdown*/

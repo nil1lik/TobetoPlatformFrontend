@@ -8,7 +8,7 @@ const DropdownItem = (props: Props) => {
   return (
     <div>
       <Dropdown>
-        <div className="d-none d-xxl-block">
+        <div className="d-xxl-block">
           <div className="d-flex justify-space-between align-items-center">
             <div className="mx-3 gap-1em align-items-center d-flex">
               <span className="tbt-gradient"></span>
