@@ -12,16 +12,16 @@ import { UserInformationValidationMessageRule } from "../../utilities/validation
 import FormikInput from "../../utilities/FormikInput";
 
 const validationSchema = object({
-    firstName: UserInformationValidationMessageRule.firstName,
-    lastName: UserInformationValidationMessageRule.lastName,
-    phone: UserInformationValidationMessageRule.phone,
-    birthdate: UserInformationValidationMessageRule.birthdate,
-    identityNumber: UserInformationValidationMessageRule.identityNumber,
-    email: UserInformationValidationMessageRule.email, 
-    country: UserInformationValidationMessageRule.country,
-    street: UserInformationValidationMessageRule.textArea,
-    aboutMe: UserInformationValidationMessageRule.textArea,
-  });
+  firstName: UserInformationValidationMessageRule.firstName,
+  lastName: UserInformationValidationMessageRule.lastName,
+  phone: UserInformationValidationMessageRule.phone,
+  birthdate: UserInformationValidationMessageRule.birthdate,
+  identityNumber: UserInformationValidationMessageRule.identityNumber,
+  email: UserInformationValidationMessageRule.email,
+  country: UserInformationValidationMessageRule.country,
+  street: UserInformationValidationMessageRule.textArea,
+  aboutMe: UserInformationValidationMessageRule.textArea,
+});
 
 type Props = {};
 
@@ -33,9 +33,8 @@ const ProfileInformationEdit2 = (props: Props) => {
 
   const getUser = async (userId: number) => {
     try {
-
-      const result = await UserProfileService.GetById(userId);
-      setProfileData(result.data)
+      const result = await UserProfileService.getById(userId);
+      setProfileData(result.data);
     } catch (error) {
       console.log("Id ile kullanıcı alınırken hata oluştu.", error);
     }
@@ -64,11 +63,11 @@ const ProfileInformationEdit2 = (props: Props) => {
     getUser(1);
   }, []);
 
-
   const initialValues: ProfileDto = {
     id: 0,
     firstname: "",
     lastname: "",
+    email: "",
     status: false,
   };
 

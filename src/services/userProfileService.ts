@@ -31,10 +31,7 @@ UpdateUserResponse>
     super();
     this.apiUrl = BASE_API_URL + "Users"
   }
-
-  GetById(userId: number){
-    return this.getById(userId);
-  }
+  
 }
 
 export default new UserProfileService
