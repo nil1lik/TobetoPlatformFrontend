@@ -24,6 +24,7 @@ import Login from "./pages/Login/Login";
 import ChatBot from "./layouts/ChatBot/ChatBot";
 import Register from "./pages/Register/Register";
 import EducationDetailTab from "./components/EducationDetail/EducationDetailTab";
+import AuthProvider from "./contexts/AuthContext";
 
 const profileEditUrl = "/profilim/profilimi-duzenle";
 
@@ -33,10 +34,15 @@ function App() {
       <Navigation />
       {/* <Container> */}
       <div className="body-height">
+        <AuthProvider>
+          <Routes>
+            <Route path="/giris" element={<Login />} />
+            <Route path="/kayit-ol" element={<Register />} />
+          </Routes>
+        </AuthProvider>
+
         <Routes>
-          <Route path="/" element={<Platform />} />
-          <Route path="/giris" element={<Login />} />
-          <Route path="/kayit-ol" element={<Register />} />
+          <Route path="/platform" element={<Platform />} />
           <Route path="/profilim" element={<Profile />} />
           <Route path="/degerlendirmeler" element={<Evaluation />} />
           <Route path="/katalog" element={<Catalog />} />

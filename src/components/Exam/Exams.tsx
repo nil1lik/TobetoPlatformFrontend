@@ -7,7 +7,7 @@ import ExamCard from "./ExamCard"
 
 type Props = {};
 
-const Exam = (props: Props) => {
+const Exams = (props: Props) => {
   const [exam, setExams] = useState<GetExamItem[]>([]);
 
   const fetchExam = async () => {
@@ -42,4 +42,4 @@ const Exam = (props: Props) => {
   );
 };
 
-export default Exam;
+export default Exams;

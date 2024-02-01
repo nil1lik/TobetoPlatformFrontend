@@ -6,7 +6,7 @@ export const SkillProvider = (props: any) => {
     const [skill, setSkill] = useState<any>()
 
     return (
-        <SkillContext.Provider value={{ skill }}>
+        <SkillContext.Provider value={{ skill, setSkill }}>
             {props.children}
         </SkillContext.Provider>
     );
