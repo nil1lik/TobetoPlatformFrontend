@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Card, Row } from "react-bootstrap";
 import "../../components/Exam/exam.css";
-import ExamService from "../../core/services/examService";
+import ExamService from "../../services/examService";
 import { GetExamItem } from "../../models/responses/exam/getExam";
 import ExamCard from "./ExamCard"
 

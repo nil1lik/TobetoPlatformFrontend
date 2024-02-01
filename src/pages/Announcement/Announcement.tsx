@@ -6,7 +6,7 @@ import { Col } from "react-bootstrap";
 import TobetoPlatformSearchBar from "../../utilities/tobetoPlatform/TobetoPlatformSearchBar";
 import TobetoPlatformDropdown from "../../utilities/tobetoPlatform/TobetoPlatformDropdown";
 import AnnouncementCard from "../../components/Announcement/AnnouncementCard";
-import announcementService from "../../core/services/announcementService";
+import announcementService from "../../services/announcementService";
 import { GetAnnouncementTypeItem } from "../../models/responses/announcement/getAnnouncementTypeList";
 import "./announcement.css";
 

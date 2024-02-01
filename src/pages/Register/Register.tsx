@@ -5,10 +5,10 @@ import AppForm from "../../components/Login/AppForm";
 import { Container, Image, Row } from "react-bootstrap";
 import FormikInput from "../../utilities/FormikInput";
 import { Formik, Form } from "formik";
-import UserService from "../../core/services/userProfileService";
+import UserService from "../../services/userProfileService";
 import { object, string } from "yup";
 import { userRegisterRequest } from "../../models/requests/user/userRegisterRequest";
-import UserRegisterService from "../../core/services/userRegisterService";
+import UserRegisterService from "../../services/userRegisterService";
 import { UserInformationValidationMessageRule } from "../../utilities/validationMessageRules/validationMessageRules";
 
 type Props = {  formClassName?: string};

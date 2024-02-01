@@ -2,7 +2,7 @@ import { Field, Formik } from "formik";
 import React, { useEffect, useState } from "react";
 import { Button, Form, Image, Row } from "react-bootstrap";
 import FormikInput from "../../utilities/FormikInput";
-import UserService from "../../core/services/userProfileService";
+import UserService from "../../services/userProfileService";
 
 type Props = { image: string, formClassName: string };
 

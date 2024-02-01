@@ -6,7 +6,7 @@ import "./education.css";
 import { Col, Container, Pagination, Row } from "react-bootstrap";
 import TobetoPlatformTab from "../../utilities/tobetoPlatform/TobetoPlatformTab";
 import { GetEducationItem } from "../../models/responses/education/getEducation";
-import educationService from "../../core/services/educationService";
+import educationService from "../../services/educationService";
 import EducationCard from "../../components/EducationCard/EducationCard";
 
 type Props = {};

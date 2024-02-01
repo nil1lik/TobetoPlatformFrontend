@@ -1,14 +1,14 @@
-import { GetAllDistrictByIdCity} from '../../models/responses/city/getAllDistrictByIdCityResponse';
-import { BaseService } from "./baseService";
-import { GetByIdCityResponse } from "../../models/responses/city/getByIdCityResponse";
-import { GetCity } from "../../models/responses/city/getCityResponse";
-import { AddCityResponse } from "../../models/responses/city/addCityResponse";
-import { UpdateCityResponse } from "../../models/responses/city/updateCityResponse";
-import { AddCityRequest } from "../../models/requests/city/addCityRequest";
-import { UpdateCityRequest } from "../../models/requests/city/updateCityRequest";
-import { BASE_API_URL } from "../../environment/environment";
+import { GetAllDistrictByIdCity} from '../models/responses/city/getAllDistrictByIdCityResponse';
+import { BaseService } from "../core/services/baseService";
+import { GetByIdCityResponse } from "../models/responses/city/getByIdCityResponse";
+import { GetCity } from "../models/responses/city/getCityResponse";
+import { AddCityResponse } from "../models/responses/city/addCityResponse";
+import { UpdateCityResponse } from "../models/responses/city/updateCityResponse";
+import { AddCityRequest } from "../models/requests/city/addCityRequest";
+import { UpdateCityRequest } from "../models/requests/city/updateCityRequest";
+import { BASE_API_URL } from "../core/environment/environment";
 import axios, { AxiosResponse } from 'axios';
-import axiosInstance from '../interceptors/axiosInterceptors';
+import axiosInstance from '../core/interceptors/axiosInterceptors';
 
 class CityService extends BaseService<
   GetCity,
