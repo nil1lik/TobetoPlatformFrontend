@@ -1,12 +1,12 @@
 import axios from 'axios';
 import { BaseService } from './baseService';
-import { BASE_API_URL } from '../environment/environment';
-import { GetExam } from '../models/responses/exam/getExam';
-import { GetByIdExam } from '../models/responses/exam/getByIdExam';
-import { AddExamRequest } from '../models/requests/exam/addExamRequest';
-import { UpdateExamRequest } from '../models/requests/exam/updateExamRequest';
-import { AddExamResponse } from '../models/responses/exam/addExamResponse';
-import { UpdateExamResponse } from '../models/responses/exam/updateExamResponse';
+import { BASE_API_URL } from '../../environment/environment';
+import { GetExam } from '../../models/responses/exam/getExam';
+import { GetByIdExam } from '../../models/responses/exam/getByIdExam';
+import { AddExamRequest } from '../../models/requests/exam/addExamRequest';
+import { UpdateExamRequest } from '../../models/requests/exam/updateExamRequest';
+import { AddExamResponse } from '../../models/responses/exam/addExamResponse';
+import { UpdateExamResponse } from '../../models/responses/exam/updateExamResponse';
 
 
 //eski hali:

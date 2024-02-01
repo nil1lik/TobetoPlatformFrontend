@@ -1,13 +1,14 @@
 import axios, { AxiosResponse } from "axios";
 import { BaseService } from "./baseService";
-import { GetByIdLanguage } from "../models/responses/language/getByIdLanguage";
-import { AddLanguageRequest } from "../models/requests/language/addLanguageRequest";
-import { AddLanguageResponse } from "../models/responses/language/addLanguageResponse";
-import { UpdateLanguageResponse } from "../models/responses/language/updateLanguageResponse";
-import { GetLanguage } from "../models/responses/language/getLanguage";
-import { UpdateLanguageRequest } from "../models/requests/language/updateLanguageRequest";
-import { BASE_API_URL } from "../environment/environment";
-import { GetLanguageLevel } from "../models/responses/language/getLanguageLevel";
+import { GetByIdLanguage } from "../../models/responses/language/getByIdLanguage";
+import { AddLanguageRequest } from "../../models/requests/language/addLanguageRequest";
+import { AddLanguageResponse } from "../../models/responses/language/addLanguageResponse";
+import { UpdateLanguageResponse } from "../../models/responses/language/updateLanguageResponse";
+import { GetLanguage } from "../../models/responses/language/getLanguage";
+import { UpdateLanguageRequest } from "../../models/requests/language/updateLanguageRequest";
+import { BASE_API_URL } from "../../environment/environment";
+import { GetLanguageLevel } from "../../models/responses/language/getLanguageLevel";
+import axiosInstance from "../interceptors/axiosInterceptors";
 
 // export default class LanguageService{
 //     getLanguage(){
@@ -42,7 +43,7 @@ class LanguageService extends BaseService<
     pageIndex: number = 0,
     pageSize: number = 5
   ): Promise<AxiosResponse<GetLanguageLevel, any>> {
-    return axios.get<GetLanguageLevel>(
+    return axiosInstance.get<GetLanguageLevel>(
         BASE_API_URL + "LanguageLevels" +`?PageIndex=${pageIndex}&PageSize=${pageSize}`
     );
   }

@@ -1,8 +1,8 @@
 import { Field, Form, Formik } from "formik";
 import React, { useEffect, useState } from "react";
 import { Button, Card } from "react-bootstrap";
-import SkillService from "../../services/skillService";
-import skillService from "../../services/skillService";
+import SkillService from "../../core/services/skillService";
+import skillService from "../../core/services/skillService";
 import {
   GetSkill,
   GetSkillItem,

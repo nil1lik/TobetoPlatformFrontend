@@ -1,7 +1,7 @@
 import { Field, Form, Formik } from "formik";
 import { Container, Row, Col } from "react-bootstrap";
 import React, { useEffect, useState } from "react";
-import LanguageService from "../../services/languageServices";
+import LanguageService from "../../core/services/languageServices";
 import { GetLanguageItem } from "../../models/responses/language/getLanguage";
 import SelectBox from "./SelectBox";
 

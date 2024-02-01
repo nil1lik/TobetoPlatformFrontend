@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Form, Formik, Field } from "formik";
 import { Col, Container, Row } from "react-bootstrap";
 import FormikInput from "../../utilities/FormikInput";
-import SocialMediaAccountService from "../../services/socialMediaAccountService";
+import SocialMediaAccountService from "../../core/services/socialMediaAccountService";
 import { GetSocialMediaCategoryItem } from "../../models/responses/socialMediaAccount/getAllSocialMediaCategory";
 import SelectBox from "./SelectBox";
 
