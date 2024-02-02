@@ -1,7 +1,9 @@
 import React from "react";
-import { Field, Form, Formik } from "formik";
+import { Field, Form, Formik, yupToFormErrors } from "formik";
 import FormikInput from "../../utilities/FormikInput";
 import { Col, Row, TabContainer } from "react-bootstrap";
+import { object, string } from "yup";
+import { UserInformationValidationMessageRule } from "../../utilities/validationMessageRules/validationMessageRules";
 
 type Props = {};
 
@@ -12,10 +14,18 @@ const Settings = (props: Props) => {
     repeatNewPass: "",
   };
 
+  const validationSchema = object({
+    oldPass: UserInformationValidationMessageRule.oldPass,
+    newPass: UserInformationValidationMessageRule.newPass,
+    repeatNewPass: UserInformationValidationMessageRule.repeatNewPass,
+  });
+  
   return (
+
     <div className="container mt-5">
       <Formik
         initialValues={initialValues}
+        validationSchema={validationSchema}
         onSubmit={(values) => {
           console.log(values);
         }}

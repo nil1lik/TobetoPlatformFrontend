@@ -1,10 +1,10 @@
 import React from "react";
 import TobetoPlatformItem from "../../utilities/tobetoPlatform/TobetoPlatformItem";
 import PlatformTab from "../../components/PlatformTab/PlatformTab";
-import Exam from "../../components/Exam/Exam";
 import { Col, Container, Row } from "react-bootstrap";
 import "./platform.css";
 import ProfileCard from "../../components/ProfileCard/ProfileCard";
+import Exams from "../../components/Exam/Exams";
 
 type Props = {};
 
@@ -45,7 +45,7 @@ const Platform = (props: Props) => {
               </Row> 
             </Container>
             <Container className="content-cont">
-              <Exam />
+              <Exams />
             </Container>
             <br></br>
             <Container>

@@ -5,14 +5,16 @@ import AppForm from "../../components/Login/AppForm";
 import { Container, Image, Row } from "react-bootstrap";
 import FormikInput from "../../utilities/FormikInput";
 import { Formik, Form } from "formik";
-import UserService from "../../services/userService";
-import { userData } from "../../models/requests/user/userData";
+import UserService from "../../services/userProfileService";
 import { object, string } from "yup";
+import { userRegisterRequest } from "../../models/requests/user/userRegisterRequest";
+import UserRegisterService from "../../services/userRegisterService";
+import { UserInformationValidationMessageRule } from "../../utilities/validationMessageRules/validationMessageRules";
 
 type Props = {  formClassName?: string};
 
 function Register(props: Props) {
-  const initialValues: userData = {
+  const initialValues: userRegisterRequest = {
     firstName: "",
     lastName: "",
     email: "",
@@ -20,12 +22,10 @@ function Register(props: Props) {
   };
 
   const validationSchema = object({
-    firstName: string().required("İsim alanı zorunludur.").min(3).max(50),
-    lastName: string().required("Soyisim alanı zorunludur.").max(30),
-    email: string()
-      .required("Email alanı zorunludur.")
-      .email("Lütfen geçerli bir e-posta adresi giriniz."),
-    password: string().required().min(8, "En az sekiz karakter olmalıdır"),
+    firstName: UserInformationValidationMessageRule.firstName,
+    lastName: UserInformationValidationMessageRule.lastName,
+    email: UserInformationValidationMessageRule.email,
+    password: UserInformationValidationMessageRule.password,
   });
 
   return (
@@ -36,7 +36,7 @@ function Register(props: Props) {
             initialValues={initialValues}
             validationSchema={validationSchema}
             onSubmit={(values) => {
-              const userService = new UserService();
+              const userService = new UserRegisterService();
               userService
                 .addUser(values)
                 .then((result) => {

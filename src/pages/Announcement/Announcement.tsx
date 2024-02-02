@@ -27,8 +27,6 @@ const Announcement = (props: Props) => {
     fetchAnnouncement();
   }, []);
 
-  
-
   return (
     <>
       <TobetoPlatformBannerTop
@@ -44,22 +42,24 @@ const Announcement = (props: Props) => {
             <Col>
               <TobetoPlatformDropdown
                 dropdownName="Organizasyon"
-                act1="İstanbul Kodluyor"
+                opt={["İstanbul Kodluyor"]}
                 showDefaultOption={true}
               />
             </Col>
             <Col>
               <TobetoPlatformDropdown
                 dropdownName="Sıralama"
-                act1="Adına Göre (A-Z)"
-                act2="Adına Göre (Z-A)"
-                act3="Tarihe Göre (Y-E)"
-                act4="Tarihe Göre (E-Y)"
+                opt={[
+                  "Adına Göre (A-Z)",
+                  "Adına Göre (Z-A)",
+                  "Tarihe Göre (Y-E)",
+                  "Tarihe Göre (E-Y)",
+                ]}
                 showDefaultOption={true}
               />
             </Col>
             <Col>
-              <button className="announcement-btn" />
+              <button className="filter-btn" />
             </Col>
           </Row>
         </div>
@@ -77,10 +77,10 @@ const Announcement = (props: Props) => {
         </Row>
         <Row className="pagination">
           <Pagination>
-              <Pagination.Prev className="pagi-prev"/>
-              <Pagination.Item active>{1}</Pagination.Item>
-              <Pagination.Item>{2}</Pagination.Item>
-              <Pagination.Next className="pagi-next"/>
+            <Pagination.Prev className="pagi-prev" />
+            <Pagination.Item active>{1}</Pagination.Item>
+            <Pagination.Item>{2}</Pagination.Item>
+            <Pagination.Next className="pagi-next" />
           </Pagination>
         </Row>
       </Container>

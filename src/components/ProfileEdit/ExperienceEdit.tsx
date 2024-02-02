@@ -2,13 +2,25 @@ import { Field, Form, Formik } from "formik";
 import { Col, Container, Dropdown, Row, TabContainer } from "react-bootstrap";
 import FormikInput from "../../utilities/FormikInput";
 import React, { useState } from "react";
+import { object } from "yup";
+import { UserInformationValidationMessageRule } from "../../utilities/validationMessageRules/validationMessageRules";
 
 type Props = {};
+
+const validationSchema = object({
+  organisationName: UserInformationValidationMessageRule.experienceInputs,
+  description: UserInformationValidationMessageRule.textArea,
+  position: UserInformationValidationMessageRule.experienceInputs,
+  sector: UserInformationValidationMessageRule.experienceInputs,
+  startDate: UserInformationValidationMessageRule.dates,
+  endDate: UserInformationValidationMessageRule.dates,
+  city: UserInformationValidationMessageRule.dropboxes,
+})
 
 const ExperienceEdit = (props: Props) => {
   const [city, setCity] = useState<any[]>([]);
   const initialValues = {
-    organizationName: "",
+    organisationName: "",
     position: "",
     sector: "",
     city: "",
@@ -69,6 +81,7 @@ const ExperienceEdit = (props: Props) => {
     <div className="container mt-5">
       <Formik
         initialValues={initialValues}
+        validationSchema={validationSchema}
         onSubmit={(values) => {
           console.log(values);
         }}
@@ -78,7 +91,7 @@ const ExperienceEdit = (props: Props) => {
             <Row>
               <Col>
                 <FormikInput
-                  name="description"
+                  name="organisationName"
                   label="Kurum Adı*"
                   placeHolder="Kampüs 365"
                 />

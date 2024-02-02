@@ -4,11 +4,11 @@ import FormikInput from '../../utilities/FormikInput'
 
 type Props = {
     className?: string,
-    as?: string,
     type: string,
     name: string,
     label: string,
     placeholder?: string
+    value?: string
 }
 
 const ProfileInput = (props: Props) => {
@@ -25,6 +25,7 @@ const ProfileInput = (props: Props) => {
         name={props.name}
         label={props.label}
         placeHolder={props.placeholder}
+        value={props.value}
     />
     )
 }

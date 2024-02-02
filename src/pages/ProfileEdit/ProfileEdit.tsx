@@ -12,6 +12,7 @@ import React from "react";
 import "../../layouts/ProfileEditSidebar/profileEditSidebar.css"
 import SidebarButton from "../../components/ProfileEdit/SidebarButton";
 import { sidebarElements } from "../../constants/sidebarElements";
+import { iconClassList } from "../../constants/sidebarIconClassList";
 
 type Props = {};
 
@@ -45,6 +46,8 @@ const ProfileEdit = (props: Props) => {
     }
   };
 
+
+
   return (
     <div>
       <Container>
@@ -54,7 +57,7 @@ const ProfileEdit = (props: Props) => {
               {
                 sidebarElements.map((element, index) => (
                   <SidebarButton key={index} name={element.name}
-                    setActiveTab={() => handleActiveTab(element.value)} />
+                    setActiveTab={() => handleActiveTab(element.value)} iconClass={iconClassList[index]}/>
                 ))
               }
             </Navbar>

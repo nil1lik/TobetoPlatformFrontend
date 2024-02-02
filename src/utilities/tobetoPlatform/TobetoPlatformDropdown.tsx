@@ -1,12 +1,9 @@
 import React from "react";
-import { Button, ButtonGroup, Dropdown, Form } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 
 type Props = {
   showDefaultOption?: boolean;
-  act1?: string;
-  act2?: string;
-  act3?: string;
-  act4?: string;
+  opt?: string[];
   dropdownName: string;
 };
 
@@ -19,10 +16,11 @@ const TobetoPlatformDropdown = (props: Props) => {
             {props.dropdownName}
           </option>
         )}
-        {props.act1 && <option>{props.act1}</option>}
-        {props.act2 && <option>{props.act2}</option>}
-        {props.act3 && <option>{props.act3}</option>}
-        {props.act4 && <option>{props.act4}</option>}
+        {props.opt?.map((option, index) => (
+          <option key={index} value={option}>
+            {option}
+          </option>
+        ))}
       </Form.Select>
       {/* <Dropdown as={ButtonGroup}>
         <Button variant="success">{props.splitBtn}</Button>

@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { BaseService } from './baseService';
-import { BASE_API_URL } from '../environment/environment';
+import { BaseService } from '../core/services/baseService';
+import { BASE_API_URL } from '../core/environment/environment';
 import { GetExam } from '../models/responses/exam/getExam';
 import { GetByIdExam } from '../models/responses/exam/getByIdExam';
 import { AddExamRequest } from '../models/requests/exam/addExamRequest';

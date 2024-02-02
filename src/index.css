@@ -35,7 +35,7 @@ footer {
   font-weight: 700;
   text-align: center;
   align-items: center;
-  display: inline-block; 
+  display: inline-block;
   height: 35px;
   vertical-align: middle;
 }
@@ -908,18 +908,24 @@ table {
   padding: 2px 1em;
   width: 100%;
   display: inline-flex;
-  justify-content: space-between;
+  align-items: end;
 }
 
 .mr-sm-2 {
   background: none;
   border: none !important;
   padding: 0;
-  outline: none;
+  outline: none !important;
   font-size: 16px;
 }
 .w-100 {
   width: 100% !important;
+}
+
+.search-icon {
+  width: 30px;
+  height: 30px;
+  fill: none;
 }
 /*TobetoPlatformSearchBar*/
 
@@ -944,3 +950,58 @@ table {
 }
 
 /* TobetoPlatformDropdown */
+
+/* Show more button/text - PlatformTab*/
+.show-more-button {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-size: cover;
+  background-image: url("https://tobeto.com/_next/static/media/showMore.f5ba3f81.svg");
+  background-color: #fff !important;
+  border: none;
+  cursor: pointer;
+  display: block;
+}
+
+.show-more {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 600;
+  color: #828282;
+  cursor: pointer;
+}
+
+.show-more-text {
+  font-size: 12px;
+  font-weight: 600;
+  color: #828282;
+  cursor: pointer;
+}
+/* Show more button*/
+
+/* delete-filter */
+.filter-btn {
+  justify-content: center;
+  background-color: #fff;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
+  border: none;
+  padding: 8px;
+  border-radius: 2em;
+  content: url();
+}
+
+.filter-btn:before {
+  content: "";
+  background-image: url(/public/images/read.c10d9cc3.svg);
+  background-repeat: no-repeat;
+  background-size: 1.5em 1.5em;
+  width: 1.5em;
+  height: 1.5em;
+  display: block;
+}
+/* delete-filter */

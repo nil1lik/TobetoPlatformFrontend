@@ -1,15 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import TobetoPlatformBannerTop from "../../utilities/tobetoPlatform/TobetoPlatformBannerTop";
 import TobetoPlatformDropdown from "../../utilities/tobetoPlatform/TobetoPlatformDropdown";
 import TobetoPlatformSearchBar from "../../utilities/tobetoPlatform/TobetoPlatformSearchBar";
 import "./education.css";
-import { Col, Container, Row } from "react-bootstrap";
+import { Col, Container, Pagination, Row } from "react-bootstrap";
 import TobetoPlatformTab from "../../utilities/tobetoPlatform/TobetoPlatformTab";
+import { GetEducationItem } from "../../models/responses/education/getEducation";
+import educationService from "../../services/educationService";
 import EducationCard from "../../components/EducationCard/EducationCard";
 
 type Props = {};
-
 const Education = (props: Props) => {
+  const [education, setEducation] = useState<GetEducationItem[]>([]);
+
+  const fetchEducation = async () => {
+    const result = await educationService.getAll(0, 16);
+    setEducation(result.data.items);
+  };
+  useEffect(() => {
+    fetchEducation();
+  }, []);
+
   return (
     <>
       <TobetoPlatformBannerTop
@@ -25,20 +36,23 @@ const Education = (props: Props) => {
             <Col>
               <TobetoPlatformDropdown
                 dropdownName="Kurum Seçiniz"
-                act1="İstanbul Kodluyor"
+                opt={["İstanbul Kodluyor"]}
                 showDefaultOption={true}
               />
             </Col>
             <Col>
               <TobetoPlatformDropdown
                 dropdownName="Sıralama"
-                act1="Adına Göre (A-Z)"
-                act2="Adına Göre (Z-A)"
-                act3="Tarihe Göre (Y-E)"
-                act4="Tarihe Göre (E-Y)"
+                opt={[
+                  "Adına Göre (A-Z)",
+                  "Adına Göre (Z-A)",
+                  "Tarihe Göre (Y-E)",
+                  "Tarihe Göre (E-Y)",
+                ]}
               />
             </Col>
-            <Col></Col>
+            <Col>
+            <button className="filter-btn" /></Col>
           </Row>
         </div>
 
@@ -48,9 +62,31 @@ const Education = (props: Props) => {
               <TobetoPlatformTab />
             </div>
           </div>
-          <div className="col-12">
-            <EducationCard></EducationCard>
-          </div>
+        </Row>
+        <Row>
+          {education.map((education: any) => (
+            <EducationCard
+              image={education.imageUrl}
+              text={education.name}
+              date={new Date(education.createdDate).toLocaleString("tr-TR", {
+                timeZone: "Europe/Istanbul",
+                hour12: false,
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+                hour: "numeric",
+                minute: "numeric",
+              })}
+            />
+          ))}
+        </Row>
+        <Row className="pagination">
+          <Pagination>
+            <Pagination.Prev className="pagi-prev" />
+            <Pagination.Item active>{1}</Pagination.Item>
+            <Pagination.Item>{2}</Pagination.Item>
+            <Pagination.Next className="pagi-next" />
+          </Pagination>
         </Row>
       </Container>
     </>
