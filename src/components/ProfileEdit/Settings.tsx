@@ -3,7 +3,7 @@ import { Field, Form, Formik, yupToFormErrors } from "formik";
 import FormikInput from "../../utilities/FormikInput";
 import { Col, Row, TabContainer } from "react-bootstrap";
 import { object, string } from "yup";
-import { UserInformationValidationMessageRule } from "../../utilities/validationMessageRules/validationMessageRules";
+import { UserInformationValidationMessageRule } from "../../constants/Validations/validationMessageRules";
 
 type Props = {};
 

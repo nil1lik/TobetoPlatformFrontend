@@ -9,7 +9,7 @@ import UserService from "../../services/userProfileService";
 import { object, string } from "yup";
 import { userRegisterRequest } from "../../models/requests/user/userRegisterRequest";
 import UserRegisterService from "../../services/userRegisterService";
-import { UserInformationValidationMessageRule } from "../../utilities/validationMessageRules/validationMessageRules";
+import { UserInformationValidationMessageRule } from "../../constants/Validations/validationMessageRules";
 
 type Props = {  formClassName?: string};
 

@@ -6,6 +6,7 @@ type Props = {
     selectBoxArray: GetCityItem[];
     onCitySelect?: (cityId: number) => void;
     className?: string;
+    name?: string;
 };
 
 const SelectBox: React.FC<Props> = (props) => {

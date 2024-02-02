@@ -8,7 +8,7 @@ import UserProfileService from "../../services/userProfileService";
 import { GetByIdUser } from "../../models/responses/user/getByIdUser";
 import { ProfileDto } from "../../models/responses/user/profileDto";
 import { date, object, string } from "yup";
-import { UserInformationValidationMessageRule } from "../../utilities/validationMessageRules/validationMessageRules";
+import { UserInformationValidationMessageRule } from "../../constants/Validations/validationMessageRules";
 import FormikInput from "../../utilities/FormikInput";
 
 const validationSchema = object({

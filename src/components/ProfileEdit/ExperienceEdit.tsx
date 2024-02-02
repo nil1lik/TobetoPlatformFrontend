@@ -3,7 +3,7 @@ import { Col, Container, Dropdown, Row, TabContainer } from "react-bootstrap";
 import FormikInput from "../../utilities/FormikInput";
 import React, { useState } from "react";
 import { object } from "yup";
-import { UserInformationValidationMessageRule } from "../../utilities/validationMessageRules/validationMessageRules";
+import { UserInformationValidationMessageRule } from "../../constants/Validations/validationMessageRules";
 
 type Props = {};
 

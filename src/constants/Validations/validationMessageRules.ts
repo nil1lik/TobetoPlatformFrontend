@@ -1,4 +1,4 @@
-import { experienceInputsMaxLength, experienceInputMaxLengthMessage, userFirstnameMaxLengthMessage } from './../../constants/ValidationMessages/validationMessages';
+import { experienceInputsMaxLength, experienceInputMaxLengthMessage, userFirstnameMaxLengthMessage } from './validationMessages';
 import { number, string } from "yup";
 import {
   identityNumberLength,
@@ -23,7 +23,7 @@ import {
   userLastnameMaxLengthMessage,
   experienceInputsMinLength,
   experienceInputMinLengthMessage,
-} from "../../constants/ValidationMessages/validationMessages";
+} from "./validationMessages";
 import { yupToFormErrors } from 'formik';
 
 export const UserInformationValidationMessageRule = {
