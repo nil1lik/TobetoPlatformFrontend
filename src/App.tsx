@@ -23,7 +23,6 @@ import CalendarDetail from "./pages/Calendar/CalendarDetail";
 import Login from "./pages/Login/Login";
 import ChatBot from "./layouts/ChatBot/ChatBot";
 import Register from "./pages/Register/Register";
-import EducationDetailTab from "./components/EducationDetail/EducationDetailTab";
 import AuthProvider from "./contexts/AuthContext";
 
 const profileEditUrl = "/profilim/profilimi-duzenle";
@@ -40,7 +39,6 @@ function App() {
             <Route path="/kayit-ol" element={<Register />} />
           </Routes>
         </AuthProvider>
-
         <Routes>
           <Route path="/platform" element={<Platform />} />
           <Route path="/profilim" element={<Profile />} />

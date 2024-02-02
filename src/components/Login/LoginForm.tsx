@@ -1,11 +1,13 @@
-import { Field, Formik } from "formik";
+import { Formik } from "formik";
 import React, { useContext } from "react";
-import { Button, Form, Image, Row } from "react-bootstrap";
+import { Form, Image, Row } from "react-bootstrap";
 import FormikInput from "../../utilities/FormikInput";
 import { UserInformationValidationMessageRule } from "../../utilities/validationMessageRules/validationMessageRules";
 import { object } from "yup";
 import { AuthContext } from "../../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
+import UserService from "../../services/userService"; // Örnek bir kullanıcı servisi
+import { userLoginRequest } from "../../models/requests/user/userLoginRequest";
 
 type Props = { image: string; formClassName: string };
 
@@ -14,23 +16,34 @@ const validationSchema = object({
   password: UserInformationValidationMessageRule.password,
 });
 
-
-
-
 const LoginForm = (props: Props) => {
   const authContext: any = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const initialValues = {};
+  const initialValues: userLoginRequest = {
+    email: "",
+    password: "",
+  };
   const formLogo = process.env.PUBLIC_URL + `/images/${props.image}`;
+
   return (
     <Formik
-      initialValues={initialValues}
-      validationSchema={validationSchema}
-      onSubmit={(values) => {
-        console.log(values);
-      }}
-    >
+    initialValues={initialValues}
+    validationSchema={validationSchema}
+    onSubmit={(values) => {
+      const userService = new UserService();
+      userService
+        .loginUser(values)
+        .then((result) => {
+          authContext.setAuth(true, result.data.token);
+          localStorage.setItem("token", result.data.token);
+          navigate("/platform");
+        })
+        .catch((error) => {
+          console.error("Kullanıcı girişi sırasında hata oluştu:", error);
+        });
+    }}
+  >  
       <Form className={props.formClassName}>
         <Row>
           <Image className="login-form-img" src={formLogo} />
@@ -53,11 +66,6 @@ const LoginForm = (props: Props) => {
           <button
             type="submit"
             className="button-save py-2 mb-3 mt-4 d-inline-block"
-            onClick={() => {
-              authContext.setAuth(true);
-              navigate("/platform");
-              localStorage.setItem("token", "asdqwklgmqwnkasdkjnqwkjngqw");
-            }}
           >
             Giriş Yap
           </button>
