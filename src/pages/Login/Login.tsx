@@ -6,7 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import AppForm from "../../components/Login/AppForm";
 import { Form, Formik } from "formik";
 import FormikInput from "../../utilities/FormikInput";
-import { UserInformationValidationMessageRule } from "../../utilities/validationMessageRules/validationMessageRules";
+import { UserInformationValidationMessageRule } from "../../constants/Validations/validationMessageRules";
 import { AuthContext } from "../../contexts/AuthContext";
 import { userLoginRequest } from "../../models/requests/user/userLoginRequest";
 import { object } from "yup";
