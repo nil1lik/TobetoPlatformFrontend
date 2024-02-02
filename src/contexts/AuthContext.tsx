@@ -2,17 +2,17 @@
 import React, { createContext, useState, ReactNode, Dispatch, SetStateAction } from "react";
 
 type AuthContextType = {
-  auth: any; 
+  auth?: { isAuthenticated: boolean; token: string } | null; 
   setAuth: Dispatch<SetStateAction<any>>;
 };
 
 export const AuthContext = createContext<AuthContextType>({
-  auth: false,
+  auth: null,
   setAuth: () => {},
 });
 
-const AuthProvider= (props:any) => {
-  const [auth, setAuth] = useState<any>(false); 
+const AuthProvider = (props: any) => {
+  const [auth, setAuth] = useState<{ isAuthenticated: boolean; token: string } | null>(null); 
 
   return (
     <AuthContext.Provider value={{ auth, setAuth }}>
@@ -20,5 +20,6 @@ const AuthProvider= (props:any) => {
     </AuthContext.Provider>
   );
 };
+
 
 export default AuthProvider;

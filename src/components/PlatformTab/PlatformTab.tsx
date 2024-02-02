@@ -23,17 +23,17 @@ const PlatformTab = (props: Props) => {
   const announcementIconSrc =
     process.env.PUBLIC_URL + `/images/announcementDate.svg`;
 
-  const fetchEducation = async () => {
-    const result = await educationService.getByFilter(0, 4);
-    setEducation(result.data.items);
-  };
-
-  const fetchAnnouncement = async () => {
-    const result = await AnnouncementService.getAllAnnouncementTypeList(0, 3);
-    setAnnouncement(result.data.items);
-  };
-
   useEffect(() => {
+    const fetchEducation = async () => {
+      const result = await educationService.getByFilter(0, 4);
+      setEducation(result.data.items);
+    };
+
+    const fetchAnnouncement = async () => {
+      const result = await AnnouncementService.getAllAnnouncementTypeList(0, 3);
+      setAnnouncement(result.data.items);
+    };
+
     fetchEducation();
     fetchAnnouncement();
   }, []);
