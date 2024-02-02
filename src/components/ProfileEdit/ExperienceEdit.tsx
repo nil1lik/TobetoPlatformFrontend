@@ -4,6 +4,7 @@ import FormikInput from "../../utilities/FormikInput";
 import React, { useState } from "react";
 import { object } from "yup";
 import { UserInformationValidationMessageRule } from "../../constants/Validations/validationMessageRules";
+import { experienceInputsMaxLength, textAreaLength } from "../../constants/Validations/validationMessages";
 
 type Props = {};
 

@@ -6,7 +6,7 @@ import SocialMediaAccountService from "../../services/socialMediaAccountService"
 import { GetSocialMediaCategoryItem } from "../../models/responses/socialMediaAccount/getAllSocialMediaCategory";
 import SelectBox from "./SelectBox";
 import { object } from "yup";
-import { UserInformationValidationMessageRule } from "../../utilities/validationMessageRules/validationMessageRules";
+import { UserInformationValidationMessageRule } from "../../constants/Validations/validationMessageRules";
 
 type Props = {};
 

@@ -24,8 +24,8 @@ const LanguageEdit = (props: Props) => {
   };
 
 const validationSchema = object({
-  language: UserInformationValidationMessageRule.dropboxes,
-  languageLevel: UserInformationValidationMessageRule.dropboxes
+  language: UserInformationValidationMessageRule.inputsRequired,
+  languageLevel: UserInformationValidationMessageRule.inputsRequired
 });
 
   useEffect(() => {
