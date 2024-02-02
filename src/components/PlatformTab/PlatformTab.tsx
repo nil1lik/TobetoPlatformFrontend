@@ -14,22 +14,26 @@ import educationService from "../../services/educationService";
 type Props = {};
 
 const PlatformTab = (props: Props) => {
-  const showMoreText = "Daha Fazla Göster";
-  const announcementIconSrc =
-    process.env.PUBLIC_URL + `/images/announcementDate.svg`;
   const [education, setEducation] = useState<GetEducationItem[]>([]);
   const [announcement, setAnnouncement] = useState<GetAnnouncementTypeItem[]>(
     []
   );
-  const fetchEducation = async () => {
-    const result = await educationService.getByFilter(0, 4);
-    setEducation(result.data.items);
-  };
-  const fetchAnnouncement = async () => {
-    const result = await AnnouncementService.getAllAnnouncementTypeList(0, 3);
-    setAnnouncement(result.data.items);
-  };
+
+  const showMoreText = "Daha Fazla Göster";
+  const announcementIconSrc =
+    process.env.PUBLIC_URL + `/images/announcementDate.svg`;
+
   useEffect(() => {
+    const fetchEducation = async () => {
+      const result = await educationService.getByFilter(0, 4);
+      setEducation(result.data.items);
+    };
+
+    const fetchAnnouncement = async () => {
+      const result = await AnnouncementService.getAllAnnouncementTypeList(0, 3);
+      setAnnouncement(result.data.items);
+    };
+
     fetchEducation();
     fetchAnnouncement();
   }, []);

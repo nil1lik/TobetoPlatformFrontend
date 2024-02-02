@@ -20,11 +20,10 @@ import Settings from "./components/ProfileEdit/Settings";
 import { Route, Routes } from "react-router-dom";
 import EducationDetail from "./pages/Education/EducationDetail";
 import CalendarDetail from "./pages/Calendar/CalendarDetail";
-import Login from "./pages/Login/Login";
 import ChatBot from "./layouts/ChatBot/ChatBot";
 import Register from "./pages/Register/Register";
-import EducationDetailTab from "./components/EducationDetail/EducationDetailTab";
-import { ProfileContextProvider } from "./contexts/ProfileContextProvider";
+import AuthProvider from "./contexts/AuthContext";
+import Login from "./pages/Login/Login";
 
 const profileEditUrl = "/profilim/profilimi-duzenle";
 
@@ -34,10 +33,14 @@ function App() {
       <Navigation />
       {/* <Container> */}
       <div className="body-height">
+        <AuthProvider>
+          <Routes>
+            <Route path="/giris" element={<Login/>} />
+            <Route path="/kayit-ol" element={<Register />} />
+          </Routes>
+        </AuthProvider>
         <Routes>
-          <Route path="/" element={<Platform />} />
-          <Route path="/giris" element={<Login />} />
-          <Route path="/kayit-ol" element={<Register />} />
+          <Route path="/platform" element={<Platform />} />
           <Route path="/profilim" element={<Profile />} />
           <Route path="/profilim/profilimi-duzenle" element={<ProfileEdit />} />
           <Route path="/degerlendirmeler" element={<Evaluation />} />

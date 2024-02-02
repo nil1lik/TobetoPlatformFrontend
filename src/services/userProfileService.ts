@@ -5,10 +5,10 @@ import { GetByIdUser } from '../models/responses/user/getByIdUser';
 // import axios from "axios"
 // import { userData } from "../models/responses/user/userData";
 
-import { BaseService } from "./baseService";
+import { BaseService } from "../core/services/baseService";
 import { AddUserRequest } from '../models/requests/user/addUserRequest';
 import { UpdateUserResponse } from '../models/responses/user/updateUserResponse';
-import { BASE_API_URL } from '../environment/environment';
+import { BASE_API_URL } from '../core/environment/environment';
 
 // export default class UserService{
 //   addUser(userData: userData){
@@ -31,10 +31,7 @@ UpdateUserResponse>
     super();
     this.apiUrl = BASE_API_URL + "Users"
   }
-
-  GetById(userId: number){
-    return this.getById(userId);
-  }
+  
 }
 
 export default new UserProfileService

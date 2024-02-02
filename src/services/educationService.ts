@@ -1,11 +1,11 @@
-import { BASE_API_URL } from "../environment/environment";
+import { BASE_API_URL } from "../core/environment/environment";
 import { AddEducationRequest } from "../models/requests/education/addEducationRequest";
 import { UpdateEducationRequest } from "../models/requests/education/updateEducationRequest";
 import { AddEducationResponse } from "../models/responses/education/addEducationResponse";
 import { GetByIdEducation } from "../models/responses/education/getByIdEducation";
 import { GetEducation } from "../models/responses/education/getEducation";
 import { UpdateEducationResponse } from "../models/responses/education/updateEducationResponse";
-import { BaseService } from "./baseService";
+import { BaseService } from "../core/services/baseService";
 
 class EducationService extends BaseService<
 GetEducation,

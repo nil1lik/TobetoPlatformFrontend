@@ -8,9 +8,9 @@ import UserProfileService from "../../services/userProfileService";
 import { GetByIdUser } from "../../models/responses/user/getByIdUser";
 import { ProfileDto } from "../../models/responses/user/profileDto";
 import { date, object, string } from "yup";
-import { UserInformationValidationMessageRule } from "../../utilities/validationMessageRules/validationMessageRules";
+import { UserInformationValidationMessageRule } from "../../constants/Validations/validationMessageRules";
 import FormikInput from "../../utilities/FormikInput";
-import { textAreaLength } from "../../constants/ValidationMessages/validationMessages";
+import { textAreaLength } from "../../constants/Validations/validationMessages";
 
 const validationSchema = object({
   firstName: UserInformationValidationMessageRule.firstName,
@@ -33,7 +33,7 @@ const ProfileInformationEdit2 = (props: Props) => {
 
   const getUser = async (userId: number) => {
     try {
-      const result = await UserProfileService.GetById(userId);
+      const result = await UserProfileService.getById(userId);
       setProfileData(result.data);
     } catch (error) {
       console.log("Id ile kullanıcı alınırken hata oluştu.", error);
@@ -67,6 +67,7 @@ const ProfileInformationEdit2 = (props: Props) => {
     id: 0,
     firstname: "",
     lastname: "",
+    email: "",
     status: false,
   };
 

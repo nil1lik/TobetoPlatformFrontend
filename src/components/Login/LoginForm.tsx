@@ -1,18 +1,26 @@
 import { Field, Formik } from "formik";
-import React from "react";
+import React, { useContext } from "react";
 import { Button, Form, Image, Row } from "react-bootstrap";
 import FormikInput from "../../utilities/FormikInput";
-import { UserInformationValidationMessageRule } from "../../utilities/validationMessageRules/validationMessageRules";
+import { UserInformationValidationMessageRule } from "../../constants/Validations/validationMessageRules";
 import { object } from "yup";
+import { AuthContext } from "../../contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
 
-type Props = { image: string, formClassName: string };
+type Props = { image: string; formClassName: string };
 
 const validationSchema = object({
   email: UserInformationValidationMessageRule.email,
   password: UserInformationValidationMessageRule.password,
 });
 
+
+
+
 const LoginForm = (props: Props) => {
+  const authContext: any = useContext(AuthContext);
+  const navigate = useNavigate();
+
   const initialValues = {};
   const formLogo = process.env.PUBLIC_URL + `/images/${props.image}`;
   return (
@@ -45,6 +53,11 @@ const LoginForm = (props: Props) => {
           <button
             type="submit"
             className="button-save py-2 mb-3 mt-4 d-inline-block"
+            onClick={() => {
+              authContext.setAuth(true);
+              navigate("/platform");
+              localStorage.setItem("token", "asdqwklgmqwnkasdkjnqwkjngqw");
+            }}
           >
             Giriş Yap
           </button>

@@ -1,13 +1,14 @@
 import { GetAllDistrictByIdCity} from '../models/responses/city/getAllDistrictByIdCityResponse';
-import { BaseService } from "./baseService";
+import { BaseService } from "../core/services/baseService";
 import { GetByIdCityResponse } from "../models/responses/city/getByIdCityResponse";
 import { GetCity } from "../models/responses/city/getCityResponse";
 import { AddCityResponse } from "../models/responses/city/addCityResponse";
 import { UpdateCityResponse } from "../models/responses/city/updateCityResponse";
 import { AddCityRequest } from "../models/requests/city/addCityRequest";
 import { UpdateCityRequest } from "../models/requests/city/updateCityRequest";
-import { BASE_API_URL } from "../environment/environment";
+import { BASE_API_URL } from "../core/environment/environment";
 import axios, { AxiosResponse } from 'axios';
+import axiosInstance from '../core/interceptors/axiosInterceptors';
 
 class CityService extends BaseService<
   GetCity,
@@ -29,7 +30,7 @@ class CityService extends BaseService<
   }
   
   getDistrictsBySelectedCityId(id: any): Promise<AxiosResponse<GetAllDistrictByIdCity, any>> {
-		return axios.get<GetAllDistrictByIdCity>(this.dtoUrl + "/" + id);
+		return axiosInstance.get<GetAllDistrictByIdCity>(this.dtoUrl + "/" + id);
 	}
 }
 

@@ -4,7 +4,8 @@ import React, { useEffect, useState } from "react";
 import LanguageService from "../../services/languageServices";
 import { GetLanguageItem } from "../../models/responses/language/getLanguage";
 import SelectBox from "./SelectBox";
-import { object } from "yup";
+import { object, string } from "yup";
+import { UserInformationValidationMessageRule } from "../../constants/Validations/validationMessageRules";
 
 type Props = {};
 
@@ -21,6 +22,11 @@ const LanguageEdit = (props: Props) => {
     id: 0,
     name: "",
   };
+
+const validationSchema = object({
+  language: UserInformationValidationMessageRule.dropboxes,
+  languageLevel: UserInformationValidationMessageRule.dropboxes
+});
 
   useEffect(() => {
     const fetchLanguages = async () => {
@@ -54,6 +60,7 @@ const LanguageEdit = (props: Props) => {
       <Container className="mt-5">
         <Formik
           initialValues={initialValues}
+          validationSchema={validationSchema}
           onSubmit={(handleLanguageSubmit)}>
           <Form>
             <Row>

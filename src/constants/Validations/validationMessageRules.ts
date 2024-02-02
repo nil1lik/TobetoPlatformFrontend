@@ -1,10 +1,5 @@
-import {
-  experienceInputsMaxLength,
-  experienceInputMaxLengthMessage,
-  userFirstnameMaxLengthMessage,
-  passwordsDontMatchMessage,
-} from "./../../constants/ValidationMessages/validationMessages";
-import { number, object, ref, string } from "yup";
+
+import { ref, string } from "yup";
 import {
   identityNumberLength,
   identityNumberLengthMessage,
@@ -28,8 +23,12 @@ import {
   userLastnameMaxLengthMessage,
   experienceInputsMinLength,
   experienceInputMinLengthMessage,
-} from "../../constants/ValidationMessages/validationMessages";
-import { yupToFormErrors } from "formik";
+  userFirstnameMaxLengthMessage,
+  passwordsDontMatchMessage,
+  experienceInputsMaxLength,
+  experienceInputMaxLengthMessage,
+} from "../../constants/Validations/validationMessages";
+
 
 export const UserInformationValidationMessageRule = {
   firstName: string()

@@ -8,9 +8,8 @@ export const LanguageProvider = (props: any) => {
     const [language, setLanguage] = useState<any>()
 
     return (
-        <LanguageContext.Provider value={{ language }}>
-            <Profile/>
-            <LanguageEdit/>
+        <LanguageContext.Provider value={{ language, setLanguage }}>
+            {props.children}
         </LanguageContext.Provider>
     );
 }
