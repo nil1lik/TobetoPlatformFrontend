@@ -6,6 +6,7 @@ type Props = {
     selectBoxArray: GetCityItem[];
     onCitySelect?: (cityId: number) => void;
     className?: string;
+    name?: string;
 };
 
 const SelectBox: React.FC<Props> = (props) => {
@@ -16,7 +17,7 @@ const SelectBox: React.FC<Props> = (props) => {
     };
 
     return (
-        <select onChange={handleSelectChange} className={`option form-control my-custom-select ${props.className}`}>
+        <select name={props.name} onChange={handleSelectChange} className={`option form-control my-custom-select ${props.className}`}>
             <option disabled selected>{props.defaultText}</option>
             {props.selectBoxArray.map(element => (
                 <option

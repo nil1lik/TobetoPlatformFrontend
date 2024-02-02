@@ -1,7 +1,9 @@
 export const passwordMinLengthMessage = "Şifre minimum 8 karakter olmalıdır.";
 export const passwordMaxLengthMessage = "Şifre maksimum 20 karakter olmalıdır.";
+export const passwordsDontMatchMessage = "Şifreler eşleşmiyor!"
 export const passwordMinLength = 8;
 export const passwordMaxLength = 20;
+
 
 export const userFirstnameMinLength = 3;
 export const userFirstnameMinLengthMessage = "İsim minimum 3 karakter olmalıdır.";
@@ -22,12 +24,13 @@ export const phoneMustBeValid = "Geçerli bir cep telefonu numarası giriniz.";
 export const identityNumberLength = 11;
 export const identityNumberLengthMessage = "TC Kimlik Numarası 11 karakter olmalıdır.";
 
-export const inputRequired= "Bu alan zorunludur.";
+
 export const textAreaLength = 300;
+export const inputRequired= "Bu alan zorunludur.";
 export const textAreaLengthMessage = "Maksimum 300 karakter girilebilir."
 
 export const experienceInputsMinLength = 5;
 export const experienceInputMinLengthMessage = "En az 5 karakter girmelisiniz.";
 export const experienceInputsMaxLength = 50;
-export const experienceInputMaxLengthMessage = "En az 50 karakter girebilirsiniz.";
+export const experienceInputMaxLengthMessage = "En fazla 50 karakter girebilirsiniz.";
 

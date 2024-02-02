@@ -5,11 +5,17 @@ import FormikInput from "../../utilities/FormikInput";
 import SocialMediaAccountService from "../../services/socialMediaAccountService";
 import { GetSocialMediaCategoryItem } from "../../models/responses/socialMediaAccount/getAllSocialMediaCategory";
 import SelectBox from "./SelectBox";
+import { object } from "yup";
+import { UserInformationValidationMessageRule } from "../../utilities/validationMessageRules/validationMessageRules";
 
 type Props = {};
 
 const SocialMediaAccountEdit = (props: Props) => {
   const [socialMediaAccounts, setsocialMediaAccounts] = useState<GetSocialMediaCategoryItem[]>([]);
+
+const validationSchema = object ({
+  inputUrl: UserInformationValidationMessageRule.inputsRequired
+})
 
   const initialValues = {
     inputUrl: "",
@@ -31,6 +37,7 @@ const SocialMediaAccountEdit = (props: Props) => {
     <div className="container mt-5">
       <Formik
         initialValues={initialValues}
+        validationSchema={validationSchema}
         onSubmit={(values) => {
           console.log(values);
         }}

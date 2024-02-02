@@ -4,8 +4,13 @@ import React, { useEffect, useState } from "react";
 import LanguageService from "../../services/languageServices";
 import { GetLanguageItem } from "../../models/responses/language/getLanguage";
 import SelectBox from "./SelectBox";
+import { object } from "yup";
 
 type Props = {};
+
+const validationSchema = object({
+
+})
 
 const LanguageEdit = (props: Props) => {
   const [selectedlanguageLevels, setLanguageLevels] = useState<any[]>([]);
@@ -53,42 +58,10 @@ const LanguageEdit = (props: Props) => {
           <Form>
             <Row>
               <Col>
-                <SelectBox defaultText="Dil Seçiniz*" selectBoxArray={languages} />
-
-                {/* <Field
-                  as="select"
-                  name="language"
-                  className="custom-field form-select"
-                >
-                  <option value="" selected disabled>
-                    Dili Seçiniz*
-                  </option>
-                  {languages.map((language: any) => (
-                    <option key={language.id} value={language.id}>
-                      {language.name}
-                    </option> 
-                  ))}
-                </Field> */}
+                <SelectBox name="language" defaultText="Dil Seçiniz*" selectBoxArray={languages} />
               </Col>
               <Col>
-
-                <SelectBox defaultText="Seviye Seçiniz*" selectBoxArray={selectedlanguageLevels} />
-
-                {/* <Field
-                  as="select"
-                  name="level"
-                  className="custom-field form-select"
-                >
-                  <option value=""  disabled hidden>
-                    Seviye Seçiniz*
-                  </option>
-                  {selectedlanguageLevels.map((level: any) => (
-                    <option key={level.id} value={level.id}>
-                      {level.name}
-                    </option>
-                  ))}
-                </Field> */}
-                {/* Diğer alanlar için girişler */}
+                <SelectBox name="languageLevel" defaultText="Seviye Seçiniz*" selectBoxArray={selectedlanguageLevels} />
               </Col>
             </Row>
             <button
@@ -99,7 +72,6 @@ const LanguageEdit = (props: Props) => {
             </button>
           </Form>
         </Formik>
-        {/* Bu kısım, API'den alınan verileri göstermek için kullanılan örnek bir bileşen gibi görünüyor. */}
         <Container>
           <div className="row">
             <div className="my-langs section-p tobeto-light-bg">

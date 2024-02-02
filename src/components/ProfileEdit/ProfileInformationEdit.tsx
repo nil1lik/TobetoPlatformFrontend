@@ -10,32 +10,31 @@ import { ProfileDto } from "../../models/responses/user/profileDto";
 import { date, object, string } from "yup";
 import { UserInformationValidationMessageRule } from "../../utilities/validationMessageRules/validationMessageRules";
 import FormikInput from "../../utilities/FormikInput";
+import { textAreaLength } from "../../constants/ValidationMessages/validationMessages";
 
 const validationSchema = object({
-    firstName: UserInformationValidationMessageRule.firstName,
-    lastName: UserInformationValidationMessageRule.lastName,
-    phone: UserInformationValidationMessageRule.phone,
-    birthdate: UserInformationValidationMessageRule.birthdate,
-    identityNumber: UserInformationValidationMessageRule.identityNumber,
-    email: UserInformationValidationMessageRule.email, 
-    country: UserInformationValidationMessageRule.country,
-    street: UserInformationValidationMessageRule.textArea,
-    aboutMe: UserInformationValidationMessageRule.textArea,
-  });
+  firstName: UserInformationValidationMessageRule.firstName,
+  lastName: UserInformationValidationMessageRule.lastName,
+  phone: UserInformationValidationMessageRule.phone,
+  birthdate: UserInformationValidationMessageRule.inputsRequired,
+  identityNumber: UserInformationValidationMessageRule.identityNumber,
+  email: UserInformationValidationMessageRule.email,
+  country: UserInformationValidationMessageRule.inputsRequired,
+  city: UserInformationValidationMessageRule.inputsRequired,
+  district: UserInformationValidationMessageRule.inputsRequired
+});
 
 type Props = {};
 
 const ProfileInformationEdit2 = (props: Props) => {
   const [cities, setCities] = useState<GetCityItem[]>([]);
-  // const [selectedCityId, setSelectedCityId] = useState<number | null>(null);
   const [districts, setDistricts] = useState<any[]>([]);
   const [profileData, setProfileData] = useState<GetByIdUser>();
 
   const getUser = async (userId: number) => {
     try {
-
       const result = await UserProfileService.GetById(userId);
-      setProfileData(result.data)
+      setProfileData(result.data);
     } catch (error) {
       console.log("Id ile kullanıcı alınırken hata oluştu.", error);
     }
@@ -63,7 +62,6 @@ const ProfileInformationEdit2 = (props: Props) => {
     fetchCities();
     getUser(1);
   }, []);
-
 
   const initialValues: ProfileDto = {
     id: 0,
@@ -179,6 +177,7 @@ const ProfileInformationEdit2 = (props: Props) => {
               <Col>
                 <label className="input-label-text">Şehir Seçiniz*</label>
                 <SelectBox
+                  name="city"
                   defaultText="İl Seçiniz*"
                   selectBoxArray={cities}
                   onCitySelect={handleCityId}
@@ -187,6 +186,7 @@ const ProfileInformationEdit2 = (props: Props) => {
               <Col>
                 <label className="input-label-text">İlçe Seçiniz*</label>
                 <SelectBox
+                  name="district"
                   defaultText="İlçe Seçiniz*"
                   selectBoxArray={districts}
                 />
@@ -203,6 +203,7 @@ const ProfileInformationEdit2 = (props: Props) => {
                   as="textarea"
                   id="street"
                   name="street"
+                  maxLength={textAreaLength}
                 ></Field>
               </Col>
             </Row>
@@ -217,6 +218,7 @@ const ProfileInformationEdit2 = (props: Props) => {
                   as="textarea"
                   id="aboutMe"
                   name="aboutMe"
+                  maxLength={textAreaLength}
                 ></Field>
               </Col>
             </Row>

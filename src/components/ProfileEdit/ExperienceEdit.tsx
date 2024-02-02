@@ -4,17 +4,17 @@ import FormikInput from "../../utilities/FormikInput";
 import React, { useState } from "react";
 import { object } from "yup";
 import { UserInformationValidationMessageRule } from "../../utilities/validationMessageRules/validationMessageRules";
+import { experienceInputsMaxLength, inputRequired, textAreaLength } from "../../constants/ValidationMessages/validationMessages";
 
 type Props = {};
 
 const validationSchema = object({
   organisationName: UserInformationValidationMessageRule.experienceInputs,
-  description: UserInformationValidationMessageRule.textArea,
   position: UserInformationValidationMessageRule.experienceInputs,
   sector: UserInformationValidationMessageRule.experienceInputs,
-  startDate: UserInformationValidationMessageRule.dates,
-  endDate: UserInformationValidationMessageRule.dates,
-  city: UserInformationValidationMessageRule.dropboxes,
+  startDate: UserInformationValidationMessageRule.inputsRequired,
+  endDate: UserInformationValidationMessageRule.inputsRequired,
+  city: UserInformationValidationMessageRule.inputsRequired,
 })
 
 const ExperienceEdit = (props: Props) => {
@@ -30,50 +30,9 @@ const ExperienceEdit = (props: Props) => {
     toggle: "Çalışmaya Devam Ediyorum",
   };
 
-  // useEffect(() => {
-  //   const cityService = new CityService();
-  //   cityService
-  //     .getCity()
-  //     .then((result) => {
-  //       if (result.data.items) {
-  //         console.log(result.data.items);
-  //         setCity(result.data.items);
-  //       } else {
-  //         console.error("API'den Şehirler Alınamadı.");
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       console.error("API isteği sırasında bir hata oluştu:", error);
-  //     });
-  // }, []);
-
-  // const [cityName,setCityName] =useState([])
-
-  // const getCityName = (cityId: any) => {
-  //   const cityService = new CityService();
-  // cityService
-  //   .getCityId(cityId)
-  //   .then((result) => {
-  //     if (result.data) {
-  //       console.log(result.data.name)
-  //       setCityName(result.data.name);
-  //     } else {
-  //       console.error("API'den İlçeler Alınamadı.");
-  //     }
-  //   })
-  //   .catch((error) => {
-  //     console.error("API isteği sırasında bir hata oluştu:", error);
-  //   });
-  // };  
-
-  
-
-  
 
   const handleCitySelect = (selectedCityKey:any, event:Object) => {
-    // Seçilen şehiri state'e kaydet
     console.log(selectedCityKey);
-    // getCityName(selectedCityKey);
   };
   
 
@@ -94,6 +53,7 @@ const ExperienceEdit = (props: Props) => {
                   name="organisationName"
                   label="Kurum Adı*"
                   placeHolder="Kampüs 365"
+                  maxLength={experienceInputsMaxLength}
                 />
               </Col>
               <Col>
@@ -101,6 +61,7 @@ const ExperienceEdit = (props: Props) => {
                   name="position"
                   label="Pozisyon*"
                   placeHolder="Front-End Developer"
+                  maxLength={experienceInputsMaxLength}
                 />
               </Col>
             </Row>
@@ -110,6 +71,7 @@ const ExperienceEdit = (props: Props) => {
                   name="sector"
                   label="Sektör*"
                   placeHolder="Yazılım"
+                  maxLength={experienceInputsMaxLength}
                 />
               </Col>
               <Col>
@@ -220,6 +182,7 @@ const ExperienceEdit = (props: Props) => {
                 <textarea
                   name="description"
                   className="custom-field form-control textarea-style"
+                  maxLength={textAreaLength}
                 />
               </Col>
             </Row>

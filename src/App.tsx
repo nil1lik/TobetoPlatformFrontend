@@ -24,6 +24,7 @@ import Login from "./pages/Login/Login";
 import ChatBot from "./layouts/ChatBot/ChatBot";
 import Register from "./pages/Register/Register";
 import EducationDetailTab from "./components/EducationDetail/EducationDetailTab";
+import { ProfileContextProvider } from "./contexts/ProfileContextProvider";
 
 const profileEditUrl = "/profilim/profilimi-duzenle";
 
@@ -38,12 +39,12 @@ function App() {
           <Route path="/giris" element={<Login />} />
           <Route path="/kayit-ol" element={<Register />} />
           <Route path="/profilim" element={<Profile />} />
+          <Route path="/profilim/profilimi-duzenle" element={<ProfileEdit />} />
           <Route path="/degerlendirmeler" element={<Evaluation />} />
           <Route path="/katalog" element={<Catalog />} />
           <Route path="/takvim" element={<CalendarDetail />} />
           <Route path="/egitimlerim" element={<Education />} />
           <Route path="/duyurular" element={<Announcement />} />
-          <Route path="/profilim/profilimi-duzenle" element={<ProfileEdit />} />
           <Route path="/education-detail" element={<EducationDetail />} />
           <Route
             path={profileEditUrl + "/kisisel-bilgilerim"}

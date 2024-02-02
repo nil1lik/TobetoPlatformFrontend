@@ -1,4 +1,6 @@
 import React, { createContext, useState } from "react";
+import Profile from "../pages/Profile/Profile";
+import LanguageEdit from "../components/ProfileEdit/LanguageEdit";
 
 export const LanguageContext = createContext({})
 
@@ -7,7 +9,8 @@ export const LanguageProvider = (props: any) => {
 
     return (
         <LanguageContext.Provider value={{ language }}>
-            {props.children}
+            <Profile/>
+            <LanguageEdit/>
         </LanguageContext.Provider>
     );
 }

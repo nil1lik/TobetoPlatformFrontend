@@ -1,5 +1,5 @@
 import { Field, Form, Formik } from "formik";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Button, Card } from "react-bootstrap";
 import SkillService from "../../services/skillService";
 import skillService from "../../services/skillService";
@@ -9,6 +9,7 @@ import {
 } from "../../models/responses/skill/getSkillResponse";
 import { object } from "yup";
 import { UserInformationValidationMessageRule } from "../../utilities/validationMessageRules/validationMessageRules";
+import { SkillContext } from "../../contexts/SkillContext";
 
 type Props = {};
 const initialValues: GetSkillItem = {
@@ -17,8 +18,10 @@ const initialValues: GetSkillItem = {
 };
 
 const validationSchema = object({
-  value: UserInformationValidationMessageRule.dropboxes
-})
+  value: UserInformationValidationMessageRule.inputsRequired,
+});
+
+// const skillContext: any = useContext(SkillContext);
 
 const SkillEdit = (props: Props) => {
   const [skills, setSkills] = useState<GetSkillItem[]>([]);
@@ -48,7 +51,7 @@ const SkillEdit = (props: Props) => {
             className="input-label-text"
             style={{ display: "block", marginBottom: "5px" }}
           >
-            Yetkinlik*
+            Yetkinlik
           </label>
           <Field
             as="select"
@@ -64,6 +67,7 @@ const SkillEdit = (props: Props) => {
               </option>
             ))}
           </Field>
+          {/* {skillContext.setSkill} */}
           <button
             type="submit"
             className="button-save py-2 mb-3 mt-4 d-inline-block "

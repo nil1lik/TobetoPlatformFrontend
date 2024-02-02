@@ -10,6 +10,7 @@ import { object, string } from "yup";
 import { userRegisterRequest } from "../../models/requests/user/userRegisterRequest";
 import UserRegisterService from "../../services/userRegisterService";
 import { UserInformationValidationMessageRule } from "../../utilities/validationMessageRules/validationMessageRules";
+import { passwordMaxLength } from "../../constants/ValidationMessages/validationMessages";
 
 type Props = {  formClassName?: string};
 
@@ -25,7 +26,8 @@ function Register(props: Props) {
     firstName: UserInformationValidationMessageRule.firstName,
     lastName: UserInformationValidationMessageRule.lastName,
     email: UserInformationValidationMessageRule.email,
-    password: UserInformationValidationMessageRule.password,
+    newPass: UserInformationValidationMessageRule.password,
+    confirmPass: UserInformationValidationMessageRule.confirmPass
   });
 
   return (
@@ -78,15 +80,17 @@ function Register(props: Props) {
                 />
                 <FormikInput
                   type="password"
-                  name="password"
+                  name="newPass"
                   label=""
                   placeHolder="Şifre*"
+                  maxLength={passwordMaxLength}
                 />
                 <FormikInput
                   type="password"
-                  name="passwordHash"
+                  name="confirmPass"
                   label=""
                   placeHolder="Şifre Tekrar*"
+                  maxLength={passwordMaxLength}
                 />
               </Row>
               <Row className="row-btn">

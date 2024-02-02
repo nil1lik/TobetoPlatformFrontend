@@ -1005,3 +1005,15 @@ table {
   display: block;
 }
 /* delete-filter */
+
+/* type'ı number olan input'lara harf girilmemesini sağlıyor. 
+hata oluşursa silinebilir ya da ilgili class'a özelleştirilebilir */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
