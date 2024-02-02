@@ -5,11 +5,10 @@ import AppForm from "../../components/Login/AppForm";
 import { Container, Image, Row } from "react-bootstrap";
 import FormikInput from "../../utilities/FormikInput";
 import { Formik, Form } from "formik";
-import UserService from "../../services/userProfileService";
 import { object, string } from "yup";
 import { userRegisterRequest } from "../../models/requests/user/userRegisterRequest";
-import UserRegisterService from "../../services/userRegisterService";
 import { UserInformationValidationMessageRule } from "../../constants/Validations/validationMessageRules";
+import UserService from "../../services/userService";
 
 type Props = {  formClassName?: string};
 
@@ -36,16 +35,14 @@ function Register(props: Props) {
             initialValues={initialValues}
             validationSchema={validationSchema}
             onSubmit={(values) => {
-              const userService = new UserRegisterService();
+              const userService = new UserService()
               userService
                 .addUser(values)
                 .then((result) => {
-                  // Kayıt başarılı olduğunda yapılacak işlemler
                   console.log("Kullanıcı başarıyla kaydedildi:", result.data);
                   localStorage.setItem("token", result.data.token);
                 })
                 .catch((error) => {
-                  // Hata durumunda yapılacak işlemler
                   console.error(
                     "Kullanıcı kaydı sırasında bir hata oluştu:",
                     error

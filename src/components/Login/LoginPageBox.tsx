@@ -1,5 +1,4 @@
 import React, { ReactNode } from 'react'
-import LoginForm from './LoginForm'
 import { Container } from 'react-bootstrap'
 
 type Props = {children: ReactNode, className: string}
