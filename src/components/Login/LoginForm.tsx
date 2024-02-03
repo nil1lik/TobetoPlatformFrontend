@@ -1,8 +1,8 @@
 import { Field, Formik } from "formik";
 import React, { useContext } from "react";
 import { Button, Form, Image, Row } from "react-bootstrap";
-import FormikInput from "../../utilities/FormikInput";
-import { UserInformationValidationMessageRule } from "../../constants/Validations/validationMessageRules";
+import FormikInput from "../Formik/FormikInput";
+import { UserInformationValidationMessageRule } from "../../utilities/Validations/validationMessageRules";
 import { object } from "yup";
 import { AuthContext } from "../../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";

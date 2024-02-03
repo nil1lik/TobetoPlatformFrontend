@@ -3,12 +3,12 @@ import React from "react";
 import LoginPageBox from "../../components/Login/LoginPageBox";
 import AppForm from "../../components/Login/AppForm";
 import { Container, Image, Row } from "react-bootstrap";
-import FormikInput from "../../utilities/FormikInput";
+import FormikInput from "../../components/Formik/FormikInput";
 import { Formik, Form } from "formik";
 import { object, string } from "yup";
 import { userRegisterRequest } from "../../models/requests/user/userRegisterRequest";
-import { passwordMaxLength } from "../../constants/Validations/validationMessages";
-import { UserInformationValidationMessageRule } from "../../constants/Validations/validationMessageRules";
+import { passwordMaxLength } from "../../utilities/Validations/validationMessages";
+import { UserInformationValidationMessageRule } from "../../utilities/Validations/validationMessageRules";
 import UserService from "../../services/userService";
 
 type Props = {  formClassName?: string};

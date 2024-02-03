@@ -1,3 +1,5 @@
+
+import { ref, string } from "yup";
 import {
   identityNumberLength,
   identityNumberLengthMessage,
@@ -5,9 +7,6 @@ import {
   textAreaLengthMessage,
   userLastnameMinLength,
   userLastnameMinLengthMessage,
-} from "./../../constants/Validations/validationMessages";
-import { number, string } from "yup";
-import {
   emailMustBeValid,
   inputRequired,
   emailValidRegex,
@@ -22,13 +21,20 @@ import {
   userFirstnameMinLengthMessage,
   userLastnameMaxLength,
   userLastnameMaxLengthMessage,
-} from "../../constants/Validations/validationMessages";
+  experienceInputsMinLength,
+  experienceInputMinLengthMessage,
+  userFirstnameMaxLengthMessage,
+  passwordsDontMatchMessage,
+  experienceInputsMaxLength,
+  experienceInputMaxLengthMessage,
+} from "./validationMessages";
+
 
 export const UserInformationValidationMessageRule = {
   firstName: string()
     .required(inputRequired)
     .min(userFirstnameMinLength, userFirstnameMinLengthMessage)
-    .max(userFirstnameMaxLength),
+    .max(userFirstnameMaxLength, userFirstnameMaxLengthMessage),
   lastName: string()
     .required(inputRequired)
     .min(userLastnameMinLength, userLastnameMinLengthMessage)
@@ -40,31 +46,31 @@ export const UserInformationValidationMessageRule = {
   password: string()
     .required(inputRequired)
     .min(passwordMinLength, passwordMinLengthMessage)
-    .max(passwordMaxLength, passwordMaxLengthMessage),
+    .max(passwordMaxLength-1, passwordMaxLengthMessage),
   oldPass: string()
     .required(inputRequired)
     .min(passwordMinLength, passwordMinLengthMessage)
-    .max(passwordMaxLength, passwordMaxLengthMessage),
+    .max(passwordMaxLength-1, passwordMaxLengthMessage),
   newPass: string()
     .required(inputRequired)
     .min(passwordMinLength, passwordMinLengthMessage)
-    .max(passwordMaxLength, passwordMaxLengthMessage),
-  repeatNewPass: string()
+    .max(passwordMaxLength-1, passwordMaxLengthMessage),
+  confirmPass: string()
     .required(inputRequired)
     .min(passwordMinLength, passwordMinLengthMessage)
-    .max(passwordMaxLength, passwordMaxLengthMessage),
+    .max(passwordMaxLength-1, passwordMaxLengthMessage)
+    .oneOf([ref('newPass')], passwordsDontMatchMessage)
+    .required(inputRequired),
   phone: string()
     .required(inputRequired)
     .matches(phoneRegExp, phoneMustBeValid),
-  identityNumber: number()
+  identityNumber: string()
     .required(inputRequired)
     .max(identityNumberLength, identityNumberLengthMessage)
     .min(identityNumberLength, identityNumberLengthMessage),
-  birthdate: string().required(inputRequired),
-  street: string()
+  experienceInputs: string()
     .required(inputRequired)
-    .max(textAreaLength, textAreaLengthMessage),
-  aboutMe: string()
-    .required(inputRequired)
-    .max(textAreaLength, textAreaLengthMessage),
+    .min(experienceInputsMinLength, experienceInputMinLengthMessage)
+    .max(experienceInputsMaxLength-1, experienceInputMaxLengthMessage),
+  inputsRequired: string().required(inputRequired),
 };

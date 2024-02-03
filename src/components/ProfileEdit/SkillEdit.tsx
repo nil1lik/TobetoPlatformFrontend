@@ -9,7 +9,7 @@ import {
 } from "../../models/responses/skill/getSkillResponse";
 import { object } from "yup";
 import { SkillContext } from "../../contexts/SkillContext";
-import { UserInformationValidationMessageRule } from "../../constants/Validations/validationMessageRules";
+import { UserInformationValidationMessageRule } from "../../utilities/Validations/validationMessageRules";
 
 type Props = {};
 const initialValues: GetSkillItem = {

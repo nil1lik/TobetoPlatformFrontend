@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
-import EducationCard from "../EducationCard/EducationCard";
-import SurveyNotFound from "../Survey/SurveyNotFound";
-import AnnouncementCard from "../Announcement/AnnouncementCard";
-import ApplicationCard from "../Application/ApplicationCard";
+import EducationCard from "../../Education/EducationCard/EducationCard";
+import SurveyNotFound from "../../Survey/SurveyNotFound";
+import AnnouncementCard from "../../Announcement/AnnouncementCard";
+import ApplicationCard from "../../Application/ApplicationCard";
 import { Button, Col, Container, Row, Tab, Tabs } from "react-bootstrap";
 import "./platformTab.css";
-import AnnouncementService from "../../services/announcementService";
-import { GetAnnouncementTypeItem } from "../../models/responses/announcement/getAnnouncementTypeList";
+import AnnouncementService from "../../../services/announcementService";
+import { GetAnnouncementTypeItem } from "../../../models/responses/announcement/getAnnouncementTypeList";
 import { Link } from "react-router-dom";
-import { GetEducationItem } from "../../models/responses/education/getEducation";
-import educationService from "../../services/educationService";
+import { GetEducationItem } from "../../../models/responses/education/getEducation";
+import educationService from "../../../services/educationService";
 
 type Props = {};
 

@@ -1,6 +1,6 @@
 import React from "react";
-import TobetoPlatformItem from "../../utilities/tobetoPlatform/TobetoPlatformItem";
-import PlatformTab from "../../components/PlatformTab/PlatformTab";
+import TobetoPlatformItem from "../../components/Platform/TobetoPlatformItem";
+import PlatformTab from "../../components/Platform/PlatformTab/PlatformTab";
 import { Col, Container, Row } from "react-bootstrap";
 import "./platform.css";
 import ProfileCard from "../../components/ProfileCard/ProfileCard";

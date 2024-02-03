@@ -1,4 +1,4 @@
-import TobetoPlatformVerticalCard from "../../utilities/tobetoPlatform/TobetoPlatformVerticalCard";
+import TobetoPlatformVerticalCard from "../../Platform/VerticalCard";
 import React from "react";
 
 type Props = {

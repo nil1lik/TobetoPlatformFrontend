@@ -40,7 +40,7 @@ function App() {
           </Routes>
         </AuthProvider>
         <Routes>
-          <Route path="/platform" element={<Platform />} />
+          <Route path="/" element={<Platform />} />
           <Route path="/profilim" element={<Profile />} />
           <Route path="/profilim/profilimi-duzenle" element={<ProfileEdit />} />
           <Route path="/degerlendirmeler" element={<Evaluation />} />

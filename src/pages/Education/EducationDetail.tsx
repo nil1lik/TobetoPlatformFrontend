@@ -1,8 +1,8 @@
 import React from "react";
 import { Card, Col, Container, Row, Tab, Tabs } from "react-bootstrap";
 import "./educationDetail.css";
-import EducationDetailTab from "../../components/EducationDetail/EducationDetailTab";
-import EducationDetailHeader from "../../components/EducationDetail/EducationDetailHeader";
+import EducationDetailTab from "../../components/Education/EducationDetail/EducationDetailTab";
+import EducationDetailHeader from "../../components/Education/EducationDetail/EducationDetailHeader";
 
 type Props = {};
 

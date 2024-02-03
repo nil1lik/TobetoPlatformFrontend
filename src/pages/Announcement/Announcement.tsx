@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from "react";
-import TobetoPlatformBannerTop from "../../utilities/tobetoPlatform/TobetoPlatformBannerTop";
 import { Container, Pagination } from "react-bootstrap";
 import { Row } from "react-bootstrap";
-import { Col } from "react-bootstrap";
-import TobetoPlatformSearchBar from "../../utilities/tobetoPlatform/TobetoPlatformSearchBar";
-import TobetoPlatformDropdown from "../../utilities/tobetoPlatform/TobetoPlatformDropdown";
 import AnnouncementCard from "../../components/Announcement/AnnouncementCard";
 import announcementService from "../../services/announcementService";
 import { GetAnnouncementTypeItem } from "../../models/responses/announcement/getAnnouncementTypeList";
 import "./announcement.css";
+import Paginations from "../../components/Pagination/Pagination";
+import FilterBar from "../../components/FilterBar/FilterBar";
 
 type Props = {};
 
@@ -28,41 +26,23 @@ const Announcement = (props: Props) => {
   }, []);
 
   return (
-    <>
-      <TobetoPlatformBannerTop
-        url="https://tobeto.com/_next/static/media/edu-banner3.d7dc50ac.svg"
-        spanText="Duyurularım"
-      />
       <Container>
-        <div className="filter-section mt-3">
-          <Row>
-            <Col className="col-md-5 col-12 mb-4">
-              <TobetoPlatformSearchBar />
-            </Col>
-            <Col>
-              <TobetoPlatformDropdown
-                dropdownName="Organizasyon"
-                opt={["İstanbul Kodluyor"]}
-                showDefaultOption={true}
-              />
-            </Col>
-            <Col>
-              <TobetoPlatformDropdown
-                dropdownName="Sıralama"
-                opt={[
-                  "Adına Göre (A-Z)",
-                  "Adına Göre (Z-A)",
-                  "Tarihe Göre (Y-E)",
-                  "Tarihe Göre (E-Y)",
-                ]}
-                showDefaultOption={true}
-              />
-            </Col>
-            <Col>
-              <button className="filter-btn" />
-            </Col>
-          </Row>
-        </div>
+        <FilterBar
+          bannerUrl="https://tobeto.com/_next/static/media/edu-banner3.d7dc50ac.svg"
+          bannerText="Duyurularım"
+          dropdownName1="Organizasyon"
+          dropdownOpt1={["İstanbul Kodluyor"]}
+          dropdownName2="Sıralama"
+          dropdownOpt2={[
+            "Adına Göre (A-Z)",
+            "Adına Göre (Z-A)",
+            "Tarihe Göre (Y-E)",
+            "Tarihe Göre (E-Y)",
+          ]}
+          filterBtn={true}
+
+        />
+
         <Row className="announcement-card-line">
           {announcement.map((announcement: any) => (
             <AnnouncementCard
@@ -76,15 +56,9 @@ const Announcement = (props: Props) => {
           ))}
         </Row>
         <Row className="pagination">
-          <Pagination>
-            <Pagination.Prev className="pagi-prev" />
-            <Pagination.Item active>{1}</Pagination.Item>
-            <Pagination.Item>{2}</Pagination.Item>
-            <Pagination.Next className="pagi-next" />
-          </Pagination>
+          <Paginations />
         </Row>
       </Container>
-    </>
   );
 };
 

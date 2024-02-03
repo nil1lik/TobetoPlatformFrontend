@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
-import TobetoPlatformBannerTop from "../../utilities/tobetoPlatform/TobetoPlatformBannerTop";
-import TobetoPlatformDropdown from "../../utilities/tobetoPlatform/TobetoPlatformDropdown";
-import TobetoPlatformSearchBar from "../../utilities/tobetoPlatform/TobetoPlatformSearchBar";
 import "./education.css";
 import { Col, Container, Pagination, Row } from "react-bootstrap";
-import TobetoPlatformTab from "../../utilities/tobetoPlatform/TobetoPlatformTab";
+import TobetoPlatformTab from "../../components/Education/EducationsTab";
 import { GetEducationItem } from "../../models/responses/education/getEducation";
 import educationService from "../../services/educationService";
-import EducationCard from "../../components/EducationCard/EducationCard";
+import EducationCard from "../../components/Education/EducationCard/EducationCard";
+import Paginations from "../../components/Pagination/Pagination";
+import FilterBar from "../../components/FilterBar/FilterBar";
 
 type Props = {};
 const Education = (props: Props) => {
@@ -23,39 +22,20 @@ const Education = (props: Props) => {
 
   return (
     <>
-      <TobetoPlatformBannerTop
-        url="https://tobeto.com/_next/static/media/edu-banner3.d7dc50ac.svg"
-        spanText="Eğitimlerim"
-      />
-      <Container>
-        <div className="filter-section mt-3">
-          <Row>
-            <Col className="col-md-5 col-12 mb-4">
-              <TobetoPlatformSearchBar />
-            </Col>
-            <Col>
-              <TobetoPlatformDropdown
-                dropdownName="Kurum Seçiniz"
-                opt={["İstanbul Kodluyor"]}
-                showDefaultOption={true}
-              />
-            </Col>
-            <Col>
-              <TobetoPlatformDropdown
-                dropdownName="Sıralama"
-                opt={[
-                  "Adına Göre (A-Z)",
-                  "Adına Göre (Z-A)",
-                  "Tarihe Göre (Y-E)",
-                  "Tarihe Göre (E-Y)",
-                ]}
-              />
-            </Col>
-            <Col>
-            <button className="filter-btn" /></Col>
-          </Row>
-        </div>
-
+    <Container>
+    <FilterBar
+      bannerUrl="https://tobeto.com/_next/static/media/edu-banner3.d7dc50ac.svg"
+      bannerText="Eğitimlerim"
+      dropdownName1="Kurum Seçiniz"
+      dropdownOpt1={["İstanbul Kodluyor"]}
+      dropdownName2="Sıralama"
+      dropdownOpt2={[
+        "Adına Göre (A-Z)",
+        "Adına Göre (Z-A)",
+        "Tarihe Göre (Y-E)",
+        "Tarihe Göre (E-Y)",
+      ]}
+    />
         <Row className="mt-3 row">
           <div className="col-12 mb-4">
             <div className="nav nav-tabs mainTablist d-flex justify-content-center">
@@ -81,12 +61,7 @@ const Education = (props: Props) => {
           ))}
         </Row>
         <Row className="pagination">
-          <Pagination>
-            <Pagination.Prev className="pagi-prev" />
-            <Pagination.Item active>{1}</Pagination.Item>
-            <Pagination.Item>{2}</Pagination.Item>
-            <Pagination.Next className="pagi-next" />
-          </Pagination>
+          <Paginations/>
         </Row>
       </Container>
     </>

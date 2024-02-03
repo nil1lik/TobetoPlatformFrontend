@@ -5,7 +5,7 @@ import LanguageService from "../../services/languageServices";
 import { GetLanguageItem } from "../../models/responses/language/getLanguage";
 import SelectBox from "./SelectBox";
 import { object, string } from "yup";
-import { UserInformationValidationMessageRule } from "../../constants/Validations/validationMessageRules";
+import { UserInformationValidationMessageRule } from "../../utilities/Validations/validationMessageRules";
 
 type Props = {};
 

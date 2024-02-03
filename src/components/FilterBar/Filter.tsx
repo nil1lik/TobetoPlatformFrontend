@@ -22,17 +22,6 @@ const TobetoPlatformDropdown = (props: Props) => {
           </option>
         ))}
       </Form.Select>
-      {/* <Dropdown as={ButtonGroup}>
-        <Button variant="success">{props.splitBtn}</Button>
-
-        <Dropdown.Toggle split variant="success" id="dropdown-split-basic" />
-
-        <Dropdown.Menu>
-          <Dropdown.Item href="#/action-1">{props.act1}</Dropdown.Item>
-          <Dropdown.Item href="#/action-2">{props.act2}</Dropdown.Item>
-          <Dropdown.Item href="#/action-3">{props.act3}</Dropdown.Item>
-        </Dropdown.Menu> 
-      </Dropdown> */}
     </div>
   );
 };

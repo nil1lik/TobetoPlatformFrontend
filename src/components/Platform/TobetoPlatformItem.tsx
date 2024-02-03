@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
 import { Card } from "react-bootstrap";
-import PlatformTab from "../../components/PlatformTab/PlatformTab";
+import PlatformTab from "./PlatformTab/PlatformTab";
 import '../../pages/Platform/platform.css'
 
 

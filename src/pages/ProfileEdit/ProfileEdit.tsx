@@ -11,8 +11,8 @@ import { useState } from "react";
 import React from "react";
 import "../../layouts/ProfileEditSidebar/profileEditSidebar.css"
 import SidebarButton from "../../components/ProfileEdit/SidebarButton";
-import { sidebarElements } from "../../constants/sidebarElements";
-import { iconClassList } from "../../constants/sidebarIconClassList";
+import { sidebarElements } from "../../utilities/Constants/sidebarElements";
+import { iconClassList } from "../../utilities/Constants/sidebarIconClassList";
 
 type Props = {};
 

@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Form, Formik, Field } from "formik";
 import { Col, Container, Row } from "react-bootstrap";
-import FormikInput from "../../utilities/FormikInput";
+import FormikInput from "../Formik/FormikInput";
 import SocialMediaAccountService from "../../services/socialMediaAccountService";
 import { GetSocialMediaCategoryItem } from "../../models/responses/socialMediaAccount/getAllSocialMediaCategory";
 import SelectBox from "./SelectBox";
 import { object } from "yup";
-import { UserInformationValidationMessageRule } from "../../constants/Validations/validationMessageRules";
+import { UserInformationValidationMessageRule } from "../../utilities/Validations/validationMessageRules";
 
 type Props = {};
 
