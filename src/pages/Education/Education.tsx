@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./education.css";
-import { Col, Container, Pagination, Row } from "react-bootstrap";
+import { Container, Row } from "react-bootstrap";
 import TobetoPlatformTab from "../../components/Education/EducationsTab";
 import { GetEducationItem } from "../../models/responses/education/getEducation";
 import educationService from "../../services/educationService";
