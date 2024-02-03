@@ -7,9 +7,9 @@ import { Button, Col, Container, Row, Tab, Tabs } from "react-bootstrap";
 import "./platformTab.css";
 import AnnouncementService from "../../../services/announcementService";
 import { GetAnnouncementTypeItem } from "../../../models/responses/announcement/getAnnouncementTypeList";
-import { Link } from "react-router-dom";
 import { GetEducationItem } from "../../../models/responses/education/getEducation";
 import educationService from "../../../services/educationService";
+import { Link } from "react-router-dom"
 
 type Props = {};
 

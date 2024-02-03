@@ -1,15 +1,11 @@
 import { Field, Form, Formik } from "formik";
 import React, { useContext, useEffect, useState } from "react";
 import { Button, Card } from "react-bootstrap";
-import SkillService from "../../services/skillService";
-import skillService from "../../services/skillService";
-import {
-  GetSkill,
-  GetSkillItem,
-} from "../../models/responses/skill/getSkillResponse";
 import { object } from "yup";
-import { SkillContext } from "../../contexts/SkillContext";
-import { UserInformationValidationMessageRule } from "../../utilities/Validations/validationMessageRules";
+import { UserInformationValidationMessageRule } from "../../../utilities/Validations/validationMessageRules";
+import { GetSkillItem } from "../../../models/responses/skill/getSkillResponse";
+import skillService from "../../../services/skillService";
+
 
 type Props = {};
 const initialValues: GetSkillItem = {
@@ -30,7 +26,7 @@ const SkillEdit = (props: Props) => {
   useEffect(() => {
     const fetchSkills = async () => {
       try {
-        const result = await SkillService.getByFilter(0, 25);
+        const result = await skillService.getByFilter(0, 25);
         setSkills(result.data.items);
       } catch (error) {
         console.error("API isteği sırasında bir hata oluştu:", error);

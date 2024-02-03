@@ -1,5 +1,5 @@
 import React from "react";
-import "../../components/ProfileCard/platformCard.css"
+import "./platformCard.css"
 import { Link } from "react-router-dom";
 
 type Props = {};

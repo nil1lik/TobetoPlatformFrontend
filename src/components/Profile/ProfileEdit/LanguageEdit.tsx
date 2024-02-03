@@ -1,11 +1,11 @@
 import { Field, Form, Formik } from "formik";
 import { Container, Row, Col } from "react-bootstrap";
 import React, { useEffect, useState } from "react";
-import LanguageService from "../../services/languageServices";
-import { GetLanguageItem } from "../../models/responses/language/getLanguage";
 import SelectBox from "./SelectBox";
-import { object, string } from "yup";
-import { UserInformationValidationMessageRule } from "../../utilities/Validations/validationMessageRules";
+import { object } from "yup";
+import { GetLanguageItem } from "../../../models/responses/language/getLanguage";
+import languageServices from "../../../services/languageServices";
+import { UserInformationValidationMessageRule } from "../../../utilities/Validations/validationMessageRules";
 
 type Props = {};
 
@@ -31,7 +31,7 @@ const validationSchema = object({
   useEffect(() => {
     const fetchLanguages = async () => {
       try {
-        const result = await LanguageService.getByFilter(0, 25);
+        const result = await languageServices.getByFilter(0, 25);
         setLanguages(result.data.items);
       } catch (error) {
         console.log("API isteği sırasında bir hata oluştu:", error);
@@ -42,7 +42,7 @@ const validationSchema = object({
 
     const fetchLanguageLavel = async () => {
       try {
-        const result = await LanguageService.getLanguageLevel(0, 5);
+        const result = await languageServices.getLanguageLevel(0, 5);
         setLanguageLevels(result.data.items);
       } catch (error) {
         console.log("API isteği sırasında bir hata oluştu:", error);

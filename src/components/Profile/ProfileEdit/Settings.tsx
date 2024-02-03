@@ -1,10 +1,10 @@
 import React from "react";
 import { Field, Form, Formik, yupToFormErrors } from "formik";
-import FormikInput from "../Formik/FormikInput";
 import { Col, Row, TabContainer } from "react-bootstrap";
 import { object, string } from "yup";
-import { UserInformationValidationMessageRule } from "../../utilities/Validations/validationMessageRules";
-import { passwordMaxLength } from "../../utilities/Validations/validationMessages";
+import { UserInformationValidationMessageRule } from "../../../utilities/Validations/validationMessageRules";
+import FormikInput from "../../Formik/FormikInput";
+import { passwordMaxLength } from "../../../utilities/Validations/validationMessages";
 
 type Props = {};
 

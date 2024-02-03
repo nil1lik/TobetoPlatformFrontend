@@ -7,35 +7,38 @@ import educationService from "../../services/educationService";
 import EducationCard from "../../components/Education/EducationCard/EducationCard";
 import Paginations from "../../components/Pagination/Pagination";
 import FilterBar from "../../components/FilterBar/FilterBar";
+import BannerTop from "../../components/Banner/BannerTop";
 
 type Props = {};
 const Education = (props: Props) => {
   const [education, setEducation] = useState<GetEducationItem[]>([]);
 
-  const fetchEducation = async () => {
-    const result = await educationService.getAll(0, 16);
-    setEducation(result.data.items);
-  };
   useEffect(() => {
+    const fetchEducation = async () => {
+      const result = await educationService.getAll(0, 16);
+      setEducation(result.data.items);
+    };
     fetchEducation();
   }, []);
 
   return (
     <>
-    <Container>
-    <FilterBar
-      bannerUrl="https://tobeto.com/_next/static/media/edu-banner3.d7dc50ac.svg"
-      bannerText="Eğitimlerim"
-      dropdownName1="Kurum Seçiniz"
-      dropdownOpt1={["İstanbul Kodluyor"]}
-      dropdownName2="Sıralama"
-      dropdownOpt2={[
-        "Adına Göre (A-Z)",
-        "Adına Göre (Z-A)",
-        "Tarihe Göre (Y-E)",
-        "Tarihe Göre (E-Y)",
-      ]}
-    />
+      <BannerTop
+        bannerUrl="https://tobeto.com/_next/static/media/edu-banner3.d7dc50ac.svg"
+        bannerText="Eğitimlerim"
+      />
+      <Container>
+        <FilterBar
+          dropdownName1="Kurum Seçiniz"
+          dropdownOpt1={["İstanbul Kodluyor"]}
+          dropdownName2="Sıralama"
+          dropdownOpt2={[
+            "Adına Göre (A-Z)",
+            "Adına Göre (Z-A)",
+            "Tarihe Göre (Y-E)",
+            "Tarihe Göre (E-Y)",
+          ]}
+        />
         <Row className="mt-3 row">
           <div className="col-12 mb-4">
             <div className="nav nav-tabs mainTablist d-flex justify-content-center">
@@ -61,7 +64,7 @@ const Education = (props: Props) => {
           ))}
         </Row>
         <Row className="pagination">
-          <Paginations/>
+          <Paginations />
         </Row>
       </Container>
     </>

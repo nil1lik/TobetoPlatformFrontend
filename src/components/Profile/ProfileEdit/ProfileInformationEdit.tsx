@@ -1,16 +1,16 @@
 import React, { useEffect, useState, ReactNode } from "react";
 import { Field, Form, Formik } from "formik";
 import { Col, Container, Image, Row } from "react-bootstrap";
-import { GetCityItem } from "../../models/responses/city/getCityResponse";
-import CityService from "../../services/cityService";
 import SelectBox from "./SelectBox";
-import UserProfileService from "../../services/userProfileService";
-import { GetByIdUser } from "../../models/responses/user/getByIdUser";
-import { ProfileDto } from "../../models/responses/user/profileDto";
 import { date, object, string } from "yup";
-import { UserInformationValidationMessageRule } from "../../utilities/Validations/validationMessageRules";
-import FormikInput from "../Formik/FormikInput";
-import { textAreaLength } from "../../utilities/Validations/validationMessages";
+import { UserInformationValidationMessageRule } from "../../../utilities/Validations/validationMessageRules";
+import { GetCityItem } from "../../../models/responses/city/getCityResponse";
+import { GetByIdUser } from "../../../models/responses/user/getByIdUser";
+import userProfileService from "../../../services/userProfileService";
+import cityService from "../../../services/cityService";
+import { ProfileDto } from "../../../models/responses/user/profileDto";
+import FormikInput from "../../Formik/FormikInput";
+import { textAreaLength } from "../../../utilities/Validations/validationMessages";
 
 const validationSchema = object({
   firstName: UserInformationValidationMessageRule.firstName,
@@ -33,7 +33,7 @@ const ProfileInformationEdit2 = (props: Props) => {
 
   const getUser = async (userId: number) => {
     try {
-      const result = await UserProfileService.getById(userId);
+      const result = await userProfileService.getById(userId);
       setProfileData(result.data);
     } catch (error) {
       console.log("Id ile kullanıcı alınırken hata oluştu.", error);
@@ -42,7 +42,7 @@ const ProfileInformationEdit2 = (props: Props) => {
 
   const fetchCities = async () => {
     try {
-      const result = await CityService.getByFilter(0, 81);
+      const result = await cityService.getByFilter(0, 81);
       setCities(result.data.items);
     } catch (error) {
       console.error("API isteği sırasında bir hata oluştu:", error);
@@ -51,7 +51,7 @@ const ProfileInformationEdit2 = (props: Props) => {
 
   const handleCityId = async (cityId: number) => {
     try {
-      const result = await CityService.getDistrictsBySelectedCityId(cityId);
+      const result = await cityService.getDistrictsBySelectedCityId(cityId);
       setDistricts(result.data.districts);
     } catch (error) {
       console.error("API isteği sırasında bir hata oluştu:", error);

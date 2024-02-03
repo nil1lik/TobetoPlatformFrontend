@@ -3,7 +3,7 @@ import TobetoPlatformItem from "../../components/Platform/TobetoPlatformItem";
 import PlatformTab from "../../components/Platform/PlatformTab/PlatformTab";
 import { Col, Container, Row } from "react-bootstrap";
 import "./platform.css";
-import ProfileCard from "../../components/ProfileCard/ProfileCard";
+import ProfileCard from "../../components/Profile/ProfileCard/ProfileCard";
 import Exams from "../../components/Exam/Exams";
 
 type Props = {};
@@ -26,8 +26,6 @@ const Platform = (props: Props) => {
                       <h4 className="fw-normal text-info1 text-info2">Pair 1</h4>
                     </div>
                     <TobetoPlatformItem
-                      // imageClass="dot-purple-svg"
-                      // imageSrc="dot-purple.e0e5c9d8.svg"
                       text="Yeni nesil öğrenme deneyimi ile Tobeto kariyer yolculuğunda senin yanında!"
                     />
                   </Col>

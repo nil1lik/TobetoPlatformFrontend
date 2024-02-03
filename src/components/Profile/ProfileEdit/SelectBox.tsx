@@ -1,5 +1,5 @@
 import React from 'react';
-import { GetCityItem } from '../../models/responses/city/getCityResponse';
+import { GetCityItem } from '../../../models/responses/city/getCityResponse';
 
 type Props = {
     defaultText: string;

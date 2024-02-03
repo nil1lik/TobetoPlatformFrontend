@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Form, Formik, Field } from "formik";
 import { Col, Container, Row } from "react-bootstrap";
-import FormikInput from "../Formik/FormikInput";
-import SocialMediaAccountService from "../../services/socialMediaAccountService";
-import { GetSocialMediaCategoryItem } from "../../models/responses/socialMediaAccount/getAllSocialMediaCategory";
 import SelectBox from "./SelectBox";
 import { object } from "yup";
-import { UserInformationValidationMessageRule } from "../../utilities/Validations/validationMessageRules";
+import { UserInformationValidationMessageRule } from "../../../utilities/Validations/validationMessageRules";
+import FormikInput from "../../Formik/FormikInput";
+import socialMediaAccountService from "../../../services/socialMediaAccountService";
+import { GetSocialMediaCategoryItem } from "../../../models/responses/socialMediaAccount/getAllSocialMediaCategory";
 
 type Props = {};
 
@@ -24,7 +24,7 @@ const validationSchema = object ({
   useEffect(() => {
     const fetchSocialMediaAccount = async () => {
       try {
-        const result = await SocialMediaAccountService.getAllCategory(0, 6);
+        const result = await socialMediaAccountService.getAllCategory(0, 6);
         setsocialMediaAccounts(result.data.items)
       } catch (error) {
         console.error("API isteği sırasında bir hata oluştu:", error);

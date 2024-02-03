@@ -7,6 +7,7 @@ import { GetAnnouncementTypeItem } from "../../models/responses/announcement/get
 import "./announcement.css";
 import Paginations from "../../components/Pagination/Pagination";
 import FilterBar from "../../components/FilterBar/FilterBar";
+import BannerTop from "../../components/Banner/BannerTop";
 
 type Props = {};
 
@@ -26,10 +27,14 @@ const Announcement = (props: Props) => {
   }, []);
 
   return (
+    <>
+      <BannerTop
+        bannerUrl="https://tobeto.com/_next/static/media/edu-banner3.d7dc50ac.svg"
+        bannerText="Duyurularım"
+      />
+
       <Container>
         <FilterBar
-          bannerUrl="https://tobeto.com/_next/static/media/edu-banner3.d7dc50ac.svg"
-          bannerText="Duyurularım"
           dropdownName1="Organizasyon"
           dropdownOpt1={["İstanbul Kodluyor"]}
           dropdownName2="Sıralama"
@@ -40,7 +45,6 @@ const Announcement = (props: Props) => {
             "Tarihe Göre (E-Y)",
           ]}
           filterBtn={true}
-
         />
 
         <Row className="announcement-card-line">
@@ -59,6 +63,7 @@ const Announcement = (props: Props) => {
           <Paginations />
         </Row>
       </Container>
+    </>
   );
 };
 
