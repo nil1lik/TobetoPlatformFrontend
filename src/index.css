@@ -902,7 +902,7 @@ table {
 }
 
 .search-box {
-  background: #fff;
+  background: var(--white);
   border-radius: 100px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
   padding: 2px 1em;

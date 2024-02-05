@@ -8,11 +8,15 @@ import "./announcement.css";
 import FilterBar from "../../components/FilterBar/FilterBar";
 import BannerTop from "../../components/Banner/BannerTop";
 import Pagi from "../../components/Pagination/Pagi";
+import { C } from "@fullcalendar/core/internal-common";
+import { announcementPageItemCountByPage } from "../../utilities/Constants/constantValues";
+import { pageCalculate } from "../../utilities/Helpers/pageCountByItemsCalculator";
 
 type Props = {};
 
 const Announcement = (props: Props) => {
   const [childState, setChildState] = useState<number>(0);
+  
   const handleChildStateChange = (newState: number) => {
     setChildState(newState);
   };
@@ -23,9 +27,12 @@ const Announcement = (props: Props) => {
     []
   );
 
+  const [pageCount, setPageCount] = useState<any>(null)
+
   useEffect(() => {
     const fetchAnnouncement = async () => {
-      const result = await announcementService.getAllAnnouncementTypeList(childState, 9); //Clean code'a çevirilecek.
+      const result = await announcementService.getAllAnnouncementTypeList(childState, announcementPageItemCountByPage); //Clean code'a çevirilecek.
+      setPageCount( pageCalculate(result.data.count, announcementPageItemCountByPage))
       setAnnouncement(result.data.items);
     };
     fetchAnnouncement();
@@ -65,7 +72,9 @@ const Announcement = (props: Props) => {
           ))}
         </Row>
         <Row className="pagination">
-          <Pagi handleChildStateChange={ handleChildStateChange} />
+          <Pagi handleChildStateChange={ handleChildStateChange}
+          pageCount={pageCount}
+           />
         </Row>
       </Container>
     </>
