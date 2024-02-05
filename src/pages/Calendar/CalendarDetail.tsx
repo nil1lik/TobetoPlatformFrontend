@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Calendar from "./Calendar";
 import { Col, Dropdown, Form, Row } from "react-bootstrap";
 import "./calendar.css";
 import { FormCheckType } from "react-bootstrap/esm/FormCheck";
 import { Container } from "react-bootstrap/lib/Tab";
 import SearchBar from "../../components/SearchBar/SearchBar";
+import { GetInstructor, GetInstructorItem } from "../../models/responses/instructor/getInstructorResponse";
+import instructorService from "../../services/instructorService";
 
 type Props = {};
 const CalendarDetail = (props: Props) => {
@@ -14,6 +16,23 @@ const CalendarDetail = (props: Props) => {
     instructor: "Engin Demirog",
     start: new Date().toISOString().split("T")[0] + "T13:15",
   };
+
+  const [instructor, setInstructor] = useState<GetInstructorItem[]>([])
+
+  useEffect(() => {
+    const fetchInstructor = async () => {
+      try {
+        const result = await instructorService.getByFilter(0, 50);
+        console.log(result)
+        setInstructor(result.data.items);
+      } catch (error) {
+        console.error("API isteği sırasında bir hata oluştu:", error);
+      }
+    };
+    
+    fetchInstructor();
+  },[]);
+
   return (
     <div>
       <Row className="mt-5">
@@ -61,15 +80,9 @@ const CalendarDetail = (props: Props) => {
                 </Dropdown.Toggle>
                 
                 <Dropdown.Menu className="dropdown-menu-calendar">
-                  <Dropdown.Item className="dropdown-item insturctor-dropdown-calendar" href="#/action-1">Engin Demirog</Dropdown.Item>
-                  <Dropdown.Item className="dropdown-item insturctor-dropdown-calendar" href="#/action-2"> Halit Enes Kalaycı</Dropdown.Item>
-                  <Dropdown.Item className="dropdown-item insturctor-dropdown-calendar" href="#/action-3">İrem hoca</Dropdown.Item>
-                  <Dropdown.Item className="dropdown-item insturctor-dropdown-calendar" href="#/action-1">Engin Demirog</Dropdown.Item>
-                  <Dropdown.Item className="dropdown-item insturctor-dropdown-calendar" href="#/action-2"> Halit Enes Kalaycı</Dropdown.Item>
-                  <Dropdown.Item className="dropdown-item insturctor-dropdown-calendar" href="#/action-3">İrem hoca</Dropdown.Item>
-                  <Dropdown.Item className="dropdown-item insturctor-dropdown-calendar" href="#/action-1">Engin Demirog</Dropdown.Item>
-                  <Dropdown.Item className="dropdown-item insturctor-dropdown-calendar" href="#/action-2"> Halit Enes Kalaycı</Dropdown.Item>
-                  <Dropdown.Item className="dropdown-item insturctor-dropdown-calendar" href="#/action-3">İrem hoca</Dropdown.Item>
+                  {instructor.map(instructor => (
+                    <Dropdown.Item className="dropdown-item insturctor-dropdown-calendar" eventKey={instructor.id}>{`${instructor.firstName} ${instructor.lastName}`}</Dropdown.Item>
+                  ))}
                 </Dropdown.Menu>
               </Dropdown>
             </div>
