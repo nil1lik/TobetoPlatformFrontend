@@ -5,13 +5,18 @@ import AnnouncementCard from "../../components/Announcement/AnnouncementCard";
 import announcementService from "../../services/announcementService";
 import { GetAnnouncementTypeItem } from "../../models/responses/announcement/getAnnouncementTypeList";
 import "./announcement.css";
-import Paginations from "../../components/Pagination/Pagination";
 import FilterBar from "../../components/FilterBar/FilterBar";
 import BannerTop from "../../components/Banner/BannerTop";
+import Pagi from "../../components/Pagination/Pagi";
 
 type Props = {};
 
 const Announcement = (props: Props) => {
+  const [childState, setChildState] = useState<number>(0);
+  const handleChildStateChange = (newState: number) => {
+    setChildState(newState);
+  };
+
   const announcementIconSrc =
     process.env.PUBLIC_URL + `/images/announcementDate.svg`;
   const [announcement, setAnnouncement] = useState<GetAnnouncementTypeItem[]>(
@@ -20,11 +25,11 @@ const Announcement = (props: Props) => {
 
   useEffect(() => {
     const fetchAnnouncement = async () => {
-      const result = await announcementService.getAllAnnouncementTypeList(0, 9);
+      const result = await announcementService.getAllAnnouncementTypeList(childState, 9); //Clean code'a çevirilecek.
       setAnnouncement(result.data.items);
     };
     fetchAnnouncement();
-  }, []);
+  }, [childState]);
 
   return (
     <>
@@ -60,7 +65,7 @@ const Announcement = (props: Props) => {
           ))}
         </Row>
         <Row className="pagination">
-          <Paginations />
+          <Pagi handleChildStateChange={ handleChildStateChange} />
         </Row>
       </Container>
     </>
