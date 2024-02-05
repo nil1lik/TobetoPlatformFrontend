@@ -5,9 +5,9 @@ import TobetoPlatformTab from "../../components/Education/EducationsTab";
 import { GetEducationItem } from "../../models/responses/education/getEducation";
 import educationService from "../../services/educationService";
 import EducationCard from "../../components/Education/EducationCard/EducationCard";
-import Paginations from "../../components/Pagination/Pagination";
 import FilterBar from "../../components/FilterBar/FilterBar";
 import BannerTop from "../../components/Banner/BannerTop";
+import Pagi from "../../components/Pagination/Pagi";
 
 type Props = {};
 const Education = (props: Props) => {
@@ -64,7 +64,7 @@ const Education = (props: Props) => {
           ))}
         </Row>
         <Row className="pagination">
-          <Paginations />
+          {/* <Pagi /> */}
         </Row>
       </Container>
     </>
