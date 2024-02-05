@@ -1017,3 +1017,12 @@ input[type="number"]::-webkit-outer-spin-button {
 input[type="number"] {
   -moz-appearance: textfield;
 }
+
+/*searchBox icon*/
+.search-icon {
+  width: 30px;
+  height: 30px;
+  fill: none;
+  padding-top: 5px;
+}
+/*-----------------*/

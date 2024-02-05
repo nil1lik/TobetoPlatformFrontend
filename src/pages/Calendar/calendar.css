@@ -28,6 +28,72 @@
     font-weight: normal!important;
 }
 
+/*Search Box*/
+.calendar-search-box{
+    background: #fff;
+    border: 2px solid #cccccc;
+    border-radius: 0.2rem;
+    width: 100%;
+    display: inline-flex;
+    align-items: end;
+}
+
+.calendar-search-box:hover{
+    border-color: #9933ff !important;
+    transition: 1s;
+}
+
+.search-icon svg{
+    width: 40;
+    height: 40;
+}
+
+.search-icon path{
+    stroke: #cccccc;
+    stroke-width: 3;
+}
+
+.search-btn{
+    padding-right: 5px !important;
+}
+
+.calendar-search-box:hover .search-icon path{
+    stroke: #9933ff;
+    transition: 1s;
+}
+
+
+.calendar-form-control
+{
+    font-family: Poppins, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+    display: block;
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--bs-body-color);
+    appearance: none;
+    background-color: var(--bs-body-bg);
+    background-clip: padding-box;
+    border: var(--bs-border-width) solid var(--bs-border-color);
+    border-radius: var(--bs-border-radius);
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+
+.form-control.calendar-form-control:focus{
+    box-shadow: none !important;
+}
+
+.mr-sm-2 {
+    background: none;
+    border: none !important;
+    padding: 0;
+    outline: none !important;
+    font-size: 16px;
+}
+
 /*Dropdown*/
 
 .btn.btn-calendar{
@@ -229,9 +295,9 @@
 
 /*Calender Button*/
 .fc-today-button{
-    border: 2px solid #9933ff !important;
+    border: 2px solid #9379B6 !important;
     border-radius: 2rem !important;
-    background-color: #28064b !important;
+    background-color: #6D509C !important;
     color: #fff !important;
     font-size: 15px !important;
     opacity: 1 !important;
@@ -239,8 +305,8 @@
 }
 
 .fc-button-group {
-    border: 2px solid #9933ff !important;
-    background-color:#28064b !important ;
+    border: 2px solid #9379B6 !important;
+    background-color:#6D509C !important ;
     border-radius: 20px !important;
     display: inline-flex;
     position: relative;
@@ -271,7 +337,7 @@
     content: "";
     width: 1px;
     height: 22px;
-    background: #9933ff;
+    background: #fff;
     display: block;
     margin-left: 1em;
     opacity: .5;
@@ -294,15 +360,15 @@
 
 .fc *{
     box-sizing: border-box;
-    border-color: #9933ff !important;
+    border-color: #9379B6 !important;
 }
 /*-------------------------------------------------------------------------------*/
 
 /*Calender toolbar Title*/
 .fc .fc-toolbar-title {
-    border: 2px solid #9933ff;
+    border: 2px solid #9379B6;
     border-radius: 2rem;
-    background-color: #28064b;
+    background-color: #6D509C;
     color: #fff ;
     padding: 0px 0.5rem !important;
     font-weight: 200!important;
@@ -321,7 +387,7 @@
 }
 
 .fc .fc-col-header-cell{
-    background-color: #28064b !important;
+    background-color: #6D509C !important;
 }
 
 /*Calender Day Number*/
@@ -344,7 +410,7 @@
 /*EventComponent*/
 .fc-event .fc-event-main{
     padding: 6px 6px 6px 0px !important;
-    color: #000000 !important;
+    color: #fff !important;
     white-space: pre-line;
     
 }
@@ -382,9 +448,9 @@
 }
 
  .eventEnded .fc-event-past  {
-    border: 2px solid #2a2a2a!important;
+    border: 2px solid #606060!important;
     border-radius: 4px!important;
-    background-color: #494949!important;
+    background-color: #7c7c7c!important;
 }
 
 .eventEnded .fc-event-past span{
@@ -393,9 +459,9 @@
 
 
 .eventNotStarted .fc-event-future {
-    border: 2px solid #9933ff!important;
+    border: 2px solid #502781!important;
     border-radius: 4px!important;
-    background-color: #28064b!important;
+    background-color: #5F3F92!important;
 }
 
 .eventNotStarted .fc-event-future span{
@@ -418,7 +484,12 @@
 }
 
 .eventToday .fc-event-today {
-    border: 2px solid #28064b!important;
+    border: 2px solid #2C9437!important;
     border-radius: 4px!important;
-    background-color: #9933ff!important;
+    background-color: #22A558!important;
+}
+
+.fc-daygrid-more-link{
+    color: #2C9437 ;
+    text-decoration: none;
 }
