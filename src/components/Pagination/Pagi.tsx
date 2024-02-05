@@ -1,23 +1,29 @@
-import React, { useState } from 'react';
-import { Pagination } from 'react-bootstrap';
+import React, { useState } from "react";
+import { Pagination } from "react-bootstrap";
+import "./Pagination.css"
 
 type Props = {
-  handleChildStateChange: (pageNumber: number) => void,
+  handleChildStateChange: (pageNumber: number) => void;
+  pageCount: number;
 };
 
 const Pagi = (props: Props) => {
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const totalPages: number = 2; // Toplam sayfa sayısı
+  const totalPages: number = props.pageCount; // Toplam sayfa sayısı
 
-  const handlePageChange = (pageNumber: number): void => {
-    setCurrentPage(pageNumber);
-    props.handleChildStateChange(pageNumber-1);
+  const handlePageChange = (totalPages: number): void => {
+    setCurrentPage(totalPages);
+    props.handleChildStateChange(totalPages - 1);
     // Burada sayfa değişimine göre başka bir işlem yapabilirsiniz
   };
 
   return (
     <Pagination>
-      <Pagination.Prev onClick={() => handlePageChange(currentPage - 1)} />
+      <Pagination.Prev
+        onClick={() =>
+          handlePageChange(currentPage > 1 ? currentPage - 1 : currentPage)
+        }
+      />
 
       {[...Array(totalPages)].map((_, index) => (
         <Pagination.Item
@@ -29,7 +35,13 @@ const Pagi = (props: Props) => {
         </Pagination.Item>
       ))}
 
-      <Pagination.Next onClick={() => handlePageChange(currentPage + 1)} />
+      <Pagination.Next
+        onClick={() =>
+          handlePageChange(
+            currentPage < totalPages ? currentPage + 1 : currentPage
+          )
+        }
+      />
     </Pagination>
   );
 };

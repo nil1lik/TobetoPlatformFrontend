@@ -1,0 +1,48 @@
+.page-item:first-child .page-link,
+.page-item:last-child .page-link {
+    border: none!important;
+    margin: 0 0.1em!important;
+    font-weight: 500;
+    background-color: #9397a0!important;
+    color: #fff;
+    border-radius: 10px!important;
+    display: flex;
+    align-items: center;
+}
+
+.page-item.active .page-link {
+    background-color: #00956e!important;
+    border: none;
+    color: #fff;
+}
+
+.page-item .page-link {
+    color: #282828;
+    margin-left: 1px;
+    margin-right: 1px;
+    border-radius: 10px!important;
+    min-width: 32px;
+    height: 32px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent!important;
+    font-weight: 500;
+}
+
+.page-item:not(:first-child) .page-link {
+    margin-left: calc(var(--bs-border-width) * -1);
+}
+
+.page-link {
+    position: relative;
+    display: block;
+    padding: var(--bs-pagination-padding-y) var(--bs-pagination-padding-x);
+    font-size: var(--bs-pagination-font-size);
+    color: var(--bs-pagination-color);
+    text-decoration: none;
+    background-color: var(--bs-pagination-bg);
+    border: var(--bs-pagination-border-width) solid var(--bs-pagination-border-color);
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
