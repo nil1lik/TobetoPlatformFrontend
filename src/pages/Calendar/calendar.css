@@ -362,6 +362,11 @@
     box-sizing: border-box;
     border-color: #9379B6 !important;
 }
+
+.fc-h-event{
+    background-color: #7c7c7c;
+    border: 2px solid #606060 !important;
+}
 /*-------------------------------------------------------------------------------*/
 
 /*Calender toolbar Title*/
