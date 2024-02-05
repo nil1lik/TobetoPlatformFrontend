@@ -22,7 +22,7 @@ const FilterBar = (props: Props) => {
         <div className="filter-section mt-3">
           <Row>
             <Col className="col-md-5 col-12 mb-4">
-              <SearchBar />
+              <SearchBar formClassName="w-100 mr-sm-2" />
             </Col>
             <Col>
               <TobetoPlatformDropdown

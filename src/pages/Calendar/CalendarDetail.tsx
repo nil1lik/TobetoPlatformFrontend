@@ -4,6 +4,7 @@ import { Col, Dropdown, Form, Row } from "react-bootstrap";
 import "./calendar.css";
 import { FormCheckType } from "react-bootstrap/esm/FormCheck";
 import { Container } from "react-bootstrap/lib/Tab";
+import SearchBar from "../../components/SearchBar/SearchBar";
 
 type Props = {};
 const CalendarDetail = (props: Props) => {
@@ -20,11 +21,12 @@ const CalendarDetail = (props: Props) => {
           <div className="filter-left equal-box">
             <div className="d-flex flex-column">
               <label className="label-header">Eğitim Arama</label>
-              <input
+              <SearchBar searchBoxClassName="calendar-search-box" formClassName="calendar-form-control mr-sm-2"/>
+              {/* <input
                 type="text"
                 placeholder="Eğitim arayın.."
                 className="cal-filter-input"
-              />
+              /> */}
             </div>
             <div className="d-flex flex-column">
               <label className="label-header">Eğitmen</label>
