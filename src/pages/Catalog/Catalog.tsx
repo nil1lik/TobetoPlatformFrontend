@@ -15,24 +15,17 @@ const Catalog = (props: Props) => {
         bannerUrl="https://tobeto.com/_next/static/media/edu-banner2.8923a47d.svg"
         bannerText="Katalog"
       />
-       <FilterBar
-          dropdownName1="Eğitim Seçiniz"
-          dropdownOpt1={["Algoritma"]}
-          dropdownName2="Sıralama"
-          dropdownOpt2={[
-            "Adına Göre (A-Z)",
-            "Adına Göre (Z-A)",
-            "Tarihe Göre (Y-E)",
-            "Tarihe Göre (E-Y)",
-          ]}
-        />
+
       <Container className="mt-3">
         <Row>
           <Col className="col-md-3 col-md-3 col-12">
-            <CatalogFilter/>
+            <CatalogFilter />
           </Col>
           <Col className="col-lg-9 col-md-9 col-12">
             <Container>
+              <Col className="col-md-5 col-12 mb-4 form-control border-0">
+                <SearchBar formClassName="w-100 mr-sm-2 " />
+              </Col>
               <Row>
                 <CatalogCard />
                 <CatalogCard />

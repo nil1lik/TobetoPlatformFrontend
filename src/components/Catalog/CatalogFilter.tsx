@@ -16,6 +16,10 @@ const CatalogFilter = (props: Props) => {
               <AccordionButton title="Kategoriler" />
               <AccordionButton title="Eğitim" />
               <AccordionButton title="Seviye" />
+              <AccordionButton title="Konu" />
+              <AccordionButton title="Yazılım Dili" />
+              <AccordionButton title="Eğitmen" />
+              <AccordionButton title="Durum" />
             </div>
           </div>
         </Col>

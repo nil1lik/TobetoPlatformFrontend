@@ -896,20 +896,7 @@ table {
   padding: 0;
 }
 
-.search-btn {
-  background: transparent !important;
-  border: none !important;
-}
 
-.search-box {
-  background: var(--white);
-  border-radius: 100px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
-  padding: 2px 1em;
-  width: 100%;
-  display: inline-flex;
-  align-items: end;
-}
 
 .mr-sm-2 {
   background: none;
@@ -922,11 +909,7 @@ table {
   width: 100% !important;
 }
 
-.search-icon {
-  width: 30px;
-  height: 30px;
-  fill: none;
-}
+
 /*TobetoPlatformSearchBar*/
 
 /* TobetoPlatformDropdown */

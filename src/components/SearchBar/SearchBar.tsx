@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, Form} from "react-bootstrap";
+import '../SearchBar/searchBar.css'
 
 type Props = {
   formClassName?: string;
@@ -11,7 +12,7 @@ type Props = {
 
 const SearchBar = (props: Props) => {
   return (
-    <div className={props.searchBoxClassName || "searchBox search-box"}>
+    <div className={props.searchBoxClassName || "search-box"}>
       <Form.Control
         type="text"
         placeholder="Arama"

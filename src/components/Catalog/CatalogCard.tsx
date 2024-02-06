@@ -1,6 +1,7 @@
 import React from "react";
 import "./catalog.css";
 import { Image } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 type Props = {
   name?: string;
@@ -10,8 +11,10 @@ type Props = {
 
 const CatalogCard = (props: Props) => {
   return (
+    
     <div className="col-12 col-lg-4 col-md-5 mb-3">
       <div className="education-box-new fade-in ">
+      <Link to={"/education-detail"}>
         <Image
           className="edubox-img"
           src="https://tobeto.s3.cloud.ngn.com.tr/ENK_36573_a8546fa0ff.jpg"
@@ -36,8 +39,10 @@ const CatalogCard = (props: Props) => {
           <i className="bi bi-play-circle"></i>
           </div>
         </div>
+        </Link>
       </div>
     </div>
+    
   );
 };
 
