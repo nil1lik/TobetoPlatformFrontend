@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Col, Container, Row, Tab, Tabs } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import "./educationDetail.css";
 import EducationDetailTab from "../../components/Education/EducationDetail/EducationDetailTab";
 import EducationDetailHeader from "../../components/Education/EducationDetail/EducationDetailHeader";
