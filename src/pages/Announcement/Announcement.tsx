@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Container, Pagination } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import { Row } from "react-bootstrap";
 import AnnouncementCard from "../../components/Announcement/AnnouncementCard";
 import announcementService from "../../services/announcementService";
@@ -8,15 +8,16 @@ import "./announcement.css";
 import FilterBar from "../../components/FilterBar/FilterBar";
 import BannerTop from "../../components/Banner/BannerTop";
 import Pagi from "../../components/Pagination/Pagi";
-import { C } from "@fullcalendar/core/internal-common";
 import { announcementPageItemCountByPage } from "../../utilities/Constants/constantValues";
 import { pageCalculate } from "../../utilities/Helpers/pageCountByItemsCalculator";
+import FilterBar2 from "../../components/FilterBar/FilterByCheckbox";
+import FilterByCheckbox from "../../components/FilterBar/FilterByCheckbox";
 
 type Props = {};
 
 const Announcement = (props: Props) => {
   const [childState, setChildState] = useState<number>(0);
-  
+
   const handleChildStateChange = (newState: number) => {
     setChildState(newState);
   };
@@ -27,12 +28,17 @@ const Announcement = (props: Props) => {
     []
   );
 
-  const [pageCount, setPageCount] = useState<any>(null)
+  const [pageCount, setPageCount] = useState<any>(null);
 
   useEffect(() => {
     const fetchAnnouncement = async () => {
-      const result = await announcementService.getAllAnnouncementTypeList(childState, announcementPageItemCountByPage); //Clean code'a çevirilecek.
-      setPageCount( pageCalculate(result.data.count, announcementPageItemCountByPage))
+      const result = await announcementService.getAllAnnouncementTypeList(
+        childState,
+        announcementPageItemCountByPage
+      ); //Clean code'a çevirilecek.
+      setPageCount(
+        pageCalculate(result.data.count, announcementPageItemCountByPage)
+      );
       setAnnouncement(result.data.items);
     };
     fetchAnnouncement();
@@ -46,6 +52,8 @@ const Announcement = (props: Props) => {
       />
 
       <Container>
+        <FilterByCheckbox />
+
         <FilterBar
           dropdownName1="Organizasyon"
           dropdownOpt1={["İstanbul Kodluyor"]}
@@ -72,9 +80,10 @@ const Announcement = (props: Props) => {
           ))}
         </Row>
         <Row className="pagination">
-          <Pagi handleChildStateChange={ handleChildStateChange}
-          pageCount={pageCount}
-           />
+          <Pagi
+            handleChildStateChange={handleChildStateChange}
+            pageCount={pageCount}
+          />
         </Row>
       </Container>
     </>

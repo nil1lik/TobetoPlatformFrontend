@@ -940,7 +940,25 @@ table {
   color: hsl(0, 0%, 50%) !important;
   min-width: 200px;
   margin-left: 0;
+  background-color: var(--white) !important;
+  position: relative;
 }
+.select-control.btn{
+  padding: 6px !important;
+}
+
+.dropdown-toggle::after{
+  content: url("../public/images/down-arrow.svg") !important;
+  border: unset !important;
+  width: 12px;
+  height: 16px;
+  vertical-align: middle !important;
+  position: absolute;
+  top: 49%;
+  transform: translateY(-49%);
+  right: 0.8rem;
+}
+
 .select-text {
   grid-area: 1/1/2/3;
   margin-left: 2px;
