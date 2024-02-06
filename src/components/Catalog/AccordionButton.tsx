@@ -9,12 +9,12 @@ const AccordionButton = (props: Props) => {
   return (
     <>
       <Accordion defaultActiveKey="0" flush>
-        <Accordion.Item eventKey="0">
+        <Accordion.Item eventKey="1">
           <Accordion.Header>{props.title}</Accordion.Header>
           <Accordion.Body>
             <Form.Control
               type="text"
-              className="form-control mt-5 mb-3"
+              className="form-control"
               placeholder="Arama"
             />
           </Accordion.Body>
