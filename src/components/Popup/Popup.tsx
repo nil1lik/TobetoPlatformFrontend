@@ -17,7 +17,7 @@ const Popup = (props: Props) => {
 //   const handleShow = () => setShow(true);
 
   return (
-    <Modal size="lg" show={props.show} onHide={props.hide} centered>
+    <Modal size="lg" show={props.show} onHide={props.hide} centered >
       <Modal.Header closeButton>
         <Modal.Title style={{ fontWeight: "600" }}>{props.title}</Modal.Title>
       </Modal.Header>
