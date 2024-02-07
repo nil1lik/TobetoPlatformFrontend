@@ -11,7 +11,7 @@ type Props = {
 };
 
 const EducationDetailHeader = (props: Props) => {
-  const educationImage = "https://" + props.imageUrl; //düzenle
+  const educationImage = "https://" + props.imageUrl;
   return (
     <Container>
       <Row className="education-detail-header">

@@ -1,0 +1,137 @@
+@font-face {
+  font-family: "SSGizmo";
+  src: url("../../../../public/fonts/ss-gizmo.woff") format("woff");
+}
+.image-area {
+  width: 120px !important;
+  height: 120px !important;
+}
+.image-area img {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+}
+
+.education-btn {
+  background: #9933ff !important;
+  border-color: #9933ff !important;
+  font-size: 16px;
+  height: 40px;
+  padding: 6.428571428571429px 15px;
+  border-radius: 8px;
+  color: #fff;
+}
+.course-drawer-button-area {
+  display: flex;
+  justify-content: flex-end;
+}
+.new-tag.blue {
+  background-color: #549be6;
+  border: 1px solid #549be6;
+  color: #fff;
+}
+
+.new-tag {
+  border-radius: 5px !important;
+  display: inline-block;
+  vertical-align: middle;
+  padding-top: 6px;
+  padding-right: 4px;
+  padding-bottom: 4px;
+  padding-left: 6px;
+  font-size: 12px;
+}
+
+.course-drawer-header-info span {
+  margin-top: 0;
+  margin-right: 8px !important;
+  margin-bottom: 0;
+  margin-left: 0;
+}
+
+.like span {
+  margin-top: 9px;
+  margin-right: 8px !important;
+  margin-bottom: 0;
+  margin-left: -5px;
+}
+
+.course-detail-info {
+  display: inline-block;
+  vertical-align: middle;
+  font-weight: 600;
+  font-size: 14px !important;
+}
+
+.offcanvas {
+  padding: 20px;
+  height: 100% !important;
+  max-width: 1004px !important;
+  width: 100% !important;
+}
+
+.education-detail-name {
+  margin-bottom: 12px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #000;
+}
+.education {
+  width: 50px !important;
+}
+.like-area-span {
+  color: #ff4757 !important;
+  font-size: 22px;
+}
+
+.education-like-area {
+  display: flex;
+  cursor: pointer;
+}
+
+.course-drawer-status {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-basis: unset !important;
+  margin-bottom: 0;
+  margin-top: 15px !important;
+}
+
+.sg-like:before {
+  content: "\1F44D";
+  font-family: "SSGizmo";
+  font-style: normal;
+}
+
+.course-status-score {
+  font-size: 18px;
+  font-weight: 600;
+  margin-left: 20px;
+}
+
+.close {
+  position: absolute;
+  left: -32px;
+  top: 10px;
+  right: auto;
+  bottom: auto;
+  z-index: 1;
+  color: #fff;
+  line-height: normal;
+  padding: 15px 16px;
+  border-top-left-radius: 50%;
+  border-bottom-left-radius: 50%;
+  cursor: pointer;
+  font-size: 18px;
+  font-family: "SSGizmo";
+  background: #9933ff;
+}
+
+.sg-delete:before {
+  content: "\2421";
+  margin-left: -8px;
+  position: relative;
+  top: -9px;
+}
+
