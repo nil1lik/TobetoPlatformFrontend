@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./educationDetailContent.css";
 import {
   Accordion,
@@ -8,19 +8,22 @@ import {
   Card,
   Col,
   Container,
-  Row
+  Row,
 } from "react-bootstrap";
+import EducationOffcanvas from "./EducationOffcanvas";
 
 type Props = {
   educationTitle: string;
   educationSubTitle?: string;
   educationType: string;
   educationTime: string;
-  //point:string; //nereden geliyordu? Headerdan nasıl alırım
 };
 
 const EducationDetailContent = (props: Props) => {
   const completedIcon = "/images/completed.svg";
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   return (
     <Container>
@@ -71,7 +74,7 @@ const EducationDetailContent = (props: Props) => {
                   <div className="activity-largeImageFileName activity-video">
                     <div className="locked">
                       <img src="https://tobeto.s3.cloud.ngn.com.tr/23_EAH_1_45f7232003.jpg" />
-                      <i className="ss-icon ss-lock" /> 
+                      <i className="ss-icon ss-lock" />
                     </div>
                   </div>
                   <Card className="activity-card">
@@ -97,8 +100,21 @@ const EducationDetailContent = (props: Props) => {
                             <button
                               type="button"
                               className="ant-btn ant-btn-default ant-btn-lg ant-btn-block btn"
+                              onClick={handleShow}
                             >
                               <label className="ant-btn-text">DETAY</label>
+                              <div className="drawer">
+                                <EducationOffcanvas
+                                  imageUrl="https://lms.tobeto.com/tobeto/eep/common_show_picture_cached.aspx?pQS=DiBldjEKnwKDQVcjzXYj%2bUxp8rPm9JXZ"
+                                  educationName={props.educationTitle}
+                                  educationType={props.educationType}
+                                  timeSpent={props.educationTime}
+                                  point={100}
+                                  button={true}
+                                  show={show}
+                                  hide={handleClose}
+                                />
+                              </div>
                             </button>
                           </div>
                         </Col>

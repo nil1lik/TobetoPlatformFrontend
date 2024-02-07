@@ -4,7 +4,8 @@ import { Container, Pagination } from "react-bootstrap";
 import { Row } from "react-bootstrap";
 import { Col } from "react-bootstrap";
 import SearchBar from "../SearchBar/SearchBar";
-import TobetoPlatformDropdown from "./Filter";
+import Filter from "./Filter";
+import FilterByCheckbox from "./FilterByCheckbox";
 
 type Props = {
     dropdownName1: string,
@@ -25,14 +26,14 @@ const FilterBar = (props: Props) => {
               <SearchBar formClassName="w-100 mr-sm-2" />
             </Col>
             <Col>
-              <TobetoPlatformDropdown
+              <Filter
                 dropdownName={props.dropdownName1}
                 opt={props.dropdownOpt1}
                 showDefaultOption={true}
               />
             </Col>
             <Col>
-              <TobetoPlatformDropdown
+              <Filter
                 dropdownName={props.dropdownName2}
                 opt={props.dropdownOpt2}
                 showDefaultOption={true}

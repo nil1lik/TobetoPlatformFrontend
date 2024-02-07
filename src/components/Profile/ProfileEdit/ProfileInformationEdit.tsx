@@ -11,6 +11,7 @@ import cityService from "../../../services/cityService";
 import { ProfileDto } from "../../../models/responses/user/profileDto";
 import FormikInput from "../../Formik/FormikInput";
 import { textAreaLength } from "../../../utilities/Validations/validationMessages";
+import PhoneInputWithCountrySelect from "react-phone-number-input";
 
 const validationSchema = object({
   firstName: UserInformationValidationMessageRule.firstName,
@@ -21,7 +22,7 @@ const validationSchema = object({
   email: UserInformationValidationMessageRule.email,
   country: UserInformationValidationMessageRule.inputsRequired,
   city: UserInformationValidationMessageRule.inputsRequired,
-  district: UserInformationValidationMessageRule.inputsRequired
+  district: UserInformationValidationMessageRule.inputsRequired,
 });
 
 type Props = {};
@@ -30,6 +31,7 @@ const ProfileInformationEdit2 = (props: Props) => {
   const [cities, setCities] = useState<GetCityItem[]>([]);
   const [districts, setDistricts] = useState<any[]>([]);
   const [profileData, setProfileData] = useState<GetByIdUser>();
+  const [value, setValue] = useState<any>()
 
   const getUser = async (userId: number) => {
     try {
@@ -128,12 +130,17 @@ const ProfileInformationEdit2 = (props: Props) => {
                     </Field> */}
                   </Col>
                   <Col className="col-11">
-                    <FormikInput
+                    <PhoneInputWithCountrySelect
+                      placeholder="Enter phone number"
+                      value={value}
+                      onChange={setValue}
+                    />
+                    {/* <FormikInput
                       type="number"
                       name="phone"
                       label="Telefon"
                       placeHolder="Telefon Numaranız"
-                    />
+                    /> */}
                   </Col>
                 </Row>
               </Col>
