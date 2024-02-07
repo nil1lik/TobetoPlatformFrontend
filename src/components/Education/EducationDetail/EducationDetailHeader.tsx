@@ -7,7 +7,7 @@ type Props = {
   educationName: string;
   likeCount: number;
   educationPoint: number;
-  completionRate: string;
+  completionRate: number;
 };
 
 const EducationDetailHeader = (props: Props) => {
@@ -23,7 +23,7 @@ const EducationDetailHeader = (props: Props) => {
           <Row>
             <Col className="col-xs-12 ">
               <Row>
-                <Col lg={7}>
+                <Col>
                   <div className="activity-info">
                     <h3 className="education-name">{props.educationName}</h3>
                     <div className="date-info-container">
@@ -40,15 +40,15 @@ const EducationDetailHeader = (props: Props) => {
                     </div>
                   </div>
                 </Col>
-                <Col lg={5}>
-                  <div className="ant-space ant-space-align-center education-admiration">
+                <Col>
+                  <div className="ant-space-header ant-space-align-center education-admiration">
                     <div className="ant-space-item">
                       <div className="activity-score text-white background-green">
                         {props.educationPoint} PUAN
                       </div>
                     </div>
                     <div className="ant-space-item">
-                      <div className="like">
+                      <div className="like-header">
                         <div className="like-area">
                           <span className="like-button">
                             <div className="main-content">
@@ -85,7 +85,7 @@ const EducationDetailHeader = (props: Props) => {
                 <div className="activity-progress-bar">
                   <div className="ant-progress-outer">
                     <div className="progress-bar">
-                      <ProgressBar className="ant-progress-bg" now={100} />
+                      <ProgressBar className="ant-progress-bg" now={props.completionRate} />
                     </div>
                   </div>
                   <label className="completion-rate">
