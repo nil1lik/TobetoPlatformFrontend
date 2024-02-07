@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Form} from "react-bootstrap";
 import '../SearchBar/searchBar.css'
 
@@ -7,16 +7,21 @@ type Props = {
   buttonClassName?: string;
   searchBoxClassName?: string;
   svgClassName?:string;
-
 };
 
 const SearchBar = (props: Props) => {
+
+  const handleChange = (event:any) => {
+    const value= event.target.value;
+  }
+
   return (
     <div className={props.searchBoxClassName || "search-box"}>
       <Form.Control
         type="text"
         placeholder="Arama"
         className={props.formClassName || "w-100 mr-sm-2"}
+        onChange={handleChange}
       />
       <Button className={props.buttonClassName || "search-btn"}>
         {/* <img className="search-icon" src="../images/search.svg" /> */}
