@@ -9,12 +9,11 @@ type Props = {
 
 const Pagi = (props: Props) => {
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const totalPages: number = props.pageCount; // Toplam sayfa sayısı
+  const totalPages: number = props.pageCount;
 
   const handlePageChange = (totalPages: number): void => {
     setCurrentPage(totalPages);
     props.handleChildStateChange(totalPages - 1);
-    // Burada sayfa değişimine göre başka bir işlem yapabilirsiniz
   };
 
   return (

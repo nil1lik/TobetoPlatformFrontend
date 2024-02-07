@@ -6,6 +6,7 @@ import { UserInformationValidationMessageRule } from "../../utilities/Validation
 import { object } from "yup";
 import { AuthContext } from "../../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { loginButtonText } from "../../utilities/Constants/constantValues";
 
 type Props = { image: string; formClassName: string };
 
@@ -59,7 +60,7 @@ const LoginForm = (props: Props) => {
               localStorage.setItem("token", "asdqwklgmqwnkasdkjnqwkjngqw");
             }}
           >
-            Giriş Yap
+            {loginButtonText}
           </button>
         </Row>
       </Form>

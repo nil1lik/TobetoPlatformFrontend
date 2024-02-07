@@ -10,6 +10,7 @@ import { GetAnnouncementTypeItem } from "../../../models/responses/announcement/
 import { GetEducationItem } from "../../../models/responses/education/getEducation";
 import educationService from "../../../services/educationService";
 import { Link } from "react-router-dom"
+import { PlatformTabHeaders, showMoreText } from "../../../utilities/Constants/constantValues";
 
 type Props = {};
 
@@ -19,7 +20,7 @@ const PlatformTab = (props: Props) => {
     []
   );
 
-  const showMoreText = "Daha Fazla Göster";
+
   const announcementIconSrc =
     process.env.PUBLIC_URL + `/images/announcementDate.svg`;
 
@@ -45,7 +46,7 @@ const PlatformTab = (props: Props) => {
       id="noanim-tab-example"
       className="mb-3 platform-tab"
     >
-      <Tab eventKey="basvurular" title="Başvurularım">
+      <Tab eventKey="basvurular" title={PlatformTabHeaders.applications}>
         <Container>
           <Row>
             <Col weight="33.3%">
@@ -55,17 +56,10 @@ const PlatformTab = (props: Props) => {
                 cardText="İstanbul Kodluyor Belge Yükleme Formu onaylandı."
               />
             </Col>
-            <Col>
-              <ApplicationCard
-                cardHeader="İstanbul Kodluyor Bilgilendirme"
-                cardDescription="İstanbul Kodluyor Başvuru Formu onaylandı."
-                cardText="İstanbul Kodluyor Belge Yükleme Formu onaylandı."
-              />
-            </Col>
           </Row>
         </Container>
       </Tab>
-      <Tab eventKey="egitimler" title="Eğitimlerim">
+      <Tab eventKey="egitimler" title={PlatformTabHeaders.educations}>
         <Row>
           {education.map((education: any) => (
             <EducationCard
@@ -90,7 +84,7 @@ const PlatformTab = (props: Props) => {
           </div>
         </Link>
       </Tab>
-      <Tab eventKey="duyuru-haber" title="Duyuru ve Haberlerim">
+      <Tab eventKey="duyuru-haber" title={PlatformTabHeaders.announcements}>
         <Row>
           {announcement.map((announcement) => (
             <AnnouncementCard
@@ -110,7 +104,7 @@ const PlatformTab = (props: Props) => {
           </Link>
         </Row>
       </Tab>
-      <Tab eventKey="anket" title="Anketlerim">
+      <Tab eventKey="anket" title={PlatformTabHeaders.surveys}>
         <SurveyNotFound />
       </Tab>
     </Tabs>
