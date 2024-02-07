@@ -58,17 +58,14 @@
   width: 15px;
 }
 
-.ant-space {
+.ant-space-header  {
   gap: 8px;
-  display: flex;
 }
 .education-admiration {
   gap: 8px;
   display: flex;
-  margin-left: 236px;
-}
-.ant-space-align-center {
-  align-items: center;
+  justify-content: flex-end;
+
 }
 
 .activity-score { 
@@ -88,7 +85,7 @@
   background: #3dcb79;
 }
 
-.like {
+.like-header {
   display: inline-block;
   vertical-align: bottom !important;
   height: 31px !important;
@@ -97,15 +94,16 @@
 .like-area {
   display: flex;
   cursor: pointer;
+  margin-top: 3px;
+
 }
 
 .like-button {
-  font-size: 30px;
   width: 68px;
   margin-left: -34px;
 }
 
-.like .like-area span {
+.like-header .like-area span {
   color: #7f7f7f !important;
   cursor: pointer;
 }
@@ -139,7 +137,7 @@
   z-index: 1;
   transform: translate(0.2em, -0.15ex);
   margin-right: 17px;
-  line-height: 1;
+  line-height: 1.2;
 }
 
 .activity-favorite {
@@ -174,7 +172,7 @@
 .completion-rate {
   color: #565656;
   float: right;
-  margin-top: -13px;
+  margin-top: -15px;
 }
 
 .ant-progress-outer {

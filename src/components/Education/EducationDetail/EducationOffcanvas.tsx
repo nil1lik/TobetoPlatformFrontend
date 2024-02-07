@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { Col, Container, Offcanvas, Row } from "react-bootstrap";
 import "./educationOffcanvas.css";
+import EducationDetailAboutComp from "./EducationDetailAboutComp";
 
 type Props = {
   imageUrl: string;
@@ -24,7 +25,7 @@ const EducationOffcanvas = (props: Props) => {
     >
       <Offcanvas.Header>
         <Container>
-        <i className="sg-icon sg-delete close"/>
+          <i className="sg-icon sg-delete close" />
           <Row>
             <Col lg={2}>
               <div className="image-area">
@@ -57,7 +58,7 @@ const EducationOffcanvas = (props: Props) => {
               <Row className="course-drawer-status">
                 <Col lg={12}>
                   <span className="course-status-info text-green ">
-                    <i className="sg-like"/>
+                    <i className="sg-like" />
                     <label>Tebrikler, tamamladın!</label>
                   </span>
                   <span className="course-status-score text-green">

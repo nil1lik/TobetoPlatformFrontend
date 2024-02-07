@@ -16,7 +16,7 @@ const EducationDetail = (props: Props) => {
             educationName="Dr. Ecmel Ayral'dan Hoşgeldin Mesajı"
             likeCount={257}
             educationPoint={100}
-            completionRate="100" 
+            completionRate={100} 
           />
         </Card.Body>
         <Card.Body>
