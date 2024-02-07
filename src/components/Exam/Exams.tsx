@@ -4,6 +4,7 @@ import "../../components/Exam/exam.css";
 import ExamService from "../../services/examService";
 import { GetExamItem } from "../../models/responses/exam/getExam";
 import ExamCard from "./ExamCard"
+import { PlatformTabHeaders } from "../../utilities/Constants/constantValues";
 
 type Props = {};
 
@@ -12,26 +13,20 @@ const Exams = (props: Props) => {
 
   const fetchExam = async () => {
     try {
-      const result = await ExamService.getByFilter(0, 1);
+      const result = await ExamService.getByFilter(0, 1); //dinamikleşecek.
       setExams(result.data.items);
     } catch (error) {
       console.error("API isteği sırasında bir hata oluştu:", error);
     }
   };
-
   useEffect(() => {
     fetchExam();
   }, []);
 
-  //   examService.getExam().then((result) => {
-  //     setExam(result.data.items);
-  //   });
-  // }, []);
-
   return (
     <div className="row cv-box cv-padding">
       <div className="col-12 position-relative">
-        <Card.Text>Sınavlarım</Card.Text>
+        <Card.Text>{PlatformTabHeaders.exams}</Card.Text>
       </div>
       <div className="exams my-3">
         {exam.map((exam) => (

@@ -1,12 +1,13 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import "./educationDetailAbout.css";
+import EducationDetailAboutComp from "./EducationDetailAboutComp";
 
 type Props = {
   startDate: string;
   endDate: string;
   timeSpent: string;
-  estimatedDuration: string; 
+  estimatedDuration: string;
   category: string;
   company: string;
 };
@@ -17,69 +18,67 @@ const EducationDetailAbout = (props: Props) => {
       <div className="activity-detail-info">
         <div className="info-section">
           <Row>
-            <Col lg={2}>
-              <img
-                className="sg-icon sg-start-date"
-                src="/images/start-date.png"
-              />
-              <strong>Başlangıç</strong>
-            </Col>
-            <Col lg={10}>{props.startDate}</Col>
-          </Row>
-          <Row>
-            <Col lg={2}>
-              <img
-                className="hidden-icon sg-icon sg-start-date"
-                src="/images/start-date.png"
-              />
-              <strong>Bitiş</strong>
-            </Col>
-            <Col lg={10}> {props.endDate}</Col>
+            <EducationDetailAboutComp
+              className={"sg-icon sg-start-date"}
+              image={"/images/start-date.png"}
+              valueHeader={"Başlangıç"}
+              educationAboutData={props.startDate}
+            />
+            <EducationDetailAboutComp
+              className={"hidden-icon sg-icon sg-start-date"}
+              image={"/images/start-date.png"}
+              valueHeader={"Bitiş"}
+              educationAboutData={props.endDate}
+            />
           </Row>
         </div>
         <div className="info-section row">
-          <Col lg={2}>
-            <img className="sg-icon sg-stopwatch" src="/images/stopwatch.png" />
-            <strong>Geçirdiğin Süre</strong>
-          </Col>
-          <Col lg={10}>{props.timeSpent}</Col>
+        <EducationDetailAboutComp
+              className={"sg-icon sg-stopwatch"}
+              image={"/images/stopwatch.png"}
+              valueHeader={"Geçirdiğin Süre"}
+              educationAboutData={props.timeSpent}
+            />
         </div>
         <div className="info-section row">
-          <Col lg={2}>
-            <img className="sg-icon sg-stopwatch" src="/images/stopwatch.png" />
-            <strong>Tahmini Süre</strong>
-          </Col>
-          <Col lg={10}>{props.estimatedDuration}</Col>
+        <EducationDetailAboutComp
+              className={"sg-icon sg-stopwatch"}
+              image={"/images/stopwatch.png"}
+              valueHeader={"Tahmini Süre"}
+              educationAboutData={props.estimatedDuration}
+            />
         </div>
         <div className="info-section row">
-          <Col lg={2}>
-            <img className="sg-icon sg-tag" src="/images/price-tag.png" />
-            <strong>Kategori</strong>
-          </Col>
-          <Col lg={10}>{props.category}</Col>
+        <EducationDetailAboutComp
+              className={"sg-icon sg-tag"}
+              image={"/images/price-tag.png"}
+              valueHeader={"Kategori"}
+              educationAboutData={props.category}
+            />
         </div>
         <div className="info-section row">
-          <Col lg={2}>
-          <img className="sg-icon sg-file" src="/images/file.png" />
-            <strong>İçerik</strong>
-          </Col>
-          <Col lg={10}>1</Col>
+        <EducationDetailAboutComp
+              className={"sg-icon sg-file"}
+              image={"/images/file.png"}
+              valueHeader={"İçerik"}
+              educationAboutData={"1"} //İÇERİK ?
+            />
         </div>
         <div className="info-section file row">
-          <Col lg={2}>
-          <img className="hidden-icon sg-icon sg-file" src="/images/file.png" />
-            <label>Video</label>
-          </Col>
-          <Col lg={10}>1</Col> 
+        <EducationDetailAboutComp
+              className={"hidden-icon sg-icon sg-file"}
+              image={"/images/file.png"}
+              valueHeader={"Video"}
+              educationAboutData={"1"} 
+            />
         </div>
         <div id="last-section" className="info-section row">
-          <Col lg={2}>
-            <img className="sg-icon sg-briefcase" src="/images/briefcase.png" />
-            <strong>Üretici Firma</strong>
-          </Col>
-          <Col lg={10}>
-            <a className="btn-change">{props.company}</a>
-          </Col>
+        <EducationDetailAboutComp
+              className={"sg-icon sg-briefcase"}
+              image={"/images/briefcase.png"}
+              valueHeader={"Üretici Firma"}
+              educationAboutData={props.company} 
+            />
         </div>
       </div>
     </Container>

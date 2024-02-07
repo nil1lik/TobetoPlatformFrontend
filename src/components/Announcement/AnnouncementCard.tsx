@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Card, Image, Modal } from "react-bootstrap";
 import Popup from "../Popup/Popup";
+import { readMoreText } from "../../utilities/Constants/constantValues";
 
 type Props = {
   announcementType: string;
@@ -39,7 +40,7 @@ const AnnouncementCard = (props: Props) => {
               {new Date(props.announcementDate).toLocaleDateString("tr-TR")}
             </span>
             <span className="announcementReadMore" onClick={handleShow}>
-              Devamını Oku
+              {readMoreText}
             </span>
           </Card.Body>
         </Card>

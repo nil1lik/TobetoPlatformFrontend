@@ -8,7 +8,7 @@ import EducationCard from "../../components/Education/EducationCard/EducationCar
 import FilterBar from "../../components/FilterBar/FilterBar";
 import BannerTop from "../../components/Banner/BannerTop";
 import Pagi from "../../components/Pagination/Pagi";
-import { announcementPageItemCountByPage } from "../../utilities/Constants/constantValues";
+import { BannerTexts, announcementPageItemCountByPage, EducationFilterBarTextValues } from "../../utilities/Constants/constantValues";
 import { pageCalculate } from "../../utilities/Helpers/pageCountByItemsCalculator";
 
 type Props = {};
@@ -35,19 +35,14 @@ const Education = (props: Props) => {
     <>
       <BannerTop
         bannerUrl="https://tobeto.com/_next/static/media/edu-banner3.d7dc50ac.svg"
-        bannerText="Eğitimlerim"
+        bannerText={BannerTexts.educationBannerText}
       />
       <Container>
         <FilterBar
-          dropdownName1="Kurum Seçiniz"
-          dropdownOpt1={["İstanbul Kodluyor"]}
-          dropdownName2="Sıralama"
-          dropdownOpt2={[
-            "Adına Göre (A-Z)",
-            "Adına Göre (Z-A)",
-            "Tarihe Göre (Y-E)",
-            "Tarihe Göre (E-Y)",
-          ]}
+          dropdownName1={EducationFilterBarTextValues.dropdownName1}
+          dropdownOpt1={EducationFilterBarTextValues.dropdownOpt1}
+          dropdownName2={EducationFilterBarTextValues.dropdownName2}
+          dropdownOpt2={EducationFilterBarTextValues.dropdownOpt2}
         />
         <Row className="mt-3 row">
           <div className="col-12 mb-4">
