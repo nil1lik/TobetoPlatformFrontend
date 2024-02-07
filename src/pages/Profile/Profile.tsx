@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom'
 import ProfileBadge from '../../components/Profile/ProfileRight/ProfileBadge'
 import ProfileExam from '../../components/Profile/ProfileRight/ProfileExam'
 import ProfileEducationMap from '../../components/Profile/ProfileRight/ProfileEducationMap'
-
+import ProfileHeatMap from '../../components/Profile/ProfileRight/ProfileHeatMap'
 
 type Props = {
 }
@@ -119,7 +119,8 @@ const Profile = (props: Props) => {
               </ProfileBox>
             </Col>
             <Col className='col-12'>
-              <ProfileBox titleClass='profileBoxTitle' title='Aktivite Haritam'>dsad
+              <ProfileBox titleClass='profileBoxTitle' title='Aktivite Haritam'>
+                <ProfileHeatMap />
               </ProfileBox>
             </Col>
             <Col className='col-12'>
