@@ -17,6 +17,9 @@ const AccordionButton = (props: Props) => {
               className="form-control"
               placeholder="Arama"
             />
+            <br />
+            <Form.Check inline label="Tüm eğitimler" type="radio" />
+            <Form.Check inline label="başlangıç" type="radio" />
           </Accordion.Body>
         </Accordion.Item>
       </Accordion>

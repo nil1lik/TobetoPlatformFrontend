@@ -24,6 +24,7 @@ import ChatBot from "./layouts/ChatBot/ChatBot";
 import Register from "./pages/Register/Register";
 import AuthProvider from "./contexts/AuthContext";
 import Login from "./pages/Login/Login";
+import Communication from "./pages/Communication/Communication";
 
 const profileEditUrl = "/profilim/profilimi-duzenle";
 
@@ -48,6 +49,7 @@ function App() {
           <Route path="/takvim" element={<CalendarDetail />} />
           <Route path="/egitimlerim" element={<Education />} />
           <Route path="/duyurular" element={<Announcement />} />
+          <Route path="/iletişim" element={<Communication />} />
           <Route path="/education-detail" element={<EducationDetail />} />
           <Route
             path={profileEditUrl + "/kisisel-bilgilerim"}
