@@ -8,6 +8,7 @@ type Props = {
   placeHolder?: string;
   value?: string;
   maxLength?: number;
+  className?: string;
 };
 
 const FormikInput = (props: Props) => {

@@ -25,6 +25,8 @@ import Register from "./pages/Register/Register";
 import AuthProvider from "./contexts/AuthContext";
 import Login from "./pages/Login/Login";
 import Communication from "./pages/Communication/Communication";
+import ForgotPassword from "./pages/ForgotPassword/ForgotPassword";
+import ResetPassword from "./pages/ForgotPassword/ResetPassword";
 
 const profileEditUrl = "/profilim/profilimi-duzenle";
 
@@ -51,6 +53,8 @@ function App() {
           <Route path="/duyurular" element={<Announcement />} />
           <Route path="/iletişim" element={<Communication />} />
           <Route path="/education-detail" element={<EducationDetail />} />
+          <Route path="/sifremi-unuttum" element={<ForgotPassword/>}/>
+          <Route path="/reset-password" element={<ResetPassword/>}/>
           <Route
             path={profileEditUrl + "/kisisel-bilgilerim"}
             element={<ProfileInformationEdit />}
@@ -79,6 +83,7 @@ function App() {
             path={profileEditUrl + "/yabanci-dil"}
             element={<LanguageEdit />}
           />
+          
           <Route path={profileEditUrl + "ayarlar"} element={<Settings />} />
         </Routes>
       </div>
