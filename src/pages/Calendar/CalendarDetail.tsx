@@ -7,6 +7,7 @@ import { Container } from "react-bootstrap/lib/Tab";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import { GetInstructor, GetInstructorItem } from "../../models/responses/instructor/getInstructorResponse";
 import instructorService from "../../services/instructorService";
+import { EducationStatusText, calendarDropboxLabel, calendarDropboxPlaceholderText, calendarSearchBoxLabel } from "../../utilities/Constants/constantValues";
 
 type Props = {};
 const CalendarDetail = (props: Props) => {
@@ -39,7 +40,7 @@ const CalendarDetail = (props: Props) => {
         <Col xs={3}>
           <div className="filter-left equal-box">
             <div className="d-flex flex-column">
-              <label className="label-header">Eğitim Arama</label>
+              <label className="label-header">{calendarSearchBoxLabel}</label>
               <SearchBar searchBoxClassName="calendar-search-box" formClassName="calendar-form-control mr-sm-2"/>
               {/* <input
                 type="text"
@@ -48,12 +49,12 @@ const CalendarDetail = (props: Props) => {
               /> */}
             </div>
             <div className="d-flex flex-column">
-              <label className="label-header">Eğitmen</label>
+              <label className="label-header">{calendarDropboxLabel}</label>
               <Dropdown className=" calender-select dropdown-calendar">
                 <Dropdown.Toggle variant="success" id="dropdown-basic" className="btn-calendar dropdown-toggle-calendar">
                   <div className="css-14cgata-control">
                     <div className="css-hlgwow">
-                      <div className="css-1jqq78npmo-placeholder" >Eğitmen Seçiniz...</div>
+                      <div className="css-1jqq78npmo-placeholder" >{calendarDropboxPlaceholderText}</div>
                     </div>
                   <div className="css-1wy0on6">
                   <span className="dropdown-indicatorSeparator"></span>
@@ -87,35 +88,35 @@ const CalendarDetail = (props: Props) => {
               </Dropdown>
             </div>
             <div className="d-flex flex-column">
-              <label className="label-header">Eğitim Durumu</label>
+              <label className="label-header">{EducationStatusText.checkboxesHeader}</label>
               <div className="check-class">
                 <Form>
                   {["checkbox"].map((type) => (
                     <div key={`inline-${type}`} className="mb-3">
                       <Form.Check
                         inline
-                        label="Bitmiş Dersler"
+                        label={EducationStatusText.label1text}
                         id={`inline-${type}-1`}
                         className="form-check-label form-check-input form-check-input-calendar form-check-label-calendar checkEventEnded "
                       />
                       <br />
                       <Form.Check
                         inline
-                        label="Devam Eden Dersler"
+                        label={EducationStatusText.label2text}
                         id={`inline-${type}-1`}
                         className="form-check-label form-check-input form-check-input-calendar form-check-label-calendar checkEventContinue"
                       />
                       <br />
                       <Form.Check
                         inline
-                        label="Satın Alınmış Dersler"
+                        label={EducationStatusText.label3text}
                         id={`inline-${type}-1`}
                         className="form-check-label form-check-input form-check-input-calendar form-check-label-calendar checkEventBuyed"
                       />
                       <br />
                       <Form.Check
                         inline
-                        label="Başlanmamış Dersler"
+                        label={EducationStatusText.label4text}
                         id={`inline-${type}-1`}
                         className="form-check-label form-check-input form-check-input-calendar form-check-label-calendar checkEventNotStarted"
                       />

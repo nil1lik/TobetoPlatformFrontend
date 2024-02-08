@@ -55,7 +55,7 @@ const Announcement = (props: Props) => {
     <>
       <BannerTop
         bannerUrl="https://tobeto.com/_next/static/media/edu-banner3.d7dc50ac.svg"
-        bannerText={BannerTexts.announcementBannerText}
+        bannerText={BannerTexts.announcementBanner}
       />
 <SearchBarContext>
       <Container>

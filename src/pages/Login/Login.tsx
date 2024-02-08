@@ -11,6 +11,7 @@ import { AuthContext } from "../../contexts/AuthContext";
 import { userLoginRequest } from "../../models/requests/user/userLoginRequest";
 import { object } from "yup";
 import UserService from "../../services/userService";
+import { forgetPasswordButtonText, loginBoxBottomText, loginButtonText, registerButtonText } from "../../utilities/Constants/constantValues";
 
 type Props = { formClassName?: string };
 
@@ -91,20 +92,20 @@ const Login = (props: Props) => {
                     type="submit"
                     className="button-save py-2 mb-3 mt-4 d-inline-block"
                   >
-                    Giriş Yap
+                    {loginButtonText}
                   </button>
                 </Row>
               </Form>
             </Formik>
             <Link className="forget-pass-btn" to="/sifremi-unuttum">
-              Şifremi Unuttum
+              {forgetPasswordButtonText}
             </Link>
           </div>
           <div className="center">
             <span>
-              Henüz üye değil misin?{" "}
+              {loginBoxBottomText}{" "}
               <Link className="register-btn" to="/kayit-ol">
-                Kayıt Ol
+                {registerButtonText}
               </Link>
             </span>
           </div>

@@ -5,6 +5,7 @@ import CatalogCard from "../../components/Catalog/CatalogCard";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import FilterBar from "../../components/FilterBar/FilterBar";
 import CatalogFilter from "../../components/Catalog/CatalogFilter";
+import { BannerTexts } from "../../utilities/Constants/constantValues";
 
 type Props = {};
 
@@ -13,7 +14,7 @@ const Catalog = (props: Props) => {
     <>
       <BannerTop
         bannerUrl="https://tobeto.com/_next/static/media/edu-banner2.8923a47d.svg"
-        bannerText="Katalog"
+        bannerText={BannerTexts.catalogBanner}
       />
 
       <Container className="mt-3">
