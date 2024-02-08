@@ -2,6 +2,7 @@ import React, { ReactNode } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import "./educationDetailAbout.css";
 import EducationDetailAboutComp from "./EducationDetailAboutComp";
+import { categoryIcon, companyIcon, endDateIcon, estimatedDurationIcon, startDateIcon, timeSpentIcon } from "../../../utilities/Constants/iconsList";
 
 type Props = {
   startDate: string;
@@ -19,40 +20,30 @@ const EducationDetailAbout = (props: Props) => {
         <div className="info-section">
           <Row>
             <EducationDetailAboutComp
-              className={"sg-icon sg-start-date"}
-              image={"/images/start-date.png"}
-              valueHeader={"Başlangıç"}
+              {...startDateIcon}
               educationAboutData={props.startDate}
             />
             <EducationDetailAboutComp
-              className={"hidden-icon sg-icon sg-start-date"}
-              image={"/images/start-date.png"}
-              valueHeader={"Bitiş"}
+              {...endDateIcon}
               educationAboutData={props.endDate}
             />
           </Row>
         </div>
         <div className="info-section row">
         <EducationDetailAboutComp
-              className={"sg-icon sg-stopwatch"}
-              image={"/images/stopwatch.png"}
-              valueHeader={"Geçirdiğin Süre"}
+              {...timeSpentIcon}
               educationAboutData={props.timeSpent}
             />
         </div>
         <div className="info-section row">
         <EducationDetailAboutComp
-              className={"sg-icon sg-stopwatch"}
-              image={"/images/stopwatch.png"}
-              valueHeader={"Tahmini Süre"}
+              {...estimatedDurationIcon}
               educationAboutData={props.estimatedDuration}
             />
         </div>
         <div className="info-section row">
         <EducationDetailAboutComp
-              className={"sg-icon sg-tag"}
-              image={"/images/price-tag.png"}
-              valueHeader={"Kategori"}
+              {...categoryIcon}
               educationAboutData={props.category}
             />
         </div>
@@ -74,9 +65,7 @@ const EducationDetailAbout = (props: Props) => {
         </div>
         <div id="last-section" className="info-section row">
         <EducationDetailAboutComp
-              className={"sg-icon sg-briefcase"}
-              image={"/images/briefcase.png"}
-              valueHeader={"Üretici Firma"}
+              {...companyIcon}
               educationAboutData={props.company} 
             />
         </div>
