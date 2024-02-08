@@ -11,6 +11,7 @@ import { GetEducationItem } from "../../../models/responses/education/getEducati
 import educationService from "../../../services/educationService";
 import { Link } from "react-router-dom"
 import { PlatformTabHeaders, showMoreText } from "../../../utilities/Constants/constantValues";
+import { applicationApproved, applicationNotApproved, applicationPending, applicationWaiting } from "../../../utilities/Constants/ApplicationCardIconClasses";
 
 type Props = {};
 
@@ -49,11 +50,22 @@ const PlatformTab = (props: Props) => {
       <Tab eventKey="basvurular" title={PlatformTabHeaders.applications}>
         <Container>
           <Row>
-            <Col weight="33.3%">
+            <Col className="col-6">
               <ApplicationCard
                 cardHeader="İstanbul Kodluyor Bilgilendirme"
-                cardDescription="İstanbul Kodluyor Başvuru Formu onaylandı."
-                cardText="İstanbul Kodluyor Belge Yükleme Formu onaylandı."
+                cardText1="İstanbul Kodluyor Başvuru Formu onaylandı."
+                cardText2="İstanbul Kodluyor Belge Yükleme Formu onaylandı."
+                iconClass1={applicationApproved}
+                iconClass2={applicationNotApproved}
+              />
+            </Col>
+            <Col className="col-6">
+              <ApplicationCard
+                cardHeader="İstanbul Kodluyor Bilgilendirme"
+                cardText1="İstanbul Kodluyor Başvuru Formu onaylandı."
+                cardText2="İstanbul Kodluyor Belge Yükleme Formu onaylandı."
+                iconClass1={applicationPending}
+                iconClass2={applicationWaiting}
               />
             </Col>
           </Row>
