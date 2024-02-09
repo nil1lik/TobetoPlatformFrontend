@@ -97,6 +97,8 @@ export const ProfileEditPageHeaders = {
 }
 
 /* EDUCATION VALUES */
+export const educationPageItemCountByPageMin:number = 0;
+export const educationPageItemCountByPageMax:number = 9;
 export const EducationCompletionStatusHeaders = {
     allEducations: "Tüm Eğitimlerim",
     progressingEducations : "Devam Eden Eğitimler",
