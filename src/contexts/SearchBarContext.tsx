@@ -1,10 +1,17 @@
-import { createContext, useState } from "react";
+import { Dispatch, SetStateAction, createContext, useContext, useState } from "react";
 import React from "react";
 
-const SearchContext = createContext({
+type SearchBarContextType = {
+  searchQuery: string;
+  setSearchQuery: Dispatch<SetStateAction<any>>;
+};
+
+const SearchContext = createContext<SearchBarContextType>({
   searchQuery: "",
   setSearchQuery: (query: string) => {}
 })
+
+export const useSearchContext = () => useContext(SearchContext);
 
 const SearchBarContext = (props: any) => {
   const [searchQuery, setSearchQuery] = useState<string>("");
@@ -17,3 +24,4 @@ const SearchBarContext = (props: any) => {
 };
 
 export default SearchBarContext;
+
