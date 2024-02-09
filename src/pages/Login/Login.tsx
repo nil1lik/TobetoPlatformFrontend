@@ -13,7 +13,7 @@ import { object } from "yup";
 import UserService from "../../services/userService";
 import { forgetPasswordButtonText, loginBoxBottomText, loginButtonText, registerButtonText } from "../../utilities/Constants/constantValues";
 
-type Props = { formClassName?: string };
+type Props = {};
 
 const Login = (props: Props) => {
   const validationSchema = object({
@@ -66,7 +66,7 @@ const Login = (props: Props) => {
                   });
               }}
             >
-              <Form className={props.formClassName}>
+              <Form className={"login-form-cont"}>
                 <Row>
                   <Image
                     className="login-form-img"
