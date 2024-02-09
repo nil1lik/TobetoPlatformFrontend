@@ -4,19 +4,27 @@ import EducationDetailContent from "./EducationDetailContent";
 import EducationDetailAbout from "./EducationDetailAbout";
 import "./educationDetailTab.css" 
 import educationService from "../../../services/educationService";
-import { GetAllEducationAboutResponse } from "../../../models/responses/education/getAllEducationAboutResponse";
+import { GetAllEducationAboutResponse} from "../../../models/responses/education/getAllEducationAboutResponse";
+import { object } from "yup";
 type Props = {};
 
 const EducationDetailTab = (props: Props) => {
-  const [education, setEducation] = useState<GetAllEducationAboutResponse[]>([]);
+  const [education, setEducation] = useState<GetAllEducationAboutResponse>(Object);
 
-  useEffect(() => {
+
     const fetchEducationAbout = async () => {
-      const result = await educationService.getByIdEducationAboutDetailDto(1);        // ID ÇEKCEZ
-      // setEducation(result.data.id);
+      try {
+        const result = await educationService.getByIdEducationAboutDetailDto(1);        // ID ÇEKCEZ
+      console.log(result.data)
+      setEducation(result.data);
+      } catch (error) {
+        console.error("API isteği sırasında bir hata oluştu:", error);
+      }
     };
-    fetchEducationAbout();
-  }, []);
+
+    useEffect(() => {
+      fetchEducationAbout();
+    },[])
 
   return (
     <Tabs
@@ -43,7 +51,7 @@ const EducationDetailTab = (props: Props) => {
         <Container>
           <Row>
             <Col>
-            {education.map((education: any) => (
+            {/* {education.map((education: any) => (
               <EducationDetailAbout
                 startDate={education.startDate}
                 endDate={education.endDate}
@@ -52,7 +60,15 @@ const EducationDetailTab = (props: Props) => {
                 category={education.categoryName}
                 company={education.companyName}
               />
-            ))}
+            ))} */}
+            <EducationDetailAbout
+                startDate={education.startDate}
+                endDate={education.endDate}
+                timeSpent="2 dk"
+                estimatedDuration="3 dk"
+                category={education.categoryName}
+                company={education.companyName}
+              />
             </Col>
           </Row>
         </Container>
