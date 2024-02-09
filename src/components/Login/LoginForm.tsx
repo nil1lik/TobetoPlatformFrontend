@@ -15,9 +15,6 @@ const validationSchema = object({
   password: UserInformationValidationMessageRule.password,
 });
 
-
-
-
 const LoginForm = (props: Props) => {
   const authContext: any = useContext(AuthContext);
   const navigate = useNavigate();
