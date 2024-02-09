@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button, Form} from "react-bootstrap";
 import '../SearchBar/searchBar.css'
+import { useSearchContext } from "../../contexts/SearchBarContext";
 
 type Props = {
   formClassName?: string;
@@ -10,9 +11,11 @@ type Props = {
 };
 
 const SearchBar = (props: Props) => {
+  const { searchQuery, setSearchQuery } = useSearchContext();
 
   const handleChange = (event:any) => {
     const value= event.target.value;
+    setSearchQuery(value);
   }
 
   return (
@@ -24,7 +27,6 @@ const SearchBar = (props: Props) => {
         onChange={handleChange}
       />
       <Button className={props.buttonClassName || "search-btn"}>
-        {/* <img className="search-icon" src="../images/search.svg" /> */}
         <svg
           width="33"
           height="33"
