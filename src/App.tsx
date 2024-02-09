@@ -24,7 +24,7 @@ import ChatBot from "./layouts/ChatBot/ChatBot";
 import Register from "./pages/Register/Register";
 import AuthProvider from "./contexts/AuthContext";
 import Login from "./pages/Login/Login";
-import Communication from "./pages/Communication/Communication";
+import Communication from "./pages/Contact/Communication";
 import ForgotPassword from "./pages/ForgotPassword/ForgotPassword";
 import ResetPassword from "./pages/ForgotPassword/ResetPassword";
 

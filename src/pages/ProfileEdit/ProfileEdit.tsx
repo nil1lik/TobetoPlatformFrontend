@@ -62,7 +62,7 @@ const ProfileEdit = (props: Props) => {
               }
             </Navbar>
           </Col>
-          <Col xs={8}>
+          <Col xs={9}>
             <Card className="card-b">
               <Card.Body>
                 {renderContent()}

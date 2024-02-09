@@ -11,7 +11,8 @@ import cityService from "../../../services/cityService";
 import { ProfileDto } from "../../../models/responses/user/profileDto";
 import FormikInput from "../../Formik/FormikInput";
 import { textAreaLength } from "../../../utilities/Validations/validationMessages";
-import PhoneInputWithCountrySelect from "react-phone-number-input";
+import "react-phone-number-input/style.css";
+import PhoneInput from "react-phone-number-input";
 
 const validationSchema = object({
   firstName: UserInformationValidationMessageRule.firstName,
@@ -31,7 +32,7 @@ const ProfileInformationEdit2 = (props: Props) => {
   const [cities, setCities] = useState<GetCityItem[]>([]);
   const [districts, setDistricts] = useState<any[]>([]);
   const [profileData, setProfileData] = useState<GetByIdUser>();
-  const [value, setValue] = useState<any>()
+  const [value, setValue] = useState<any>();
 
   const getUser = async (userId: number) => {
     try {
@@ -111,36 +112,17 @@ const ProfileInformationEdit2 = (props: Props) => {
             <Row>
               <Col>
                 <Row style={{ display: "flex", alignItems: "center" }}>
-                  <Col className="col-1">
-                    {/* <select style={{ width: "fit-content", height: "fit-content" }}> */}
-                    {/* <Field as="select" name="value" className="form-control">a
-                      <option value="" disabled selected>Seçiniz</option>
-
-                    </Field> */}
-                    {/* </select> */}
-
-                    {/* <Field as="select" name="value" className="form-control">
-                      {countries.map((country: any) => (
-                        <option
-                          key={country.name}
-                          value={country.name}
-                          label={country.name}
-                        />
-                      ))}
-                    </Field> */}
-                  </Col>
-                  <Col className="col-11">
-                    <PhoneInputWithCountrySelect
-                      placeholder="Enter phone number"
+                  <Col>
+                    <label className="input-label-text">
+                      Telefon Numaranız*
+                    </label>
+                    <PhoneInput
+                      international
+                      defaultCountry="RU"
                       value={value}
                       onChange={setValue}
+                      className="my-custom-input"
                     />
-                    {/* <FormikInput
-                      type="number"
-                      name="phone"
-                      label="Telefon"
-                      placeHolder="Telefon Numaranız"
-                    /> */}
                   </Col>
                 </Row>
               </Col>

@@ -95,8 +95,15 @@ footer {
   border-radius: 8px !important;
   border: 1px solid #b3a6c0 !important;
   position: relative;
+  padding-left: 15px;
 }
 
+.my-custom-input input {
+  border: none; /* Input alanının border'ını kaldırma */
+}
+.my-custom-input input:focus {
+  outline: none; /* Input alanının border'ını kaldırma */
+}
 .my-custom-date {
   width: 324px;
   height: 50px;
