@@ -8,7 +8,7 @@ import EducationCard from "../../components/Education/EducationCard/EducationCar
 import FilterBar from "../../components/FilterBar/FilterBar";
 import BannerTop from "../../components/Banner/BannerTop";
 import Pagi from "../../components/Pagination/Pagi";
-import { BannerTexts, announcementPageItemCountByPage, EducationFilterBarTextValues } from "../../utilities/Constants/constantValues";
+import { BannerTexts, EducationFilterBarTextValues, educationPageItemCountByPageMax} from "../../utilities/Constants/constantValues";
 import { pageCalculate } from "../../utilities/Helpers/pageCountByItemsCalculator";
 
 type Props = {};
@@ -24,8 +24,8 @@ const Education = (props: Props) => {
 
   useEffect(() => {
     const fetchEducation = async () => {
-      const result = await educationService.getAll(childState, announcementPageItemCountByPage);
-      setPageCount( pageCalculate(result.data.count, announcementPageItemCountByPage))
+      const result = await educationService.getAll(childState, educationPageItemCountByPageMax);
+      setPageCount( pageCalculate(result.data.count, educationPageItemCountByPageMax))
       setEducation(result.data.items);
     };
     fetchEducation();

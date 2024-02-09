@@ -1,8 +1,8 @@
 import React from "react";
 import "../../pages/Evaluation/evaluation.css";
 import { Col, Container, Row } from "react-bootstrap";
-import ExamLink from "./ExamLink";
-import EvolationInformation from "./EvolationInformation";
+import ExamLink from "../../components/Evaluation/ExamLink";
+import EvolationInformation from "../../components/Evaluation/EvolationInformation";
 import { EvaluationPageBottomCardsHeader, EvaluationPageBottomLeftCardTexts, EvaluationPageBottomRightCardTexts, EvaluationPageExamLinkTexts, EvaluationPageHeader, EvaluationPageSuccessModelCardTexts, EvaluationPageTestCardTexts, startButtonText } from "../../utilities/Constants/constantValues";
 
 type Props = {};

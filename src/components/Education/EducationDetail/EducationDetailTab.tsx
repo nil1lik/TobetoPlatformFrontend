@@ -1,11 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Card, Col, Container, Row, Tab, Tabs } from "react-bootstrap";
 import EducationDetailContent from "./EducationDetailContent";
 import EducationDetailAbout from "./EducationDetailAbout";
 import "./educationDetailTab.css" 
+import educationService from "../../../services/educationService";
+import { GetAllEducationAboutResponse } from "../../../models/responses/education/getAllEducationAboutResponse";
 type Props = {};
 
 const EducationDetailTab = (props: Props) => {
+  const [education, setEducation] = useState<GetAllEducationAboutResponse[]>([]);
+
+  useEffect(() => {
+    const fetchEducationAbout = async () => {
+      const result = await educationService.getByIdEducationAboutDetailDto(1);        // ID ÇEKCEZ
+      // setEducation(result.data.id);
+    };
+    fetchEducationAbout();
+  }, []);
+
   return (
     <Tabs
       defaultActiveKey="content"
@@ -31,14 +43,16 @@ const EducationDetailTab = (props: Props) => {
         <Container>
           <Row>
             <Col>
+            {education.map((education: any) => (
               <EducationDetailAbout
-                startDate="21 EYL 2023 12:20"
-                endDate="31 ARA 2023 23:59"
+                startDate={education.startDate}
+                endDate={education.endDate}
                 timeSpent="2 dk"
                 estimatedDuration="3 dk"
-                category="Genel"
-                company="Enocta"
+                category={education.categoryName}
+                company={education.companyName}
               />
+            ))}
             </Col>
           </Row>
         </Container>
