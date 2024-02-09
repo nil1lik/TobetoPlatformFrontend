@@ -17,6 +17,11 @@ type Props = {
   educationSubTitle?: string;
   educationType: string;
   educationTime: string;
+  educationCategory: string;
+  educationLanguage : string;
+  educationCompany: string;
+  educationSubcategory: string;
+  likeCount: number;
 };
 
 const EducationDetailContent = (props: Props) => {
@@ -109,6 +114,11 @@ const EducationDetailContent = (props: Props) => {
                                   educationName={props.educationTitle}
                                   educationType={props.educationType}
                                   timeSpent={props.educationTime}
+                                  category= {props.educationCategory}
+                                  language= {props.educationLanguage}
+                                  company= {props.educationCompany}
+                                  subcategory= {props.educationSubcategory}
+                                  likeCount={props.likeCount}
                                   point={100}
                                   button={true}
                                   show={show}

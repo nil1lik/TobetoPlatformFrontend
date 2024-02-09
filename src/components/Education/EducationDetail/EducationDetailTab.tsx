@@ -34,6 +34,11 @@ const EducationDetailTab = (props: Props) => {
                 educationSubTitle="Hoşgeldin Mesajı"
                 educationType="Video"
                 educationTime="3 dk"
+                educationCategory="Genel"
+                educationLanguage="Türkçe"
+                educationSubcategory="Video"
+                educationCompany="Kurum içi üretim"
+                likeCount={65}
               /> 
             </Col> 
           </Row>

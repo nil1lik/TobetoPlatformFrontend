@@ -1,13 +1,24 @@
-import React, { useState } from "react";
+import React from "react";
 import { Col, Container, Offcanvas, Row } from "react-bootstrap";
 import "./educationOffcanvas.css";
 import EducationDetailAboutComp from "./EducationDetailAboutComp";
+import {
+  categoryIcon,
+  companyIcon,
+  languageIcon,
+  subcategoryIcon,
+} from "../../../utilities/Constants/iconsList";
 
 type Props = {
   imageUrl: string;
   educationName: string;
   educationType: string;
   timeSpent: string;
+  category: string;
+  language: string;
+  subcategory: string;
+  company: string;
+  likeCount: number;
   point: number;
   button: boolean;
   show: boolean;
@@ -45,7 +56,7 @@ const EducationOffcanvas = (props: Props) => {
               <Col lg={12} className="like">
                 <div className="education-like-area">
                   <img className="education like-img" src="/images/heart.svg" />
-                  <span className="like-area-span">65</span>
+                  <span className="like-area-span">{props.likeCount}</span>
                 </div>
               </Col>
             </Col>
@@ -71,16 +82,32 @@ const EducationOffcanvas = (props: Props) => {
         </Container>
       </Offcanvas.Header>
       <Offcanvas.Body>
-        <Row>
-          <Col lg={2}>
-            <img
-              className="sg-icon sg-start-date"
-              src="/images/start-date.png"
+        <Container>
+          <div className="info-section row">
+            <EducationDetailAboutComp
+              {...categoryIcon}
+              educationAboutData={props.category}
             />
-            <strong>Başlangıç</strong>
-          </Col>
-          <Col lg={10}>{props.educationName}</Col>
-        </Row>
+          </div>
+          <div className="info-section row">
+            <EducationDetailAboutComp
+              {...languageIcon}
+              educationAboutData={props.language}
+            />
+          </div>
+          <div className="info-section row">
+            <EducationDetailAboutComp
+              {...subcategoryIcon}
+              educationAboutData={props.subcategory}
+            />
+          </div>
+          <div className="info-section row">
+            <EducationDetailAboutComp
+              {...companyIcon}
+              educationAboutData={props.company}
+            />
+          </div>
+        </Container>
       </Offcanvas.Body>
     </Offcanvas>
   );
