@@ -5,6 +5,7 @@ import { Col, Container, Row } from "react-bootstrap";
 import "./platform.css";
 import ProfileCard from "../../components/Profile/ProfileCard/ProfileCard";
 import Exams from "../../components/Exam/Exams";
+import { platformHeader, platformTabTexts } from "../../utilities/Constants/constantValues";
 
 type Props = {};
 
@@ -19,14 +20,14 @@ const Platform = (props: Props) => {
                   <Col className="col-12 text-center mt-5">
                     <div className="mw-5xl mx-auto">
                       <h3>
-                        <label className="text-secondary-platform">TOBETO</label>
-                        <label className="fw-normal text-info1">'ya</label>
-                        <label className="fw-normal text-info1">hoş geldin</label>
+                        <label className="text-secondary-platform">{platformHeader.fragment1}</label>
+                        <label className="fw-normal text-info1">{platformHeader.fragment2}</label>
+                        <label className="fw-normal text-info1">{platformHeader.fragment3}</label>
                       </h3>
-                      <h4 className="fw-normal text-info1 text-info2">Pair 1</h4>
+                      <h4 className="fw-normal text-info1 text-info2">Pair 1</h4> /* UserName veri olacak çekilecek. */
                     </div>
                     <TobetoPlatformItem
-                      text="Yeni nesil öğrenme deneyimi ile Tobeto kariyer yolculuğunda senin yanında!"
+                      text={platformHeader.subtitle}
                     />
                   </Col>
               </Row>
@@ -34,10 +35,10 @@ const Platform = (props: Props) => {
                   <TobetoPlatformItem
                     imageClass="ist-kod-png"
                     imageSrc="istanbulKodluyor.png"
-                    text="Ücretsiz eğitimlerle, geleceğin mesleklerinde sen de yerini al."
+                    text={platformTabTexts.imgSubtitle}
                   />
                   <label className="header-text-quot mb-4">
-                    Aradığın <span className="quot">"</span>İş<span className="quot">"</span>  Burada!
+                  {platformTabTexts.fragment1} <span className="quot">"</span>{platformTabTexts.fragment2}<span className="quot">"</span>  {platformTabTexts.fragment3}
                   </label>
                   <PlatformTab />
               </Row> 

@@ -10,6 +10,7 @@ import { userRegisterRequest } from "../../models/requests/user/userRegisterRequ
 import { passwordMaxLength } from "../../utilities/Validations/validationMessages";
 import { UserInformationValidationMessageRule } from "../../utilities/Validations/validationMessageRules";
 import UserService from "../../services/userService";
+import { registerButtonText } from "../../utilities/Constants/constantValues";
 
 type Props = {  formClassName?: string};
 
@@ -95,7 +96,7 @@ function Register(props: Props) {
                   type="submit"
                   className="button-save py-2 mb-3 mt-4 d-inline-block"
                 >
-                  Kayıt Ol
+                  {registerButtonText}
                 </button>
               </Row>
             </Form>

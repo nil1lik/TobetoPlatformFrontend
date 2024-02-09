@@ -7,6 +7,7 @@ export const loginButtonText = "Giriş Yap";
 export const uploadFileText = "Dosya Yükle";
 export const forgetPasswordButtonText = "Şifremi Unuttum";
 export const registerButtonText = "Kayıt Ol";
+export const pageIsNotFound = "Sayfa bulunamadı";
 
 /* LOGIN PAGE */
 export const loginBoxBottomText = "Henüz üye değil misin?";
@@ -16,6 +17,20 @@ export const platformPageBottomCards = {
     card1Text: "Profilini Oluştur",
     card2Text: "Kendini Değerlendir",
     card3Text: "Öğrenmeye Başla"
+}
+
+export const platformHeader = {
+    fragment1: "TOBETO",
+    fragment2: "'ya",
+    fragment3: "hoş geldin",
+    subtitle: "Yeni nesil öğrenme deneyimi ile Tobeto kariyer yolculuğunda senin yanında!"
+}
+
+export const platformTabTexts = {
+    imgSubtitle: "Ücretsiz eğitimlerle, geleceğin mesleklerinde sen de yerini al.",
+    fragment1: "Aradığın ",
+    fragment2: "İş",
+    fragment3: "Burada!",
 }
 
 /* COMMUNICATION TEXT VALUES */
