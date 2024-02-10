@@ -9,9 +9,17 @@ import AnnouncementService from "../../../services/announcementService";
 import { GetAnnouncementTypeItem } from "../../../models/responses/announcement/getAnnouncementTypeList";
 import { GetEducationItem } from "../../../models/responses/education/getEducation";
 import educationService from "../../../services/educationService";
-import { Link } from "react-router-dom"
-import { PlatformTabHeaders, showMoreText } from "../../../utilities/Constants/constantValues";
-import { applicationApproved, applicationNotApproved, applicationPending, applicationWaiting } from "../../../utilities/Constants/ApplicationCardIconClasses";
+import { Link } from "react-router-dom";
+import {
+  PlatformTabHeaders,
+  showMoreText,
+} from "../../../utilities/Constants/constantValues";
+import {
+  applicationApproved,
+  applicationNotApproved,
+  applicationPending,
+  applicationWaiting,
+} from "../../../utilities/Constants/ApplicationCardIconClasses";
 
 type Props = {};
 
@@ -21,7 +29,6 @@ const PlatformTab = (props: Props) => {
     []
   );
 
-
   const announcementIconSrc =
     process.env.PUBLIC_URL + `/images/announcementDate.svg`;
 
@@ -29,6 +36,7 @@ const PlatformTab = (props: Props) => {
     const fetchEducation = async () => {
       const result = await educationService.getByFilter(0, 4);
       setEducation(result.data.items);
+      console.log(result);
     };
 
     const fetchAnnouncement = async () => {
@@ -75,6 +83,7 @@ const PlatformTab = (props: Props) => {
         <Row>
           {education.map((education: any) => (
             <EducationCard
+              id={education.id}
               image={education.imageUrl}
               text={education.name}
               date={new Date(education.createdDate).toLocaleString("tr-TR", {

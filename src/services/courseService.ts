@@ -19,7 +19,7 @@ class CourseService extends BaseService<
 {
     constructor(){
         super();
-        this.apiUrl = BASE_API_URL + "Course"
+        this.apiUrl = BASE_API_URL + "Courses"
     }
     getByFilter(){ }
 }

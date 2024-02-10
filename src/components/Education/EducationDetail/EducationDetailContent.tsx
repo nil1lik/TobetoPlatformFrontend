@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./educationDetailContent.css";
 import {
   Accordion,
@@ -11,12 +11,26 @@ import {
   Row,
 } from "react-bootstrap";
 import EducationOffcanvas from "./EducationOffcanvas";
+import {
+  GetCourseReponse,
+  GetCourseReponseItem,
+} from "../../../models/responses/course/getCourseResponse";
+import courseService from "../../../services/courseService";
+import {
+  AccordionEventKey,
+  AccordionSelectCallback,
+} from "react-bootstrap/esm/AccordionContext";
 
 type Props = {
-  educationTitle: string;
+  educationTitle?: string;
   educationSubTitle?: string;
   educationType: string;
   educationTime: string;
+  educationCategory: string;
+  educationLanguage : string;
+  educationCompany: string;
+  educationSubcategory: string;
+  likeCount: number;
 };
 
 const EducationDetailContent = (props: Props) => {
@@ -24,37 +38,63 @@ const EducationDetailContent = (props: Props) => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const [activeKey, setActiveKey] = useState<string | null>(null);
+
+  const [educationDetail, setEducationDetail] = useState<
+    GetCourseReponseItem[]
+  >([]);
+
+  const fetchEducationDetail = async () => {
+    try {
+      const result = await courseService.getAll(0, 10);
+      setEducationDetail(result.data.items);
+      console.log(result.data);
+    } catch (error) {
+      console.error("API isteği sırasında bir hata oluştu:", error);
+    }
+  };
+  useEffect(() => {
+    fetchEducationDetail();
+  }, []);
+
+  const handleAccordionClick: AccordionSelectCallback = (
+    eventKey: AccordionEventKey
+  ) => {
+    setActiveKey(typeof eventKey === "string" ? eventKey : null);
+  };
 
   return (
     <Container>
       <div className="accordion-container">
         <Row className="activity-row">
           <Col className="col-lg-5">
-            <Accordion defaultActiveKey="0">
-              <AccordionItem eventKey="0">
-                <AccordionHeader className="education-title">
-                  {props.educationTitle}
-                </AccordionHeader>
-                <div>
-                  <AccordionBody className="education-subtitle" role="button">
-                    {props.educationSubTitle}
-                    <AccordionBody className="education-type">
-                      {props.educationType} - {props.educationTime}
-                    </AccordionBody>
+            <Accordion activeKey={activeKey} onSelect={handleAccordionClick}>
+              {educationDetail.map((education, index) => (
+                <AccordionItem key={index} eventKey={index.toString()}>
+                  <AccordionHeader className="education-title">
+                    {education.name}
+                  </AccordionHeader>
+                  <div>
+                    <AccordionBody className="education-subtitle" role="button">
+                      {props.educationSubTitle}
+                      <AccordionBody className="education-type">
+                        {props.educationType} - {props.educationTime}
+                      </AccordionBody>
 
-                    <img className="completed-icon" src={completedIcon} />
-                  </AccordionBody>
-                  <AccordionBody className="education-subtitle" role="button">
-                    {props.educationSubTitle}
-                    <AccordionBody className="education-type">
-                      {props.educationType} - {props.educationTime}
+                      <img className="completed-icon" src={completedIcon} />
                     </AccordionBody>
+                    <AccordionBody className="education-subtitle" role="button">
+                      {props.educationSubTitle}
+                      <AccordionBody className="education-type">
+                        {props.educationType} - {props.educationTime}
+                      </AccordionBody>
 
-                    <img className="completed-icon" src={completedIcon} />
-                  </AccordionBody>
-                </div>
-              </AccordionItem>
-              <AccordionItem eventKey="1">
+                      <img className="completed-icon" src={completedIcon} />
+                    </AccordionBody>
+                  </div>
+                </AccordionItem>
+              ))}
+              {/* <AccordionItem eventKey="1">
                 <AccordionHeader>{props.educationTitle}</AccordionHeader>
                 <AccordionBody className="education-subtitle">
                   {props.educationSubTitle}
@@ -63,7 +103,7 @@ const EducationDetailContent = (props: Props) => {
                   </AccordionBody>
                   <img className="completed-icon" src={completedIcon} />
                 </AccordionBody>
-              </AccordionItem>
+              </AccordionItem>*/}
             </Accordion>
           </Col>
 
@@ -97,7 +137,7 @@ const EducationDetailContent = (props: Props) => {
                         </Col>
                         <Col lg={3}>
                           <div className="ant-space ant-space-vertical">
-                            <button
+                            {/* <button
                               type="button"
                               className="ant-btn ant-btn-default ant-btn-lg ant-btn-block btn"
                               onClick={handleShow}
@@ -109,13 +149,18 @@ const EducationDetailContent = (props: Props) => {
                                   educationName={props.educationTitle}
                                   educationType={props.educationType}
                                   timeSpent={props.educationTime}
+                                  category= {props.educationCategory}
+                                  language= {props.educationLanguage}
+                                  company= {props.educationCompany}
+                                  subcategory= {props.educationSubcategory}
+                                  likeCount={props.likeCount}
                                   point={100}
                                   button={true}
                                   show={show}
                                   hide={handleClose}
                                 />
                               </div>
-                            </button>
+                            </button> */}
                           </div>
                         </Col>
                       </Row>

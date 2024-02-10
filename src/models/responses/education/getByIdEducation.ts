@@ -1,1 +1,3 @@
-export interface GetByIdEducation{} 
+export interface GetByIdEducation{
+    
+} 

@@ -32,3 +32,20 @@ export const companyIcon = {
   image: "/images/briefcase.png",
   valueHeader: "Üretici Firma",
 };
+
+export const fileIcon = {
+  className: "sg-icon sg-file",
+  image:"/images/file.png",
+}
+
+export const languageIcon = {
+  className: "sg-icon sg-language",
+  image: "/images/language.svg",
+  valueHeader: "Dili"
+}
+
+export const subcategoryIcon = {
+  className: "sg-icon sg-subcategory",
+  image: "/images/pixels.svg",
+  valueHeader: "Alt Tip"
+}

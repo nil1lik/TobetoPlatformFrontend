@@ -8,31 +8,41 @@ import { UpdateEducationResponse } from "../models/responses/education/updateEdu
 import { BaseService } from "../core/services/baseService";
 import axios, { AxiosResponse } from "axios";
 import { GetAllEducationAboutResponse } from "../models/responses/education/getAllEducationAboutResponse";
+import { GetAllEducationHeaderResponse } from "../models/responses/education/getAllEducationHeaderResponse";
 
 class EducationService extends BaseService<
-GetEducation,
-GetByIdEducation,
-AddEducationResponse,
-AddEducationRequest,
-UpdateEducationRequest,
-UpdateEducationResponse 
-> 
-{
-  public  EducationAbout : string
+  GetEducation,
+  GetByIdEducation,
+  AddEducationResponse,
+  AddEducationRequest,
+  UpdateEducationRequest,
+  UpdateEducationResponse
+> {
+  public EducationAbout: string;
   constructor() {
     super();
-    this.apiUrl = BASE_API_URL + "EducationPaths"; 
-    this.EducationAbout = BASE_API_URL + "EducationAbouts"
-    this.dtoUrl = this.EducationAbout + "/EducationAboutDetailDto"
+    this.apiUrl = BASE_API_URL + "EducationPaths";
+    this.EducationAbout = BASE_API_URL + "EducationAbouts";
+    this.dtoUrl = this.EducationAbout + "/EducationAboutDetailDto";
   }
-  getByFilter(pageIndex:number=0, pageSize: number=16){
+  getByFilter(pageIndex: number = 0, pageSize: number = 16) {
     return this.getAll(pageIndex, pageSize);
   }
-  
-  getByIdEducationAboutDetailDto(id: number): Promise<AxiosResponse<GetAllEducationAboutResponse, any>> {
-		console.log(this.apiUrl + "/" + id);
-		return axios.get<GetAllEducationAboutResponse>(this.dtoUrl + "/" + id);
-	}
-} 
 
-export default new EducationService(); 
+  getByIdEducationAboutDetailDto(
+    id: number
+  ): Promise<AxiosResponse<GetAllEducationAboutResponse, any>> {
+    return axios.get<GetAllEducationAboutResponse>(this.dtoUrl + "/" + id);
+  }
+
+  getEducationPathDetailByIdDto(
+    id: number
+  ): Promise<AxiosResponse<GetAllEducationHeaderResponse, any>> {
+    return axios.get<GetAllEducationHeaderResponse>(
+      this.apiUrl + "/" + "educationPathDetail/" + id
+    );
+  }
+
+}
+
+export default new EducationService();

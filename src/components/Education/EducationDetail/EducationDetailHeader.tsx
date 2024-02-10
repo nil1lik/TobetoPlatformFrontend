@@ -11,12 +11,11 @@ type Props = {
 };
 
 const EducationDetailHeader = (props: Props) => {
-  const educationImage = "https://" + props.imageUrl;
   return (
     <Container>
       <Row className="education-detail-header">
         <Col lg={1}>
-          <img className="activity-image" src={educationImage} />
+          <img className="activity-image" src={props.imageUrl} />
         </Col>
 
         <Col lg={11}>
