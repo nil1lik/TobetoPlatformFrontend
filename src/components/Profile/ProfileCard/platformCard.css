@@ -67,6 +67,8 @@
     background-color: #9933ff!important;
     font-size: 14px;
     height: 30px!important;
+    display: block;
+    margin: 0 auto;
 }
 
 .btnCard:hover {

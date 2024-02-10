@@ -27,6 +27,7 @@ import Login from "./pages/Login/Login";
 import Communication from "./pages/Contact/Communication";
 import ForgotPassword from "./pages/ForgotPassword/ForgotPassword";
 import ResetPassword from "./pages/ForgotPassword/ResetPassword";
+import { SearchbarContext } from "./contexts/SearchbarContext";
 import EducationDetailAbout from "./components/Education/EducationDetail/EducationDetailAbout";
 import EducationDetailAboutComp from "./components/Education/EducationDetail/EducationDetailAboutComp";
 
@@ -40,7 +41,7 @@ function App() {
       <div className="body-height">
         <AuthProvider>
           <Routes>
-            <Route path="/giris" element={<Login/>} />
+            <Route path="/giris" element={<Login />} />
             <Route path="/kayit-ol" element={<Register />} />
           </Routes>
         </AuthProvider>

@@ -1,6 +1,5 @@
-import React, { useContext, useEffect, useState } from "react";
-import { Container, Pagination } from "react-bootstrap";
-import { Row } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import { Container, Row } from "react-bootstrap";
 import AnnouncementCard from "../../components/Announcement/AnnouncementCard";
 import announcementService from "../../services/announcementService";
 import { GetAnnouncementTypeItem } from "../../models/responses/announcement/getAnnouncementTypeList";
@@ -15,25 +14,19 @@ import {
 } from "../../utilities/Constants/constantValues";
 import { pageCalculate } from "../../utilities/Helpers/pageCountByItemsCalculator";
 import FilterByCheckbox from "../../components/FilterBar/FilterByCheckbox";
-import SearchBarContext, {
-  useSearchContext,
-} from "../../contexts/SearchBarContext";
+import { SearchbarContext } from "../../contexts/SearchbarContext";
 
 type Props = {};
 
 const Announcement = (props: Props) => {
   const [childState, setChildState] = useState<number>(0);
-  // const searchBarContext = useContext(SearchBarContext);
-  // const { searchQuery} = searchBarContext;
+  const [pageCount, setPageCount] = useState<any>(null);
+  const [searchbarValue, setSearchbarValue] = useState<string>("");
+  const [searchbarFocus, setSearchbarFocus] = useState<boolean>(false);
 
   const handleChildStateChange = (newState: number) => {
     setChildState(newState);
   };
-
-  const { searchQuery, setSearchQuery } = useSearchContext();
-  useEffect(() => {
-    console.log(searchQuery);
-  }, [searchQuery]);
 
   const announcementIconSrc =
     process.env.PUBLIC_URL + `/images/announcementDate.svg`;
@@ -41,16 +34,6 @@ const Announcement = (props: Props) => {
     []
   );
 
-  //   const filteredAnnouncements = announcement.filter((announcement: any) =>
-  //   announcement.announcementName.toLowerCase().includes(searchQuery.toLowerCase())
-  // );
-
-  // Filtrelenmiş duyuruları döngü içinde kullanarak gösterin
-  // {filteredAnnouncements.map((announcement: any) => (
-  // AnnouncementCard bileşenini burada kullanın
-  // ))}
-
-  const [pageCount, setPageCount] = useState<any>(null);
   useEffect(() => {
     const fetchAnnouncement = async () => {
       const result = await announcementService.getAllAnnouncementTypeList(
@@ -65,43 +48,56 @@ const Announcement = (props: Props) => {
     fetchAnnouncement();
   }, [childState]);
 
+  useEffect(() => {
+    console.log("announcement:", searchbarValue);
+  }, [searchbarValue]);
+
   return (
-      <SearchBarContext>
-        <BannerTop
-          bannerUrl="https://tobeto.com/_next/static/media/edu-banner3.d7dc50ac.svg"
-          bannerText={BannerTexts.announcementBanner}
+    <SearchbarContext.Provider
+      value={{
+        searchbarValue,
+        setSearchbarValue,
+        searchbarFocus,
+        setSearchbarFocus,
+      }}
+    >
+      <BannerTop
+        bannerUrl="https://tobeto.com/_next/static/media/edu-banner3.d7dc50ac.svg"
+        bannerText={BannerTexts.announcementBanner}
+      />
+      <Container>
+        <FilterByCheckbox />
+
+        <FilterBar
+          dropdownName1={AnnouncementFilterBarTextValues.dropdownName1}
+          dropdownOpt1={AnnouncementFilterBarTextValues.dropdownOpt1}
+          dropdownName2={AnnouncementFilterBarTextValues.dropdownName2}
+          dropdownOpt2={AnnouncementFilterBarTextValues.dropdownOpt2}
+          filterBtn={true}
         />
 
-        <Container>
-          <FilterByCheckbox />
-          <FilterBar
-            dropdownName1={AnnouncementFilterBarTextValues.dropdownName1}
-            dropdownOpt1={AnnouncementFilterBarTextValues.dropdownOpt1}
-            dropdownName2={AnnouncementFilterBarTextValues.dropdownName2}
-            dropdownOpt2={AnnouncementFilterBarTextValues.dropdownOpt2}
-            filterBtn={true}
-          />
-
-          <Row className="announcement-card-line">
-            {announcement.map((announcement: any) => (
-              <AnnouncementCard
-                announcementType={announcement.announcementTypeName}
-                announcementName={announcement.name}
-                announcementTitle={announcement.title}
-                annoucementDateIcon={announcementIconSrc}
-                announcementDate={announcement.createdDate}
-                announcementDescription={announcement.description}
-              ></AnnouncementCard>
-            ))}
-          </Row>
-          <Row className="pagination">
-            <Pagi
-              handleChildStateChange={handleChildStateChange}
-              pageCount={pageCount}
+        <Row className="announcement-card-line">
+          {announcement.map((announcement: any) => (
+            <AnnouncementCard
+              announcementType={announcement.announcementTypeName}
+              announcementName={announcement.name}
+              announcementTitle={announcement.title}
+              annoucementDateIcon={announcementIconSrc}
+              announcementDate={announcement.createdDate}
+              announcementDescription={announcement.description}
+              key={announcement.id} // Ekleme: Her bir kart için benzersiz bir anahtar ekleyin
             />
-          </Row>
-        </Container>
-      </SearchBarContext>
+          ))}
+        </Row>
+
+        <Row className="pagination">
+          <Pagi
+            handleChildStateChange={handleChildStateChange}
+            pageCount={pageCount}
+          />
+        </Row>
+      </Container>
+    </SearchbarContext.Provider>
   );
 };
 

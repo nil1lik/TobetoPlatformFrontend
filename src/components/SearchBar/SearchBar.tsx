@@ -1,23 +1,26 @@
-import React, { useState } from "react";
-import { Button, Form} from "react-bootstrap";
-import '../SearchBar/searchBar.css'
-import { useSearchContext } from "../../contexts/SearchBarContext";
+import React, { useContext, useEffect } from "react";
+import { Button, Form } from "react-bootstrap";
+import "../SearchBar/searchBar.css";
+import { SearchbarContext } from "../../contexts/SearchbarContext";
 
 type Props = {
   formClassName?: string;
   buttonClassName?: string;
   searchBoxClassName?: string;
-  svgClassName?:string;
+  svgClassName?: string;
 };
 
 const SearchBar = (props: Props) => {
-  const { searchQuery, setSearchQuery } = useSearchContext();
+  const { searchbarValue, setSearchbarValue } = useContext(SearchbarContext);
 
-  const handleChange = (event:any) => {
-    const value= event.target.value;
-    setSearchQuery(value);
-  }
+  const handleChange = (event: any) => {
+    const inputValue = event.target.value;
+    setSearchbarValue(inputValue);
+  };
 
+  useEffect(() => {
+    console.log("searchbar:", searchbarValue);
+  }, [searchbarValue]);
   return (
     <div className={props.searchBoxClassName || "search-box"}>
       <Form.Control
@@ -25,6 +28,8 @@ const SearchBar = (props: Props) => {
         placeholder="Arama"
         className={props.formClassName || "w-100 mr-sm-2"}
         onChange={handleChange}
+        onFocus={() => console.log("search inputa odaklanıldı")}
+        onBlur={() => console.log("search input odaktan çıkarıldı")}
       />
       <Button className={props.buttonClassName || "search-btn"}>
         <svg
@@ -33,7 +38,7 @@ const SearchBar = (props: Props) => {
           viewBox="0 0 33 33"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className={ props.svgClassName || "search-icon"}
+          className={props.svgClassName || "search-icon"}
         >
           <path
             d="M15.125 26.125C21.2001 26.125 26.125 21.2001 26.125 15.125C26.125 9.04987 21.2001 4.125 15.125 4.125C9.04987 4.125 4.125 9.04987 4.125 15.125C4.125 21.2001 9.04987 26.125 15.125 26.125Z"
