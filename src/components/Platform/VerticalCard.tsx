@@ -19,7 +19,7 @@ const TobetoPlatformVerticalCard = (props: Props) => {
         <Card.Img className="card-img-edu" src={props.image} />
         <Card.Body>
           <Card.Title className="card-title-edu">{props.text} </Card.Title>
-          
+
           {props.description && (
             <Card.Text className="platform-course-description">
               {props.description}
@@ -27,9 +27,7 @@ const TobetoPlatformVerticalCard = (props: Props) => {
           )}
 
           {props.date && (
-            <Card.Text className="platform-course-date">
-              {props.date}
-            </Card.Text>
+            <Card.Text className="platform-course-date">{props.date}</Card.Text>
           )}
 
           <Link to={`/education-detail/${props.id}`}>
