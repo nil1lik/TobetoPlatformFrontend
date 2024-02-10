@@ -1,7 +1,6 @@
 import React from "react";
 import { Card } from "react-bootstrap";
 import ApplicationIcon from "./ApplicationIcon";
-import { applicationApproved } from "../../utilities/Constants/ApplicationCardIconClasses";
 
 type Props = {
   cardHeader: string;

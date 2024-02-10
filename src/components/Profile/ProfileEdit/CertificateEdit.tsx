@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Container, Form } from "react-bootstrap";
 import { Formik } from "formik";
 import Uppy from "@uppy/core";
@@ -6,7 +6,6 @@ import Dashboard from "@uppy/dashboard";
 import Tus from "@uppy/tus";
 import "@uppy/core/dist/style.css";
 import "@uppy/dashboard/dist/style.css";
-import { Dash } from "react-bootstrap-icons";
 
 type Props = {};
 
