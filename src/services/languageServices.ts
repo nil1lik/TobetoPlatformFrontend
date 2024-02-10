@@ -10,17 +10,6 @@ import { BASE_API_URL } from "../core/environment/environment";
 import { GetLanguageLevel } from "../models/responses/language/getLanguageLevel";
 import axiosInstance from "../core/interceptors/axiosInterceptors";
 
-// export default class LanguageService{
-//     getLanguage(){
-//       return axios.get("http://localhost:5278/api/Languages?PageIndex=0&PageSize=26")
-//     }
-//     getLanguageLevel(){
-//         return axios.get("http://localhost:5278/api/LanguageLevels?PageIndex=0&PageSize=5")
-//     }
-//     updateLanguage(language:Language){
-//         return axios.put("http://localhost:5278/api/Languages",language)
-//     }
-// }
 
 class LanguageService extends BaseService<
   GetLanguage,

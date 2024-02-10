@@ -1,13 +1,16 @@
 import { Field, Form, Formik } from "formik";
 import { Col, Container, Dropdown, Row, TabContainer } from "react-bootstrap";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { object } from "yup";
 import { UserInformationValidationMessageRule } from "../../../utilities/Validations/validationMessageRules";
 import FormikInput from "../../Formik/FormikInput";
 import { experienceInputsMaxLength, textAreaLength } from "../../../utilities/Validations/validationMessages";
+import experienceService from "../../../services/experienceService";
+import { GetExperience, GetExperienceInformationsItem, GetExperienceItem } from "../../../models/responses/experience/getExperience";
 
 
 type Props = {};
+
 
 const validationSchema = object({
   organisationName: UserInformationValidationMessageRule.experienceInputs,
@@ -20,6 +23,7 @@ const validationSchema = object({
 
 const ExperienceEdit = (props: Props) => {
   const [city, setCity] = useState<any[]>([]);
+  const [experiences, setExperiences] = useState<GetExperienceInformationsItem[]>([]);
   const initialValues = {
     organisationName: "",
     position: "",
@@ -31,12 +35,24 @@ const ExperienceEdit = (props: Props) => {
     toggle: "Çalışmaya Devam Ediyorum",
   };
 
+  const fetchExperiences = async () => {
+    try {
+      const result = await experienceService.getExperience(0,5);
+      console.log(result.data.items)
+      setExperiences(result.data.items);
+    }catch (error){
+      console.error("API isteği sırasında bir hata oluştu:", error);
+    }
+  }
 
   const handleCitySelect = (selectedCityKey:any, event:Object) => {
     console.log(selectedCityKey);
   };
   
-
+  useEffect(() => {
+    fetchExperiences();
+  },[])
+  
   return (
     <div className="container mt-5">
       <Formik
@@ -197,28 +213,30 @@ const ExperienceEdit = (props: Props) => {
         </Form>
       </Formik>
       <Container>
-        <div className="my-grade">
+        
+        {experiences.map((experience: any) => (
+          <div className="my-grade">
           <div className="grade-header">
-            <label className="grade-date">2016-2021 - Devam Ediyor</label>
+            <label className="grade-date">{experience.startDate}-{experience.endDate} - Devam Ediyor</label>
           </div>
           <div className="grade-details">
             <div className="grade-details-col">
               <label className="grade-details-header">Kurum Adı</label>
-              <label className="grade-details-content">Tobeto</label>
+              <label className="grade-details-content">{experience.organizationName}</label>
             </div>
             <div className="grade-details-col">
               <label className="grade-details-header">Pozisyon</label>
               <label className="grade-details-content">
-                Back-End Developer
+              {experience.position}
               </label>
             </div>
             <div className="grade-details-col">
               <label className="grade-details-header">Sektör</label>
-              <label className="grade-details-content">Yazılım</label>
+              <label className="grade-details-content">{experience.sector}</label>
             </div>
             <div className="grade-details-col">
               <label className="grade-details-header">Şehir</label>
-              <label className="grade-details-content">Afyonkarahisar</label>
+              <label className="grade-details-content">{experience.cityName}</label>
               <div>
                 <button className="grade-info">
                   <i className="grade-info-img"></i>
@@ -230,6 +248,7 @@ const ExperienceEdit = (props: Props) => {
             </div>
           </div>
         </div>
+        ))}
       </Container>
     </div>
   );
