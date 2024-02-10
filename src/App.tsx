@@ -27,6 +27,8 @@ import Login from "./pages/Login/Login";
 import Communication from "./pages/Contact/Communication";
 import ForgotPassword from "./pages/ForgotPassword/ForgotPassword";
 import ResetPassword from "./pages/ForgotPassword/ResetPassword";
+import EducationDetailAbout from "./components/Education/EducationDetail/EducationDetailAbout";
+import EducationDetailAboutComp from "./components/Education/EducationDetail/EducationDetailAboutComp";
 
 const profileEditUrl = "/profilim/profilimi-duzenle";
 
@@ -52,7 +54,7 @@ function App() {
           <Route path="/egitimlerim" element={<Education />} />
           <Route path="/duyurular" element={<Announcement />} />
           <Route path="/iletişim" element={<Communication />} />
-          <Route path="/education-detail" element={<EducationDetail />} />
+          <Route path="/education-detail/:id" element={<EducationDetail />} />
           <Route path="/sifremi-unuttum" element={<ForgotPassword/>}/>
           <Route path="/reset-password" element={<ResetPassword/>}/>
           <Route

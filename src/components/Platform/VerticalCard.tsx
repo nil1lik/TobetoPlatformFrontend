@@ -4,6 +4,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 type Props = {
+  id?: number;
   image: string;
   text: string;
   description?: string;
@@ -31,7 +32,7 @@ const TobetoPlatformVerticalCard = (props: Props) => {
             </Card.Text>
           )}
 
-          <Link to={"/education-detail"}>
+          <Link to={`/education-detail/${props.id}`}>
             <Button className="educationButton apply-button w-100">
               {props.buttonText}{" "}
             </Button>
