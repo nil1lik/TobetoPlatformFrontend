@@ -2,7 +2,7 @@ import React, { ReactNode } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import "./educationDetailAbout.css";
 import EducationDetailAboutComp from "./EducationDetailAboutComp";
-import { categoryIcon, companyIcon, endDateIcon, estimatedDurationIcon, startDateIcon, timeSpentIcon } from "../../../utilities/Constants/iconsList";
+import { categoryIcon, companyIcon, endDateIcon, estimatedDurationIcon, fileIcon, startDateIcon, timeSpentIcon } from "../../../utilities/Constants/iconsList";
 
 type Props = {
   startDate: string;
@@ -49,16 +49,14 @@ const EducationDetailAbout = (props: Props) => {
         </div>
         <div className="info-section row">
         <EducationDetailAboutComp
-              className={"sg-icon sg-file"}
-              image={"/images/file.png"}
-              valueHeader={"İçerik"}
+              {...fileIcon}
+              valueHeader = {"İçerik"}
               educationAboutData={"1"} //İÇERİK ?
             />
         </div>
         <div className="info-section file row">
         <EducationDetailAboutComp
-              className={"hidden-icon sg-icon sg-file"}
-              image={"/images/file.png"}
+              {...fileIcon}
               valueHeader={"Video"}
               educationAboutData={"1"} 
             />

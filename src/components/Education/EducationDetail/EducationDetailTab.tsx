@@ -5,27 +5,33 @@ import EducationDetailAbout from "./EducationDetailAbout";
 import "./educationDetailTab.css";
 import educationService from "../../../services/educationService";
 import { GetAllEducationAboutResponse } from "../../../models/responses/education/getAllEducationAboutResponse";
-import { object } from "yup";
-type Props = {};
+import { Link, useNavigate, useParams } from "react-router-dom";
+type Props = {
+  educationAboutId?: number;
+};
 
 const EducationDetailTab = (props: Props) => {
+  const { educationAboutId } = props;
   const [education, setEducation] =
     useState<GetAllEducationAboutResponse>(Object);
-  const [id, setId] = useState<number>(0);
+  const params = useParams();
 
-  const fetchEducationAbout = async (id : number) => {
+  const fetchEducationAbout = async () => {
     try {
-      const result = await educationService.getByIdEducationAboutDetailDto(id);
-      console.log(result.data);
-      setEducation(result.data);
+      if (educationAboutId !== undefined) {
+        const result = await educationService.getByIdEducationAboutDetailDto(
+          educationAboutId
+        );
+        setEducation(result.data);
+      }
     } catch (error) {
       console.error("API isteği sırasında bir hata oluştu:", error);
     }
   };
 
   useEffect(() => {
-    fetchEducationAbout(id);
-  }, [id]);
+    fetchEducationAbout();
+  }, [educationAboutId]);
 
   return (
     <Tabs
@@ -43,6 +49,11 @@ const EducationDetailTab = (props: Props) => {
                 educationSubTitle="Hoşgeldin Mesajı"
                 educationType="Video"
                 educationTime="3 dk"
+                educationCategory="Genel"
+                educationLanguage="Türkçe"
+                educationSubcategory="Video"
+                educationCompany="Kurum içi üretim"
+                likeCount={65}
               />
             </Col>
           </Row>

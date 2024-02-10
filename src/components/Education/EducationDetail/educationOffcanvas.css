@@ -138,3 +138,11 @@
 .course-status-info{
   font-size: 14px !important;
 }
+
+.course-drawer-tabs {
+  margin-top: 40px;
+}
+
+.sg-pixels:before {
+  content: '\E2A1';
+}

@@ -8,24 +8,33 @@ import EducationCard from "../../components/Education/EducationCard/EducationCar
 import FilterBar from "../../components/FilterBar/FilterBar";
 import BannerTop from "../../components/Banner/BannerTop";
 import Pagi from "../../components/Pagination/Pagi";
-import { BannerTexts, EducationFilterBarTextValues, educationPageItemCountByPageMax} from "../../utilities/Constants/constantValues";
+import {
+  BannerTexts,
+  EducationFilterBarTextValues,
+  educationPageItemCountByPageMax,
+} from "../../utilities/Constants/constantValues";
 import { pageCalculate } from "../../utilities/Helpers/pageCountByItemsCalculator";
 
 type Props = {};
 const Education = (props: Props) => {
   const [education, setEducation] = useState<GetEducationItem[]>([]);
   const [childState, setChildState] = useState<number>(0);
-  
+
   const handleChildStateChange = (newState: number) => {
     setChildState(newState);
   };
 
-  const [pageCount, setPageCount] = useState<any>(null)
+  const [pageCount, setPageCount] = useState<any>(null);
 
   useEffect(() => {
     const fetchEducation = async () => {
-      const result = await educationService.getAll(childState, educationPageItemCountByPageMax);
-      setPageCount( pageCalculate(result.data.count, educationPageItemCountByPageMax))
+      const result = await educationService.getAll(
+        childState,
+        educationPageItemCountByPageMax
+      );
+      setPageCount(
+        pageCalculate(result.data.count, educationPageItemCountByPageMax)
+      );
       setEducation(result.data.items);
     };
     fetchEducation();
@@ -69,9 +78,10 @@ const Education = (props: Props) => {
           ))}
         </Row>
         <Row className="pagination">
-        <Pagi handleChildStateChange={ handleChildStateChange}
-          pageCount={pageCount}
-           />
+          <Pagi
+            handleChildStateChange={handleChildStateChange}
+            pageCount={pageCount}
+          />
         </Row>
       </Container>
     </>

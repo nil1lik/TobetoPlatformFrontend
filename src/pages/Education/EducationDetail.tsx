@@ -3,38 +3,48 @@ import { Card } from "react-bootstrap";
 import "./educationDetail.css";
 import EducationDetailTab from "../../components/Education/EducationDetail/EducationDetailTab";
 import EducationDetailHeader from "../../components/Education/EducationDetail/EducationDetailHeader";
+import { useParams } from "react-router-dom";
 import educationService from "../../services/educationService";
-import { GetByIdEducation } from "../../models/responses/education/getByIdEducation";
+import { GetAllEducationHeaderResponse } from "../../models/responses/education/getAllEducationHeaderResponse";
 
 type Props = {};
 
 const EducationDetail = (props: Props) => {
-  const [educationPath, setEducationPath] = useState<GetByIdEducation>(Object);
-  const [id, setId] = useState<number>(0);
+  const [educationDetail, setEducationDetail] =
+    useState<GetAllEducationHeaderResponse>(Object);
+    const [aboutId, setAboutId] = useState<number>(0); 
 
-  const fetchEducation = async (id: number) => {
-    const result = await educationService.getById(id);
-    setEducationPath(result.data);
+  const params = useParams();
+
+  const fetchEducationDetail = async () => {
+    try {
+      const result = await educationService.getEducationPathDetailByIdDto(
+        Number(params.id)
+      );
+      setEducationDetail(result.data);
+      setAboutId(result.data.educationAboutId);
+      console.log("educationAboutId " + result.data.educationAboutId);
+    } catch (error) {
+      console.error("API isteği sırasında bir hata oluştu:", error);
+    }
   };
-
   useEffect(() => {
-    fetchEducation(id);
-  }, [id]);
-
+    fetchEducationDetail();
+  }, [params.id]);
   return (
     <div className="page-content activity-detail">
       <Card className="activity-detail-header">
         <Card.Body>
           <EducationDetailHeader
-            imageUrl={educationPath.imageUrl}
-            educationName={educationPath.name}
+            imageUrl={educationDetail.imageUrl}
+            educationName={educationDetail.name}
             likeCount={257}
-            educationPoint={100}
-            completionRate={100}
+            educationPoint={educationDetail.educationPoint}
+            completionRate={educationDetail.completionRate}
           />
         </Card.Body>
         <Card.Body>
-          <EducationDetailTab />
+          <EducationDetailTab educationAboutId = {aboutId}/>
         </Card.Body>
       </Card>
     </div>
