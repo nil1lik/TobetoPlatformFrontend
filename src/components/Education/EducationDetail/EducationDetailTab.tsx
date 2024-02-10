@@ -2,29 +2,30 @@ import React, { useEffect, useState } from "react";
 import { Card, Col, Container, Row, Tab, Tabs } from "react-bootstrap";
 import EducationDetailContent from "./EducationDetailContent";
 import EducationDetailAbout from "./EducationDetailAbout";
-import "./educationDetailTab.css" 
+import "./educationDetailTab.css";
 import educationService from "../../../services/educationService";
-import { GetAllEducationAboutResponse} from "../../../models/responses/education/getAllEducationAboutResponse";
+import { GetAllEducationAboutResponse } from "../../../models/responses/education/getAllEducationAboutResponse";
 import { object } from "yup";
 type Props = {};
 
 const EducationDetailTab = (props: Props) => {
-  const [education, setEducation] = useState<GetAllEducationAboutResponse>(Object);
+  const [education, setEducation] =
+    useState<GetAllEducationAboutResponse>(Object);
+  const [id, setId] = useState<number>(0);
 
-
-    const fetchEducationAbout = async () => {
-      try {
-        const result = await educationService.getByIdEducationAboutDetailDto(1);        // ID ÇEKCEZ
-      console.log(result.data)
+  const fetchEducationAbout = async (id : number) => {
+    try {
+      const result = await educationService.getByIdEducationAboutDetailDto(id);
+      console.log(result.data);
       setEducation(result.data);
-      } catch (error) {
-        console.error("API isteği sırasında bir hata oluştu:", error);
-      }
-    };
+    } catch (error) {
+      console.error("API isteği sırasında bir hata oluştu:", error);
+    }
+  };
 
-    useEffect(() => {
-      fetchEducationAbout();
-    },[])
+  useEffect(() => {
+    fetchEducationAbout(id);
+  }, [id]);
 
   return (
     <Tabs
@@ -37,13 +38,13 @@ const EducationDetailTab = (props: Props) => {
         <Container>
           <Row>
             <Col>
-              <EducationDetailContent 
+              <EducationDetailContent
                 educationTitle="Dr. Ecmel Ayral'dan Hoşgeldin Mesajı"
                 educationSubTitle="Hoşgeldin Mesajı"
                 educationType="Video"
                 educationTime="3 dk"
-              /> 
-            </Col> 
+              />
+            </Col>
           </Row>
         </Container>
       </Tab>
@@ -51,17 +52,7 @@ const EducationDetailTab = (props: Props) => {
         <Container>
           <Row>
             <Col>
-            {/* {education.map((education: any) => (
               <EducationDetailAbout
-                startDate={education.startDate}
-                endDate={education.endDate}
-                timeSpent="2 dk"
-                estimatedDuration="3 dk"
-                category={education.categoryName}
-                company={education.companyName}
-              />
-            ))} */}
-            <EducationDetailAbout
                 startDate={education.startDate}
                 endDate={education.endDate}
                 timeSpent="2 dk"
