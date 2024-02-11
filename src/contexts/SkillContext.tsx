@@ -1,4 +1,6 @@
 import React, { createContext, useState } from "react";
+import Profile from "../pages/Profile/Profile";
+import SkillEdit from "../components/Profile/ProfileEdit/SkillEdit";
 
 export const SkillContext = createContext({})
 

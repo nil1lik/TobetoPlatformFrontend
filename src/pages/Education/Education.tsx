@@ -1,61 +1,58 @@
 import React, { useEffect, useState } from "react";
-import TobetoPlatformBannerTop from "../../utilities/tobetoPlatform/TobetoPlatformBannerTop";
-import TobetoPlatformDropdown from "../../utilities/tobetoPlatform/TobetoPlatformDropdown";
-import TobetoPlatformSearchBar from "../../utilities/tobetoPlatform/TobetoPlatformSearchBar";
 import "./education.css";
-import { Col, Container, Pagination, Row } from "react-bootstrap";
-import TobetoPlatformTab from "../../utilities/tobetoPlatform/TobetoPlatformTab";
+import { Container, Row } from "react-bootstrap";
+import TobetoPlatformTab from "../../components/Education/EducationsTab";
 import { GetEducationItem } from "../../models/responses/education/getEducation";
 import educationService from "../../services/educationService";
-import EducationCard from "../../components/EducationCard/EducationCard";
+import EducationCard from "../../components/Education/EducationCard/EducationCard";
+import FilterBar from "../../components/FilterBar/FilterBar";
+import BannerTop from "../../components/Banner/BannerTop";
+import Pagi from "../../components/Pagination/Pagi";
+import {
+  BannerTexts,
+  EducationFilterBarTextValues,
+  educationPageItemCountByPageMax,
+} from "../../utilities/Constants/constantValues";
+import { pageCalculate } from "../../utilities/Helpers/pageCountByItemsCalculator";
 
 type Props = {};
 const Education = (props: Props) => {
   const [education, setEducation] = useState<GetEducationItem[]>([]);
+  const [childState, setChildState] = useState<number>(0);
 
-  const fetchEducation = async () => {
-    const result = await educationService.getAll(0, 16);
-    setEducation(result.data.items);
+  const handleChildStateChange = (newState: number) => {
+    setChildState(newState);
   };
+
+  const [pageCount, setPageCount] = useState<any>(null);
+
   useEffect(() => {
+    const fetchEducation = async () => {
+      const result = await educationService.getAll(
+        childState,
+        educationPageItemCountByPageMax
+      );
+      setPageCount(
+        pageCalculate(result.data.count, educationPageItemCountByPageMax)
+      );
+      setEducation(result.data.items);
+    };
     fetchEducation();
   }, []);
 
   return (
     <>
-      <TobetoPlatformBannerTop
-        url="https://tobeto.com/_next/static/media/edu-banner3.d7dc50ac.svg"
-        spanText="Eğitimlerim"
+      <BannerTop
+        bannerUrl="https://tobeto.com/_next/static/media/edu-banner3.d7dc50ac.svg"
+        bannerText={BannerTexts.educationBanner}
       />
       <Container>
-        <div className="filter-section mt-3">
-          <Row>
-            <Col className="col-md-5 col-12 mb-4">
-              <TobetoPlatformSearchBar />
-            </Col>
-            <Col>
-              <TobetoPlatformDropdown
-                dropdownName="Kurum Seçiniz"
-                opt={["İstanbul Kodluyor"]}
-                showDefaultOption={true}
-              />
-            </Col>
-            <Col>
-              <TobetoPlatformDropdown
-                dropdownName="Sıralama"
-                opt={[
-                  "Adına Göre (A-Z)",
-                  "Adına Göre (Z-A)",
-                  "Tarihe Göre (Y-E)",
-                  "Tarihe Göre (E-Y)",
-                ]}
-              />
-            </Col>
-            <Col>
-            <button className="filter-btn" /></Col>
-          </Row>
-        </div>
-
+        <FilterBar
+          dropdownName1={EducationFilterBarTextValues.dropdownName1}
+          dropdownOpt1={EducationFilterBarTextValues.dropdownOpt1}
+          dropdownName2={EducationFilterBarTextValues.dropdownName2}
+          dropdownOpt2={EducationFilterBarTextValues.dropdownOpt2}
+        />
         <Row className="mt-3 row">
           <div className="col-12 mb-4">
             <div className="nav nav-tabs mainTablist d-flex justify-content-center">
@@ -81,12 +78,10 @@ const Education = (props: Props) => {
           ))}
         </Row>
         <Row className="pagination">
-          <Pagination>
-            <Pagination.Prev className="pagi-prev" />
-            <Pagination.Item active>{1}</Pagination.Item>
-            <Pagination.Item>{2}</Pagination.Item>
-            <Pagination.Next className="pagi-next" />
-          </Pagination>
+          <Pagi
+            handleChildStateChange={handleChildStateChange}
+            pageCount={pageCount}
+          />
         </Row>
       </Container>
     </>

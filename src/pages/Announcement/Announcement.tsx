@@ -1,18 +1,33 @@
 import React, { useEffect, useState } from "react";
-import TobetoPlatformBannerTop from "../../utilities/tobetoPlatform/TobetoPlatformBannerTop";
-import { Container, Pagination } from "react-bootstrap";
-import { Row } from "react-bootstrap";
-import { Col } from "react-bootstrap";
-import TobetoPlatformSearchBar from "../../utilities/tobetoPlatform/TobetoPlatformSearchBar";
-import TobetoPlatformDropdown from "../../utilities/tobetoPlatform/TobetoPlatformDropdown";
+import { Container, Row } from "react-bootstrap";
 import AnnouncementCard from "../../components/Announcement/AnnouncementCard";
 import announcementService from "../../services/announcementService";
 import { GetAnnouncementTypeItem } from "../../models/responses/announcement/getAnnouncementTypeList";
 import "./announcement.css";
+import FilterBar from "../../components/FilterBar/FilterBar";
+import BannerTop from "../../components/Banner/BannerTop";
+import Pagi from "../../components/Pagination/Pagi";
+import {
+  BannerTexts,
+  AnnouncementFilterBarTextValues,
+  announcementPageItemCountByPage,
+} from "../../utilities/Constants/constantValues";
+import { pageCalculate } from "../../utilities/Helpers/pageCountByItemsCalculator";
+import FilterByCheckbox from "../../components/FilterBar/FilterByCheckbox";
+import { SearchbarContext } from "../../contexts/SearchbarContext";
 
 type Props = {};
 
 const Announcement = (props: Props) => {
+  const [childState, setChildState] = useState<number>(0);
+  const [pageCount, setPageCount] = useState<any>(null);
+  const [searchbarValue, setSearchbarValue] = useState<string>("");
+  const [searchbarFocus, setSearchbarFocus] = useState<boolean>(false);
+
+  const handleChildStateChange = (newState: number) => {
+    setChildState(newState);
+  };
+
   const announcementIconSrc =
     process.env.PUBLIC_URL + `/images/announcementDate.svg`;
   const [announcement, setAnnouncement] = useState<GetAnnouncementTypeItem[]>(
@@ -21,48 +36,46 @@ const Announcement = (props: Props) => {
 
   useEffect(() => {
     const fetchAnnouncement = async () => {
-      const result = await announcementService.getAllAnnouncementTypeList(0, 9);
+      const result = await announcementService.getAllAnnouncementTypeList(
+        childState,
+        announcementPageItemCountByPage
+      );
+      setPageCount(
+        pageCalculate(result.data.count, announcementPageItemCountByPage)
+      );
       setAnnouncement(result.data.items);
     };
     fetchAnnouncement();
-  }, []);
+  }, [childState]);
+
+  useEffect(() => {
+    console.log("announcement:", searchbarValue);
+  }, [searchbarValue]);
 
   return (
-    <>
-      <TobetoPlatformBannerTop
-        url="https://tobeto.com/_next/static/media/edu-banner3.d7dc50ac.svg"
-        spanText="Duyurularım"
+    <SearchbarContext.Provider
+      value={{
+        searchbarValue,
+        setSearchbarValue,
+        searchbarFocus,
+        setSearchbarFocus,
+      }}
+    >
+      <BannerTop
+        bannerUrl="https://tobeto.com/_next/static/media/edu-banner3.d7dc50ac.svg"
+        bannerText={BannerTexts.announcementBanner}
       />
       <Container>
-        <div className="filter-section mt-3">
-          <Row>
-            <Col className="col-md-5 col-12 mb-4">
-              <TobetoPlatformSearchBar />
-            </Col>
-            <Col>
-              <TobetoPlatformDropdown
-                dropdownName="Organizasyon"
-                opt={["İstanbul Kodluyor"]}
-                showDefaultOption={true}
-              />
-            </Col>
-            <Col>
-              <TobetoPlatformDropdown
-                dropdownName="Sıralama"
-                opt={[
-                  "Adına Göre (A-Z)",
-                  "Adına Göre (Z-A)",
-                  "Tarihe Göre (Y-E)",
-                  "Tarihe Göre (E-Y)",
-                ]}
-                showDefaultOption={true}
-              />
-            </Col>
-            <Col>
-              <button className="filter-btn" />
-            </Col>
-          </Row>
-        </div>
+        <FilterByCheckbox />
+
+        <FilterBar
+          dropdownName1={AnnouncementFilterBarTextValues.dropdownName1}
+          dropdownOpt1={AnnouncementFilterBarTextValues.dropdownOpt1}
+          dropdownName2={AnnouncementFilterBarTextValues.dropdownName2}
+          dropdownOpt2={AnnouncementFilterBarTextValues.dropdownOpt2}
+          filterBtn={true}
+        />
+
         <Row className="announcement-card-line">
           {announcement.map((announcement: any) => (
             <AnnouncementCard
@@ -72,19 +85,19 @@ const Announcement = (props: Props) => {
               annoucementDateIcon={announcementIconSrc}
               announcementDate={announcement.createdDate}
               announcementDescription={announcement.description}
-            ></AnnouncementCard>
+              key={announcement.id} // Ekleme: Her bir kart için benzersiz bir anahtar ekleyin
+            />
           ))}
         </Row>
+
         <Row className="pagination">
-          <Pagination>
-            <Pagination.Prev className="pagi-prev" />
-            <Pagination.Item active>{1}</Pagination.Item>
-            <Pagination.Item>{2}</Pagination.Item>
-            <Pagination.Next className="pagi-next" />
-          </Pagination>
+          <Pagi
+            handleChildStateChange={handleChildStateChange}
+            pageCount={pageCount}
+          />
         </Row>
       </Container>
-    </>
+    </SearchbarContext.Provider>
   );
 };
 

@@ -9,22 +9,27 @@ import Evaluation from "./pages/Evaluation/Evaluation";
 import Catalog from "./pages/Catalog/Catalog";
 import Calendar from "./pages/Calendar/Calendar";
 import ProfileEdit from "./pages/ProfileEdit/ProfileEdit";
-import ProfileInformationEdit from "./components/ProfileEdit/ProfileInformationEdit";
-import ExperienceEdit from "./components/ProfileEdit/ExperienceEdit";
-import GradutionEdit from "./components/ProfileEdit/GraduationEdit";
-import SkillEdit from "./components/ProfileEdit/SkillEdit";
-import CertificateEdit from "./components/ProfileEdit/CertificateEdit";
-import SocialMediaAccountEdit from "./components/ProfileEdit/SocialMediaAccountEdit";
-import LanguageEdit from "./components/ProfileEdit/LanguageEdit";
-import Settings from "./components/ProfileEdit/Settings";
+import ProfileInformationEdit from "./components/Profile/ProfileEdit/ProfileInformationEdit";
+import ExperienceEdit from "./components/Profile/ProfileEdit/ExperienceEdit";
+import GradutionEdit from "./components/Profile/ProfileEdit/GraduationEdit";
+import SkillEdit from "./components/Profile/ProfileEdit/SkillEdit";
+import CertificateEdit from "./components/Profile/ProfileEdit/CertificateEdit";
+import SocialMediaAccountEdit from "./components/Profile/ProfileEdit/SocialMediaAccountEdit";
+import LanguageEdit from "./components/Profile/ProfileEdit/LanguageEdit";
+import Settings from "./components/Profile/ProfileEdit/Settings";
 import { Route, Routes } from "react-router-dom";
 import EducationDetail from "./pages/Education/EducationDetail";
 import CalendarDetail from "./pages/Calendar/CalendarDetail";
-import Login from "./pages/Login/Login";
 import ChatBot from "./layouts/ChatBot/ChatBot";
 import Register from "./pages/Register/Register";
-import EducationDetailTab from "./components/EducationDetail/EducationDetailTab";
 import AuthProvider from "./contexts/AuthContext";
+import Login from "./pages/Login/Login";
+import Communication from "./pages/Contact/Communication";
+import ForgotPassword from "./pages/ForgotPassword/ForgotPassword";
+import ResetPassword from "./pages/ForgotPassword/ResetPassword";
+import { SearchbarContext } from "./contexts/SearchbarContext";
+import EducationDetailAbout from "./components/Education/EducationDetail/EducationDetailAbout";
+import EducationDetailAboutComp from "./components/Education/EducationDetail/EducationDetailAboutComp";
 
 const profileEditUrl = "/profilim/profilimi-duzenle";
 
@@ -40,17 +45,19 @@ function App() {
             <Route path="/kayit-ol" element={<Register />} />
           </Routes>
         </AuthProvider>
-
         <Routes>
-          <Route path="/platform" element={<Platform />} />
+          <Route path="/" element={<Platform />} />
           <Route path="/profilim" element={<Profile />} />
+          <Route path="/profilim/profilimi-duzenle" element={<ProfileEdit />} />
           <Route path="/degerlendirmeler" element={<Evaluation />} />
           <Route path="/katalog" element={<Catalog />} />
           <Route path="/takvim" element={<CalendarDetail />} />
           <Route path="/egitimlerim" element={<Education />} />
           <Route path="/duyurular" element={<Announcement />} />
-          <Route path="/profilim/profilimi-duzenle" element={<ProfileEdit />} />
-          <Route path="/education-detail" element={<EducationDetail />} />
+          <Route path="/iletişim" element={<Communication />} />
+          <Route path="/education-detail/:id" element={<EducationDetail />} />
+          <Route path="/sifremi-unuttum" element={<ForgotPassword/>}/>
+          <Route path="/reset-password" element={<ResetPassword/>}/>
           <Route
             path={profileEditUrl + "/kisisel-bilgilerim"}
             element={<ProfileInformationEdit />}
@@ -79,6 +86,7 @@ function App() {
             path={profileEditUrl + "/yabanci-dil"}
             element={<LanguageEdit />}
           />
+          
           <Route path={profileEditUrl + "ayarlar"} element={<Settings />} />
         </Routes>
       </div>

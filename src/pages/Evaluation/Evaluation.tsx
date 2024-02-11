@@ -1,8 +1,9 @@
 import React from "react";
 import "../../pages/Evaluation/evaluation.css";
 import { Col, Container, Row } from "react-bootstrap";
-import ExamLink from "./ExamLink";
-import EvolationInformation from "./EvolationInformation";
+import ExamLink from "../../components/Evaluation/ExamLink";
+import EvolationInformation from "../../components/Evaluation/EvolationInformation";
+import { EvaluationPageBottomCardsHeader, EvaluationPageBottomLeftCardTexts, EvaluationPageBottomRightCardTexts, EvaluationPageExamLinkTexts, EvaluationPageHeader, EvaluationPageSuccessModelCardTexts, EvaluationPageTestCardTexts, startButtonText } from "../../utilities/Constants/constantValues";
 
 type Props = {};
 
@@ -12,12 +13,12 @@ const Evaluation = (props: Props) => {
       <Container className="text-center py-5">
         <div className="mw-5xl mx-auto">
           <h3>
-            <label className="text-secondary1"> Yetkinlik</label>
-            <label className="text-info1">lerini</label>
-            <label className="text-info1"> ücretsiz ölç,</label>
-            <label className="text-secondary1">bilgi</label>
-            <label className="text-info1">lerini</label>
-            <label className="text-info1"> test et</label>
+            <label className="text-secondary1">{EvaluationPageHeader.fragment1}</label>
+            <label className="text-info1">{EvaluationPageHeader.fragment2}</label>
+            <label className="text-info1">{EvaluationPageHeader.fragment3}</label>
+            <label className="text-secondary1">{EvaluationPageHeader.fragment4}</label>
+            <label className="text-info1">{EvaluationPageHeader.fragment5}</label>
+            <label className="text-info1">{EvaluationPageHeader.fragment6}</label>
           </h3>
         </div>
       </Container>
@@ -25,37 +26,37 @@ const Evaluation = (props: Props) => {
         <Row className="justify-content-center align-items-center">
           <Col className="col-12 col-md-10 mb-8">
             <div className="dashboard-card">
-              <label>Tobeto İşte Başarı Modeli</label>
+              <label>{EvaluationPageSuccessModelCardTexts.headerText}</label>
               <p>
-                80 soru ile yetkinliklerini
-                <b>ölç,</b>
-                önerilen eğitimleri
-                <b>tamamla,</b>
-                rozetini
-                <b>kazan.</b>
+                {EvaluationPageSuccessModelCardTexts.fragment1}
+                <b>{EvaluationPageSuccessModelCardTexts.fragment2}</b>
+                {EvaluationPageSuccessModelCardTexts.fragment3}
+                <b>{EvaluationPageSuccessModelCardTexts.fragment4}</b>
+                {EvaluationPageSuccessModelCardTexts.fragment5}
+                <b>{EvaluationPageSuccessModelCardTexts.fragment6}</b>
               </p>
               <a className="btn" href="#">
-                Başla
+                {startButtonText}
               </a>
             </div>
           </Col>
           <Col className="col-12 col-md-5 mb-8 mt-5">
             <div className="dashboard-card1 equal-box">
-              <label>Yazılımda başarı testi</label>
+              <label>{EvaluationPageTestCardTexts.headerText}</label>
               <p>
-                Çoktan seçmeli sorular ile teknik bilgini
-                <b>test et.</b>
+                {EvaluationPageTestCardTexts.fragment1}
+                <b>{EvaluationPageTestCardTexts.fragment2}</b>
               </p>
               <label className="text-white">&#62;&#62;&#62;</label>
             </div>
           </Col>
           <Col className="col-12 col-md-5 mb-8 mt-5">
             <div className="d-flex flex-column equal-box" style={{ gap: 14 }}>
-              <ExamLink title="Front End"></ExamLink>
-              <ExamLink title="Full Stack"></ExamLink>
-              <ExamLink title="Back End"></ExamLink>
-              <ExamLink title="Microsoft SQL Server"></ExamLink>
-              <ExamLink title="Masaüstü Programlama"></ExamLink>
+              <ExamLink title={EvaluationPageExamLinkTexts.title1}></ExamLink>
+              <ExamLink title={EvaluationPageExamLinkTexts.title2}></ExamLink>
+              <ExamLink title={EvaluationPageExamLinkTexts.title3}></ExamLink>
+              <ExamLink title={EvaluationPageExamLinkTexts.title4}></ExamLink>
+              <ExamLink title={EvaluationPageExamLinkTexts.title5}></ExamLink>
             </div>
           </Col>
         </Row>
@@ -65,9 +66,9 @@ const Evaluation = (props: Props) => {
           <div className="gradient-line3 mt-5"></div>
           <div className="mw-5xl mx-auto">
             <h3>
-              <label className="text-secondary1"> Aboneliğe özel</label>
+              <label className="text-secondary1"> {EvaluationPageBottomCardsHeader.fragment1}</label>
               &nbsp;
-              <label className="text-info1"> değerlendirme araçları için</label>
+              <label className="text-info1"> {EvaluationPageBottomCardsHeader.fragment2}</label>
             </h3>
           </div>
         </div>
@@ -75,17 +76,15 @@ const Evaluation = (props: Props) => {
       <Container className="mt-2 mb-20">
         <Row className="justify-content-center align-items-center">
           <EvolationInformation 
-            title="Kazanım Odaklı Testler"
-            description="Dijital gelişim kategorisindeki eğitimlere başlamadan öncekonuyla ilgili bilgin ölçülür ve seviyene göre yönlendirilirsin."
+            title={EvaluationPageBottomLeftCardTexts.header}
+            description={EvaluationPageBottomLeftCardTexts.description}
           />
           <EvolationInformation
-            title="Huawei Talent Interview
-            Teknik Bilgi Sınavı*"
-            italic="Sertifika alabilmen için, "
-            description=" eğitim yolculuğunun sonunda teknik yetkinliklerin ve kod bilgin ölçülür."
-            description2="4400+ soru | 30+ programlama dili
-            4 zorluk seviyesi"
-            info="*Türkiye Ar-Ge Merkezi tarafından tasarlanmıştır."
+            title={EvaluationPageBottomRightCardTexts.header}
+            italic={EvaluationPageBottomRightCardTexts.fragment1}
+            description={EvaluationPageBottomRightCardTexts.fragment2}
+            description2={EvaluationPageBottomRightCardTexts.fragment3}
+            info={EvaluationPageBottomRightCardTexts.fragment4}
           />
         </Row>
       </Container>

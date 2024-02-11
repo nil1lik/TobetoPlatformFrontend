@@ -1,11 +1,12 @@
 import { Field, Formik } from "formik";
 import React, { useContext } from "react";
 import { Button, Form, Image, Row } from "react-bootstrap";
-import FormikInput from "../../utilities/FormikInput";
-import { UserInformationValidationMessageRule } from "../../utilities/validationMessageRules/validationMessageRules";
+import FormikInput from "../Formik/FormikInput";
+import { UserInformationValidationMessageRule } from "../../utilities/Validations/validationMessageRules";
 import { object } from "yup";
 import { AuthContext } from "../../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { loginButtonText } from "../../utilities/Constants/constantValues";
 
 type Props = { image: string; formClassName: string };
 
@@ -13,9 +14,6 @@ const validationSchema = object({
   email: UserInformationValidationMessageRule.email,
   password: UserInformationValidationMessageRule.password,
 });
-
-
-
 
 const LoginForm = (props: Props) => {
   const authContext: any = useContext(AuthContext);
@@ -59,7 +57,7 @@ const LoginForm = (props: Props) => {
               localStorage.setItem("token", "asdqwklgmqwnkasdkjnqwkjngqw");
             }}
           >
-            Giriş Yap
+            {loginButtonText}
           </button>
         </Row>
       </Form>

@@ -1,7 +1,7 @@
 import { Field, Formik } from "formik";
 import React, { useEffect, useState } from "react";
 import { Button, Form, Image, Row } from "react-bootstrap";
-import FormikInput from "../../utilities/FormikInput";
+import FormikInput from "../Formik/FormikInput";
 import UserService from "../../services/userProfileService";
 
 type Props = { image: string, formClassName: string };
@@ -13,24 +13,10 @@ const RegisterForm = (props: Props) => {
     email: "",
     password: "",
   };
+  
   const [users, setUsers] = useState<any[]>([]);
-
-  // useEffect(() => {
-  //   const languageLevelService = new UserService();
-  //   UserService
-  //     .addUser()
-  //     .then((result) => {
-  //       if (result.data.data) {
-  //         setUsers(result.data.data);
-  //       } else {
-  //         console.error("API'den dil seviyeleri alınamadı.");
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       console.error("API isteği sırasında bir hata oluştu:", error);
-  //     });
-  // }, []);
   const formLogo = process.env.PUBLIC_URL + `/images/${props.image}`;
+
   return (
     <Formik
       initialValues={initialValues}

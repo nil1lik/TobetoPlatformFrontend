@@ -95,8 +95,15 @@ footer {
   border-radius: 8px !important;
   border: 1px solid #b3a6c0 !important;
   position: relative;
+  padding-left: 15px;
 }
 
+.my-custom-input input {
+  border: none; /* Input alanının border'ını kaldırma */
+}
+.my-custom-input input:focus {
+  outline: none; /* Input alanının border'ını kaldırma */
+}
 .my-custom-date {
   width: 324px;
   height: 50px;
@@ -896,20 +903,7 @@ table {
   padding: 0;
 }
 
-.search-btn {
-  background: transparent !important;
-  border: none !important;
-}
 
-.search-box {
-  background: #fff;
-  border-radius: 100px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
-  padding: 2px 1em;
-  width: 100%;
-  display: inline-flex;
-  align-items: end;
-}
 
 .mr-sm-2 {
   background: none;
@@ -922,11 +916,7 @@ table {
   width: 100% !important;
 }
 
-.search-icon {
-  width: 30px;
-  height: 30px;
-  fill: none;
-}
+
 /*TobetoPlatformSearchBar*/
 
 /* TobetoPlatformDropdown */
@@ -940,7 +930,25 @@ table {
   color: hsl(0, 0%, 50%) !important;
   min-width: 200px;
   margin-left: 0;
+  background-color: var(--white) !important;
+  position: relative;
 }
+.select-control.btn{
+  padding: 6px !important;
+}
+
+.dropdown-toggle::after{
+  content: url("../public/images/down-arrow.svg") !important;
+  border: unset !important;
+  width: 12px;
+  height: 16px;
+  vertical-align: middle !important;
+  position: absolute;
+  top: 49%;
+  transform: translateY(-49%);
+  right: 0.8rem;
+}
+
 .select-text {
   grid-area: 1/1/2/3;
   margin-left: 2px;
@@ -1005,3 +1013,24 @@ table {
   display: block;
 }
 /* delete-filter */
+
+/* type'ı number olan input'lara harf girilmemesini sağlıyor. 
+hata oluşursa silinebilir ya da ilgili class'a özelleştirilebilir */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/*searchBox icon*/
+.search-icon {
+  width: 30px;
+  height: 30px;
+  fill: none;
+  padding-top: 5px;
+}
+/*-----------------*/

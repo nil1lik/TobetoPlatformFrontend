@@ -18,7 +18,7 @@
   justify-content: center;
 }
 
-.login-box {
+.login-box{
   position: relative;
   background-color: #ffffff;
   padding: 1rem;
@@ -26,17 +26,17 @@
   width: 100%;
 }
 
-.loginform-cont {
-  /* display: flex;
+/* .loginform-cont{
+  display: flex;
   flex-direction: column;
-  justify-content: center; */
-}
+  justify-content: center; 
+} */
 
 .center {
   text-align: center;
 }
 
-.loginform-cont::after {
+.login-form-cont::after {
   content: "";
   position: absolute;
   border-radius: 1em;

@@ -3,10 +3,11 @@ export interface GetAnnouncementTypeItem {
     name: string,
     announcementTypeName: string, 
     title: string,
-    createdDate: Date
+    createdDate: Date,
     description: string,
 };
 
 export interface GetAnnouncementTypeList{
+    count: number,
     items : GetAnnouncementTypeItem[]; 
 } 

@@ -1,0 +1,115 @@
+.educard-mobile{
+  position: relative; 
+  cursor: pointer;
+}
+
+.education-box-new {
+  border-radius: 12px;
+  position: relative;
+  transition: all .2s ease-in-out;
+}
+
+.fade-in {
+  opacity: 1;
+  animation-name: fadeInOpacity;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in;
+  animation-duration: .5s;
+}
+
+.education-box-new .edubox-img {
+  position: relative;
+  border-radius: 12px;
+  width: 100%;
+  height: auto;
+  z-index: 11;
+}
+
+.education-box-new .content .property {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.education-box-new .content .property .pro {
+  color: #fff;
+  font-size: 12px;
+  margin-left: 4px;
+  font-weight: 400;
+}
+
+.education-box-new .content {
+  position: absolute;
+  z-index: 12;
+  background: rgba(65,65,65,.5);
+  -webkit-backdrop-filter: blur(21.5px);
+  backdrop-filter: blur(21.5px);
+  width: 100%;
+  bottom: 0;
+  min-height: 100px;
+  border-radius: 12px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all .2s ease-in-out;
+}
+
+.education-box-new .content .name {
+  color: #fff;
+  font-size: 1em;
+  font-weight: 600;
+  margin-top: 0.5em;
+}
+
+
+.prog-cont {
+  position: absolute;
+  top: 4px;
+  width: 100%;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.entry-btn {
+  position: absolute;
+  top: 0px;
+  right: 12px;
+  z-index: 12;
+  margin-top: 8px;
+  cursor: pointer;
+}
+
+.entry-btn i {
+  font-size: 2em;
+}
+
+/*-----------------------------------------------------------------
+/*                   CATALOG FİLTER CSS                          */
+
+
+.light {
+  background: #fff;
+  box-shadow: 0 0 11px rgba(0,0,0,.25);
+  border-radius: 12px;
+  height: fit-content;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.display-only-sm {
+  display: none;
+}
+
+.light .filter h2 {
+  margin-top: 5px!important;
+  font-size: 18px;
+  color: #181818;
+  font-weight: 600;
+}

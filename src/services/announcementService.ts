@@ -25,15 +25,15 @@ class AnnouncementService extends BaseService<
     this.apiUrl = BASE_API_URL + "Announcements";
     this.dtoUrl = this.apiUrl + "/AnnouncementTypeList";
   }
-  getByFilter(pageIndex: number = 0, pageSize: number = 2) {
+  getByFilter(pageIndex: number, pageSize: number) {
     return this.getAll(pageIndex, pageSize); 
   }
 
   getAllAnnouncementTypeList(
-    pageIndex: number = 0,
-    pageSize: number = 3
+    pageIndex: number,
+    pageSize: number
   ): Promise<AxiosResponse<GetAnnouncementTypeList, any>> {
-    return axiosInstance.get<GetAnnouncementTypeList>(
+    return axios.get<GetAnnouncementTypeList>(
       this.dtoUrl + `?PageIndex=${pageIndex}&PageSize=${pageSize}`
     );
   }

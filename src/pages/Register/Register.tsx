@@ -3,13 +3,14 @@ import React from "react";
 import LoginPageBox from "../../components/Login/LoginPageBox";
 import AppForm from "../../components/Login/AppForm";
 import { Container, Image, Row } from "react-bootstrap";
-import FormikInput from "../../utilities/FormikInput";
+import FormikInput from "../../components/Formik/FormikInput";
 import { Formik, Form } from "formik";
-import UserService from "../../services/userProfileService";
 import { object, string } from "yup";
 import { userRegisterRequest } from "../../models/requests/user/userRegisterRequest";
-import UserRegisterService from "../../services/userRegisterService";
-import { UserInformationValidationMessageRule } from "../../utilities/validationMessageRules/validationMessageRules";
+import { passwordMaxLength } from "../../utilities/Validations/validationMessages";
+import { UserInformationValidationMessageRule } from "../../utilities/Validations/validationMessageRules";
+import UserService from "../../services/userService";
+import { registerButtonText } from "../../utilities/Constants/constantValues";
 
 type Props = {  formClassName?: string};
 
@@ -25,7 +26,8 @@ function Register(props: Props) {
     firstName: UserInformationValidationMessageRule.firstName,
     lastName: UserInformationValidationMessageRule.lastName,
     email: UserInformationValidationMessageRule.email,
-    password: UserInformationValidationMessageRule.password,
+    newPass: UserInformationValidationMessageRule.password,
+    confirmPass: UserInformationValidationMessageRule.confirmPass
   });
 
   return (
@@ -36,16 +38,14 @@ function Register(props: Props) {
             initialValues={initialValues}
             validationSchema={validationSchema}
             onSubmit={(values) => {
-              const userService = new UserRegisterService();
+              const userService = new UserService()
               userService
                 .addUser(values)
                 .then((result) => {
-                  // Kayıt başarılı olduğunda yapılacak işlemler
                   console.log("Kullanıcı başarıyla kaydedildi:", result.data);
                   localStorage.setItem("token", result.data.token);
                 })
                 .catch((error) => {
-                  // Hata durumunda yapılacak işlemler
                   console.error(
                     "Kullanıcı kaydı sırasında bir hata oluştu:",
                     error
@@ -78,15 +78,17 @@ function Register(props: Props) {
                 />
                 <FormikInput
                   type="password"
-                  name="password"
+                  name="newPass"
                   label=""
                   placeHolder="Şifre*"
+                  maxLength={passwordMaxLength}
                 />
                 <FormikInput
                   type="password"
-                  name="passwordHash"
+                  name="confirmPass"
                   label=""
                   placeHolder="Şifre Tekrar*"
+                  maxLength={passwordMaxLength}
                 />
               </Row>
               <Row className="row-btn">
@@ -94,7 +96,7 @@ function Register(props: Props) {
                   type="submit"
                   className="button-save py-2 mb-3 mt-4 d-inline-block"
                 >
-                  Kayıt Ol
+                  {registerButtonText}
                 </button>
               </Row>
             </Form>

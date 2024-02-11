@@ -1,0 +1,29 @@
+.search-btn {
+    background: transparent !important;
+    border: none !important;
+  }
+  
+  .search-box {
+    background: var(--white);
+    border-radius: 100px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
+    padding: 2px 1em;
+    width: 100%;
+    display: inline-flex;
+    align-items: end;
+    
+  }
+  
+  .search-icon {
+    width: 30px;
+    height: 30px;
+    fill: none;
+  }
+
+  .form-control:focus.form-control {
+    box-shadow:none !important;
+  }
+  
+  .form-control:disabled.form-control {
+    opacity: 1;
+  }

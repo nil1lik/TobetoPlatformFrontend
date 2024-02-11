@@ -6,5 +6,6 @@ export interface GetEducationItem{
 }
 
 export interface GetEducation{
+    count: number,
     items : GetEducationItem[];
 }  

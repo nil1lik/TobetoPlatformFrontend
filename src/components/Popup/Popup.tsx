@@ -11,13 +11,9 @@ type Props = {
 };
 
 const Popup = (props: Props) => {
-//   const [show, setShow] = useState(false);
-
-//   const handleClose = () => setShow(false);
-//   const handleShow = () => setShow(true);
 
   return (
-    <Modal size="lg" show={props.show} onHide={props.hide} centered>
+    <Modal size="lg" show={props.show} onHide={props.hide} centered >
       <Modal.Header closeButton>
         <Modal.Title style={{ fontWeight: "600" }}>{props.title}</Modal.Title>
       </Modal.Header>
@@ -33,16 +29,10 @@ const Popup = (props: Props) => {
             {props.duration && <p>{props.duration}</p>}
           </>
         ))}
-        {props.button && <button className="btnCard  w-100">Raporu Görüntüle</button>}
+        {props.button && <button className="btnCard">Raporu Görüntüle</button>}
       </Modal.Body>
     </Modal>
   );
 };
-
-// Popup.defaultProps = {
-//   title: "",
-//   description: "",
-//   button: false,
-// };
 
 export default Popup;

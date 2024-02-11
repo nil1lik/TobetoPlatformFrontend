@@ -63,17 +63,20 @@ const Calendar = (props: Props) => {
         
         events={
            [
-             {id:'2',title:props.title, start:'2024-01-09', end:'2024-01-09'},
-             {id:'3',title:props.title, start:'2024-01-09', end:'2024-01-09'},
-             {id:'4',title:props.title, start:'2024-01-09', end:'2024-01-09'},
-             {id:'5',title:props.title, start:'2024-01-09', end:'2024-01-09'},
-             {id:'6',title:props.title, start:'2024-01-09', end:'2024-01-09'},
-             {id:'7',title:props.title, start:'2024-01-09', end:'2024-01-09'},
-             {id:'8',title:props.title, start:'2024-01-29'},
-             {id:'9',title:props.title, start:'2024-01-29'},
-             {id:'10',title:props.title, start:'2024-01-29'},
-             {id:'11',title:props.title, start:'2024-01-29'},
-             {id:'12',title:props.title, start:'2024-01-29'}
+             {id:'2',title:props.title, start:'2024-02-01', end:'2024-02-01'},
+             {id:'3',title:props.title, start:'2024-02-01', end:'2024-02-01'},
+             {id:'4',title:props.title, start:'2024-02-01', end:'2024-02-01'},
+             {id:'5',title:props.title, start:'2024-02-01', end:'2024-02-01'},
+             {id:'6',title:props.title, start:'2024-02-01', end:'2024-02-01'},
+             {id:'7',title:props.title, start:'2024-02-01', end:'2024-02-01'},
+             {id:'8',title:props.title, start:'2024-02-29'},
+             {id:'9',title:props.title, start:'2024-02-29'},
+             {id:'10',title:props.title, start:'2024-02-29'},
+             {id:'11',title:props.title, start:'2024-02-29'},
+             {id:'12',title:props.title, start:'2024-02-29'},
+             {id:'13',title:props.title, start:'2024-02-06', end:'2024-02-06'},
+             {id:'14',title:props.title, start:'2024-02-06', end:'2024-02-06'},
+             {id:'15',title:props.title, start:'2024-02-06', end:'2024-02-06'},
            ]
          }
                 

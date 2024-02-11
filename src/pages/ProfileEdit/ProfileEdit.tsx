@@ -1,18 +1,18 @@
 import { Card, Col, Container, Nav, Navbar, Row, TabContainer } from "react-bootstrap";
-import ProfileInformationEdit from "../../components/ProfileEdit/ProfileInformationEdit";
-import ExperienceEdit from "../../components/ProfileEdit/ExperienceEdit";
-import GradutionEdit from "../../components/ProfileEdit/GraduationEdit";
-import SkillEdit from "../../components/ProfileEdit/SkillEdit";
-import CertificateEdit from "../../components/ProfileEdit/CertificateEdit";
-import SocialMediaAccountEdit from "../../components/ProfileEdit/SocialMediaAccountEdit";
-import LanguageEdit from "../../components/ProfileEdit/LanguageEdit";
-import Settings from "../../components/ProfileEdit/Settings";
+import ProfileInformationEdit from "../../components/Profile/ProfileEdit/ProfileInformationEdit";
+import ExperienceEdit from "../../components/Profile/ProfileEdit/ExperienceEdit";
+import GradutionEdit from "../../components/Profile/ProfileEdit/GraduationEdit";
+import SkillEdit from "../../components/Profile/ProfileEdit/SkillEdit";
+import CertificateEdit from "../../components/Profile/ProfileEdit/CertificateEdit";
+import SocialMediaAccountEdit from "../../components/Profile/ProfileEdit/SocialMediaAccountEdit";
+import LanguageEdit from "../../components/Profile/ProfileEdit/LanguageEdit";
+import Settings from "../../components/Profile/ProfileEdit/Settings";
 import { useState } from "react";
 import React from "react";
 import "../../layouts/ProfileEditSidebar/profileEditSidebar.css"
-import SidebarButton from "../../components/ProfileEdit/SidebarButton";
-import { sidebarElements } from "../../constants/sidebarElements";
-import { iconClassList } from "../../constants/sidebarIconClassList";
+import SidebarButton from "../../components/Profile/ProfileEdit/SidebarButton";
+import { sidebarElements } from "../../utilities/Constants/sidebarElements";
+import { iconClassList } from "../../utilities/Constants/sidebarIconClassList";
 
 type Props = {};
 
@@ -62,7 +62,7 @@ const ProfileEdit = (props: Props) => {
               }
             </Navbar>
           </Col>
-          <Col xs={8}>
+          <Col xs={9}>
             <Card className="card-b">
               <Card.Body>
                 {renderContent()}

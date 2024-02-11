@@ -6,22 +6,43 @@ import { GetByIdEducation } from "../models/responses/education/getByIdEducation
 import { GetEducation } from "../models/responses/education/getEducation";
 import { UpdateEducationResponse } from "../models/responses/education/updateEducationResponse";
 import { BaseService } from "../core/services/baseService";
+import axios, { AxiosResponse } from "axios";
+import { GetAllEducationAboutResponse } from "../models/responses/education/getAllEducationAboutResponse";
+import { GetAllEducationHeaderResponse } from "../models/responses/education/getAllEducationHeaderResponse";
 
 class EducationService extends BaseService<
-GetEducation,
-GetByIdEducation,
-AddEducationResponse,
-AddEducationRequest,
-UpdateEducationRequest,
-UpdateEducationResponse 
+  GetEducation,
+  GetByIdEducation,
+  AddEducationResponse,
+  AddEducationRequest,
+  UpdateEducationRequest,
+  UpdateEducationResponse
 > {
+  public EducationAbout: string;
   constructor() {
     super();
-    this.apiUrl = BASE_API_URL + "EducationPaths"; 
+    this.apiUrl = BASE_API_URL + "EducationPaths";
+    this.EducationAbout = BASE_API_URL + "EducationAbouts";
+    this.dtoUrl = this.EducationAbout + "/EducationAboutDetailDto";
   }
-  getByFilter(pageIndex:number=0, pageSize: number=16){
+  getByFilter(pageIndex: number = 0, pageSize: number = 16) {
     return this.getAll(pageIndex, pageSize);
   }
-} 
 
-export default new EducationService(); 
+  getByIdEducationAboutDetailDto(
+    id: number
+  ): Promise<AxiosResponse<GetAllEducationAboutResponse, any>> {
+    return axios.get<GetAllEducationAboutResponse>(this.dtoUrl + "/" + id);
+  }
+
+  getEducationPathDetailByIdDto(
+    id: number
+  ): Promise<AxiosResponse<GetAllEducationHeaderResponse, any>> {
+    return axios.get<GetAllEducationHeaderResponse>(
+      this.apiUrl + "/" + "educationPathDetail/" + id
+    );
+  }
+
+}
+
+export default new EducationService();

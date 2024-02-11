@@ -1,0 +1,183 @@
+.activity-image {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+}
+
+.col-xs-12 {
+  flex-basis: 100%;
+  max-width: 100%;
+}
+
+.education-name {
+  font-size: 18px;
+  font-weight: 600;
+  color: #000;
+}
+
+.date-info-container {
+  width: fit-content;
+  margin-bottom: -10px;
+}
+
+.first-of-type {
+  display: flex;
+}
+
+.date-info {
+  margin-top: 15px;
+  font-weight: 700;
+  display: flex;
+}
+
+.text-green {
+  color: #3dcb79 !important;
+}
+
+.ss-icon {
+  margin-right: 4px;
+  padding-top: 2px;
+  font-family: "SSStandard";
+  font-style: normal;
+  font-weight: normal;
+  text-decoration: none;
+  text-rendering: optimizeLegibility;
+  white-space: nowrap;
+}
+
+.ss-like:before {
+  content: "\1F44D"; 
+}
+
+.question-circle {
+  color: #7a8292;
+  margin-left: 5px;
+  height: 52px;
+  display: inline-flex;
+  align-items: flex-end;
+  width: 15px;
+}
+
+.ant-space-header  {
+  gap: 8px;
+}
+.education-admiration {
+  gap: 8px;
+  display: flex;
+  justify-content: flex-end;
+
+}
+
+.activity-score { 
+  padding: 8px 5px;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+  margin-right: 12px;
+  border-radius: 5px;
+}
+
+.text-white {
+  color: #fff;
+}
+
+.background-green {
+  background: #3dcb79;
+}
+
+.like-header {
+  display: inline-block;
+  vertical-align: bottom !important;
+  height: 31px !important;
+}
+
+.like-area {
+  display: flex;
+  cursor: pointer;
+  margin-top: 3px;
+
+}
+
+.like-button {
+  width: 68px;
+  margin-left: -34px;
+}
+
+.like-header .like-area span {
+  color: #7f7f7f !important;
+  cursor: pointer;
+}
+
+.main-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 35px;
+  transform: translate(0, -0.4ex);
+}
+
+.sub-content {
+  cursor: pointer;
+  width: 29px;
+  pointer-events: none;
+}
+
+.like-img {
+  display: block;
+  font-weight: 600;
+  color: #000;
+  cursor: pointer;
+  overflow: visible;
+  width: 68px;
+}
+
+.like-text {
+  font-size: 30px;
+  z-index: 1;
+  transform: translate(0.2em, -0.15ex);
+  margin-right: 17px;
+  line-height: 1.2;
+}
+
+.activity-favorite {
+  width: 35px;
+  height: 35px;
+  display: inline-block;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+.add-favorite {
+  width: 100%;
+  height: 100%;
+  display: block;
+  background-size: 100% !important;
+}
+
+.progress-bar {
+  height: 6.5px !important;
+  background: linear-gradient(to right, #2ddfff, #b7df2d);
+  display: inline-block;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  border-radius: 7px !important;
+}
+
+.education-detail-header.row {
+  margin: 10px -64px -9px -61px;
+}
+
+.completion-rate {
+  color: #565656;
+  float: right;
+  margin-top: -15px;
+}
+
+.ant-progress-outer {
+  margin-right: calc(-2em - 20px);
+  padding-right: calc(2em + 20px);
+  width: 100%;
+}
+
