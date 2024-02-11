@@ -32,6 +32,10 @@
   justify-content: center; 
 } */
 
+.image-control {
+  display: flex;
+  justify-content: center;
+}
 .center {
   text-align: center;
 }
@@ -131,11 +135,11 @@
 }
 
 .div {
-  padding-left: 3rem;
-  padding-right: 3rem;
+  padding-left: 4rem;
+  padding-right: 4rem;
   display: flex;
   flex-direction: column;
-  gap: 3rem;
+  gap: 4rem;
 }
 
 .row-btn {

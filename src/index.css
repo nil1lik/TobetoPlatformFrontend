@@ -17,6 +17,8 @@ main {
 
 footer {
   margin-top: auto !important;
+  position: fixed!important;
+  margin-top: 500px;
 }
 
 .footer-style {

@@ -67,7 +67,7 @@ const Login = (props: Props) => {
               }}
             >
               <Form className={"login-form-cont"}>
-                <Row>
+                <Row className="image-control">
                   <Image
                     className="login-form-img"
                     src="/images/tobeto-logo.png"

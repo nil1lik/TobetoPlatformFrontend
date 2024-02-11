@@ -11,6 +11,7 @@ export const pageIsNotFound = "Sayfa bulunamadı";
 
 /* LOGIN PAGE */
 export const loginBoxBottomText = "Henüz üye değil misin?";
+export const RegisterBoxBottomText = "Zaten hesabın var mı?";
 
 /* PLATFORM PAGE */
 export const platformPageBottomCards = {

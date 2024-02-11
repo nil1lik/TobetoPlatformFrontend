@@ -19,9 +19,11 @@ class LanguageService extends BaseService<
   UpdateLanguageRequest,
   UpdateLanguageResponse
 > {
+  public profileLanguage :string;
   constructor() {
     super();
     this.apiUrl = BASE_API_URL + "Languages";
+    this.profileLanguage = BASE_API_URL + "ProfileLanguages";
   }
 
   getByFilter(pageIndex: number = 0, pageSize: number = 25) {

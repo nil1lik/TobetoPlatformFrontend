@@ -17,9 +17,11 @@ class SkillService extends BaseService<
   AddSkillResponse,
   UpdateSkillResponse
 >{
+  public profileSkill : string
   constructor(){
     super();
     this.apiUrl = BASE_API_URL + "Skills";
+    this.profileSkill = BASE_API_URL + "ProfileSkills"
   }
   
   getByFilter(pageIndex: number = 0, pageSize: number = 25) {

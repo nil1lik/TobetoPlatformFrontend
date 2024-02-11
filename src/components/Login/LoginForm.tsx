@@ -30,8 +30,8 @@ const LoginForm = (props: Props) => {
       }}
     >
       <Form className={props.formClassName}>
-        <Row>
-          <Image className="login-form-img" src={formLogo} />
+        <Row className="text-center">
+          <Image className="login-form-img " src={formLogo} />
         </Row>
         <Row>
           <FormikInput

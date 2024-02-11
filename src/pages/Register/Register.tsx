@@ -10,7 +10,8 @@ import { userRegisterRequest } from "../../models/requests/user/userRegisterRequ
 import { passwordMaxLength } from "../../utilities/Validations/validationMessages";
 import { UserInformationValidationMessageRule } from "../../utilities/Validations/validationMessageRules";
 import UserService from "../../services/userService";
-import { registerButtonText } from "../../utilities/Constants/constantValues";
+import { RegisterBoxBottomText, loginButtonText, registerButtonText } from "../../utilities/Constants/constantValues";
+import { Link } from "react-router-dom";
 
 type Props = {  formClassName?: string};
 
@@ -33,7 +34,7 @@ function Register(props: Props) {
   return (
     <Container className="form-cont">
       <LoginPageBox className="login-box">
-        <div className="center loginform-cont">
+        <div className="login-form-cont div">
           <Formik
             initialValues={initialValues}
             validationSchema={validationSchema}
@@ -53,8 +54,8 @@ function Register(props: Props) {
                 });
             }}
           >
-            <Form className={props.formClassName}>
-              <Row>
+            <Form className={"login-form-cont"}>
+              <Row className="image-control">
                 <Image className="login-form-img" src="/images/tobeto-logo.png"/>
               </Row>
               <Row>
@@ -102,6 +103,14 @@ function Register(props: Props) {
             </Form>
           </Formik>
         </div>
+        <div className="center">
+            <span>
+              {RegisterBoxBottomText}{" "}
+              <Link className="register-btn" to="/giris">
+                {loginButtonText}
+              </Link>
+            </span>
+          </div>
       </LoginPageBox>
       <LoginPageBox className="app-box">
         <AppForm />

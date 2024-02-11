@@ -17,9 +17,11 @@ class ExamService extends BaseService<
     UpdateExamResponse
 >
 {
+    public profileExam : string;
     constructor(){
         super();
         this.apiUrl = BASE_API_URL + "Exams/"
+        this.profileExam = BASE_API_URL + "ProfileExams"
     }
     getByFilter(pageIndex: number=0, pageSize: number=1) {
         return this.getAll(pageIndex, pageSize)
