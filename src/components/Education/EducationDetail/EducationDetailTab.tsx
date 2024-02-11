@@ -8,9 +8,10 @@ import { GetAllEducationAboutResponse } from "../../../models/responses/educatio
 import { Link, useNavigate, useParams } from "react-router-dom";
 type Props = {
   educationAboutId?: number;
+  educationDetailId?: number;
 };
 
-const EducationDetailTab = (props: Props) => {
+const   EducationDetailTab = (props: Props) => {
   const { educationAboutId } = props;
   const [education, setEducation] =
     useState<GetAllEducationAboutResponse>(Object);
@@ -45,6 +46,7 @@ const EducationDetailTab = (props: Props) => {
           <Row>
             <Col>
               <EducationDetailContent
+                educationDetailId={props.educationDetailId}
                 educationTitle="Dr. Ecmel Ayral'dan Hoşgeldin Mesajı"
                 educationSubTitle="Hoşgeldin Mesajı"
                 educationType="Video"

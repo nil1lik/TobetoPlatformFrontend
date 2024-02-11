@@ -3,13 +3,13 @@ import { UpdateCourseRequest } from './../models/requests/course/updateCourseReq
 import { AddCourseResponse } from './../models/responses/course/addCourseResponse';
 import { AddCourseRequest } from './../models/requests/course/addCourseRequest';
 import { GetByIdCourseResponse } from './../models/responses/course/getByIdCourseResponse';
-import { GetCourseReponse } from './../models/responses/course/getCourseResponse';
 import { BaseService } from "../core/services/baseService";
 import { toHaveDisplayValue } from '@testing-library/jest-dom/matchers';
 import { BASE_API_URL } from '../core/environment/environment';
+import { GetCourseResponse } from '../models/responses/course/getCourseResponse';
 
 class CourseService extends BaseService<
-    GetCourseReponse,
+    GetCourseResponse,
     GetByIdCourseResponse,
     AddCourseRequest,
     AddCourseResponse,

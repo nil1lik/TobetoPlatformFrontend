@@ -12,8 +12,7 @@ type Props = {};
 const EducationDetail = (props: Props) => {
   const [educationDetail, setEducationDetail] =
     useState<GetAllEducationHeaderResponse>(Object);
-    const [aboutId, setAboutId] = useState<number>(0); 
-
+  const [aboutId, setAboutId] = useState<number>(0);
   const params = useParams();
 
   const fetchEducationDetail = async () => {
@@ -44,7 +43,10 @@ const EducationDetail = (props: Props) => {
           />
         </Card.Body>
         <Card.Body>
-          <EducationDetailTab educationAboutId = {aboutId}/>
+          <EducationDetailTab
+            educationAboutId={aboutId}
+            educationDetailId={Number(params.id)}
+          />
         </Card.Body>
       </Card>
     </div>
