@@ -1,20 +1,37 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Field, Form, Formik } from "formik";
 import { Col, Container, Row } from "react-bootstrap";
 import FormikInput from "../../Formik/FormikInput";
 import YearPicker from "../../../utilities/Helpers/YearPicker";
+import graduationService from "../../../services/graduationService";
+import { GetByIdGraduation } from "../../../models/responses/graduation/getByIdGraduation";
+import { GetGraduationItem } from "../../../models/responses/graduation/getGraduation";
 
 type Props = {};
 
 const GraduationEdit = (props: Props) => {
   const [selectedStartDate, setSelectedStartDate] = useState<Date | null >(new Date());
   const [isEndDateDisabled, setIsEndDateDisabled] = useState<boolean>(true);
+  const [graduation, setGraduation] = useState<GetGraduationItem[]>([])
+
+  const getGraduation = async () => {
+    try {
+      const result = await graduationService.getAll(0,5);
+      setGraduation(result.data.items);
+    } catch (error) {
+      console.log("Id ile kullanıcı alınırken hata oluştu.", error);
+    }
+  };
 
   const handleStartDateChange = (date: Date | null) => {
     setSelectedStartDate(date);
     setIsEndDateDisabled(!date); 
   };
 
+  useEffect(() => {
+    getGraduation()
+  }, []);
+  
   const initialValues = {
     degree: "",
     univercityName: "",
