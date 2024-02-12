@@ -1,0 +1,1 @@
+export const GraduationDegreeValues = ["Lisans", "Ön Lisans", "Yüksek Lisans", "Doktora"]

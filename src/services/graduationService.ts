@@ -21,8 +21,9 @@ class GraduationService extends BaseService<
     this.apiUrl = BASE_API_URL + "Graduations";
     this.profileGraduation = BASE_API_URL + "ProfileGraduations";
   }
-
-  getByfilter() {}
+  getByFilter(pageIndex: number=0, pageSize: number=10){
+    return this.getAll(pageIndex, pageSize)
+}
 }
 
 export default new GraduationService();
