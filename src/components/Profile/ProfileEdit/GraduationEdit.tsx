@@ -36,7 +36,7 @@ const GraduationEdit = (props: Props) => {
   
   const initialValues = {
     degree: "",
-    univercityName: "",
+    universityName: "",
     department: "",
     startDate: new Date(),
     endDate: new Date(),
@@ -60,7 +60,7 @@ const GraduationEdit = (props: Props) => {
                   className="input-label-text"
                   style={{ display: "block", marginBottom: "5px" }}
                 >
-                  {GraduationPageLabelTexts.educationStatus}
+                  {GraduationPageLabelTexts.label1}
                 </label>
                 <Field
                   as="select"
@@ -68,16 +68,16 @@ const GraduationEdit = (props: Props) => {
                   className="custom-field form-select"
                 >
                   <option value="" disabled hidden>
-                  {GraduationPageLabelTexts.universityName}
+                  {GraduationPageLabelTexts.placeholder1}
                   </option>
                   {GraduationDegreeValues.map((item) => <option>{item}</option>)}
                 </Field>
               </Col>
               <Col>
                 <FormikInput
-                  name="univercityName"
-                  label={GraduationPageLabelTexts.universityName}
-                  placeHolder="Kampüs 365"
+                  name="universityName"
+                  label={GraduationPageLabelTexts.label2}
+                  placeHolder={GraduationPageLabelTexts.placeholder2}
                 />
               </Col>
             </Row>
@@ -85,29 +85,29 @@ const GraduationEdit = (props: Props) => {
               <Col>
                 <FormikInput
                   name="department"
-                  label={GraduationPageLabelTexts.department}
-                  placeHolder="Yazılım"
+                  label={GraduationPageLabelTexts.label3}
+                  placeHolder={GraduationPageLabelTexts.placeholder3}
                 />
               </Col>
               <Col>
                 <YearPicker
-                  label="Başlangıç Yılı*"
+                  label={GraduationPageLabelTexts.label4}
                   name="startDate"
                   selected={selectedStartDate}
                   onYearChange={handleStartDateChange}
-                  placeHolder="Başlangıç yılını seçiniz"
+                  placeHolder={GraduationPageLabelTexts.placeholder4}
                 />
               </Col>
             </Row>
             <Row>
               <Col>
                 <YearPicker
-                 label="Mezuniyet Yılı*"
+                 label={GraduationPageLabelTexts.label5}
                  name="endDate"
                  selected={new Date()} 
                  onYearChange={(date) => console.log(date)} 
                  isDisabled={isEndDateDisabled}
-                 placeHolder="Mezuniyet yılını seçiniz"
+                 placeHolder={GraduationPageLabelTexts.placeholder5}
                 />
               </Col>
               <Col></Col>
@@ -116,7 +116,7 @@ const GraduationEdit = (props: Props) => {
             <Row>
               <label>
                 <Field type="checkbox" name="checked" value="One" />
-                {GraduationPageLabelTexts.continuationStatus}
+                {GraduationPageLabelTexts.checkBox}
               </label>
             </Row>
             <button

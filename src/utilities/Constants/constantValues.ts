@@ -115,12 +115,17 @@ export const ProfileEditPageHeaders = {
 
 /* GRADUATION VALUES*/
 export const GraduationPageLabelTexts = {
-    educationStatus: "Üniversite*",
-    universityName: "Üniversite*",
-    department: "Bölüm*",
-    startDate: "Başlangıç Yılı*",
-    graduationDate: "Mezuniyet Yılı*",
-    continuationStatus: "Devam Ediyorum"
+    label1: "Eğitim Durumu*",
+    label2: "Üniversite*",
+    label3: "Bölüm*",
+    label4: "Başlangıç Yılı*",
+    label5: "Mezuniyet Yılı*",
+    placeholder1: "Seviye Seçiniz...",
+    placeholder2: "Kampüs 365",
+    placeholder3: "Yazılım",
+    placeholder4: "Başlangıç Yılınızı Seçiniz",
+    placeholder5: "Mezuniyet Yılınızı Seçiniz",
+    checkBox: "Devam Ediyorum",
 }
 
 export const ProfileGraduationListHeaders = {
