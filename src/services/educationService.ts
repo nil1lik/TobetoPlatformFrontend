@@ -10,6 +10,7 @@ import axios, { AxiosResponse } from "axios";
 import { GetAllEducationAboutResponse } from "../models/responses/education/getAllEducationAboutResponse";
 import { GetAllEducationHeaderResponse } from "../models/responses/education/getAllEducationHeaderResponse";
 import { GetCourseResponse } from "../models/responses/course/getCourseResponse";
+import axiosInstance from "../core/interceptors/axiosInterceptors";
 
 class EducationService extends BaseService<
   GetEducation,
@@ -33,19 +34,19 @@ class EducationService extends BaseService<
   getByIdEducationAboutDetailDto(
     id: number
   ): Promise<AxiosResponse<GetAllEducationAboutResponse, any>> {
-    return axios.get<GetAllEducationAboutResponse>(this.dtoUrl + "/" + id);
+    return axiosInstance.get<GetAllEducationAboutResponse>(this.dtoUrl + "/" + id);
   }
 
   getEducationPathDetailByIdDto(
     id: number
   ): Promise<AxiosResponse<GetAllEducationHeaderResponse, any>> {
-    return axios.get<GetAllEducationHeaderResponse>(
+    return axiosInstance.get<GetAllEducationHeaderResponse>(
       this.apiUrl + "/" + "EducationPathDetail/" + id
     );
   }
   getCoursesByEducationId(
     id:number):Promise<AxiosResponse<GetCourseResponse,any>>{
-      return axios.get<GetCourseResponse>(
+      return axiosInstance.get<GetCourseResponse>(
         this.apiUrl + "/Courses/" + id
       );
     }

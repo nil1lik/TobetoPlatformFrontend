@@ -30,12 +30,12 @@ class ExperienceService extends BaseService<
         pageIndex: number = 0,
         pageSize: number = 5
       ): Promise<AxiosResponse<GetExperience, any>> {
-        return axios.get<GetExperience>(
+        return axiosInstance.get<GetExperience>(
             this.dtoUrl +`?PageIndex=${pageIndex}&PageSize=${pageSize}`
         );
       }
     addExperience(experienceData: AddExperienceRequest){
-        return axios.post(BASE_API_URL + "Experiences/ExperienceInformationsListDto", experienceData)
+        return axiosInstance.post(BASE_API_URL + "Experiences/ExperienceInformationsListDto", experienceData)
     }
 }
 

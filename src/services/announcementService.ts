@@ -33,7 +33,7 @@ class AnnouncementService extends BaseService<
     pageIndex: number,
     pageSize: number
   ): Promise<AxiosResponse<GetAnnouncementTypeList, any>> {
-    return axios.get<GetAnnouncementTypeList>(
+    return axiosInstance.get<GetAnnouncementTypeList>(
       this.dtoUrl + `?PageIndex=${pageIndex}&PageSize=${pageSize}`
     );
   }

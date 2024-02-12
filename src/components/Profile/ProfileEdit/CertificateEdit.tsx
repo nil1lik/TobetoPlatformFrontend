@@ -74,7 +74,7 @@ const CertificateEdit = (props: Props) => {
             </div>
 
             <div className="table-responsive-sm">
-              <table className="mt-8 corpTable table table-hover">
+              <table className="mt-8 corpTable table">
                 <thead>
                   <tr>
                     <th>Dosya Adı</th>

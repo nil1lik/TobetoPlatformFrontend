@@ -13,6 +13,7 @@ import "../../layouts/ProfileEditSidebar/profileEditSidebar.css"
 import SidebarButton from "../../components/Profile/ProfileEdit/SidebarButton";
 import { sidebarElements } from "../../utilities/Constants/sidebarElements";
 import { iconClassList } from "../../utilities/Constants/sidebarIconClassList";
+import "./profileEdit.css";
 
 type Props = {};
 
