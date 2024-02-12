@@ -27,7 +27,7 @@ import Login from "./pages/Login/Login";
 import Communication from "./pages/Contact/Communication";
 import ForgotPassword from "./pages/ForgotPassword/ForgotPassword";
 import ResetPassword from "./pages/ForgotPassword/ResetPassword";
-import { SearchbarContext } from "./contexts/SearchbarContext";
+import { SearchbarContext } from "./contexts/SearchBarContext"; 
 import EducationDetailAbout from "./components/Education/EducationDetail/EducationDetailAbout";
 import EducationDetailAboutComp from "./components/Education/EducationDetail/EducationDetailAboutComp";
 

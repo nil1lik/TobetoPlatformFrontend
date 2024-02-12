@@ -19,12 +19,11 @@ type Props = {};
 const Education = (props: Props) => {
   const [education, setEducation] = useState<GetEducationItem[]>([]);
   const [childState, setChildState] = useState<number>(0);
+  const [pageCount, setPageCount] = useState<any>(null);
 
   const handleChildStateChange = (newState: number) => {
     setChildState(newState);
   };
-
-  const [pageCount, setPageCount] = useState<any>(null);
 
   useEffect(() => {
     const fetchEducation = async () => {

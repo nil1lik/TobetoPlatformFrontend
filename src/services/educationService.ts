@@ -9,6 +9,7 @@ import { BaseService } from "../core/services/baseService";
 import axios, { AxiosResponse } from "axios";
 import { GetAllEducationAboutResponse } from "../models/responses/education/getAllEducationAboutResponse";
 import { GetAllEducationHeaderResponse } from "../models/responses/education/getAllEducationHeaderResponse";
+import { GetCourseResponse } from "../models/responses/course/getCourseResponse";
 
 class EducationService extends BaseService<
   GetEducation,
@@ -39,10 +40,16 @@ class EducationService extends BaseService<
     id: number
   ): Promise<AxiosResponse<GetAllEducationHeaderResponse, any>> {
     return axios.get<GetAllEducationHeaderResponse>(
-      this.apiUrl + "/" + "educationPathDetail/" + id
+      this.apiUrl + "/" + "EducationPathDetail/" + id
     );
   }
-
+  getCoursesByEducationId(
+    id:number):Promise<AxiosResponse<GetCourseResponse,any>>{
+      return axios.get<GetCourseResponse>(
+        this.apiUrl + "/Courses/" + id
+      );
+    }
+  
 }
 
 export default new EducationService();

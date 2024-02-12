@@ -1,7 +1,8 @@
-export interface GetCourseReponseItem{
-    name : string
+export interface GetCourseResponseItem{
+    educationPathId : number;
+    name : string;
 }
 
-export interface GetCourseReponse {
-    items : GetCourseReponseItem[]
+export interface GetCourseResponse {
+    items : GetCourseResponseItem[]
 }

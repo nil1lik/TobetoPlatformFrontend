@@ -35,17 +35,17 @@ export const companyIcon = {
 
 export const fileIcon = {
   className: "sg-icon sg-file",
-  image:"/images/file.png",
-}
+  image: "/images/file.png",
+};
 
 export const languageIcon = {
   className: "sg-icon sg-language",
   image: "/images/language.svg",
-  valueHeader: "Dili"
-}
+  valueHeader: "Dili",
+};
 
 export const subcategoryIcon = {
   className: "sg-icon sg-subcategory",
-  image: "/images/pixels.svg",
-  valueHeader: "Alt Tip"
-}
+  image: "/images/pixels.png",
+  valueHeader: "Alt Tip",
+};
