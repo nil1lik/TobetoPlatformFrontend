@@ -8,6 +8,7 @@ export const uploadFileText = "Dosya Yükle";
 export const forgetPasswordButtonText = "Şifremi Unuttum";
 export const registerButtonText = "Kayıt Ol";
 export const pageIsNotFound = "Sayfa bulunamadı";
+export const saveButtonText = "Kaydet";
 
 /* LOGIN PAGE */
 export const loginBoxBottomText = "Henüz üye değil misin?";
@@ -110,6 +111,44 @@ export const calendarDropboxPlaceholderText = "Eğitmen Seçiniz..."
 /* PROFILE EDIT PAGE VALUES */
 export const ProfileEditPageHeaders = {
     certificates: "Sertifikalarım"
+}
+
+/* GRADUATION VALUES*/
+export const GraduationPageLabelTexts = {
+    educationStatus: "Üniversite*",
+    universityName: "Üniversite*",
+    department: "Bölüm*",
+    startDate: "Başlangıç Yılı*",
+    graduationDate: "Mezuniyet Yılı*",
+    continuationStatus: "Devam Ediyorum"
+}
+
+export const ProfileGraduationListHeaders = {
+    universityName: "Üniversite",
+    department: "Bölüm"
+}
+
+/* EXPERIENCE VALUES */
+export const ExperiencePageTexts = {
+    label1: "Kurum Adı*",
+    label2: "Pozisyon*",
+    label3: "Sektör*",
+    label4: "Şehir Seçiniz*",
+    label5: "İş Başlangıcı*",
+    label6: "İş Bitiş*",
+    placeholder1: "Kampüs 365",
+    placeholder2: "Front-End Developer",
+    placeholder3: "Yazılım",
+    placeholder4: "Şehir Seçiniz...",
+    selectBox: "Çalışmaya Devam Ediyorum",
+    textArea: "İş Açıklaması",
+}
+
+export const ProfileExperienceListHeaders = {
+    organisationName: "Kurum Adı",
+    position: "Pozisyon",
+    sector: "Sektör",
+    city: "Şehir"
 }
 
 /* EDUCATION VALUES */

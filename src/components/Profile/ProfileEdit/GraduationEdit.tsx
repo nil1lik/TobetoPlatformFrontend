@@ -6,6 +6,8 @@ import YearPicker from "../../../utilities/Helpers/YearPicker";
 import graduationService from "../../../services/graduationService";
 import { GetByIdGraduation } from "../../../models/responses/graduation/getByIdGraduation";
 import { GetGraduationItem } from "../../../models/responses/graduation/getGraduation";
+import { GraduationPageLabelTexts, ProfileGraduationListHeaders, registerButtonText } from "../../../utilities/Constants/constantValues";
+import { GraduationDegreeValues } from "../../../utilities/Constants/GraduationDegreeValues";
 
 type Props = {};
 
@@ -58,7 +60,7 @@ const GraduationEdit = (props: Props) => {
                   className="input-label-text"
                   style={{ display: "block", marginBottom: "5px" }}
                 >
-                  Eğitim Durumu*
+                  {GraduationPageLabelTexts.educationStatus}
                 </label>
                 <Field
                   as="select"
@@ -66,18 +68,15 @@ const GraduationEdit = (props: Props) => {
                   className="custom-field form-select"
                 >
                   <option value="" disabled hidden>
-                    Seviye Seçiniz*
+                  {GraduationPageLabelTexts.universityName}
                   </option>
-                  <option>Lisans</option>
-                  <option>Ön Lisans</option>
-                  <option>Yüksek Lisans</option>
-                  <option>Doktora</option>
+                  {GraduationDegreeValues.map((item) => <option>{item}</option>)}
                 </Field>
               </Col>
               <Col>
                 <FormikInput
                   name="univercityName"
-                  label="Üniversite*"
+                  label={GraduationPageLabelTexts.universityName}
                   placeHolder="Kampüs 365"
                 />
               </Col>
@@ -86,7 +85,7 @@ const GraduationEdit = (props: Props) => {
               <Col>
                 <FormikInput
                   name="department"
-                  label="Bölüm*"
+                  label={GraduationPageLabelTexts.department}
                   placeHolder="Yazılım"
                 />
               </Col>
@@ -117,35 +116,36 @@ const GraduationEdit = (props: Props) => {
             <Row>
               <label>
                 <Field type="checkbox" name="checked" value="One" />
-                Devam ediyorum
+                {GraduationPageLabelTexts.continuationStatus}
               </label>
             </Row>
             <button
               type="submit"
               className="button-save py-2 mb-3 mt-4 d-inline-block "
             >
-              Kaydet
+              {registerButtonText}
             </button>
           </Container>
         </Form>
       </Formik>
       <Container>
-        <div className="my-grade">
+        {graduation.map((graduation: any) => (
+          <div className="my-grade">
           <div className="grade-header">
-            <label className="grade-date">2016-2021</label>
-            <label className="grade-degree">Lisans</label>
+            <label className="grade-date">{graduation.startDate}-{graduation.endDate}</label>
+            <label className="grade-degree">{graduation.degree}</label>
           </div>
           <div className="grade-details">
             <div className="grade-details-col">
-              <label className="grade-details-header">Üniversite</label>
+              <label className="grade-details-header">{ProfileGraduationListHeaders.universityName}</label>
               <label className="grade-details-content">
-                Mersin Üniversitesi
+              {graduation.universityName}
               </label>
             </div>
             <div className="grade-details-col">
-              <label className="grade-details-header">Bölüm</label>
+              <label className="grade-details-header">{ProfileGraduationListHeaders.department}</label>
               <label className="grade-details-content">
-                Bilgisayar Mühendisliği
+              {graduation.department}
               </label>
             </div>
             <button className="grade-delete g-del">
@@ -153,6 +153,8 @@ const GraduationEdit = (props: Props) => {
             </button>
           </div>
         </div>
+        ))}
+        
       </Container>
     </div>
   );
