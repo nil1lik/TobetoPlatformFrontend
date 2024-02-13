@@ -6,7 +6,7 @@ import { object } from "yup";
 import { GetLanguageItem } from "../../../models/responses/language/getLanguage";
 import languageServices from "../../../services/languageServices";
 import { UserInformationValidationMessageRule } from "../../../utilities/Validations/validationMessageRules";
-
+import toastr from "toastr";
 type Props = {};
 
 const validationSchema = object({
@@ -54,6 +54,7 @@ const validationSchema = object({
   const handleLanguageSubmit = (values: GetLanguageItem) => {
     console.log("Seçilen dil: ", values);
     setSelectedLanguages((prevLanguages) => [...prevLanguages, values]);
+    toastr.success("Yabancı dil bilgisi eklendi")
   };
   return (
     <div>

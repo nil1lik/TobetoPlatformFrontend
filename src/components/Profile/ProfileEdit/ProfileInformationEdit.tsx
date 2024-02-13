@@ -13,6 +13,7 @@ import FormikInput from "../../Formik/FormikInput";
 import { textAreaLength } from "../../../utilities/Validations/validationMessages";
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
+import toastr from "toastr"
 
 const validationSchema = object({
   firstName: UserInformationValidationMessageRule.firstName,
@@ -66,6 +67,10 @@ const ProfileInformationEdit2 = (props: Props) => {
     getUser(1);
   }, []);
 
+  const handleSubmit= ()=>{
+    toastr.success("Bilgileriniz başarıyla güncellendi");
+  }
+
   const initialValues: ProfileDto = {
     id: 0,
     firstname: "",
@@ -87,7 +92,7 @@ const ProfileInformationEdit2 = (props: Props) => {
         validationSchema={validationSchema}
         initialValues={initialValues}
         enableReinitialize={true}
-        onSubmit={(values) => {}}
+        onSubmit={handleSubmit}
       >
         <Form>
           <Container>

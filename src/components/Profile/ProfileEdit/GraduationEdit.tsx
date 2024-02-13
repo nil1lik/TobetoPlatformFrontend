@@ -33,6 +33,10 @@ const GraduationEdit = (props: Props) => {
   useEffect(() => {
     getGraduation()
   }, []);
+
+  const handleGraduationSubmit= ()=>{
+    toastr.success("Eğitim bilgisi eklendi")
+  }
   
   const initialValues = {
     degree: "",
@@ -48,9 +52,7 @@ const GraduationEdit = (props: Props) => {
     <div className="container mt-5">
       <Formik
         initialValues={initialValues}
-        onSubmit={(values) => {
-          console.log(values);
-        }}
+        onSubmit={handleGraduationSubmit}
       >
         <Form>
           <Container>
@@ -148,7 +150,7 @@ const GraduationEdit = (props: Props) => {
               {graduation.department}
               </label>
             </div>
-            <button className="grade-delete g-del">
+            <button className="grade-delete g-del" onClick={()=>{toastr.error("Eğitim bilgisi kaldırıldı")}}>
               <i className="grade-delete-img"></i>
             </button>
           </div>

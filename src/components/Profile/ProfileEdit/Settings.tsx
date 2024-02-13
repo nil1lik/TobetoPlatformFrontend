@@ -21,14 +21,15 @@ const Settings = (props: Props) => {
     confirmPass: UserInformationValidationMessageRule.confirmPass,
   });
 
+  const handleSubmit=()=>{
+    toastr.success("Şifreniz güncellenmiştir")
+  }
   return (
     <div className="container mt-5">
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
-        onSubmit={(values) => {
-          console.log(values);
-        }}
+        onSubmit={handleSubmit}
       >
         <Form>
           <TabContainer>

@@ -9,6 +9,7 @@ import experienceService from "../../../services/experienceService";
 import { GetExperience, GetExperienceInformationsItem, GetExperienceItem } from "../../../models/responses/experience/getExperience";
 import { GetCityItem } from "../../../models/responses/city/getCityResponse";
 import { ExperiencePageTexts, ProfileExperienceListHeaders, saveButtonText } from "../../../utilities/Constants/constantValues";
+import toastr from "toastr";
 
 type Props = {};
 
@@ -50,6 +51,11 @@ const ExperienceEdit = (props: Props) => {
   const handleCitySelect = (selectedCityKey:any, event:Object) => {
     console.log(selectedCityKey);
   };
+
+  const handleExperienceSubmit = (values:any)=>{
+    console.log(values)
+    toastr.success("Deneyim eklendi");
+  }
   
   useEffect(() => {
     fetchExperiences();
@@ -60,9 +66,7 @@ const ExperienceEdit = (props: Props) => {
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
-        onSubmit={(values) => {
-          console.log(values);
-        }}
+        onSubmit={handleExperienceSubmit}
       >
         <Form>
           <TabContainer>
@@ -141,32 +145,7 @@ const ExperienceEdit = (props: Props) => {
                   </Dropdown.Menu>
                 </Dropdown>
               </Col>
-              {/* <Col>
-                <label className="input-label-text" htmlFor="birthdate">
-                  İl
-                </label>
-                <Field
-                  className="option form-control my-custom-select"
-                  as="select"
-                  name="İl"
-                  label="İl*"
-                >
-                  <option value={"Şehir Seçiniz"} selected disabled>Şehir Seçiniz*</option>
-                  {city.map((city: any) => (
-                    <option className="my-custom-option" key={city.id} value={city.id}>
-                      {city.name}
-                    </option>
-                  ))}
-                </Field>
-              </Col> 
-               <FormSelect className="my-formselect-custom">
-              <option value={"Şehir Seçiniz"} selected disabled>Şehir Seçiniz*</option>
-                  {city.map((city: any) => (
-                    <option key={city.id} value={city.id}>
-                      {city.name}
-                    </option>
-                  ))}
-              </FormSelect> */}
+              
             </Row>
             <Row>
               <Col>
@@ -240,10 +219,10 @@ const ExperienceEdit = (props: Props) => {
               <label className="grade-details-header">{ProfileExperienceListHeaders.city}</label>
               <label className="grade-details-content">{experience.cityName}</label>
               <div>
-                <button className="grade-info">
+                <button className="grade-info" onClick={()=>{toastr.info("Deneyim bilgileri")}} >
                   <i className="grade-info-img"></i>
                 </button>
-                <button className="grade-delete g-del">
+                <button className="grade-delete g-del" onClick={()=>{toastr.error("Deneyim kaldırıldı")}}>
                   <i className="grade-delete-img"></i>
                 </button>
               </div>

@@ -7,15 +7,16 @@ import { UserInformationValidationMessageRule } from "../../../utilities/Validat
 import FormikInput from "../../Formik/FormikInput";
 import socialMediaAccountService from "../../../services/socialMediaAccountService";
 import { GetSocialMediaCategoryItem } from "../../../models/responses/socialMediaAccount/getAllSocialMediaCategory";
+import toastr from "toastr"
 
 type Props = {};
 
 const SocialMediaAccountEdit = (props: Props) => {
   const [socialMediaAccounts, setsocialMediaAccounts] = useState<GetSocialMediaCategoryItem[]>([]);
 
-const validationSchema = object ({
-  inputUrl: UserInformationValidationMessageRule.inputsRequired
-})
+  const validationSchema = object({
+    inputUrl: UserInformationValidationMessageRule.inputsRequired
+  })
 
   const initialValues = {
     inputUrl: "",
@@ -29,38 +30,26 @@ const validationSchema = object ({
       } catch (error) {
         console.error("API isteği sırasında bir hata oluştu:", error);
       }
-    }; 
+    };
     fetchSocialMediaAccount();
   }, []);
 
+  const handleMediaAccountSubmit = () => {
+    toastr.success("Sosyal medya adresiniz başarıyla eklendi")
+  }
   return (
     <div className="container mt-5">
       <Formik
         initialValues={initialValues}
-        validationSchema={validationSchema}
-        onSubmit={(values) => {
-          console.log(values);
-        }}
+        //validationSchema={validationSchema}
+        onSubmit={handleMediaAccountSubmit}
       >
         <Form>
           <Container>
             <Row className="align-items-center">
               <Col lg={4}>
-                <SelectBox defaultText="Seçiniz" selectBoxArray={socialMediaAccounts} className="mb-3"/>
-                {/* <Field
-                  as="select"
-                  className="custom-field form-select"
-                  name="socialMedia" // Başlangıçta bir değer yoksa, buradaki name özelliğini kullanabilirsiniz.
-                >
-                  <option value="" selected disabled>
-                    Seçiniz
-                  </option>
-                  {socialMediaAccounts.map((socialMedia: any) => (
-                    <option key={socialMedia.id} value={socialMedia.id}>
-                      {socialMedia.name}
-                    </option>
-                  ))}
-                </Field> */}
+                <SelectBox defaultText="Seçiniz" selectBoxArray={socialMediaAccounts} className="mb-3" />
+
               </Col>
               <Col lg={8}>
                 <FormikInput name="inputUrl" placeHolder="https://" />
@@ -73,55 +62,56 @@ const validationSchema = object ({
             >
               Kaydet
             </button>
-
-            <Row>
-              <Col xs={10}>
-                <div className="col-12 my-2">
-                  <label
-                    className="input-label-text"
-                    style={{ display: "block", marginBottom: "5px" }}
-                  >
-                    LinkedIn
-                  </label>
-                  <div className="section-header tobeto-input">
-                    <input
-                      readOnly
-                      className="form-control  input-linkedin"
-                      type="text"
-                      value="https://www.linkedin.com/in/nida-kul/"
-                    />
-
-                    <Col xs={1}>
-                      <button className="btn social-delete">
-                        <i className="grade-delete-img"></i>
-                      </button>
-                    </Col>
-                    <Col xs={1}>
-                      <button className="btn">
-                        <img
-                          src={
-                            process.env.PUBLIC_URL + "/images/pen-square.svg"
-                          }
-                          style={{ width: 23 }}
-                        />
-                      </button>
-                    </Col>
-                  </div>
-                </div>
-              </Col>
-            </Row>
-            <Col>
-              <label
-                className="attentionText"
-                style={{ display: "block", marginBottom: "5px" }}
-              >
-                En fazla 3 adet medya seçimi yapılabilir.
-              </label>
-            </Col>
           </Container>
         </Form>
       </Formik>
-    </div>
+      <Container>
+        <Row>
+          <Col xs={10}>
+            <div className="col-12 my-2">
+              <label
+                className="input-label-text"
+                style={{ display: "block", marginBottom: "5px" }}
+              >
+                LinkedIn
+              </label>
+              <div className="section-header tobeto-input">
+                <input
+                  readOnly
+                  className="form-control  input-linkedin"
+                  type="text"
+                  value="https://www.linkedin.com/in/nida-kul/"
+                />
+
+                <Col xs={1}>
+                  <button className="btn social-delete" onClick={() => { toastr.error("Sosyal medya hesabınız kaldırıldı") }}>
+                    <i className="grade-delete-img"></i>
+                  </button>
+                </Col>
+                <Col xs={1}>
+                  <button className="btn">
+                    <img
+                      src={
+                        process.env.PUBLIC_URL + "/images/pen-square.svg"
+                      }
+                      style={{ width: 23 }}
+                    />
+                  </button>
+                </Col>
+              </div>
+            </div>
+          </Col>
+        </Row>
+        <Col>
+          <label
+            className="attentionText"
+            style={{ display: "block", marginBottom: "5px" }}
+          >
+            En fazla 3 adet medya seçimi yapılabilir.
+          </label>
+        </Col>
+      </Container>
+    </div >
   );
 };
 

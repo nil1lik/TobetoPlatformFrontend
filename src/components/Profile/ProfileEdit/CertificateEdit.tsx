@@ -6,6 +6,7 @@ import Dashboard from "@uppy/dashboard";
 import Tus from "@uppy/tus";
 import "@uppy/core/dist/style.css";
 import "@uppy/dashboard/dist/style.css";
+import toastr from "toastr"
 
 type Props = {};
 
@@ -89,7 +90,7 @@ const CertificateEdit = (props: Props) => {
                     <td className="png_icon text-center"></td>
                     <td>11.01.2024</td>
                     <td>
-                      <button className=" btn fileIcon">
+                      <button className=" btn fileIcon" onClick={()=>{toastr.info("Dosya indiriliyor")}}>
                         <img
                           src={
                             process.env.PUBLIC_URL + "/images/fileIcon.svg"
@@ -98,7 +99,7 @@ const CertificateEdit = (props: Props) => {
                           style={{ width: 50 }}
                         />
                       </button>
-                      <button className=" btn trashIcon">
+                      <button className=" btn trashIcon" onClick={()=>{toastr.error("Dosya kaldırıldı")}}>
                         <img
                           src={
                             process.env.PUBLIC_URL + "/images/trashIcon.svg"

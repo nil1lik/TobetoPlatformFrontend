@@ -79,7 +79,7 @@ const SkillEdit = (props: Props) => {
         <Card key={index} className="inline-card">
           <Card.Body className="inline-card-body">
             {selectedSkill.name}
-            <button className="grade-delete g-del">
+            <button className="grade-delete g-del" onClick={() => toastr.error("Yetenek silindi")}>
               <i className="grade-delete-img"></i>
             </button>
           </Card.Body>
