@@ -76,7 +76,7 @@ const CertificateEdit = (props: Props) => {
                     <td className="png_icon text-center"></td>
                     <td>11.01.2024</td>
                     <td>
-                      <button className=" btn fileIcon" onClick={() => { toastr.info("Dosya indiriliyor") }}>
+                      <button type="button" className=" btn fileIcon" onClick={() => { toastr.info("Dosya indiriliyor") }}>
                         <img
                           src={
                             process.env.PUBLIC_URL + "/images/fileIcon.svg"
@@ -85,7 +85,7 @@ const CertificateEdit = (props: Props) => {
                           style={{ width: 50 }}
                         />
                       </button>
-                      <button className=" btn trashIcon" onClick={() => { handleShow()}}>
+                      <button type="button" className=" btn trashIcon" onClick={() => { handleShow()}}>
                         <img
                           src={
                             process.env.PUBLIC_URL + "/images/trashIcon.svg"
