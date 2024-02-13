@@ -8,11 +8,15 @@ import FormikInput from "../../Formik/FormikInput";
 import socialMediaAccountService from "../../../services/socialMediaAccountService";
 import { GetSocialMediaCategoryItem } from "../../../models/responses/socialMediaAccount/getAllSocialMediaCategory";
 import toastr from "toastr"
+import ControlPopup from "../../Popup/ControlPopup";
 
 type Props = {};
 
 const SocialMediaAccountEdit = (props: Props) => {
   const [socialMediaAccounts, setsocialMediaAccounts] = useState<GetSocialMediaCategoryItem[]>([]);
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const validationSchema = object({
     inputUrl: UserInformationValidationMessageRule.inputsRequired
@@ -84,9 +88,18 @@ const SocialMediaAccountEdit = (props: Props) => {
                 />
 
                 <Col xs={1}>
-                  <button className="btn social-delete" onClick={() => { toastr.error("Sosyal medya hesabınız kaldırıldı") }}>
+                  <button className="btn social-delete" onClick={() => {handleShow() }}>
                     <i className="grade-delete-img"></i>
                   </button>
+                  <ControlPopup
+                        title="Seçilen sosyal medyayı silmek istediğinizden emin misiniz?"
+                        description="Bu işlem geri alınmaz."
+                        buttonYes={true}
+                        buttonNo={true}
+                        message="Sosyal medya hesabınız kaldırıldı"
+                        show={show}
+                        hide={handleClose}
+                      />
                 </Col>
                 <Col xs={1}>
                   <button className="btn">

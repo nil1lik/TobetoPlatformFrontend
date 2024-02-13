@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container, Form } from "react-bootstrap";
 import { Formik } from "formik";
 import Uppy from "@uppy/core";
@@ -7,37 +7,40 @@ import Tus from "@uppy/tus";
 import "@uppy/core/dist/style.css";
 import "@uppy/dashboard/dist/style.css";
 import toastr from "toastr"
+import ControlPopup from "../../Popup/ControlPopup";
 
 type Props = {};
 
 const CertificateEdit = (props: Props) => {
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   const initialValues = {};
+  const uppy = new Uppy();
 
-    const uppy = new Uppy();
+  uppy
+    .use(Dashboard, {
+      showProgressDetails: true,
+      proudlyDisplayPoweredByUppy: true,
+    })
 
-    uppy
-      .use(Dashboard, {
-        showProgressDetails: true,
-        proudlyDisplayPoweredByUppy: true,
-      })
-      
-    uppy
-      .use(Tus, { endpoint: "https://tusd.tusdemo.net/files/", limit: 6 });
+  uppy
+    .use(Tus, { endpoint: "https://tusd.tusdemo.net/files/", limit: 6 });
 
-    uppy.on("complete", (result) => {
-      if (result.failed.length === 0) {
-        console.log("Upload successful");
-      } else {
-        console.warn("Upload failed");
-      }
-      console.log("successful files:", result.successful);
-      console.log("failed files:", result.failed);
-    });
-
-    const handleShow = () =>{
-      (uppy.getPlugin('Dashboard') as any).openModal();
+  uppy.on("complete", (result) => {
+    if (result.failed.length === 0) {
+      console.log("Upload successful");
+    } else {
+      console.warn("Upload failed");
     }
-    
+    console.log("successful files:", result.successful);
+    console.log("failed files:", result.failed);
+  });
+
+  const handleShowPlugin = () => {
+    (uppy.getPlugin('Dashboard') as any).openModal();
+  }
+
 
   return (
     <div className="container mt-5">
@@ -59,7 +62,7 @@ const CertificateEdit = (props: Props) => {
                         className="upload-area-image"
                         src={process.env.PUBLIC_URL + "/images/upload-file.svg"}
                         alt="Upload Area"
-                        onClick={handleShow}
+                        onClick={handleShowPlugin}
                       />
                     </label>
                     {/* <input
@@ -67,7 +70,7 @@ const CertificateEdit = (props: Props) => {
                       
                     /> */}
                   </div>
-                  
+
                   <label className="uploadText">Dosya Yükle</label>
                   <div></div>
                 </div>
@@ -90,7 +93,7 @@ const CertificateEdit = (props: Props) => {
                     <td className="png_icon text-center"></td>
                     <td>11.01.2024</td>
                     <td>
-                      <button className=" btn fileIcon" onClick={()=>{toastr.info("Dosya indiriliyor")}}>
+                      <button className=" btn fileIcon" onClick={() => { toastr.info("Dosya indiriliyor") }}>
                         <img
                           src={
                             process.env.PUBLIC_URL + "/images/fileIcon.svg"
@@ -99,7 +102,7 @@ const CertificateEdit = (props: Props) => {
                           style={{ width: 50 }}
                         />
                       </button>
-                      <button className=" btn trashIcon" onClick={()=>{toastr.error("Dosya kaldırıldı")}}>
+                      <button className=" btn trashIcon" onClick={() => { handleShow()}}>
                         <img
                           src={
                             process.env.PUBLIC_URL + "/images/trashIcon.svg"
@@ -108,6 +111,15 @@ const CertificateEdit = (props: Props) => {
                           style={{ width: 50 }}
                         />
                       </button>
+                      <ControlPopup
+                        title="Seçilen sertifikayı silmek istediğinizden emin misiniz?"
+                        description="Bu işlem geri alınmaz."
+                        buttonYes={true}
+                        buttonNo={true}
+                        message="Dosya kaldırıldı"
+                        show={show}
+                        hide={handleClose}
+                      />
                     </td>
                   </tr>
                 </tbody>

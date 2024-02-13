@@ -6,6 +6,7 @@ import { UserInformationValidationMessageRule } from "../../../utilities/Validat
 import { GetSkillItem } from "../../../models/responses/skill/getSkillResponse";
 import skillService from "../../../services/skillService";
 import toastr from "toastr";
+import ControlPopup from "../../Popup/ControlPopup";
 
 
 type Props = {};
@@ -23,6 +24,10 @@ const validationSchema = object({
 const SkillEdit = (props: Props) => {
   const [skills, setSkills] = useState<GetSkillItem[]>([]);
   const [selectedSkills, setSelectedSkills] = useState<GetSkillItem[]>([]);
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   useEffect(() => {
     const fetchSkills = async () => {
@@ -79,9 +84,23 @@ const SkillEdit = (props: Props) => {
         <Card key={index} className="inline-card">
           <Card.Body className="inline-card-body">
             {selectedSkill.name}
-            <button className="grade-delete g-del" onClick={() => toastr.error("Yetenek silindi")}>
+            <button
+              className="grade-delete g-del"
+              onClick={() => {
+                handleShow();
+              }}
+            >
               <i className="grade-delete-img"></i>
             </button>
+            <ControlPopup
+              title="Yeteneği silmek istediğinizden emin misiniz?"
+              description="Daha sonra tekrardan listeden istediğiniz yetkinliği ekleyebilirsiniz."
+              buttonYes={true}
+              buttonNo={true}
+              message="Yetenek silindi"
+              show={show}
+              hide={handleClose}
+            />
           </Card.Body>
         </Card>
       ))}

@@ -8,13 +8,17 @@ import { GetByIdGraduation } from "../../../models/responses/graduation/getByIdG
 import { GetGraduationItem } from "../../../models/responses/graduation/getGraduation";
 import { GraduationPageLabelTexts, ProfileGraduationListHeaders, registerButtonText } from "../../../utilities/Constants/constantValues";
 import { GraduationDegreeValues } from "../../../utilities/Constants/GraduationDegreeValues";
+import ControlPopup from "../../Popup/ControlPopup";
 
 type Props = {};
 
 const GraduationEdit = (props: Props) => {
   const [selectedStartDate, setSelectedStartDate] = useState<Date | null >(new Date());
   const [isEndDateDisabled, setIsEndDateDisabled] = useState<boolean>(true);
-  const [graduation, setGraduation] = useState<GetGraduationItem[]>([])
+  const [graduation, setGraduation] = useState<GetGraduationItem[]>([]);
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const getGraduation = async () => {
     try {
@@ -150,9 +154,18 @@ const GraduationEdit = (props: Props) => {
               {graduation.department}
               </label>
             </div>
-            <button className="grade-delete g-del" onClick={()=>{toastr.error("Eğitim bilgisi kaldırıldı")}}>
+            <button className="grade-delete g-del" onClick={()=>{handleShow()}}>
               <i className="grade-delete-img"></i>
             </button>
+            <ControlPopup
+              title="Seçilen eğitimi silmek istediğinizden emin misiniz?"
+              description="Bu işlem geri alınmaz."
+              buttonYes={true}
+              buttonNo={true}
+              message="Eğitim kaldırıldı"
+              show={show}
+              hide={handleClose}
+            />
           </div>
         </div>
         ))}
