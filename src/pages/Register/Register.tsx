@@ -43,7 +43,7 @@ function Register(props: Props) {
               userService
                 .addUser(values)
                 .then((result) => {
-                  console.log("Kullanıcı başarıyla kaydedildi:", result.data);
+                  // console.log("Kullanıcı başarıyla kaydedildi:", result.data);
                   localStorage.setItem("token", result.data.token);
                 })
                 .catch((error) => {

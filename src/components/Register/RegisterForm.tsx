@@ -21,7 +21,6 @@ const RegisterForm = (props: Props) => {
     <Formik
       initialValues={initialValues}
       onSubmit={(values) => {
-        console.log(values);
       }}
     >
       <Form className={props.formClassName}>

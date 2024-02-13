@@ -11,7 +11,6 @@ import ContactTable from "../../components/Contact/ContactTable";
 const key = "6LeuJGopAAAAAELob3ZGy02D7Ffb_gf_pjzYuz_h";
 type Props = {};
 function onChange(value: any) {
-  console.log("Captcha value:", value);
 }
 const Communication = (props: Props) => {
   const initialValues = {
@@ -69,7 +68,6 @@ const Communication = (props: Props) => {
                 <Formik
                   initialValues={initialValues}
                   onSubmit={(values) => {
-                    console.log(values);
                   }}
                 >
                   <Form>

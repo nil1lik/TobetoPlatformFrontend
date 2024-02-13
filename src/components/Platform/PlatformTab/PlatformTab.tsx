@@ -36,7 +36,6 @@ const PlatformTab = (props: Props) => {
     const fetchEducation = async () => {
       const result = await educationService.getByFilter(0, 4);
       setEducation(result.data.items);
-      console.log(result);
     };
 
     const fetchAnnouncement = async () => {

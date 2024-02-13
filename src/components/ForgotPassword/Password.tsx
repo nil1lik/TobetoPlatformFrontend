@@ -23,7 +23,7 @@ const Password = (props: Props) => {
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={(values) => {
-          console.log(values);
+          // console.log(values);
         }}
       >
         <Form className="text-center max-width">

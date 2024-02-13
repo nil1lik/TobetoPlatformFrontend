@@ -17,7 +17,6 @@ const Calendar = () => {
   const fetchCalendar = async () => {
     try {
       const result = await calendarService.getCalendar(0, 50);
-      console.log(result.data.items)
       setCalendar(result.data.items);
     } catch (error) {
       console.error("API isteği sırasında bir hata oluştu:", error);

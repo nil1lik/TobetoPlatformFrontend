@@ -51,12 +51,12 @@ const Login = (props: Props) => {
                       isAuthenticated: true,
                       token: result.data.accessToken.token,
                     });
-                    toastr.success("Giriş başarılı");
-                    console.log("Kullanıcı başarıyla kaydedildi:", result.data);
-                    localStorage.setItem(
-                      "token",
-                      result.data.accessToken.token
-                    );
+                    // toastr.success("Giriş başarılı");
+                    // localStorage.setItem(
+                    //   "token",
+                    //   result.data.accessToken.token
+                    //   );
+                      console.log("qwe:", result.data);
                   })
                   .catch((error) => {
                     console.error(

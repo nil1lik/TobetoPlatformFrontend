@@ -1,5 +1,8 @@
-import axios from 'axios';
+import toastr from "toastr";
+    import axios from 'axios';
 import { BASE_API_URL } from '../environment/environment';
+import { config } from 'process';
+import { AuthContext } from '../../contexts/AuthContext';
 // import axios from "axios";
 // import { BASE_API_URL } from "../environment/environment";
 // import tokenService from "../services/tokenService";
@@ -31,12 +34,12 @@ import { BASE_API_URL } from '../environment/environment';
 //                     refreshToken: refreshToken,
 //                 },
 //             });
-        
+
 //             const newToken = response.data.token;
 //             tokenService.setTokens(newToken, refreshToken);
-        
+
 //             console.log("Yenilenmiş Token:", newToken);
-        
+
 //             if (authContext.auth && newToken) {
 //                 console.log("Authorization Başlığı Yeni Token ile Ayarlanıyor");
 //                 config.headers.Authorization = `Bearer ${newToken}`;
@@ -56,14 +59,38 @@ const axiosInstance = axios.create({
     baseURL: BASE_API_URL,
 })
 
-axiosInstance.interceptors.request.use((config) => {
-    // config.headers.Authorization = "MyToken";
-    console.log("İstek atılıyor");
-    return config;
-})
-axiosInstance.interceptors.response.use((config) => {
-    console.log("Cevap geldi.");
-    return config;
-})
+axiosInstance.interceptors.request.use(
+    request => {
+        const token = localStorage.getItem("token");
+        if (token) {
+            request.headers.Authorization = `Bearer ${token}`;
+        }
+        return request;
+    },
+    error => {
+        return Promise.reject(error);
+    }
+)
+
+axiosInstance.interceptors.response.use(
+    response => {
+        const accessToken = response.data.accessToken;
+        if (accessToken) {
+            const token = accessToken.token;
+            localStorage.setItem("token", token);
+        }
+        toastr.success("İşlem başarıyla tamamlandı");
+        return response;
+    },
+    error => {
+        console.error(error);
+        if (error.response && error.response.data && error.response.data.detail) {
+            toastr.error(error.response.data.detail);
+        } else {
+            toastr.error("Bir hata oluştu");
+        }
+        return Promise.reject(error);
+    }
+)
 
 export default axiosInstance;

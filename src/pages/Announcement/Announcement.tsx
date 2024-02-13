@@ -48,10 +48,6 @@ const Announcement = (props: Props) => {
     fetchAnnouncement();
   }, [childState]);
 
-  useEffect(() => {
-    console.log("announcement:", searchbarValue);
-  }, [searchbarValue]);
-
   return (
     <SearchbarContext.Provider
       value={{

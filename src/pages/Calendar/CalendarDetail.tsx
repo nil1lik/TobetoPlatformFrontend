@@ -19,7 +19,6 @@ const CalendarDetail = (props: Props) => {
   const fetchInstructor = async () => {
     try {
       const result = await instructorService.getByFilter(0, 50);
-      console.log(result)
       setInstructor(result.data.items);
     } catch (error) {
       console.error("API isteği sırasında bir hata oluştu:", error);

@@ -26,7 +26,7 @@ const Exams = (props: Props) => {
   return (
     <div className="row cv-box cv-padding">
       <div className="col-12 position-relative">
-        <Card.Text>{PlatformTabHeaders.exams}</Card.Text>
+        <Card.Text key={"examheader"}>{PlatformTabHeaders.exams}</Card.Text>
       </div>
       <div className="exams my-3">
         {exam.map((exam) => (
