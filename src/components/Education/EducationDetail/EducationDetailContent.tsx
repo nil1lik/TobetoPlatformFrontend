@@ -1,3 +1,4 @@
+// Eksik olan import'ları ekleyin
 import React, { useEffect, useState } from "react";
 import "./educationDetailContent.css";
 import {
@@ -18,9 +19,11 @@ import {
 } from "react-bootstrap/esm/AccordionContext";
 import educationService from "../../../services/educationService";
 import { GetCourseResponseItem } from "../../../models/responses/course/getCourseResponse";
+import { GetAsyncLessonsByCourseIdItem } from "../../../models/responses/course/getAsyncLessonsByCourseId";
 
 type Props = {
   educationDetailId?: number;
+  courseId?: number;
   educationTitle?: string;
   educationSubTitle?: string;
   educationType: string;
@@ -33,7 +36,6 @@ type Props = {
 };
 
 const EducationDetailContent = (props: Props) => {
-  //düzenlenecek kod
   const { educationDetailId } = props;
   const completedIcon = "/images/completed.svg";
   const [show, setShow] = useState(false);
@@ -42,14 +44,13 @@ const EducationDetailContent = (props: Props) => {
   const [activeKey, setActiveKey] = useState<string | null>(null);
 
   const [courses, setCourses] = useState<GetCourseResponseItem[]>([]);
+  const [asyncLessons, setAsyncLessons] = useState<GetAsyncLessonsByCourseIdItem[]>([]); 
 
   const fetchEducationDetail = async () => {
-    try { 
-         const result = await courseService.getAll(0, 10);
+    try {
+      const result = await courseService.getAll(0, 10);
       if (educationDetailId !== undefined) {
-        const result = await educationService.getCoursesByEducationId(
-          educationDetailId
-        );
+        const result = await educationService.getCoursesByEducationId(educationDetailId);
         setCourses(result.data.items);
       }
       const filteredCourses = result.data.items.filter(
@@ -61,66 +62,48 @@ const EducationDetailContent = (props: Props) => {
       console.error("API isteği sırasında bir hata oluştu:", error);
     }
   };
+
   useEffect(() => {
     fetchEducationDetail();
   }, [educationDetailId]);
-  
 
-  const handleAccordionClick: AccordionSelectCallback = (
-    eventKey: AccordionEventKey
-  ) => {
+  const handleAccordionClick: AccordionSelectCallback = (eventKey: AccordionEventKey) => {
     setActiveKey(typeof eventKey === "string" ? eventKey : null);
   };
 
+  const handleHeaderClick = async (courseId: number) => {
+    try {
+      const response = await courseService.getAsyncLessonsByCourseId(courseId);
+      const lessons = response.data.asyncLessons;
+      setAsyncLessons(lessons);
+      console.log("Async lessons for courseId:", courseId, lessons);
+    } catch (error) {
+      console.error("Error fetching async lessons:", error);
+    }
+  };
+  
   return (
     <Container>
       <div className="accordion-container">
         <Row className="activity-row">
           <Col className="col-lg-5">
             <Accordion activeKey={activeKey} onSelect={handleAccordionClick}>
-              {courses &&
-                courses.length > 0 &&
-                courses.map((educationCourses, index) => (
-                  <AccordionItem eventKey={index.toString()}>
-                    <AccordionHeader className="education-title">
-                      {educationCourses.name}
-                    </AccordionHeader>
-                    <div>
-                      <AccordionBody
-                        className="education-subtitle"
-                        role="button"
-                      >
-                        {props.educationSubTitle}
-                        <AccordionBody className="education-type">
-                          {props.educationType} - {props.educationTime}
-                        </AccordionBody>
-
-                        <img className="completed-icon" src={completedIcon} />
-                      </AccordionBody>
-                      <AccordionBody
-                        className="education-subtitle"
-                        role="button"
-                      >
-                        {props.educationSubTitle}
-                        <AccordionBody className="education-type">
-                          {props.educationType} - {props.educationTime}
-                        </AccordionBody>
-
-                        <img className="completed-icon" src={completedIcon} />
-                      </AccordionBody>
-                    </div>
-                  </AccordionItem>
-                ))}
-              {/* <AccordionItem eventKey="1">
-                <AccordionHeader>{props.educationTitle}</AccordionHeader>
-                <AccordionBody className="education-subtitle">
-                  {props.educationSubTitle}
-                  <AccordionBody className="education-type">
-                    {props.educationType} - {props.educationTime}
-                  </AccordionBody>
-                  <img className="completed-icon" src={completedIcon} />
-                </AccordionBody>
-              </AccordionItem>*/}
+              {courses && courses.length > 0 && courses.map((educationCourses, index) => (
+                <AccordionItem key={index} eventKey={index.toString()}>
+                  <AccordionHeader className="education-title" onClick={() => handleHeaderClick(educationCourses.id)}>
+                    {educationCourses.id} {educationCourses.name}
+                  </AccordionHeader>
+                  <div>
+                    <AccordionBody className="education-subtitle" role="button">
+                      {asyncLessons.map((lessons, lessonIndex) => (
+                        <div key={lessonIndex}>
+                          {lessons.name}
+                        </div>
+                      ))}
+                    </AccordionBody>
+                  </div>
+                </AccordionItem>
+              ))}
             </Accordion>
           </Col>
 

@@ -7,6 +7,8 @@ import { BaseService } from "../core/services/baseService";
 import { toHaveDisplayValue } from '@testing-library/jest-dom/matchers';
 import { BASE_API_URL } from '../core/environment/environment';
 import { GetCourseResponse } from '../models/responses/course/getCourseResponse';
+import axios, { AxiosResponse } from 'axios';
+import { GetAsyncLessonsByCourseIdResponse } from '../models/responses/course/getAsyncLessonsByCourseId';
 
 class CourseService extends BaseService<
     GetCourseResponse,
@@ -22,6 +24,12 @@ class CourseService extends BaseService<
         this.apiUrl = BASE_API_URL + "Courses"
     }
     getByFilter(){ }
+
+    getAsyncLessonsByCourseId(id:number): Promise<AxiosResponse<GetAsyncLessonsByCourseIdResponse, any>>{
+        return axios.get<GetAsyncLessonsByCourseIdResponse>(
+            this.apiUrl + "/getAsyncLesson/" + id
+        );
+    }
 }
 
 export default new CourseService();
