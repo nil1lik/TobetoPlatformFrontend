@@ -7,6 +7,8 @@ import { object } from "yup";
 import { AuthContext } from "../../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { loginButtonText } from "../../utilities/Constants/constantValues";
+import toastr from 'toastr';
+
 
 type Props = { image: string; formClassName: string };
 
@@ -21,13 +23,19 @@ const LoginForm = (props: Props) => {
 
   const initialValues = {};
   const formLogo = process.env.PUBLIC_URL + `/images/${props.image}`;
+
+  const handleSubmit = async (values: any) => {
+    toastr.success("Giriş başarılı");
+    authContext.setAuth(true);
+    navigate("/");
+    localStorage.setItem("token", "asdqwklgmqwnkasdkjnqwkjngqw");
+  };
+
   return (
     <Formik
       initialValues={initialValues}
       validationSchema={validationSchema}
-      onSubmit={(values) => {
-        console.log(values);
-      }}
+      onSubmit={handleSubmit}
     >
       <Form className={props.formClassName}>
         <Row className="text-center">
@@ -51,11 +59,6 @@ const LoginForm = (props: Props) => {
           <button
             type="submit"
             className="button-save py-2 mb-3 mt-4 d-inline-block"
-            onClick={() => {
-              authContext.setAuth(true);
-              navigate("/platform");
-              localStorage.setItem("token", "asdqwklgmqwnkasdkjnqwkjngqw");
-            }}
           >
             {loginButtonText}
           </button>

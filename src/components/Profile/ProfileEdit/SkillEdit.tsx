@@ -5,6 +5,7 @@ import { object } from "yup";
 import { UserInformationValidationMessageRule } from "../../../utilities/Validations/validationMessageRules";
 import { GetSkillItem } from "../../../models/responses/skill/getSkillResponse";
 import skillService from "../../../services/skillService";
+import toastr from "toastr";
 
 
 type Props = {};
@@ -38,6 +39,7 @@ const SkillEdit = (props: Props) => {
   const handleSkillSubmit = (values: GetSkillItem) => {
     console.log("Seçilen beceri:", values);
     setSelectedSkills((prevSkills) => [...prevSkills, values]);
+    toastr.success('Yetenek eklendi!');
   };
   return (
     <div className="container mt-5">

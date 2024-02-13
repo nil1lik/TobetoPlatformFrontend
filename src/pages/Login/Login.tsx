@@ -12,7 +12,7 @@ import { userLoginRequest } from "../../models/requests/user/userLoginRequest";
 import { object } from "yup";
 import UserService from "../../services/userService";
 import { forgetPasswordButtonText, loginBoxBottomText, loginButtonText, registerButtonText } from "../../utilities/Constants/constantValues";
-
+import toastr from "toastr";
 type Props = {};
 
 const Login = (props: Props) => {
@@ -30,7 +30,7 @@ const Login = (props: Props) => {
   useEffect(() => {
     // Kullanıcı girişi başarılı olduktan sonra çalışacak kodlar
     if (authContext.auth?.isAuthenticated) {
-      navigate("/platform");
+      navigate("/");
     }
   }, [authContext.auth]);
 
@@ -51,7 +51,7 @@ const Login = (props: Props) => {
                       isAuthenticated: true,
                       token: result.data.accessToken.token,
                     });
-
+                    toastr.success("Giriş başarılı");
                     console.log("Kullanıcı başarıyla kaydedildi:", result.data);
                     localStorage.setItem(
                       "token",
