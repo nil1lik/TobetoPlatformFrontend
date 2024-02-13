@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react'
 import Uppy from "@uppy/core";
 import Dashboard from "@uppy/dashboard";
 import Tus from "@uppy/tus";
-
+import "@uppy/core/dist/style.css";
+import "@uppy/dashboard/dist/style.css";
 type Props = {
     handleShow: boolean;
 };
