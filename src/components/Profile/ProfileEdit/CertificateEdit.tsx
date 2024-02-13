@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Form } from "react-bootstrap";
 import { Formik } from "formik";
 import Uppy from "@uppy/core";
@@ -7,37 +7,25 @@ import Tus from "@uppy/tus";
 import "@uppy/core/dist/style.css";
 import "@uppy/dashboard/dist/style.css";
 import toastr from "toastr"
+import UppyPopup from "../../Uppy/UppyPopup";
+import { boolean } from "yup";
 
 type Props = {};
 
 const CertificateEdit = (props: Props) => {
   const initialValues = {};
 
-    const uppy = new Uppy();
-
-    uppy
-      .use(Dashboard, {
-        showProgressDetails: true,
-        proudlyDisplayPoweredByUppy: true,
-      })
-      
-    uppy
-      .use(Tus, { endpoint: "https://tusd.tusdemo.net/files/", limit: 6 });
-
-    uppy.on("complete", (result) => {
-      if (result.failed.length === 0) {
-        console.log("Upload successful");
-      } else {
-        console.warn("Upload failed");
-      }
-      console.log("successful files:", result.successful);
-      console.log("failed files:", result.failed);
-    });
+    const [showUppy, setShowUppy] = useState<boolean>(false);
 
     const handleShow = () =>{
-      (uppy.getPlugin('Dashboard') as any).openModal();
+      setShowUppy(true);
     }
-    
+
+    useEffect(() => {
+    if(showUppy){
+      setShowUppy(false);
+    }
+    })
 
   return (
     <div className="container mt-5">
@@ -61,6 +49,7 @@ const CertificateEdit = (props: Props) => {
                         alt="Upload Area"
                         onClick={handleShow}
                       />
+                      <UppyPopup handleShow={showUppy}/>
                     </label>
                     {/* <input
                       style={{ display: "none" }}
