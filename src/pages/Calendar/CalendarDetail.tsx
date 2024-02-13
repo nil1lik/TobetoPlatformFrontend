@@ -33,7 +33,7 @@ const CalendarDetail = (props: Props) => {
 
   return (
     <div>
-      <Row className="mt-5">
+      <Row className="mt-5 custom-row">
         <Col xs={3}>
           <div className="filter-left equal-box">
             <div className="d-flex flex-column">
