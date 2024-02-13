@@ -8,35 +8,32 @@ import SearchBar from "../../components/SearchBar/SearchBar";
 import { GetInstructor, GetInstructorItem } from "../../models/responses/instructor/getInstructorResponse";
 import instructorService from "../../services/instructorService";
 import { EducationStatusText, calendarDropboxLabel, calendarDropboxPlaceholderText, calendarSearchBoxLabel } from "../../utilities/Constants/constantValues";
+import { GetCalendarItem } from "../../models/responses/calendar/getCalendarResponse";
+import calendarService from "../../services/calendarService";
 
 type Props = {};
 const CalendarDetail = (props: Props) => {
-  const calendarProps = {
-    id: "1",
-    title: ".net & react full stack",
-    instructor: "Engin Demirog",
-    start: new Date().toISOString().split("T")[0] + "T13:15",
-  };
-
+  
   const [instructor, setInstructor] = useState<GetInstructorItem[]>([])
 
+  const fetchInstructor = async () => {
+    try {
+      const result = await instructorService.getByFilter(0, 50);
+      console.log(result)
+      setInstructor(result.data.items);
+    } catch (error) {
+      console.error("API isteği sırasında bir hata oluştu:", error);
+    }
+  };
+
   useEffect(() => {
-    const fetchInstructor = async () => {
-      try {
-        const result = await instructorService.getByFilter(0, 50);
-        console.log(result)
-        setInstructor(result.data.items);
-      } catch (error) {
-        console.error("API isteği sırasında bir hata oluştu:", error);
-      }
-    };
-    
     fetchInstructor();
   },[]);
 
+
   return (
     <div>
-      <Row className="mt-5">
+      <Row className="mt-5 custom-row">
         <Col xs={3}>
           <div className="filter-left equal-box">
             <div className="d-flex flex-column">
@@ -128,7 +125,7 @@ const CalendarDetail = (props: Props) => {
           </div>
         </Col>
         <Col xs={9}>
-          <Calendar {...calendarProps} />
+          <Calendar/>
         </Col>
       </Row>
     </div>

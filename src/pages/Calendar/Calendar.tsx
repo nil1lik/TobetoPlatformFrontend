@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
@@ -7,32 +7,34 @@ import allLocales from "@fullcalendar/core/locales-all";
 import { EventContentArg } from '@fullcalendar/core';
 import { DayCellContainer, addWeeks } from '@fullcalendar/core/internal';
 import { start } from 'repl';
+import calendarService from '../../services/calendarService';
+import { GetCalendarItem } from '../../models/responses/calendar/getCalendarResponse';
 
-type Props = {
-  id: string,
-  title: string,
-  instructor: string,
-  start: string
-}
 
-const Calendar = (props: Props) => {
-  const initialEvent = {
-    id: props.id, 
-    title: props.title,
-    instructor:props.instructor,
-    start: props.start
+
+const Calendar = () => {
+  const [calendar,setCalendar] = useState<GetCalendarItem[]>([]);
+  const fetchCalendar = async () => {
+    try {
+      const result = await calendarService.getCalendar(0, 50);
+      console.log(result.data.items)
+      setCalendar(result.data.items);
+    } catch (error) {
+      console.error("API isteği sırasında bir hata oluştu:", error);
+    }
   };
+  useEffect(() => {
+    fetchCalendar();
+  },[]);
 
   const renderEventContent =(eventContent:EventContentArg)=>{
     return(
-      <div className='d-flex flex-column ms-4 my-1'>
-        <span>{props.start.split("T")[1]/*eventContent.timeText*/}</span>
-        <span className='text-truncate'>{props.title} {/*eventContent.event.title*/}</span>
-        <span className='text-truncate'>{props.instructor}</span>
-      </div>
-      
+          <div className='d-flex flex-column ms-4 my-1'>
+          <span>{eventContent.event.start?.toTimeString().split("GMT")[0].slice(0,5)/*eventContent.timeText*/}</span>
+          <span className='text-truncate'>{eventContent.event.title} {/*eventContent.event.title*/}</span>
+          <span className='text-truncate'>{eventContent.event.extendedProps.instructor}</span>
+        </div>
     )
-    
   }
 
   return (
@@ -49,7 +51,6 @@ const Calendar = (props: Props) => {
         selectable={true}
         editable={false}    
         eventContent={renderEventContent}
-        initialEvents={[initialEvent]} 
         buttonText={{
           day: "Gün",
           nextYear: "Sonraki Yıl",
@@ -62,22 +63,13 @@ const Calendar = (props: Props) => {
         dayMaxEvents={2}
         
         events={
-           [
-             {id:'2',title:props.title, start:'2024-02-01', end:'2024-02-01'},
-             {id:'3',title:props.title, start:'2024-02-01', end:'2024-02-01'},
-             {id:'4',title:props.title, start:'2024-02-01', end:'2024-02-01'},
-             {id:'5',title:props.title, start:'2024-02-01', end:'2024-02-01'},
-             {id:'6',title:props.title, start:'2024-02-01', end:'2024-02-01'},
-             {id:'7',title:props.title, start:'2024-02-01', end:'2024-02-01'},
-             {id:'8',title:props.title, start:'2024-02-29'},
-             {id:'9',title:props.title, start:'2024-02-29'},
-             {id:'10',title:props.title, start:'2024-02-29'},
-             {id:'11',title:props.title, start:'2024-02-29'},
-             {id:'12',title:props.title, start:'2024-02-29'},
-             {id:'13',title:props.title, start:'2024-02-06', end:'2024-02-06'},
-             {id:'14',title:props.title, start:'2024-02-06', end:'2024-02-06'},
-             {id:'15',title:props.title, start:'2024-02-06', end:'2024-02-06'},
-           ]
+           calendar.map((calendar)=>({
+            id: calendar.id.toString(),
+            title: calendar.educationPathName,
+            instructor: calendar.firstName,
+            start: calendar.startDate
+           }))
+           
          }
                 
         dayHeaderFormat={{weekday:'long'}}

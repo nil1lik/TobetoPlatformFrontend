@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Form } from "react-bootstrap";
 import { Formik } from "formik";
 import Uppy from "@uppy/core";
@@ -7,6 +7,8 @@ import Tus from "@uppy/tus";
 import "@uppy/core/dist/style.css";
 import "@uppy/dashboard/dist/style.css";
 import toastr from "toastr"
+import UppyPopup from "../../Uppy/UppyPopup";
+import { boolean } from "yup";
 import ControlPopup from "../../Popup/ControlPopup";
 
 type Props = {};
@@ -64,6 +66,7 @@ const CertificateEdit = (props: Props) => {
                         alt="Upload Area"
                         onClick={handleShowPlugin}
                       />
+                      {/* <UppyPopup handleShow={showUppy}/> */}
                     </label>
                     {/* <input
                       style={{ display: "none" }}
