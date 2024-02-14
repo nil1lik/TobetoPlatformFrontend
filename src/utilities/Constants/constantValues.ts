@@ -9,6 +9,7 @@ export const forgetPasswordButtonText = "Şifremi Unuttum";
 export const registerButtonText = "Kayıt Ol";
 export const pageIsNotFound = "Sayfa bulunamadı";
 export const saveButtonText = "Kaydet";
+export const sendButtonText = "Gönder";
 
 /* LOGIN PAGE */
 export const loginBoxBottomText = "Henüz üye değil misin?";
@@ -113,6 +114,43 @@ export const ProfileEditPageHeaders = {
     certificates: "Sertifikalarım"
 }
 
+export const ProfileInformationEditTexts = {
+    label1: "Adınız",
+    label2: "Soyadınız",
+    label3: "Telefon Numaranız*",
+    label4: "Doğum Tarihiniz*",
+    label5: "TC Kimlik No*",
+    label6: "E-posta*",
+    label7: "Ülke*",
+    label8: "Şehir Seçiniz*",
+    label9: "İlçe Seçiniz*",
+    placeholder1: "Adınız",
+    placeholder2: "Soyadınız",
+    placeholder3: "",
+    placeholder4: "Doğum Tarihiniz",
+    placeholder5: "TC Kimlik No",
+    placeholder6: "E-posta",
+    placeholder7: "Ülke",
+    placeholder8: "Şehir Seçiniz",
+    placeholder9: "İlçe Seçiniz",
+    textArea1: "Mahalle / Sokak",
+    textArea2: "Hakkımda",
+    checkBox: "Devam Ediyorum"
+}
+
+/* SETTINGS VALUES */
+
+export const changePasswordButtonText = "Şifre Değiştir";
+export const endMembershipButtonText = "Üyeliği Sonlandır";
+export const ProfileSettingsTextValues = {
+    label1: "Eski Şifre*",
+    label2: "Yeni Şifre*",
+    label3: "Yeni Şifre Tekrar*",
+    placeholder1: "Eski Şifre",
+    placeholder2: "Yeni Şifre",
+    placeholder3: "Yeni Şifre Tekrar"
+}
+
 /* GRADUATION VALUES*/
 export const GraduationPageLabelTexts = {
     label1: "Eğitim Durumu*",
@@ -155,6 +193,18 @@ export const ProfileExperienceListHeaders = {
     sector: "Sektör",
     city: "Şehir"
 }
+
+/* CERTIFICATE VALUES */
+export const uploadCertificateHeader = "SERTİFİKALARIM";
+
+export const ProfileSertificateListHeaders = {
+    fileName: "Dosya Adı",
+    fileType: "Dosya Türü",
+    date: "Tarih",
+    process: "İşlem",
+
+}
+
 
 /* EDUCATION VALUES */
 export const educationPageItemCountByPageMin:number = 0;
@@ -204,4 +254,24 @@ export const BannerTexts = {
     educationBanner: "Eğitimlerim",
     announcementBanner: "Duyurularım",
     catalogBanner: "Katalog"
+}
+
+/* RESET PASSWORD */
+export const resetPasswordText= "Şifre Sıfırlama"; 
+
+/* TOASTR */
+export const ProfileSettingsToastrMsg = {
+    changePasswordSuccess: "Şifreniz Güncellenmiştir"
+}
+
+export const ProfileExperienceToastrMsg = {
+    experienceAddSuccess: "Deneyim Eklendi"
+}
+
+export const ProfileLanguageToastrMsg = {
+    languageAddSuccess: "Yabancı Dil Bilgisi Eklendi"
+}
+
+export const ProfileInformationEditToastrMsg = {
+    profileInformationsUpdateSuccess: "Bilgileriniz Başarıyla Güncellendi"
 }

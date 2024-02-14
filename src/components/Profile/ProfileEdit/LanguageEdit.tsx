@@ -7,6 +7,7 @@ import { GetLanguageItem } from "../../../models/responses/language/getLanguage"
 import languageServices from "../../../services/languageServices";
 import { UserInformationValidationMessageRule } from "../../../utilities/Validations/validationMessageRules";
 import toastr from "toastr";
+import { ProfileLanguageToastrMsg, saveButtonText } from "../../../utilities/Constants/constantValues";
 type Props = {};
 
 const validationSchema = object({
@@ -17,6 +18,7 @@ const LanguageEdit = (props: Props) => {
   const [selectedlanguageLevels, setLanguageLevels] = useState<any[]>([]);
   const [languages, setLanguages] = useState<any[]>([]);
   const [selectedLanguages, setSelectedLanguages] = useState<GetLanguageItem[]>([]);
+  const [languageCount, setLanguageCount] = useState<number>(0);
 
   const initialValues = {
     id: 0,
@@ -31,8 +33,9 @@ const validationSchema = object({
   useEffect(() => {
     const fetchLanguages = async () => {
       try {
-        const result = await languageServices.getByFilter(0, 25);
+        const result = await languageServices.getAll(0, 100);
         setLanguages(result.data.items);
+        console.log(result)
       } catch (error) {
         console.log("API isteği sırasında bir hata oluştu:", error);
       }
@@ -40,7 +43,7 @@ const validationSchema = object({
     fetchLanguages();
 
 
-    const fetchLanguageLavel = async () => {
+    const fetchLanguageLevel = async () => {
       try {
         const result = await languageServices.getLanguageLevel(0, 5);
         setLanguageLevels(result.data.items);
@@ -48,13 +51,13 @@ const validationSchema = object({
         console.log("API isteği sırasında bir hata oluştu:", error);
       }
     };
-    fetchLanguageLavel();
+    fetchLanguageLevel();
   }, []);
 
   const handleLanguageSubmit = (values: GetLanguageItem) => {
     console.log("Seçilen dil: ", values);
     setSelectedLanguages((prevLanguages) => [...prevLanguages, values]);
-    toastr.success("Yabancı dil bilgisi eklendi")
+    toastr.success(ProfileLanguageToastrMsg.languageAddSuccess)
   };
   return (
     <div>
@@ -76,7 +79,7 @@ const validationSchema = object({
               type="submit"
               className="button-save py-2 mb-3 mt-4 d-inline-block"
             >
-              Kaydet
+              {saveButtonText}
             </button>
           </Form>
         </Formik>

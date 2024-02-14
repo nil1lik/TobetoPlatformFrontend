@@ -5,6 +5,8 @@ import { object } from "yup";
 import FormikInput from "../Formik/FormikInput";
 import "./Password.css";
 import { Link } from "react-router-dom";
+import { resetPasswordText, sendButtonText } from "../../utilities/Constants/constantValues";
+import { UserInformationValidationMessageRule } from "../../utilities/Validations/validationMessageRules";
 
 type Props = {
   name1: string;
@@ -13,7 +15,10 @@ type Props = {
   placeHolder2?: string;
 };
 
-const validationSchema = object({});
+const validationSchema = object({
+  name1: UserInformationValidationMessageRule.password,
+  name2: UserInformationValidationMessageRule.confirmPass
+});
 
 const Password = (props: Props) => {
   const initialValues = {};
@@ -29,7 +34,7 @@ const Password = (props: Props) => {
         <Form className="text-center max-width">
           
             <Row className="mb-3">
-              <h3 className="forgot-pass-custom">Şifre Sıfırlama</h3>
+              <h3 className="forgot-pass-custom">{resetPasswordText}</h3>
             </Row>
             <Row>
               <FormikInput
@@ -53,7 +58,7 @@ const Password = (props: Props) => {
                 type="submit"
                 className="button-save py-2 mb-3 mt-4 d-inline-block"
               >
-                Gönder
+                {sendButtonText}
               </button>
               </Link>
             </Row>

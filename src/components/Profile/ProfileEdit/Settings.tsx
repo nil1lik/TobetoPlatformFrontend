@@ -5,6 +5,7 @@ import { object, string } from "yup";
 import { UserInformationValidationMessageRule } from "../../../utilities/Validations/validationMessageRules";
 import FormikInput from "../../Formik/FormikInput";
 import { passwordMaxLength } from "../../../utilities/Validations/validationMessages";
+import { ProfileSettingsTextValues, ProfileSettingsToastrMsg, changePasswordButtonText, endMembershipButtonText } from "../../../utilities/Constants/constantValues";
 
 type Props = {};
 
@@ -22,7 +23,7 @@ const Settings = (props: Props) => {
   });
 
   const handleSubmit=()=>{
-    toastr.success("Şifreniz güncellenmiştir")
+    toastr.success(ProfileSettingsToastrMsg.changePasswordSuccess)
   }
   return (
     <div className="container mt-5">
@@ -38,8 +39,8 @@ const Settings = (props: Props) => {
                 <FormikInput
                   type="password"
                   name="oldPass"
-                  label="Eski Şifre*"
-                  placeHolder="Eski Şifre"
+                  label={ProfileSettingsTextValues.label1}
+                  placeHolder={ProfileSettingsTextValues.placeholder1}
                   maxLength={passwordMaxLength}
                 />
               </Col>
@@ -47,8 +48,8 @@ const Settings = (props: Props) => {
                 <FormikInput
                   type="password"
                   name="newPass"
-                  label="Yeni Şifre*"
-                  placeHolder="Yeni Şifre"
+                  label={ProfileSettingsTextValues.label2}
+                  placeHolder={ProfileSettingsTextValues.placeholder2}
                   maxLength={passwordMaxLength}
                 />
               </Col>
@@ -56,8 +57,8 @@ const Settings = (props: Props) => {
                 <FormikInput
                   type="password"
                   name="confirmPass"
-                  label="Yeni Şifre Tekrar*"
-                  placeHolder="Yeni Şifre Tekrar"
+                  label={ProfileSettingsTextValues.label3}
+                  placeHolder={ProfileSettingsTextValues.placeholder3}
                   maxLength={passwordMaxLength}
                 />
               </Col>
@@ -69,7 +70,7 @@ const Settings = (props: Props) => {
                   className="button-settings-save py-2 mb-3 mt-4 d-inline-block "
                   style={{ backgroundColor: "#9933ff" }}
                 >
-                  Şifre Değiştir
+                  {changePasswordButtonText}
                 </button>
               </Col>
               <Col>
@@ -78,7 +79,7 @@ const Settings = (props: Props) => {
                   className="button-settings-end py-2 mb-3 mt-4 d-inline-block "
                   style={{ backgroundColor: "#fc5c46" }}
                 >
-                  Üyeliği Sonlandır
+                  {endMembershipButtonText}
                 </button>
               </Col>
             </Row>

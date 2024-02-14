@@ -8,8 +8,9 @@ import { experienceInputsMaxLength, textAreaLength } from "../../../utilities/Va
 import experienceService from "../../../services/experienceService";
 import { GetExperience, GetExperienceInformationsItem, GetExperienceItem } from "../../../models/responses/experience/getExperience";
 import { GetCityItem } from "../../../models/responses/city/getCityResponse";
-import { ExperiencePageTexts, ProfileExperienceListHeaders, saveButtonText } from "../../../utilities/Constants/constantValues";
+import { ExperiencePageTexts, ProfileExperienceListHeaders, ProfileExperienceToastrMsg, saveButtonText } from "../../../utilities/Constants/constantValues";
 import toastr from "toastr";
+import { shiftDate } from "../../../utilities/Helpers/heatMap";
 
 type Props = {};
 
@@ -54,7 +55,7 @@ const ExperienceEdit = (props: Props) => {
 
   const handleExperienceSubmit = (values:any)=>{
     console.log(values)
-    toastr.success("Deneyim eklendi");
+    toastr.success(ProfileExperienceToastrMsg.experienceAddSuccess);
   }
   
   useEffect(() => {
@@ -198,7 +199,8 @@ const ExperienceEdit = (props: Props) => {
         {experiences.map((experience: any) => (
           <div className="my-grade">
           <div className="grade-header">
-            <label className="grade-date">{experience.startDate}-{experience.endDate} - Devam Ediyor</label>
+            <label className="grade-date">{shiftDate(experience.startDate, 5).getFullYear()}-{shiftDate(experience.endDate, 10).getFullYear()} - Devam Ediyor
+</label>
           </div>
           <div className="grade-details">
             <div className="grade-details-col">
