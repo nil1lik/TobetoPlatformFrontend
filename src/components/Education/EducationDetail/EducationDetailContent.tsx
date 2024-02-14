@@ -1,4 +1,3 @@
-// Eksik olan import'ları ekleyin
 import React, { useEffect, useState } from "react";
 import "./educationDetailContent.css";
 import {
@@ -20,13 +19,15 @@ import {
 import educationService from "../../../services/educationService";
 import { GetCourseResponseItem } from "../../../models/responses/course/getCourseResponse";
 import { GetAsyncLessonsByCourseIdItem } from "../../../models/responses/course/getAsyncLessonsByCourseId";
+import FormattedDate from "../../../utilities/Helpers/FormattedDate";
+import LessonVideoDetailCard from "../LessonVideoDetail/LessonVideoDetailCard";
 
 type Props = {
   educationDetailId?: number;
   courseId?: number;
   educationTitle?: string;
   educationSubTitle?: string;
-  educationType: string;
+  lessonType?: string;
   educationTime: string;
   educationCategory: string;
   educationLanguage: string;
@@ -44,13 +45,18 @@ const EducationDetailContent = (props: Props) => {
   const [activeKey, setActiveKey] = useState<string | null>(null);
 
   const [courses, setCourses] = useState<GetCourseResponseItem[]>([]);
-  const [asyncLessons, setAsyncLessons] = useState<GetAsyncLessonsByCourseIdItem[]>([]); 
+  const [asyncLessons, setAsyncLessons] = useState<
+    GetAsyncLessonsByCourseIdItem[]
+  >([]);
+  const [lessonType, setType] = useState<GetAsyncLessonsByCourseIdItem>();
 
   const fetchEducationDetail = async () => {
     try {
       const result = await courseService.getAll(0, 10);
       if (educationDetailId !== undefined) {
-        const result = await educationService.getCoursesByEducationId(educationDetailId);
+        const result = await educationService.getCoursesByEducationId(
+          educationDetailId
+        );
         setCourses(result.data.items);
       }
       const filteredCourses = result.data.items.filter(
@@ -67,107 +73,64 @@ const EducationDetailContent = (props: Props) => {
     fetchEducationDetail();
   }, [educationDetailId]);
 
-  const handleAccordionClick: AccordionSelectCallback = (eventKey: AccordionEventKey) => {
+  const handleAccordionClick: AccordionSelectCallback = (
+    eventKey: AccordionEventKey
+  ) => {
     setActiveKey(typeof eventKey === "string" ? eventKey : null);
   };
 
   const handleHeaderClick = async (courseId: number) => {
     try {
+      setAsyncLessons([]);
+
       const response = await courseService.getAsyncLessonsByCourseId(courseId);
       const lessons = response.data.asyncLessons;
       setAsyncLessons(lessons);
+      console.log("asyncLessons:", asyncLessons);
       console.log("Async lessons for courseId:", courseId, lessons);
     } catch (error) {
       console.error("Error fetching async lessons:", error);
     }
   };
-  
+
   return (
     <Container>
       <div className="accordion-container">
         <Row className="activity-row">
           <Col className="col-lg-5">
             <Accordion activeKey={activeKey} onSelect={handleAccordionClick}>
-              {courses && courses.length > 0 && courses.map((educationCourses, index) => (
-                <AccordionItem key={index} eventKey={index.toString()}>
-                  <AccordionHeader className="education-title" onClick={() => handleHeaderClick(educationCourses.id)}>
-                    {educationCourses.id} {educationCourses.name}
-                  </AccordionHeader>
-                  <div>
-                    <AccordionBody className="education-subtitle" role="button">
-                      {asyncLessons.map((lessons, lessonIndex) => (
-                        <div key={lessonIndex}>
-                          {lessons.name}
-                        </div>
-                      ))}
-                    </AccordionBody>
-                  </div>
-                </AccordionItem>
-              ))}
+              {courses &&
+                courses.length > 0 &&
+                courses.map((educationCourses, index) => (
+                  <AccordionItem key={index} eventKey={index.toString()}>
+                    <AccordionHeader
+                      className="education-title"
+                      onClick={() => handleHeaderClick(educationCourses.id)}
+                    >{educationCourses.name}
+                    </AccordionHeader>
+                    <div>
+                      <AccordionBody
+                        className="education-subtitle"
+                        role="button"
+                      >
+                        {asyncLessons.map((lesson, lessonIndex) => (
+                          <div key={lessonIndex}>
+                            {lesson.name}
+                            <AccordionBody className="education-type">
+                              {lesson.lessonType} - {<FormattedDate date={lesson.time} format="minute"/>}
+                            </AccordionBody>
+                          </div>
+                        ))} 
+                      </AccordionBody>
+                    </div>
+                  </AccordionItem>
+                ))}
             </Accordion>
           </Col>
 
           <Col>
             <Row>
-              <Col>
-                <div className="activity-content-info">
-                  <div className="activity-largeImageFileName activity-video">
-                    <div className="locked">
-                      <img src="https://tobeto.s3.cloud.ngn.com.tr/23_EAH_1_45f7232003.jpg" />
-                      <i className="ss-icon ss-lock" />
-                    </div>
-                  </div>
-                  <Card className="activity-card">
-                    <div className="activity-unit-detail">
-                      <Row>
-                        <Col lg={9}>
-                          <div className="unit-detail-title">
-                            <label>{props.educationTitle}</label>
-                          </div>
-                          <div className="unit-detail-col unit-detail-col-default">
-                            {props.educationType} - {props.educationTime}
-                          </div>
-                          <div className="unit-detail-col unit-detail-col-score text-green">
-                            {/* {props.point} PUAN */} 100 PUAN
-                          </div>
-                          <div className="unit-detail-col unit-detail-col-status last-child text-green">
-                            <i className="ss-icon ss-like" />
-                            Tebrikler, tamamladın!
-                          </div>
-                        </Col>
-                        <Col lg={3}>
-                          <div className="ant-space ant-space-vertical">
-                            <button
-                              type="button"
-                              className="ant-btn ant-btn-default ant-btn-lg ant-btn-block btn"
-                              onClick={handleShow}
-                            >
-                              <label className="ant-btn-text">DETAY</label>
-                              <div className="drawer">
-                                <EducationOffcanvas
-                                  imageUrl="https://lms.tobeto.com/tobeto/eep/common_show_picture_cached.aspx?pQS=DiBldjEKnwKDQVcjzXYj%2bUxp8rPm9JXZ"
-                                  educationName={props.educationTitle}
-                                  educationType={props.educationType}
-                                  timeSpent={props.educationTime}
-                                  category={props.educationCategory}
-                                  language={props.educationLanguage}
-                                  company={props.educationCompany}
-                                  subcategory={props.educationSubcategory}
-                                  likeCount={props.likeCount}
-                                  point={100}
-                                  button={true}
-                                  show={show}
-                                  hide={handleClose}
-                                />
-                              </div>
-                            </button>
-                          </div>
-                        </Col>
-                      </Row>
-                    </div>
-                  </Card>
-                </div>
-              </Col>
+              <LessonVideoDetailCard></LessonVideoDetailCard>
             </Row>
           </Col>
         </Row>

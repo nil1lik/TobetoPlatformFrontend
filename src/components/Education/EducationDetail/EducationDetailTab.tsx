@@ -49,7 +49,6 @@ const   EducationDetailTab = (props: Props) => {
                 educationDetailId={props.educationDetailId}
                 educationTitle="Dr. Ecmel Ayral'dan Hoşgeldin Mesajı"
                 educationSubTitle="Hoşgeldin Mesajı"
-                educationType="Video"
                 educationTime="3 dk"
                 educationCategory="Genel"
                 educationLanguage="Türkçe"

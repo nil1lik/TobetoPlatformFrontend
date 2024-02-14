@@ -20,6 +20,7 @@ import {
   applicationPending,
   applicationWaiting,
 } from "../../../utilities/Constants/ApplicationCardIconClasses";
+import FormattedDate from "../../../utilities/Helpers/FormattedDate";
 
 type Props = {};
 
@@ -86,16 +87,8 @@ const PlatformTab = (props: Props) => {
               id={education.id}
               image={education.imageUrl}
               text={education.name}
-              date={new Date(education.createdDate).toLocaleString("tr-TR", {
-                timeZone: "Europe/Istanbul",
-                hour12: false,
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-                hour: "numeric",
-                minute: "numeric",
-              })}
-            />
+              date={<FormattedDate date={education.createdDate}/>}
+              />
           ))}
         </Row>
         <Link to={"/egitimlerim/"} style={{ textDecoration: "none" }}>

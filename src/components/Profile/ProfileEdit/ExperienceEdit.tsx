@@ -9,6 +9,7 @@ import experienceService from "../../../services/experienceService";
 import { GetExperience, GetExperienceInformationsItem, GetExperienceItem } from "../../../models/responses/experience/getExperience";
 import { GetCityItem } from "../../../models/responses/city/getCityResponse";
 import { ExperiencePageTexts, ProfileExperienceListHeaders, saveButtonText } from "../../../utilities/Constants/constantValues";
+import FormattedDate from "../../../utilities/Helpers/FormattedDate";
 
 type Props = {};
 
@@ -219,7 +220,7 @@ const ExperienceEdit = (props: Props) => {
         {experiences.map((experience: any) => (
           <div className="my-grade">
           <div className="grade-header">
-            <label className="grade-date">{experience.startDate}-{experience.endDate} - Devam Ediyor</label>
+            <label className="grade-date">{<FormattedDate date={experience.startDate} format="year" />}-{<FormattedDate date={experience.startDate} format="year" />} - Devam Ediyor</label>
           </div>
           <div className="grade-details">
             <div className="grade-details-col">
