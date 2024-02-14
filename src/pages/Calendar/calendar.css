@@ -422,6 +422,22 @@
 }
 
 /*EventComponent*/
+.fc-event-end{
+    background-color: #7c7c7c !important;
+    border: 2px solid #606060 !important;
+    text-decoration: none !important;
+}
+
+.fc-event-end span{
+    text-decoration: none !important;
+    color: #fff !important;
+}
+
+.fc-event-end:hover {
+    background: #7c7c7c !important;
+    border-color: #606060 !important;
+}
+
 .fc-event .fc-event-main{
     padding: 6px 6px 6px 0px !important;
     color: #fff !important;
@@ -431,6 +447,7 @@
 
 .fc-day-grid-event-harness{
     position: relative;
+    background-color: #2C9437 ;
 }
 
 .fc-daygrid-day-events{

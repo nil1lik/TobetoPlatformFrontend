@@ -11,6 +11,8 @@ import { GetCityItem } from "../../../models/responses/city/getCityResponse";
 import { ExperiencePageTexts, ProfileExperienceListHeaders, saveButtonText } from "../../../utilities/Constants/constantValues";
 import toastr from "toastr";
 import ControlPopup from "../../Popup/ControlPopup";
+import SelectBox from "./SelectBox";
+import cityService from "../../../services/cityService";
 
 type Props = {};
 
@@ -26,7 +28,6 @@ const validationSchema = object({
 
 const ExperienceEdit = (props: Props) => {
   const [cities, setCities] = useState<GetCityItem[]>([]);
-  const [city, setCity] = useState<any[]>([]);
   const [experiences, setExperiences] = useState<GetExperienceInformationsItem[]>([]);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -53,8 +54,13 @@ const ExperienceEdit = (props: Props) => {
     }
   }
 
-  const handleCitySelect = (selectedCityKey: any, event: Object) => {
-    console.log(selectedCityKey);
+  const fetchCities = async () => {
+    try {
+      const result = await cityService.getByFilter(0, 81);
+      setCities(result.data.items);
+    } catch (error) {
+      console.error("API isteği sırasında bir hata oluştu:", error);
+    }
   };
 
   const handleExperienceSubmit = (values: any) => {
@@ -64,6 +70,7 @@ const ExperienceEdit = (props: Props) => {
 
   useEffect(() => {
     fetchExperiences();
+    fetchCities();
   }, [])
 
   return (
@@ -103,52 +110,13 @@ const ExperienceEdit = (props: Props) => {
                 />
               </Col>
               <Col>
-                <label className="input-label-text">{ExperiencePageTexts.label4}</label>
-                <Dropdown title={ExperiencePageTexts.placeholder4} aria-live="polite" onSelect={handleCitySelect} className=" calender-select dropdown-profil">
-                  <Dropdown.Toggle
-                    aria-selected
-                    variant="success"
-                    id="dropdown-basic"
-                    className="btn-profil dropdown-toggle-profil"
-                  >
-                    <div className="css-14cgata-control">
-                      <div className="css-hlgwow">{ExperiencePageTexts.placeholder4}</div>
-                      <div className="css-1wy0on6">
-                        <span className="dropdown-indicatorSeparator"></span>
-                        <span className="dropdown-indicatorContainer">
-                          <svg
-                            xmlns="/images/navbar-dropdown-toggle.svg"
-                            width={20}
-                            height={20}
-                            viewBox="3 2 20 20"
-                            fill="none"
-                            className="dropdown-toggle-svg"
-                          >
-                            <path
-                              d="M6 9L12 15L18 9"
-                              strokeWidth={2}
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              className="dropdown-toggle-svg-path"
-                            ></path>
-                          </svg>
-                        </span>
-                      </div>
-                    </div>
-                  </Dropdown.Toggle>
-
-                  <Dropdown.Menu className="dropdown-menu-profil">
-                    {city.map((city: any) => (
-                      <Dropdown.Item
-                        className="dropdown-item dropdown-item-profil"
-                        key={city.id}
-                        eventKey={city.id}
-                      >
-                        {city.name}
-                      </Dropdown.Item>
-                    ))}
-                  </Dropdown.Menu>
-                </Dropdown>
+                <label className="input-label-text">Şehir Seçiniz*</label>
+                <SelectBox
+                  name="city"
+                  defaultText="İl Seçiniz*"
+                  selectBoxArray={cities}
+                  // onCitySelect={handleCityId}
+                />
               </Col>
 
             </Row>

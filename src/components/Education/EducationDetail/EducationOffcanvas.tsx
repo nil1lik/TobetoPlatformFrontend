@@ -12,7 +12,7 @@ import {
 type Props = {
   imageUrl: string;
   educationName?: string;
-  educationType: string;
+  educationType?: string;
   timeSpent: string;
   category: string;
   language: string;
