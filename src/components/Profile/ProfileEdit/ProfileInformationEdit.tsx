@@ -14,6 +14,7 @@ import { textAreaLength } from "../../../utilities/Validations/validationMessage
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
 import toastr from "toastr"
+import { ProfileInformationEditTexts, ProfileInformationEditToastrMsg, saveButtonText } from "../../../utilities/Constants/constantValues";
 
 const validationSchema = object({
   firstName: UserInformationValidationMessageRule.firstName,
@@ -68,7 +69,7 @@ const ProfileInformationEdit2 = (props: Props) => {
   }, []);
 
   const handleSubmit= ()=>{
-    toastr.success("Bilgileriniz başarıyla güncellendi");
+    toastr.success(ProfileInformationEditToastrMsg.profileInformationsUpdateSuccess);
   }
 
   const initialValues: ProfileDto = {
@@ -101,16 +102,16 @@ const ProfileInformationEdit2 = (props: Props) => {
                 <FormikInput
                   type="text"
                   name="firstName"
-                  label="Adınız"
-                  placeHolder={profileData?.firstName || "Adınız"}
+                  label={ProfileInformationEditTexts.label1}
+                  placeHolder={profileData?.firstName || ProfileInformationEditTexts.placeholder1}
                 />
               </Col>
               <Col>
                 <FormikInput
                   type="text"
                   name="lastName"
-                  label="Soyadınız"
-                  placeHolder={profileData?.lastName || "Soyadınız"}
+                  label={ProfileInformationEditTexts.label2}
+                  placeHolder={profileData?.lastName || ProfileInformationEditTexts.placeholder2}
                 />
               </Col>
             </Row>
@@ -119,7 +120,7 @@ const ProfileInformationEdit2 = (props: Props) => {
                 <Row style={{ display: "flex", alignItems: "center" }}>
                   <Col>
                     <label className="input-label-text">
-                      Telefon Numaranız*
+                      {ProfileInformationEditTexts.label3}
                     </label>
                     <PhoneInput
                       international
@@ -135,8 +136,8 @@ const ProfileInformationEdit2 = (props: Props) => {
                 <FormikInput
                   type="date"
                   name="birthdate"
-                  label="Doğum Tarihiniz*"
-                  placeHolder="Doğum tarihiniz"
+                  label={ProfileInformationEditTexts.label4}
+                  placeHolder={ProfileInformationEditTexts.placeholder4}
                 />
               </Col>
             </Row>
@@ -145,16 +146,16 @@ const ProfileInformationEdit2 = (props: Props) => {
                 <FormikInput
                   type="number"
                   name="identityNumber"
-                  label="TC Kimlik No*"
-                  placeHolder="TC Kimlik No"
+                  label={ProfileInformationEditTexts.label5}
+                  placeHolder={ProfileInformationEditTexts.placeholder5}
                 />
               </Col>
               <Col>
                 <FormikInput
                   type="email"
                   name="email"
-                  label="E-posta*"
-                  placeHolder={profileData?.email || "E-Posta"}
+                  label={ProfileInformationEditTexts.label6}
+                  placeHolder={profileData?.email || ProfileInformationEditTexts.placeholder6}
                 />
               </Col>
             </Row>
@@ -163,26 +164,26 @@ const ProfileInformationEdit2 = (props: Props) => {
                 <FormikInput
                   type="text"
                   name="country"
-                  label="Ülke*"
-                  placeHolder="Ülke"
+                  label={ProfileInformationEditTexts.label7}
+                  placeHolder={ProfileInformationEditTexts.placeholder7}
                 />
               </Col>
             </Row>
             <Row>
               <Col>
-                <label className="input-label-text">Şehir Seçiniz*</label>
+                <label className="input-label-text">{ProfileInformationEditTexts.label8}</label>
                 <SelectBox
                   name="city"
-                  defaultText="İl Seçiniz*"
+                  defaultText={ProfileInformationEditTexts.placeholder8}
                   selectBoxArray={cities}
                   onCitySelect={handleCityId}
                 />
               </Col>
               <Col>
-                <label className="input-label-text">İlçe Seçiniz*</label>
+                <label className="input-label-text">{ProfileInformationEditTexts.placeholder9}</label>
                 <SelectBox
                   name="district"
-                  defaultText="İlçe Seçiniz*"
+                  defaultText={ProfileInformationEditTexts.label9}
                   selectBoxArray={districts}
                 />
               </Col>
@@ -190,7 +191,7 @@ const ProfileInformationEdit2 = (props: Props) => {
             <Row>
               <Col>
                 <label className="input-label-text" htmlFor="street">
-                  Mahalle / Sokak
+                {ProfileInformationEditTexts.textArea1}
                 </label>
                 <Field
                   className="form-control my-custom-input textarea-style"
@@ -205,7 +206,7 @@ const ProfileInformationEdit2 = (props: Props) => {
             <Row>
               <Col>
                 <label className="input-label-text" htmlFor="aboutMe">
-                  Hakkımda
+                {ProfileInformationEditTexts.textArea2}
                 </label>
                 <Field
                   className="form-control my-custom-input textarea-style"
@@ -220,14 +221,14 @@ const ProfileInformationEdit2 = (props: Props) => {
             <Row>
               <label>
                 <Field type="checkbox" name="checked" value="One" />
-                Devam Ediyorum
+                {ProfileInformationEditTexts.checkBox}
               </label>
             </Row>
             <button
               type="submit"
               className="button-save py-2 mb-3 mt-4 d-inline-block "
             >
-              Kaydet
+              {saveButtonText}
             </button>
           </Container>
         </Form>

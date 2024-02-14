@@ -24,9 +24,9 @@ class LanguageService extends BaseService<
     this.profileLanguage = BASE_API_URL + "ProfileLanguages";
   }
 
-  getByFilter(pageIndex: number = 0, pageSize: number = 25) {
-    return this.getAll(pageIndex, pageSize);
-  }
+  // getByFilter(pageIndex: number = 0, pageSize: number = 25) {
+  //   return this.getAll(pageIndex, pageSize);
+  // }
 
   getLanguageLevel(
     pageIndex: number = 0,

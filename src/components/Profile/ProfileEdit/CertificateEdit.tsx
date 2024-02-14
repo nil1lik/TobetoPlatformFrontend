@@ -4,6 +4,8 @@ import { Formik } from "formik";
 import toastr from "toastr"
 import UppyPopup from "../../Uppy/UppyPopup";
 import ControlPopup from "../../Popup/ControlPopup";
+import { ProfileSertificateListHeaders, uploadCertificateHeader, uploadFileText } from "../../../utilities/Constants/constantValues";
+
 type Props = {};
 
 const CertificateEdit = (props: Props) => {
@@ -38,7 +40,7 @@ const CertificateEdit = (props: Props) => {
       >
         <Form>
           <Container>
-            <label className="header-text">Sertifikalarım</label>
+            <label className="header-text">{uploadCertificateHeader}</label>
             <div className="row certificate">
               <div className="col-12 tobeto-light-bg ">
                 <div className="upload-area">
@@ -53,8 +55,8 @@ const CertificateEdit = (props: Props) => {
                       <UppyPopup handleShow={showUppy}/>
                     </label>
                   </div>
-
-                  <label className="uploadText">Dosya Yükle</label>
+                  
+                  <label className="uploadText">{uploadFileText}</label>
                   <div></div>
                 </div>
               </div>
@@ -64,10 +66,10 @@ const CertificateEdit = (props: Props) => {
               <table className="mt-8 corpTable table">
                 <thead>
                   <tr>
-                    <th>Dosya Adı</th>
-                    <th className="text-center">Dosya Türü</th>
-                    <th>Tarih</th>
-                    <th style={{ textAlign: "center" }}>İşlem</th>
+                    <th>{ProfileSertificateListHeaders.fileName}</th>
+                    <th className="text-center">{ProfileSertificateListHeaders.fileType}</th>
+                    <th>{ProfileSertificateListHeaders.date}</th>
+                    <th style={{ textAlign: "center" }}>{ProfileSertificateListHeaders.process}</th>
                   </tr>
                 </thead>
                 <tbody>
