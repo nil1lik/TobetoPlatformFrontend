@@ -7,8 +7,6 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import { BrowserRouter } from "react-router-dom";
 import "./utilities/Constants/root.css"
 import 'toastr/build/toastr.min.css';
-import 'reactjs-popup/dist/index.css';
-
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement

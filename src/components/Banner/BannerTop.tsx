@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { URL } from "url";
+import { SearchbarContext } from "../../contexts/SearchBarContext";
 
 type Props = { bannerUrl: string; bannerText: string };
 
 const BannerTop = (props: Props) => {
+
   return (
     <div
       className="edu-banner-cont"

@@ -1,8 +1,6 @@
 import toastr from "toastr";
     import axios from 'axios';
 import { BASE_API_URL } from '../environment/environment';
-import { config } from 'process';
-import { AuthContext } from '../../contexts/AuthContext';
 // import axios from "axios";
 // import { BASE_API_URL } from "../environment/environment";
 // import tokenService from "../services/tokenService";
@@ -79,7 +77,7 @@ axiosInstance.interceptors.response.use(
             const token = accessToken.token;
             localStorage.setItem("token", token);
         }
-        toastr.success("İşlem başarıyla tamamlandı");
+        toastr.success("Giriş Başarılı");
         return response;
     },
     error => {

@@ -5,12 +5,10 @@ import { AddAnnouncementRequest } from "../models/requests/announcement/addAnnou
 import { GetByIdAnnouncement } from "../models/responses/announcement/getByIdAnnouncement";
 import { GetAnnouncement } from "../models/responses/announcement/getAnnouncement";
 import axios from "axios";
-
 import { BaseService } from "../core/services/baseService";
 import { BASE_API_URL } from "../core/environment/environment";
 import { GetAnnouncementTypeList } from "../models/responses/announcement/getAnnouncementTypeList";
 import { AxiosResponse } from "axios";
-import axiosInstance from "../core/interceptors/axiosInterceptors";
 
 class AnnouncementService extends BaseService<
   GetAnnouncement,
@@ -33,7 +31,7 @@ class AnnouncementService extends BaseService<
     pageIndex: number,
     pageSize: number
   ): Promise<AxiosResponse<GetAnnouncementTypeList, any>> {
-    return axiosInstance.get<GetAnnouncementTypeList>(
+    return axios.get<GetAnnouncementTypeList>(
       this.dtoUrl + `?PageIndex=${pageIndex}&PageSize=${pageSize}`
     );
   }

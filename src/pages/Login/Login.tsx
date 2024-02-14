@@ -11,7 +11,12 @@ import { AuthContext } from "../../contexts/AuthContext";
 import { userLoginRequest } from "../../models/requests/user/userLoginRequest";
 import { object } from "yup";
 import UserService from "../../services/userService";
-import { forgetPasswordButtonText, loginBoxBottomText, loginButtonText, registerButtonText } from "../../utilities/Constants/constantValues";
+import {
+  forgetPasswordButtonText,
+  loginBoxBottomText,
+  loginButtonText,
+  registerButtonText,
+} from "../../utilities/Constants/constantValues";
 import toastr from "toastr";
 type Props = {};
 
@@ -51,12 +56,6 @@ const Login = (props: Props) => {
                       isAuthenticated: true,
                       token: result.data.accessToken.token,
                     });
-                    // toastr.success("Giriş başarılı");
-                    // localStorage.setItem(
-                    //   "token",
-                    //   result.data.accessToken.token
-                    //   );
-                      console.log("qwe:", result.data);
                   })
                   .catch((error) => {
                     console.error(

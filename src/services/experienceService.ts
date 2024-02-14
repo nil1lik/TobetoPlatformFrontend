@@ -7,8 +7,6 @@ import { GetByIdExperience } from "../models/responses/experience/getByIdExperie
 import { UpdateExperienceRequest } from "../models/requests/experience/updateExperienceRequest";
 import { AddExperienceResponse } from "../models/responses/experience/addExperienceResponse";
 import { UpdateExperienceResponse } from "../models/responses/experience/updateExperienceResponse";
-import axiosInstance from '../core/interceptors/axiosInterceptors';
-
 
 class ExperienceService extends BaseService<
     GetExperience,
@@ -30,12 +28,12 @@ class ExperienceService extends BaseService<
         pageIndex: number = 0,
         pageSize: number = 5
       ): Promise<AxiosResponse<GetExperience, any>> {
-        return axiosInstance.get<GetExperience>(
+        return axios.get<GetExperience>(
             this.dtoUrl +`?PageIndex=${pageIndex}&PageSize=${pageSize}`
         );
       }
     addExperience(experienceData: AddExperienceRequest){
-        return axiosInstance.post(BASE_API_URL + "Experiences/ExperienceInformationsListDto", experienceData)
+        return axios.post(BASE_API_URL + "Experiences/ExperienceInformationsListDto", experienceData)
     }
 }
 

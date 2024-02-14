@@ -8,8 +8,6 @@ import { GetLanguage } from "../models/responses/language/getLanguage";
 import { UpdateLanguageRequest } from "../models/requests/language/updateLanguageRequest";
 import { BASE_API_URL } from "../core/environment/environment";
 import { GetLanguageLevel } from "../models/responses/language/getLanguageLevel";
-import axiosInstance from "../core/interceptors/axiosInterceptors";
-
 
 class LanguageService extends BaseService<
   GetLanguage,
@@ -34,7 +32,7 @@ class LanguageService extends BaseService<
     pageIndex: number = 0,
     pageSize: number = 5
   ): Promise<AxiosResponse<GetLanguageLevel, any>> {
-    return axiosInstance.get<GetLanguageLevel>(
+    return axios.get<GetLanguageLevel>(
         BASE_API_URL + "LanguageLevels" +`?PageIndex=${pageIndex}&PageSize=${pageSize}`
     );
   }

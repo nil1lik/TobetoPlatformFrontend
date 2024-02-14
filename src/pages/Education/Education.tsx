@@ -14,6 +14,7 @@ import {
   educationPageItemCountByPageMax,
 } from "../../utilities/Constants/constantValues";
 import { pageCalculate } from "../../utilities/Helpers/pageCountByItemsCalculator";
+import { SearchbarContext } from "../../contexts/SearchBarContext";
 
 type Props = {};
 const Education = (props: Props) => {

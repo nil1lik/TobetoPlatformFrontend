@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Card, Image, Modal } from "react-bootstrap";
+import { Card, Image } from "react-bootstrap";
 import Popup from "../Popup/Popup";
 import { readMoreText } from "../../utilities/Constants/constantValues";
 
@@ -17,6 +17,8 @@ const AnnouncementCard = (props: Props) => {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+
 
   return (
     <>

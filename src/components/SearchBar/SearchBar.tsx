@@ -18,9 +18,10 @@ const SearchBar = (props: Props) => {
     setSearchbarValue(inputValue);
   };
 
-  useEffect(() => {
-    console.log("searchbar:", searchbarValue);
-  }, [searchbarValue]);
+  // useEffect(() => {
+  //   console.log("searchbar:", searchbarValue);
+  // }, [searchbarValue]);
+
   return (
     <div className={props.searchBoxClassName || "search-box"}>
       <Form.Control
