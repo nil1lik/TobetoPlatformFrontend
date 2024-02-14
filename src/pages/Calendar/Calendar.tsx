@@ -32,7 +32,7 @@ const Calendar = () => {
           <div className='d-flex flex-column ms-4 my-1'>
           <span>{eventContent.event.start?.toTimeString().split("GMT")[0].slice(0,5)/*eventContent.timeText*/}</span>
           <span className='text-truncate'>{eventContent.event.title} {/*eventContent.event.title*/}</span>
-          <span className='text-truncate'>{eventContent.event.extendedProps.instructor}</span>
+          <span className='text-truncate'>{`${eventContent.event.extendedProps.firstName} ${eventContent.event.extendedProps.lastName}` }</span>
         </div>
     )
   }
@@ -66,7 +66,8 @@ const Calendar = () => {
            calendar.map((calendar)=>({
             id: calendar.id.toString(),
             title: calendar.educationPathName,
-            instructor: calendar.firstName,
+            firstName: calendar.firstName,
+            lastName:calendar.lastName,
             start: calendar.startDate
            }))
            
