@@ -7,7 +7,7 @@ type Props = {
   text: string;
   description?: string;
   buttonText?: string;
-  date?: string;
+  date?: string | React.ReactNode;
 };
 const educationButtonText = "Eğitime Git";
 

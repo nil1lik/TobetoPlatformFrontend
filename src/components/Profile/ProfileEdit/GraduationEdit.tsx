@@ -9,6 +9,7 @@ import { GetGraduationItem } from "../../../models/responses/graduation/getGradu
 import { GraduationPageLabelTexts, ProfileGraduationListHeaders, registerButtonText } from "../../../utilities/Constants/constantValues";
 import { GraduationDegreeValues } from "../../../utilities/Constants/GraduationDegreeValues";
 import ControlPopup from "../../Popup/ControlPopup";
+import FormattedDate from "../../../utilities/Helpers/FormattedDate";
 
 type Props = {};
 
@@ -138,7 +139,8 @@ const GraduationEdit = (props: Props) => {
         {graduation.map((graduation: any) => (
           <div className="my-grade">
           <div className="grade-header">
-            <label className="grade-date">{graduation.startDate}-{graduation.endDate}</label>
+
+            <label className="grade-date">{<FormattedDate date={graduation.startDate} format="year" />}-{<FormattedDate date={graduation.endDate} format="year" />}</label>
             <label className="grade-degree">{graduation.degree}</label>
           </div>
           <div className="grade-details">
