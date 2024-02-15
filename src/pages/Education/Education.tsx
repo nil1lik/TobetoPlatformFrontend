@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./education.css";
 import { Container, Row } from "react-bootstrap";
 import TobetoPlatformTab from "../../components/Education/EducationsTab";
@@ -14,12 +14,16 @@ import {
   educationPageItemCountByPageMax,
 } from "../../utilities/Constants/constantValues";
 import { pageCalculate } from "../../utilities/Helpers/pageCountByItemsCalculator";
+import { useEducation } from "../../contexts/EducationContext";
+import FormattedDate from "../../utilities/Helpers/FormattedDate";
 
 type Props = {};
 const Education = (props: Props) => {
-  const [education, setEducation] = useState<GetEducationItem[]>([]);
-  const [childState, setChildState] = useState<number>(0);
+  // const [education, setEducation] = useState<GetEducationItem[]>([]);
+  const [childState, setChildState] = useState<number>(0); //paginate
   const [pageCount, setPageCount] = useState<any>(null);
+  const { educationData, setEducationData } = useEducation();
+
 
   const handleChildStateChange = (newState: number) => {
     setChildState(newState);
@@ -34,10 +38,10 @@ const Education = (props: Props) => {
       setPageCount(
         pageCalculate(result.data.count, educationPageItemCountByPageMax)
       );
-      setEducation(result.data.items);
+      setEducationData(result.data.items);
     };
     fetchEducation();
-  }, []);
+  }, [childState, setEducationData]);
 
   return (
     <>
@@ -60,19 +64,13 @@ const Education = (props: Props) => {
           </div>
         </Row>
         <Row>
-          {education.map((education: any) => (
+          {educationData.map((education) => (
             <EducationCard
-              image={education.imageUrl}
-              text={education.name}
-              date={new Date(education.createdDate).toLocaleString("tr-TR", {
-                timeZone: "Europe/Istanbul",
-                hour12: false,
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-                hour: "numeric",
-                minute: "numeric",
-              })}
+            key={education.id}
+            id={education.id}
+            image={education.imageUrl}
+            text={education.name}
+            date={<FormattedDate date={education.createdDate}/>}
             />
           ))}
         </Row>
