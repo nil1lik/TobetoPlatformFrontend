@@ -15,11 +15,8 @@ import {
 import { pageCalculate } from "../../utilities/Helpers/pageCountByItemsCalculator";
 import FilterByCheckbox from "../../components/FilterBar/FilterByCheckbox";
 // import { SearchbarContext } from "../../contexts/SearchBarContext";
+import { SearchbarProvider } from "../../contexts/SearchBarContext";
 import { LoadingContext } from "../../contexts/LoadingContext";
-import {
-  SearchbarProvider,
-  useSearchbarContext,
-} from "../../contexts/SearchBarContext";
 
 type Props = {};
 

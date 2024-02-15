@@ -14,16 +14,18 @@ import {
   educationPageItemCountByPageMax,
 } from "../../utilities/Constants/constantValues";
 import { pageCalculate } from "../../utilities/Helpers/pageCountByItemsCalculator";
-// import { SearchbarContext } from "../../contexts/SearchBarContext";
+import { useEducation } from "../../contexts/EducationContext";
+import FormattedDate from "../../utilities/Helpers/FormattedDate";
 import { LoadingContext } from "../../contexts/LoadingContext";
 
 type Props = {};
 const Education = (props: Props) => {
-  const [education, setEducation] = useState<GetEducationItem[]>([]);
+  // const [education, setEducation] = useState<GetEducationItem[]>([]);
   const { setLoading } = useContext<any>(LoadingContext);
   const [childState, setChildState] = useState<number>(0);
   const [pageCount, setPageCount] = useState<any>(null);
   const [loadingPagination, setLoadingPagination] = useState<boolean>(false);
+  const { educationData, setEducationData } = useEducation();
 
   const handleChildStateChange = (newState: number) => {
     setChildState(newState);
@@ -41,17 +43,19 @@ const Education = (props: Props) => {
         setPageCount(
           pageCalculate(result.data.count, educationPageItemCountByPageMax)
         );
-        setEducation(result.data.items);
+        setEducationData(result.data.items);
       } catch (error) {
-        console.error("Eğitim verilerini getirme sırasında bir hata oluştu:", error);
+        console.error(
+          "Eğitim verilerini getirme sırasında bir hata oluştu:",
+          error
+        );
       } finally {
         setLoading((prev: any) => prev - 1);
         setLoadingPagination(true);
       }
     };
-    setTimeout(fetchEducation, 500);  
-
-  }, []);
+    setTimeout(fetchEducation, 500);
+  }, [setEducationData]);
 
   return (
     <>
@@ -74,19 +78,13 @@ const Education = (props: Props) => {
           </div>
         </Row>
         <Row>
-          {education.map((education: any) => (
+          {educationData.map((education) => (
             <EducationCard
+              key={education.id}
+              id={education.id}
               image={education.imageUrl}
               text={education.name}
-              date={new Date(education.createdDate).toLocaleString("tr-TR", {
-                timeZone: "Europe/Istanbul",
-                hour12: false,
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-                hour: "numeric",
-                minute: "numeric",
-              })}
+              date={<FormattedDate date={education.createdDate} />}
             />
           ))}
         </Row>

@@ -16,11 +16,11 @@ import {
   AccordionEventKey,
   AccordionSelectCallback,
 } from "react-bootstrap/esm/AccordionContext";
-import educationService from "../../../services/educationService";
 import { GetCourseResponseItem } from "../../../models/responses/course/getCourseResponse";
 import { GetAsyncLessonsByCourseIdItem } from "../../../models/responses/course/getAsyncLessonsByCourseId";
 import FormattedDate from "../../../utilities/Helpers/FormattedDate";
 import LessonVideoDetailCard from "../LessonVideoDetail/LessonVideoDetailCard";
+import educationService from "../../../services/educationService";
 
 type Props = {
   educationDetailId?: number;
@@ -48,7 +48,8 @@ const EducationDetailContent = (props: Props) => {
   const [asyncLessons, setAsyncLessons] = useState<
     GetAsyncLessonsByCourseIdItem[]
   >([]);
-  const [lessonType, setType] = useState<GetAsyncLessonsByCourseIdItem>();
+  const [selectedAsyncLessonId, setSelectedAsyncLessonId] = useState<number | undefined>(undefined);
+
 
   const fetchEducationDetail = async () => {
     try {
@@ -68,10 +69,6 @@ const EducationDetailContent = (props: Props) => {
       console.error("API isteği sırasında bir hata oluştu:", error);
     }
   };
-
-  useEffect(() => {
-    fetchEducationDetail();
-  }, [educationDetailId]);
 
   const handleAccordionClick: AccordionSelectCallback = (
     eventKey: AccordionEventKey
@@ -93,6 +90,14 @@ const EducationDetailContent = (props: Props) => {
     }
   };
 
+  const handleSubtitleClick = async (asyncLessonId: number) => {
+    setSelectedAsyncLessonId(asyncLessonId);
+    console.log("selectedAsyncLessonId" + selectedAsyncLessonId);
+  };
+
+  useEffect(() => {
+    fetchEducationDetail();
+  }, [educationDetailId, selectedAsyncLessonId]);
   return (
     <Container>
       <div className="accordion-container">
@@ -106,22 +111,31 @@ const EducationDetailContent = (props: Props) => {
                     <AccordionHeader
                       className="education-title"
                       onClick={() => handleHeaderClick(educationCourses.id)}
-                    >{educationCourses.name}
+                    >
+                      {educationCourses.name}
                     </AccordionHeader>
                     <div>
-                      <AccordionBody
-                        className="education-subtitle"
-                        role="button"
-                      >
-                        {asyncLessons.map((lesson, lessonIndex) => (
+                      {asyncLessons.map((lesson, lessonIndex) => (
+                        <AccordionBody
+                          className="education-subtitle"
+                          role="button"
+                          onClick={() => handleSubtitleClick(lesson.id)}
+                        >
                           <div key={lessonIndex}>
+                            {lesson.id}
                             {lesson.name}
                             <AccordionBody className="education-type">
-                              {lesson.lessonType} - {<FormattedDate date={lesson.time} format="minute"/>}
+                              {lesson.lessonType} -{" "}
+                              {
+                                <FormattedDate
+                                  date={lesson.time}
+                                  format="minute"
+                                />
+                              }
                             </AccordionBody>
                           </div>
-                        ))} 
-                      </AccordionBody>
+                        </AccordionBody>
+                      ))}
                     </div>
                   </AccordionItem>
                 ))}
@@ -130,7 +144,7 @@ const EducationDetailContent = (props: Props) => {
 
           <Col>
             <Row>
-              <LessonVideoDetailCard></LessonVideoDetailCard>
+              <LessonVideoDetailCard asyncLessonId={selectedAsyncLessonId}/>
             </Row>
           </Col>
         </Row>

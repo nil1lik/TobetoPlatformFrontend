@@ -2,10 +2,10 @@ import React from "react";
 import BannerTop from "../../components/Banner/BannerTop";
 import { Col, Container, Row } from "react-bootstrap";
 import CatalogCard from "../../components/Catalog/CatalogCard";
-import SearchBar from "../../components/SearchBar/SearchBar";
 import FilterBar from "../../components/FilterBar/FilterBar";
 import CatalogFilter from "../../components/Catalog/CatalogFilter";
 import { BannerTexts } from "../../utilities/Constants/constantValues";
+import SearchBar from "../../components/SearchBar/SearchBar";
 
 type Props = {};
 

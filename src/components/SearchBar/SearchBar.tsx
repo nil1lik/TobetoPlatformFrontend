@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React from "react";
 import { Button, Form } from "react-bootstrap";
 import "../SearchBar/searchBar.css";
 import { useSearchbarContext } from "../../contexts/SearchBarContext";   

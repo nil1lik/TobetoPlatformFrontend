@@ -9,7 +9,6 @@ import AnnouncementService from "../../../services/announcementService";
 import { GetAnnouncementTypeItem } from "../../../models/responses/announcement/getAnnouncementTypeList";
 import { GetEducationItem } from "../../../models/responses/education/getEducation";
 import educationService from "../../../services/educationService";
-import { Link } from "react-router-dom";
 import {
   PlatformTabHeaders,
   showMoreText,
@@ -22,12 +21,16 @@ import {
 } from "../../../utilities/Constants/ApplicationCardIconClasses";
 import FormattedDate from "../../../utilities/Helpers/FormattedDate";
 import { LoadingContext } from "../../../contexts/LoadingContext";
+import { Link } from "react-router-dom";
+import { useEducation } from "../../../contexts/EducationContext";
 
 type Props = {};
 
 const PlatformTab = (props: Props) => {
-  const [education, setEducation] = useState<GetEducationItem[]>([]);
   const { setLoading } = useContext<any>(LoadingContext);
+  const { educationData ,setEducationData } = useEducation();
+
+  // const [education, setEducation] = useState<GetEducationItem[]>([]);
   const [announcement, setAnnouncement] = useState<GetAnnouncementTypeItem[]>(
     []
   );
@@ -40,7 +43,7 @@ const PlatformTab = (props: Props) => {
   
       const fetchEducation = async () => {
         const result = await educationService.getByFilter(0, 4);
-        setEducation(result.data.items);
+        setEducationData(result.data.items);
       };
   
       const fetchAnnouncement = async () => {
@@ -53,7 +56,7 @@ const PlatformTab = (props: Props) => {
         fetchAnnouncement();
         setLoading((prev: any) => prev - 1);
       }, 500);
-    }, []);
+    }, [setEducationData]);
 
   return (
     <Tabs
@@ -88,7 +91,7 @@ const PlatformTab = (props: Props) => {
       </Tab>
       <Tab eventKey="egitimler" title={PlatformTabHeaders.educations}>
         <Row>
-          {education.map((education: any) => (
+          {educationData.map((education: any) => (
             <EducationCard
               id={education.id}
               image={education.imageUrl}

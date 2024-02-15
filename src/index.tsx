@@ -7,12 +7,15 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import { BrowserRouter } from "react-router-dom";
 import "./utilities/Constants/root.css";
 import "toastr/build/toastr.min.css";
+import { EducationProvider } from "./contexts/EducationContext";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
   <BrowserRouter>
-      <App />
+    <EducationProvider>
+        <App />
+    </EducationProvider>
   </BrowserRouter>
 );
