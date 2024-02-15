@@ -6,7 +6,7 @@ import EducationDetailHeader from "../../components/Education/EducationDetail/Ed
 import { useParams } from "react-router-dom";
 import educationService from "../../services/educationService";
 import { GetAllEducationHeaderResponse } from "../../models/responses/education/getAllEducationHeaderResponse";
-import { LoadingContext } from "../../contexts/LoadingContext";
+import { useLoadingContext } from "../../contexts/LoadingContext";
 
 type Props = {};
 
@@ -14,12 +14,12 @@ const EducationDetail = (props: Props) => {
   const [educationDetail, setEducationDetail] =
     useState<GetAllEducationHeaderResponse>(Object);
   const [aboutId, setAboutId] = useState<number>(0);
-  const { setLoading } = useContext<any>(LoadingContext);
+  const { handleSetLoading } = useLoadingContext();
   const params = useParams();
 
   const fetchEducationDetail = async () => {
     try {
-      setLoading((prev:any) => prev + 1)
+      handleSetLoading((prev: any) => prev + 1);
       const result = await educationService.getEducationPathDetailByIdDto(
         Number(params.id)
       );
@@ -29,7 +29,7 @@ const EducationDetail = (props: Props) => {
     } catch (error) {
       console.error("API isteği sırasında bir hata oluştu:", error);
     }
-    setLoading((prev:any) => prev - 1)
+    handleSetLoading((prev: any) => prev - 1);
   };
   useEffect(() => {
     fetchEducationDetail();

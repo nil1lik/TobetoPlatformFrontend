@@ -27,16 +27,14 @@ import Communication from "./pages/Contact/Communication";
 import ForgotPassword from "./pages/ForgotPassword/ForgotPassword";
 import ResetPassword from "./pages/ForgotPassword/ResetPassword";
 import { OverlayLoader } from "./components/OverlayLoader/OverlayLoader";
-import { LoadingContext } from "./contexts/LoadingContext";
+import { LoadingContextProvider } from "./contexts/LoadingContext";
 
 const profileEditUrl = "/profilim/profilimi-duzenle";
 
 function App() {
-  const [loading, setLoading] = useState<number>(0);
-
   return (
     <>
-      <LoadingContext.Provider value={{ loading, setLoading }}>
+      <LoadingContextProvider>
         <OverlayLoader />
         <Navigation />
         {/* <Container> */}
@@ -99,7 +97,7 @@ function App() {
         {/* </Container> */}
         <ChatBot />
         <Footer />
-      </LoadingContext.Provider>
+      </LoadingContextProvider>
     </>
   );
 }

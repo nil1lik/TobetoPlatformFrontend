@@ -16,12 +16,12 @@ import {
 import { pageCalculate } from "../../utilities/Helpers/pageCountByItemsCalculator";
 import { useEducation } from "../../contexts/EducationContext";
 import FormattedDate from "../../utilities/Helpers/FormattedDate";
-import { LoadingContext } from "../../contexts/LoadingContext";
+import { useLoadingContext } from "../../contexts/LoadingContext";
 
 type Props = {};
 const Education = (props: Props) => {
   // const [education, setEducation] = useState<GetEducationItem[]>([]);
-  const { setLoading } = useContext<any>(LoadingContext);
+  const { handleSetLoading } = useLoadingContext();
   const [childState, setChildState] = useState<number>(0);
   const [pageCount, setPageCount] = useState<any>(null);
   const [loadingPagination, setLoadingPagination] = useState<boolean>(false);
@@ -32,7 +32,7 @@ const Education = (props: Props) => {
   };
 
   useEffect(() => {
-    setLoading((prev: any) => prev + 1);
+    handleSetLoading((prev: any) => prev + 1);
 
     const fetchEducation = async () => {
       try {
@@ -50,7 +50,7 @@ const Education = (props: Props) => {
           error
         );
       } finally {
-        setLoading((prev: any) => prev - 1);
+        handleSetLoading((prev: any) => prev - 1);
         setLoadingPagination(true);
       }
     };
