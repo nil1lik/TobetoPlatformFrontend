@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Container, Row } from "react-bootstrap";
 import AnnouncementCard from "../../components/Announcement/AnnouncementCard";
 import announcementService from "../../services/announcementService";
@@ -15,11 +15,13 @@ import {
 import { pageCalculate } from "../../utilities/Helpers/pageCountByItemsCalculator";
 import FilterByCheckbox from "../../components/FilterBar/FilterByCheckbox";
 import { SearchbarContext } from "../../contexts/SearchBarContext"; 
+import { LoadingContext } from "../../contexts/LoadingContext";
 
 type Props = {};
 
 const Announcement = (props: Props) => {
   const [childState, setChildState] = useState<number>(0);
+  const { setLoading } = useContext<any>(LoadingContext);
   const [pageCount, setPageCount] = useState<any>(null);
   const [searchbarValue, setSearchbarValue] = useState<string>("");
   const [searchbarFocus, setSearchbarFocus] = useState<boolean>(false);
@@ -35,19 +37,28 @@ const Announcement = (props: Props) => {
   );
 
   useEffect(() => {
+    setLoading((prev:any) => prev + 1);
+  
     const fetchAnnouncement = async () => {
-      const result = await announcementService.getAllAnnouncementTypeList(
-        childState,
-        announcementPageItemCountByPage
-      );
-      setPageCount(
-        pageCalculate(result.data.count, announcementPageItemCountByPage)
-      );
-      setAnnouncement(result.data.items);
+      try {
+        const result = await announcementService.getAllAnnouncementTypeList(
+          childState,
+          announcementPageItemCountByPage      
+        );
+        setPageCount(
+          pageCalculate(result.data.count, announcementPageItemCountByPage)
+        );
+        setAnnouncement(result.data.items);
+      } catch (error) {
+        console.error("Veri getirme işlemi sırasında hata oluştu:", error);
+      } finally {
+        setLoading((prev:any) => prev - 1);
+      }
     };
-    fetchAnnouncement();
+      setTimeout(fetchAnnouncement, 500);
+  
   }, [childState]);
-
+  
   return (
     <SearchbarContext.Provider
       value={{

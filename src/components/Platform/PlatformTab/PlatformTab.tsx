@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import EducationCard from "../../Education/EducationCard/EducationCard";
 import SurveyNotFound from "../../Survey/SurveyNotFound";
 import AnnouncementCard from "../../Announcement/AnnouncementCard";
@@ -21,11 +21,13 @@ import {
   applicationWaiting,
 } from "../../../utilities/Constants/ApplicationCardIconClasses";
 import FormattedDate from "../../../utilities/Helpers/FormattedDate";
+import { LoadingContext } from "../../../contexts/LoadingContext";
 
 type Props = {};
 
 const PlatformTab = (props: Props) => {
   const [education, setEducation] = useState<GetEducationItem[]>([]);
+  const { setLoading } = useContext<any>(LoadingContext);
   const [announcement, setAnnouncement] = useState<GetAnnouncementTypeItem[]>(
     []
   );
@@ -33,20 +35,25 @@ const PlatformTab = (props: Props) => {
   const announcementIconSrc =
     process.env.PUBLIC_URL + `/images/announcementDate.svg`;
 
-  useEffect(() => {
-    const fetchEducation = async () => {
-      const result = await educationService.getByFilter(0, 4);
-      setEducation(result.data.items);
-    };
-
-    const fetchAnnouncement = async () => {
-      const result = await AnnouncementService.getAllAnnouncementTypeList(0, 3);
-      setAnnouncement(result.data.items);
-    };
-
-    fetchEducation();
-    fetchAnnouncement();
-  }, []);
+    useEffect(() => {
+      setLoading((prev: any) => prev + 1);
+  
+      const fetchEducation = async () => {
+        const result = await educationService.getByFilter(0, 4);
+        setEducation(result.data.items);
+      };
+  
+      const fetchAnnouncement = async () => {
+        const result = await AnnouncementService.getAllAnnouncementTypeList(0, 3);
+        setAnnouncement(result.data.items);
+      };
+  
+      setTimeout(() => {
+        fetchEducation();
+        fetchAnnouncement();
+        setLoading((prev: any) => prev - 1);
+      }, 500);
+    }, []);
 
   return (
     <Tabs

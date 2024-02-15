@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Calendar from "./Calendar";
 import { Col, Dropdown, Form, Row } from "react-bootstrap";
 import "./calendar.css";
@@ -10,19 +10,25 @@ import instructorService from "../../services/instructorService";
 import { EducationStatusText, calendarDropboxLabel, calendarDropboxPlaceholderText, calendarSearchBoxLabel } from "../../utilities/Constants/constantValues";
 import { GetCalendarItem } from "../../models/responses/calendar/getCalendarResponse";
 import calendarService from "../../services/calendarService";
+import { LoadingContext } from "../../contexts/LoadingContext";
 
 type Props = {};
 const CalendarDetail = (props: Props) => {
   
   const [instructor, setInstructor] = useState<GetInstructorItem[]>([])
+  const { setLoading } = useContext<any>(LoadingContext);
 
   const fetchInstructor = async () => {
     try {
+      setTimeout(() => {
+        setLoading((prev:any) => prev + 1)
+      }, 1000);
       const result = await instructorService.getByFilter(0, 50);
       setInstructor(result.data.items);
     } catch (error) {
       console.error("API isteği sırasında bir hata oluştu:", error);
     }
+    setLoading((prev:any) => prev - 1)
   };
 
   useEffect(() => {

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
@@ -9,22 +9,30 @@ import { DayCellContainer, addWeeks } from '@fullcalendar/core/internal';
 import { start } from 'repl';
 import calendarService from '../../services/calendarService';
 import { GetCalendarItem } from '../../models/responses/calendar/getCalendarResponse';
+import { LoadingContext } from '../../contexts/LoadingContext';
 
 
 
 const Calendar = () => {
-  const [calendar,setCalendar] = useState<GetCalendarItem[]>([]);
+  const [calendar, setCalendar] = useState<GetCalendarItem[]>([]);
+  const { setLoading } = useContext<any>(LoadingContext);
+
   const fetchCalendar = async () => {
     try {
+      setLoading((prev: any) => prev + 1); // Veri getirme başladığında loading durumunu artır
       const result = await calendarService.getCalendar(0, 50);
       setCalendar(result.data.items);
     } catch (error) {
       console.error("API isteği sırasında bir hata oluştu:", error);
+    } finally {
+      setLoading((prev: any) => prev - 1); // Veri getirme tamamlandığında loading durumunu azalt
     }
   };
+
   useEffect(() => {
-    fetchCalendar();
-  },[]);
+    fetchCalendar(); // fetchCalendar fonksiyonunu direkt olarak çağır
+  }, []);
+
 
   const renderEventContent =(eventContent:EventContentArg)=>{
     return(

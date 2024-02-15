@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Platform from "./pages/Platform/Platform";
 import Footer from "./layouts/Footer/Footer";
 import Navigation from "./layouts/Navbar/Navigation";
@@ -26,71 +26,80 @@ import Login from "./pages/Login/Login";
 import Communication from "./pages/Contact/Communication";
 import ForgotPassword from "./pages/ForgotPassword/ForgotPassword";
 import ResetPassword from "./pages/ForgotPassword/ResetPassword";
+import { OverlayLoader } from "./components/OverlayLoader/OverlayLoader";
+import { LoadingContext } from "./contexts/LoadingContext";
 
 const profileEditUrl = "/profilim/profilimi-duzenle";
 
 function App() {
+  const [loading, setLoading] = useState<number>(0);
 
   return (
     <>
-      <Navigation />
-      {/* <Container> */}
-      <div className="body-height">
-        <AuthProvider>
-          <Routes>
-            <Route path="/giris" element={<Login />} />
-            <Route path="/kayit-ol" element={<Register />} />
-            <Route path="/" element={<Platform />} />
-            <Route path="/profilim" element={<Profile />} />
-            <Route
-              path="/profilim/profilimi-duzenle"
-              element={<ProfileEdit />}
-            />
-            <Route path="/degerlendirmeler" element={<Evaluation />} />
-            <Route path="/katalog" element={<Catalog />} />
-            <Route path="/takvim" element={<CalendarDetail />} />
-            <Route path="/egitimlerim" element={<Education />} />
-            <Route path="/duyurular" element={<Announcement />} />
-            <Route path="/iletişim" element={<Communication />} />
-            <Route path="/education-detail/:id" element={<EducationDetail />} />
-            <Route path="/sifremi-unuttum" element={<ForgotPassword />} />
-            <Route path="/reset-password" element={<ResetPassword />} />
-            <Route
-              path={profileEditUrl + "/kisisel-bilgilerim"}
-              element={<ProfileInformationEdit />}
-            />
-            <Route
-              path={profileEditUrl + "/deneyimlerim"}
-              element={<ExperienceEdit />}
-            />
-            <Route
-              path={profileEditUrl + "/egitimlerim"}
-              element={<GradutionEdit />}
-            />
-            <Route
-              path={profileEditUrl + "/yetkinliklerim"}
-              element={<SkillEdit />}
-            />
-            <Route
-              path={profileEditUrl + "/sertifikalarim"}
-              element={<CertificateEdit />}
-            />
-            <Route
-              path={profileEditUrl + "/medya-hesaplarim"}
-              element={<SocialMediaAccountEdit />}
-            />
-            <Route
-              path={profileEditUrl + "/yabanci-dil"}
-              element={<LanguageEdit />}
-            />
+      <LoadingContext.Provider value={{ loading, setLoading }}>
+        <OverlayLoader />
+        <Navigation />
+        {/* <Container> */}
+        <div className="body-height">
+          <AuthProvider>
+            <Routes>
+              <Route path="/giris" element={<Login />} />
+              <Route path="/kayit-ol" element={<Register />} />
+              <Route path="/" element={<Platform />} />
+              <Route path="/profilim" element={<Profile />} />
+              <Route
+                path="/profilim/profilimi-duzenle"
+                element={<ProfileEdit />}
+              />
+              <Route path="/degerlendirmeler" element={<Evaluation />} />
+              <Route path="/katalog" element={<Catalog />} />
+              <Route path="/takvim" element={<CalendarDetail />} />
+              <Route path="/egitimlerim" element={<Education />} />
+              <Route path="/duyurular" element={<Announcement />} />
+              <Route path="/iletişim" element={<Communication />} />
+              <Route
+                path="/education-detail/:id"
+                element={<EducationDetail />}
+              />
+              <Route path="/sifremi-unuttum" element={<ForgotPassword />} />
+              <Route path="/reset-password" element={<ResetPassword />} />
+              <Route
+                path={profileEditUrl + "/kisisel-bilgilerim"}
+                element={<ProfileInformationEdit />}
+              />
+              <Route
+                path={profileEditUrl + "/deneyimlerim"}
+                element={<ExperienceEdit />}
+              />
+              <Route
+                path={profileEditUrl + "/egitimlerim"}
+                element={<GradutionEdit />}
+              />
+              <Route
+                path={profileEditUrl + "/yetkinliklerim"}
+                element={<SkillEdit />}
+              />
+              <Route
+                path={profileEditUrl + "/sertifikalarim"}
+                element={<CertificateEdit />}
+              />
+              <Route
+                path={profileEditUrl + "/medya-hesaplarim"}
+                element={<SocialMediaAccountEdit />}
+              />
+              <Route
+                path={profileEditUrl + "/yabanci-dil"}
+                element={<LanguageEdit />}
+              />
 
-            <Route path={profileEditUrl + "ayarlar"} element={<Settings />} />
-          </Routes>
-        </AuthProvider>
-      </div>
-      {/* </Container> */}
-      <ChatBot />
-      <Footer />
+              <Route path={profileEditUrl + "ayarlar"} element={<Settings />} />
+            </Routes>
+          </AuthProvider>
+        </div>
+        {/* </Container> */}
+        <ChatBot />
+        <Footer />
+      </LoadingContext.Provider>
     </>
   );
 }
