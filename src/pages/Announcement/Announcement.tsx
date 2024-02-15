@@ -14,7 +14,7 @@ import {
 } from "../../utilities/Constants/constantValues";
 import { pageCalculate } from "../../utilities/Helpers/pageCountByItemsCalculator";
 import FilterByCheckbox from "../../components/FilterBar/FilterByCheckbox";
-import { SearchbarContext } from "../../contexts/SearchBarContext"; 
+import { SearchbarContext } from "../../contexts/SearchBarContext";
 import { LoadingContext } from "../../contexts/LoadingContext";
 
 type Props = {};
@@ -25,6 +25,7 @@ const Announcement = (props: Props) => {
   const [pageCount, setPageCount] = useState<any>(null);
   const [searchbarValue, setSearchbarValue] = useState<string>("");
   const [searchbarFocus, setSearchbarFocus] = useState<boolean>(false);
+  const [loadingPagination, setLoadingPagination] = useState<boolean>(false); 
 
   const handleChildStateChange = (newState: number) => {
     setChildState(newState);
@@ -37,13 +38,13 @@ const Announcement = (props: Props) => {
   );
 
   useEffect(() => {
-    setLoading((prev:any) => prev + 1);
-  
+    setLoading((prev: any) => prev + 1);
+
     const fetchAnnouncement = async () => {
       try {
         const result = await announcementService.getAllAnnouncementTypeList(
           childState,
-          announcementPageItemCountByPage      
+          announcementPageItemCountByPage
         );
         setPageCount(
           pageCalculate(result.data.count, announcementPageItemCountByPage)
@@ -52,13 +53,14 @@ const Announcement = (props: Props) => {
       } catch (error) {
         console.error("Veri getirme işlemi sırasında hata oluştu:", error);
       } finally {
-        setLoading((prev:any) => prev - 1);
+        setLoading((prev: any) => prev - 1);
+        setLoadingPagination(true); 
       }
     };
-      setTimeout(fetchAnnouncement, 500);
-  
+    setTimeout(fetchAnnouncement, 500);
+
   }, [childState]);
-  
+
   return (
     <SearchbarContext.Provider
       value={{
@@ -92,16 +94,18 @@ const Announcement = (props: Props) => {
               annoucementDateIcon={announcementIconSrc}
               announcementDate={announcement.createdDate}
               announcementDescription={announcement.description}
-              key={announcement.id} // Ekleme: Her bir kart için benzersiz bir anahtar ekleyin
+              key={announcement.id} 
             />
           ))}
         </Row>
 
         <Row className="pagination">
-          <Pagi
-            handleChildStateChange={handleChildStateChange}
-            pageCount={pageCount}
-          />
+          {loadingPagination && ( 
+            <Pagi
+              handleChildStateChange={handleChildStateChange}
+              pageCount={pageCount}
+            />
+          )}
         </Row>
       </Container>
     </SearchbarContext.Provider>

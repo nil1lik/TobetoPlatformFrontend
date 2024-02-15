@@ -23,36 +23,35 @@ const Education = (props: Props) => {
   const { setLoading } = useContext<any>(LoadingContext);
   const [childState, setChildState] = useState<number>(0);
   const [pageCount, setPageCount] = useState<any>(null);
+  const [loadingPagination, setLoadingPagination] = useState<boolean>(false);
 
   const handleChildStateChange = (newState: number) => {
     setChildState(newState);
   };
 
   useEffect(() => {
-    // setTimeout ile setLoading'i 1000 milisaniye (1 saniye) sonra artır
+    setLoading((prev: any) => prev + 1);
 
-      setLoading((prev:any) => prev + 1);
-  
-      const fetchEducation = async () => {
-        try {
-          const result = await educationService.getAll(
-            childState,
-            educationPageItemCountByPageMax
-          );
-          setPageCount(
-            pageCalculate(result.data.count, educationPageItemCountByPageMax)
-          );
-          setEducation(result.data.items);
-        } catch (error) {
-          console.error("Eğitim verilerini getirme sırasında bir hata oluştu:", error);
-        } finally {
-          // Veri getirme işlemi tamamlandığında loading durumunu azalt
-          setLoading((prev:any) => prev - 1);
-        }
-      };
-      setTimeout(fetchEducation, 500);  
+    const fetchEducation = async () => {
+      try {
+        const result = await educationService.getAll(
+          childState,
+          educationPageItemCountByPageMax
+        );
+        setPageCount(
+          pageCalculate(result.data.count, educationPageItemCountByPageMax)
+        );
+        setEducation(result.data.items);
+      } catch (error) {
+        console.error("Eğitim verilerini getirme sırasında bir hata oluştu:", error);
+      } finally {
+        setLoading((prev: any) => prev - 1);
+        setLoadingPagination(true);
+      }
+    };
+    setTimeout(fetchEducation, 500);  
+
   }, []);
-  
 
   return (
     <>
@@ -92,10 +91,12 @@ const Education = (props: Props) => {
           ))}
         </Row>
         <Row className="pagination">
-          <Pagi
-            handleChildStateChange={handleChildStateChange}
-            pageCount={pageCount}
-          />
+          {loadingPagination && (
+            <Pagi
+              handleChildStateChange={handleChildStateChange}
+              pageCount={pageCount}
+            />
+          )}
         </Row>
       </Container>
     </>
