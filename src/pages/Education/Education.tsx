@@ -14,7 +14,7 @@ import {
   educationPageItemCountByPageMax,
 } from "../../utilities/Constants/constantValues";
 import { pageCalculate } from "../../utilities/Helpers/pageCountByItemsCalculator";
-import { SearchbarContext } from "../../contexts/SearchBarContext";
+// import { SearchbarContext } from "../../contexts/SearchBarContext";
 import { LoadingContext } from "../../contexts/LoadingContext";
 
 type Props = {};

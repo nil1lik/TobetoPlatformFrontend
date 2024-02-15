@@ -14,8 +14,12 @@ import {
 } from "../../utilities/Constants/constantValues";
 import { pageCalculate } from "../../utilities/Helpers/pageCountByItemsCalculator";
 import FilterByCheckbox from "../../components/FilterBar/FilterByCheckbox";
-import { SearchbarContext } from "../../contexts/SearchBarContext";
+// import { SearchbarContext } from "../../contexts/SearchBarContext";
 import { LoadingContext } from "../../contexts/LoadingContext";
+import {
+  SearchbarProvider,
+  useSearchbarContext,
+} from "../../contexts/SearchBarContext";
 
 type Props = {};
 
@@ -23,9 +27,9 @@ const Announcement = (props: Props) => {
   const [childState, setChildState] = useState<number>(0);
   const { setLoading } = useContext<any>(LoadingContext);
   const [pageCount, setPageCount] = useState<any>(null);
-  const [searchbarValue, setSearchbarValue] = useState<string>("");
-  const [searchbarFocus, setSearchbarFocus] = useState<boolean>(false);
-  const [loadingPagination, setLoadingPagination] = useState<boolean>(false); 
+  // const [searchbarValue, setSearchbarValue] = useState<string>("");
+  // const [searchbarFocus, setSearchbarFocus] = useState<boolean>(false);
+  const [loadingPagination, setLoadingPagination] = useState<boolean>(false);
 
   const handleChildStateChange = (newState: number) => {
     setChildState(newState);
@@ -54,22 +58,14 @@ const Announcement = (props: Props) => {
         console.error("Veri getirme işlemi sırasında hata oluştu:", error);
       } finally {
         setLoading((prev: any) => prev - 1);
-        setLoadingPagination(true); 
+        setLoadingPagination(true);
       }
     };
     setTimeout(fetchAnnouncement, 500);
-
   }, [childState]);
 
   return (
-    <SearchbarContext.Provider
-      value={{
-        searchbarValue,
-        setSearchbarValue,
-        searchbarFocus,
-        setSearchbarFocus,
-      }}
-    >
+    <SearchbarProvider>
       <BannerTop
         bannerUrl="https://tobeto.com/_next/static/media/edu-banner3.d7dc50ac.svg"
         bannerText={BannerTexts.announcementBanner}
@@ -94,13 +90,13 @@ const Announcement = (props: Props) => {
               annoucementDateIcon={announcementIconSrc}
               announcementDate={announcement.createdDate}
               announcementDescription={announcement.description}
-              key={announcement.id} 
+              key={announcement.id}
             />
           ))}
         </Row>
 
         <Row className="pagination">
-          {loadingPagination && ( 
+          {loadingPagination && (
             <Pagi
               handleChildStateChange={handleChildStateChange}
               pageCount={pageCount}
@@ -108,7 +104,7 @@ const Announcement = (props: Props) => {
           )}
         </Row>
       </Container>
-    </SearchbarContext.Provider>
+    </SearchbarProvider>
   );
 };
 

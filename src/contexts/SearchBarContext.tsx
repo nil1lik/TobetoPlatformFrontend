@@ -1,3 +1,28 @@
-import { createContext } from "react";
+import React, { createContext, useContext, useState } from "react";
+import { SearchbarContextModel } from "../models/contextModels/searchbarContextModel";
 
-export const SearchbarContext = createContext<any>({});
+const initialState: SearchbarContextModel = {
+  searchbarValue: "",
+  handleSearchbarChange: () => {},
+};
+
+const SearchbarContext = createContext<SearchbarContextModel>(initialState);
+
+export const SearchbarProvider = (props: any) => {
+  const [searchbarValue, setSearchbarValue] = useState<string>("");
+
+  const handleSearchbarChange = (value: string) => {
+    setSearchbarValue(value);
+  };
+
+  return (
+    <SearchbarContext.Provider
+      value={{ searchbarValue, handleSearchbarChange }}
+    >
+      {props.children}
+    </SearchbarContext.Provider>
+  );
+};
+
+
+export const useSearchbarContext = () => useContext(SearchbarContext);
