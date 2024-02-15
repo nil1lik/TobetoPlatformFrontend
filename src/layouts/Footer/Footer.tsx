@@ -19,7 +19,7 @@ const Footer = (props: Props) => {
     //     </Menu.Item>
     //   </Container>
     // </Menu>
-    <div className="footer-style">
+    <div className="footer-style mt-3">
       <Container className="col-12 col-md-10">
         <div className="d-flex justify-content-between align-items-center">
           <Image
