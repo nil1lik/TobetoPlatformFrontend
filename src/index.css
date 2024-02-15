@@ -12,7 +12,7 @@ body {
 }
 
 .body-height{
-  min-height: 100vh;
+  min-height: 82.3vh;
 }
 
 main {
@@ -26,7 +26,7 @@ footer {
 }
 
 .footer-style {
-  height: 100px;
+  height: 83px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -38,12 +38,13 @@ footer {
   color: #000000;
   border-radius: 20px;
   font-size: 14px;
-  font-weight: 700;
+  font-weight: 600;
   text-align: center;
   align-items: center;
   display: inline-block;
   height: 35px;
   vertical-align: middle;
+  line-height: 30px;
 }
 
 .footer-button.btn:hover {
@@ -725,7 +726,7 @@ table {
 
 .chat-cont {
   position: fixed;
-  bottom: 20px;
+  bottom: 10px;
   right: 15px;
   cursor: pointer;
 }
@@ -734,6 +735,17 @@ table {
   background-color: #9933ff;
   padding: 1rem;
   border-radius: 50%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  animation: shake 5s ease-in-out infinite;;
+}
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  20% { transform: translateX(15px); } 
+  40% { transform: translateX(-15px); } 
+  60% { transform: translateX(10px); } 
+  80% { transform: translateX(-10px); } 
+  100% { transform: translateX(0); } 
 }
 
 .chatOpenIcon {

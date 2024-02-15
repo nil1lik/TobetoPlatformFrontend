@@ -3,7 +3,7 @@ import TobetoPlatformBannerTop from "../Banner/BannerTop";
 import { Container, Pagination } from "react-bootstrap";
 import { Row } from "react-bootstrap";
 import { Col } from "react-bootstrap";
-import SearchBar from "../SearchBar/SearchBar";
+import SearchBar from "../Searchbar/SearchBar";
 import Filter from "./Filter";
 import FilterByCheckbox from "./FilterByCheckbox";
 

@@ -14,7 +14,6 @@ import {
   educationPageItemCountByPageMax,
 } from "../../utilities/Constants/constantValues";
 import { pageCalculate } from "../../utilities/Helpers/pageCountByItemsCalculator";
-import { SearchbarContext } from "../../contexts/SearchBarContext";
 import { useEducation } from "../../contexts/EducationContext";
 import FormattedDate from "../../utilities/Helpers/FormattedDate";
 import { LoadingContext } from "../../contexts/LoadingContext";

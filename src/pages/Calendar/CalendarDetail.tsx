@@ -4,7 +4,7 @@ import { Col, Dropdown, Form, Row } from "react-bootstrap";
 import "./calendar.css";
 import { FormCheckType } from "react-bootstrap/esm/FormCheck";
 import { Container } from "react-bootstrap/lib/Tab";
-import SearchBar from "../../components/SearchBar/SearchBar";
+import SearchBar from "../../components/Searchbar/SearchBar";
 import { GetInstructor, GetInstructorItem } from "../../models/responses/instructor/getInstructorResponse";
 import instructorService from "../../services/instructorService";
 import { EducationStatusText, calendarDropboxLabel, calendarDropboxPlaceholderText, calendarSearchBoxLabel } from "../../utilities/Constants/constantValues";

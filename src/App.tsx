@@ -56,7 +56,7 @@ function App() {
               <Route path="/takvim" element={<CalendarDetail />} />
               <Route path="/egitimlerim" element={<Education />} />
               <Route path="/duyurular" element={<Announcement />} />
-              <Route path="/iletişim" element={<Communication />} />
+              <Route path="/iletisim" element={<Communication />} />
               <Route
                 path="/education-detail/:id"
                 element={<EducationDetail />}
