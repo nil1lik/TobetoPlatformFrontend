@@ -1,7 +1,7 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { Button, Form } from "react-bootstrap";
 import "../SearchBar/searchBar.css";
-import { SearchbarContext } from "../../contexts/SearchBarContext";   
+import { useSearchbarContext } from "../../contexts/SearchBarContext";   
 
 type Props = {
   formClassName?: string;
@@ -11,16 +11,13 @@ type Props = {
 };
 
 const SearchBar = (props: Props) => {
-  const { searchbarValue, setSearchbarValue } = useContext(SearchbarContext);
+  // const { searchbarValue, setSearchbarValue } = useContext(SearchbarContext);
+  const { handleSearchbarChange } = useSearchbarContext()
 
   const handleChange = (event: any) => {
     const inputValue = event.target.value;
-    setSearchbarValue(inputValue);
+    handleSearchbarChange(inputValue);
   };
-
-  // useEffect(() => {
-  //   console.log("searchbar:", searchbarValue);
-  // }, [searchbarValue]);
 
   return (
     <div className={props.searchBoxClassName || "search-box"}>

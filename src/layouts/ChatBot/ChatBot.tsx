@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Col, Row } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 type Props = {};
 
@@ -13,15 +14,16 @@ const ChatBot = (props: Props) => {
 
   return (
     <div className="chat-cont">
-      {isOpen ? (
-        <div onClick={handleToggle}>
+      {/* {isOpen ? (
+        // <div onClick={handleToggle}>
+        <div onClick={() => window.location.href = "/iletisim"}>
           <img src={chat} className="chatExample" />
         </div>
-      ) : (
-        <div onClick={handleToggle} className="chatOpen">
+      ) : ( */}
+        <div onClick={() => window.location.href = "/iletisim"} className="chatOpen">
           <img src={messageIcon} className="chatOpenIcon" />
         </div>
-      )}
+      {/* )} */}
     </div>
   );
 };

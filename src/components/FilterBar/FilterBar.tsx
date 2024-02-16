@@ -3,9 +3,8 @@ import TobetoPlatformBannerTop from "../Banner/BannerTop";
 import { Container, Pagination } from "react-bootstrap";
 import { Row } from "react-bootstrap";
 import { Col } from "react-bootstrap";
-import SearchBar from "../SearchBar/SearchBar";
 import Filter from "./Filter";
-import FilterByCheckbox from "./FilterByCheckbox";
+import SearchBar from "../SearchBar/SearchBar";
 
 type Props = {
     dropdownName1: string,

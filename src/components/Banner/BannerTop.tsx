@@ -1,6 +1,5 @@
-import React, { useContext, useEffect } from "react";
-import { URL } from "url";
-import { SearchbarContext } from "../../contexts/SearchBarContext";
+import React from "react";
+import { useSearchbarContext } from "../../contexts/SearchBarContext";
 
 type Props = { bannerUrl: string; bannerText: string };
 

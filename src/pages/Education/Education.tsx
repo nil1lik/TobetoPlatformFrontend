@@ -14,27 +14,25 @@ import {
   educationPageItemCountByPageMax,
 } from "../../utilities/Constants/constantValues";
 import { pageCalculate } from "../../utilities/Helpers/pageCountByItemsCalculator";
-import { SearchbarContext } from "../../contexts/SearchBarContext";
 import { useEducation } from "../../contexts/EducationContext";
 import FormattedDate from "../../utilities/Helpers/FormattedDate";
-import { LoadingContext } from "../../contexts/LoadingContext";
+import { useLoadingContext } from "../../contexts/LoadingContext";
 
 type Props = {};
 const Education = (props: Props) => {
   // const [education, setEducation] = useState<GetEducationItem[]>([]);
-  const { setLoading } = useContext<any>(LoadingContext);
+  const { handleSetLoading } = useLoadingContext();
   const [childState, setChildState] = useState<number>(0);
   const [pageCount, setPageCount] = useState<any>(null);
   const [loadingPagination, setLoadingPagination] = useState<boolean>(false);
   const { educationData, setEducationData } = useEducation();
-
 
   const handleChildStateChange = (newState: number) => {
     setChildState(newState);
   };
 
   useEffect(() => {
-    setLoading((prev: any) => prev + 1);
+    handleSetLoading((prev: any) => prev + 1);
 
     const fetchEducation = async () => {
       try {
@@ -47,14 +45,16 @@ const Education = (props: Props) => {
         );
         setEducationData(result.data.items);
       } catch (error) {
-        console.error("Eğitim verilerini getirme sırasında bir hata oluştu:", error);
+        console.error(
+          "Eğitim verilerini getirme sırasında bir hata oluştu:",
+          error
+        );
       } finally {
-        setLoading((prev: any) => prev - 1);
+        handleSetLoading((prev: any) => prev - 1);
         setLoadingPagination(true);
       }
     };
-    setTimeout(fetchEducation, 500);  
-
+    setTimeout(fetchEducation, 500);
   }, [setEducationData]);
 
   return (
@@ -80,11 +80,11 @@ const Education = (props: Props) => {
         <Row>
           {educationData.map((education) => (
             <EducationCard
-            key={education.id}
-            id={education.id}
-            image={education.imageUrl}
-            text={education.name}
-            date={<FormattedDate date={education.createdDate}/>}
+              key={education.id}
+              id={education.id}
+              image={education.imageUrl}
+              text={education.name}
+              date={<FormattedDate date={education.createdDate} />}
             />
           ))}
         </Row>

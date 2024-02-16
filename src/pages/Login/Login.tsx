@@ -17,8 +17,7 @@ import {
   loginButtonText,
   registerButtonText,
 } from "../../utilities/Constants/constantValues";
-import toastr from "toastr";
-import { LoadingContext } from "../../contexts/LoadingContext";
+import { useLoadingContext } from "../../contexts/LoadingContext";
 type Props = {};
 
 const Login = (props: Props) => {
@@ -27,7 +26,7 @@ const Login = (props: Props) => {
     password: UserInformationValidationMessageRule.password,
   });
   const authContext: any = useContext(AuthContext);
-  const { setLoading } = useContext<any>(LoadingContext);
+  const { handleSetLoading } = useLoadingContext();
   const navigate = useNavigate();
 
   const initialValues: userLoginRequest = {
@@ -49,9 +48,8 @@ const Login = (props: Props) => {
             <Formik
               initialValues={initialValues}
               validationSchema={validationSchema}
-              
               onSubmit={(values) => {
-                setLoading((prev:any) => prev+1)
+                handleSetLoading((prev: any) => prev + 1);
                 const userService = new UserService();
                 userService
                   .loginUser(values)
@@ -60,7 +58,7 @@ const Login = (props: Props) => {
                       isAuthenticated: true,
                       token: result.data.accessToken.token,
                     });
-                    setLoading((prev:any) => prev-1)
+                    handleSetLoading((prev: any) => prev - 1);
                   })
                   .catch((error) => {
                     console.error(
