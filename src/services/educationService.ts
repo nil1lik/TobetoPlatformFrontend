@@ -8,8 +8,8 @@ import { UpdateEducationResponse } from "../models/responses/education/updateEdu
 import { BaseService } from "../core/services/baseService";
 import axios, { AxiosResponse } from "axios";
 import { GetAllEducationAboutResponse } from "../models/responses/education/getAllEducationAboutResponse";
-import { GetAllEducationHeaderResponse } from "../models/responses/education/getAllEducationHeaderResponse";
 import { GetCourseResponse } from "../models/responses/course/getCourseResponse";
+import { GetAllEducationResponse } from "../models/responses/education/getAllEducationHeaderResponse";
 
 class EducationService extends BaseService<
   GetEducation,
@@ -38,8 +38,8 @@ class EducationService extends BaseService<
 
   getEducationPathDetailByIdDto(
     id: number
-  ): Promise<AxiosResponse<GetAllEducationHeaderResponse, any>> {
-    return axios.get<GetAllEducationHeaderResponse>(
+  ): Promise<AxiosResponse<GetAllEducationResponse, any>> {
+    return axios.get<GetAllEducationResponse>(
       this.apiUrl + "/" + "EducationPathDetail/" + id
     );
   }

@@ -3,14 +3,23 @@ import { Card, Col, Row } from "react-bootstrap";
 import asyncLessonService from "../../../services/asyncLessonService";
 import { GetByIdAsyncLessonResponse } from "../../../models/responses/asyncLesson/getByIdAsyncLessonResponse";
 import ReactPlayer from "react-player";
+import EducationOffcanvas from "../EducationDetail/EducationOffcanvas";
+import { useEducation } from "../../../contexts/EducationContext";
 
 type Props = {
   asyncLessonId?: number;
 };
 
 const LessonVideoDetailCard = (props: Props) => {
+  const { educationData, setEducationData } = useEducation(); //lessonVideoData
+
   const { asyncLessonId } = props;
   const [asyncLesson, setAsyncLessons] = useState<GetByIdAsyncLessonResponse>();
+
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  
   const fetchAsyncLesson = async () => {
     try {
       if (asyncLessonId !== undefined) {
@@ -52,7 +61,7 @@ const LessonVideoDetailCard = (props: Props) => {
                   <label>{asyncLesson?.name}</label>
                 </div>
                 <div className="unit-detail-col unit-detail-col-default">
-                  {asyncLesson?.lessonTypeId} - {asyncLesson?.time}
+                  {asyncLesson?.lessonTypeName} - {asyncLesson?.time}
                 </div>
                 <div className="unit-detail-col unit-detail-col-score text-green">
                   {/* {props.point} PUAN */} 100 PUAN
@@ -62,7 +71,7 @@ const LessonVideoDetailCard = (props: Props) => {
                   Tebrikler, tamamladın!
                 </div>
               </Col>
-              {/* <Col lg={3}>
+              <Col lg={3}>
                   <div className="ant-space ant-space-vertical">
                     <button
                       type="button"
@@ -72,15 +81,15 @@ const LessonVideoDetailCard = (props: Props) => {
                       <label className="ant-btn-text">DETAY</label>
                       <div className="drawer">
                         <EducationOffcanvas
-                          imageUrl="https://lms.tobeto.com/tobeto/eep/common_show_picture_cached.aspx?pQS=DiBldjEKnwKDQVcjzXYj%2bUxp8rPm9JXZ"
-                          educationName={props.educationTitle}
-                          // educationType={props.lessonType}
-                          timeSpent={props.educationTime}
-                          category={props.educationCategory}
-                          language={props.educationLanguage}
-                          company={props.educationCompany}
-                          subcategory={props.educationSubcategory}
-                          likeCount={props.likeCount}
+                          imageUrl="https://lms.tobeto.com/tobjEKnwKDQVcjzXYj%2bUxp8rPm9JXZ"
+                          educationName={asyncLesson?.name}
+                          educationType= "lessonType"
+                          timeSpent={asyncLesson?.time}
+                          category="{props.educationCategory}"
+                          language="{props.educationLanguage}"
+                          company="{props.educationCompany}"
+                          subcategory="educationSubcategory"
+                          likeCount= {100}
                           point={100}
                           button={true}
                           show={show}
@@ -89,7 +98,7 @@ const LessonVideoDetailCard = (props: Props) => {
                       </div>
                     </button>
                   </div>
-                </Col> */}
+                </Col>
             </Row>
           </div>
         </Card>

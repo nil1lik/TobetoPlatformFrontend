@@ -1,7 +1,7 @@
 export interface GetByIdAsyncLessonResponse {
   id: number;
   name: string;
-  lessonTypeId: number;
+  lessonTypeName: string;
   time: number;
   videoUrl:string;
 }

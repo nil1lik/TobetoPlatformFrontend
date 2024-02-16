@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Col, Container, Offcanvas, Row } from "react-bootstrap";
 import "./educationOffcanvas.css";
 import EducationDetailAboutComp from "./EducationDetailAboutComp";
@@ -13,9 +13,9 @@ type Props = {
   imageUrl: string;
   educationName?: string;
   educationType?: string;
-  timeSpent: string;
+  timeSpent?: number;
   category: string;
-  language: string;
+  language: string; 
   subcategory: string;
   company: string;
   likeCount: number;
@@ -23,23 +23,24 @@ type Props = {
   button: boolean;
   show: boolean;
   hide: () => void;
+  
 };
 
 const EducationOffcanvas = (props: Props) => {
   return (
-    <Offcanvas
+    <Offcanvas 
       show={props.show}
-      onHide={props.hide}
-      placement="end"
+      onHide={props.hide} 
+      placement="end" 
       backdrop={true}
       scroll={true}
     >
       <Offcanvas.Header>
-        <Container>
-          <i className="sg-icon sg-delete close" />
+        <Container> 
+          <i className="sg-icon sg-delete close" onClick={props.hide}/> 
           <Row>
             <Col lg={2}>
-              <div className="image-area">
+              <div className="image-area"> 
                 <img src={props.imageUrl} />
               </div>
             </Col>

@@ -10,7 +10,6 @@ import {
   Container,
   Row,
 } from "react-bootstrap";
-import EducationOffcanvas from "./EducationOffcanvas";
 import courseService from "../../../services/courseService";
 import {
   AccordionEventKey,
@@ -40,8 +39,6 @@ const EducationDetailContent = (props: Props) => {
   const { educationDetailId } = props;
   const completedIcon = "/images/completed.svg";
   const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
   const [activeKey, setActiveKey] = useState<string | null>(null);
 
   const [courses, setCourses] = useState<GetCourseResponseItem[]>([]);
@@ -92,7 +89,6 @@ const EducationDetailContent = (props: Props) => {
 
   const handleSubtitleClick = async (asyncLessonId: number) => {
     setSelectedAsyncLessonId(asyncLessonId);
-    console.log("selectedAsyncLessonId" + selectedAsyncLessonId);
   };
 
   useEffect(() => {

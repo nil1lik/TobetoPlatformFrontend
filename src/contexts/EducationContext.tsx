@@ -1,6 +1,4 @@
-// EducationContext.js
-
-import React, { createContext, useState, useContext, ReactNode } from 'react';
+import React, { createContext, useState, useContext } from 'react';
 
 // interface EducationContextProps {
 //   children: ReactNode;
