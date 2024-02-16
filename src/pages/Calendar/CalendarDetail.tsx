@@ -10,7 +10,7 @@ import { EducationStatusText, calendarDropboxLabel, calendarDropboxPlaceholderTe
 import { GetCalendarItem } from "../../models/responses/calendar/getCalendarResponse";
 import calendarService from "../../services/calendarService";
 import { LoadingContext } from "../../contexts/LoadingContext";
-import SearchBar from "../../components/SearchBar/SearchBar";
+import SearchBar from "../../components/Searchbar/SearchBar";
 
 type Props = {};
 const CalendarDetail = (props: Props) => {

@@ -4,7 +4,7 @@ import { Container, Pagination } from "react-bootstrap";
 import { Row } from "react-bootstrap";
 import { Col } from "react-bootstrap";
 import Filter from "./Filter";
-import SearchBar from "../SearchBar/SearchBar";
+import SearchBar from "../Searchbar/SearchBar";
 
 type Props = {
     dropdownName1: string,
