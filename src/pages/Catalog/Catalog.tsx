@@ -5,7 +5,7 @@ import CatalogCard from "../../components/Catalog/CatalogCard";
 import FilterBar from "../../components/FilterBar/FilterBar";
 import CatalogFilter from "../../components/Catalog/CatalogFilter";
 import { BannerTexts } from "../../utilities/Constants/constantValues";
-import SearchBar from "../../components/SearchBar/SearchBar";
+import SearchBar from "../../components/Searchbar/SearchBar";
 
 type Props = {};
 

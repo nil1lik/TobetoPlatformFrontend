@@ -11,7 +11,7 @@ import {
   calendarSearchBoxLabel,
 } from "../../utilities/Constants/constantValues";
 import { useLoadingContext } from "../../contexts/LoadingContext";
-import SearchBar from "../../components/SearchBar/SearchBar";
+import SearchBar from "../../components/Searchbar/Searchbar";
 
 type Props = {};
 const CalendarDetail = (props: Props) => {
