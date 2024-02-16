@@ -73,19 +73,18 @@ axiosInstance.interceptors.request.use(
 
 axiosInstance.interceptors.response.use(
     response => {
-        
+
         const accessToken = response.data.accessToken;
         if (accessToken) {
             const token = accessToken.token;
             localStorage.setItem("token", token);
             const decodedToken = parseJwt(token);
-            
             const userId = decodedToken["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"];
-            
             console.log("Kullanıcı ID:", userId);
         }
         toastr.success("Giriş Başarılı");
         return response;
+        
     },
     error => {
         console.error(error);

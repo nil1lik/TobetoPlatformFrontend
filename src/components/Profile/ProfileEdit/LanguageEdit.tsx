@@ -8,6 +8,7 @@ import languageServices from "../../../services/languageServices";
 import { UserInformationValidationMessageRule } from "../../../utilities/Validations/validationMessageRules";
 import toastr from "toastr";
 import { ProfileLanguageToastrMsg, saveButtonText } from "../../../utilities/Constants/constantValues";
+import { LanguageProvider } from "../../../contexts/LanguageContext";
 type Props = {};
 
 const validationSchema = object({
@@ -61,6 +62,7 @@ const validationSchema = object({
   };
   return (
     <div>
+      <LanguageProvider>
       <Container className="mt-5">
         <Formik
           initialValues={initialValues}
@@ -107,6 +109,7 @@ const validationSchema = object({
           </div>
         </Container>
       </Container>
+      </LanguageProvider>
     </div>
   );
 };
