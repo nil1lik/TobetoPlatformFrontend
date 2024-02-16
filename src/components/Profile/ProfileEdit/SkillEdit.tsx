@@ -25,7 +25,6 @@ const SkillEdit = (props: Props) => {
   const [skills, setSkills] = useState<GetSkillItem[]>([]);
   const [selectedSkills, setSelectedSkills] = useState<GetSkillItem[]>([]);
   const [show, setShow] = useState(false);
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
