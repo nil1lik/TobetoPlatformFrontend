@@ -18,7 +18,7 @@ const ControlPopup = (props: Props) => {
     };
     return (
         <Modal size="lg" show={props.show} onHide={props.hide} centered >
-            <Modal.Header closeButton>
+            <Modal.Header >
                 <Modal.Title style={{ fontWeight: "600" }}>{props.title}</Modal.Title>
             </Modal.Header>
             <Modal.Body>
@@ -30,17 +30,16 @@ const ControlPopup = (props: Props) => {
                         <p>
                             <br />
                         </p>
-                        <hr />
                     </>
                 ))}
                 <Row>
-                    <Col className="form-cotrol">
+                    <Col >
                         {props.buttonNo &&
                             <button className="form-control" onClick={() => { toastr.error(props.message); }}>
                                 <i className="bi bi-check-lg" />Evet</button>}
 
                     </Col>
-                    <Col className="form-cotrol">
+                    <Col >
                         {props.buttonNo && <button onClick={handleNoButtonClick} className="form-control">
                             <i className="bi bi-x-lg"></i>Hayır</button>}
                     </Col>

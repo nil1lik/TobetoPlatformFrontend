@@ -34,7 +34,6 @@ const Login = (props: Props) => {
     password: "",
   };
   useEffect(() => {
-    // Kullanıcı girişi başarılı olduktan sonra çalışacak kodlar
     if (authContext.auth?.isAuthenticated) {
       navigate("/");
     }
@@ -58,6 +57,7 @@ const Login = (props: Props) => {
                       isAuthenticated: true,
                       token: result.data.accessToken.token,
                     });
+                    console.log(result.data.accessToken)
                     handleSetLoading((prev: any) => prev - 1);
                   })
                   .catch((error) => {

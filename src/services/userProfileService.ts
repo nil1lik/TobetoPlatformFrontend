@@ -9,6 +9,8 @@ import { BaseService } from "../core/services/baseService";
 import { AddUserRequest } from '../models/requests/user/addUserRequest';
 import { UpdateUserResponse } from '../models/responses/user/updateUserResponse';
 import { BASE_API_URL } from '../core/environment/environment';
+import { AxiosResponse } from 'axios';
+import axiosInstance from '../core/interceptors/axiosInterceptors';
 
 // export default class UserService{
 //   addUser(userData: userData){
@@ -32,6 +34,10 @@ UpdateUserResponse>
     this.apiUrl = BASE_API_URL + "Users"
   }
   
+  getByUserId(id: number): Promise<AxiosResponse<GetByIdUser, any>> {
+		return axiosInstance.get<GetByIdUser>(this.apiUrl + "/" + id);
+	}
+
 }
 
 export default new UserProfileService
