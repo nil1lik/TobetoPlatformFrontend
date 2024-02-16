@@ -42,7 +42,7 @@ const PlatformTab = (props: Props) => {
       setLoading((prev: any) => prev + 1);
   
       const fetchEducation = async () => {
-        const result = await educationService.getByFilter(0, 4);
+        const result = await educationService.getByFilter(0, 9); //filtrele 4 tanesini
         setEducationData(result.data.items);
       };
   

@@ -1,4 +1,4 @@
-export interface GetAllEducationHeaderResponse{
+export interface GetAllEducationResponse{
     id: number;
     educationAboutId: number;
     name:string;

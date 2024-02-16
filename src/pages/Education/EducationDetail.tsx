@@ -5,14 +5,14 @@ import EducationDetailTab from "../../components/Education/EducationDetail/Educa
 import EducationDetailHeader from "../../components/Education/EducationDetail/EducationDetailHeader";
 import { useParams } from "react-router-dom";
 import educationService from "../../services/educationService";
-import { GetAllEducationHeaderResponse } from "../../models/responses/education/getAllEducationHeaderResponse";
 import { LoadingContext } from "../../contexts/LoadingContext";
+import { GetAllEducationResponse } from "../../models/responses/education/getAllEducationHeaderResponse";
 
 type Props = {};
 
 const EducationDetail = (props: Props) => {
   const [educationDetail, setEducationDetail] =
-    useState<GetAllEducationHeaderResponse>(Object);
+    useState<GetAllEducationResponse>(Object);
   const [aboutId, setAboutId] = useState<number>(0);
   const { setLoading } = useContext<any>(LoadingContext);
   const params = useParams();

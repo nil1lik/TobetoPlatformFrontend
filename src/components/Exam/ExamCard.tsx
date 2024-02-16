@@ -10,7 +10,7 @@ type Props = {
 };
 
 const ExamCard = (props: Props) => {
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState(false);  
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -33,17 +33,17 @@ const ExamCard = (props: Props) => {
               src={process.env.PUBLIC_URL + "/images/examTime.svg"}
             />
             <Card.Text className="exam-time-text">{props.duration}</Card.Text>
-          </div>
+          </div> 
         </Card.Body>
       </Card>
-      <Popup
+      <Popup 
         key={props.id}
         title={props.name}
         description={props.description}
         duration={props.duration}
         button={true}
         show={show}
-        hide={handleClose}
+        hide={handleClose} 
       />
     </>
   );
