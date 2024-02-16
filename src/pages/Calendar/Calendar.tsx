@@ -1,31 +1,27 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from "react";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import allLocales from "@fullcalendar/core/locales-all";
-import { EventContentArg } from '@fullcalendar/core';
-import { DayCellContainer, addWeeks } from '@fullcalendar/core/internal';
-import { start } from 'repl';
-import calendarService from '../../services/calendarService';
-import { GetCalendarItem } from '../../models/responses/calendar/getCalendarResponse';
-import { LoadingContext } from '../../contexts/LoadingContext';
-
-
+import { EventContentArg } from "@fullcalendar/core";
+import calendarService from "../../services/calendarService";
+import { GetCalendarItem } from "../../models/responses/calendar/getCalendarResponse";
+import { useLoadingContext } from "../../contexts/LoadingContext";
 
 const Calendar = () => {
   const [calendar, setCalendar] = useState<GetCalendarItem[]>([]);
-  const { setLoading } = useContext<any>(LoadingContext);
+  const { handleSetLoading } = useLoadingContext();
 
   const fetchCalendar = async () => {
     try {
-      setLoading((prev: any) => prev + 1); // Veri getirme başladığında loading durumunu artır
+      handleSetLoading((prev: any) => prev + 1); // Veri getirme başladığında loading durumunu artır
       const result = await calendarService.getCalendar(0, 50);
       setCalendar(result.data.items);
     } catch (error) {
       console.error("API isteği sırasında bir hata oluştu:", error);
     } finally {
-      setLoading((prev: any) => prev - 1); // Veri getirme tamamlandığında loading durumunu azalt
+      handleSetLoading((prev: any) => prev - 1); // Veri getirme tamamlandığında loading durumunu azalt
     }
   };
 
@@ -33,30 +29,39 @@ const Calendar = () => {
     fetchCalendar(); // fetchCalendar fonksiyonunu direkt olarak çağır
   }, []);
 
-
-  const renderEventContent =(eventContent:EventContentArg)=>{
-    return(
-          <div className='d-flex flex-column ms-4 my-1'>
-          <span>{eventContent.event.start?.toTimeString().split("GMT")[0].slice(0,5)/*eventContent.timeText*/}</span>
-          <span className='text-truncate'>{eventContent.event.title} {/*eventContent.event.title*/}</span>
-          <span className='text-truncate'>{`${eventContent.event.extendedProps.firstName} ${eventContent.event.extendedProps.lastName}` }</span>
-        </div>
-    )
-  }
+  const renderEventContent = (eventContent: EventContentArg) => {
+    return (
+      <div className="d-flex flex-column ms-4 my-1">
+        <span>
+          {
+            eventContent.event.start
+              ?.toTimeString()
+              .split("GMT")[0]
+              .slice(0, 5) /*eventContent.timeText*/
+          }
+        </span>
+        <span className="text-truncate">
+          {eventContent.event.title} {/*eventContent.event.title*/}
+        </span>
+        <span className="text-truncate">{`${eventContent.event.extendedProps.firstName} ${eventContent.event.extendedProps.lastName}`}</span>
+      </div>
+    );
+  };
 
   return (
     <>
-      <FullCalendar dayCellClassNames={"eventEnded eventNotStarted eventToday"}
+      <FullCalendar
+        dayCellClassNames={"eventEnded eventNotStarted eventToday"}
         plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
         headerToolbar={{
           left: `today prev,next`,
           center: "title",
-          right: "dayGridMonth,timeGridWeek,timeGridDay"
+          right: "dayGridMonth,timeGridWeek,timeGridDay",
         }}
         locales={allLocales}
         locale={"tr"}
         selectable={true}
-        editable={false}    
+        editable={false}
         eventContent={renderEventContent}
         buttonText={{
           day: "Gün",
@@ -64,26 +69,21 @@ const Calendar = () => {
           prevYear: "Önceki Yıl",
           month: "Ay",
           today: "Bugün",
-          week: "Hafta"
+          week: "Hafta",
         }}
         initialView={"dayGridMonth"}
         dayMaxEvents={2}
-        
-        events={
-           calendar.map((calendar)=>({
-            id: calendar.id.toString(),
-            title: calendar.educationPathName,
-            firstName: calendar.firstName,
-            lastName:calendar.lastName,
-            start: calendar.startDate
-           }))
-           
-         }
-                
-        dayHeaderFormat={{weekday:'long'}}
+        events={calendar.map((calendar) => ({
+          id: calendar.id.toString(),
+          title: calendar.educationPathName,
+          firstName: calendar.firstName,
+          lastName: calendar.lastName,
+          start: calendar.startDate,
+        }))}
+        dayHeaderFormat={{ weekday: "long" }}
       />
     </>
   );
-}
+};
 
 export default Calendar;

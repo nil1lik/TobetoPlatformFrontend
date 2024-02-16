@@ -6,7 +6,7 @@ const initialState: SearchbarContextModel = {
   handleSearchbarChange: () => {},
 };
 
-const SearchbarContext = createContext<SearchbarContextModel>(initialState);
+const SearchbarContext = createContext(initialState)
 
 export const SearchbarProvider = (props: any) => {
   const [searchbarValue, setSearchbarValue] = useState<string>("");
@@ -16,9 +16,7 @@ export const SearchbarProvider = (props: any) => {
   };
 
   return (
-    <SearchbarContext.Provider
-      value={{ searchbarValue, handleSearchbarChange }}
-    >
+    <SearchbarContext.Provider value={{ searchbarValue, handleSearchbarChange }}>
       {props.children}
     </SearchbarContext.Provider>
   );

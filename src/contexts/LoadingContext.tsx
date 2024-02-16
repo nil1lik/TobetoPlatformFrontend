@@ -1,37 +1,25 @@
-/*import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState } from "react";
+import { LoadingContextModel } from "../models/contextModels/loadingContextModel";
 
-const LoadingContext = createContext<any>({
-    
-});
+const initialState: LoadingContextModel = {
+  loading: 0,
+  handleSetLoading: (value: number | ((prev: number) => number)) => {},
+};
 
-export const LoadingProvider = (props: any) => {
-  const [loading, setLoading] = useState(1);
+export const LoadingContext = createContext<LoadingContextModel>(initialState);
 
-  const addRequest = () => {
-    console.log(loading)
-    setLoading(prevLoading => prevLoading + 1);
-  };
+export const LoadingContextProvider = (props: any) => {
+  const [loading, setLoading] = useState<number>(initialState.loading);
 
-  const removeRequest = () => {
-    setLoading(prevLoading => Math.max(0, prevLoading - 1));
+  const handleSetLoading = (value: number | ((prev: number) => number)) => {
+    setLoading(value);
   };
 
   return (
-    <LoadingContext.Provider value={{ loading, addRequest, removeRequest }}>
+    <LoadingContext.Provider value={{ loading, handleSetLoading }}>
       {props.children}
     </LoadingContext.Provider>
   );
 };
 
-export const useLoading = () => {
-  const context = useContext(LoadingContext);
-  if (!context) {
-    throw new Error('useLoading hook must be used within a LoadingProvider');
-  }
-  return context;
-};*/
-
-import { createContext } from "react";
-
-export const LoadingContext = createContext({});
-
+export const useLoadingContext = () => useContext(LoadingContext);

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Button, Form } from "react-bootstrap";
 import "./searchBar.css";
 import { useSearchbarContext } from "../../contexts/SearchbarContext";   
@@ -13,7 +13,6 @@ type Props = {
 const SearchBar = (props: Props) => {
   // const { searchbarValue, setSearchbarValue } = useContext(SearchbarContext);
   const { handleSearchbarChange } = useSearchbarContext()
-
 
   const handleChange = (event: any) => {
     const inputValue = event.target.value;
