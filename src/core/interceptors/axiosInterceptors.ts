@@ -80,6 +80,7 @@ axiosInstance.interceptors.response.use(
             localStorage.setItem("token", token);
             const decodedToken = parseJwt(token);
             const userId = decodedToken["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"];
+            response.headers['userId'] = userId;
             console.log("Kullanıcı ID:", userId);
         }
         toastr.success("Giriş Başarılı");
