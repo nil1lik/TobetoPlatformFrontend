@@ -29,12 +29,16 @@ import Settings from "../Profile/ProfileEdit/Settings";
 import ChatBot from "../../layouts/ChatBot/ChatBot";
 import Footer from "../../layouts/Footer/Footer";
 import { useAuthContext } from "../../contexts/AuthContext";
+import NotFoundPage from "../../pages/NotFound/NotFound";
 
 type Props = {};
 const profileEditUrl = "/profilim/profilimi-duzenle";
 
 const RouteDefinitions = (props: Props) => {
-  const { auth, handleSetAuth } = useAuthContext();
+  const { auth } = useAuthContext();
+
+  const specialPaths = ["/", "/profilim", "/profilim/*", "/degerlendirmeler", "katalog", "takvim", "egitimlerim", "duyurular", "iletisim", "/education-detail*", "/kisisel-bilgilerim", "/deneyimlerim", "/egitimlerim", "/yetkinliklerim", "/sertifikalarim", "/medya-hesaplarim", "/yabanci-dil", "/ayarlar"];
+
 
   return (
     <LoadingContextProvider>
@@ -47,6 +51,8 @@ const RouteDefinitions = (props: Props) => {
             <>
               <Route path="/giris" element={<Login />} />
               <Route path="/kayit-ol" element={<Register />} />
+              <Route path="/sifremi-unuttum" element={<ForgotPassword />} />
+              <Route path="/reset-password" element={<ResetPassword />} />
             </>
           ) : (
             <>
@@ -66,9 +72,7 @@ const RouteDefinitions = (props: Props) => {
                 path="/education-detail/:id"
                 element={<EducationDetail />}
               />
-              <Route path="/sifremi-unuttum" element={<ForgotPassword />} />
-              <Route path="/reset-password" element={<ResetPassword />} />
-              <Route
+              <Route 
                 path={profileEditUrl + "/kisisel-bilgilerim"}
                 element={<ProfileInformationEdit2 />}
               />
@@ -91,16 +95,24 @@ const RouteDefinitions = (props: Props) => {
               <Route
                 path={profileEditUrl + "/medya-hesaplarim"}
                 element={<SocialMediaAccountEdit />}
-              />
+              /> /yabanci-dil
               <Route
                 path={profileEditUrl + "/yabanci-dil"}
                 element={<LanguageEdit />}
               />
 
-              <Route path={profileEditUrl + "ayarlar"} element={<Settings />} />
+              <Route path={profileEditUrl + "/ayarlar"} element={<Settings />} />
             </>
           )}
-          <Route path="/*" element={<Navigate to="/giris" replace />} />
+           <Route
+            path="/*"
+            element={
+              specialPaths.includes(window.location.pathname) 
+                ? <Navigate to="/giris" replace /> 
+                : <NotFoundPage />
+            }
+          />
+          
         </Routes>
       </div>
       {/* </Container> */}
