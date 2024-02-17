@@ -1,5 +1,4 @@
 import React from "react";
-import { useSearchbarContext } from "../../contexts/SearchBarContext";
 
 type Props = { bannerUrl: string; bannerText: string };
 

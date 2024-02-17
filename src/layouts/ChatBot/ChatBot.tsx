@@ -14,16 +14,15 @@ const ChatBot = (props: Props) => {
 
   return (
     <div className="chat-cont">
-      {/* {isOpen ? (
-        // <div onClick={handleToggle}>
-        <div onClick={() => window.location.href = "/iletisim"}>
+      {isOpen ? (
+        <div onClick={handleToggle}>
           <img src={chat} className="chatExample" />
         </div>
-      ) : ( */}
-        <div onClick={() => window.location.href = "/iletisim"} className="chatOpen">
+      ) : (
+        <div onClick={handleToggle} className="chatOpen">
           <img src={messageIcon} className="chatOpenIcon" />
         </div>
-      {/* )} */}
+      )}
     </div>
   );
 };

@@ -1,3 +1,4 @@
+import { GetUser } from './../../models/responses/user/getUser';
 import toastr from "toastr";
     import axios from 'axios';
 import { BASE_API_URL } from '../environment/environment';
@@ -72,13 +73,18 @@ axiosInstance.interceptors.request.use(
 
 axiosInstance.interceptors.response.use(
     response => {
+
         const accessToken = response.data.accessToken;
         if (accessToken) {
             const token = accessToken.token;
             localStorage.setItem("token", token);
+            const decodedToken = parseJwt(token);
+            const userId = decodedToken["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"];
+            console.log("Kullanıcı ID:", userId);
         }
         toastr.success("Giriş Başarılı");
         return response;
+        
     },
     error => {
         console.error(error);
@@ -91,4 +97,14 @@ axiosInstance.interceptors.response.use(
     }
 )
 
+function parseJwt(token:any) {
+    const base64Url = token.split('.')[1];
+    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+    return JSON.parse(jsonPayload);
+}
+
 export default axiosInstance;
+

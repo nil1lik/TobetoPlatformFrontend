@@ -14,8 +14,8 @@ import {
 } from "../../utilities/Constants/constantValues";
 import { pageCalculate } from "../../utilities/Helpers/pageCountByItemsCalculator";
 import FilterByCheckbox from "../../components/FilterBar/FilterByCheckbox";
-import { SearchbarProvider } from "../../contexts/SearchBarContext";
 import { useLoadingContext } from "../../contexts/LoadingContext";
+import { SearchbarProvider } from "../../contexts/SearchBarContext";
 
 type Props = {};
 

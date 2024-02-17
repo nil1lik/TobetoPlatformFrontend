@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Button, Form } from "react-bootstrap";
-import "../SearchBar/searchBar.css";
+import "./searchBar.css";
 import { useSearchbarContext } from "../../contexts/SearchBarContext";   
 
 type Props = {
