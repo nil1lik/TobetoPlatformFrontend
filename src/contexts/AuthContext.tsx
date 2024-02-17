@@ -1,25 +1,34 @@
 // AuthContext.js
-import React, { createContext, useState, ReactNode, Dispatch, SetStateAction } from "react";
+import React, { createContext, useState, ReactNode, Dispatch, SetStateAction, useContext } from "react";
+import { boolean } from "yup";
+import { AuthContextModel } from "../models/contextModels/authContextModel";
 
-type AuthContextType = {
-  auth?: { isAuthenticated: boolean; token: string } | null; 
-  setAuth: Dispatch<SetStateAction<any>>;
-};
+const initialState:AuthContextModel = {
+  auth: false,
+  handleSetAuth: () => {},
+  userId: "",
+  handleSetUserId: () => {}
+}
 
-export const AuthContext = createContext<AuthContextType>({
-  auth: null,
-  setAuth: () => {},
-});
+
+export const AuthContext = createContext<AuthContextModel>(initialState);
 
 const AuthProvider = (props: any) => {
-  const [auth, setAuth] = useState<{ isAuthenticated: boolean; token: string } | null>(null); 
-
+  const [userId, setUserId] = useState<string>(initialState.userId);
+  const [auth, setAuth] = useState<boolean>(initialState.auth); 
+  const handleSetAuth= (value: boolean) => {
+    setAuth(value)
+  }
+  const handleSetUserId= (value: string) => {
+    setUserId(value)
+  }
   return (
-    <AuthContext.Provider value={{ auth, setAuth }}>
+    <AuthContext.Provider value={{ auth, handleSetAuth, userId, handleSetUserId }}>
       {props.children}
     </AuthContext.Provider>
   );
 };
 
+export const useAuthContext = () => useContext(AuthContext);
 
 export default AuthProvider;

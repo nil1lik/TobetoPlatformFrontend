@@ -11,7 +11,7 @@ export const OverlayLoader: React.FC = () => {
         <div className="overlay">
           <div className="overlay__inner">
             <div className="overlay__content">
-              <img className="spinner" src="/images/tobeto-logo.png" alt="Loading spinner" />
+              <img className="spinner" src="https://res.cloudinary.com/dcpbbqilg/image/upload/v1707396717/tobeto-logo_t2qnpq.png" alt="Loading spinner" />
             </div>
           </div>
         </div>

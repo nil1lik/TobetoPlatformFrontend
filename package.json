@@ -76,5 +76,6 @@
     "@types/react-google-recaptcha": "^2.1.9",
     "@types/react-toastr": "^3.0.10",
     "@types/toastr": "^2.1.43"
-  }
+  },
+  "homepage": "/giris"
 }
