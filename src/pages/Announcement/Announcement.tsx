@@ -15,7 +15,10 @@ import {
 import { pageCalculate } from "../../utilities/Helpers/pageCountByItemsCalculator";
 import FilterByCheckbox from "../../components/FilterBar/FilterByCheckbox";
 import { useLoadingContext } from "../../contexts/LoadingContext";
-import { SearchbarProvider } from "../../contexts/SearchBarContext";
+import {
+  SearchbarProvider,
+  useSearchbarContext,
+} from "../../contexts/SearchBarContext";
 
 type Props = {};
 
@@ -34,31 +37,42 @@ const Announcement = (props: Props) => {
   const [announcement, setAnnouncement] = useState<GetAnnouncementTypeItem[]>(
     []
   );
+  const { searchbarValue, searchbarFocus, searchbarBlur } =
+    useSearchbarContext();
+
+  const fetchAnnouncement = async (count: number, countForPage: number) => {
+    try {
+      handleSetLoading((prev: number) => prev + 1);
+      const result = await announcementService.getAllAnnouncementTypeList(
+        childState,
+        count
+      );
+      setPageCount(
+        pageCalculate(result.data.count, count)
+      );
+      setAnnouncement(result.data.items);
+    } catch (error) {
+      console.error("Veri getirme işlemi sırasında hata oluştu:", error);
+    } finally {
+      handleSetLoading((prev: any) => prev - 1);
+      setLoadingPagination(true);
+    }
+  };
 
   useEffect(() => {
-    handleSetLoading((prev: number) => prev + 1);
-    const fetchAnnouncement = async () => {
-      try {
-        const result = await announcementService.getAllAnnouncementTypeList(
-          childState,
-          announcementPageItemCountByPage
-        );
-        setPageCount(
-          pageCalculate(result.data.count, announcementPageItemCountByPage)
-        );
-        setAnnouncement(result.data.items);
-      } catch (error) {
-        console.error("Veri getirme işlemi sırasında hata oluştu:", error);
-      } finally {
-        handleSetLoading((prev: any) => prev - 1);
-        setLoadingPagination(true);
-      }
-    };
-    setTimeout(fetchAnnouncement, 500);
-  }, [childState]);
+    if (!searchbarFocus) {
+      fetchAnnouncement(announcementPageItemCountByPage, announcementPageItemCountByPage);
+    } else {
+      fetchAnnouncement(100, 0);
+    }
+  }, [childState, searchbarFocus]);
+
+  useEffect(() => {
+    console.log(searchbarValue);
+  }, [searchbarValue]);
 
   return (
-    <SearchbarProvider>
+    <>
       <BannerTop
         bannerUrl="https://tobeto.com/_next/static/media/edu-banner3.d7dc50ac.svg"
         bannerText={BannerTexts.announcementBanner}
@@ -97,7 +111,7 @@ const Announcement = (props: Props) => {
           )}
         </Row>
       </Container>
-    </SearchbarProvider>
+    </>
   );
 };
 

@@ -30,6 +30,7 @@ import ChatBot from "../../layouts/ChatBot/ChatBot";
 import Footer from "../../layouts/Footer/Footer";
 import { useAuthContext } from "../../contexts/AuthContext";
 import NotFoundPage from "../../pages/NotFound/NotFound";
+import { SearchbarProvider } from "../../contexts/SearchBarContext";
 
 type Props = {};
 const profileEditUrl = "/profilim/profilimi-duzenle";
@@ -37,8 +38,26 @@ const profileEditUrl = "/profilim/profilimi-duzenle";
 const RouteDefinitions = (props: Props) => {
   const { auth } = useAuthContext();
 
-  const specialPaths = ["/", "/profilim", "/profilim/*", "/degerlendirmeler", "katalog", "takvim", "egitimlerim", "duyurular", "iletisim", "/education-detail*", "/kisisel-bilgilerim", "/deneyimlerim", "/egitimlerim", "/yetkinliklerim", "/sertifikalarim", "/medya-hesaplarim", "/yabanci-dil", "/ayarlar"];
-
+  const specialPaths = [
+    "/",
+    "/profilim",
+    "/profilim/*",
+    "/degerlendirmeler",
+    "katalog",
+    "takvim",
+    "egitimlerim",
+    "duyurular",
+    "iletisim",
+    "/education-detail*",
+    "/kisisel-bilgilerim",
+    "/deneyimlerim",
+    "/egitimlerim",
+    "/yetkinliklerim",
+    "/sertifikalarim",
+    "/medya-hesaplarim",
+    "/yabanci-dil",
+    "/ayarlar",
+  ];
 
   return (
     <LoadingContextProvider>
@@ -66,13 +85,20 @@ const RouteDefinitions = (props: Props) => {
               <Route path="/katalog" element={<Catalog />} />
               <Route path="/takvim" element={<CalendarDetail />} />
               <Route path="/egitimlerim" element={<Education />} />
-              <Route path="/duyurular" element={<Announcement />} />
+              <Route
+                path="/duyurular"
+                element={
+                  <SearchbarProvider>
+                    <Announcement />
+                  </SearchbarProvider>
+                }
+              />
               <Route path="/iletisim" element={<Communication />} />
               <Route
                 path="/education-detail/:id"
                 element={<EducationDetail />}
               />
-              <Route 
+              <Route
                 path={profileEditUrl + "/kisisel-bilgilerim"}
                 element={<ProfileInformationEdit2 />}
               />
@@ -95,24 +121,28 @@ const RouteDefinitions = (props: Props) => {
               <Route
                 path={profileEditUrl + "/medya-hesaplarim"}
                 element={<SocialMediaAccountEdit />}
-              /> /yabanci-dil
+              />{" "}
+              /yabanci-dil
               <Route
                 path={profileEditUrl + "/yabanci-dil"}
                 element={<LanguageEdit />}
               />
-
-              <Route path={profileEditUrl + "/ayarlar"} element={<Settings />} />
+              <Route
+                path={profileEditUrl + "/ayarlar"}
+                element={<Settings />}
+              />
             </>
           )}
-           <Route
+          <Route
             path="/*"
             element={
-              specialPaths.includes(window.location.pathname) 
-                ? <Navigate to="/giris" replace /> 
-                : <NotFoundPage />
+              specialPaths.includes(window.location.pathname) ? (
+                <Navigate to="/giris" replace />
+              ) : (
+                <NotFoundPage />
+              )
             }
           />
-          
         </Routes>
       </div>
       {/* </Container> */}
