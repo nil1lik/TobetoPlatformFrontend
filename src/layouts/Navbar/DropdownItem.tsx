@@ -1,10 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Dropdown } from "react-bootstrap";
+import { GetByIdUser } from "../../models/responses/user/getByIdUser";
+import { useAuthContext } from "../../contexts/AuthContext";
+import userProfileService from "../../services/userProfileService";
 
 type Props = {};
 
 const DropdownItem = (props: Props) => {
   const tobetoUserLogo = process.env.PUBLIC_URL + "/images/tobetouserlogo.png";
+  const [user, setUser] = useState<GetByIdUser>()
+  const { userId} = useAuthContext();
+
+  const fethUserData = async (userId:number) => {
+    const result = await userProfileService.getByUserId(userId)
+    setUser(result.data)
+  }
+
+  useEffect(() => {
+    fethUserData(Number(userId))
+  }, [userId])
+  
+  
   return (
     <div>
       <Dropdown>
@@ -33,7 +49,7 @@ const DropdownItem = (props: Props) => {
                   </span>
                 </div>
                 <div className="me-3">
-                  <p className="mb-0 name">Pair 1</p>
+                  <p className="mb-0 name">{user?.firstName}  {user?.lastName}</p>
                 </div>
                 <span>
                   <svg
