@@ -42,34 +42,37 @@ const Announcement = (props: Props) => {
 
   const fetchAnnouncement = async (count: number, countForPage: number) => {
     try {
-      handleSetLoading((prev: number) => prev + 1);
+      // handleSetLoading((prev: number) => prev + 1);
       const result = await announcementService.getAllAnnouncementTypeList(
         childState,
         count
       );
-      setPageCount(
-        pageCalculate(result.data.count, count)
-      );
+      setPageCount(pageCalculate(result.data.count, count));
       setAnnouncement(result.data.items);
     } catch (error) {
       console.error("Veri getirme işlemi sırasında hata oluştu:", error);
     } finally {
       handleSetLoading((prev: any) => prev - 1);
-      setLoadingPagination(true);
+      // setLoadingPagination(true);
     }
   };
 
   useEffect(() => {
-    if (!searchbarFocus) {
-      fetchAnnouncement(announcementPageItemCountByPage, announcementPageItemCountByPage);
+    if (!searchbarFocus && searchbarValue === "") {
+      fetchAnnouncement(
+        announcementPageItemCountByPage,
+        announcementPageItemCountByPage
+      );
     } else {
       fetchAnnouncement(100, 0);
     }
   }, [childState, searchbarFocus]);
 
-  useEffect(() => {
-    console.log(searchbarValue);
-  }, [searchbarValue]);
+  // useEffect(() => {
+  //   const filteredAnnouncement = announcement.filter((item: any) => {
+  //     item.title.toLowerCase().includes(searchbarValue.toLowerCase());
+  //   })
+  // }, [searchbarValue, announcement]);
 
   return (
     <>
@@ -89,26 +92,57 @@ const Announcement = (props: Props) => {
         />
 
         <Row className="announcement-card-line">
-          {announcement.map((announcement: any) => (
-            <AnnouncementCard
-              announcementType={announcement.announcementTypeName}
-              announcementName={announcement.name}
-              announcementTitle={announcement.title}
-              annoucementDateIcon={announcementIconSrc}
-              announcementDate={announcement.createdDate}
-              announcementDescription={announcement.description}
-              key={announcement.id}
-            />
-          ))}
+          {searchbarValue === ""
+            ? announcement.map((announcement: any) => (
+                <AnnouncementCard
+                  announcementType={announcement.announcementTypeName}
+                  announcementName={announcement.name}
+                  announcementTitle={announcement.title}
+                  annoucementDateIcon={announcementIconSrc}
+                  announcementDate={announcement.createdDate}
+                  announcementDescription={announcement.description}
+                  key={announcement.id}
+                />
+              ))
+            : announcement
+                .filter((item: any) => {
+                  // Tüm alanları filtrele
+                  return (
+                    item.title
+                      .toLowerCase()
+                      .includes(searchbarValue.toLowerCase()) ||
+                    item.name
+                      .toLowerCase()
+                      .includes(searchbarValue.toLowerCase()) ||
+                    item.announcementTypeName
+                      .toLowerCase()
+                      .includes(searchbarValue.toLowerCase()) ||
+                    item.description
+                      .toLowerCase()
+                      .includes(searchbarValue.toLowerCase())
+                    // Diğer alanlar da eklenebilir...
+                  );
+                })
+                .map((filteredAnnouncement: any) => (
+                  <AnnouncementCard
+                    announcementType={filteredAnnouncement.announcementTypeName}
+                    announcementName={filteredAnnouncement.name}
+                    announcementTitle={filteredAnnouncement.title}
+                    annoucementDateIcon={announcementIconSrc}
+                    announcementDate={filteredAnnouncement.createdDate}
+                    announcementDescription={filteredAnnouncement.description}
+                    key={filteredAnnouncement.id}
+                  />
+                ))}
         </Row>
 
         <Row className="pagination">
-          {loadingPagination && (
+          {/* {loadingPagination && ( */}
             <Pagi
               handleChildStateChange={handleChildStateChange}
               pageCount={pageCount}
             />
-          )}
+          {/* )} */}
         </Row>
       </Container>
     </>
