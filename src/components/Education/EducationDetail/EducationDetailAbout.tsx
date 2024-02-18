@@ -2,7 +2,15 @@ import React, { ReactNode } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import "./educationDetailAbout.css";
 import EducationDetailAboutComp from "./EducationDetailAboutComp";
-import { categoryIcon, companyIcon, endDateIcon, estimatedDurationIcon, fileIcon, startDateIcon, timeSpentIcon } from "../../../utilities/Constants/iconsList";
+import {
+  categoryIcon,
+  companyIcon,
+  endDateIcon,
+  estimatedDurationIcon,
+  fileIcon,
+  startDateIcon,
+  timeSpentIcon,
+} from "../../../utilities/Constants/iconsList";
 
 type Props = {
   startDate: string;
@@ -14,58 +22,67 @@ type Props = {
 };
 
 const EducationDetailAbout = (props: Props) => {
+  const colSize = 2;
   return (
     <Container>
       <div className="activity-detail-info">
         <div className="info-section">
           <Row>
             <EducationDetailAboutComp
+              colSize={colSize}
               {...startDateIcon}
-              educationAboutData={props.startDate}
+              educationData={props.startDate}
             />
             <EducationDetailAboutComp
+              colSize={colSize}
               {...endDateIcon}
-              educationAboutData={props.endDate}
+              educationData={props.endDate}
             />
           </Row>
         </div>
         <div className="info-section row">
-        <EducationDetailAboutComp
-              {...timeSpentIcon}
-              educationAboutData={props.timeSpent}
-            />
+          <EducationDetailAboutComp
+            colSize={colSize}
+            {...timeSpentIcon}
+            educationData={props.timeSpent}
+          />
         </div>
         <div className="info-section row">
-        <EducationDetailAboutComp
-              {...estimatedDurationIcon}
-              educationAboutData={props.estimatedDuration}
-            />
+          <EducationDetailAboutComp
+            colSize={colSize}
+            {...estimatedDurationIcon}
+            educationData={props.estimatedDuration}
+          />
         </div>
         <div className="info-section row">
-        <EducationDetailAboutComp
-              {...categoryIcon}
-              educationAboutData={props.category}
-            />
+          <EducationDetailAboutComp
+            colSize={colSize}
+            {...categoryIcon}
+            educationData={props.category}
+          />
         </div>
         <div className="info-section row">
-        <EducationDetailAboutComp
-              {...fileIcon}
-              valueHeader = {"İçerik"}
-              educationAboutData={"1"} //İÇERİK ?
-            />
+          <EducationDetailAboutComp
+            colSize={colSize}
+            {...fileIcon}
+            valueHeader={"İçerik"}
+            educationData={"1"} //İÇERİK ?
+          />
         </div>
         <div className="info-section file row">
-        <EducationDetailAboutComp
-              {...fileIcon}
-              valueHeader={"Video"}
-              educationAboutData={"1"} 
-            />
+          <EducationDetailAboutComp
+            colSize={colSize}
+            {...fileIcon}
+            valueHeader={"Video"}
+            educationData={"1"}
+          />
         </div>
         <div id="last-section" className="info-section row">
-        <EducationDetailAboutComp
-              {...companyIcon}
-              educationAboutData={props.company} 
-            />
+          <EducationDetailAboutComp
+            colSize={colSize}
+            {...companyIcon}
+            educationData={props.company}
+          />
         </div>
       </div>
     </Container>

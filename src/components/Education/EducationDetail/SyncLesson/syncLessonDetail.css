@@ -1,0 +1,40 @@
+.activity-largeImageFileName.no-video {
+  width: auto;
+  height: 165px;
+}
+
+.unit-detail-session-row .session-title {
+  margin-top: 25px;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.ant-collapse-content-box {
+  padding: 0 !important;
+}
+
+.instructors-list {
+  padding: 12.5px 0;
+  font-weight: 600 !important;
+}
+
+.session-record {
+  color: #e02020;
+  margin-left: 23px;
+  margin-top: 10px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.session-archive-title {
+  color: #000;
+  opacity: 0.5;
+  margin-top: 3px;
+  margin-bottom: 2px;
+  margin-left: 23px;
+  font-size: 14px;
+}
+
+.accordion-button .accordion-button-session {
+  font-size: 34px !important;
+}

@@ -4,15 +4,12 @@ import asyncLessonService from "../../../services/asyncLessonService";
 import { GetByIdAsyncLessonResponse } from "../../../models/responses/asyncLesson/getByIdAsyncLessonResponse";
 import ReactPlayer from "react-player";
 import EducationOffcanvas from "../EducationDetail/EducationOffcanvas";
-import { useEducation } from "../../../contexts/EducationContext";
 
 type Props = {
   asyncLessonId?: number;
 };
 
 const LessonVideoDetailCard = (props: Props) => {
-  const { educationData, setEducationData } = useEducation(); //lessonVideoData
-
   const { asyncLessonId } = props;
   const [asyncLesson, setAsyncLessons] = useState<GetByIdAsyncLessonResponse>();
 

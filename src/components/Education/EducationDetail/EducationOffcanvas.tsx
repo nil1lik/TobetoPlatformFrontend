@@ -15,7 +15,7 @@ type Props = {
   educationType?: string;
   timeSpent?: number;
   category: string;
-  language: string; 
+  language: string;
   subcategory: string;
   company: string;
   likeCount: number;
@@ -23,24 +23,24 @@ type Props = {
   button: boolean;
   show: boolean;
   hide: () => void;
-  
 };
 
 const EducationOffcanvas = (props: Props) => {
+  const colSize = 2;
   return (
-    <Offcanvas 
+    <Offcanvas
       show={props.show}
-      onHide={props.hide} 
-      placement="end" 
+      onHide={props.hide}
+      placement="end"
       backdrop={true}
       scroll={true}
     >
       <Offcanvas.Header>
-        <Container> 
-          <i className="sg-icon sg-delete close" onClick={props.hide}/> 
+        <Container>
+          <i className="sg-icon sg-delete close" onClick={props.hide} />
           <Row>
             <Col lg={2}>
-              <div className="image-area"> 
+              <div className="image-area">
                 <img src={props.imageUrl} />
               </div>
             </Col>
@@ -86,26 +86,30 @@ const EducationOffcanvas = (props: Props) => {
         <Container>
           <div className="info-section row">
             <EducationDetailAboutComp
+              colSize={colSize}
               {...categoryIcon}
-              educationAboutData={props.category}
+              educationData={props.category}
             />
           </div>
           <div className="info-section row">
             <EducationDetailAboutComp
+              colSize={colSize}
               {...languageIcon}
-              educationAboutData={props.language}
+              educationData={props.language}
             />
           </div>
           <div className="info-section row">
             <EducationDetailAboutComp
+              colSize={colSize}
               {...subcategoryIcon}
-              educationAboutData={props.subcategory}
+              educationData={props.subcategory}
             />
           </div>
           <div className="info-section row">
             <EducationDetailAboutComp
+              colSize={colSize}
               {...companyIcon}
-              educationAboutData={props.company}
+              educationData={props.company}
             />
           </div>
         </Container>
