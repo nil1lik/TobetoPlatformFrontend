@@ -15,7 +15,10 @@ import {
 import { pageCalculate } from "../../utilities/Helpers/pageCountByItemsCalculator";
 import FilterByCheckbox from "../../components/FilterBar/FilterByCheckbox";
 import { useLoadingContext } from "../../contexts/LoadingContext";
-import { SearchbarProvider } from "../../contexts/SearchBarContext";
+import {
+  SearchbarProvider,
+  useSearchbarContext,
+} from "../../contexts/SearchBarContext";
 
 type Props = {};
 
@@ -34,31 +37,45 @@ const Announcement = (props: Props) => {
   const [announcement, setAnnouncement] = useState<GetAnnouncementTypeItem[]>(
     []
   );
+  const { searchbarValue, searchbarFocus, searchbarBlur } =
+    useSearchbarContext();
+
+  const fetchAnnouncement = async (count: number, countForPage: number) => {
+    try {
+      // handleSetLoading((prev: number) => prev + 1);
+      const result = await announcementService.getAllAnnouncementTypeList(
+        childState,
+        count
+      );
+      setPageCount(pageCalculate(result.data.count, count));
+      setAnnouncement(result.data.items);
+    } catch (error) {
+      console.error("Veri getirme işlemi sırasında hata oluştu:", error);
+    } finally {
+      handleSetLoading((prev: any) => prev - 1);
+      // setLoadingPagination(true);
+    }
+  };
 
   useEffect(() => {
-    handleSetLoading((prev: number) => prev + 1);
-    const fetchAnnouncement = async () => {
-      try {
-        const result = await announcementService.getAllAnnouncementTypeList(
-          childState,
-          announcementPageItemCountByPage
-        );
-        setPageCount(
-          pageCalculate(result.data.count, announcementPageItemCountByPage)
-        );
-        setAnnouncement(result.data.items);
-      } catch (error) {
-        console.error("Veri getirme işlemi sırasında hata oluştu:", error);
-      } finally {
-        handleSetLoading((prev: any) => prev - 1);
-        setLoadingPagination(true);
-      }
-    };
-    setTimeout(fetchAnnouncement, 500);
-  }, [childState]);
+    if (!searchbarFocus && searchbarValue === "") {
+      fetchAnnouncement(
+        announcementPageItemCountByPage,
+        announcementPageItemCountByPage
+      );
+    } else {
+      fetchAnnouncement(100, 0);
+    }
+  }, [childState, searchbarFocus]);
+
+  // useEffect(() => {
+  //   const filteredAnnouncement = announcement.filter((item: any) => {
+  //     item.title.toLowerCase().includes(searchbarValue.toLowerCase());
+  //   })
+  // }, [searchbarValue, announcement]);
 
   return (
-    <SearchbarProvider>
+    <>
       <BannerTop
         bannerUrl="https://tobeto.com/_next/static/media/edu-banner3.d7dc50ac.svg"
         bannerText={BannerTexts.announcementBanner}
@@ -75,29 +92,60 @@ const Announcement = (props: Props) => {
         />
 
         <Row className="announcement-card-line">
-          {announcement.map((announcement: any) => (
-            <AnnouncementCard
-              announcementType={announcement.announcementTypeName}
-              announcementName={announcement.name}
-              announcementTitle={announcement.title}
-              annoucementDateIcon={announcementIconSrc}
-              announcementDate={announcement.createdDate}
-              announcementDescription={announcement.description}
-              key={announcement.id}
-            />
-          ))}
+          {searchbarValue === ""
+            ? announcement.map((announcement: any) => (
+                <AnnouncementCard
+                  announcementType={announcement.announcementTypeName}
+                  announcementName={announcement.name}
+                  announcementTitle={announcement.title}
+                  annoucementDateIcon={announcementIconSrc}
+                  announcementDate={announcement.createdDate}
+                  announcementDescription={announcement.description}
+                  key={announcement.id}
+                />
+              ))
+            : announcement
+                .filter((item: any) => {
+                  // Tüm alanları filtrele
+                  return (
+                    item.title
+                      .toLowerCase()
+                      .includes(searchbarValue.toLowerCase()) ||
+                    item.name
+                      .toLowerCase()
+                      .includes(searchbarValue.toLowerCase()) ||
+                    item.announcementTypeName
+                      .toLowerCase()
+                      .includes(searchbarValue.toLowerCase()) ||
+                    item.description
+                      .toLowerCase()
+                      .includes(searchbarValue.toLowerCase())
+                    // Diğer alanlar da eklenebilir...
+                  );
+                })
+                .map((filteredAnnouncement: any) => (
+                  <AnnouncementCard
+                    announcementType={filteredAnnouncement.announcementTypeName}
+                    announcementName={filteredAnnouncement.name}
+                    announcementTitle={filteredAnnouncement.title}
+                    annoucementDateIcon={announcementIconSrc}
+                    announcementDate={filteredAnnouncement.createdDate}
+                    announcementDescription={filteredAnnouncement.description}
+                    key={filteredAnnouncement.id}
+                  />
+                ))}
         </Row>
 
         <Row className="pagination">
-          {loadingPagination && (
+          {/* {loadingPagination && ( */}
             <Pagi
               handleChildStateChange={handleChildStateChange}
               pageCount={pageCount}
             />
-          )}
+          {/* )} */}
         </Row>
       </Container>
-    </SearchbarProvider>
+    </>
   );
 };
 

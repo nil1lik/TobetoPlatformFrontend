@@ -1,7 +1,7 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Button, Form } from "react-bootstrap";
 import "./searchBar.css";
-import { useSearchbarContext } from "../../contexts/SearchBarContext";   
+import { useSearchbarContext } from "../../contexts/SearchBarContext";
 
 type Props = {
   formClassName?: string;
@@ -12,12 +12,25 @@ type Props = {
 
 const SearchBar = (props: Props) => {
   // const { searchbarValue, setSearchbarValue } = useContext(SearchbarContext);
-  const { handleSearchbarChange } = useSearchbarContext()
+  const {
+    searchbarFocus,
+    searchbarBlur,
+    handleSearchbarChange,
+    toggleFocusAndBlurState,
+  } = useSearchbarContext();
 
   const handleChange = (event: any) => {
     const inputValue = event.target.value;
     handleSearchbarChange(inputValue);
   };
+  useEffect(() => {
+    console.log(
+      "SearchbarFocus: ",
+      searchbarFocus,
+      "SearchbarBlur: ",
+      searchbarBlur
+    );
+  }, [searchbarFocus, searchbarBlur]);
 
   return (
     <div className={props.searchBoxClassName || "search-box"}>
@@ -26,8 +39,14 @@ const SearchBar = (props: Props) => {
         placeholder="Arama"
         className={props.formClassName || "w-100 mr-sm-2"}
         onChange={handleChange}
-        onFocus={() => console.log("search inputa odaklanıldı")}
-        onBlur={() => console.log("search input odaktan çıkarıldı")}
+        onFocus={() => {
+          console.log("search inputa odaklanıldı");
+          toggleFocusAndBlurState();
+        }}
+        onBlur={() => {
+          console.log("search input odaktan çıkarıldı");
+          toggleFocusAndBlurState();
+        }}
       />
       <Button className={props.buttonClassName || "search-btn"}>
         <svg

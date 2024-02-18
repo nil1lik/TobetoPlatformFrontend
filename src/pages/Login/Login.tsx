@@ -7,7 +7,7 @@ import AppForm from "../../components/Login/AppForm";
 import { Form, Formik } from "formik";
 import FormikInput from "../../components/Formik/FormikInput";
 import { UserInformationValidationMessageRule } from "../../utilities/Validations/validationMessageRules";
-import { AuthContext } from "../../contexts/AuthContext";
+import { AuthContext, useAuthContext } from "../../contexts/AuthContext";
 import { userLoginRequest } from "../../models/requests/user/userLoginRequest";
 import { object } from "yup";
 import UserService from "../../services/userService";
@@ -21,23 +21,20 @@ import { useLoadingContext } from "../../contexts/LoadingContext";
 type Props = {};
 
 const Login = (props: Props) => {
+  const {handleSetAuth, handleSetUserId} = useAuthContext();
   const validationSchema = object({
     email: UserInformationValidationMessageRule.email,
     password: UserInformationValidationMessageRule.password,
   });
   const authContext: any = useContext(AuthContext);
   const { handleSetLoading } = useLoadingContext();
+
   const navigate = useNavigate();
 
   const initialValues: userLoginRequest = {
     email: "",
     password: "",
   };
-  useEffect(() => {
-    if (authContext.auth?.isAuthenticated) {
-      navigate("/");
-    }
-  }, [authContext.auth]);
 
   return (
     <Container className="form-cont">
@@ -47,17 +44,15 @@ const Login = (props: Props) => {
             <Formik
               initialValues={initialValues}
               validationSchema={validationSchema}
-              onSubmit={(values) => {
+              onSubmit={(values: any) => {
                 handleSetLoading((prev: any) => prev + 1);
                 const userService = new UserService();
                 userService
                   .loginUser(values)
                   .then((result) => {
-                    authContext.setAuth({
-                      isAuthenticated: true,
-                      token: result.data.accessToken.token,
-                    });
-                    console.log(result.data.accessToken)
+                    handleSetUserId(result.headers.userId);
+                    handleSetAuth(true);
+                    navigate("/");
                     handleSetLoading((prev: any) => prev - 1);
                   })
                   .catch((error) => {
@@ -72,7 +67,7 @@ const Login = (props: Props) => {
                 <Row className="image-control">
                   <Image
                     className="login-form-img"
-                    src="/images/tobeto-logo.png"
+                    src="https://res.cloudinary.com/dcpbbqilg/image/upload/v1707396717/tobeto-logo_t2qnpq.png"
                   />
                 </Row>
                 <Row>

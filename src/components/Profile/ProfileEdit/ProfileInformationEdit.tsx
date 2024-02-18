@@ -15,6 +15,7 @@ import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
 import toastr from "toastr"
 import { ProfileInformationEditTexts, ProfileInformationEditToastrMsg, saveButtonText } from "../../../utilities/Constants/constantValues";
+import { useAuthContext } from "../../../contexts/AuthContext";
 
 const validationSchema = object({
   firstName: UserInformationValidationMessageRule.firstName,
@@ -35,6 +36,7 @@ const ProfileInformationEdit2 = (props: Props) => {
   const [districts, setDistricts] = useState<any[]>([]);
   const [profileData, setProfileData] = useState<GetByIdUser>();
   const [value, setValue] = useState<any>();
+  const { userId } = useAuthContext();
 
   const getUser = async (userId: number) => {
     try {
@@ -65,8 +67,8 @@ const ProfileInformationEdit2 = (props: Props) => {
 
   useEffect(() => {
     fetchCities();
-    getUser(1);
-  }, []);
+    getUser(Number(userId));
+  }, [userId]);
 
   const handleSubmit= ()=>{
     toastr.success(ProfileInformationEditToastrMsg.profileInformationsUpdateSuccess);

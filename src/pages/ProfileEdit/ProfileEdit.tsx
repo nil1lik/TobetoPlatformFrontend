@@ -46,9 +46,7 @@ const ProfileEdit = (props: Props) => {
         return "İçerik bulunamadı."
     }
   };
-
-
-
+  
   return (
     <div>
       <Container>

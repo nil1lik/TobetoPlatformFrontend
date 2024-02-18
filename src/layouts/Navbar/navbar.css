@@ -222,11 +222,13 @@
 .dropdown-menu.dropdown-menu-navbar[data-bs-popper] {
   top: 100%;
   left: 0;
+  
 }
 
 .dropdown-item.profil-dropdown-navbar{
   font-size: 14px;
   color: #fbf9fc !important;
+  margin: 0.5rem 0 0.5rem 0 !important;
 }
 
 .dropdown-item.profil-dropdown-navbar:hover {
