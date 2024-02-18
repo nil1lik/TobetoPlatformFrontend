@@ -20,6 +20,7 @@ import { GetAsyncLessonsByCourseIdItem } from "../../../models/responses/course/
 import FormattedDate from "../../../utilities/Helpers/FormattedDate";
 import LessonVideoDetailCard from "../LessonVideoDetail/LessonVideoDetailCard";
 import educationService from "../../../services/educationService";
+import SyncLessonDetail from "./SyncLesson/SyncLessonDetail";
 
 type Props = {
   educationDetailId?: number;
@@ -140,7 +141,8 @@ const EducationDetailContent = (props: Props) => {
 
           <Col>
             <Row>
-              <LessonVideoDetailCard asyncLessonId={selectedAsyncLessonId}/>
+              {/* <LessonVideoDetailCard asyncLessonId={selectedAsyncLessonId}/> */}
+              <SyncLessonDetail></SyncLessonDetail>
             </Row>
           </Col>
         </Row>

@@ -47,5 +47,17 @@ export const languageIcon = {
 export const subcategoryIcon = {
   className: "sg-icon sg-subcategory",
   image: "/images/pixels.png",
-  valueHeader: "Alt Tip",
+  valueHeader: "Alt Tip"
 };
+
+export const userIcon = {
+  className: "sg-icon sg-user",
+  image: "/images/user.svg",
+  valueHeader: "Eğitmen"
+}
+
+export const cameraIcon = {
+  className: "sg-icon sg-camera",
+  image: "/images/camera.svg",
+  valueHeader: "Oturum Kayıtları"
+}
