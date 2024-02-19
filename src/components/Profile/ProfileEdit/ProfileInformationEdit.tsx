@@ -76,10 +76,18 @@ const ProfileInformationEdit2 = (props: Props) => {
   }
 
   const initialValues: ProfileDto = {
-    id: 0,
+    id: Number(userId),
     firstname: "",
     lastname: "",
+    phone:"",
+    birthdate: new Date(),
+    nationalIdentity : "",
     email: "",
+    city:"",
+    country:"",
+    district:"",
+    addressDetail:"",
+    aboutMe:"",
     status: false,
   };
 
@@ -106,7 +114,9 @@ const ProfileInformationEdit2 = (props: Props) => {
                   type="text"
                   name="firstName"
                   label={ProfileInformationEditTexts.label1}
-                  placeHolder={profileData?.firstName || ProfileInformationEditTexts.placeholder1}
+                  value={profileData?.firstName || ProfileInformationEditTexts.placeholder1}
+                  placeHolder={ ProfileInformationEditTexts.placeholder1}
+                  disabled={true}
                 />
               </Col>
               <Col>
@@ -114,7 +124,9 @@ const ProfileInformationEdit2 = (props: Props) => {
                   type="text"
                   name="lastName"
                   label={ProfileInformationEditTexts.label2}
-                  placeHolder={profileData?.lastName || ProfileInformationEditTexts.placeholder2}
+                  value={profileData?.lastName || ProfileInformationEditTexts.placeholder2}
+                  placeHolder={ProfileInformationEditTexts.placeholder2}
+                  disabled={true}
                 />
               </Col>
             </Row>
@@ -127,7 +139,8 @@ const ProfileInformationEdit2 = (props: Props) => {
                     </label>
                     <PhoneInput
                       international
-                      defaultCountry="RU"
+                      defaultCountry="TR"
+                      name="phone"
                       value={value}
                       onChange={setValue}
                       className="my-custom-input"
@@ -158,7 +171,9 @@ const ProfileInformationEdit2 = (props: Props) => {
                   type="email"
                   name="email"
                   label={ProfileInformationEditTexts.label6}
+                  value={profileData?.email || ProfileInformationEditTexts.placeholder6}
                   placeHolder={profileData?.email || ProfileInformationEditTexts.placeholder6}
+                  disabled={true}
                 />
               </Col>
             </Row>
@@ -201,7 +216,7 @@ const ProfileInformationEdit2 = (props: Props) => {
                   rows="10"
                   as="textarea"
                   id="street"
-                  name="street"
+                  name="addressDetail"
                   maxLength={textAreaLength}
                 ></Field>
               </Col>

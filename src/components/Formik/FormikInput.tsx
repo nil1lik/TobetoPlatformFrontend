@@ -9,6 +9,7 @@ type Props = {
   value?: string;
   maxLength?: number;
   className?: string;
+  disabled?:boolean
 };
 
 const FormikInput = (props: Props) => {
@@ -24,6 +25,7 @@ const FormikInput = (props: Props) => {
         placeholder={props.placeHolder}
         value={props.value}
         maxLength={props.maxLength}
+        disabled={props.disabled}
       />
       <ErrorMessage name={props.name}>
         {(message) => <span className="text-danger">{message}</span>}
