@@ -11,14 +11,14 @@ type Props = {
 };
 
 const TobetoPlatformItem = (props: Props) => {
-  const logoSrc = process.env.PUBLIC_URL + `/images/${props.imageSrc}`;
+  // const logoSrc = process.env.PUBLIC_URL + `/images/${props.imageSrc}`;
 
   return (
     <div className="tobeto-platform-border">
       <Card className="platform-item-cont ">
         {
           props.imageSrc && props.imageClass
-            ? <Card.Img className={props.imageClass} src={logoSrc} />
+            ? <Card.Img className={props.imageClass} src={props.imageSrc} />
             : null
         }
         <Card.Body>

@@ -3,7 +3,7 @@ import { Button, Container, Image, Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 type Props = {};
-const logoSrc = process.env.PUBLIC_URL + "/images/Tebeto-logo-yatay-beyaz.png";
+const logoSrc = "https://res.cloudinary.com/dcpbbqilg/image/upload/v1707396719/tobetologobeyaz_agwzmp.png";
 
 const divStyle = {};
 

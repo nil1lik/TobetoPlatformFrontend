@@ -59,7 +59,7 @@ const Platform = (props: Props) => {
               <Row className="content-cont">
                 <TobetoPlatformItem
                   imageClass="ist-kod-png"
-                  imageSrc="istanbulKodluyor.png"
+                  imageSrc="https://res.cloudinary.com/dcpbbqilg/image/upload/v1708374026/ik-logo-dark.7938c0de_zysog4.svg"
                   text={platformTabTexts.imgSubtitle}
                 />
                 <label className="header-text-quot mb-4">

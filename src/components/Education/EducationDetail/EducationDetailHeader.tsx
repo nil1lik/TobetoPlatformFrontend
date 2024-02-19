@@ -33,7 +33,7 @@ const EducationDetailHeader = (props: Props) => {
                         </div>
                         <img
                           className="question-circle"
-                          src="/images/circle-question.svg"
+                          src="https://res.cloudinary.com/dcpbbqilg/image/upload/v1708375563/svg_xml_base64_PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjY0IDY0IDg5NiA4OTYiIGZvY3VzYWJsZT0iZmFsc2UiIGNsYXNzPSIiIGRhdGEtaWNvbj0icXVlc3Rpb24tY2lyY2xlIiB3aWR0aD0iMWVtIiBoZWlnaHQ9IjFlbSIgZmlsbD0i_febtsd.svg"
                         />
                       </label>
                     </div>
@@ -54,7 +54,7 @@ const EducationDetailHeader = (props: Props) => {
                               <div className="sub-content">
                                 <img
                                   className="like-img"
-                                  src="/images/heart.svg"
+                                  src="https://res.cloudinary.com/dcpbbqilg/image/upload/v1708375112/svg_xml_base64_PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGlkPSJoZWFydC1zdmciIHZpZXdCb3g9IjQ2NyAzOTIgNTggNTciPjxnIGlkPSJHcm91cCIgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg0Njcg_ho40md.svg"
                                 />
                               </div>
                             </div>
@@ -70,7 +70,7 @@ const EducationDetailHeader = (props: Props) => {
                         <img
                           className="add-favorite"
                           src={
-                            process.env.PUBLIC_URL + "/images/add-favorite.svg"
+                            "https://res.cloudinary.com/dcpbbqilg/image/upload/v1708375480/add-favorite_qtxzft.svg"
                           }
                         />
                       </div>

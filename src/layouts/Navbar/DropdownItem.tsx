@@ -7,7 +7,7 @@ import userProfileService from "../../services/userProfileService";
 type Props = {};
 
 const DropdownItem = (props: Props) => {
-  const tobetoUserLogo = process.env.PUBLIC_URL + "/images/tobetouserlogo.png";
+  const tobetoUserLogo = process.env.PUBLIC_URL + "https://res.cloudinary.com/dcpbbqilg/image/upload/v1707396717/tobeto-logo_t2qnpq.png";
   const [user, setUser] = useState<GetByIdUser>()
   const { userId} = useAuthContext();
 
@@ -37,7 +37,7 @@ const DropdownItem = (props: Props) => {
                       <img
                         alt=""
                         aria-hidden="true"
-                        src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2736%27%20height=%2736%27/%3e"
+                        src="https://res.cloudinary.com/dcpbbqilg/image/upload/v1708374477/tobetouserlogo_aekd7i.png"
                         className="dropdown-pp-img"
                       ></img>
                     </span>

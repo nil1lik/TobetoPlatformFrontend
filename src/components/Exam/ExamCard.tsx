@@ -22,7 +22,7 @@ const ExamCard = (props: Props) => {
           <Card.Title>{props.name} Değerlendirme Sınavı</Card.Title>
           <Card.Img
             className="status-done"
-            src={process.env.PUBLIC_URL + "/images/status-done.svg"}
+            src={"https://res.cloudinary.com/dcpbbqilg/image/upload/v1708374726/status-done_mbjzjv.svg"}
           />
           <Card.Subtitle className="mb-2 text-muted">
             {props.name}
@@ -30,7 +30,7 @@ const ExamCard = (props: Props) => {
           <div className="exam-icon-text">
             <Card.Img
               className="exam-time"
-              src={process.env.PUBLIC_URL + "/images/examTime.svg"}
+              src={"https://res.cloudinary.com/dcpbbqilg/image/upload/v1708374721/examTime_pi0n6z.svg"}
             />
             <Card.Text className="exam-time-text">{props.duration}</Card.Text>
           </div> 

@@ -58,7 +58,7 @@ function Register(props: Props) {
           >
             <Form className={"login-form-cont"}>
               <Row className="image-control">
-                <Image className="login-form-img" src="/images/tobeto-logo.png"/>
+                <Image className="login-form-img" src="https://res.cloudinary.com/dcpbbqilg/image/upload/v1707396717/tobeto-logo_t2qnpq.png"/>
               </Row>
               <Row>
                 <FormikInput
