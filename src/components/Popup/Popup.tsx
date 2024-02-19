@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { Modal } from "react-bootstrap";
+import ExamResultPopup from "./ExamResultPopup";
 
 type Props = {
   key: string | number;
@@ -8,31 +9,57 @@ type Props = {
   button?: boolean;
   duration?: string;
   show: boolean;
-  hide: () => void
+  hide: () => void;
 };
 
 const Popup = (props: Props) => {
-
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   return (
-    <Modal size="lg" show={props.show} onHide={props.hide} centered >
-      <Modal.Header closeButton>
-        <Modal.Title key={props.key} style={{ fontWeight: "600" }}>{props.title}</Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-        {`${props.description}`.split("\n").map((line, index) => (
-          <>
-            <p key={index} className="modal-text">
-              {line}
-            </p>
+    <>
+      <Modal size="lg" show={props.show} onHide={props.hide} centered>
+        <Modal.Header closeButton>
+          <Modal.Title key={props.key} style={{ fontWeight: "600" }}>
+            {props.title}
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {`${props.description}`.split("\n").map((line, index) => (
+            <>
+              <p key={index} className="modal-text">
+                {line}
+              </p>
+              <p>
+                <br />
+              </p>
+            </>
+          ))}
+          {props.duration && (
             <p>
-              <br />
+              <strong>Sınav süresi : </strong>
+              {props.duration}
             </p>
-            {props.duration && <p>{props.duration}</p>}
-          </>
-        ))}
-        {props.button && <button className="btnCard">Raporu Görüntüle</button>}
-      </Modal.Body>
-    </Modal>
+          )}
+          {props.button && (
+            <button className="btnCard" onClick={handleShow}>
+              Sınava Başla
+            </button>
+          )}
+        </Modal.Body>
+      </Modal>
+      <ExamResultPopup
+        correct={10}
+        wrong={0}
+        empty={0}
+        point={100}
+        duration={props.duration}
+        button={true}
+        buttonNo={true}
+        show={show}
+        hide={handleClose}
+      />
+    </>
   );
 };
 

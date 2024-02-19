@@ -9,16 +9,6 @@ const divStyle = {};
 
 const Footer = (props: Props) => {
   return (
-    // <Menu pointing secondary size="huge" style={{ ...divStyle, backgroundColor:  }}>
-    //   <Container>
-    //     <Menu.Item>
-    //       <Image src={logoSrc} size="tiny" />
-    //     </Menu.Item>
-    //     <Menu.Item position="right">
-    //       <Button className="button">Bize Ulaşın</Button>
-    //     </Menu.Item>
-    //   </Container>
-    // </Menu>
     <div className="footer-style mt-3">
       <Container className="col-12 col-md-10">
         <div className="d-flex justify-content-between align-items-center">
@@ -29,7 +19,7 @@ const Footer = (props: Props) => {
             className="d-inline-block align-top"
             alt="React Bootstrap logo"
           />
-          <Link to="/iletişim">
+          <Link to="/iletisim">
             <Button className="footer-button">Bize Ulaşın</Button>
           </Link>
         </div>

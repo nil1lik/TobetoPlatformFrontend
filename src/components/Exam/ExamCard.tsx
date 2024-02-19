@@ -19,13 +19,13 @@ const ExamCard = (props: Props) => {
     <>
       <Card className="card-transition" onClick={handleShow}>
         <Card.Body key={props.id} className="exam-card card-title h5">
-          <Card.Title>{props.name}</Card.Title>
+          <Card.Title>{props.name} Değerlendirme Sınavı</Card.Title>
           <Card.Img
             className="status-done"
             src={process.env.PUBLIC_URL + "/images/status-done.svg"}
           />
           <Card.Subtitle className="mb-2 text-muted">
-            {props.description}
+            {props.name}
           </Card.Subtitle>
           <div className="exam-icon-text">
             <Card.Img
