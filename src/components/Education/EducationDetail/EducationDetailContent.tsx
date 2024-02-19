@@ -119,7 +119,7 @@ const EducationDetailContent = (props: Props) => {
                           onClick={() => handleSubtitleClick(lesson.id)}
                         >
                           <div key={lessonIndex}>
-                            {lesson.id}
+                            {lesson.id} 
                             {lesson.name}
                             <AccordionBody className="education-type">
                               {lesson.lessonType} -{" "}
@@ -141,8 +141,8 @@ const EducationDetailContent = (props: Props) => {
 
           <Col>
             <Row>
-              {/* <LessonVideoDetailCard asyncLessonId={selectedAsyncLessonId}/> */}
-              <SyncLessonDetail></SyncLessonDetail>
+              <LessonVideoDetailCard asyncLessonId={selectedAsyncLessonId}/>
+              {/* <SyncLessonDetail></SyncLessonDetail> */}
             </Row>
           </Col>
         </Row>

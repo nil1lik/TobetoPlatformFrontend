@@ -16,18 +16,20 @@ const LessonVideoDetailCard = (props: Props) => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  
+   
   const fetchAsyncLesson = async () => {
     try {
       if (asyncLessonId !== undefined) {
-        const result = await asyncLessonService.getById(asyncLessonId);
+        // const result = await asyncLessonService.getById(asyncLessonId); 
+        const result = await asyncLessonService.getByIdAsyncLessonDetail(asyncLessonId); 
         setAsyncLessons(result.data);
-        console.log(result.data);
+        console.log("asyncLessonlar :" + result.data);
+
       }
     } catch (error) {
       console.error("API isteği sırasında bir hata oluştu:", error);
     }
-  };
+  }; 
 
   useEffect(() => {
     fetchAsyncLesson();
@@ -61,7 +63,7 @@ const LessonVideoDetailCard = (props: Props) => {
                   {asyncLesson?.lessonTypeName} - {asyncLesson?.time}
                 </div>
                 <div className="unit-detail-col unit-detail-col-score text-green">
-                  {/* {props.point} PUAN */} 100 PUAN
+                  {asyncLesson?.videoPoint} PUAN
                 </div>
                 <div className="unit-detail-col unit-detail-col-status last-child text-green">
                   <i className="ss-icon ss-like" />
@@ -80,14 +82,14 @@ const LessonVideoDetailCard = (props: Props) => {
                         <EducationOffcanvas
                           imageUrl="https://lms.tobeto.com/tobjEKnwKDQVcjzXYj%2bUxp8rPm9JXZ"
                           educationName={asyncLesson?.name}
-                          educationType= "lessonType"
+                          educationType= {asyncLesson?.lessonTypeName}
                           timeSpent={asyncLesson?.time}
-                          category="{props.educationCategory}"
-                          language="{props.educationLanguage}"
-                          company="{props.educationCompany}"
+                          category={asyncLesson?.videoDetailCategoryName}
+                          language={asyncLesson?.languageName}
+                          company={asyncLesson?.companyName}
                           subcategory="educationSubcategory"
                           likeCount= {100}
-                          point={100}
+                          point={asyncLesson?.videoPoint}
                           button={true}
                           show={show}
                           hide={handleClose}

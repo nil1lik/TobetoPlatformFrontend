@@ -3,6 +3,11 @@ export interface GetByIdAsyncLessonResponse {
   name: string;
   lessonTypeName: string;
   time: number;
-  videoUrl:string;
+  videoUrl: string;
+  languageName: string;
+  companyName: string;
+  subcategoryName: string;
+  videoDetailCategoryName: string;
+  videoPoint: number;
 }
 

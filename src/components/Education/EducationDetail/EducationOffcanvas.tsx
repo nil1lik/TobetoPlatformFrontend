@@ -14,12 +14,12 @@ type Props = {
   educationName?: string;
   educationType?: string;
   timeSpent?: number;
-  category: string;
-  language: string;
+  category?: string;
+  language?: string;
   subcategory: string;
-  company: string;
+  company?: string;
   likeCount: number;
-  point: number;
+  point?: number;
   button: boolean;
   show: boolean;
   hide: () => void;

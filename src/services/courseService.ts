@@ -28,7 +28,7 @@ class CourseService extends BaseService<
     getAsyncLessonsByCourseId(id:number): Promise<AxiosResponse<GetAsyncLessonsByCourseIdResponse, any>>{
         return axios.get<GetAsyncLessonsByCourseIdResponse>(
             this.apiUrl + "/getAsyncLesson/" + id
-        );
+        ); 
     }
 }
 
