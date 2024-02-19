@@ -11,6 +11,7 @@ import { GraduationDegreeValues } from "../../../utilities/Constants/GraduationD
 import ControlPopup from "../../Popup/ControlPopup";
 import FormattedDate from "../../../utilities/Helpers/FormattedDate";
 import { shiftDate } from "../../../utilities/Helpers/heatMap";
+import { AddGraduationRequest } from "../../../models/requests/graduation/addGraduationRequest";
 
 type Props = {};
 
@@ -18,6 +19,7 @@ const GraduationEdit = (props: Props) => {
   const [selectedStartDate, setSelectedStartDate] = useState<Date | null >(new Date());
   const [isEndDateDisabled, setIsEndDateDisabled] = useState<boolean>(true);
   const [graduation, setGraduation] = useState<GetGraduationItem[]>([]);
+  const [postGraduation, setPostGraduation] = useState<any>();
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -40,7 +42,10 @@ const GraduationEdit = (props: Props) => {
     getGraduation()
   }, []);
 
-  const handleGraduationSubmit= ()=>{
+  const handleGraduationSubmit = async (values:AddGraduationRequest)=>{
+    const result = await graduationService.add(values);
+    console.log(result)
+    setPostGraduation(result.data);
     toastr.success("Eğitim bilgisi eklendi")
   }
   

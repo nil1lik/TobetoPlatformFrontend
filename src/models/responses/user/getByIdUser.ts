@@ -3,5 +3,5 @@ export interface GetByIdUser {
     firstName: "",
     lastName: "",
     email: "",
-    password: ""
+    password: "",
 }

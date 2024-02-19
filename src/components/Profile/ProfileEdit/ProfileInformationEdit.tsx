@@ -40,7 +40,8 @@ const ProfileInformationEdit2 = (props: Props) => {
 
   const getUser = async (userId: number) => {
     try {
-      const result = await userProfileService.getById(userId);
+      const result = await userProfileService.getByUserId(userId);
+      console.log(result.data)
       setProfileData(result.data);
     } catch (error) {
       console.log("Id ile kullanıcı alınırken hata oluştu.", error);

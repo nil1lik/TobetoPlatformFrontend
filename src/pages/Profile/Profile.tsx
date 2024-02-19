@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button, Card, Col, Container, Image, Row } from 'react-bootstrap'
 import ProfilePreInfoBox from '../../components/Profile/ProfileLeft/ProfilePreInfoBox/ProfilePreInfoBox'
 import './profile.css'
@@ -12,11 +12,27 @@ import ProfileBadge from '../../components/Profile/ProfileRight/ProfileBadge'
 import ProfileExam from '../../components/Profile/ProfileRight/ProfileExam'
 import ProfileEducationMap from '../../components/Profile/ProfileRight/ProfileEducationMap'
 import ProfileHeatMap from '../../components/Profile/ProfileRight/ProfileHeatMap'
+import { useAuthContext } from '../../contexts/AuthContext'
+import userProfileService from '../../services/userProfileService'
+import { GetByIdUser } from '../../models/responses/user/getByIdUser'
 
 type Props = {
 }
 
 const Profile = (props: Props) => {
+
+  const [user, setUser] = useState<GetByIdUser>()
+  const { userId} = useAuthContext();
+
+  const fethUserData = async (userId:number) => {
+    const result = await userProfileService.getByUserId(userId)
+    setUser(result.data)
+  }
+
+  useEffect(() => {
+    fethUserData(Number(userId))
+  }, [userId])
+
   const png = process.env.PUBLIC_URL + `/images/png.png`;
 
   return (
