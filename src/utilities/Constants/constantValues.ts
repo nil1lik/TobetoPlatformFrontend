@@ -275,3 +275,5 @@ export const ProfileLanguageToastrMsg = {
 export const ProfileInformationEditToastrMsg = {
     profileInformationsUpdateSuccess: "Bilgileriniz Başarıyla Güncellendi"
 }
+
+export const RegisterSuccessToastrMsg = "Kaydınız başarıyla gerçekleşti"

@@ -10,8 +10,9 @@ import { userRegisterRequest } from "../../models/requests/user/userRegisterRequ
 import { passwordMaxLength } from "../../utilities/Validations/validationMessages";
 import { UserInformationValidationMessageRule } from "../../utilities/Validations/validationMessageRules";
 import UserService from "../../services/userService";
-import { RegisterBoxBottomText, loginButtonText, registerButtonText } from "../../utilities/Constants/constantValues";
+import { RegisterBoxBottomText,  RegisterSuccessToastrMsg, loginButtonText, registerButtonText } from "../../utilities/Constants/constantValues";
 import { Link } from "react-router-dom";
+import toastr from "toastr";
 
 type Props = {  formClassName?: string};
 
@@ -28,7 +29,7 @@ function Register(props: Props) {
     lastName: UserInformationValidationMessageRule.lastName,
     email: UserInformationValidationMessageRule.email,
     newPass: UserInformationValidationMessageRule.password,
-    confirmPass: UserInformationValidationMessageRule.confirmPass
+    password: UserInformationValidationMessageRule.confirmPass
   });
 
   return (
@@ -43,8 +44,9 @@ function Register(props: Props) {
               userService
                 .addUser(values)
                 .then((result) => {
-                  // console.log("Kullanıcı başarıyla kaydedildi:", result.data);
+                  console.log("Kullanıcı başarıyla kaydedildi:", result.data);
                   localStorage.setItem("token", result.data.token);
+                  toastr.success(RegisterSuccessToastrMsg)
                 })
                 .catch((error) => {
                   console.error(
@@ -86,7 +88,7 @@ function Register(props: Props) {
                 />
                 <FormikInput
                   type="password"
-                  name="confirmPass"
+                  name="password"
                   label=""
                   placeHolder="Şifre Tekrar*"
                   maxLength={passwordMaxLength}

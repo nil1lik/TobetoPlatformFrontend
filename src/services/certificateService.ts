@@ -22,3 +22,5 @@ class CertificateService extends BaseService<
 
     getByFilter(){}
 }
+
+export default new CertificateService();
