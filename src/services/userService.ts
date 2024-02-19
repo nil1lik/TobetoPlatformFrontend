@@ -6,7 +6,7 @@ import axiosInstance from "../core/interceptors/axiosInterceptors";
 
 export default class UserService {
   addUser(userData: userRegisterRequest) {
-    return axiosInstance.post(BASE_API_URL + "Auth/Register", userData);
+    return axios.post(BASE_API_URL + "Auth/Register", userData);
   }
 
   loginUser(userData: userLoginRequest) {
