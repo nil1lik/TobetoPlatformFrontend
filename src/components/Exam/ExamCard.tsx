@@ -43,6 +43,7 @@ const ExamCard = (props: Props) => {
         duration={props.duration}
         button={true}
         show={show}
+        isCompleted={true}
         hide={handleClose} 
       />
     </>

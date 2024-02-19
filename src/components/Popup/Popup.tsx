@@ -8,6 +8,7 @@ type Props = {
   description: string;
   button?: boolean;
   duration?: string;
+  isCompleted?: boolean;
   show: boolean;
   hide: () => void;
 };
@@ -41,11 +42,16 @@ const Popup = (props: Props) => {
               {props.duration}
             </p>
           )}
-          {props.button && (
-            <button className="btnCard" onClick={handleShow}>
-              Sınava Başla
-            </button>
-          )}
+          {props.button &&
+            (props.isCompleted == false ? (
+              <button className="btnCard">
+                Sınava Başla
+              </button>
+            ) : (
+              <button className="btnCard" onClick={handleShow}>
+                Raporu Görüntüle
+              </button>
+            ))}
         </Modal.Body>
       </Modal>
       <ExamResultPopup

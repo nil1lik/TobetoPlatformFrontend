@@ -29,6 +29,7 @@ const ExamLink = (props: Props) => {
         duration={props.duration}
         button={true}
         show={show}
+        isCompleted={false}
         hide={handleClose}
       />
     </div>
