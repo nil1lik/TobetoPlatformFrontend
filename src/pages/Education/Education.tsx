@@ -37,7 +37,7 @@ const Education = (props: Props) => {
     const fetchEducation = async () => {
       try {
         const result = await educationService.getAll(
-          childState,
+          childState, 
           educationPageItemCountByPageMax
         );
         setPageCount(
@@ -82,7 +82,7 @@ const Education = (props: Props) => {
             <EducationCard
               key={education.id}
               id={education.id}
-              image={education.imageUrl}
+              image={education.imageUrl} 
               text={education.name}
               date={<FormattedDate date={education.createdDate} />}
             />
