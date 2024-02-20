@@ -74,6 +74,7 @@
   background-image: url(/public//images/tbtlogo-gradient.7979f966.svg);
   width: 24px;
   height: 24px;
+  margin-top: 1.5rem;
 }
 
 .notification:after, .tbt-gradient:after {
@@ -91,17 +92,15 @@
 }
 
 .btn-group, .btn-group-vertical {
-  position: relative;
   display: inline-flex;
   vertical-align: middle;
+  flex-direction: column;
 }
 
 .header-avatar {
-  /* background: #f8f9fa; */
   border-radius: 35px;
-  padding: 7px 10px;
-  display: inline-flex;
-  align-items: center;
+  padding: 7px;
+  width: auto;
 }
 
 /*Dropdown Button*/
@@ -153,36 +152,18 @@
   padding: 0px;
 }
 
-.dropdown-pp{
+.dropdown-pp-2{
   box-sizing: border-box;
   display: inline-block;
   overflow: hidden;
-  width: initial;
-  height: initial;
   background: none;
   opacity: 1;
-  border: 0px;
-  margin: 8px 0px 0px 0px;
-  padding: 0px;
+  margin-top: 8px;
   position: relative;
   max-width: 100%;
 }
 
-.dropdown-pp-2{
-  box-sizing: border-box;
-  display: block;
-  width: initial;
-  height: initial;
-  background: none;
-  opacity: 1;
-  border: 0px;
-  margin: 0px;
-  padding: 0px;
-  max-width: 100%;
-}
-
 .dropdown-pp-img{
-  display: block;
   max-width: 100%;
   width: initial;
   height: initial;
@@ -191,38 +172,28 @@
   border: 0px;
   margin: 0px;
   padding: 0px;
+  width: 2.5rem;
 }
 
-.dropdown-pp-img-2{
-  position: absolute;
-  inset: 0px;
-  box-sizing: border-box;
-  padding: 0px;
-  border: none;
-  margin: auto;
-  display: block;
-  width: 0px;
-  height: 0px;
-  min-width: 100%;
-  max-width: 100%;
-  min-height: 100%;
-  max-height: 100%;
-}
 .rounded-circle {
   border-radius: 50% !important;
 }
 /*Dropdown liste*/
+.navbar-nav.dropdown-menu{
+  position: none !important;
+}
+
+.dropdown-menu[data-bs-popper] {
+  top: 90% !important;
+  left: 0;
+  margin-top: var(--bs-dropdown-spacer);
+}
+
 .dropdown-menu.dropdown-menu-navbar.show{
   background-color: #93f !important;
   border-width: 1px;
   border-color: #fff;
   width: 100%;
-}
-
-.dropdown-menu.dropdown-menu-navbar[data-bs-popper] {
-  top: 100%;
-  left: 0;
-  
 }
 
 .dropdown-item.profil-dropdown-navbar{

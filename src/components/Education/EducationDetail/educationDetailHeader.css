@@ -73,7 +73,6 @@
   font-size: 16px;
   font-weight: 600;
   text-align: center;
-  margin-right: 12px;
   border-radius: 5px;
 }
 
@@ -86,9 +85,8 @@
 }
 
 .like-header {
-  display: inline-block;
   vertical-align: bottom !important;
-  height: 31px !important;
+  /* height: 31px !important; */
 }
 
 .like-area {
@@ -132,17 +130,9 @@
   width: 68px;
 }
 
-.like-text {
-  font-size: 30px;
-  z-index: 1;
-  transform: translate(0.2em, -0.15ex);
-  margin-right: 17px;
-  line-height: 1.2;
-}
+
 
 .activity-favorite {
-  width: 35px;
-  height: 35px;
   display: inline-block;
   vertical-align: middle;
   cursor: pointer;
@@ -181,3 +171,24 @@
   width: 100%;
 }
 
+.sub-content svg{
+  width: 80px;
+  height: 80px;
+}
+
+.like-area svg path{
+  fill: #ff4757;
+}
+
+.like-text {
+  font-size: 27px;
+  z-index: 1;
+  transform: translate(0.2em, -0.15ex);
+  margin-right: 15px;
+  
+}
+
+/*Like Button*/
+.like-area .like-text span {
+  color: #ff4757 !important;
+}

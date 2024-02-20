@@ -50,10 +50,8 @@
 }
 
 .like span {
-  margin-top: 9px;
-  margin-right: 8px !important;
-  margin-bottom: 0;
-  margin-left: -5px;
+  padding-top: 5px;
+  font-size: 30px;
 }
 
 .course-detail-info {
@@ -87,6 +85,7 @@
 .education-like-area {
   display: flex;
   cursor: pointer;
+  align-items: center;
 }
 
 .course-drawer-status {
@@ -145,4 +144,8 @@
 
 .sg-pixels:before {
   content: '\E2A1';
+}
+
+.education-like-area svg path{
+  fill: #ff4757;
 }
