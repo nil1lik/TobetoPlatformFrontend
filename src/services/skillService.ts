@@ -8,6 +8,9 @@ import { UpdateSkillRequest } from "../models/requests/skill/updateSkillRequest"
 import { GetByIdSkillResponse } from "../models/responses/skill/getByIdSkillResponse";
 import { AddSkillResponse } from "../models/responses/skill/addSkillResponse";
 import { UpdateSkillResponse } from "../models/responses/skill/updateSkillResponse";
+import axios, { AxiosResponse } from "axios";
+import { AddProfileSkillRequest } from "../models/requests/skill/addProfileSkillRequest";
+import { AddProfileSkillResponse } from "../models/responses/skill/addProfileSkillResponse";
 
 class SkillService extends BaseService<
   GetSkill,
@@ -27,6 +30,10 @@ class SkillService extends BaseService<
   getByFilter(pageIndex: number = 0, pageSize: number = 25) {
     return this.getAll(pageIndex, pageSize); 
   }
+
+  addProfilSkill(request: AddProfileSkillRequest): Promise<AxiosResponse<AddProfileSkillResponse, any>> {
+		return axios.post<AddProfileSkillResponse>(this.profileSkill, request);
+	}
 }
 
 export default new SkillService();

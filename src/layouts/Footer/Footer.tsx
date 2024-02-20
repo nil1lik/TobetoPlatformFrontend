@@ -1,6 +1,7 @@
 import React from "react";
 import { Button, Container, Image, Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { useAuthContext } from "../../contexts/AuthContext";
 
 type Props = {};
 const logoSrc = "https://res.cloudinary.com/dcpbbqilg/image/upload/v1707396719/tobetologobeyaz_agwzmp.png";
@@ -8,8 +9,11 @@ const logoSrc = "https://res.cloudinary.com/dcpbbqilg/image/upload/v1707396719/t
 const divStyle = {};
 
 const Footer = (props: Props) => {
+
+  const { auth } = useAuthContext();
   return (
-    <div className="footer-style mt-3">
+    <>
+    {auth && <div className="footer-style mt-3">
       <Container className="col-12 col-md-10">
         <div className="d-flex justify-content-between align-items-center">
           <Image
@@ -24,7 +28,8 @@ const Footer = (props: Props) => {
           </Link>
         </div>
       </Container>
-    </div>
+    </div>}
+    </>
   );
 };
 
