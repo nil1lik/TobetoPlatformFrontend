@@ -23,7 +23,7 @@ class CityService extends BaseService<
     this.apiUrl = BASE_API_URL + "Cities";
     this.dtoUrl= this.apiUrl + "/getDistrict";
   }
-
+  
   getByFilter(pageIndex: number= 0, pageSize: number=81){
     return this.getAll(pageIndex,pageSize);
   }

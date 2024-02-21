@@ -4,7 +4,7 @@ import { GetCityItem } from '../../../models/responses/city/getCityResponse';
 type Props = {
     defaultText: string;
     selectBoxArray: GetCityItem[];
-    onCitySelect?: (cityId: number) => void;
+    onSelect?: (cityId: number) => void;
     className?: string;
     name?: string;
 };
@@ -13,7 +13,7 @@ const SelectBox: React.FC<Props> = (props) => {
 
     const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         const selectedOptionId = parseInt(event.target.value); // Seçilen option'un id'sini alın
-        props.onCitySelect && props.onCitySelect(selectedOptionId);
+        props.onSelect && props.onSelect(selectedOptionId);
     };
 
     return (

@@ -49,7 +49,7 @@ const SkillEdit = (props: Props) => {
 
   const initialValues: AddProfileSkillRequest = {
     userProfileId: Number(userId),
-    skillId: Number(0)
+    skillId: 0
   }
 
   const handleSkillSubmit = async (values: AddProfileSkillRequest) => {
