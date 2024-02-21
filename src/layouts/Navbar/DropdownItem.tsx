@@ -25,14 +25,13 @@ const DropdownItem = (props: Props) => {
     <div>
       <Dropdown>
         <div className="d-xxl-block">
-          <div className="d-flex justify-space-between align-items-center">
-            <div className="mx-3 gap-1em align-items-center d-flex">
+          <div className="d-flex justify-space-between">
+            <div className="mx-3 gap-1em d-flex">
               <span className="tbt-gradient"></span>
             </div>
             <div className="btn-group header-avatar">
               <Dropdown.Toggle className="bg-transparent p-0 fw-normal b-r-35 text-end d-flex dropdown-toggle-navbar btn-navbar align-items-center">
                 <div className="me-2">
-                  <span className="dropdown-pp">
                     <span className="dropdown-pp-2">
                       <img
                         alt=""
@@ -41,12 +40,6 @@ const DropdownItem = (props: Props) => {
                         className="dropdown-pp-img"
                       ></img>
                     </span>
-                    <img
-                      alt=""
-                      src={tobetoUserLogo}
-                      className="dropdown-pp-img-2 cv-pp-img"
-                    ></img>
-                  </span>
                 </div>
                 <div className="me-3">
                   <p className="mb-0 name">{user?.firstName}  {user?.lastName}</p>

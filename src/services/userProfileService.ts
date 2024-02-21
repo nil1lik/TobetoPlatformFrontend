@@ -7,7 +7,6 @@ import { BaseService } from "../core/services/baseService";
 import { AddUserRequest } from "../models/requests/user/addUserRequest";
 import { UpdateUserResponse } from "../models/responses/user/updateUserResponse";
 import { BASE_API_URL } from "../core/environment/environment";
-import axiosInstance from "../core/interceptors/axiosInterceptors";
 import axios, { AxiosResponse } from "axios";
 
 class UserProfileService extends BaseService<

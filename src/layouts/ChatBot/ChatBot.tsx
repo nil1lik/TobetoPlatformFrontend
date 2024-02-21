@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { useAuthContext } from "../../contexts/AuthContext";
 
 type Props = {};
 
@@ -12,8 +13,10 @@ const ChatBot = (props: Props) => {
     setIsOpen(!isOpen);
   };
 
+  const { auth } = useAuthContext();
   return (
-    <div className="chat-cont">
+    <>
+    {auth && <div className="chat-cont">
       {isOpen ? (
         <div onClick={handleToggle}>
           <img src={chat} className="chatExample" />
@@ -23,7 +26,8 @@ const ChatBot = (props: Props) => {
           <img src={messageIcon} className="chatOpenIcon" />
         </div>
       )}
-    </div>
+    </div>}
+    </>
   );
 };
 

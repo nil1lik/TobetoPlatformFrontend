@@ -7,13 +7,18 @@ import { GetSkillItem } from "../../../models/responses/skill/getSkillResponse";
 import skillService from "../../../services/skillService";
 import toastr from "toastr";
 import ControlPopup from "../../Popup/ControlPopup";
+import { AddProfileSkillRequest } from "../../../models/requests/skill/addProfileSkillRequest";
+import { useAuthContext } from "../../../contexts/AuthContext";
 
 
 type Props = {};
-const initialValues: GetSkillItem = {
-  id: 0,
-  name: "",
-};
+// const initialValues: GetSkillItem = {
+//   id: 0,
+//   name: "",
+//};
+
+
+
 
 const validationSchema = object({
   value: UserInformationValidationMessageRule.inputsRequired,
@@ -23,10 +28,12 @@ const validationSchema = object({
 
 const SkillEdit = (props: Props) => {
   const [skills, setSkills] = useState<GetSkillItem[]>([]);
-  const [selectedSkills, setSelectedSkills] = useState<GetSkillItem[]>([]);
+  const [postSkills, setPostSkills] = useState<AddProfileSkillRequest>(Object);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const {userId} = useAuthContext();
+
 
   useEffect(() => {
     const fetchSkills = async () => {
@@ -40,11 +47,21 @@ const SkillEdit = (props: Props) => {
     fetchSkills();
   }, []);
 
-  const handleSkillSubmit = (values: GetSkillItem) => {
+  const initialValues: AddProfileSkillRequest = {
+    userProfileId: Number(userId),
+    skillId: Number(0)
+  }
+
+  const handleSkillSubmit = async (values: AddProfileSkillRequest) => {
     console.log("Seçilen beceri:", values);
-    setSelectedSkills((prevSkills) => [...prevSkills, values]);
+    const result = await skillService.addProfilSkill(values);
+    setPostSkills(result.data);
+    console.log(result.data);
     toastr.success('Yetenek eklendi!');
   };
+
+  
+
   return (
     <div className="container mt-5">
       <Formik initialValues={initialValues} onSubmit={handleSkillSubmit}>
@@ -57,14 +74,14 @@ const SkillEdit = (props: Props) => {
           </label>
           <Field
             as="select"
-            name="value"
+            name="skillId"
             className="form-control my-custom-select"
           >
             <option value="" disabled selected>
               Seçiniz
             </option>
             {skills.map((skill) => (
-              <option key={skill.id} value={skill.name}>
+              <option  key={skill.id} value={skill.id}>
                 {skill.name}
               </option>
             ))}
@@ -79,7 +96,7 @@ const SkillEdit = (props: Props) => {
         </Form>
       </Formik>
 
-      {selectedSkills.map((selectedSkill, index) => (
+      {/* {selectedSkills.map((selectedSkill, index) => (
         <Card key={index} className="inline-card">
           <Card.Body className="inline-card-body">
             {selectedSkill.name}
@@ -102,7 +119,7 @@ const SkillEdit = (props: Props) => {
             />
           </Card.Body>
         </Card>
-      ))}
+      ))} */}
     </div>
   );
 };
