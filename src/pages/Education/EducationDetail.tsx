@@ -15,7 +15,7 @@ const EducationDetail = (props: Props) => {
     useState<GetAllEducationResponse>(Object);
   const [aboutId, setAboutId] = useState<number>(0);
   const { handleSetLoading } = useLoadingContext();
-  const params = useParams();
+  const params = useParams(); 
 
   const fetchEducationDetail = async () => {
     try {
@@ -25,7 +25,6 @@ const EducationDetail = (props: Props) => {
       );
       setEducationDetail(result.data);
       setAboutId(result.data.educationAboutId);
-      console.log("educationAboutId " + result.data.educationAboutId);
     } catch (error) {
       console.error("API isteği sırasında bir hata oluştu:", error);
     }

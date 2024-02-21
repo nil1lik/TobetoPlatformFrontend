@@ -39,7 +39,6 @@ type Props = {
 const EducationDetailContent = (props: Props) => {
   const { educationDetailId } = props;
   const completedIcon = "/images/completed.svg";
-  const [show, setShow] = useState(false);
   const [activeKey, setActiveKey] = useState<string | null>(null);
 
   const [courses, setCourses] = useState<GetCourseResponseItem[]>([]);
@@ -74,9 +73,9 @@ const EducationDetailContent = (props: Props) => {
     setActiveKey(typeof eventKey === "string" ? eventKey : null);
   };
 
-  const handleHeaderClick = async (courseId: number) => {
+  const handleHeaderClick = async (courseId: number) => { 
     try {
-      setAsyncLessons([]);
+      setAsyncLessons([]); 
 
       const response = await courseService.getAsyncLessonsByCourseId(courseId);
       const lessons = response.data.asyncLessons;
@@ -92,17 +91,19 @@ const EducationDetailContent = (props: Props) => {
     setSelectedAsyncLessonId(asyncLessonId);
   };
 
-  useEffect(() => {
+  useEffect(() => { 
     fetchEducationDetail();
   }, [educationDetailId, selectedAsyncLessonId]);
+
+
   return (
-    <Container>
+    <Container> 
       <div className="accordion-container">
-        <Row className="activity-row">
+        <Row className="activity-row">  
           <Col className="col-lg-5">
             <Accordion activeKey={activeKey} onSelect={handleAccordionClick}>
               {courses &&
-                courses.length > 0 &&
+                courses.length > 0 && 
                 courses.map((educationCourses, index) => (
                   <AccordionItem key={index} eventKey={index.toString()}>
                     <AccordionHeader
@@ -110,17 +111,16 @@ const EducationDetailContent = (props: Props) => {
                       onClick={() => handleHeaderClick(educationCourses.id)}
                     >
                       {educationCourses.name}
-                    </AccordionHeader>
+                    </AccordionHeader> 
                     <div>
                       {asyncLessons.map((lesson, lessonIndex) => (
                         <AccordionBody
-                          className="education-subtitle"
+                          className="education-subtitle" 
                           role="button"
                           onClick={() => handleSubtitleClick(lesson.id)}
                         >
-                          <div key={lessonIndex}>
-                            {lesson.id} 
-                            {lesson.name}
+                          <div key={lessonIndex}> 
+                            {lesson.name} 
                             <AccordionBody className="education-type">
                               {lesson.lessonType} -{" "}
                               {
@@ -131,7 +131,7 @@ const EducationDetailContent = (props: Props) => {
                               }
                             </AccordionBody>
                           </div>
-                        </AccordionBody>
+                        </AccordionBody> 
                       ))}
                     </div>
                   </AccordionItem>

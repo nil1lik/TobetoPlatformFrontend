@@ -90,7 +90,7 @@ const LessonVideoDetailCard = (props: Props) => {
                           subcategory="educationSubcategory"
                           likeCount= {100}
                           point={asyncLesson?.videoPoint}
-                          button={true}
+                          button={true} 
                           show={show}
                           hide={handleClose}
                         />

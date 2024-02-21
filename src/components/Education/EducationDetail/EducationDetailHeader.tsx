@@ -23,7 +23,7 @@ const EducationDetailHeader = (props: Props) => {
             <Col className="col-xs-12 ">
               <Row>
                 <Col>
-                  <div className="activity-info">
+                  <div className="activity-info"> 
                     <h3 className="education-name">{props.educationName}</h3>
                     <div className="date-info-container">
                       <label className="first-of-type">
