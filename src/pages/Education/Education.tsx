@@ -60,7 +60,7 @@ const Education = (props: Props) => {
   return (
     <>
       <BannerTop
-        bannerUrl="https://tobeto.com/_next/static/media/edu-banner3.d7dc50ac.svg"
+        bannerUrl="https://res.cloudinary.com/dcpbbqilg/image/upload/v1708545803/edu-banner3.d7dc50ac_jbstok.svg"
         bannerText={BannerTexts.educationBanner}
       />
       <Container>

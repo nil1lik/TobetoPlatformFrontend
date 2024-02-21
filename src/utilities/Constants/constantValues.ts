@@ -7,7 +7,6 @@ export const loginButtonText = "Giriş Yap";
 export const uploadFileText = "Dosya Yükle";
 export const forgetPasswordButtonText = "Şifremi Unuttum";
 export const registerButtonText = "Kayıt Ol";
-export const pageIsNotFound = "Sayfa bulunamadı";
 export const saveButtonText = "Kaydet";
 export const sendButtonText = "Gönder";
 
@@ -258,6 +257,12 @@ export const BannerTexts = {
 
 /* RESET PASSWORD */
 export const resetPasswordText= "Şifre Sıfırlama"; 
+
+/* NOT FOUND PAGE */
+
+export const pageIsNotFound = "Sayfa bulunamadı";
+export const returnToHomepage = "Anasayfa'ya dön"
+
 
 /* TOASTR */
 export const ProfileSettingsToastrMsg = {

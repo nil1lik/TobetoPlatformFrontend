@@ -65,9 +65,8 @@ export const UserInformationValidationMessageRule = {
     .required(inputRequired)
     .matches(phoneRegExp, phoneMustBeValid),
   identityNumber: string()
-    .required(inputRequired)
-    .max(identityNumberLength, identityNumberLengthMessage)
-    .min(identityNumberLength, identityNumberLengthMessage),
+      .matches(/^\d{11}$/, 'National identity must be exactly 11 digits')
+      .required('National identity is required'),
   experienceInputs: string()
     .required(inputRequired)
     .min(experienceInputsMinLength, experienceInputMinLengthMessage)

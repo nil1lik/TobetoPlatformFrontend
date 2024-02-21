@@ -101,7 +101,7 @@ const ProfileInformationEdit2 = (props: Props) => {
         />
       </div>
       <Formik
-        validationSchema={validationSchema}
+        // validationSchema={validationSchema}
         initialValues={initialValues}
         enableReinitialize={true}
         onSubmit={handleSubmit}

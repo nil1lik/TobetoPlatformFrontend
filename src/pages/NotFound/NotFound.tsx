@@ -1,6 +1,7 @@
 import React from "react";
 import "./notFound.css";
 import { Link } from "react-router-dom";
+import { pageIsNotFound, returnToHomepage } from "../../utilities/Constants/constantValues";
 
 const NotFoundPage = () => {
   return (
@@ -8,9 +9,9 @@ const NotFoundPage = () => {
       <div className="notfound-cont">
         <div className="notfound-img"></div>
         <div className="notfound-nav">
-          <p className="notfound-text">Aradığınız sayfaya ulaşılamadı</p>
+          <p className="notfound-text">{pageIsNotFound}</p>
           <Link to={"/giris"} className="notfound-btn">
-            Anasayfa'ya dön
+          {returnToHomepage}
           </Link>
         </div>
       </div>

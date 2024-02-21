@@ -33,7 +33,7 @@ const Profile = (props: Props) => {
     fethUserData(Number(userId))
   }, [userId])
 
-  const png = process.env.PUBLIC_URL + `/images/png.png`;
+  // const png = process.env.PUBLIC_URL + `/images/png.png`;
 
   return (
     <Container>

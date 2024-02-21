@@ -7,6 +7,7 @@ import { textAreaLength } from "../../utilities/Validations/validationMessages";
 import ReCAPTCHA from "react-google-recaptcha";
 import ContactTitle from "../../components/Contact/ContactTitle";
 import ContactTable from "../../components/Contact/ContactTable";
+import { sendButtonText } from "../../utilities/Constants/constantValues";
 
 const key = "6LeuJGopAAAAAELob3ZGy02D7Ffb_gf_pjzYuz_h";
 type Props = {};
@@ -120,7 +121,7 @@ const Communication = (props: Props) => {
                       type="submit"
                       className="button-save py-2 mb-3 mt-4 d-inline-block"
                     >
-                      Gönder
+                      {sendButtonText}
                     </button>
                   </Form>
                 </Formik>
