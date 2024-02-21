@@ -19,6 +19,8 @@ export interface GetAllDistrictByIdCityItem{
 }
 
 export interface GetAllDistrictByIdCity{
+    id:number;
+    name:string;
     districts: GetAllDistrictByIdCityItem[];
 }
 

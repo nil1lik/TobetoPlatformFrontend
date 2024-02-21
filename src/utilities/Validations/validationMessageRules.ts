@@ -73,4 +73,6 @@ export const UserInformationValidationMessageRule = {
     .min(experienceInputsMinLength, experienceInputMinLengthMessage)
     .max(experienceInputsMaxLength-1, experienceInputMaxLengthMessage),
   inputsRequired: string().required(inputRequired),
+  country: string()
+  .required(inputRequired)
 };

@@ -1,15 +1,14 @@
-export interface ProfileDto {
-    id: number,
+export interface GetUserProfile {
+    userId: number,
     firstname: string,
     lastname: string,
     phone:string,
-    birthdate: Date,
+    birthDate: Date,
     nationalIdentity : string,
     email: string,
-    city:string,
+    cityId:number,
     country:string,
-    district:string,
+    districtId:number,
     addressDetail:string,
     aboutMe:string,
-    status: boolean,
 }
