@@ -1,1 +1,1 @@
-export interface GetUser {}
+export interface GetUser{}

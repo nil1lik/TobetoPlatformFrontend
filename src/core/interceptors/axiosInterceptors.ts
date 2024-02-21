@@ -1,4 +1,4 @@
-import { GetUser } from './../../models/responses/user/getUser';
+import { GetUser } from '../../models/responses/user/getUser';
 import toastr from "toastr";
     import axios from 'axios';
 import { BASE_API_URL } from '../environment/environment';
