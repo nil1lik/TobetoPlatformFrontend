@@ -1,8 +1,10 @@
 export interface AddExperienceRequest{
-  organizationName: "",
-  position: "",
-  sector: "",
-  startDate: "",
-  endDate: "",
-  description: ""
+  userProfileId: number,
+  cityId: number,
+  organizationName: string,
+  position: string,
+  sector: string,
+  startDate: Date,
+  endDate: Date,
+  description: string
 }
