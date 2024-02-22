@@ -42,8 +42,10 @@ const ProfileInformationEdit = (props: Props) => {
   const [value, setValue] = useState<any>();
   const { userId } = useAuthContext();
   const [userProfile, setUserProfile] = useState<AddUserProfileRequest>(Object);
-  const [updateUserProfile, setUpdateUserProfile] = useState<UpdateUserProfileRequest>(Object);
-  const [initialValues, setInitialValues] = useState<AddUserProfileRequest>({  cityId: selectCityId,
+  const [updateUserProfile, setUpdateUserProfile] =
+    useState<UpdateUserProfileRequest>(Object);
+  const [initialValues, setInitialValues] = useState<AddUserProfileRequest>({
+    cityId: selectCityId,
     districtId: Number(selectDistrictId),
     phone: value,
     userId: Number(userId),
@@ -51,7 +53,8 @@ const ProfileInformationEdit = (props: Props) => {
     nationalIdentity: "",
     country: "",
     addressDetail: "",
-    description: "",})
+    description: "",
+  });
 
   const getUser = async (userId: number) => {
     try {
@@ -63,7 +66,53 @@ const ProfileInformationEdit = (props: Props) => {
     }
   };
 
-  const updateUser = async (UpdateUserProfileRequest:UpdateUserProfileRequest) => {
+  const getUserProfile = async (id: number, values:any) => {
+    try {
+      const result = await userProfileService.getUserProfileByUserId(id);
+      if(result){
+        const updateValues: UpdateUserProfileRequest = {
+          id: id,
+          cityId: values.cityId,
+          districtId: values.districtId,
+          phone: values.phone,
+          userId: id,
+          birthDate: values.birthDate,
+          nationalIdentity: values.nationalIdentity,
+          country: values.country,
+          addressDetail: values.addressDetail,
+          description: values.description,
+        };
+        try {
+          const result = await userProfileService.update(updateValues);
+          setUpdateUserProfile(result.data);
+          console.log(result.data);
+          toastr.success(
+            ProfileInformationEditToastrMsg.profileInformationsUpdateSuccess
+          );
+        } catch (error) {
+          console.log("Profil güncelleme hatası:", error);
+        }
+      }
+      else{
+        try {
+          const result = await userProfileService.add(values);
+          console.log(result.data);
+          setUserProfile(result.data);
+          toastr.success(
+            ProfileInformationEditToastrMsg.profileInformationsAddSuccess
+          );
+        } catch (error) {
+          console.log("Profil ekleme hatası:", error);
+        }
+      }
+    } catch (error) {
+      console.log("Id ile kullanıcı alınırken hata oluştu.", error);
+    }
+  };
+
+  const updateUser = async (
+    UpdateUserProfileRequest: UpdateUserProfileRequest
+  ) => {
     try {
       const result = await userProfileService.update(UpdateUserProfileRequest);
       console.log(result.data);
@@ -72,7 +121,6 @@ const ProfileInformationEdit = (props: Props) => {
       console.log("Id ile kullanıcı alınırken hata oluştu.", error);
     }
   };
-
 
   const fetchCities = async () => {
     try {
@@ -87,7 +135,7 @@ const ProfileInformationEdit = (props: Props) => {
   const handleCityId = async (cityId: number) => {
     try {
       const result = await cityService.getDistrictsBySelectedCityId(cityId);
-      console.log(result.data.districts)
+      console.log(result.data.districts);
       setDistricts(result.data.districts);
       setSelectCityId(cityId);
     } catch (error) {
@@ -100,80 +148,49 @@ const ProfileInformationEdit = (props: Props) => {
     setSelectDistrictId(districtId);
   };
 
-  const handleSelectCityChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleSelectCityChange = (
+    event: React.ChangeEvent<HTMLSelectElement>
+  ) => {
     const selectedOptionId = parseInt(event.target.value); // Seçilen option'un id'sini alın
     handleCityId(selectedOptionId);
-};
-
-const handleSelectDistrictChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-  const selectedOptionId = parseInt(event.target.value); // Seçilen option'un id'sini alın
-  handleDistrictId(selectedOptionId);
-};
-
-useEffect(() => {
-  fetchCities();
-  getUser(Number(userId));
-  if (userProfile) {
-    setInitialValues({
-      cityId: userProfile.cityId,
-      districtId: userProfile.districtId,
-      phone: userProfile.phone,
-      userId: userProfile.userId,
-      birthDate: userProfile.birthDate,
-      nationalIdentity: userProfile.nationalIdentity,
-      country: userProfile.country,
-      addressDetail: userProfile.addressDetail,
-      description: userProfile.description,
-    });
-  }
-}, [userId, userProfile]);
-
-
-  
-  const handleSubmit = async (values: AddUserProfileRequest) => {
-    if (profileData) {
-      const updateValues: UpdateUserProfileRequest = {
-        id: profileData.id,
-        cityId: values.cityId,
-        districtId: values.districtId,
-        phone: values.phone,
-        userId: profileData.id,
-        birthDate: values.birthDate,
-        nationalIdentity: values.nationalIdentity,
-        country: values.country,
-        addressDetail: values.addressDetail,
-        description: values.description,
-      };
-      try {
-        const result = await userProfileService.update(updateValues);
-        setUpdateUserProfile(result.data);
-        console.log(result.data)
-        toastr.success(
-          ProfileInformationEditToastrMsg.profileInformationsUpdateSuccess
-        );
-      } catch (error) {
-        console.log("Profil güncelleme hatası:", error);
-      }
-    } else {
-      try {
-        const result = await userProfileService.add(values);
-        console.log(result.data)
-        setUserProfile(result.data);
-        toastr.success(
-          ProfileInformationEditToastrMsg.profileInformationsAddSuccess
-        );
-      } catch (error) {
-        console.log("Profil ekleme hatası:", error);
-      }
-    }
   };
-  
+
+  const handleSelectDistrictChange = (
+    event: React.ChangeEvent<HTMLSelectElement>
+  ) => {
+    const selectedOptionId = parseInt(event.target.value); // Seçilen option'un id'sini alın
+    handleDistrictId(selectedOptionId);
+  };
+
+  useEffect(() => {
+    fetchCities();
+    getUser(Number(userId));
+    if (userProfile) {
+      setInitialValues({
+        cityId: userProfile.cityId,
+        districtId: userProfile.districtId,
+        phone: userProfile.phone,
+        userId: userProfile.userId,
+        birthDate: userProfile.birthDate,
+        nationalIdentity: userProfile.nationalIdentity,
+        country: userProfile.country,
+        addressDetail: userProfile.addressDetail,
+        description: userProfile.description,
+      });
+    }
+  }, [userId, userProfile]);
+
+  const handleSubmit = async (values: AddUserProfileRequest) => {
+    getUserProfile(Number(userId),values)
+  };
 
   return (
     <div className="container mt-5">
       <div className="information-photo-cont">
         <Image
-          src={"https://res.cloudinary.com/dcpbbqilg/image/upload/v1708374477/tobetouserlogo_aekd7i.png"}
+          src={
+            "https://res.cloudinary.com/dcpbbqilg/image/upload/v1708374477/tobetouserlogo_aekd7i.png"
+          }
           roundedCircle
           style={{ width: "100%" }}
         />
