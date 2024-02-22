@@ -10,8 +10,6 @@ type Props = {
 };
 
 const ProfilePreInfoBox = (props: Props) => {
-  const profilePhoto =
-    process.env.PUBLIC_URL + `/images/${props.profilePhotoSrc}`;
   const [user, setUser] = useState<GetByIdUser>();
   const { userId } = useAuthContext();
 
@@ -27,7 +25,7 @@ const ProfilePreInfoBox = (props: Props) => {
   return (
     <Card className="preInfoBox">
       <Card.Body className="preInfoPhotoCont">
-        <Card.Img src={profilePhoto} className="preInfoPhoto" />
+        <Card.Img src={props.profilePhotoSrc} className="preInfoPhoto" />
       </Card.Body>
       <Card.Body className="">
         <ProfilePreInfo
@@ -35,7 +33,7 @@ const ProfilePreInfoBox = (props: Props) => {
           iconContClass="preInfoIconCont"
           headerClass="preInfoValue"
           valueClass="preInfoHeader"
-          iconSrc="cv-name.svg"
+          iconSrc="https://res.cloudinary.com/dcpbbqilg/image/upload/v1708593405/cv-name_tzumx6.svg"
           header="Ad Soyad"
           value={`${user?.firstName} ${user?.lastName}`}
         />
@@ -46,7 +44,7 @@ const ProfilePreInfoBox = (props: Props) => {
           iconContClass="preInfoIconCont"
           headerClass="preInfoValue"
           valueClass="preInfoHeader"
-          iconSrc="cv-date.svg"
+          iconSrc="https://res.cloudinary.com/dcpbbqilg/image/upload/v1708593444/cv-date_qbyvok.svg"
           header="Doğum Tarihi"
           value="01.01.2000"
         />
@@ -57,7 +55,7 @@ const ProfilePreInfoBox = (props: Props) => {
           iconContClass="preInfoIconCont"
           headerClass="preInfoValue"
           valueClass="preInfoHeader"
-          iconSrc="cv-mail.svg"
+          iconSrc="https://res.cloudinary.com/dcpbbqilg/image/upload/v1708593481/cv-phone_h9kegn.svg"
           header="E-Posta Adresi"
           value={`${user?.email}`}
         />
@@ -68,7 +66,7 @@ const ProfilePreInfoBox = (props: Props) => {
           iconContClass="preInfoIconCont"
           headerClass="preInfoValue"
           valueClass="preInfoHeader"
-          iconSrc="cv-phone.svg"
+          iconSrc="https://res.cloudinary.com/dcpbbqilg/image/upload/v1708593480/cv-mail_dyeafz.svg"
           header="Telefon Numarası"
           value="+905555555555"
         />
