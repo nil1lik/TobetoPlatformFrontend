@@ -8,10 +8,9 @@ type Props = {
 }
 
 const ProfileMediaAccounts = (props: Props) => {
-  const mediaPhoto = process.env.PUBLIC_URL + `/images/${props.imageSrc}`;
   return (
     <a href={props.Link} target='_blank'>
-      <Image src={mediaPhoto} className={props.className} />
+      <Image src={props.imageSrc} className={props.className} />
     </a>
   )
 }

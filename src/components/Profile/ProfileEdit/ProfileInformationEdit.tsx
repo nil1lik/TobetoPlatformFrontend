@@ -20,7 +20,7 @@ import {
 } from "../../../utilities/Constants/constantValues";
 import { useAuthContext } from "../../../contexts/AuthContext";
 import { AddUserProfileRequest } from "../../../models/requests/userProfile/addUserProfileRequest";
-import { GetAllDistrictByIdCityItem } from "../../../models/responses/city/getAllDistrictByIdCityResponse";
+import { UpdateUserProfileRequest } from "../../../models/requests/userProfile/updateUserProfileRequest";
 
 const validationSchema = object({
   // birthDate: UserInformationValidationMessageRule.inputsRequired,
@@ -41,7 +41,17 @@ const ProfileInformationEdit = (props: Props) => {
   const [profileData, setProfileData] = useState<GetByIdUser>();
   const [value, setValue] = useState<any>();
   const { userId } = useAuthContext();
-  const [userProfil, setUserProfil] = useState<AddUserProfileRequest>(Object);
+  const [userProfile, setUserProfile] = useState<AddUserProfileRequest>(Object);
+  const [updateUserProfile, setUpdateUserProfile] = useState<UpdateUserProfileRequest>(Object);
+  const [initialValues, setInitialValues] = useState<AddUserProfileRequest>({  cityId: selectCityId,
+    districtId: Number(selectDistrictId),
+    phone: value,
+    userId: Number(userId),
+    birthDate: new Date(),
+    nationalIdentity: "",
+    country: "",
+    addressDetail: "",
+    description: "",})
 
   const getUser = async (userId: number) => {
     try {
@@ -52,6 +62,17 @@ const ProfileInformationEdit = (props: Props) => {
       console.log("Id ile kullanıcı alınırken hata oluştu.", error);
     }
   };
+
+  const updateUser = async (UpdateUserProfileRequest:UpdateUserProfileRequest) => {
+    try {
+      const result = await userProfileService.update(UpdateUserProfileRequest);
+      console.log(result.data);
+      setUpdateUserProfile(result.data);
+    } catch (error) {
+      console.log("Id ile kullanıcı alınırken hata oluştu.", error);
+    }
+  };
+
 
   const fetchCities = async () => {
     try {
@@ -89,41 +110,70 @@ const handleSelectDistrictChange = (event: React.ChangeEvent<HTMLSelectElement>)
   handleDistrictId(selectedOptionId);
 };
 
-  useEffect(() => {
-    fetchCities();
-    getUser(Number(userId));
-  }, [userId]);
+useEffect(() => {
+  fetchCities();
+  getUser(Number(userId));
+  if (userProfile) {
+    setInitialValues({
+      cityId: userProfile.cityId,
+      districtId: userProfile.districtId,
+      phone: userProfile.phone,
+      userId: userProfile.userId,
+      birthDate: userProfile.birthDate,
+      nationalIdentity: userProfile.nationalIdentity,
+      country: userProfile.country,
+      addressDetail: userProfile.addressDetail,
+      description: userProfile.description,
+    });
+  }
+}, [userId, userProfile]);
 
-  const initialValues: AddUserProfileRequest = {
-    cityId: selectCityId,
-    districtId: Number(selectDistrictId),
-    phone: value,
-    userId: Number(userId),
-    birthDate: new Date(),
-    nationalIdentity: "",
-    country: "",
-    addressDetail: "",
-    description: "",
-  };
 
+  
   const handleSubmit = async (values: AddUserProfileRequest) => {
-    console.log(value);
-    console.log(selectDistrictId);
-    console.log("Test");
-    console.log(values);
-    const result = await userProfileService.add(values);
-    setUserProfil(result.data);
-    console.log(result.data);
-    toastr.success(
-      ProfileInformationEditToastrMsg.profileInformationsUpdateSuccess
-    );
+    if (profileData) {
+      const updateValues: UpdateUserProfileRequest = {
+        id: profileData.id,
+        cityId: values.cityId,
+        districtId: values.districtId,
+        phone: values.phone,
+        userId: profileData.id,
+        birthDate: values.birthDate,
+        nationalIdentity: values.nationalIdentity,
+        country: values.country,
+        addressDetail: values.addressDetail,
+        description: values.description,
+      };
+      try {
+        const result = await userProfileService.update(updateValues);
+        setUpdateUserProfile(result.data);
+        console.log(result.data)
+        toastr.success(
+          ProfileInformationEditToastrMsg.profileInformationsUpdateSuccess
+        );
+      } catch (error) {
+        console.log("Profil güncelleme hatası:", error);
+      }
+    } else {
+      try {
+        const result = await userProfileService.add(values);
+        console.log(result.data)
+        setUserProfile(result.data);
+        toastr.success(
+          ProfileInformationEditToastrMsg.profileInformationsAddSuccess
+        );
+      } catch (error) {
+        console.log("Profil ekleme hatası:", error);
+      }
+    }
   };
+  
 
   return (
     <div className="container mt-5">
       <div className="information-photo-cont">
         <Image
-          src={process.env.PUBLIC_URL + "/images/pp.png"}
+          src={"https://res.cloudinary.com/dcpbbqilg/image/upload/v1708374477/tobetouserlogo_aekd7i.png"}
           roundedCircle
           style={{ width: "100%" }}
         />

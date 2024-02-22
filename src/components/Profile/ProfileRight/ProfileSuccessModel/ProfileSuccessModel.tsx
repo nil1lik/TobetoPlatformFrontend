@@ -9,7 +9,7 @@ type Props = {
 
 const ProfileSuccessModel = (props: Props) => {
   return (
-    <div className='successModelCont'>
+    <div className='successModelCont'>      
       <Row>
         <Col className="col-6">
           <ProfileMediaAccounts imageSrc="chart.png" className='mediaAccountPhoto' />
