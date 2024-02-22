@@ -11,21 +11,23 @@ import { GraduationDegreeValues } from "../../../utilities/Constants/GraduationD
 import ControlPopup from "../../Popup/ControlPopup";
 import { shiftDate } from "../../../utilities/Helpers/heatMap";
 import { AddGraduationRequest } from "../../../models/requests/graduation/addGraduationRequest";
+import { useAuthContext } from "../../../contexts/AuthContext";
 
 type Props = {};
 
 const GraduationEdit = (props: Props) => {
   const [selectedStartDate, setSelectedStartDate] = useState<Date | null >(new Date());
+  const [selectedEndDate, setSelectedEndDate] = useState<Date | null >(new Date());
   const [isEndDateDisabled, setIsEndDateDisabled] = useState<boolean>(true);
   const [graduation, setGraduation] = useState<GetGraduationItem[]>([]);
-  const [postGraduation, setPostGraduation] = useState<any>();
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const {userId} = useAuthContext();
 
-  const getGraduation = async () => {
+  const fetchGraduation = async () => {
     try {
-      const result = await graduationService.getAll(0,5);
+      const result = await graduationService.getByFilter(0,5);
       setGraduation(result.data.items);
     } catch (error) {
       console.log("Id ile kullanıcı alınırken hata oluştu.", error);
@@ -33,29 +35,32 @@ const GraduationEdit = (props: Props) => {
   };
 
   const handleStartDateChange = (date: Date | null) => {
+    console.log(date)
     setSelectedStartDate(date);
     setIsEndDateDisabled(!date); 
   };
 
   useEffect(() => {
-    getGraduation()
+    fetchGraduation()
   }, []);
 
   const handleGraduationSubmit = async (values:AddGraduationRequest)=>{
+    values.userProfileId = Number(userId);
+    values.startDate = selectedStartDate;
+    values.endDate = selectedEndDate;
     const result = await graduationService.add(values);
-    console.log(result)
-    setPostGraduation(result.data);
     toastr.success("Eğitim bilgisi eklendi")
+    fetchGraduation()
   }
   
-  const initialValues = {
+  const initialValues: AddGraduationRequest = {
+    userProfileId: 0,
     degree: "",
     universityName: "",
     department: "",
     startDate: new Date(),
     endDate: new Date(),
     graduationDate: new Date(),
-    toggle: "Devam ediyorum",
   };
 
   return (
@@ -117,7 +122,7 @@ const GraduationEdit = (props: Props) => {
                  label={GraduationPageLabelTexts.label5}
                  name="endDate"
                  selected={new Date()} 
-                 onYearChange={(date) => console.log(date)} 
+                 onYearChange={(date) => setSelectedEndDate(date)} 
                  isDisabled={isEndDateDisabled}
                  placeHolder={GraduationPageLabelTexts.placeholder5}
                 />
@@ -125,12 +130,12 @@ const GraduationEdit = (props: Props) => {
               <Col></Col>
             </Row>
             <br/>
-            <Row>
+            {/* <Row>
               <label>
                 <Field type="checkbox" name="checked" value="One" />
                 {GraduationPageLabelTexts.checkBox}
               </label>
-            </Row>
+            </Row> */}
             <button
               type="submit"
               className="button-save py-2 mb-3 mt-4 d-inline-block "
