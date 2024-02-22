@@ -208,6 +208,26 @@
     margin: 0 auto;
 }
 
+.successModelDefault{
+text-align: center;
+margin: 1rem;
+}
+
+.successModelDefault p {
+    font-weight: 700;
+    font-size: 1.1em;
+}
+
+.successModelDefault button {
+    color: #ffffff;
+    border: 1px solid #93f;
+    border-radius: 25px;
+    background-color: #93f;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    padding: 0.3rem 1rem;
+    font-weight: 600;
+}
+
 .profileLabel {
     display: flex;
     align-items: center;
