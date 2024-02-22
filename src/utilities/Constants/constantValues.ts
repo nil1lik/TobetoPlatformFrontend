@@ -277,6 +277,10 @@ export const ProfileLanguageToastrMsg = {
     languageAddSuccess: "Yabancı Dil Bilgisi Eklendi"
 }
 
+export const ProfileSkillToastrMsg = {
+    skillAddSuccess: "Yetenek eklendi!"
+}
+
 export const ProfileInformationEditToastrMsg = {
     profileInformationsUpdateSuccess: "Bilgileriniz Başarıyla Güncellendi"
 }

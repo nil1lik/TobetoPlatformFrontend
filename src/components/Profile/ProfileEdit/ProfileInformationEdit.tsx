@@ -20,7 +20,6 @@ import {
 } from "../../../utilities/Constants/constantValues";
 import { useAuthContext } from "../../../contexts/AuthContext";
 import { AddUserProfileRequest } from "../../../models/requests/userProfile/addUserProfileRequest";
-import { GetAllDistrictByIdCityItem } from "../../../models/responses/city/getAllDistrictByIdCityResponse";
 
 const validationSchema = object({
   // birthDate: UserInformationValidationMessageRule.inputsRequired,
@@ -123,7 +122,7 @@ const handleSelectDistrictChange = (event: React.ChangeEvent<HTMLSelectElement>)
     <div className="container mt-5">
       <div className="information-photo-cont">
         <Image
-          src={process.env.PUBLIC_URL + "/images/pp.png"}
+          src={"https://res.cloudinary.com/dcpbbqilg/image/upload/v1708374477/tobetouserlogo_aekd7i.png"}
           roundedCircle
           style={{ width: "100%" }}
         />
