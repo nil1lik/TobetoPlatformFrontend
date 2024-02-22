@@ -5,7 +5,6 @@ import {
   AccordionBody,
   AccordionHeader,
   AccordionItem,
-  Card,
   Col,
   Container,
   Row,
@@ -21,33 +20,25 @@ import FormattedDate from "../../../utilities/Helpers/FormattedDate";
 import LessonVideoDetailCard from "../LessonVideoDetail/LessonVideoDetailCard";
 import educationService from "../../../services/educationService";
 import SyncLessonDetail from "./SyncLesson/SyncLessonDetail";
+import FormattedTime from "../../../utilities/Helpers/FormattedTime";
 
 type Props = {
   educationDetailId?: number;
   courseId?: number;
-  educationTitle?: string;
-  educationSubTitle?: string;
-  lessonType?: string;
-  educationTime: string;
-  educationCategory: string;
-  educationLanguage: string;
-  educationCompany: string;
-  educationSubcategory: string;
-  likeCount: number;
 };
 
 const EducationDetailContent = (props: Props) => {
   const { educationDetailId } = props;
   const completedIcon = "/images/completed.svg";
-  const [show, setShow] = useState(false);
   const [activeKey, setActiveKey] = useState<string | null>(null);
 
   const [courses, setCourses] = useState<GetCourseResponseItem[]>([]);
   const [asyncLessons, setAsyncLessons] = useState<
     GetAsyncLessonsByCourseIdItem[]
   >([]);
-  const [selectedAsyncLessonId, setSelectedAsyncLessonId] = useState<number | undefined>(undefined);
-
+  const [selectedAsyncLessonId, setSelectedAsyncLessonId] = useState<
+    number | undefined
+  >(undefined);
 
   const fetchEducationDetail = async () => {
     try {
@@ -95,6 +86,9 @@ const EducationDetailContent = (props: Props) => {
   useEffect(() => {
     fetchEducationDetail();
   }, [educationDetailId, selectedAsyncLessonId]);
+
+  console.log("time: " + courses);
+
   return (
     <Container>
       <div className="accordion-container">
@@ -119,16 +113,10 @@ const EducationDetailContent = (props: Props) => {
                           onClick={() => handleSubtitleClick(lesson.id)}
                         >
                           <div key={lessonIndex}>
-                            {lesson.id} 
                             {lesson.name}
                             <AccordionBody className="education-type">
                               {lesson.lessonType} -{" "}
-                              {
-                                <FormattedDate
-                                  date={lesson.time}
-                                  format="minute"
-                                />
-                              }
+                              {<FormattedTime time={lesson.time} />}
                             </AccordionBody>
                           </div>
                         </AccordionBody>
@@ -141,7 +129,7 @@ const EducationDetailContent = (props: Props) => {
 
           <Col>
             <Row>
-              <LessonVideoDetailCard asyncLessonId={selectedAsyncLessonId}/>
+              <LessonVideoDetailCard asyncLessonId={selectedAsyncLessonId} />
               {/* <SyncLessonDetail></SyncLessonDetail> */}
             </Row>
           </Col>

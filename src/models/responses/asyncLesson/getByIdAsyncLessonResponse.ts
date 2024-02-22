@@ -9,5 +9,5 @@ export interface GetByIdAsyncLessonResponse {
   subcategoryName: string;
   videoDetailCategoryName: string;
   videoPoint: number;
-}
+} 
 

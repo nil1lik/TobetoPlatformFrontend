@@ -3,7 +3,7 @@ import { Col, Container, Row } from "react-bootstrap";
 import "./educationDetailAbout.css";
 
 type Props = {
-  educationData?: string;
+  educationData?: string | React.ReactNode;
   className: string;
   image: string;
   valueHeader: string;

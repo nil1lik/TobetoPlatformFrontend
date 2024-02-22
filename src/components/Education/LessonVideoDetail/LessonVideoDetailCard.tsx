@@ -20,7 +20,7 @@ const LessonVideoDetailCard = (props: Props) => {
   const fetchAsyncLesson = async () => {
     try {
       if (asyncLessonId !== undefined) {
-        // const result = await asyncLessonService.getById(asyncLessonId); 
+        // const result = await asyncLessonService.getById(asyncLessonId);  
         const result = await asyncLessonService.getByIdAsyncLessonDetail(asyncLessonId); 
         setAsyncLessons(result.data);
         console.log("asyncLessonlar :" + result.data);
@@ -46,10 +46,8 @@ const LessonVideoDetailCard = (props: Props) => {
               width="100%"
               height="100%"
               controls
-            />
-
-            {/* <source src={asyncLesson?.videoUrl} type="video/mp4" /> */}
-            <i className="ss-icon ss-lock" />
+            /> 
+            {/* <i className="ss-icon ss-lock" /> */} 
           </div>
         </div>
         <Card className="activity-card">
@@ -79,7 +77,7 @@ const LessonVideoDetailCard = (props: Props) => {
                     >
                       <label className="ant-btn-text">DETAY</label>
                       <div className="drawer">
-                        <EducationOffcanvas
+                        <EducationOffcanvas 
                           imageUrl="https://lms.tobeto.com/tobjEKnwKDQVcjzXYj%2bUxp8rPm9JXZ"
                           educationName={asyncLesson?.name}
                           educationType= {asyncLesson?.lessonTypeName}
@@ -87,11 +85,11 @@ const LessonVideoDetailCard = (props: Props) => {
                           category={asyncLesson?.videoDetailCategoryName}
                           language={asyncLesson?.languageName}
                           company={asyncLesson?.companyName}
-                          subcategory="educationSubcategory"
+                          subcategory="educationSubcategory" 
                           likeCount= {100}
                           point={asyncLesson?.videoPoint}
-                          button={true}
-                          show={show}
+                          button={true} 
+                          show={show} 
                           hide={handleClose}
                         />
                       </div>
