@@ -38,7 +38,7 @@ const validationSchema = object({
   sector: UserInformationValidationMessageRule.experienceInputs,
   startDate: UserInformationValidationMessageRule.inputsRequired,
   endDate: UserInformationValidationMessageRule.inputsRequired,
-  city: UserInformationValidationMessageRule.inputsRequired,
+  // city: UserInformationValidationMessageRule.inputsRequired,
 });
 
 const ExperienceEdit = (props: Props) => {
@@ -52,15 +52,15 @@ const ExperienceEdit = (props: Props) => {
   const handleShow = () => setShow(true);
   const { userId } = useAuthContext();
 
-  // const fetchExperiences = async () => {
-  //   try {
-  //     const result = await experienceService.getExperience(0, 5);
-  //     console.log(result.data.items);
-  //     setExperiences(result.data.items);
-  //   } catch (error) {
-  //     console.error("API isteği sırasında bir hata oluştu:", error);
-  //   }
-  // };
+  const fetchExperiences = async () => {
+    try {
+      const result = await experienceService.getExperience(0, 10);
+      // console.log(result.data.items);
+      setExperiences(result.data.items);
+    } catch (error) {
+      console.error("API isteği sırasında bir hata oluştu:", error);
+    }
+  };
 
   const fetchCities = async () => {
     try {
@@ -73,6 +73,7 @@ const ExperienceEdit = (props: Props) => {
 
   useEffect(() => {
     fetchCities();
+    fetchExperiences();
   }, []);
 
   const initialValues: AddExperienceRequest = {
@@ -91,8 +92,8 @@ const ExperienceEdit = (props: Props) => {
     values.userProfileId = Number(userId);
     console.log(values);
     const result = await experienceService.addExperience(values);
-    // setExperiences(result);
     toastr.success(ProfileExperienceToastrMsg.experienceAddSuccess);
+    fetchExperiences();
   };
 
   return (
@@ -216,7 +217,7 @@ const ExperienceEdit = (props: Props) => {
           <div className="my-grade">
             <div className="grade-header">
               <label className="grade-date">
-                {experience.startDate}-{experience.endDate} - Devam Ediyor
+                {shiftDate(experience.startDate, 5).getFullYear()}-{shiftDate(experience.endDate, 10).getFullYear()} - Devam Ediyor
               </label>
             </div>
             <div className="grade-details">
