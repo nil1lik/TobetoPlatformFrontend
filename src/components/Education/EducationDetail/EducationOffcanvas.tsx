@@ -8,6 +8,7 @@ import {
   languageIcon,
   subcategoryIcon,
 } from "../../../utilities/Constants/iconsList";
+import { offcanvasButton, pointText } from "../../../utilities/Constants/constantValues";
 
 type Props = {
   imageUrl: string;
@@ -37,7 +38,7 @@ const EducationOffcanvas = (props: Props) => {
     >
       <Offcanvas.Header>
         <Container>
-          <i className="sg-icon sg-delete close" onClick={props.hide} />
+          <i className="sg-icon sg-delete close" />
           <Row>
             <Col lg={2}>
               <div className="image-area">
@@ -232,7 +233,7 @@ const EducationOffcanvas = (props: Props) => {
             <Col lg={4}>
               <Col lg={12} className="course-drawer-button-area">
                 {props.button && (
-                  <button className="education-btn">EĞİTİME GİT</button>
+                  <button className="education-btn">{offcanvasButton}</button>
                 )}
               </Col>
               <Row className="course-drawer-status">
@@ -242,7 +243,7 @@ const EducationOffcanvas = (props: Props) => {
                     <label>Tebrikler, tamamladın!</label>
                   </span>
                   <span className="course-status-score text-green">
-                    {props.point} PUAN
+                    {props.point} {pointText}
                   </span>
                 </Col>
               </Row>

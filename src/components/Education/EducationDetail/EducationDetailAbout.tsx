@@ -11,6 +11,7 @@ import {
   startDateIcon,
   timeSpentIcon,
 } from "../../../utilities/Constants/iconsList";
+import FormattedDate from "../../../utilities/Helpers/FormattedDate";
 
 type Props = {
   startDate: string;
@@ -18,7 +19,7 @@ type Props = {
   timeSpent: string;
   estimatedDuration: string;
   category: string;
-  company: string;
+  company: string; 
 };
 
 const EducationDetailAbout = (props: Props) => {
@@ -30,19 +31,19 @@ const EducationDetailAbout = (props: Props) => {
           <Row>
             <EducationDetailAboutComp
               colSize={colSize}
-              {...startDateIcon}
-              educationData={props.startDate}
+              {...startDateIcon} 
+              educationData={<FormattedDate date={props.startDate} />} 
             />
             <EducationDetailAboutComp
               colSize={colSize}
-              {...endDateIcon}
-              educationData={props.endDate}
+              {...endDateIcon} 
+              educationData={<FormattedDate date={props.endDate} />} 
             />
-          </Row>
+          </Row> 
         </div>
         <div className="info-section row">
           <EducationDetailAboutComp
-            colSize={colSize}
+            colSize={colSize} 
             {...timeSpentIcon}
             educationData={props.timeSpent}
           />

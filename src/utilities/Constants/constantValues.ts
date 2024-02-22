@@ -277,8 +277,17 @@ export const ProfileLanguageToastrMsg = {
     languageAddSuccess: "Yabancı Dil Bilgisi Eklendi"
 }
 
+export const ProfileSkillToastrMsg = {
+    skillAddSuccess: "Yetenek eklendi!"
+}
+
 export const ProfileInformationEditToastrMsg = {
-    profileInformationsUpdateSuccess: "Bilgileriniz Başarıyla Güncellendi"
+    profileInformationsUpdateSuccess: "Bilgileriniz Başarıyla Güncellendi",
+    profileInformationsAddSuccess:"Bilgileriniz Başarıyla Kaydedildi."
 }
 
 export const RegisterSuccessToastrMsg = "Kaydınız başarıyla gerçekleşti"
+
+/* EducationOffcanvas */
+export const offcanvasButton = "EĞİTİME GİT"
+export const pointText = "PUAN" 

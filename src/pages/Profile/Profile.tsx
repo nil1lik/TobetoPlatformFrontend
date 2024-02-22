@@ -32,8 +32,6 @@ const Profile = (props: Props) => {
     fethUserData(Number(userId));
   }, [userId]);
 
-  // const png = process.env.PUBLIC_URL + `/images/png.png`;
-
   return (
     <Container>
       <Row>
@@ -48,8 +46,8 @@ const Profile = (props: Props) => {
         {/* PROFILE LEFT START */}
         <Col className="col-4">
           <Row>
-            <Col className="col-12">
-              <ProfilePreInfoBox profilePhotoSrc="pp.png" />
+            <Col className='col-12'>
+              <ProfilePreInfoBox profilePhotoSrc="https://res.cloudinary.com/dcpbbqilg/image/upload/v1708374477/tobetouserlogo_aekd7i.png" />
             </Col>
             <Col className="col-12">
               <ProfileBox titleClass="profileBoxTitle" title="Hakkımda">
@@ -75,18 +73,10 @@ const Profile = (props: Props) => {
                 </div>
               </ProfileBox>
             </Col>
-            <Col className="col-12">
-              <ProfileBox titleClass="profileBoxTitle" title="Yabancı Diller">
-                <div className="profileRoundItemCont">
-                  <ProfilePreInfo
-                    cardContClass="profileLangCont"
-                    iconContClass=""
-                    headerClass="profileSkillName"
-                    valueClass="profileSkillLevel"
-                    iconSrc="globe.svg"
-                    header="İngilizce"
-                    value="Orta Seviye"
-                  />
+            <Col className='col-12'>
+              <ProfileBox titleClass='profileBoxTitle' title='Yabancı Diller'>
+                <div className='profileRoundItemCont'>
+                  <ProfilePreInfo cardContClass='profileLangCont' iconContClass='' headerClass='profileSkillName' valueClass='profileSkillLevel' iconSrc="https://res.cloudinary.com/dcpbbqilg/image/upload/v1708593240/globe_amwg5s.svg" header='İngilizce' value='Orta Seviye' />
                 </div>
               </ProfileBox>
             </Col>
@@ -110,24 +100,12 @@ const Profile = (props: Props) => {
                 </div>
               </ProfileBox>
             </Col>
-            <Col className="col-12">
-              <ProfileBox titleClass="profileBoxTitle" title="Medya Hesaplarım">
-                <div className="profileMediaCont">
-                  <ProfileMediaAccounts
-                    imageSrc="cv-github.svg"
-                    className="mediaAccountPhoto"
-                    Link="https://www.github.com"
-                  />
-                  <ProfileMediaAccounts
-                    imageSrc="cv-linkedn.svg"
-                    className="mediaAccountPhoto"
-                    Link="https://www.linkedin.com"
-                  />
-                  <ProfileMediaAccounts
-                    imageSrc="cv-behance.svg"
-                    className="mediaAccountPhoto"
-                    Link="https://www.behance.net"
-                  />
+            <Col className='col-12'>
+              <ProfileBox titleClass='profileBoxTitle' title='Medya Hesaplarım'>
+                <div className='profileMediaCont'>
+                  <ProfileMediaAccounts imageSrc="https://res.cloudinary.com/dcpbbqilg/image/upload/v1708593589/cv-github_foneym.svg" className='mediaAccountPhoto' Link='https://www.github.com'/>
+                  <ProfileMediaAccounts imageSrc="https://res.cloudinary.com/dcpbbqilg/image/upload/v1708593590/cv-linkedn_ctqmta.svg" className='mediaAccountPhoto' Link='https://www.linkedin.com'/>
+                  <ProfileMediaAccounts imageSrc="https://res.cloudinary.com/dcpbbqilg/image/upload/v1708593589/cv-behance_izytxl.svg" className='mediaAccountPhoto' Link='https://www.behance.net'/>
                 </div>
               </ProfileBox>
             </Col>

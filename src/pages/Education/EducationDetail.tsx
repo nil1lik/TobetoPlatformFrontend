@@ -6,7 +6,7 @@ import EducationDetailHeader from "../../components/Education/EducationDetail/Ed
 import { useParams } from "react-router-dom";
 import educationService from "../../services/educationService";
 import { useLoadingContext } from "../../contexts/LoadingContext";
-import { GetAllEducationResponse } from "../../models/responses/education/getAllEducationHeaderResponse";
+import { GetAllEducationResponse } from "../../models/responses/education/getAllEducationResponse";
 
 type Props = {};
 
@@ -25,7 +25,6 @@ const EducationDetail = (props: Props) => {
       );
       setEducationDetail(result.data);
       setAboutId(result.data.educationAboutId);
-      console.log("educationAboutId " + result.data.educationAboutId);
     } catch (error) {
       console.error("API isteği sırasında bir hata oluştu:", error);
     }

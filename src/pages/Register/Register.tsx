@@ -11,12 +11,14 @@ import { passwordMaxLength } from "../../utilities/Validations/validationMessage
 import { UserInformationValidationMessageRule } from "../../utilities/Validations/validationMessageRules";
 import UserService from "../../services/userService";
 import { RegisterBoxBottomText,  RegisterSuccessToastrMsg, loginButtonText, registerButtonText } from "../../utilities/Constants/constantValues";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import toastr from "toastr";
 
 type Props = {  formClassName?: string};
 
 function Register(props: Props) {
+  const navigate = useNavigate();
+
   const initialValues: userRegisterRequest = {
     firstName: "",
     lastName: "",
@@ -47,6 +49,7 @@ function Register(props: Props) {
                   console.log("Kullanıcı başarıyla kaydedildi:", result.data);
                   localStorage.setItem("token", result.data.token);
                   toastr.success(RegisterSuccessToastrMsg)
+                  navigate("/giris");
                 })
                 .catch((error) => {
                   console.error(

@@ -32,9 +32,11 @@ class ExperienceService extends BaseService<
             this.dtoUrl +`?PageIndex=${pageIndex}&PageSize=${pageSize}`
         );
       }
-    addExperience(experienceData: AddExperienceRequest){
-        return axios.post(BASE_API_URL + "Experiences/ExperienceInformationsListDto", experienceData)
-    }
+    
+
+    addExperience(request: AddExperienceRequest): Promise<AxiosResponse<AddExperienceResponse, any>> {
+		return axios.post<AddExperienceResponse>(this.apiUrl, request);
+	}
 }
 
 export default new ExperienceService();

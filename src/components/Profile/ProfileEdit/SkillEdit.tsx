@@ -9,6 +9,7 @@ import toastr from "toastr";
 import ControlPopup from "../../Popup/ControlPopup";
 import { AddProfileSkillRequest } from "../../../models/requests/skill/addProfileSkillRequest";
 import { useAuthContext } from "../../../contexts/AuthContext";
+import { ProfileSkillToastrMsg, saveButtonText } from "../../../utilities/Constants/constantValues";
 
 
 type Props = {};
@@ -57,7 +58,7 @@ const SkillEdit = (props: Props) => {
     const result = await skillService.addProfilSkill(values);
     setPostSkills(result.data);
     console.log(result.data);
-    toastr.success('Yetenek eklendi!');
+    toastr.success(ProfileSkillToastrMsg.skillAddSuccess);
   };
 
   
@@ -91,7 +92,7 @@ const SkillEdit = (props: Props) => {
             type="submit"
             className="button-save py-2 mb-3 mt-4 d-inline-block "
           >
-            Kaydet
+            {saveButtonText}
           </button>
         </Form>
       </Formik>

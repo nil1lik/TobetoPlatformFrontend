@@ -12,12 +12,12 @@ type Props = {
 }
 
 const ProfilePreInfo = (props: Props) => {
-  const icon = process.env.PUBLIC_URL + `/images/${props.iconSrc}`;
+  // const icon = process.env.PUBLIC_URL + `/images/${props.iconSrc}`;
 
   return (
     <div className={props.cardContClass}>
       <span className={props.iconContClass}>
-        <Image src={icon} className="preInfoImage" rounded />
+        <Image src={props.iconSrc} className="preInfoImage" rounded />
       </span>
       <Card.Text className={props.headerClass}>
         <Card.Text className={props.valueClass}>{props.header}</Card.Text>
