@@ -11,6 +11,7 @@ import { GetEducationItem } from "../../../models/responses/education/getEducati
 import educationService from "../../../services/educationService";
 import {
   PlatformTabHeaders,
+  educationPageItemCountByPageMax,
   showMoreText,
 } from "../../../utilities/Constants/constantValues";
 import {
@@ -31,8 +32,8 @@ type Props = {};
 
 const PlatformTab = (props: Props) => {
   const { handleSetLoading } = useLoadingContext();
-  const { educationData, setEducationData } = useEducation();
-
+  const { educationData, fetchEducation } = useEducation();
+  
   // const [education, setEducation] = useState<GetEducationItem[]>([]);
   const [announcement, setAnnouncement] = useState<GetAnnouncementTypeItem[]>(
     []
@@ -41,25 +42,41 @@ const PlatformTab = (props: Props) => {
   const announcementIconSrc =
     process.env.PUBLIC_URL + `/images/announcementDate.svg`;
 
-  useEffect(() => {
-    handleSetLoading((prev: any) => prev + 1);
+  // useEffect(() => {
+  //   handleSetLoading((prev: any) => prev + 1);
 
-    const fetchEducation = async () => {
-      const result = await educationService.getByFilter(0, 4);
-      setEducationData(result.data.items);
-    };
+  //   const fetchEducation = async () => {
+  //     const result = await educationService.getByFilter(0, 4);
+  //     setEducationData(result.data.items);
+  //     console.log("education bilgileri " + result.data.items);
 
-    const fetchAnnouncement = async () => {
-      const result = await AnnouncementService.getAllAnnouncementTypeList(0, 3);
-      setAnnouncement(result.data.items);
-    };
+  //   };
 
-    setTimeout(() => {
-      fetchEducation();
+  const fetchAnnouncement = async () => {
+    const result = await AnnouncementService.getAllAnnouncementTypeList(0, 3);
+    setAnnouncement(result.data.items);
+  };
+
+    useEffect(() => {
+      // handleSetLoading((prev: any) => prev + 1);
+  
+      // finally {
+      //   handleSetLoading((prev: any) => prev - 1);
+      //   // setLoadingPagination(true);
+      // }
+      setTimeout(fetchEducation, 500);
       fetchAnnouncement();
-      handleSetLoading((prev: any) => prev - 1);
-    }, 500);
-  }, [setEducationData]);
+    }, []);
+
+    console.log("PlatformTab " , educationData);
+    
+
+  //   setTimeout(() => {
+  //     fetchEducation();
+  //     fetchAnnouncement();
+  //     handleSetLoading((prev: any) => prev - 1);
+  //   }, 500);
+  // }, [setEducation]);
 
   return (
     <Tabs
@@ -94,12 +111,12 @@ const PlatformTab = (props: Props) => {
       </Tab>
       <Tab eventKey="egitimler" title={PlatformTabHeaders.educations}>
         <Row>
-          {educationData.map((education: any) => (
+          {educationData.map((education: GetEducationItem) => (
             <EducationCard
               id={education.id}
               image={education.imageUrl}
               text={education.name}
-              date={<FormattedDate date={education.createdDate} />}
+              date={<FormattedDate date={education.startDate} />}
             />
           ))}
         </Row>

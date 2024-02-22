@@ -31,6 +31,7 @@ import Footer from "../../layouts/Footer/Footer";
 import { useAuthContext } from "../../contexts/AuthContext";
 import NotFoundPage from "../../pages/NotFound/NotFound";
 import { SearchbarProvider } from "../../contexts/SearchBarContext";
+import { EducationProvider } from "../../contexts/EducationContext";
 
 type Props = {};
 const profileEditUrl = "/profilim/profilimi-duzenle";
@@ -75,16 +76,31 @@ const RouteDefinitions = (props: Props) => {
             </>
           ) : (
             <>
-              <Route path="/" element={<Platform />} />
+              <Route
+                path="/"
+                element={
+                  <EducationProvider>
+                    <Platform />
+                  </EducationProvider>
+                }
+              />
               <Route path="/profilim" element={<Profile />} />
               <Route
                 path="/profilim/profilimi-duzenle"
                 element={<ProfileEdit />}
               />
+              <Route
+                path="/egitimlerim"
+                element={
+                  <EducationProvider>
+                    <Education />
+                  </EducationProvider>
+                } 
+              />
+              ;
               <Route path="/degerlendirmeler" element={<Evaluation />} />
               <Route path="/katalog" element={<Catalog />} />
               <Route path="/takvim" element={<CalendarDetail />} />
-              <Route path="/egitimlerim" element={<Education />} />
               <Route
                 path="/duyurular"
                 element={

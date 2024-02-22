@@ -22,40 +22,13 @@ type Props = {};
 const Education = (props: Props) => {
   // const [education, setEducation] = useState<GetEducationItem[]>([]);
   const { handleSetLoading } = useLoadingContext();
-  const [childState, setChildState] = useState<number>(0);
-  const [pageCount, setPageCount] = useState<any>(null);
-  const [loadingPagination, setLoadingPagination] = useState<boolean>(false);
-  const { educationData, setEducationData } = useEducation();
+  // const [loadingPagination, setLoadingPagination] = useState<boolean>(false);
+  const { educationData, setChildState, pageCount } = useEducation();
 
   const handleChildStateChange = (newState: number) => {
     setChildState(newState);
   };
 
-  useEffect(() => {
-    handleSetLoading((prev: any) => prev + 1);
-
-    const fetchEducation = async () => {
-      try {
-        const result = await educationService.getAll(
-          childState, 
-          educationPageItemCountByPageMax
-        );
-        setPageCount(
-          pageCalculate(result.data.count, educationPageItemCountByPageMax)
-        );
-        setEducationData(result.data.items);
-      } catch (error) {
-        console.error(
-          "Eğitim verilerini getirme sırasında bir hata oluştu:",
-          error
-        );
-      } finally {
-        handleSetLoading((prev: any) => prev - 1);
-        setLoadingPagination(true);
-      }
-    };
-    setTimeout(fetchEducation, 500);
-  }, [setEducationData]);
 
   return (
     <>
@@ -89,12 +62,10 @@ const Education = (props: Props) => {
           ))}
         </Row>
         <Row className="pagination">
-          {loadingPagination && (
             <Pagi
-              handleChildStateChange={handleChildStateChange}
+               handleChildStateChange={handleChildStateChange}
               pageCount={pageCount}
             />
-          )}
         </Row>
       </Container>
     </>
