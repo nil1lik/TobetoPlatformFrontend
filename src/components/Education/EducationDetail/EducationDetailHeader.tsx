@@ -20,12 +20,12 @@ const EducationDetailHeader = (props: Props) => {
 
         <Col lg={11}>
           <Row>
-            <Col className="col-xs-12 ">
+            <Col className="col-xs-12 "> 
               <Row>
                 <Col>
-                  <div className="activity-info"> 
+                  <div className="activity-info">
                     <h3 className="education-name">{props.educationName}</h3>
-                    {/* <div className="date-info-container">
+                    <div className="date-info-container">
                       <label className="first-of-type">
                         <div className="date-info text-green">
                           <i className="ss-icon ss-like" />
@@ -36,7 +36,7 @@ const EducationDetailHeader = (props: Props) => {
                           src="https://res.cloudinary.com/dcpbbqilg/image/upload/v1708375563/svg_xml_base64_PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjY0IDY0IDg5NiA4OTYiIGZvY3VzYWJsZT0iZmFsc2UiIGNsYXNzPSIiIGRhdGEtaWNvbj0icXVlc3Rpb24tY2lyY2xlIiB3aWR0aD0iMWVtIiBoZWlnaHQ9IjFlbSIgZmlsbD0i_febtsd.svg"
                         />
                       </label>
-                    </div> */}
+                    </div>
                   </div>
                 </Col>
                 <Col>
@@ -49,10 +49,6 @@ const EducationDetailHeader = (props: Props) => {
                     <div className="ant-space-item">
                       <div className="like-header">
                         <div className="like-area">
-                          {/* <img
-                                  className="like-img"
-                                  src="https://res.cloudinary.com/dcpbbqilg/image/upload/v1708375112/svg_xml_base64_PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGlkPSJoZWFydC1zdmciIHZpZXdCb3g9IjQ2NyAzOTIgNTggNTciPjxnIGlkPSJHcm91cCIgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg0Njcg_ho40md.svg"
-                                /> */}
                           <svg
                             xmlns="https://res.cloudinary.com/dcpbbqilg/image/upload/v1708375112/svg_xml_base64_PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGlkPSJoZWFydC1zdmciIHZpZXdCb3g9IjQ2NyAzOTIgNTggNTciPjxnIGlkPSJHcm91cCIgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg0Njcg_ho40md.svg"
                             id="heart-svg"
@@ -228,13 +224,6 @@ const EducationDetailHeader = (props: Props) => {
                     </div>
                     <div className="ant-space-item">
                       <div className="activity-favorite">
-                        {/* <img
-                          className="add-favorite"
-                          src={
-                            "https://res.cloudinary.com/dcpbbqilg/image/upload/v1708375480/add-favorite_qtxzft.svg"
-                          }
-                          
-                        /> */}
                         <svg
                           xmlns="https://res.cloudinary.com/dcpbbqilg/image/upload/v1708375480/add-favorite_qtxzft.svg"
                           width="40"

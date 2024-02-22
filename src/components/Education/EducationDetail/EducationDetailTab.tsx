@@ -6,6 +6,7 @@ import "./educationDetailTab.css";
 import educationService from "../../../services/educationService";
 import { GetAllEducationAboutResponse } from "../../../models/responses/education/getAllEducationAboutResponse";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import { shiftDate } from "../../../utilities/Helpers/heatMap";
 type Props = {
   educationAboutId?: number;
   educationDetailId?: number;
@@ -47,14 +48,6 @@ const   EducationDetailTab = (props: Props) => {
             <Col>
               <EducationDetailContent
                 educationDetailId={props.educationDetailId}
-                educationTitle="Dr. Ecmel Ayral'dan Hoşgeldin Mesajı"
-                educationSubTitle="Hoşgeldin Mesajı"
-                educationTime="3 dk"
-                educationCategory="Genel"
-                educationLanguage="Türkçe"
-                educationSubcategory="Video"
-                educationCompany="Kurum içi üretim"
-                likeCount={65}
               />
             </Col>
           </Row>
@@ -65,13 +58,14 @@ const   EducationDetailTab = (props: Props) => {
           <Row>
             <Col>
               <EducationDetailAbout
-                startDate={education.startDate}
+                startDate={education.startDate} 
                 endDate={education.endDate}
                 timeSpent="2 dk"
                 estimatedDuration="3 dk"
                 category={education.categoryName}
                 company={education.companyName}
-              />
+              />           
+
             </Col>
           </Row>
         </Container>

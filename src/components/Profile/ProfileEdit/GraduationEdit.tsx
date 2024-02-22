@@ -9,7 +9,6 @@ import { GetGraduationItem } from "../../../models/responses/graduation/getGradu
 import { GraduationPageLabelTexts, ProfileGraduationListHeaders, registerButtonText } from "../../../utilities/Constants/constantValues";
 import { GraduationDegreeValues } from "../../../utilities/Constants/GraduationDegreeValues";
 import ControlPopup from "../../Popup/ControlPopup";
-import FormattedDate from "../../../utilities/Helpers/FormattedDate";
 import { shiftDate } from "../../../utilities/Helpers/heatMap";
 import { AddGraduationRequest } from "../../../models/requests/graduation/addGraduationRequest";
 

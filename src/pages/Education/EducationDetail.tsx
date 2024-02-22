@@ -6,7 +6,7 @@ import EducationDetailHeader from "../../components/Education/EducationDetail/Ed
 import { useParams } from "react-router-dom";
 import educationService from "../../services/educationService";
 import { useLoadingContext } from "../../contexts/LoadingContext";
-import { GetAllEducationResponse } from "../../models/responses/education/getAllEducationHeaderResponse";
+import { GetAllEducationResponse } from "../../models/responses/education/getAllEducationResponse";
 
 type Props = {};
 
@@ -15,7 +15,7 @@ const EducationDetail = (props: Props) => {
     useState<GetAllEducationResponse>(Object);
   const [aboutId, setAboutId] = useState<number>(0);
   const { handleSetLoading } = useLoadingContext();
-  const params = useParams(); 
+  const params = useParams();
 
   const fetchEducationDetail = async () => {
     try {

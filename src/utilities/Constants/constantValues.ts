@@ -277,3 +277,7 @@ export const ProfileInformationEditToastrMsg = {
 }
 
 export const RegisterSuccessToastrMsg = "Kaydınız başarıyla gerçekleşti"
+
+/* EducationOffcanvas */
+export const offcanvasButton = "EĞİTİME GİT"
+export const pointText = "PUAN" 

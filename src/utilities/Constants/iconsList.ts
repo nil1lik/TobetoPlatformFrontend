@@ -54,7 +54,7 @@ export const userIcon = {
   className: "sg-icon sg-user",
   image: "https://res.cloudinary.com/dcpbbqilg/image/upload/v1708375943/user_soqjji.svg",
   valueHeader: "Eğitmen"
-}
+} 
 
 export const cameraIcon = {
   className: "sg-icon sg-camera",
