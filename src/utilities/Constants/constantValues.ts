@@ -282,7 +282,8 @@ export const ProfileSkillToastrMsg = {
 }
 
 export const ProfileInformationEditToastrMsg = {
-    profileInformationsUpdateSuccess: "Bilgileriniz Başarıyla Güncellendi"
+    profileInformationsUpdateSuccess: "Bilgileriniz Başarıyla Güncellendi",
+    profileInformationsAddSuccess:"Bilgileriniz Başarıyla Kaydedildi."
 }
 
 export const RegisterSuccessToastrMsg = "Kaydınız başarıyla gerçekleşti"

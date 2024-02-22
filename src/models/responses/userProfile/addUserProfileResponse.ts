@@ -1,4 +1,5 @@
 export interface AddUserProfileResponse {
+    Id:number,
     userId: number,
     phone:string,
     birthDate: Date,
