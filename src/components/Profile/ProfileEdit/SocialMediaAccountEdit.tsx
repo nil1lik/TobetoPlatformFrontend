@@ -91,7 +91,7 @@ const SocialMediaAccountEdit = (props: Props) => {
                   <button className="btn social-delete" onClick={() => {handleShow() }}>
                     <i className="grade-delete-img"></i>
                   </button>
-                  <ControlPopup
+                  {/* <ControlPopup
                         title="Seçilen sosyal medyayı silmek istediğinizden emin misiniz?"
                         description="Bu işlem geri alınmaz."
                         buttonYes={true}
@@ -99,7 +99,7 @@ const SocialMediaAccountEdit = (props: Props) => {
                         message="Sosyal medya hesabınız kaldırıldı"
                         show={show}
                         hide={handleClose}
-                      />
+                      /> */}
                 </Col>
                 <Col xs={1}>
                   <button className="btn">

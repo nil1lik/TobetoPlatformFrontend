@@ -10,11 +10,16 @@ type Props = {
     message: string;
     show: boolean;
     hide: () => void
+    delete: () => Promise<void>
 };
 
 const ControlPopup = (props: Props) => {
     const handleNoButtonClick = () => {
         props.hide();
+    };
+
+    const handleYesButtonClick = () => {
+        props.delete();
     };
     return (
         <Modal size="lg" show={props.show} onHide={props.hide} centered >
@@ -35,7 +40,10 @@ const ControlPopup = (props: Props) => {
                 <Row>
                     <Col >
                         {props.buttonNo &&
-                            <button className="form-control" onClick={() => { toastr.error(props.message); }}>
+                            <button className="form-control" onClick={() => {
+                                handleYesButtonClick();
+                                toastr.success(props.message);
+                            }}>
                                 <i className="bi bi-check-lg" />Evet</button>}
 
                     </Col>

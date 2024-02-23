@@ -1,3 +1,4 @@
+import { AxiosResponse } from "axios";
 import { BASE_API_URL } from "../core/environment/environment";
 import { BaseService } from "../core/services/baseService";
 import { AddGraduationRequest } from "../models/requests/graduation/addGraduationRequest";

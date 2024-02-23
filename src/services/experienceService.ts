@@ -36,6 +36,7 @@ class ExperienceService extends BaseService<
 
     addExperience(request: AddExperienceRequest): Promise<AxiosResponse<AddExperienceResponse, any>> {
 		return axios.post<AddExperienceResponse>(this.apiUrl, request);
+
 	}
 }
 
