@@ -64,7 +64,7 @@ const PlatformTab = (props: Props) => {
       //   handleSetLoading((prev: any) => prev - 1);
       //   // setLoadingPagination(true);
       // }
-      setTimeout(fetchEducation, 500);
+      setTimeout(() => fetchEducation(4), 500);
       fetchAnnouncement();
     }, []);
 
@@ -120,7 +120,7 @@ const PlatformTab = (props: Props) => {
             />
           ))}
         </Row>
-        <Link to={"/egitimlerim/"} style={{ textDecoration: "none" }}>
+        <Link to={"/egitimlerim"} style={{ textDecoration: "none" }}>
           <div className="show-more">
             <Button className="show-more-button"></Button>
             <p className="show-more-text">{showMoreText}</p>

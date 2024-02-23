@@ -23,12 +23,20 @@ const Education = (props: Props) => {
   // const [education, setEducation] = useState<GetEducationItem[]>([]);
   const { handleSetLoading } = useLoadingContext();
   // const [loadingPagination, setLoadingPagination] = useState<boolean>(false);
-  const { educationData, setChildState, pageCount } = useEducation();
+  const {
+    educationData,
+    setChildState,
+    childState,
+    pageCount,
+    fetchEducation,
+  } = useEducation();
 
   const handleChildStateChange = (newState: number) => {
     setChildState(newState);
   };
-
+  useEffect(() => {
+    fetchEducation(8);
+  }, [childState]);
 
   return (
     <>
@@ -55,17 +63,17 @@ const Education = (props: Props) => {
             <EducationCard
               key={education.id}
               id={education.id}
-              image={education.imageUrl} 
+              image={education.imageUrl}
               text={education.name}
-              date={<FormattedDate date={education.createdDate} />}
+              date={<FormattedDate date={education.startDate} />}
             />
           ))}
         </Row>
         <Row className="pagination">
-            <Pagi
-               handleChildStateChange={handleChildStateChange}
-              pageCount={pageCount}
-            />
+          <Pagi
+            handleChildStateChange={handleChildStateChange}
+            pageCount={pageCount}
+          />
         </Row>
       </Container>
     </>

@@ -4,6 +4,7 @@ import asyncLessonService from "../../../services/asyncLessonService";
 import { GetByIdAsyncLessonResponse } from "../../../models/responses/asyncLesson/getByIdAsyncLessonResponse";
 import ReactPlayer from "react-player";
 import EducationOffcanvas from "../EducationDetail/EducationOffcanvas";
+import { detailButton, pointText } from "../../../utilities/Constants/constantValues";
 
 type Props = {
   asyncLessonId?: number;
@@ -20,10 +21,8 @@ const LessonVideoDetailCard = (props: Props) => {
   const fetchAsyncLesson = async () => {
     try {
       if (asyncLessonId !== undefined) {
-        // const result = await asyncLessonService.getById(asyncLessonId);  
         const result = await asyncLessonService.getByIdAsyncLessonDetail(asyncLessonId); 
         setAsyncLessons(result.data);
-        console.log("asyncLessonlar :" + result.data);
 
       }
     } catch (error) {
@@ -47,7 +46,7 @@ const LessonVideoDetailCard = (props: Props) => {
               height="100%"
               controls
             /> 
-            {/* <i className="ss-icon ss-lock" /> */} 
+            {/* <i className="ss-icon ss-lock" /> */}  
           </div>
         </div>
         <Card className="activity-card">
@@ -61,7 +60,7 @@ const LessonVideoDetailCard = (props: Props) => {
                   {asyncLesson?.lessonTypeName} - {asyncLesson?.time}
                 </div>
                 <div className="unit-detail-col unit-detail-col-score text-green">
-                  {asyncLesson?.videoPoint} PUAN
+                  {asyncLesson?.videoPoint} {pointText}
                 </div>
                 <div className="unit-detail-col unit-detail-col-status last-child text-green">
                   <i className="ss-icon ss-like" />
@@ -75,7 +74,7 @@ const LessonVideoDetailCard = (props: Props) => {
                       className="ant-btn ant-btn-default ant-btn-lg ant-btn-block btn"
                       onClick={handleShow}
                     >
-                      <label className="ant-btn-text">DETAY</label>
+                      <label className="ant-btn-text">{detailButton}</label> 
                       <div className="drawer">
                         <EducationOffcanvas 
                           imageUrl="https://lms.tobeto.com/tobjEKnwKDQVcjzXYj%2bUxp8rPm9JXZ"
@@ -85,7 +84,7 @@ const LessonVideoDetailCard = (props: Props) => {
                           category={asyncLesson?.videoDetailCategoryName}
                           language={asyncLesson?.languageName}
                           company={asyncLesson?.companyName}
-                          subcategory="educationSubcategory" 
+                          subcategory={asyncLesson?.subcategoryName}
                           likeCount= {100}
                           point={asyncLesson?.videoPoint}
                           button={true} 

@@ -9,9 +9,9 @@ const initialState: EducationContextModel = {
   setEducationData: () => {},
   childState: 0,
   setChildState: () => {},
-  fetchEducation: async (count: number) => {},
+  fetchEducation: async (count: number ) => {},
   setPageCount: () => {},
-  pageCount: null
+  pageCount: null,
 };
 
 const EducationContext = createContext(initialState);
@@ -21,28 +21,31 @@ export const EducationProvider = (props: any) => {
     initialState.educationData
   );
   const [childState, setChildState] = useState<number>(initialState.childState);
-  const [pageCount,setPageCount] = useState<any>(initialState.pageCount);
-  const fetchEducation = async (count: number) => {
+  const [pageCount, setPageCount] = useState<any>(initialState.pageCount);
+  const fetchEducation = async (count: number = 8) => {
     try {
-      const result = await educationService.getAll(
-        childState,
-        count
-      ); 
-      setPageCount( 
-        pageCalculate(result.data.count, count)
-      );
+      const result = await educationService.getAll(childState, count);
+      setPageCount(pageCalculate(result.data.count, count));
       setEducationData(result.data.items);
     } catch (error) {
       console.error(
         "Eğitim verilerini getirme sırasında bir hata oluştu:",
         error
       );
-    } 
+    }
   };
 
   return (
     <EducationContext.Provider
-      value={{ educationData, setEducationData, childState, setChildState, fetchEducation, pageCount, setPageCount }}
+      value={{
+        educationData,
+        setEducationData,
+        childState,
+        setChildState,
+        fetchEducation,
+        pageCount,
+        setPageCount,
+      }}
     >
       {props.children}
     </EducationContext.Provider>
