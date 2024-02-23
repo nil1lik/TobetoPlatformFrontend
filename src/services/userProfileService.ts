@@ -23,7 +23,7 @@ class UserProfileService extends BaseService<
     super();
     this.apiUrl = BASE_API_URL + "UserProfiles";
     this.User = BASE_API_URL + "Users";
-    this.dtoUrl = this.apiUrl + "/getByUserId/"
+    this.dtoUrl = this.apiUrl + "/getByUserId"
   }
   getByUserId(id: number): Promise<AxiosResponse<GetByIdUser, any>> {
     return axios.get<GetByIdUser>(this.User + "/" + id);
