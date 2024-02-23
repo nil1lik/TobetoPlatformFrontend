@@ -1,9 +1,9 @@
 export interface AddGraduationRequest{
+    userProfileId: number,
     degree: string,
     universityName: string,
     department: string,
-    startDate: Date,
-    endDate: Date,
-    graduationDate: Date,
-    toggle: string,
+    startDate: Date | null,
+    endDate: Date | null,
+    graduationDate: Date
 }

@@ -8,6 +8,7 @@ import { AddUserProfileRequest } from "../models/requests/userProfile/addUserPro
 import { AddUserProfileResponse } from "../models/responses/userProfile/addUserProfileResponse";
 import { UpdateUserProfileRequest } from "../models/requests/userProfile/updateUserProfileRequest";
 import { UpdateUserProfileResponse } from "../models/responses/userProfile/updateUserProfileResponse";
+import { GetUserProfileByUserId } from "../models/responses/userProfile/getUserProfileByUserId";
 
 class UserProfileService extends BaseService<
   GetUserProfile,
@@ -22,10 +23,15 @@ class UserProfileService extends BaseService<
     super();
     this.apiUrl = BASE_API_URL + "UserProfiles";
     this.User = BASE_API_URL + "Users";
+    this.dtoUrl = this.apiUrl + "/getByUserId"
   }
   getByUserId(id: number): Promise<AxiosResponse<GetByIdUser, any>> {
     return axios.get<GetByIdUser>(this.User + "/" + id);
   }
+
+  getUserProfileByUserId(id: number): Promise<AxiosResponse<GetUserProfileByUserId, any>> {
+		return axios.get<GetUserProfileByUserId>(this.dtoUrl + "/" + id);
+	}
 }
 
 export default new UserProfileService();

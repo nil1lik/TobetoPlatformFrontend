@@ -10,7 +10,6 @@ import { UserInformationValidationMessageRule } from "../../utilities/Validation
 import { AuthContext, useAuthContext } from "../../contexts/AuthContext";
 import { userLoginRequest } from "../../models/requests/user/userLoginRequest";
 import { object } from "yup";
-import UserService from "../../services/userService";
 import {
   forgetPasswordButtonText,
   loginBoxBottomText,
@@ -18,10 +17,12 @@ import {
   registerButtonText,
 } from "../../utilities/Constants/constantValues";
 import { useLoadingContext } from "../../contexts/LoadingContext";
+import userService from "../../services/userService";
+import { firstLoginCheck } from "../../utilities/Helpers/firstLoginChecker";
 type Props = {};
 
 const Login = (props: Props) => {
-  const {handleSetAuth, handleSetUserId} = useAuthContext();
+  const { handleSetAuth, handleSetUserId } = useAuthContext();
   const validationSchema = object({
     email: UserInformationValidationMessageRule.email,
     password: UserInformationValidationMessageRule.password,
@@ -30,6 +31,21 @@ const Login = (props: Props) => {
   const { handleSetLoading } = useLoadingContext();
 
   const navigate = useNavigate();
+
+  const handleLogin = async (values: any) => {
+    handleSetLoading((prev: any) => prev + 1);
+    try {
+      const result = await userService.loginUser(values);
+      handleSetUserId(result.headers.userId);
+      handleSetAuth(true);
+      handleSetLoading((prev: any) => prev - 1);
+
+      firstLoginCheck(result.headers.userId, navigate, "/profilim/profilimi-duzenle", "/");
+
+    } catch (error) {
+      console.error("Kullanıcı girişi sırasında hata oluştu:", error);
+    }
+  };
 
   const initialValues: userLoginRequest = {
     email: "",
@@ -45,22 +61,7 @@ const Login = (props: Props) => {
               initialValues={initialValues}
               validationSchema={validationSchema}
               onSubmit={(values: any) => {
-                handleSetLoading((prev: any) => prev + 1);
-                const userService = new UserService();
-                userService
-                  .loginUser(values)
-                  .then((result) => {
-                    handleSetUserId(result.headers.userId);
-                    handleSetAuth(true);
-                    navigate("/");
-                    handleSetLoading((prev: any) => prev - 1);
-                  })
-                  .catch((error) => {
-                    console.error(
-                      "Kullanıcı girişi sırasında hata oluştu:",
-                      error
-                    );
-                  });
+                handleLogin(values);
               }}
             >
               <Form className={"login-form-cont"}>

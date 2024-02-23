@@ -35,29 +35,28 @@ const SkillEdit = (props: Props) => {
   const handleShow = () => setShow(true);
   const {userId} = useAuthContext();
 
+  const fetchSkills = async () => {
+    try {
+      const result = await skillService.getByFilter(0, 25);
+      setSkills(result.data.items);
+    } catch (error) {
+      console.error("API isteği sırasında bir hata oluştu:", error);
+    }
+  };
 
   useEffect(() => {
-    const fetchSkills = async () => {
-      try {
-        const result = await skillService.getByFilter(0, 25);
-        setSkills(result.data.items);
-      } catch (error) {
-        console.error("API isteği sırasında bir hata oluştu:", error);
-      }
-    };
     fetchSkills();
   }, []);
 
   const initialValues: AddProfileSkillRequest = {
-    userProfileId: Number(userId),
+    userProfileId: 0,
     skillId: 0
   }
 
   const handleSkillSubmit = async (values: AddProfileSkillRequest) => {
-    console.log("Seçilen beceri:", values);
+    values.userProfileId = Number(userId);
     const result = await skillService.addProfilSkill(values);
-    setPostSkills(result.data);
-    console.log(result.data);
+    fetchSkills();
     toastr.success(ProfileSkillToastrMsg.skillAddSuccess);
   };
 
