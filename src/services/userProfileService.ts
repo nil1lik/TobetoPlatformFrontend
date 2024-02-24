@@ -12,6 +12,7 @@ import { UpdateUserProfileResponse } from "../models/responses/userProfile/updat
 import { GetUserProfileByUserId } from "../models/responses/userProfile/getUserProfileByUserId";
 import { GetGraduationByUserId, GetGraduationByUserIdList } from "../models/responses/userProfile/getGraduationByUserId";
 import { GetExperienceByUserIdList } from "../models/responses/userProfile/getExperienceByUserId";
+import errorInstance from '../core/interceptors/errorInterceptor';
 
 class UserProfileService extends BaseService<
   GetUserProfile,
@@ -45,7 +46,7 @@ class UserProfileService extends BaseService<
 	}
 
   getExperienceByUserId(id: number): Promise<AxiosResponse<GetExperienceByUserIdList, any>> {
-		return axios.get<GetExperienceByUserIdList>(this.Experience + "/" + id);
+		return errorInstance.get<GetExperienceByUserIdList>(this.Experience + "/" + id);
 	}
 
   addUserProfile(id: number, request: GetUserDetails): Promise<AxiosResponse<GetUserDetails, any>>{

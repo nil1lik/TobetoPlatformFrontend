@@ -31,6 +31,7 @@ import { useAuthContext } from "../../../contexts/AuthContext";
 import { AddExperienceRequest } from "../../../models/requests/experience/addExperienceRequest";
 import { GetExperienceByUserId } from "../../../models/responses/userProfile/getExperienceByUserId";
 import userProfileService from "../../../services/userProfileService";
+import { handleError } from "../../../core/errorHandlers/errorHandler";
 
 type Props = {};
 

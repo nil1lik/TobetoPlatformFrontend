@@ -3,6 +3,7 @@ import { BUSINESS_ERROR, VALIDATION_ERROR } from "./errorTypes";
 import { errHandlerErrNetwork } from "../../utilities/Constants/constantValues";
 
 export const handleError = (error: any) => {
+    console.log(error);
     if (error.code && error.code == "ERR_NETWORK") {
         toastr.error(errHandlerErrNetwork);
     }

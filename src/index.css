@@ -1060,7 +1060,4 @@ input[type="number"] {
 .react-calendar-heatmap .color-scale-2 { fill: #93f; }
 .react-calendar-heatmap .color-scale-3 { fill: #5c1f99; }
 .react-calendar-heatmap .color-scale-4 { fill: #361259; }
-.react-calendar-heatmap .rect-radius{
-  border-radius: 50%;
-}
 /* heatmap end */

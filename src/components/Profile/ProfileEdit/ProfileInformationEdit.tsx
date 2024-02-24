@@ -29,33 +29,32 @@ type Props = {
   onSelect?: (cityId: number) => void;
 };
 
-const initialValues: GetUserDetails = {
-  userId: 0,
-  userProfileId: 0,
-  firstName: "",
-  lastName: "",
-  email: "",
-  cityId: 0,
-  districtId: 0,
-  cityName: "",
-  districtName: "",
-  nationalIdentity: "",
-  phone: "",
-  birthDate: "",
-  country: "",
-  addressDetail: "",
-  description: "",
-};
-
 const ProfileInformationEdit = (props: Props) => {
   const [cities, setCities] = useState<GetCityItem[]>([]);
   const [districts, setDistricts] = useState<any[]>([]);
-  const [selectCityId, setSelectCityId] = useState(Number);
-  const [selectDistrictId, setSelectDistrictId] = useState();
-  const [userDetails, setUserDetails] = useState(initialValues);
+  const [selectCityId, setSelectCityId] = useState<number>(0);
+  const [selectDistrictId, setSelectDistrictId] = useState<number | undefined>(undefined);
+  const [userDetails, setUserDetails] = useState<GetUserDetails>({
+    userId: 0,
+    userProfileId: 0,
+    firstName: "",
+    lastName: "",
+    email: "",
+    cityId: 0,
+    districtId: 0,
+    cityName: "",
+    districtName: "",
+    nationalIdentity: "",
+    phone: "",
+    birthDate: "",
+    country: "",
+    addressDetail: "", // Burada varsayılan değeri boş string olarak ayarlayın
+    description: "",
+  });
   const [userInformation, setUserInformation] = useState<GetByUserId>();
   const [value, setValue] = useState<any>();
   const { userId } = useAuthContext();
+
 
   const fetchCities = async () => {
     try {
@@ -120,14 +119,19 @@ const ProfileInformationEdit = (props: Props) => {
   }, []);
 
   const handleSubmit = async (value: GetUserDetails) => {
-    console.log(value)
+    console.log(value);
     if (!userDetails.userProfileId) {
-      const result = await userProfileService.addUserProfile(Number(userId), value)
-      setUserDetails(result.data)
-    }
-    else{
-      const result = await userProfileService.updateUserProfile(Number(userId), value)
-      setUserDetails(result.data)
+      const result = await userProfileService.addUserProfile(
+        Number(userId),
+        value
+      );
+      setUserDetails(result.data);
+    } else {
+      const result = await userProfileService.updateUserProfile(
+        Number(userId),
+        value
+      );
+      setUserDetails(result.data);
     }
   };
 
@@ -144,7 +148,7 @@ const ProfileInformationEdit = (props: Props) => {
       </div>
       <Formik
         // validationSchema={validationSchema}
-        initialValues={initialValues}
+        initialValues={userDetails}
         enableReinitialize={true}
         onSubmit={handleSubmit}
       >
@@ -309,16 +313,15 @@ const ProfileInformationEdit = (props: Props) => {
             </Row>
             <Row>
               <Col>
-                <label className="input-label-text" htmlFor="street">
+                <label className="input-label-text" htmlFor="addressDetail">
                   {ProfileInformationEditTexts.textArea1}
                 </label>
                 <Field
                   className="form-control my-custom-input textarea-style"
                   rows="10"
                   as="textarea"
-                  id="street"
+                  id="addressDetail"
                   name="addressDetail"
-                  value={userDetails.addressDetail}
                   maxLength={textAreaLength}
                 ></Field>
               </Col>

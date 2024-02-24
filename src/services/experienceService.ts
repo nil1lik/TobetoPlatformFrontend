@@ -7,6 +7,7 @@ import { GetByIdExperience } from "../models/responses/experience/getByIdExperie
 import { UpdateExperienceRequest } from "../models/requests/experience/updateExperienceRequest";
 import { AddExperienceResponse } from "../models/responses/experience/addExperienceResponse";
 import { UpdateExperienceResponse } from "../models/responses/experience/updateExperienceResponse";
+import errorInstance from '../core/interceptors/errorInterceptor';
 
 class ExperienceService extends BaseService<
     GetExperience,
@@ -35,7 +36,7 @@ class ExperienceService extends BaseService<
     
 
     addExperience(request: AddExperienceRequest): Promise<AxiosResponse<AddExperienceResponse, any>> {
-		return axios.post<AddExperienceResponse>(this.apiUrl, request);
+		return errorInstance.post<AddExperienceResponse>(this.apiUrl, request);
 
 	}
 }
