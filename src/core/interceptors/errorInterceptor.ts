@@ -11,8 +11,6 @@ errorInstance.interceptors.request.use(
         return request;
     },
     error => {
-        console.log(error);
-        handleError(error);
         return Promise.reject(error);
     }
 )
@@ -22,7 +20,7 @@ errorInstance.interceptors.response.use(
         return response;
     },
     error => {
-        console.log(error);
+        console.log(error)
         handleError(error);
         return Promise.reject(error);
     }

@@ -1,7 +1,6 @@
 import toastr from "toastr";
 import { BUSINESS_ERROR, VALIDATION_ERROR } from "./errorTypes";
 import { errHandlerErrNetwork } from "../../utilities/Constants/constantValues";
-
 export const handleError = (error: any) => {
     console.log(error);
     if (error.code && error.code == "ERR_NETWORK") {
@@ -27,7 +26,7 @@ export const handleBusinessError = (error: any) => {
 }
 
 export const handleValidationError = (error: any) => {
-    toastr.error(error.detail);
+    toastr.error(error);
 
     Object.keys(error.errors).forEach(key => {
         toastr.error(`${key}: ${error.errors[key]}`);
