@@ -34,6 +34,7 @@ const ProfileInformationEdit = (props: Props) => {
   const [districts, setDistricts] = useState<any[]>([]);
   const [selectCityId, setSelectCityId] = useState<number>(0);
   const [selectDistrictId, setSelectDistrictId] = useState<number | undefined>(undefined);
+  const [userInformation, setUserInformation] = useState<GetByUserId>();
   const [userDetails, setUserDetails] = useState<GetUserDetails>({
     userId: 0,
     userProfileId: 0,
@@ -48,10 +49,9 @@ const ProfileInformationEdit = (props: Props) => {
     phone: "",
     birthDate: "",
     country: "",
-    addressDetail: "", // Burada varsayılan değeri boş string olarak ayarlayın
+    addressDetail: "", 
     description: "",
   });
-  const [userInformation, setUserInformation] = useState<GetByUserId>();
   const [value, setValue] = useState<any>();
   const { userId } = useAuthContext();
 
@@ -59,7 +59,6 @@ const ProfileInformationEdit = (props: Props) => {
   const fetchCities = async () => {
     try {
       const result = await cityService.getByFilter(0, 81);
-      console.log(result.data.items);
       setCities(result.data.items);
     } catch (error) {
       console.error("API isteği sırasında bir hata oluştu:", error);
@@ -70,6 +69,7 @@ const ProfileInformationEdit = (props: Props) => {
     try {
       const result = await userProfileService.getUserDetails(userId);
       setUserDetails(result.data);
+      console.log(result)
     } catch (error) {
       console.log("Kullanıcı profili bulunamadı.", error);
     }
@@ -147,7 +147,7 @@ const ProfileInformationEdit = (props: Props) => {
         />
       </div>
       <Formik
-        // validationSchema={validationSchema}
+        validationSchema={validationSchema}
         initialValues={userDetails}
         enableReinitialize={true}
         onSubmit={handleSubmit}
@@ -161,7 +161,7 @@ const ProfileInformationEdit = (props: Props) => {
                   label={ProfileInformationEditTexts.label1}
                   value={
                     userDetails?.firstName ||
-                    ProfileInformationEditTexts.placeholder1
+                    userInformation?.firstName
                   }
                   placeHolder={ProfileInformationEditTexts.placeholder1}
                   disabled={true}
@@ -173,7 +173,7 @@ const ProfileInformationEdit = (props: Props) => {
                   label={ProfileInformationEditTexts.label2}
                   value={
                     userDetails?.lastName ||
-                    ProfileInformationEditTexts.placeholder2
+                    userInformation?.lastName
                   }
                   placeHolder={ProfileInformationEditTexts.placeholder2}
                   disabled={true}
@@ -191,9 +191,9 @@ const ProfileInformationEdit = (props: Props) => {
                       international
                       initialValueFormat="national"
                       name="phone"
+                      value={userDetails.phone}
                       defaultCountry="TR"
                       onChange={setValue}
-                      value={userDetails.phone}
                       className="my-custom-input"
                     />
                   </Col>
@@ -214,7 +214,10 @@ const ProfileInformationEdit = (props: Props) => {
                   type="text"
                   name="nationalIdentity"
                   label={ProfileInformationEditTexts.label5}
-                  placeHolder={userDetails.nationalIdentity}
+                  value={
+                    userDetails?.nationalIdentity ||
+                    ProfileInformationEditTexts.placeholder5
+                  }
                 />
               </Col>
               <Col>
@@ -224,7 +227,7 @@ const ProfileInformationEdit = (props: Props) => {
                   label={ProfileInformationEditTexts.label6}
                   value={
                     userDetails?.email ||
-                    ProfileInformationEditTexts.placeholder6
+                    userInformation?.email
                   }
                   placeHolder={
                     userDetails?.email ||
@@ -236,19 +239,15 @@ const ProfileInformationEdit = (props: Props) => {
             </Row>
             <Row>
               <Col>
-                <FormikInput
+              <FormikInput
+                  type="text"
                   name="country"
                   label={ProfileInformationEditTexts.label7}
-                  placeHolder={userDetails.country}
+                  value={
+                    userDetails?.country ||
+                    ProfileInformationEditTexts.placeholder7
+                  }
                 />
-                {/* <div className="mb-3">
-                    <label className="input-label-text">Ülke</label>
-                  <Field
-                    name="country"
-                    type="text"
-                    className="form-control my-custom-input"
-                  />
-                </div> */}
               </Col>
             </Row>
             <Row>
@@ -256,12 +255,6 @@ const ProfileInformationEdit = (props: Props) => {
                 <label className="input-label-text">
                   {ProfileInformationEditTexts.label8}
                 </label>
-                {/* <SelectBox
-                  name="cityId"
-                  defaultText={ProfileInformationEditTexts.placeholder8}
-                  selectBoxArray={cities}
-                  onSelect={handleCityId}
-                /> */}
                 <select
                   name="cityId"
                   onChange={handleSelectCityChange}
@@ -285,12 +278,6 @@ const ProfileInformationEdit = (props: Props) => {
                 <label className="input-label-text">
                   {ProfileInformationEditTexts.placeholder9}
                 </label>
-                {/* <SelectBox
-                  name="districtId"
-                  defaultText={ProfileInformationEditTexts.label9}
-                  selectBoxArray={districts}
-                  onSelect={handleDistrictId}
-                /> */}
                 <select
                   name="districtId"
                   onChange={handleSelectDistrictChange}
@@ -337,7 +324,6 @@ const ProfileInformationEdit = (props: Props) => {
                   as="textarea"
                   id="aboutMe"
                   name="description"
-                  value={userDetails.description}
                   maxLength={textAreaLength}
                 ></Field>
               </Col>
