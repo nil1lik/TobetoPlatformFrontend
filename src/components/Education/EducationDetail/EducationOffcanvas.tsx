@@ -12,12 +12,13 @@ import {
   offcanvasButton,
   pointText,
 } from "../../../utilities/Constants/constantValues";
+import FormattedTime from "../../../utilities/Helpers/FormattedTime";
 
 type Props = {
   imageUrl: string;
   educationName?: string;
   educationType?: string;
-  timeSpent?: number;
+  time?: string;
   category?: string;
   language?: string;
   subcategory?: string;
@@ -31,7 +32,6 @@ type Props = {
 
 const EducationOffcanvas = (props: Props) => {
   const colSize = 2;
-
   return (
     <Offcanvas
       show={props.show}
@@ -56,8 +56,8 @@ const EducationOffcanvas = (props: Props) => {
                 <img
                   className="sg-icon sg-stopwatch"
                   src="/images/stopwatch.png"
-                />
-                {props.timeSpent}
+                />       
+                {<FormattedTime time = {props.time}/>}
               </span>
               <Col lg={12} className="like">
                 <div className="education-like-area">

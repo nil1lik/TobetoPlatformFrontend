@@ -5,6 +5,7 @@ import { GetByIdAsyncLessonResponse } from "../../../models/responses/asyncLesso
 import ReactPlayer from "react-player";
 import EducationOffcanvas from "../EducationDetail/EducationOffcanvas";
 import { detailButton, pointText } from "../../../utilities/Constants/constantValues";
+import FormattedTime from "../../../utilities/Helpers/FormattedTime";
 
 type Props = {
   asyncLessonId?: number;
@@ -57,7 +58,8 @@ const LessonVideoDetailCard = (props: Props) => {
                   <label>{asyncLesson?.name}</label>
                 </div>
                 <div className="unit-detail-col unit-detail-col-default">
-                  {asyncLesson?.lessonTypeName} - {asyncLesson?.time}
+                  {asyncLesson?.lessonTypeName} - {<FormattedTime time={asyncLesson?.time}/>}               
+
                 </div>
                 <div className="unit-detail-col unit-detail-col-score text-green">
                   {asyncLesson?.videoPoint} {pointText}
@@ -80,7 +82,7 @@ const LessonVideoDetailCard = (props: Props) => {
                           imageUrl="https://lms.tobeto.com/tobjEKnwKDQVcjzXYj%2bUxp8rPm9JXZ"
                           educationName={asyncLesson?.name}
                           educationType= {asyncLesson?.lessonTypeName}
-                          timeSpent={asyncLesson?.time}
+                          time={asyncLesson?.time}
                           category={asyncLesson?.videoDetailCategoryName}
                           language={asyncLesson?.languageName}
                           company={asyncLesson?.companyName}
