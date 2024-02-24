@@ -6,26 +6,22 @@ type Props = {
   name: string;
   type?: string;
   placeHolder?: string;
-  value?: string;
   maxLength?: number;
   className?: string;
-  disabled?:boolean
+  disabled?: boolean;
 };
 
 const FormikInput = (props: Props) => {
   return (
     <div className="mb-3">
-      {
-       props.label && <label className="input-label-text">{props.label}</label>
-      } 
+      {props.label && <label className="input-label-text">{props.label}</label>}
       <Field
         name={props.name}
         type={props.type || "text"}
         className="form-control my-custom-input"
         placeholder={props.placeHolder}
-        value={props.value}
         maxLength={props.maxLength}
-        disabled={props.disabled}
+        disabled={props.disabled || false}
       />
       <ErrorMessage name={props.name}>
         {(message) => <span className="text-danger">{message}</span>}

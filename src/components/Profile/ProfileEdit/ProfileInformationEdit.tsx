@@ -33,7 +33,10 @@ const ProfileInformationEdit = (props: Props) => {
   const [cities, setCities] = useState<GetCityItem[]>([]);
   const [districts, setDistricts] = useState<any[]>([]);
   const [selectCityId, setSelectCityId] = useState<number>(0);
-  const [selectDistrictId, setSelectDistrictId] = useState<number | undefined>(undefined);
+  const [selectedCityId, setSelectedCityId] = useState<number | undefined>(0);
+  const [selectDistrictId, setSelectDistrictId] = useState<number | undefined>(
+    undefined
+  );
   const [userInformation, setUserInformation] = useState<GetByUserId>();
   const [userDetails, setUserDetails] = useState<GetUserDetails>({
     userId: 0,
@@ -49,12 +52,11 @@ const ProfileInformationEdit = (props: Props) => {
     phone: "",
     birthDate: "",
     country: "",
-    addressDetail: "", 
+    addressDetail: "",
     description: "",
   });
   const [value, setValue] = useState<any>();
   const { userId } = useAuthContext();
-
 
   const fetchCities = async () => {
     try {
@@ -65,20 +67,33 @@ const ProfileInformationEdit = (props: Props) => {
     }
   };
 
-  const fetchUserDetails = async (userId: number) => {
+  const fetchUserInformation = async (userId: number) => {
     try {
-      const result = await userProfileService.getUserDetails(userId);
-      setUserDetails(result.data);
-      console.log(result)
+      const result = await userProfileService.getByUserId(userId);
+      setUserInformation(result.data);
+      setUserDetails((prevState: GetUserDetails) => ({
+        ...prevState,
+        firstName: result.data.firstName,
+        lastName: result.data.lastName,
+        email: result.data.email,
+      }));
     } catch (error) {
       console.log("Kullanıcı profili bulunamadı.", error);
     }
   };
 
-  const fetchUserInformation = async (userId: number) => {
+  const fetchUserDetails = async (userId: number) => {
     try {
-      const result = await userProfileService.getByUserId(userId);
-      setUserInformation(result.data);
+      const result = await userProfileService.getUserDetails(userId);
+      const apiDateString = "2000-02-24T21:00:37.581";
+      const apiDate = new Date(apiDateString);
+
+      const onlyDate = apiDate.toISOString().split("T")[0];
+      console.log(onlyDate); // "2000-02-24"
+      setUserDetails({
+        ...result.data,
+        birthDate: onlyDate,
+      });
     } catch (error) {
       console.log("Kullanıcı profili bulunamadı.", error);
     }
@@ -103,6 +118,7 @@ const ProfileInformationEdit = (props: Props) => {
   ) => {
     const selectedOptionId = parseInt(event.target.value); // Seçilen option'un id'sini alın
     handleCityId(selectedOptionId);
+    console.log("handleCityChange: ", selectedOptionId);
   };
 
   const handleSelectDistrictChange = (
@@ -111,12 +127,6 @@ const ProfileInformationEdit = (props: Props) => {
     const selectedOptionId = parseInt(event.target.value); // Seçilen option'un id'sini alın
     handleDistrictId(selectedOptionId);
   };
-
-  useEffect(() => {
-    fetchCities();
-    fetchUserInformation(Number(userId));
-    fetchUserDetails(Number(userId));
-  }, []);
 
   const handleSubmit = async (value: GetUserDetails) => {
     console.log(value);
@@ -135,6 +145,20 @@ const ProfileInformationEdit = (props: Props) => {
     }
   };
 
+  useEffect(() => {
+    fetchCities();
+    fetchUserInformation(Number(userId));
+    fetchUserDetails(Number(userId));
+  }, []);
+
+  useEffect(() => {
+    // Örnek olarak, ilk şehri seçili olarak belirleme
+    if (cities.length > 0) {
+      setSelectedCityId(userDetails.cityId); // userDetails.cityId ile seçili şehrin id'sini alıyoruz
+      handleCityId(userDetails.cityId);
+    }
+  }, [userDetails.cityId, cities]);
+
   return (
     <div className="container mt-5">
       <div className="information-photo-cont">
@@ -152,190 +176,176 @@ const ProfileInformationEdit = (props: Props) => {
         enableReinitialize={true}
         onSubmit={handleSubmit}
       >
-        <Form>
-          <Container>
-            <Row>
-              <Col>
-                <FormikInput
-                  name="firstName"
-                  label={ProfileInformationEditTexts.label1}
-                  value={
-                    userDetails?.firstName ||
-                    userInformation?.firstName
-                  }
-                  placeHolder={ProfileInformationEditTexts.placeholder1}
-                  disabled={true}
-                />
-              </Col>
-              <Col>
-                <FormikInput
-                  name="lastName"
-                  label={ProfileInformationEditTexts.label2}
-                  value={
-                    userDetails?.lastName ||
-                    userInformation?.lastName
-                  }
-                  placeHolder={ProfileInformationEditTexts.placeholder2}
-                  disabled={true}
-                />
-              </Col>
-            </Row>
-            <Row>
-              <Col>
-                <Row style={{ display: "flex", alignItems: "center" }}>
-                  <Col>
-                    <label className="input-label-text">
-                      {ProfileInformationEditTexts.label3}
-                    </label>
-                    <PhoneInput
-                      international
-                      initialValueFormat="national"
-                      name="phone"
-                      value={userDetails.phone}
-                      defaultCountry="TR"
-                      onChange={setValue}
-                      className="my-custom-input"
-                    />
-                  </Col>
-                </Row>
-              </Col>
-              <Col>
-                <FormikInput
-                  type="date"
-                  name="birthDate"
-                  label={ProfileInformationEditTexts.label4}
-                  placeHolder={userDetails.birthDate}
-                />
-              </Col>
-            </Row>
-            <Row>
-              <Col>
-                <FormikInput
-                  type="text"
-                  name="nationalIdentity"
-                  label={ProfileInformationEditTexts.label5}
-                  value={
-                    userDetails?.nationalIdentity ||
-                    ProfileInformationEditTexts.placeholder5
-                  }
-                />
-              </Col>
-              <Col>
-                <FormikInput
-                  type="email"
-                  name="email"
-                  label={ProfileInformationEditTexts.label6}
-                  value={
-                    userDetails?.email ||
-                    userInformation?.email
-                  }
-                  placeHolder={
-                    userDetails?.email ||
-                    ProfileInformationEditTexts.placeholder6
-                  }
-                  disabled={true}
-                />
-              </Col>
-            </Row>
-            <Row>
-              <Col>
-              <FormikInput
-                  type="text"
-                  name="country"
-                  label={ProfileInformationEditTexts.label7}
-                  value={
-                    userDetails?.country ||
-                    ProfileInformationEditTexts.placeholder7
-                  }
-                />
-              </Col>
-            </Row>
-            <Row>
-              <Col>
-                <label className="input-label-text">
-                  {ProfileInformationEditTexts.label8}
-                </label>
-                <select
-                  name="cityId"
-                  onChange={handleSelectCityChange}
-                  className={`option form-control my-custom-select`}
-                >
-                  <option disabled selected>
-                    {ProfileInformationEditTexts.placeholder8}
-                  </option>
-                  {cities.map((element) => (
-                    <option
-                      key={element.id || String(element)}
-                      value={element.id}
-                      className="form-control my-custom-input"
-                    >
-                      {element.name || String(element)}
-                    </option>
-                  ))}
-                </select>
-              </Col>
-              <Col>
-                <label className="input-label-text">
-                  {ProfileInformationEditTexts.placeholder9}
-                </label>
-                <select
-                  name="districtId"
-                  onChange={handleSelectDistrictChange}
-                  className={`option form-control my-custom-select`}
-                >
-                  <option disabled selected>
+        {({ values, setFieldValue }) => (
+          <Form>
+            <Container>
+              <Row>
+                <Col>
+                  <FormikInput
+                    name="firstName"
+                    label={ProfileInformationEditTexts.label1}
+                    disabled={!!values.nationalIdentity}
+                  />
+                </Col>
+                <Col>
+                  <FormikInput
+                    name="lastName"
+                    label={ProfileInformationEditTexts.label2}
+                    disabled={!!values.nationalIdentity}
+                  />
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <Row style={{ display: "flex", alignItems: "center" }}>
+                    <Col>
+                      <label className="input-label-text">
+                        {ProfileInformationEditTexts.label3}
+                      </label>
+                      <PhoneInput
+                        international
+                        initialValueFormat="national"
+                        name="phone"
+                        value={values.phone}
+                        defaultCountry="TR"
+                        onChange={setValue}
+                        className="my-custom-input"
+                      />
+                    </Col>
+                  </Row>
+                </Col>
+                <Col>
+                  <FormikInput
+                    type="date"
+                    name="birthDate"
+                    label={ProfileInformationEditTexts.label4}
+                  />
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <FormikInput
+                    type="text"
+                    name="nationalIdentity"
+                    label={ProfileInformationEditTexts.label5}
+                    disabled={!!values.nationalIdentity}
+                  />
+                </Col>
+                <Col>
+                  <FormikInput
+                    type="email"
+                    name="email"
+                    label={ProfileInformationEditTexts.label6}
+                    disabled={true}
+                  />
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <FormikInput
+                    type="text"
+                    name="country"
+                    label={ProfileInformationEditTexts.label7}
+                    disabled={!!values.country && !!values.nationalIdentity}
+                  />
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <label className="input-label-text">
+                    {ProfileInformationEditTexts.label8}
+                  </label>
+                  <Field
+                    name="cityId"
+                    as="select"
+                    value={selectedCityId} // Varsayılan olarak seçili olan şehri belirtiyoruz
+                    onChange={(e: any) => {
+                      const cityId = parseInt(e.target.value);
+                      setSelectedCityId(cityId);
+                      setFieldValue("cityId", cityId);
+                      handleCityId(cityId);
+                    }}
+                    className={`option form-control my-custom-select`}
+                  >
+                    {cities.map((element) => (
+                      <option
+                        key={element.id || String(element)}
+                        value={element.id}
+                        className="form-control my-custom-input"
+                      >
+                        {element.name || String(element)}
+                      </option>
+                    ))}
+                  </Field>
+                </Col>
+                <Col>
+                  <label className="input-label-text">
                     {ProfileInformationEditTexts.placeholder9}
-                  </option>
-                  {districts.map((element) => (
-                    <option
-                      key={element.id || String(element)}
-                      value={element.id}
-                      className="form-control my-custom-input"
-                    >
-                      {element.name || String(element)}
+                  </label>
+                  <Field
+                    name="districtId"
+                    as="select"
+                    onChange={(e: any) => {
+                      const districtId = parseInt(e.target.value);
+                      setFieldValue("districtId", districtId);
+                      handleDistrictId(districtId);
+                    }}
+                    className={`option form-control my-custom-select`}
+                  >
+                    <option disabled selected>
+                      {ProfileInformationEditTexts.placeholder9}
                     </option>
-                  ))}
-                </select>
-              </Col>
-            </Row>
-            <Row>
-              <Col>
-                <label className="input-label-text" htmlFor="addressDetail">
-                  {ProfileInformationEditTexts.textArea1}
-                </label>
-                <Field
-                  className="form-control my-custom-input textarea-style"
-                  rows="10"
-                  as="textarea"
-                  id="addressDetail"
-                  name="addressDetail"
-                  maxLength={textAreaLength}
-                ></Field>
-              </Col>
-            </Row>
-            <Row>
-              <Col>
-                <label className="input-label-text" htmlFor="aboutMe">
-                  {ProfileInformationEditTexts.textArea2}
-                </label>
-                <Field
-                  className="form-control my-custom-input textarea-style"
-                  rows="5"
-                  as="textarea"
-                  id="aboutMe"
-                  name="description"
-                  maxLength={textAreaLength}
-                ></Field>
-              </Col>
-            </Row>
-            <button
-              type="submit"
-              className="button-save py-2 mb-3 mt-4 d-inline-block "
-            >
-              {saveButtonText}
-            </button>
-          </Container>
-        </Form>
+                    {districts.map((element) => (
+                      <option
+                        key={element.id || String(element)}
+                        value={element.id}
+                        className="form-control my-custom-input"
+                      >
+                        {element.name || String(element)}
+                      </option>
+                    ))}
+                  </Field>
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <label className="input-label-text" htmlFor="addressDetail">
+                    {ProfileInformationEditTexts.textArea1}
+                  </label>
+                  <Field
+                    className="form-control my-custom-input textarea-style"
+                    rows="10"
+                    as="textarea"
+                    id="addressDetail"
+                    name="addressDetail"
+                    maxLength={textAreaLength}
+                  ></Field>
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <label className="input-label-text" htmlFor="aboutMe">
+                    {ProfileInformationEditTexts.textArea2}
+                  </label>
+                  <Field
+                    className="form-control my-custom-input textarea-style"
+                    rows="5"
+                    as="textarea"
+                    id="aboutMe"
+                    name="description"
+                    maxLength={textAreaLength}
+                  ></Field>
+                </Col>
+              </Row>
+              <button
+                type="submit"
+                className="button-save py-2 mb-3 mt-4 d-inline-block "
+              >
+                {saveButtonText}
+              </button>
+            </Container>
+          </Form>
+        )}
       </Formik>
     </div>
   );
