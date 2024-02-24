@@ -47,7 +47,7 @@ const ProfileInformationEdit = (props: Props) => {
   const [initialValues, setInitialValues] = useState<AddUserProfileRequest>({
     cityId: selectCityId,
     districtId: Number(selectDistrictId),
-    phone: value,
+    phone: "05555555555",
     userId: Number(userId),
     birthDate: new Date(),
     nationalIdentity: "",
@@ -59,22 +59,22 @@ const ProfileInformationEdit = (props: Props) => {
   const getUser = async (userId: number) => {
     try {
       const result = await userProfileService.getByUserId(userId);
-      console.log(result.data);
       setProfileData(result.data);
     } catch (error) {
       console.log("Id ile kullanıcı alınırken hata oluştu.", error);
     }
   };
 
-  const getUserProfile = async (id: number, values:any) => {
+  const getUserProfile = async (id: number, values: any) => {
     try {
       const result = await userProfileService.getUserProfileByUserId(id);
-      if(result){
+      console.log("ilk try: ", result);
+      if (result) {
         const updateValues: UpdateUserProfileRequest = {
           id: id,
           cityId: values.cityId,
           districtId: values.districtId,
-          phone: values.phone,
+          phone: initialValues.phone,
           userId: id,
           birthDate: values.birthDate,
           nationalIdentity: values.nationalIdentity,
@@ -93,34 +93,32 @@ const ProfileInformationEdit = (props: Props) => {
           console.log("Profil güncelleme hatası:", error);
         }
       }
-      else{
-        try {
-          const result = await userProfileService.add(values);
-          console.log(result.data);
-          setUserProfile(result.data);
-          toastr.success(
-            ProfileInformationEditToastrMsg.profileInformationsAddSuccess
-          );
-        } catch (error) {
-          console.log("Profil ekleme hatası:", error);
-        }
-      }
     } catch (error) {
       console.log("Id ile kullanıcı alınırken hata oluştu.", error);
+      try {
+        const result = await userProfileService.add(values);
+        console.log(result.data);
+        setUserProfile(result.data);
+        toastr.success(
+          ProfileInformationEditToastrMsg.profileInformationsAddSuccess
+        );
+      } catch (error) {
+        console.log("Profil ekleme hatası:", error);
+      }
     }
   };
 
-  const updateUser = async (
-    UpdateUserProfileRequest: UpdateUserProfileRequest
-  ) => {
-    try {
-      const result = await userProfileService.update(UpdateUserProfileRequest);
-      console.log(result.data);
-      setUpdateUserProfile(result.data);
-    } catch (error) {
-      console.log("Id ile kullanıcı alınırken hata oluştu.", error);
-    }
-  };
+  // const updateUser = async (
+  //   UpdateUserProfileRequest: UpdateUserProfileRequest
+  // ) => {
+  //   try {
+  //     const result = await userProfileService.update(UpdateUserProfileRequest);
+  //     console.log(result.data);
+  //     setUpdateUserProfile(result.data);
+  //   } catch (error) {
+  //     console.log("Id ile kullanıcı alınırken hata oluştu.", error);
+  //   }
+  // };
 
   const fetchCities = async () => {
     try {
@@ -144,7 +142,6 @@ const ProfileInformationEdit = (props: Props) => {
   };
 
   const handleDistrictId = (districtId: any) => {
-    console.log(districtId);
     setSelectDistrictId(districtId);
   };
 
@@ -180,8 +177,10 @@ const ProfileInformationEdit = (props: Props) => {
     }
   }, [userId, userProfile]);
 
-  const handleSubmit = async (values: AddUserProfileRequest) => {
-    getUserProfile(Number(userId),values)
+  const handleSubmit = async (
+    values: AddUserProfileRequest | UpdateUserProfileRequest
+  ) => {
+    getUserProfile(Number(userId), values);
   };
 
   return (
@@ -241,7 +240,7 @@ const ProfileInformationEdit = (props: Props) => {
                       initialValueFormat="national"
                       defaultCountry="TR"
                       onChange={setValue}
-                      value={value}
+                      value="05555555555"
                       className="my-custom-input"
                     />
                   </Col>

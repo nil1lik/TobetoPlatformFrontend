@@ -4,7 +4,7 @@ import { BASE_API_URL } from "../core/environment/environment";
 import { userLoginRequest } from "../models/requests/user/userLoginRequest";
 import axiosInstance from "../core/interceptors/axiosInterceptors";
 
-export default class UserService {
+class UserService {
   addUser(userData: userRegisterRequest) {
     return axiosInstance.post(BASE_API_URL + "Auth/Register", userData);
   }
@@ -13,3 +13,5 @@ export default class UserService {
     return axiosInstance.post(BASE_API_URL + "Auth/Login", userData);
   }
 }
+
+export default new UserService();

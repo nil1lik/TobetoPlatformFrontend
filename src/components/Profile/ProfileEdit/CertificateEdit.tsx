@@ -96,7 +96,7 @@ const CertificateEdit = (props: Props) => {
                           style={{ width: 50 }}
                         />
                       </button>
-                      <ControlPopup
+                      {/* <ControlPopup
                         title="Seçilen sertifikayı silmek istediğinizden emin misiniz?"
                         description="Bu işlem geri alınmaz."
                         buttonYes={true}
@@ -104,7 +104,7 @@ const CertificateEdit = (props: Props) => {
                         message="Dosya kaldırıldı"
                         show={show}
                         hide={handleClose}
-                      />
+                      /> */}
                     </td>
                   </tr>
                 </tbody>

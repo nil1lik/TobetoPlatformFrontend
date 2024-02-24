@@ -293,3 +293,7 @@ export const RegisterSuccessToastrMsg = "Kaydınız başarıyla gerçekleşti"
 /* EducationOffcanvas */
 export const offcanvasButton = "EĞİTİME GİT"
 export const pointText = "PUAN" 
+
+
+// Error Handler Values
+export const errHandlerErrNetwork = "Sunucuya ulaşılamıyor..."

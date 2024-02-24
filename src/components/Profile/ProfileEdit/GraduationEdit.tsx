@@ -12,6 +12,8 @@ import ControlPopup from "../../Popup/ControlPopup";
 import { shiftDate } from "../../../utilities/Helpers/heatMap";
 import { AddGraduationRequest } from "../../../models/requests/graduation/addGraduationRequest";
 import { useAuthContext } from "../../../contexts/AuthContext";
+import userProfileService from "../../../services/userProfileService";
+import { GetGraduationByUserId } from "../../../models/responses/userProfile/getGraduationByUserId";
 
 type Props = {};
 
@@ -19,7 +21,7 @@ const GraduationEdit = (props: Props) => {
   const [selectedStartDate, setSelectedStartDate] = useState<Date | null >(new Date());
   const [selectedEndDate, setSelectedEndDate] = useState<Date | null >(new Date());
   const [isEndDateDisabled, setIsEndDateDisabled] = useState<boolean>(true);
-  const [graduation, setGraduation] = useState<GetGraduationItem[]>([]);
+  const [graduation, setGraduation] = useState<GetGraduationByUserId[]>([]);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -27,8 +29,9 @@ const GraduationEdit = (props: Props) => {
 
   const fetchGraduation = async () => {
     try {
-      const result = await graduationService.getByFilter(0,5);
-      setGraduation(result.data.items);
+      const result = await userProfileService.getGraduationByUserId(Number(userId));
+      console.log(result.data.graduationsDtoItems)
+      setGraduation(result.data.graduationsDtoItems);
     } catch (error) {
       console.log("Id ile kullanıcı alınırken hata oluştu.", error);
     }
@@ -49,8 +52,8 @@ const GraduationEdit = (props: Props) => {
     values.startDate = selectedStartDate;
     values.endDate = selectedEndDate;
     const result = await graduationService.add(values);
-    toastr.success("Eğitim bilgisi eklendi")
-    fetchGraduation()
+    toastr.success("Eğitim bilgisi eklendi");
+    fetchGraduation();
   }
   
   const initialValues: AddGraduationRequest = {
@@ -169,7 +172,7 @@ const GraduationEdit = (props: Props) => {
             <button className="grade-delete g-del" onClick={()=>{handleShow()}}>
               <i className="grade-delete-img"></i>
             </button>
-            <ControlPopup
+            {/* <ControlPopup
               title="Seçilen eğitimi silmek istediğinizden emin misiniz?"
               description="Bu işlem geri alınmaz."
               buttonYes={true}
@@ -177,7 +180,7 @@ const GraduationEdit = (props: Props) => {
               message="Eğitim kaldırıldı"
               show={show}
               hide={handleClose}
-            />
+            /> */}
           </div>
         </div>
         ))}

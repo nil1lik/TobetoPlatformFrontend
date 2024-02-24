@@ -1,5 +1,5 @@
 import React from "react";
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import NotFound from "../../pages/NotFound/NotFound";
 import Platform from "../../pages/Platform/Platform";
 import { LoadingContextProvider } from "../../contexts/LoadingContext";
@@ -38,6 +38,7 @@ const profileEditUrl = "/profilim/profilimi-duzenle";
 const RouteDefinitions = (props: Props) => {
   const { auth } = useAuthContext();
 
+  const location = useLocation();
   const specialPaths = [
     "/",
     "/profilim",
@@ -66,6 +67,16 @@ const RouteDefinitions = (props: Props) => {
       {/* <Container> */}
       <div className="body-height">
         <Routes>
+          <Route
+            path="/*"
+            element={
+              specialPaths.includes(location.pathname) ? (
+                <Navigate to="/giris" replace />
+              ) : (
+                <NotFoundPage />
+              )
+            }
+          />
           {!auth ? (
             <>
               <Route path="/giris" element={<Login />} />
@@ -133,16 +144,6 @@ const RouteDefinitions = (props: Props) => {
               />
             </>
           )}
-          <Route
-            path="/*"
-            element={
-              specialPaths.includes(window.location.pathname) ? (
-                <Navigate to="/giris" replace />
-              ) : (
-                <NotFoundPage />
-              )
-            }
-          />
         </Routes>
       </div>
       {/* </Container> */}

@@ -5,19 +5,49 @@ import AppForm from "../../components/Login/AppForm";
 import { Container, Image, Row } from "react-bootstrap";
 import FormikInput from "../../components/Formik/FormikInput";
 import { Formik, Form } from "formik";
-import { object, string } from "yup";
+import { object } from "yup";
 import { userRegisterRequest } from "../../models/requests/user/userRegisterRequest";
 import { passwordMaxLength } from "../../utilities/Validations/validationMessages";
 import { UserInformationValidationMessageRule } from "../../utilities/Validations/validationMessageRules";
-import UserService from "../../services/userService";
-import { RegisterBoxBottomText,  RegisterSuccessToastrMsg, loginButtonText, registerButtonText } from "../../utilities/Constants/constantValues";
+import {
+  RegisterBoxBottomText,
+  RegisterSuccessToastrMsg,
+  loginButtonText,
+  registerButtonText,
+} from "../../utilities/Constants/constantValues";
 import { Link, useNavigate } from "react-router-dom";
 import toastr from "toastr";
+import userService from "../../services/userService";
+import { parseJwt } from "../../utilities/Constants/parseJwt";
 
-type Props = {  formClassName?: string};
+type Props = { formClassName?: string };
 
 function Register(props: Props) {
   const navigate = useNavigate();
+
+  const handleRegister = async (values: any) => {
+    try {
+      const result = await userService.addUser(values);
+      console.log("Kullanıcı başarıyla kaydedildi:", result.data);
+
+      const decodedToken = parseJwt(result.data.token);
+
+      const userId = decodedToken["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"];
+
+      localStorage.setItem("token", result.data.token);
+      
+      let firstLoginData = {
+        user: userId,
+        isFirstLogin: true
+      }
+      localStorage.setItem("firstLogin", JSON.stringify(firstLoginData));
+      
+      toastr.success(RegisterSuccessToastrMsg);
+      // navigate("/giris");
+    } catch (error) {
+      console.error("Kullanıcı kaydı sırasında bir hata oluştu:", error);
+    }
+  };
 
   const initialValues: userRegisterRequest = {
     firstName: "",
@@ -31,7 +61,7 @@ function Register(props: Props) {
     lastName: UserInformationValidationMessageRule.lastName,
     email: UserInformationValidationMessageRule.email,
     newPass: UserInformationValidationMessageRule.password,
-    password: UserInformationValidationMessageRule.confirmPass
+    password: UserInformationValidationMessageRule.confirmPass,
   });
 
   return (
@@ -42,26 +72,15 @@ function Register(props: Props) {
             initialValues={initialValues}
             validationSchema={validationSchema}
             onSubmit={(values) => {
-              const userService = new UserService()
-              userService
-                .addUser(values)
-                .then((result) => {
-                  console.log("Kullanıcı başarıyla kaydedildi:", result.data);
-                  localStorage.setItem("token", result.data.token);
-                  toastr.success(RegisterSuccessToastrMsg)
-                  navigate("/giris");
-                })
-                .catch((error) => {
-                  console.error(
-                    "Kullanıcı kaydı sırasında bir hata oluştu:",
-                    error
-                  );
-                });
+              handleRegister(values);
             }}
           >
             <Form className={"login-form-cont"}>
               <Row className="image-control">
-                <Image className="login-form-img" src="https://res.cloudinary.com/dcpbbqilg/image/upload/v1707396717/tobeto-logo_t2qnpq.png"/>
+                <Image
+                  className="login-form-img"
+                  src="https://res.cloudinary.com/dcpbbqilg/image/upload/v1707396717/tobeto-logo_t2qnpq.png"
+                />
               </Row>
               <Row>
                 <FormikInput
@@ -109,13 +128,13 @@ function Register(props: Props) {
           </Formik>
         </div>
         <div className="center">
-            <span>
-              {RegisterBoxBottomText}{" "}
-              <Link className="register-btn" to="/giris">
-                {loginButtonText}
-              </Link>
-            </span>
-          </div>
+          <span>
+            {RegisterBoxBottomText}{" "}
+            <Link className="register-btn" to="/giris">
+              {loginButtonText}
+            </Link>
+          </span>
+        </div>
       </LoginPageBox>
       <LoginPageBox className="app-box">
         <AppForm />

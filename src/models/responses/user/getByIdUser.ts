@@ -1,7 +1,7 @@
 export interface GetByIdUser {
-    id: 0,
-    firstName: "",
-    lastName: "",
-    email: "",
-    password: "",
+    id: number,
+    firstName: string,
+    lastName: string,
+    email: string,
+    password: string,
 }

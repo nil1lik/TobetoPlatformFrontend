@@ -29,6 +29,8 @@ import cityService from "../../../services/cityService";
 import { shiftDate } from "../../../utilities/Helpers/heatMap";
 import { useAuthContext } from "../../../contexts/AuthContext";
 import { AddExperienceRequest } from "../../../models/requests/experience/addExperienceRequest";
+import { GetExperienceByUserId } from "../../../models/responses/userProfile/getExperienceByUserId";
+import userProfileService from "../../../services/userProfileService";
 
 type Props = {};
 
@@ -45,8 +47,9 @@ const ExperienceEdit = (props: Props) => {
   const [cities, setCities] = useState<GetCityItem[]>([]);
   const [selectCityId, setSelectCityId] = useState(Number);
   const [experiences, setExperiences] = useState<
-    GetExperienceInformationsItem[]
+    GetExperienceByUserId[]
   >([]);
+  const [deleteExperienceId, setDeleteExperienceId] = useState(Number);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -54,9 +57,9 @@ const ExperienceEdit = (props: Props) => {
 
   const fetchExperiences = async () => {
     try {
-      const result = await experienceService.getExperience(0, 10);
-      // console.log(result.data.items);
-      setExperiences(result.data.items);
+      const result = await userProfileService.getExperienceByUserId(Number(userId));
+      console.log(result.data.experienceDtoItems);
+      setExperiences(result.data.experienceDtoItems);
     } catch (error) {
       console.error("API isteği sırasında bir hata oluştu:", error);
     }
@@ -68,6 +71,18 @@ const ExperienceEdit = (props: Props) => {
       setCities(result.data.items);
     } catch (error) {
       console.error("API isteği sırasında bir hata oluştu:", error);
+    }
+  };
+
+  const handleDeleteExperience = async (experienceId:number) => {
+    try {
+      console.log(experienceId)
+      const result = await experienceService.delete(experienceId);
+      // toastr.success("Delete İşlemi Başarılı");
+      fetchExperiences();
+      setShow(false);
+    } catch (error) {
+      console.error("Delete işlemi sırasında bir hata oluştu:", error);
     }
   };
 
@@ -264,6 +279,7 @@ const ExperienceEdit = (props: Props) => {
                   <button
                     className="grade-delete g-del"
                     onClick={() => {
+                      setDeleteExperienceId(experience.id);
                       handleShow();
                     }}
                   >
@@ -277,6 +293,7 @@ const ExperienceEdit = (props: Props) => {
                     message="Deneyim kaldırıldı"
                     show={show}
                     hide={handleClose}
+                    delete={() => handleDeleteExperience(deleteExperienceId)}
                   />
                 </div>
               </div>

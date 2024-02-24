@@ -9,6 +9,8 @@ import { AddUserProfileResponse } from "../models/responses/userProfile/addUserP
 import { UpdateUserProfileRequest } from "../models/requests/userProfile/updateUserProfileRequest";
 import { UpdateUserProfileResponse } from "../models/responses/userProfile/updateUserProfileResponse";
 import { GetUserProfileByUserId } from "../models/responses/userProfile/getUserProfileByUserId";
+import { GetGraduationByUserId, GetGraduationByUserIdList } from "../models/responses/userProfile/getGraduationByUserId";
+import { GetExperienceByUserIdList } from "../models/responses/userProfile/getExperienceByUserId";
 
 class UserProfileService extends BaseService<
   GetUserProfile,
@@ -18,12 +20,16 @@ class UserProfileService extends BaseService<
   UpdateUserProfileRequest,
   UpdateUserProfileResponse
 > {
-  public User : string
+  public User : string;
+  public Graduation: string;
+  public Experience: string;
   constructor() {
     super();
     this.apiUrl = BASE_API_URL + "UserProfiles";
     this.User = BASE_API_URL + "Users";
-    this.dtoUrl = this.apiUrl + "/getByUserId/"
+    this.dtoUrl = this.apiUrl + "/getByUserId"
+    this.Graduation = this.apiUrl + "/getAllGraduation" 
+    this.Experience = this.apiUrl + "/getAllExperience"
   }
   getByUserId(id: number): Promise<AxiosResponse<GetByIdUser, any>> {
     return axios.get<GetByIdUser>(this.User + "/" + id);
@@ -31,6 +37,14 @@ class UserProfileService extends BaseService<
 
   getUserProfileByUserId(id: number): Promise<AxiosResponse<GetUserProfileByUserId, any>> {
 		return axios.get<GetUserProfileByUserId>(this.dtoUrl + "/" + id);
+	}
+
+  getGraduationByUserId(id: number): Promise<AxiosResponse<GetGraduationByUserIdList, any>> {
+		return axios.get<GetGraduationByUserIdList>(this.Graduation + "/" + id);
+	}
+
+  getExperienceByUserId(id: number): Promise<AxiosResponse<GetExperienceByUserIdList, any>> {
+		return axios.get<GetExperienceByUserIdList>(this.Experience + "/" + id);
 	}
 }
 
