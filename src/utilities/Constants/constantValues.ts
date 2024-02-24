@@ -195,6 +195,8 @@ export const ProfileExperienceListHeaders = {
 
 /* CERTIFICATE VALUES */
 export const uploadCertificateHeader = "SERTİFİKALARIM";
+export const ProfileSkillHeader = "Seçiniz";
+
 
 export const ProfileSertificateListHeaders = {
     fileName: "Dosya Adı",

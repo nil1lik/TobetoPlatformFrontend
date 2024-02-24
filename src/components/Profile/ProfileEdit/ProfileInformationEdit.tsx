@@ -23,9 +23,9 @@ import { AddUserProfileRequest } from "../../../models/requests/userProfile/addU
 import { UpdateUserProfileRequest } from "../../../models/requests/userProfile/updateUserProfileRequest";
 
 const validationSchema = object({
-  // birthDate: UserInformationValidationMessageRule.inputsRequired,
+  birthDate: UserInformationValidationMessageRule.inputsRequired,
   nationalIdentity: UserInformationValidationMessageRule.identityNumber,
-  // country: UserInformationValidationMessageRule.country,
+  country: UserInformationValidationMessageRule.country,
 });
 
 type Props = {
