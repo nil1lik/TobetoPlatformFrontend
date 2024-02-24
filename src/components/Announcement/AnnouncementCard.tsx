@@ -45,8 +45,8 @@ const AnnouncementCard = (props: Props) => {
               {readMoreText}
             </span>
           </Card.Body>
-        </Card>
-      </div>
+        </Card> 
+      </div> 
       <Popup
         key={props.announcementName}
         title={props.announcementTitle}

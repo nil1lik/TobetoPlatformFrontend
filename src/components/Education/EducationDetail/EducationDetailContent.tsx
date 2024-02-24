@@ -36,24 +36,21 @@ const EducationDetailContent = (props: Props) => {
   const [asyncLessons, setAsyncLessons] = useState<
     GetAsyncLessonsByCourseIdItem[]
   >([]);
-  const [selectedAsyncLessonId, setSelectedAsyncLessonId] = useState<
-    number | undefined
-  >(undefined);
+  const [selectedAsyncLessonId, setSelectedAsyncLessonId] = useState<number>();
 
   const fetchEducationDetail = async () => {
     try {
+      // if (educationDetailId !== undefined) {
+      //   const result = await educationService.getCoursesByEducationId(
+      //     educationDetailId
+      //   );
+      //   setCourses(result.data.items);
+      // }
       const result = await courseService.getAll(0, 10);
-      if (educationDetailId !== undefined) {
-        const result = await educationService.getCoursesByEducationId(
-          educationDetailId
-        );
-        setCourses(result.data.items);
-      }
       const filteredCourses = result.data.items.filter(
         (course) => course.educationPathId == props.educationDetailId
       );
       setCourses(filteredCourses);
-      console.log(props.educationDetailId);
     } catch (error) {
       console.error("API isteği sırasında bir hata oluştu:", error);
     }
@@ -72,8 +69,6 @@ const EducationDetailContent = (props: Props) => {
       const response = await courseService.getAsyncLessonsByCourseId(courseId);
       const lessons = response.data.asyncLessons;
       setAsyncLessons(lessons);
-      console.log("asyncLessons:", asyncLessons);
-      console.log("Async lessons for courseId:", courseId, lessons);
     } catch (error) {
       console.error("Error fetching async lessons:", error);
     }
@@ -86,9 +81,6 @@ const EducationDetailContent = (props: Props) => {
   useEffect(() => {
     fetchEducationDetail();
   }, [educationDetailId, selectedAsyncLessonId]);
-
-  console.log("time: " + courses);
-
   return (
     <Container>
       <div className="accordion-container">
