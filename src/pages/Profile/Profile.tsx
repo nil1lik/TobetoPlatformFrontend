@@ -14,12 +14,12 @@ import ProfileEducationMap from "../../components/Profile/ProfileRight/ProfileEd
 import ProfileHeatMap from "../../components/Profile/ProfileRight/ProfileHeatMap";
 import { useAuthContext } from "../../contexts/AuthContext";
 import userProfileService from "../../services/userProfileService";
-import { GetByIdUser } from "../../models/responses/user/getByIdUser";
+import { GetByUserId } from "../../models/responses/user/getByUserId";
 
 type Props = {};
 
 const Profile = (props: Props) => {
-  const [user, setUser] = useState<GetByIdUser>();
+  const [user, setUser] = useState<GetByUserId>();
   const { userId } = useAuthContext();
   const [successModel, setSuccessModel] = useState<boolean>(false);
 

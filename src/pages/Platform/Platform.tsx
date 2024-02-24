@@ -9,7 +9,7 @@ import {
   platformHeader,
   platformTabTexts,
 } from "../../utilities/Constants/constantValues";
-import { GetByIdUser } from "../../models/responses/user/getByIdUser";
+import { GetByUserId } from "../../models/responses/user/getByUserId";
 import UserService from "../../services/userService";
 import userProfileService from "../../services/userProfileService";
 import { useAuthContext } from "../../contexts/AuthContext";
@@ -18,7 +18,7 @@ type Props = {
 };
 
 const Platform = (props: Props) => {
-  const [user, setUser] = useState<GetByIdUser>();
+  const [user, setUser] = useState<GetByUserId>();
   const {userId} = useAuthContext();
   const fecthUserData = async (userId: number) => {
     const result = await userProfileService.getByUserId(userId);

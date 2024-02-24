@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Dropdown } from "react-bootstrap";
-import { GetByIdUser } from "../../models/responses/user/getByIdUser";
+import { GetByUserId } from "../../models/responses/user/getByUserId";
 import { useAuthContext } from "../../contexts/AuthContext";
 import userProfileService from "../../services/userProfileService";
 
@@ -8,7 +8,7 @@ type Props = {};
 
 const DropdownItem = (props: Props) => {
   const tobetoUserLogo = process.env.PUBLIC_URL + "https://res.cloudinary.com/dcpbbqilg/image/upload/v1707396717/tobeto-logo_t2qnpq.png";
-  const [user, setUser] = useState<GetByIdUser>()
+  const [user, setUser] = useState<GetByUserId>()
   const { userId} = useAuthContext();
 
   const fethUserData = async (userId:number) => {

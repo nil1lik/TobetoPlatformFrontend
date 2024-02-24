@@ -1,26 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { Field, Form, Formik } from "formik";
 import { Col, Container, Image, Row } from "react-bootstrap";
-import SelectBox from "./SelectBox";
 import { object } from "yup";
 import { UserInformationValidationMessageRule } from "../../../utilities/Validations/validationMessageRules";
 import { GetCityItem } from "../../../models/responses/city/getCityResponse";
-import { GetByIdUser } from "../../../models/responses/user/getByIdUser";
+import { GetByUserId } from "../../../models/responses/user/getByUserId";
 import userProfileService from "../../../services/userProfileService";
 import cityService from "../../../services/cityService";
 import FormikInput from "../../Formik/FormikInput";
 import { textAreaLength } from "../../../utilities/Validations/validationMessages";
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
-import toastr from "toastr";
 import {
   ProfileInformationEditTexts,
-  ProfileInformationEditToastrMsg,
   saveButtonText,
 } from "../../../utilities/Constants/constantValues";
 import { useAuthContext } from "../../../contexts/AuthContext";
-import { AddUserProfileRequest } from "../../../models/requests/userProfile/addUserProfileRequest";
-import { UpdateUserProfileRequest } from "../../../models/requests/userProfile/updateUserProfileRequest";
+import { GetUserDetails } from "../../../models/responses/userProfile/getUserDetails";
 
 const validationSchema = object({
   birthDate: UserInformationValidationMessageRule.inputsRequired,
@@ -33,92 +29,33 @@ type Props = {
   onSelect?: (cityId: number) => void;
 };
 
+const initialValues: GetUserDetails = {
+  userId: 0,
+  userProfileId: 0,
+  firstName: "",
+  lastName: "",
+  email: "",
+  cityId: 0,
+  districtId: 0,
+  cityName: "",
+  districtName: "",
+  nationalIdentity: "",
+  phone: "",
+  birthDate: "",
+  country: "",
+  addressDetail: "",
+  description: "",
+};
+
 const ProfileInformationEdit = (props: Props) => {
   const [cities, setCities] = useState<GetCityItem[]>([]);
   const [districts, setDistricts] = useState<any[]>([]);
   const [selectCityId, setSelectCityId] = useState(Number);
   const [selectDistrictId, setSelectDistrictId] = useState();
-  const [profileData, setProfileData] = useState<GetByIdUser>();
+  const [userDetails, setUserDetails] = useState(initialValues);
+  const [userInformation, setUserInformation] = useState<GetByUserId>();
   const [value, setValue] = useState<any>();
   const { userId } = useAuthContext();
-  const [userProfile, setUserProfile] = useState<AddUserProfileRequest>(Object);
-  const [updateUserProfile, setUpdateUserProfile] =
-    useState<UpdateUserProfileRequest>(Object);
-  const [initialValues, setInitialValues] = useState<AddUserProfileRequest>({
-    cityId: selectCityId,
-    districtId: Number(selectDistrictId),
-    phone: "05555555555",
-    userId: Number(userId),
-    birthDate: new Date(),
-    nationalIdentity: "",
-    country: "",
-    addressDetail: "",
-    description: "",
-  });
-
-  const getUser = async (userId: number) => {
-    try {
-      const result = await userProfileService.getByUserId(userId);
-      setProfileData(result.data);
-    } catch (error) {
-      console.log("Id ile kullanıcı alınırken hata oluştu.", error);
-    }
-  };
-
-  const getUserProfile = async (id: number, values: any) => {
-    try {
-      const result = await userProfileService.getUserProfileByUserId(id);
-      console.log("ilk try: ", result);
-      if (result) {
-        const updateValues: UpdateUserProfileRequest = {
-          id: id,
-          cityId: values.cityId,
-          districtId: values.districtId,
-          phone: initialValues.phone,
-          userId: id,
-          birthDate: values.birthDate,
-          nationalIdentity: values.nationalIdentity,
-          country: values.country,
-          addressDetail: values.addressDetail,
-          description: values.description,
-        };
-        try {
-          const result = await userProfileService.update(updateValues);
-          setUpdateUserProfile(result.data);
-          console.log(result.data);
-          toastr.success(
-            ProfileInformationEditToastrMsg.profileInformationsUpdateSuccess
-          );
-        } catch (error) {
-          console.log("Profil güncelleme hatası:", error);
-        }
-      }
-    } catch (error) {
-      console.log("Id ile kullanıcı alınırken hata oluştu.", error);
-      try {
-        const result = await userProfileService.add(values);
-        console.log(result.data);
-        setUserProfile(result.data);
-        toastr.success(
-          ProfileInformationEditToastrMsg.profileInformationsAddSuccess
-        );
-      } catch (error) {
-        console.log("Profil ekleme hatası:", error);
-      }
-    }
-  };
-
-  // const updateUser = async (
-  //   UpdateUserProfileRequest: UpdateUserProfileRequest
-  // ) => {
-  //   try {
-  //     const result = await userProfileService.update(UpdateUserProfileRequest);
-  //     console.log(result.data);
-  //     setUpdateUserProfile(result.data);
-  //   } catch (error) {
-  //     console.log("Id ile kullanıcı alınırken hata oluştu.", error);
-  //   }
-  // };
 
   const fetchCities = async () => {
     try {
@@ -130,10 +67,27 @@ const ProfileInformationEdit = (props: Props) => {
     }
   };
 
+  const fetchUserDetails = async (userId: number) => {
+    try {
+      const result = await userProfileService.getUserDetails(userId);
+      setUserDetails(result.data);
+    } catch (error) {
+      console.log("Kullanıcı profili bulunamadı.", error);
+    }
+  };
+
+  const fetchUserInformation = async (userId: number) => {
+    try {
+      const result = await userProfileService.getByUserId(userId);
+      setUserInformation(result.data);
+    } catch (error) {
+      console.log("Kullanıcı profili bulunamadı.", error);
+    }
+  };
+
   const handleCityId = async (cityId: number) => {
     try {
       const result = await cityService.getDistrictsBySelectedCityId(cityId);
-      console.log(result.data.districts);
       setDistricts(result.data.districts);
       setSelectCityId(cityId);
     } catch (error) {
@@ -161,26 +115,20 @@ const ProfileInformationEdit = (props: Props) => {
 
   useEffect(() => {
     fetchCities();
-    getUser(Number(userId));
-    if (userProfile) {
-      setInitialValues({
-        cityId: userProfile.cityId,
-        districtId: userProfile.districtId,
-        phone: userProfile.phone,
-        userId: userProfile.userId,
-        birthDate: userProfile.birthDate,
-        nationalIdentity: userProfile.nationalIdentity,
-        country: userProfile.country,
-        addressDetail: userProfile.addressDetail,
-        description: userProfile.description,
-      });
-    }
-  }, [userId, userProfile]);
+    fetchUserInformation(Number(userId));
+    fetchUserDetails(Number(userId));
+  }, []);
 
-  const handleSubmit = async (
-    values: AddUserProfileRequest | UpdateUserProfileRequest
-  ) => {
-    getUserProfile(Number(userId), values);
+  const handleSubmit = async (value: GetUserDetails) => {
+    console.log(value)
+    if (!userDetails.userProfileId) {
+      const result = await userProfileService.addUserProfile(Number(userId), value)
+      setUserDetails(result.data)
+    }
+    else{
+      const result = await userProfileService.updateUserProfile(Number(userId), value)
+      setUserDetails(result.data)
+    }
   };
 
   return (
@@ -208,7 +156,7 @@ const ProfileInformationEdit = (props: Props) => {
                   name="firstName"
                   label={ProfileInformationEditTexts.label1}
                   value={
-                    profileData?.firstName ||
+                    userDetails?.firstName ||
                     ProfileInformationEditTexts.placeholder1
                   }
                   placeHolder={ProfileInformationEditTexts.placeholder1}
@@ -220,7 +168,7 @@ const ProfileInformationEdit = (props: Props) => {
                   name="lastName"
                   label={ProfileInformationEditTexts.label2}
                   value={
-                    profileData?.lastName ||
+                    userDetails?.lastName ||
                     ProfileInformationEditTexts.placeholder2
                   }
                   placeHolder={ProfileInformationEditTexts.placeholder2}
@@ -238,9 +186,10 @@ const ProfileInformationEdit = (props: Props) => {
                     <PhoneInput
                       international
                       initialValueFormat="national"
+                      name="phone"
                       defaultCountry="TR"
                       onChange={setValue}
-                      value="05555555555"
+                      value={userDetails.phone}
                       className="my-custom-input"
                     />
                   </Col>
@@ -251,7 +200,7 @@ const ProfileInformationEdit = (props: Props) => {
                   type="date"
                   name="birthDate"
                   label={ProfileInformationEditTexts.label4}
-                  placeHolder={ProfileInformationEditTexts.placeholder4}
+                  placeHolder={userDetails.birthDate}
                 />
               </Col>
             </Row>
@@ -261,7 +210,7 @@ const ProfileInformationEdit = (props: Props) => {
                   type="text"
                   name="nationalIdentity"
                   label={ProfileInformationEditTexts.label5}
-                  placeHolder={ProfileInformationEditTexts.placeholder5}
+                  placeHolder={userDetails.nationalIdentity}
                 />
               </Col>
               <Col>
@@ -270,11 +219,11 @@ const ProfileInformationEdit = (props: Props) => {
                   name="email"
                   label={ProfileInformationEditTexts.label6}
                   value={
-                    profileData?.email ||
+                    userDetails?.email ||
                     ProfileInformationEditTexts.placeholder6
                   }
                   placeHolder={
-                    profileData?.email ||
+                    userDetails?.email ||
                     ProfileInformationEditTexts.placeholder6
                   }
                   disabled={true}
@@ -286,7 +235,7 @@ const ProfileInformationEdit = (props: Props) => {
                 <FormikInput
                   name="country"
                   label={ProfileInformationEditTexts.label7}
-                  placeHolder={ProfileInformationEditTexts.placeholder7}
+                  placeHolder={userDetails.country}
                 />
                 {/* <div className="mb-3">
                     <label className="input-label-text">Ülke</label>
@@ -369,6 +318,7 @@ const ProfileInformationEdit = (props: Props) => {
                   as="textarea"
                   id="street"
                   name="addressDetail"
+                  value={userDetails.addressDetail}
                   maxLength={textAreaLength}
                 ></Field>
               </Col>
@@ -384,6 +334,7 @@ const ProfileInformationEdit = (props: Props) => {
                   as="textarea"
                   id="aboutMe"
                   name="description"
+                  value={userDetails.description}
                   maxLength={textAreaLength}
                 ></Field>
               </Col>

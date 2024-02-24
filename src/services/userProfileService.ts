@@ -1,4 +1,5 @@
-import { GetByIdUser } from "../models/responses/user/getByIdUser";
+import { GetUserDetails } from './../models/responses/userProfile/getUserDetails';
+import { GetByUserId } from "../models/responses/user/getByUserId";
 import { BaseService } from "../core/services/baseService";
 import { BASE_API_URL } from "../core/environment/environment";
 import axios, { AxiosResponse } from "axios";
@@ -27,16 +28,16 @@ class UserProfileService extends BaseService<
     super();
     this.apiUrl = BASE_API_URL + "UserProfiles";
     this.User = BASE_API_URL + "Users";
-    this.dtoUrl = this.apiUrl + "/getByUserId"
+    this.dtoUrl = this.apiUrl + "/getUserDetail"
     this.Graduation = this.apiUrl + "/getAllGraduation" 
     this.Experience = this.apiUrl + "/getAllExperience"
   }
-  getByUserId(id: number): Promise<AxiosResponse<GetByIdUser, any>> {
-    return axios.get<GetByIdUser>(this.User + "/" + id);
+  getByUserId(id: number): Promise<AxiosResponse<GetByUserId, any>> {
+    return axios.get<GetByUserId>(this.User + "/" + id);
   }
 
-  getUserProfileByUserId(id: number): Promise<AxiosResponse<GetUserProfileByUserId, any>> {
-		return axios.get<GetUserProfileByUserId>(this.dtoUrl + "/" + id);
+  getUserDetails(id: number): Promise<AxiosResponse<GetUserDetails, any>> {
+		return axios.get<GetUserDetails>(this.dtoUrl + "/" + id);
 	}
 
   getGraduationByUserId(id: number): Promise<AxiosResponse<GetGraduationByUserIdList, any>> {
@@ -46,6 +47,14 @@ class UserProfileService extends BaseService<
   getExperienceByUserId(id: number): Promise<AxiosResponse<GetExperienceByUserIdList, any>> {
 		return axios.get<GetExperienceByUserIdList>(this.Experience + "/" + id);
 	}
+
+  addUserProfile(id: number, request: GetUserDetails): Promise<AxiosResponse<GetUserDetails, any>>{
+    return axios.post<GetUserDetails>(this.apiUrl, request)
+  }
+
+  updateUserProfile(id: number, request: GetByIdUserProfile): Promise<AxiosResponse<GetUserDetails, any>>{
+    return axios.put<GetUserDetails>(this.apiUrl, request)
+  }
 }
 
 export default new UserProfileService();

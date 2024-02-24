@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Card, Col, Container, Image, Row } from "react-bootstrap";
 import ProfilePreInfo from "./ProfilePreInfo";
-import { GetByIdUser } from "../../../../models/responses/user/getByIdUser";
+import { GetByUserId } from "../../../../models/responses/user/getByUserId";
 import { useAuthContext } from "../../../../contexts/AuthContext";
 import userProfileService from "../../../../services/userProfileService";
 
@@ -10,7 +10,7 @@ type Props = {
 };
 
 const ProfilePreInfoBox = (props: Props) => {
-  const [user, setUser] = useState<GetByIdUser>();
+  const [user, setUser] = useState<GetByUserId>();
   const { userId } = useAuthContext();
 
   const fethUserData = async (userId: number) => {

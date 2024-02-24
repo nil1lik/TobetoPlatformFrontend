@@ -1,4 +1,4 @@
-export interface GetByIdUser {
+export interface GetByUserId {
     id: number,
     firstName: string,
     lastName: string,
