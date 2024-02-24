@@ -44,12 +44,12 @@ export const ContactInformationTexts = {
 /* EVALUATION PAGE TEXTS */
 
 export const EvaluationPageHeader = {
-    fragment1 : "Yetkin",
-    fragment2 : "liklerini ",
-    fragment3 : "ücretsiz ölç, ",
-    fragment4 : "bilgi",
-    fragment5 : "lerini",
-    fragment6 : " test et"
+    fragment1: "Yetkin",
+    fragment2: "liklerini ",
+    fragment3: "ücretsiz ölç, ",
+    fragment4: "bilgi",
+    fragment5: "lerini",
+    fragment6: " test et"
 }
 
 export const EvaluationPageSuccessModelCardTexts = {
@@ -208,38 +208,38 @@ export const ProfileSertificateListHeaders = {
 
 
 /* EDUCATION VALUES */
-export const educationPageItemCountByPageMin:number = 0;
-export const educationPageItemCountByPageMax:number = 9;
+export const educationPageItemCountByPageMin: number = 0;
+export const educationPageItemCountByPageMax: number = 9;
 export const EducationCompletionStatusHeaders = {
     allEducations: "Tüm Eğitimlerim",
-    progressingEducations : "Devam Eden Eğitimler",
-    completedEducations : "Tamamladıklarım"
+    progressingEducations: "Devam Eden Eğitimler",
+    completedEducations: "Tamamladıklarım"
 }
-export const EducationFilterBarTextValues= {
-    dropdownName1:"Kurum Seçiniz",
-    dropdownOpt1:["İstanbul Kodluyor"],
+export const EducationFilterBarTextValues = {
+    dropdownName1: "Kurum Seçiniz",
+    dropdownOpt1: ["İstanbul Kodluyor"],
     dropdownName2: "Sıralama",
-    dropdownOpt2:[
-            "Adına Göre (A-Z)",
-            "Adına Göre (Z-A)",
-            "Tarihe Göre (Y-E)",
-            "Tarihe Göre (E-Y)",
-          ]
+    dropdownOpt2: [
+        "Adına Göre (A-Z)",
+        "Adına Göre (Z-A)",
+        "Tarihe Göre (Y-E)",
+        "Tarihe Göre (E-Y)",
+    ]
 }
 
 
 /* Announcement Values */
-export const announcementPageItemCountByPage:number = 9;
-export const AnnouncementFilterBarTextValues= {
-    dropdownName1:"Organizasyon",
-    dropdownOpt1:["İstanbul Kodluyor"],
+export const announcementPageItemCountByPage: number = 9;
+export const AnnouncementFilterBarTextValues = {
+    dropdownName1: "Organizasyon",
+    dropdownOpt1: ["İstanbul Kodluyor"],
     dropdownName2: "Sıralama",
-    dropdownOpt2:[
-            "Adına Göre (A-Z)",
-            "Adına Göre (Z-A)",
-            "Tarihe Göre (Y-E)",
-            "Tarihe Göre (E-Y)",
-          ]
+    dropdownOpt2: [
+        "Adına Göre (A-Z)",
+        "Adına Göre (Z-A)",
+        "Tarihe Göre (Y-E)",
+        "Tarihe Göre (E-Y)",
+    ]
 }
 
 /* PLATFORM */
@@ -258,7 +258,7 @@ export const BannerTexts = {
 }
 
 /* RESET PASSWORD */
-export const resetPasswordText= "Şifre Sıfırlama"; 
+export const resetPasswordText = "Şifre Sıfırlama";
 
 /* NOT FOUND PAGE */
 
@@ -285,15 +285,21 @@ export const ProfileSkillToastrMsg = {
 
 export const ProfileInformationEditToastrMsg = {
     profileInformationsUpdateSuccess: "Bilgileriniz Başarıyla Güncellendi",
-    profileInformationsAddSuccess:"Bilgileriniz Başarıyla Kaydedildi."
+    profileInformationsAddSuccess: "Bilgileriniz Başarıyla Kaydedildi."
 }
 
 export const RegisterSuccessToastrMsg = "Kaydınız başarıyla gerçekleşti"
 
 /* EducationOffcanvas */
 export const offcanvasButton = "EĞİTİME GİT"
-export const pointText = "PUAN" 
+export const pointText = "PUAN"
 
 
 // Error Handler Values
 export const errHandlerErrNetwork = "Sunucuya ulaşılamıyor..."
+
+
+// Heat Map Values
+export const noData = "veri yok";
+export const youDontHaveAnyActivity = "Herhangi bir aktiviteniz yok";
+export const activityCount = "adet aktivite";
