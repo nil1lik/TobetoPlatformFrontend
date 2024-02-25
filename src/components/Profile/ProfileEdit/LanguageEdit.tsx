@@ -18,16 +18,26 @@ import userService from "../../../services/userService";
 import userProfileService from "../../../services/userProfileService";
 import { useAuthContext } from "../../../contexts/AuthContext";
 import { AddProfileLanguageRequest } from "../../../models/requests/language/addProfileLanguageRequest";
-import { GetLanguageLevel, GetLanguageLevelItem } from "../../../models/responses/language/getLanguageLevel";
+import {
+  GetLanguageLevel,
+  GetLanguageLevelItem,
+} from "../../../models/responses/language/getLanguageLevel";
+import ControlPopup from "../../Popup/ControlPopup";
 type Props = {};
 
 const validationSchema = object({});
 
 const LanguageEdit = (props: Props) => {
-  const [selectedlanguageLevels, setLanguageLevels] = useState<GetLanguageLevelItem[]>([]);
+  const [selectedlanguageLevels, setLanguageLevels] = useState<
+    GetLanguageLevelItem[]
+  >([]);
   const [languages, setLanguages] = useState<GetLanguageItem[]>([]);
   const [getLanguage, setGetLanguage] = useState<GetLanguageByUserId[]>([]);
+  const [deleteLanguages, setDeleteLanguages] = useState<[number, number]>([0, 0]);
   const { userId } = useAuthContext();
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const validationSchema = object({
     language: UserInformationValidationMessageRule.inputsRequired,
@@ -57,13 +67,26 @@ const LanguageEdit = (props: Props) => {
       const result = await userProfileService.getLanguageByUserId(
         Number(userId)
       );
-      setGetLanguage(result.data.LanguageDtoItems);
-      console.log(result.data.LanguageDtoItems);
+      setGetLanguage(result.data.languageDtoItems);
+      console.log(result.data.languageDtoItems);
     } catch (error) {
       console.log("API isteği sırasında bir hata oluştu:", error);
     }
   };
 
+  const handleDeletedLanguage = async (languageId: number, levelId: number) => {
+    try {
+      const result = await languageServices.deletedLanguage(
+        Number(userId),
+        languageId,
+        levelId
+      );
+      getLanguageList();
+      setShow(false);
+    } catch (error) {
+      console.error("Delete işlemi sırasında bir hata oluştu:", error);
+    }
+  };
   useEffect(() => {
     fetchLanguages();
     fetchLanguageLevel();
@@ -83,6 +106,7 @@ const LanguageEdit = (props: Props) => {
     toastr.success(ProfileLanguageToastrMsg.languageAddSuccess);
     getLanguageList();
   };
+
   return (
     <div>
       <LanguageProvider>
@@ -126,7 +150,9 @@ const LanguageEdit = (props: Props) => {
                       <div className="lang-title">
                         <i className="lang-title-img "></i>
                         <div className="d-flex flex-column ">
-                          <span className="lang-name">{language.languageName}</span>
+                          <span className="lang-name">
+                            {language.languageName}
+                          </span>
                           <span className="lang-degree">
                             {language.languageLevelName}
                           </span>
@@ -134,9 +160,25 @@ const LanguageEdit = (props: Props) => {
                       </div>
                     </div>
                     <span className="lang-degree-symbol main-lang"></span>
-                    <button className="btn delete-lang">
+                    <button
+                      className="btn delete-lang"
+                      onClick={() => {
+                        setDeleteLanguages(language.languageId);
+                        handleShow();
+                      }}
+                    >
                       <i className="delete-lang-img "></i>
                     </button>
+                    <ControlPopup
+                      title="Yeteneği silmek istediğinizden emin misiniz?"
+                      description="Daha sonra tekrardan listeden istediğiniz yetkinliği ekleyebilirsiniz."
+                      buttonYes={true}
+                      buttonNo={true}
+                      message="Yetenek silindi"
+                      show={show}
+                      hide={handleClose}
+                      delete={() => handleDeletedLanguage(deleteLanguages[0], deleteLanguages[1])}
+                      />
                   </div>
                 </div>
               </div>

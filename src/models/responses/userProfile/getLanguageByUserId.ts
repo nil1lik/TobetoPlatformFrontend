@@ -7,5 +7,5 @@ export interface GetLanguageByUserId{
 
 export interface GetLanguageByUserIdList{
     userProfileId: number,
-    LanguageDtoItems: GetLanguageByUserId[];
+    languageDtoItems: GetLanguageByUserId[];
 }
