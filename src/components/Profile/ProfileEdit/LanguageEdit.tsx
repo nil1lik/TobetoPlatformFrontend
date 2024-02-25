@@ -42,8 +42,6 @@ const LanguageEdit = (props: Props) => {
   const handleShow = () => setShow(true);
 
   const validationSchema = object({
-    language: UserInformationValidationMessageRule.inputsRequired,
-    languageLevel: UserInformationValidationMessageRule.inputsRequired,
   });
 
   const fetchLanguages = async () => {
@@ -120,11 +118,6 @@ const LanguageEdit = (props: Props) => {
             <Form>
               <Row>
                 <Col>
-                  {/* <SelectBox
-                    name="languageId"
-                    defaultText="Dil Seçiniz*"
-                    selectBoxArray={languages}
-                  /> */}
                 <select
                   onChange={(e) => setLanguageId(parseInt(e.target.value))}
                   className={`option form-control my-custom-select`}
@@ -144,11 +137,6 @@ const LanguageEdit = (props: Props) => {
                 </select>
                 </Col>
                 <Col>
-                  {/* <SelectBox
-                    name="languageLevelId"
-                    defaultText="Seviye Seçiniz*"
-                    selectBoxArray={selectedlanguageLevels}
-                  /> */}
                   <select
                   onChange={(e) => setLanguageLevelId(parseInt(e.target.value))}
                   className={`option form-control my-custom-select`}
@@ -177,9 +165,10 @@ const LanguageEdit = (props: Props) => {
             </Form>
           </Formik>
           <Container>
-            {getLanguage.map((language: any) => (
+            
               <div className="row">
                 <div className="my-langs section-p tobeto-light-bg">
+                {getLanguage.map((language: any) => (
                   <div className="lang-edit">
                     <div className="lang-info">
                       <div className="lang-title">
@@ -209,15 +198,15 @@ const LanguageEdit = (props: Props) => {
                       description="Daha sonra tekrardan listeden istediğiniz yetkinliği ekleyebilirsiniz."
                       buttonYes={true}
                       buttonNo={true}
-                      message="Yetenek silindi"
+                      message="Dil silindi"
                       show={show}
                       hide={handleClose}
                       delete={() => handleDeletedLanguage(deleteLanguages)}
                       />
-                  </div>
+                  </div>))}
                 </div>
               </div>
-            ))}
+            
           </Container>
         </Container>
       </LanguageProvider>

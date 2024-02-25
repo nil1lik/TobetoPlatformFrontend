@@ -10,6 +10,7 @@ import { BASE_API_URL } from "../core/environment/environment";
 import { GetLanguageLevel } from "../models/responses/language/getLanguageLevel";
 import { AddProfileLanguageRequest } from "../models/requests/language/addProfileLanguageRequest";
 import { AddProfileLanguageResponse } from "../models/responses/language/addProfileLanguageResponse";
+import errorInstance from "../core/interceptors/errorInterceptor";
 
 class LanguageService extends BaseService<
   GetLanguage,
@@ -36,7 +37,7 @@ class LanguageService extends BaseService<
   }
 
   addProfilLanguage(request: AddProfileLanguageRequest): Promise<AxiosResponse<AddProfileLanguageResponse, any>> {
-		return axios.post<AddProfileLanguageResponse>(this.profileLanguage, request);
+		return errorInstance.post<AddProfileLanguageResponse>(this.profileLanguage, request);
 	}
 
   deletedLanguage(userId:number, languageId: number, levelId:number){

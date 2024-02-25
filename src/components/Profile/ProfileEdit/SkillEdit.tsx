@@ -50,7 +50,7 @@ const SkillEdit = (props: Props) => {
 
   const handleDeletedSkill = async (skillId:number) =>{
     try {
-      const result = await skillService.deleteSkill(Number(userId),skillId)
+      const result = await skillService.deleteSkill(skillId)
       fetchSkillbyUserId()
       setShow(false)
     } catch (error) {
@@ -70,6 +70,7 @@ const SkillEdit = (props: Props) => {
 
   const handleSkillSubmit = async (values: AddProfileSkillRequest) => {
     values.userProfileId = Number(userId);
+    console.log(values.skillId)
     const result = await skillService.addProfilSkill(values);
     toastr.success(ProfileSkillToastrMsg.skillAddSuccess);
     fetchSkillbyUserId();
@@ -118,7 +119,7 @@ const SkillEdit = (props: Props) => {
             <button
               className="grade-delete g-del"
               onClick={() => {
-                setDeleteSkills(skill.skillId)
+                setDeleteSkills(skill.id)
                 handleShow();
               }}
             >
@@ -133,7 +134,6 @@ const SkillEdit = (props: Props) => {
               show={show}
               hide={handleClose}
               delete={() => handleDeletedSkill(deleteSkills)}
-
             />
           </Card.Body>
         </Card>
