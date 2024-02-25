@@ -8,6 +8,8 @@ import { GetLanguage } from "../models/responses/language/getLanguage";
 import { UpdateLanguageRequest } from "../models/requests/language/updateLanguageRequest";
 import { BASE_API_URL } from "../core/environment/environment";
 import { GetLanguageLevel } from "../models/responses/language/getLanguageLevel";
+import { AddProfileLanguageRequest } from "../models/requests/language/addProfileLanguageRequest";
+import { AddProfileLanguageResponse } from "../models/responses/language/addProfileLanguageResponse";
 
 class LanguageService extends BaseService<
   GetLanguage,
@@ -24,10 +26,6 @@ class LanguageService extends BaseService<
     this.profileLanguage = BASE_API_URL + "ProfileLanguages";
   }
 
-  // getByFilter(pageIndex: number = 0, pageSize: number = 25) {
-  //   return this.getAll(pageIndex, pageSize);
-  // }
-
   getLanguageLevel(
     pageIndex: number = 0,
     pageSize: number = 5
@@ -36,6 +34,11 @@ class LanguageService extends BaseService<
         BASE_API_URL + "LanguageLevels" +`?PageIndex=${pageIndex}&PageSize=${pageSize}`
     );
   }
+
+  addProfilLanguage(request: AddProfileLanguageRequest): Promise<AxiosResponse<AddProfileLanguageResponse, any>> {
+		return axios.post<AddProfileLanguageResponse>(this.profileLanguage, request);
+	}
+
 } 
  
 export default new LanguageService();

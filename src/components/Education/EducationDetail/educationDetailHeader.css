@@ -46,7 +46,7 @@
 }
 
 .ss-like:before {
-  content: "\1F44D"; 
+  content: "\1F44D";
 }
 
 .question-circle {
@@ -58,17 +58,16 @@
   width: 15px;
 }
 
-.ant-space-header  {
+.ant-space-header {
   gap: 8px;
 }
 .education-admiration {
   gap: 8px;
   display: flex;
   justify-content: flex-end;
-
 }
 
-.activity-score { 
+.activity-score {
   padding: 8px 5px;
   font-size: 16px;
   font-weight: 600;
@@ -93,7 +92,6 @@
   display: flex;
   cursor: pointer;
   margin-top: 3px;
-
 }
 
 .like-button {
@@ -102,7 +100,6 @@
 }
 
 .like-header .like-area span {
-  color: #7f7f7f !important;
   cursor: pointer;
 }
 
@@ -130,8 +127,6 @@
   width: 68px;
 }
 
-
-
 .activity-favorite {
   display: inline-block;
   vertical-align: middle;
@@ -153,7 +148,7 @@
   margin: 0;
   padding: 0;
   border-radius: 7px !important;
-}
+} 
 
 .education-detail-header.row {
   margin: 10px -64px -9px -61px;
@@ -171,13 +166,9 @@
   width: 100%;
 }
 
-.sub-content svg{
+.sub-content svg {
   width: 80px;
   height: 80px;
-}
-
-.like-area svg path{
-  fill: #ff4757;
 }
 
 .like-text {
@@ -185,10 +176,12 @@
   z-index: 1;
   transform: translate(0.2em, -0.15ex);
   margin-right: 15px;
-  
 }
 
-/*Like Button*/
-.like-area .like-text span {
-  color: #ff4757 !important;
+.liked-text {
+  color: red;
+}
+
+.not-liked-text {
+  color: grey;
 }

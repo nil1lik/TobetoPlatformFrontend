@@ -7,108 +7,142 @@ import { GetLanguageItem } from "../../../models/responses/language/getLanguage"
 import languageServices from "../../../services/languageServices";
 import { UserInformationValidationMessageRule } from "../../../utilities/Validations/validationMessageRules";
 import toastr from "toastr";
-import { ProfileLanguageToastrMsg, saveButtonText } from "../../../utilities/Constants/constantValues";
+import {
+  ProfileLanguageToastrMsg,
+  saveButtonText,
+} from "../../../utilities/Constants/constantValues";
 import { LanguageProvider } from "../../../contexts/LanguageContext";
+import { GetByIdLanguage } from "../../../models/responses/language/getByIdLanguage";
+import { GetLanguageByUserId } from "../../../models/responses/userProfile/getLanguageByUserId";
+import userService from "../../../services/userService";
+import userProfileService from "../../../services/userProfileService";
+import { useAuthContext } from "../../../contexts/AuthContext";
+import { AddProfileLanguageRequest } from "../../../models/requests/language/addProfileLanguageRequest";
+import { GetLanguageLevel, GetLanguageLevelItem } from "../../../models/responses/language/getLanguageLevel";
 type Props = {};
 
-const validationSchema = object({
-
-})
+const validationSchema = object({});
 
 const LanguageEdit = (props: Props) => {
-  const [selectedlanguageLevels, setLanguageLevels] = useState<any[]>([]);
-  const [languages, setLanguages] = useState<any[]>([]);
-  const [selectedLanguages, setSelectedLanguages] = useState<GetLanguageItem[]>([]);
-  const [languageCount, setLanguageCount] = useState<number>(0);
+  const [selectedlanguageLevels, setLanguageLevels] = useState<GetLanguageLevelItem[]>([]);
+  const [languages, setLanguages] = useState<GetLanguageItem[]>([]);
+  const [getLanguage, setGetLanguage] = useState<GetLanguageByUserId[]>([]);
+  const { userId } = useAuthContext();
 
-  const initialValues = {
-    id: 0,
-    name: "",
+  const validationSchema = object({
+    language: UserInformationValidationMessageRule.inputsRequired,
+    languageLevel: UserInformationValidationMessageRule.inputsRequired,
+  });
+
+  const fetchLanguages = async () => {
+    try {
+      const result = await languageServices.getAll(0, 100);
+      setLanguages(result.data.items);
+    } catch (error) {
+      console.log("API isteği sırasında bir hata oluştu:", error);
+    }
   };
 
-const validationSchema = object({
-  language: UserInformationValidationMessageRule.inputsRequired,
-  languageLevel: UserInformationValidationMessageRule.inputsRequired
-});
+  const fetchLanguageLevel = async () => {
+    try {
+      const result = await languageServices.getLanguageLevel(0, 5);
+      setLanguageLevels(result.data.items);
+    } catch (error) {
+      console.log("API isteği sırasında bir hata oluştu:", error);
+    }
+  };
+
+  const getLanguageList = async () => {
+    try {
+      const result = await userProfileService.getLanguageByUserId(
+        Number(userId)
+      );
+      setGetLanguage(result.data.LanguageDtoItems);
+      console.log(result.data.LanguageDtoItems);
+    } catch (error) {
+      console.log("API isteği sırasında bir hata oluştu:", error);
+    }
+  };
 
   useEffect(() => {
-    const fetchLanguages = async () => {
-      try {
-        const result = await languageServices.getAll(0, 100);
-        setLanguages(result.data.items);
-        console.log(result)
-      } catch (error) {
-        console.log("API isteği sırasında bir hata oluştu:", error);
-      }
-    };
     fetchLanguages();
-
-
-    const fetchLanguageLevel = async () => {
-      try {
-        const result = await languageServices.getLanguageLevel(0, 5);
-        setLanguageLevels(result.data.items);
-      } catch (error) {
-        console.log("API isteği sırasında bir hata oluştu:", error);
-      }
-    };
     fetchLanguageLevel();
+    getLanguageList();
   }, []);
 
-  const handleLanguageSubmit = (values: GetLanguageItem) => {
-    console.log("Seçilen dil: ", values);
-    setSelectedLanguages((prevLanguages) => [...prevLanguages, values]);
-    toastr.success(ProfileLanguageToastrMsg.languageAddSuccess)
+  const initialValues: AddProfileLanguageRequest = {
+    userProfileId: 0,
+    languageId: 0,
+    languageLevelId: 0,
+  };
+
+  const handleLanguageSubmit = async (values: AddProfileLanguageRequest) => {
+    values.userProfileId = Number(userId);
+    const result = await languageServices.addProfilLanguage(values);
+    console.log(result);
+    toastr.success(ProfileLanguageToastrMsg.languageAddSuccess);
+    getLanguageList();
   };
   return (
     <div>
       <LanguageProvider>
-      <Container className="mt-5">
-        <Formik
-          initialValues={initialValues}
-          validationSchema={validationSchema}
-          onSubmit={(handleLanguageSubmit)}>
-          <Form>
-            <Row>
-              <Col>
-                <SelectBox name="language" defaultText="Dil Seçiniz*" selectBoxArray={languages} />
-              </Col>
-              <Col>
-                <SelectBox name="languageLevel" defaultText="Seviye Seçiniz*" selectBoxArray={selectedlanguageLevels} />
-              </Col>
-            </Row>
-            <button
-              type="submit"
-              className="button-save py-2 mb-3 mt-4 d-inline-block"
-            >
-              {saveButtonText}
-            </button>
-          </Form>
-        </Formik>
-        <Container>
-          <div className="row">
-            <div className="my-langs section-p tobeto-light-bg">
-              <div className="lang-edit">
-                <div className="lang-info">
-                  <div className="lang-title">
-                    <i className="lang-title-img "></i>
-                    <div className="d-flex flex-column ">
-                      <span className="lang-name">İngilizce</span>
-                      <span className="lang-degree">
-                        Temel Seviye ( A1 , A2)
-                      </span>
+        <Container className="mt-5">
+          <Formik
+            initialValues={initialValues}
+            validationSchema={validationSchema}
+            onSubmit={handleLanguageSubmit}
+          >
+            <Form>
+              <Row>
+                <Col>
+                  <SelectBox
+                    name="languageId"
+                    defaultText="Dil Seçiniz*"
+                    selectBoxArray={languages}
+                  />
+                </Col>
+                <Col>
+                  <SelectBox
+                    name="languageLevelId"
+                    defaultText="Seviye Seçiniz*"
+                    selectBoxArray={selectedlanguageLevels}
+                  />
+                </Col>
+              </Row>
+              <button
+                type="submit"
+                className="button-save py-2 mb-3 mt-4 d-inline-block"
+              >
+                {saveButtonText}
+              </button>
+            </Form>
+          </Formik>
+          <Container>
+            {getLanguage.map((language: any) => (
+              <div className="row">
+                <div className="my-langs section-p tobeto-light-bg">
+                  <div className="lang-edit">
+                    <div className="lang-info">
+                      <div className="lang-title">
+                        <i className="lang-title-img "></i>
+                        <div className="d-flex flex-column ">
+                          <span className="lang-name">{language.languageName}</span>
+                          <span className="lang-degree">
+                            {language.languageLevelName}
+                          </span>
+                        </div>
+                      </div>
                     </div>
+                    <span className="lang-degree-symbol main-lang"></span>
+                    <button className="btn delete-lang">
+                      <i className="delete-lang-img "></i>
+                    </button>
                   </div>
                 </div>
-                <span className="lang-degree-symbol main-lang"></span>
-                <button className="btn delete-lang">
-                  <i className="delete-lang-img "></i>
-                </button>
               </div>
-            </div>
-          </div>
+            ))}
+          </Container>
         </Container>
-      </Container>
       </LanguageProvider>
     </div>
   );

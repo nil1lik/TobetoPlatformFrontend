@@ -1,10 +1,10 @@
 import React from "react";
 
 type Props = {
-  time: string; 
+  time: string | undefined; 
 };
 
-const FormattedTime: React.FC<Props> = ({ time }) => {
+const FormattedTime: React.FC<Props> = ({ time = '' }) => {
   const getTime = (time: string) => {
     const [hour, minute] = time.split(':').map(Number);
     return { hour, minute };

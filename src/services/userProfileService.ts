@@ -13,6 +13,8 @@ import { GetUserProfileByUserId } from "../models/responses/userProfile/getUserP
 import { GetGraduationByUserId, GetGraduationByUserIdList } from "../models/responses/userProfile/getGraduationByUserId";
 import { GetExperienceByUserIdList } from "../models/responses/userProfile/getExperienceByUserId";
 import errorInstance from '../core/interceptors/errorInterceptor';
+import { GetLanguageByUserIdList } from '../models/responses/userProfile/getLanguageByUserId';
+import { GetSkillByUserIdList } from '../models/responses/userProfile/getSkillByUserId';
 
 class UserProfileService extends BaseService<
   GetUserProfile,
@@ -25,6 +27,8 @@ class UserProfileService extends BaseService<
   public User : string;
   public Graduation: string;
   public Experience: string;
+  public Skill :string;
+  public Language:string;
   constructor() {
     super();
     this.apiUrl = BASE_API_URL + "UserProfiles";
@@ -32,6 +36,8 @@ class UserProfileService extends BaseService<
     this.dtoUrl = this.apiUrl + "/getUserDetail"
     this.Graduation = this.apiUrl + "/getAllGraduation" 
     this.Experience = this.apiUrl + "/getAllExperience"
+    this.Skill = this.apiUrl +"/getAllSkill"
+    this.Language = this.apiUrl + "/getAllLanguage"
   }
   getByUserId(id: number): Promise<AxiosResponse<GetByUserId, any>> {
     return axios.get<GetByUserId>(this.User + "/" + id);
@@ -47,6 +53,14 @@ class UserProfileService extends BaseService<
 
   getExperienceByUserId(id: number): Promise<AxiosResponse<GetExperienceByUserIdList, any>> {
 		return errorInstance.get<GetExperienceByUserIdList>(this.Experience + "/" + id);
+	}
+
+  getSkillByUserId(id: number): Promise<AxiosResponse<GetSkillByUserIdList, any>> {
+		return errorInstance.get<GetSkillByUserIdList>(this.Skill + "/" + id);
+	}
+
+  getLanguageByUserId(id: number): Promise<AxiosResponse<GetLanguageByUserIdList, any>> {
+		return axios.get<GetLanguageByUserIdList>(this.Language + "/" + id);
 	}
 
   addUserProfile(id: number, request: GetUserDetails): Promise<AxiosResponse<GetUserDetails, any>>{

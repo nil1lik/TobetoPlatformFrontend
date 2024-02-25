@@ -43,6 +43,8 @@ const EducationDetail = (props: Props) => {
             likeCount={257}
             educationPoint={educationDetail.educationPoint}
             completionRate={educationDetail.completionRate}
+            isLiked = {educationDetail.isLiked}
+            isFavourited = {educationDetail.isFavourited}
           />
         </Card.Body>
         <Card.Body>

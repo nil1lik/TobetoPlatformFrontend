@@ -2,7 +2,7 @@ export interface GetByIdAsyncLessonResponse {
   id: number;
   name: string;
   lessonTypeName: string;
-  time: number;
+  time?: string;
   videoUrl: string;
   languageName: string;
   companyName: string;

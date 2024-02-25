@@ -1,7 +1,7 @@
 import { Field, Form, Formik } from "formik";
 import React, { useContext, useEffect, useState } from "react";
 import { Button, Card } from "react-bootstrap";
-import { object } from "yup";
+import { number, object } from "yup";
 import { UserInformationValidationMessageRule } from "../../../utilities/Validations/validationMessageRules";
 import { GetSkillItem } from "../../../models/responses/skill/getSkillResponse";
 import skillService from "../../../services/skillService";
@@ -10,26 +10,20 @@ import ControlPopup from "../../Popup/ControlPopup";
 import { AddProfileSkillRequest } from "../../../models/requests/skill/addProfileSkillRequest";
 import { useAuthContext } from "../../../contexts/AuthContext";
 import { ProfileSkillToastrMsg, saveButtonText } from "../../../utilities/Constants/constantValues";
+import { GetSkillByUserId } from "../../../models/responses/userProfile/getSkillByUserId";
+import userProfileService from "../../../services/userProfileService";
 
 
 type Props = {};
-// const initialValues: GetSkillItem = {
-//   id: 0,
-//   name: "",
-//};
-
-
-
 
 const validationSchema = object({
   value: UserInformationValidationMessageRule.inputsRequired,
 });
 
-// const skillContext: any = useContext(SkillContext);
-
 const SkillEdit = (props: Props) => {
   const [skills, setSkills] = useState<GetSkillItem[]>([]);
-  const [postSkills, setPostSkills] = useState<AddProfileSkillRequest>(Object);
+  const [skillUserProfile, setSkillUserProfile] = useState<GetSkillByUserId[]>([]);
+  const [deleteSkills, setDeleteSkills] = useState(Number);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -44,8 +38,29 @@ const SkillEdit = (props: Props) => {
     }
   };
 
+  const fetchSkillbyUserId = async () => {
+    try {
+      const result = await userProfileService.getSkillByUserId(Number(userId))
+      console.log(result.data.skillDtoItems);
+      setSkillUserProfile(result.data.skillDtoItems);
+    } catch (error) {
+      console.error("API isteği sırasında bir hata oluştu:", error);
+    }
+  };
+
+  const handleDeletedSkill = async (skillId:number) =>{
+    try {
+      const result = await skillService.deleteSkill(Number(userId),skillId)
+      fetchSkillbyUserId()
+      setShow(false)
+    } catch (error) {
+      console.error("Delete işlemi sırasında bir hata oluştu:", error);
+    }
+  }
+
   useEffect(() => {
     fetchSkills();
+    fetchSkillbyUserId();
   }, []);
 
   const initialValues: AddProfileSkillRequest = {
@@ -56,8 +71,8 @@ const SkillEdit = (props: Props) => {
   const handleSkillSubmit = async (values: AddProfileSkillRequest) => {
     values.userProfileId = Number(userId);
     const result = await skillService.addProfilSkill(values);
-    fetchSkills();
     toastr.success(ProfileSkillToastrMsg.skillAddSuccess);
+    fetchSkillbyUserId();
   };
 
   
@@ -96,13 +111,14 @@ const SkillEdit = (props: Props) => {
         </Form>
       </Formik>
 
-      {/* {selectedSkills.map((selectedSkill, index) => (
-        <Card key={index} className="inline-card">
+      {skillUserProfile.map((skill:any) => (
+        <Card className="inline-card">
           <Card.Body className="inline-card-body">
-            {selectedSkill.name}
+            {skill.skillName}
             <button
               className="grade-delete g-del"
               onClick={() => {
+                setDeleteSkills(skill.skillId)
                 handleShow();
               }}
             >
@@ -116,10 +132,12 @@ const SkillEdit = (props: Props) => {
               message="Yetenek silindi"
               show={show}
               hide={handleClose}
+              delete={() => handleDeletedSkill(deleteSkills)}
+
             />
           </Card.Body>
         </Card>
-      ))} */}
+      ))}
     </div>
   );
 };
