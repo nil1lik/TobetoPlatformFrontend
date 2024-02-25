@@ -4,8 +4,6 @@ import { Col, Container, Row } from "react-bootstrap";
 import FormikInput from "../../Formik/FormikInput";
 import YearPicker from "../../../utilities/Helpers/YearPicker";
 import graduationService from "../../../services/graduationService";
-import { GetByIdGraduation } from "../../../models/responses/graduation/getByIdGraduation";
-import { GetGraduationItem } from "../../../models/responses/graduation/getGraduation";
 import { GraduationPageLabelTexts, ProfileGraduationListHeaders, registerButtonText } from "../../../utilities/Constants/constantValues";
 import { GraduationDegreeValues } from "../../../utilities/Constants/GraduationDegreeValues";
 import ControlPopup from "../../Popup/ControlPopup";
@@ -22,6 +20,7 @@ const GraduationEdit = (props: Props) => {
   const [selectedEndDate, setSelectedEndDate] = useState<Date | null >(new Date());
   const [isEndDateDisabled, setIsEndDateDisabled] = useState<boolean>(true);
   const [graduation, setGraduation] = useState<GetGraduationByUserId[]>([]);
+  const [deletedGraduations, setDeletedGraduations] = useState(Number)
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -36,6 +35,17 @@ const GraduationEdit = (props: Props) => {
       console.log("Id ile kullanıcı alınırken hata oluştu.", error);
     }
   };
+
+  const handleDeleteGraduation= async (graduationsId:number)=>{
+    try {
+      console.log(graduationsId)
+      const result = await graduationService.delete(graduationsId)
+      fetchGraduation()
+      setShow(false)
+    } catch (error) {
+      console.error("Delete işlemi sırasında bir hata oluştu:", error);
+    }
+  }
 
   const handleStartDateChange = (date: Date | null) => {
     console.log(date)
@@ -133,12 +143,6 @@ const GraduationEdit = (props: Props) => {
               <Col></Col>
             </Row>
             <br/>
-            {/* <Row>
-              <label>
-                <Field type="checkbox" name="checked" value="One" />
-                {GraduationPageLabelTexts.checkBox}
-              </label>
-            </Row> */}
             <button
               type="submit"
               className="button-save py-2 mb-3 mt-4 d-inline-block "
@@ -169,10 +173,13 @@ const GraduationEdit = (props: Props) => {
               {graduation.department}
               </label>
             </div>
-            <button className="grade-delete g-del" onClick={()=>{handleShow()}}>
+            <button className="grade-delete g-del" onClick={()=>{
+              setDeletedGraduations(graduation.id);
+              handleShow();
+              }}>
               <i className="grade-delete-img"></i>
             </button>
-            {/* <ControlPopup
+            <ControlPopup
               title="Seçilen eğitimi silmek istediğinizden emin misiniz?"
               description="Bu işlem geri alınmaz."
               buttonYes={true}
@@ -180,7 +187,8 @@ const GraduationEdit = (props: Props) => {
               message="Eğitim kaldırıldı"
               show={show}
               hide={handleClose}
-            /> */}
+              delete={()=>handleDeleteGraduation(deletedGraduations)}
+            />
           </div>
         </div>
         ))}

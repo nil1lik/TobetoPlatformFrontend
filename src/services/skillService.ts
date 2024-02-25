@@ -34,6 +34,10 @@ class SkillService extends BaseService<
   addProfilSkill(request: AddProfileSkillRequest): Promise<AxiosResponse<AddProfileSkillResponse, any>> {
 		return axios.post<AddProfileSkillResponse>(this.profileSkill, request);
 	}
+
+  deleteSkill(userId:number, id: number) {
+		return axios.delete(this.profileSkill + "/" + userId +"/" + id );
+	}
 }
 
 export default new SkillService();

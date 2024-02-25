@@ -31,7 +31,6 @@ import { useAuthContext } from "../../../contexts/AuthContext";
 import { AddExperienceRequest } from "../../../models/requests/experience/addExperienceRequest";
 import { GetExperienceByUserId } from "../../../models/responses/userProfile/getExperienceByUserId";
 import userProfileService from "../../../services/userProfileService";
-import { handleError } from "../../../core/errorHandlers/errorHandler";
 
 type Props = {};
 
@@ -77,9 +76,7 @@ const ExperienceEdit = (props: Props) => {
 
   const handleDeleteExperience = async (experienceId:number) => {
     try {
-      console.log(experienceId)
       const result = await experienceService.delete(experienceId);
-      // toastr.success("Delete İşlemi Başarılı");
       fetchExperiences();
       setShow(false);
     } catch (error) {
@@ -187,25 +184,10 @@ const ExperienceEdit = (props: Props) => {
                   label="İş Bitiş*"
                   placeHolder="gg.aa.yyyy"
                 />
-                {/* <label>
-                  <Field type="checkbox" name="checked" value="One" />
-                  {ExperiencePageTexts.selectBox}
-                </label> */}
               </Col>
             </Row>
             <Row>
               <Col>
-                {/* <label
-                  className="input-label-text"
-                  style={{ display: "block" }}
-                >
-                  {ExperiencePageTexts.textArea}
-                </label>
-                <textarea
-                  name="description"
-                  className="custom-field form-control textarea-style"
-                  maxLength={textAreaLength}
-                /> */}
                 <label className="input-label-text" htmlFor="aboutMe">
                   {ExperiencePageTexts.textArea}
                 </label>
