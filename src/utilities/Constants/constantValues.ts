@@ -304,3 +304,9 @@ export const errHandlerErrNetwork = "Sunucuya ulaşılamıyor..."
 export const noData = "veri yok";
 export const youDontHaveAnyActivity = "Herhangi bir aktiviteniz yok";
 export const activityCount = "adet aktivite";
+
+
+
+// Social Media
+export const SocialMediaAccountSelect = "Sosyal Medya Seçiniz";
+export const SocialMediaAccountAddSuccess = "Sosyal Medya Hesabınız Başarıyla Eklendi";

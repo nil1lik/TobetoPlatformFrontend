@@ -1,3 +1,4 @@
+import { GetSocialMediaAccountByUserIdList } from './../models/responses/userProfile/getSocialMediaAccountByUserId';
 import { GetUserDetails } from './../models/responses/userProfile/getUserDetails';
 import { GetByUserId } from "../models/responses/user/getByUserId";
 import { BaseService } from "../core/services/baseService";
@@ -9,7 +10,6 @@ import { AddUserProfileRequest } from "../models/requests/userProfile/addUserPro
 import { AddUserProfileResponse } from "../models/responses/userProfile/addUserProfileResponse";
 import { UpdateUserProfileRequest } from "../models/requests/userProfile/updateUserProfileRequest";
 import { UpdateUserProfileResponse } from "../models/responses/userProfile/updateUserProfileResponse";
-import { GetUserProfileByUserId } from "../models/responses/userProfile/getUserProfileByUserId";
 import { GetGraduationByUserId, GetGraduationByUserIdList } from "../models/responses/userProfile/getGraduationByUserId";
 import { GetExperienceByUserIdList } from "../models/responses/userProfile/getExperienceByUserId";
 import errorInstance from '../core/interceptors/errorInterceptor';
@@ -29,6 +29,7 @@ class UserProfileService extends BaseService<
   public Experience: string;
   public Skill :string;
   public Language:string;
+  public SocialMediaAccount:string;
   constructor() {
     super();
     this.apiUrl = BASE_API_URL + "UserProfiles";
@@ -38,6 +39,7 @@ class UserProfileService extends BaseService<
     this.Experience = this.apiUrl + "/getAllExperience"
     this.Skill = this.apiUrl +"/getAllSkill"
     this.Language = this.apiUrl + "/getAllLanguage"
+    this.SocialMediaAccount = this.apiUrl + "/getAllSocialMediaAccount"
   }
   getByUserId(id: number): Promise<AxiosResponse<GetByUserId, any>> {
     return axios.get<GetByUserId>(this.User + "/" + id);
@@ -70,6 +72,10 @@ class UserProfileService extends BaseService<
   updateUserProfile(id: number, request: GetByIdUserProfile): Promise<AxiosResponse<GetUserDetails, any>>{
     return axios.put<GetUserDetails>(this.apiUrl, request)
   }
+
+  getSocialMediaAccountByUserId(id: number): Promise<AxiosResponse<GetSocialMediaAccountByUserIdList, any>> {
+		return errorInstance.get<GetSocialMediaAccountByUserIdList>(this.SocialMediaAccount + "/" + id);
+	}
 }
 
 export default new UserProfileService();
