@@ -12,7 +12,7 @@ import { AddGraduationRequest } from "../../../models/requests/graduation/addGra
 import { useAuthContext } from "../../../contexts/AuthContext";
 import userProfileService from "../../../services/userProfileService";
 import { GetGraduationByUserId } from "../../../models/responses/userProfile/getGraduationByUserId";
-
+import toastr from "toastr";
 type Props = {};
 
 const GraduationEdit = (props: Props) => {

@@ -9,11 +9,6 @@ import {
   textAreaLength,
 } from "../../../utilities/Validations/validationMessages";
 import experienceService from "../../../services/experienceService";
-import {
-  GetExperience,
-  GetExperienceInformationsItem,
-  GetExperienceItem,
-} from "../../../models/responses/experience/getExperience";
 import { GetCityItem } from "../../../models/responses/city/getCityResponse";
 import {
   ExperiencePageTexts,
@@ -24,7 +19,6 @@ import {
 } from "../../../utilities/Constants/constantValues";
 import toastr from "toastr";
 import ControlPopup from "../../Popup/ControlPopup";
-import SelectBox from "./SelectBox";
 import cityService from "../../../services/cityService";
 import { shiftDate } from "../../../utilities/Helpers/heatMap";
 import { useAuthContext } from "../../../contexts/AuthContext";
