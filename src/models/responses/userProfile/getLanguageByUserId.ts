@@ -1,4 +1,5 @@
 export interface GetLanguageByUserId{
+    id:number,
     languageId: number,
     languageLevelId: number,
     languageName:string,

@@ -42,6 +42,10 @@ class LanguageService extends BaseService<
   deletedLanguage(userId:number, languageId: number, levelId:number){
     return axios.delete(this.profileLanguage + "/" + userId +"/" + languageId +"/" + levelId );
   }
+
+  deleteProfileLanguage(id: number) {
+		return axios.delete(this.profileLanguage + "/" + id);
+	}
 } 
  
 export default new LanguageService();

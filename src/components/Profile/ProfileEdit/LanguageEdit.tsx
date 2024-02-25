@@ -33,7 +33,9 @@ const LanguageEdit = (props: Props) => {
   >([]);
   const [languages, setLanguages] = useState<GetLanguageItem[]>([]);
   const [getLanguage, setGetLanguage] = useState<GetLanguageByUserId[]>([]);
-  const [deleteLanguages, setDeleteLanguages] = useState<[number, number]>([0, 0]);
+  const [deleteLanguages, setDeleteLanguages] = useState(Number);
+  const [languageId,setLanguageId] =useState(Number);
+  const [languageLevelId,setLanguageLevelId] =useState(Number);
   const { userId } = useAuthContext();
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -74,13 +76,10 @@ const LanguageEdit = (props: Props) => {
     }
   };
 
-  const handleDeletedLanguage = async (languageId: number, levelId: number) => {
+  const handleDeletedLanguage = async (id:number) => {
     try {
-      const result = await languageServices.deletedLanguage(
-        Number(userId),
-        languageId,
-        levelId
-      );
+      const result = await languageServices.deleteProfileLanguage(id);
+      console.log(result)
       getLanguageList();
       setShow(false);
     } catch (error) {
@@ -101,6 +100,8 @@ const LanguageEdit = (props: Props) => {
 
   const handleLanguageSubmit = async (values: AddProfileLanguageRequest) => {
     values.userProfileId = Number(userId);
+    values.languageId = languageId;
+    values.languageLevelId = languageLevelId;
     const result = await languageServices.addProfilLanguage(values);
     console.log(result);
     toastr.success(ProfileLanguageToastrMsg.languageAddSuccess);
@@ -113,24 +114,58 @@ const LanguageEdit = (props: Props) => {
         <Container className="mt-5">
           <Formik
             initialValues={initialValues}
-            validationSchema={validationSchema}
+            // validationSchema={validationSchema}
             onSubmit={handleLanguageSubmit}
           >
             <Form>
               <Row>
                 <Col>
-                  <SelectBox
+                  {/* <SelectBox
                     name="languageId"
                     defaultText="Dil Seçiniz*"
                     selectBoxArray={languages}
-                  />
+                  /> */}
+                <select
+                  onChange={(e) => setLanguageId(parseInt(e.target.value))}
+                  className={`option form-control my-custom-select`}
+                >
+                  <option disabled selected>
+                    {"Dil Seçiniz"}
+                  </option>
+                  {languages.map((element) => (
+                    <option
+                      key={element.id || String(element)}
+                      value={element.id}
+                      className="form-control my-custom-input"
+                    >
+                      {element.name || String(element)}
+                    </option>
+                  ))}
+                </select>
                 </Col>
                 <Col>
-                  <SelectBox
+                  {/* <SelectBox
                     name="languageLevelId"
                     defaultText="Seviye Seçiniz*"
                     selectBoxArray={selectedlanguageLevels}
-                  />
+                  /> */}
+                  <select
+                  onChange={(e) => setLanguageLevelId(parseInt(e.target.value))}
+                  className={`option form-control my-custom-select`}
+                >
+                  <option disabled selected>
+                    {"Seviye Seçiniz"}
+                  </option>
+                  {selectedlanguageLevels.map((element) => (
+                    <option
+                      key={element.id || String(element)}
+                      value={element.id}
+                      className="form-control my-custom-input"
+                    >
+                      {element.name || String(element)}
+                    </option>
+                  ))}
+                </select>
                 </Col>
               </Row>
               <button
@@ -163,7 +198,7 @@ const LanguageEdit = (props: Props) => {
                     <button
                       className="btn delete-lang"
                       onClick={() => {
-                        setDeleteLanguages(language.languageId);
+                        setDeleteLanguages(language.id);
                         handleShow();
                       }}
                     >
@@ -177,7 +212,7 @@ const LanguageEdit = (props: Props) => {
                       message="Yetenek silindi"
                       show={show}
                       hide={handleClose}
-                      delete={() => handleDeletedLanguage(deleteLanguages[0], deleteLanguages[1])}
+                      delete={() => handleDeletedLanguage(deleteLanguages)}
                       />
                   </div>
                 </div>
