@@ -14,8 +14,6 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <BrowserRouter>
-    <EducationProvider>
         <App />
-    </EducationProvider>
   </BrowserRouter>
 );

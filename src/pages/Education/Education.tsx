@@ -22,40 +22,21 @@ type Props = {};
 const Education = (props: Props) => {
   // const [education, setEducation] = useState<GetEducationItem[]>([]);
   const { handleSetLoading } = useLoadingContext();
-  const [childState, setChildState] = useState<number>(0);
-  const [pageCount, setPageCount] = useState<any>(null);
-  const [loadingPagination, setLoadingPagination] = useState<boolean>(false);
-  const { educationData, setEducationData } = useEducation();
+  // const [loadingPagination, setLoadingPagination] = useState<boolean>(false);
+  const {
+    educationData,
+    setChildState,
+    childState,
+    pageCount,
+    fetchEducation,
+  } = useEducation();
 
   const handleChildStateChange = (newState: number) => {
     setChildState(newState);
   };
-
   useEffect(() => {
-    handleSetLoading((prev: any) => prev + 1);
-
-    const fetchEducation = async () => {
-      try {
-        const result = await educationService.getAll(
-          childState, 
-          educationPageItemCountByPageMax
-        );
-        setPageCount(
-          pageCalculate(result.data.count, educationPageItemCountByPageMax)
-        );
-        setEducationData(result.data.items);
-      } catch (error) {
-        console.error(
-          "Eğitim verilerini getirme sırasında bir hata oluştu:",
-          error
-        );
-      } finally {
-        handleSetLoading((prev: any) => prev - 1);
-        setLoadingPagination(true);
-      }
-    };
-    setTimeout(fetchEducation, 500);
-  }, [setEducationData]);
+    fetchEducation(8);
+  }, [childState]);
 
   return (
     <>
@@ -82,19 +63,17 @@ const Education = (props: Props) => {
             <EducationCard
               key={education.id}
               id={education.id}
-              image={education.imageUrl} 
+              image={education.imageUrl}
               text={education.name}
-              date={<FormattedDate date={education.createdDate} />}
+              date={<FormattedDate date={education.startDate} />}
             />
           ))}
         </Row>
         <Row className="pagination">
-          {loadingPagination && (
-            <Pagi
-              handleChildStateChange={handleChildStateChange}
-              pageCount={pageCount}
-            />
-          )}
+          <Pagi
+            handleChildStateChange={handleChildStateChange}
+            pageCount={pageCount}
+          />
         </Row>
       </Container>
     </>

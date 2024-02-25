@@ -292,7 +292,8 @@ export const RegisterSuccessToastrMsg = "Kaydınız başarıyla gerçekleşti"
 
 /* EducationOffcanvas */
 export const offcanvasButton = "EĞİTİME GİT"
-export const pointText = "PUAN"
+export const pointText = "PUAN" 
+export const detailButton = "DETAY"
 
 
 // Error Handler Values
