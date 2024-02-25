@@ -184,14 +184,14 @@ const ProfileInformationEdit = (props: Props) => {
                   <FormikInput
                     name="firstName"
                     label={ProfileInformationEditTexts.label1}
-                    disabled={!!values.nationalIdentity}
+                    disabled={!!userDetails.firstName}
                   />
                 </Col>
                 <Col>
                   <FormikInput
                     name="lastName"
                     label={ProfileInformationEditTexts.label2}
-                    disabled={!!values.nationalIdentity}
+                    disabled={!!userDetails.lastName}
                   />
                 </Col>
               </Row>
@@ -228,7 +228,7 @@ const ProfileInformationEdit = (props: Props) => {
                     type="text"
                     name="nationalIdentity"
                     label={ProfileInformationEditTexts.label5}
-                    disabled={!!values.nationalIdentity}
+                    disabled={!!userDetails.nationalIdentity.length}
                   />
                 </Col>
                 <Col>
@@ -246,7 +246,7 @@ const ProfileInformationEdit = (props: Props) => {
                     type="text"
                     name="country"
                     label={ProfileInformationEditTexts.label7}
-                    disabled={!!values.country && !!values.nationalIdentity}
+                    disabled={!!userDetails.country && !!userDetails.nationalIdentity}
                   />
                 </Col>
               </Row>
