@@ -39,6 +39,9 @@ class LanguageService extends BaseService<
 		return axios.post<AddProfileLanguageResponse>(this.profileLanguage, request);
 	}
 
+  deletedLanguage(userId:number, languageId: number, levelId:number){
+    return axios.delete(this.profileLanguage + "/" + userId +"/" + languageId +"/" + levelId );
+  }
 } 
  
 export default new LanguageService();
