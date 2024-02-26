@@ -14,9 +14,7 @@ import ProfileEducationMap from "../../components/Profile/ProfileRight/ProfileEd
 import ProfileHeatMap from "../../components/Profile/ProfileRight/ProfileHeatMap";
 import { useAuthContext } from "../../contexts/AuthContext";
 import userProfileService from "../../services/userProfileService";
-import {
-  useProfileContext,
-} from "../../contexts/ProfileContext";
+
 import { formatDate } from "@fullcalendar/core";
 
 type Props = {};
@@ -24,9 +22,10 @@ type Props = {};
 const Profile = (props: Props) => {
   const {
     userDetails,
+    addInfoToUserDetails,
     AddUserDetails,
     addSkillsToUserDetails,
-    addInfoToUserDetails,
+    addLanguagesToUserDetails,
   } = useProfileContext();
   const { userId } = useAuthContext();
   const [successModel, setSuccessModel] = useState<boolean>(false);
@@ -64,10 +63,22 @@ const Profile = (props: Props) => {
     }
   };
 
+  const fetchLanguagesByUserId = async (userId: number) => {
+    try {
+      const result = await userProfileService.getLanguageByUserId(userId);
+      console.log(result.data);
+      addLanguagesToUserDetails(result.data.languageDtoItems);
+      // setGetLanguage(result.data.languageDtoItems);
+      console.log(result.data.languageDtoItems);
+    } catch (error) {
+      console.log("API isteği sırasında bir hata oluştu:", error);
+    }
+  };
   useEffect(() => {
     fetchUserInformation(Number(userId));
     fetchUserDetails(Number(userId));
     fetchSkillbyUserId(Number(userId));
+    fetchLanguagesByUserId(Number(userId));
   }, []);
 
   return (
@@ -107,15 +118,20 @@ const Profile = (props: Props) => {
             <Col className="col-12">
               <ProfileBox titleClass="profileBoxTitle" title="Yabancı Diller">
                 <div className="profileRoundItemCont">
-                  <ProfilePreInfo
-                    cardContClass="profileLangCont"
-                    iconContClass=""
-                    headerClass="profileSkillName"
-                    valueClass="profileSkillLevel"
-                    iconSrc="https://res.cloudinary.com/dcpbbqilg/image/upload/v1708593240/globe_amwg5s.svg"
-                    header="İngilizce"
-                    value="Orta Seviye"
-                  />
+                  {
+                    userDetails.languageDtoItems &&
+                    userDetails.languageDtoItems.map((language) => (
+                      <ProfilePreInfo
+                        cardContClass="profileLangCont"
+                        iconContClass=""
+                        headerClass="profileSkillName"
+                        valueClass="profileSkillLevel"
+                        iconSrc="https://res.cloudinary.com/dcpbbqilg/image/upload/v1708593240/globe_amwg5s.svg"
+                        header={language.languageName}
+                        value={language.languageLevelName}
+                      />
+                    ))
+                  }
                 </div>
               </ProfileBox>
             </Col>

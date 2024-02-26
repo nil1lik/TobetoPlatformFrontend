@@ -3,6 +3,7 @@ import { ProfileContextModel } from "../models/contextModels/ProfileContextModel
 import { GetUserDetails } from "../models/responses/userProfile/getUserDetails";
 import { GetSkillByUserId } from "../models/responses/userProfile/getSkillByUserId";
 import { GetByUserId } from "../models/responses/user/getByUserId";
+import { GetLanguageByUserId } from "../models/responses/userProfile/getLanguageByUserId";
 
 const initialState: ProfileContextModel = {
   userDetails: {
@@ -21,31 +22,19 @@ const initialState: ProfileContextModel = {
     country: "",
     addressDetail: "",
     description: "",
-    skillDtoItems: [], // Boş dizi olarak başlatılıyor
+    skillDtoItems: [],
+    languageDtoItems: [],
   },
+  addInfoToUserDetails: () => {},
   AddUserDetails: () => {},
   addSkillsToUserDetails: () => {},
-  addInfoToUserDetails: () => {},
+  addLanguagesToUserDetails: () => {},
 };
 
 export const ProfileContext = createContext(initialState);
 
 const ProfileProvider = (props: any) => {
   const [userDetails, setUserDetails] = useState(initialState.userDetails);
-
-  const AddUserDetails = (
-    value: GetUserDetails | ((prevState: GetUserDetails) => GetUserDetails)
-  ) => {
-    setUserDetails(value);
-  };
-
-  const addSkillsToUserDetails = (skills: GetSkillByUserId[]) => {
-    // setUserDetails fonksiyonu aracılığıyla userDetails'ı güncelle
-    setUserDetails((prevState) => ({
-      ...prevState,
-      skillDtoItems: skills,
-    }));
-  };
 
   const addInfoToUserDetails = (value: GetByUserId) => {
     // setUserDetails fonksiyonu aracılığıyla userDetails'ı güncelle
@@ -57,6 +46,25 @@ const ProfileProvider = (props: any) => {
     }));
   };
 
+  const AddUserDetails = (
+    value: GetUserDetails | ((prevState: GetUserDetails) => GetUserDetails)
+  ) => {
+    setUserDetails(value);
+  };
+
+  const addSkillsToUserDetails = (skills: GetSkillByUserId[]) => {
+    setUserDetails((prevState) => ({
+      ...prevState,
+      skillDtoItems: skills,
+    }));
+  };
+
+  const addLanguagesToUserDetails = (languages: GetLanguageByUserId[]) => {
+    setUserDetails((prevState) => ({
+      ...prevState,
+      languageDtoItems: languages,
+    }));
+  };
   return (
     <ProfileContext.Provider
       value={{
@@ -64,6 +72,7 @@ const ProfileProvider = (props: any) => {
         AddUserDetails,
         addSkillsToUserDetails,
         addInfoToUserDetails,
+        addLanguagesToUserDetails,
       }}
     >
       {props.children}
@@ -74,3 +83,16 @@ const ProfileProvider = (props: any) => {
 export default ProfileProvider;
 
 export const useProfileContext = () => useContext(ProfileContext);
+
+
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCHzJ0TdUSfHyBoS_qwg3CmkWuy4Vzo4_0",
+  authDomain: "test-8e62e.firebaseapp.com",
+  databaseURL: "https://test-8e62e-default-rtdb.firebaseio.com",
+  projectId: "test-8e62e",
+  storageBucket: "test-8e62e.appspot.com",
+  messagingSenderId: "539617133199",
+  appId: "1:539617133199:web:b89b1664c360644ec2e6fa",
+  measurementId: "G-06EXZ3W21Q"
+};

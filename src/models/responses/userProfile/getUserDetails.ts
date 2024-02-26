@@ -1,3 +1,4 @@
+import { GetLanguageByUserId } from "./getLanguageByUserId";
 import { GetSkillByUserId } from "./getSkillByUserId";
 
 export interface GetUserDetails {
@@ -17,5 +18,7 @@ export interface GetUserDetails {
   addressDetail: string;
   description: string;
   message?: string;
-  skillDtoItems?: GetSkillByUserId[]
+  skillDtoItems?: GetSkillByUserId[];
+  languageDtoItems?: GetLanguageByUserId[];
+  // certificateDtoItems?: GetLanguageByUserId[];
 }
