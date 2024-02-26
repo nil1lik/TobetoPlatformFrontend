@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import Uppy from "@uppy/core";
 import Dashboard from "@uppy/dashboard";
 import Tus from "@uppy/tus";

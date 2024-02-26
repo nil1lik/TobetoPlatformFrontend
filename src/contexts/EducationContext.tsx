@@ -1,7 +1,6 @@
 import React, { createContext, useState, useContext } from "react";
 import { EducationContextModel } from "../models/contextModels/educationContextModel";
 import educationService from "../services/educationService";
-import { educationPageItemCountByPageMax } from "../utilities/Constants/constantValues";
 import { pageCalculate } from "../utilities/Helpers/pageCountByItemsCalculator";
 
 const initialState: EducationContextModel = {

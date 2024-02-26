@@ -85,7 +85,7 @@ const ProfileInformationEdit = (props: Props) => {
   const fetchUserDetails = async (userId: number) => {
     try {
       const result = await userProfileService.getUserDetails(userId);
-      const apiDateString = "2000-02-24T21:00:37.581";
+      const apiDateString = result.data.birthDate;
       const apiDate = new Date(apiDateString);
 
       const onlyDate = apiDate.toISOString().split("T")[0];

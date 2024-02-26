@@ -1,6 +1,4 @@
 import React, { createContext, useState } from "react";
-import Profile from "../pages/Profile/Profile";
-import LanguageEdit from "../components/Profile/ProfileEdit/LanguageEdit";
 import { LanguageContextModel } from "../models/contextModels/languageContextModel";
 
 const initialState: LanguageContextModel = {

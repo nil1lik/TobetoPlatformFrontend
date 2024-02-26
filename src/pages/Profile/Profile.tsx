@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, Card, Col, Container, Image, Row } from "react-bootstrap";
+import { Card, Col, Container, Image, Row } from "react-bootstrap";
 import ProfilePreInfoBox from "../../components/Profile/ProfileLeft/ProfilePreInfoBox/ProfilePreInfoBox";
 import "./profile.css";
 import ProfileBox from "../../components/Profile/ProfileBox";
@@ -14,23 +14,61 @@ import ProfileEducationMap from "../../components/Profile/ProfileRight/ProfileEd
 import ProfileHeatMap from "../../components/Profile/ProfileRight/ProfileHeatMap";
 import { useAuthContext } from "../../contexts/AuthContext";
 import userProfileService from "../../services/userProfileService";
-import { GetByUserId } from "../../models/responses/user/getByUserId";
+import {
+  useProfileContext,
+} from "../../contexts/ProfileContext";
+import { formatDate } from "@fullcalendar/core";
 
 type Props = {};
 
 const Profile = (props: Props) => {
-  const [user, setUser] = useState<GetByUserId>();
+  const {
+    userDetails,
+    AddUserDetails,
+    addSkillsToUserDetails,
+    addInfoToUserDetails,
+  } = useProfileContext();
   const { userId } = useAuthContext();
   const [successModel, setSuccessModel] = useState<boolean>(false);
 
-  const fethUserData = async (userId: number) => {
-    const result = await userProfileService.getByUserId(userId);
-    setUser(result.data);
+  const fetchUserInformation = async (userId: number) => {
+    try {
+      const result = await userProfileService.getByUserId(userId);
+      // setUserInformation(result.data);
+      addInfoToUserDetails(result.data);
+    } catch (error) {
+      console.log("Kullanıcı profili bulunamadı.", error);
+    }
+  };
+
+  const fetchUserDetails = async (userId: number) => {
+    try {
+      const result = await userProfileService.getUserDetails(userId);
+
+      AddUserDetails({
+        ...result.data,
+        birthDate: formatDate(result.data.birthDate),
+      });
+    } catch (error) {
+      console.log("Kullanıcı profili bulunamadı.", error);
+    }
+  };
+
+  const fetchSkillbyUserId = async (userId: number) => {
+    try {
+      const result = await userProfileService.getSkillByUserId(userId);
+      console.log(result.data.skillDtoItems);
+      addSkillsToUserDetails(result.data.skillDtoItems);
+    } catch (error) {
+      console.error("API isteği sırasında bir hata oluştu:", error);
+    }
   };
 
   useEffect(() => {
-    fethUserData(Number(userId));
-  }, [userId]);
+    fetchUserInformation(Number(userId));
+    fetchUserDetails(Number(userId));
+    fetchSkillbyUserId(Number(userId));
+  }, []);
 
   return (
     <Container>
@@ -46,37 +84,38 @@ const Profile = (props: Props) => {
         {/* PROFILE LEFT START */}
         <Col className="col-4">
           <Row>
-            <Col className='col-12'>
+            <Col className="col-12">
               <ProfilePreInfoBox profilePhotoSrc="https://res.cloudinary.com/dcpbbqilg/image/upload/v1708374477/tobetouserlogo_aekd7i.png" />
             </Col>
             <Col className="col-12">
               <ProfileBox titleClass="profileBoxTitle" title="Hakkımda">
-                <Card.Text>
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Labore eius corrupti tempora unde ea facilis! Ratione neque
-                  quibusdam fugiat doloremque.
-                </Card.Text>
+                <Card.Text>{userDetails.description}</Card.Text>
               </ProfileBox>
             </Col>
             <Col className="col-12">
               <ProfileBox titleClass="profileBoxTitle" title="Yetkinliklerim">
                 <div className="profileRoundItemCont">
-                  <ProfileRoundItem className="profileRoundItem">
-                    {<Card.Text>HTML</Card.Text>}
-                  </ProfileRoundItem>
-                  <ProfileRoundItem className="profileRoundItem">
-                    {<Card.Text>CSS</Card.Text>}
-                  </ProfileRoundItem>
-                  <ProfileRoundItem className="profileRoundItem">
-                    {<Card.Text>JavaScript</Card.Text>}
-                  </ProfileRoundItem>
+                  {userDetails.skillDtoItems &&
+                    userDetails.skillDtoItems.map((skill) => (
+                      <ProfileRoundItem className="profileRoundItem">
+                        {<Card.Text>{skill.skillName}</Card.Text>}
+                      </ProfileRoundItem>
+                    ))}
                 </div>
               </ProfileBox>
             </Col>
-            <Col className='col-12'>
-              <ProfileBox titleClass='profileBoxTitle' title='Yabancı Diller'>
-                <div className='profileRoundItemCont'>
-                  <ProfilePreInfo cardContClass='profileLangCont' iconContClass='' headerClass='profileSkillName' valueClass='profileSkillLevel' iconSrc="https://res.cloudinary.com/dcpbbqilg/image/upload/v1708593240/globe_amwg5s.svg" header='İngilizce' value='Orta Seviye' />
+            <Col className="col-12">
+              <ProfileBox titleClass="profileBoxTitle" title="Yabancı Diller">
+                <div className="profileRoundItemCont">
+                  <ProfilePreInfo
+                    cardContClass="profileLangCont"
+                    iconContClass=""
+                    headerClass="profileSkillName"
+                    valueClass="profileSkillLevel"
+                    iconSrc="https://res.cloudinary.com/dcpbbqilg/image/upload/v1708593240/globe_amwg5s.svg"
+                    header="İngilizce"
+                    value="Orta Seviye"
+                  />
                 </div>
               </ProfileBox>
             </Col>
@@ -100,12 +139,24 @@ const Profile = (props: Props) => {
                 </div>
               </ProfileBox>
             </Col>
-            <Col className='col-12'>
-              <ProfileBox titleClass='profileBoxTitle' title='Medya Hesaplarım'>
-                <div className='profileMediaCont'>
-                  <ProfileMediaAccounts imageSrc="https://res.cloudinary.com/dcpbbqilg/image/upload/v1708593589/cv-github_foneym.svg" className='mediaAccountPhoto' Link='https://www.github.com'/>
-                  <ProfileMediaAccounts imageSrc="https://res.cloudinary.com/dcpbbqilg/image/upload/v1708593590/cv-linkedn_ctqmta.svg" className='mediaAccountPhoto' Link='https://www.linkedin.com'/>
-                  <ProfileMediaAccounts imageSrc="https://res.cloudinary.com/dcpbbqilg/image/upload/v1708593589/cv-behance_izytxl.svg" className='mediaAccountPhoto' Link='https://www.behance.net'/>
+            <Col className="col-12">
+              <ProfileBox titleClass="profileBoxTitle" title="Medya Hesaplarım">
+                <div className="profileMediaCont">
+                  <ProfileMediaAccounts
+                    imageSrc="https://res.cloudinary.com/dcpbbqilg/image/upload/v1708593589/cv-github_foneym.svg"
+                    className="mediaAccountPhoto"
+                    Link="https://www.github.com"
+                  />
+                  <ProfileMediaAccounts
+                    imageSrc="https://res.cloudinary.com/dcpbbqilg/image/upload/v1708593590/cv-linkedn_ctqmta.svg"
+                    className="mediaAccountPhoto"
+                    Link="https://www.linkedin.com"
+                  />
+                  <ProfileMediaAccounts
+                    imageSrc="https://res.cloudinary.com/dcpbbqilg/image/upload/v1708593589/cv-behance_izytxl.svg"
+                    className="mediaAccountPhoto"
+                    Link="https://www.behance.net"
+                  />
                 </div>
               </ProfileBox>
             </Col>
@@ -193,9 +244,6 @@ const Profile = (props: Props) => {
         {/* PROFILE RIGHT END */}
       </Row>
     </Container>
-    // <Link to={'/profilim/profilimi-duzenle'}>
-    //   <div>Profile</div>
-    // </Link>
   );
 };
 

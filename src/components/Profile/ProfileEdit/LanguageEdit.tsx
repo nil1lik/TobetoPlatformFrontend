@@ -1,28 +1,23 @@
-import { Field, Form, Formik } from "formik";
+import {  Form, Formik } from "formik";
 import { Container, Row, Col } from "react-bootstrap";
 import React, { useEffect, useState } from "react";
-import SelectBox from "./SelectBox";
 import { object } from "yup";
 import { GetLanguageItem } from "../../../models/responses/language/getLanguage";
 import languageServices from "../../../services/languageServices";
-import { UserInformationValidationMessageRule } from "../../../utilities/Validations/validationMessageRules";
-import toastr from "toastr";
 import {
   ProfileLanguageToastrMsg,
   saveButtonText,
 } from "../../../utilities/Constants/constantValues";
 import { LanguageProvider } from "../../../contexts/LanguageContext";
-import { GetByIdLanguage } from "../../../models/responses/language/getByIdLanguage";
-import { GetLanguageByUserId } from "../../../models/responses/userProfile/getLanguageByUserId";
-import userService from "../../../services/userService";
-import userProfileService from "../../../services/userProfileService";
+
 import { useAuthContext } from "../../../contexts/AuthContext";
 import { AddProfileLanguageRequest } from "../../../models/requests/language/addProfileLanguageRequest";
 import {
-  GetLanguageLevel,
   GetLanguageLevelItem,
 } from "../../../models/responses/language/getLanguageLevel";
 import ControlPopup from "../../Popup/ControlPopup";
+import userProfileService from "../../../services/userProfileService";
+import { GetLanguageByUserId } from "../../../models/responses/userProfile/getLanguageByUserId";
 type Props = {};
 
 const validationSchema = object({});
@@ -42,8 +37,6 @@ const LanguageEdit = (props: Props) => {
   const handleShow = () => setShow(true);
 
   const validationSchema = object({
-    language: UserInformationValidationMessageRule.inputsRequired,
-    languageLevel: UserInformationValidationMessageRule.inputsRequired,
   });
 
   const fetchLanguages = async () => {
@@ -120,11 +113,6 @@ const LanguageEdit = (props: Props) => {
             <Form>
               <Row>
                 <Col>
-                  {/* <SelectBox
-                    name="languageId"
-                    defaultText="Dil Seçiniz*"
-                    selectBoxArray={languages}
-                  /> */}
                 <select
                   onChange={(e) => setLanguageId(parseInt(e.target.value))}
                   className={`option form-control my-custom-select`}
@@ -144,11 +132,6 @@ const LanguageEdit = (props: Props) => {
                 </select>
                 </Col>
                 <Col>
-                  {/* <SelectBox
-                    name="languageLevelId"
-                    defaultText="Seviye Seçiniz*"
-                    selectBoxArray={selectedlanguageLevels}
-                  /> */}
                   <select
                   onChange={(e) => setLanguageLevelId(parseInt(e.target.value))}
                   className={`option form-control my-custom-select`}
@@ -177,9 +160,10 @@ const LanguageEdit = (props: Props) => {
             </Form>
           </Formik>
           <Container>
-            {getLanguage.map((language: any) => (
+            
               <div className="row">
                 <div className="my-langs section-p tobeto-light-bg">
+                {getLanguage.map((language: any) => (
                   <div className="lang-edit">
                     <div className="lang-info">
                       <div className="lang-title">
@@ -209,15 +193,15 @@ const LanguageEdit = (props: Props) => {
                       description="Daha sonra tekrardan listeden istediğiniz yetkinliği ekleyebilirsiniz."
                       buttonYes={true}
                       buttonNo={true}
-                      message="Yetenek silindi"
+                      message="Dil silindi"
                       show={show}
                       hide={handleClose}
                       delete={() => handleDeletedLanguage(deleteLanguages)}
                       />
-                  </div>
+                  </div>))}
                 </div>
               </div>
-            ))}
+            
           </Container>
         </Container>
       </LanguageProvider>

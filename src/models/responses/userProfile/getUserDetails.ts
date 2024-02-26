@@ -1,3 +1,5 @@
+import { GetSkillByUserId } from "./getSkillByUserId";
+
 export interface GetUserDetails {
   userId: number;
   userProfileId: number;
@@ -15,4 +17,5 @@ export interface GetUserDetails {
   addressDetail: string;
   description: string;
   message?: string;
+  skillDtoItems?: GetSkillByUserId[]
 }
