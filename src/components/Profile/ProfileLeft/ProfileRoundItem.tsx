@@ -3,7 +3,7 @@ import { Card } from 'react-bootstrap'
 
 type Props = {
   className: string,
-  children: ReactNode,
+  children: ReactNode
 }
 
 const ProfileRoundItem = (props: Props) => {

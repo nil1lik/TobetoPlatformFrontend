@@ -3,24 +3,16 @@ import { Card, Col, Container, Image, Row } from "react-bootstrap";
 import ProfilePreInfo from "./ProfilePreInfo";
 import { GetByUserId } from "../../../../models/responses/user/getByUserId";
 import { useAuthContext } from "../../../../contexts/AuthContext";
-import userProfileService from "../../../../services/userProfileService";
+import ProfileProvider, {
+  useProfileContext,
+} from "../../../../contexts/ProfileContext";
 
 type Props = {
   profilePhotoSrc: string;
 };
 
 const ProfilePreInfoBox = (props: Props) => {
-  const [user, setUser] = useState<GetByUserId>();
-  const { userId } = useAuthContext();
-
-  const fethUserData = async (userId: number) => {
-    const result = await userProfileService.getByUserId(userId);
-    setUser(result.data);
-  };
-
-  useEffect(() => {
-    fethUserData(Number(userId));
-  }, [userId]);
+  const { userDetails } = useProfileContext();
 
   return (
     <Card className="preInfoBox">
@@ -35,7 +27,7 @@ const ProfilePreInfoBox = (props: Props) => {
           valueClass="preInfoHeader"
           iconSrc="https://res.cloudinary.com/dcpbbqilg/image/upload/v1708593405/cv-name_tzumx6.svg"
           header="Ad Soyad"
-          value={`${user?.firstName} ${user?.lastName}`}
+          value={`${userDetails.firstName} ${userDetails.lastName}`}
         />
       </Card.Body>
       <Card.Body>
@@ -46,7 +38,7 @@ const ProfilePreInfoBox = (props: Props) => {
           valueClass="preInfoHeader"
           iconSrc="https://res.cloudinary.com/dcpbbqilg/image/upload/v1708593444/cv-date_qbyvok.svg"
           header="Doğum Tarihi"
-          value="01.01.2000"
+          value={userDetails.birthDate}
         />
       </Card.Body>
       <Card.Body>
@@ -57,7 +49,7 @@ const ProfilePreInfoBox = (props: Props) => {
           valueClass="preInfoHeader"
           iconSrc="https://res.cloudinary.com/dcpbbqilg/image/upload/v1708593481/cv-phone_h9kegn.svg"
           header="E-Posta Adresi"
-          value={`${user?.email}`}
+          value={`${userDetails.email}`}
         />
       </Card.Body>
       <Card.Body>
@@ -68,7 +60,7 @@ const ProfilePreInfoBox = (props: Props) => {
           valueClass="preInfoHeader"
           iconSrc="https://res.cloudinary.com/dcpbbqilg/image/upload/v1708593480/cv-mail_dyeafz.svg"
           header="Telefon Numarası"
-          value="+905555555555"
+          value={userDetails.phone}
         />
       </Card.Body>
     </Card>

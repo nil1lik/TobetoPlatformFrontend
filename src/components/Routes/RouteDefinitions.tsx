@@ -32,6 +32,7 @@ import { useAuthContext } from "../../contexts/AuthContext";
 import NotFoundPage from "../../pages/NotFound/NotFound";
 import { SearchbarProvider } from "../../contexts/SearchBarContext";
 import { EducationProvider } from "../../contexts/EducationContext";
+import ProfileProvider, { ProfileContext } from "../../contexts/ProfileContext";
 
 type Props = {};
 const profileEditUrl = "/profilim/profilimi-duzenle";
@@ -43,7 +44,7 @@ const RouteDefinitions = (props: Props) => {
   const specialPaths = [
     "/",
     "/profilim",
-    "/profilim/*",
+    "/profilim/profilimi-duzenle",
     "/degerlendirmeler",
     "katalog",
     "takvim",
@@ -95,7 +96,14 @@ const RouteDefinitions = (props: Props) => {
                   </EducationProvider>
                 }
               />
-              <Route path="/profilim" element={<Profile />} />
+              <Route
+                path="/profilim"
+                element={
+                  <ProfileProvider>
+                    <Profile />
+                  </ProfileProvider>
+                }
+              />
               <Route
                 path="/profilim/profilimi-duzenle"
                 element={<ProfileEdit />}
@@ -106,7 +114,7 @@ const RouteDefinitions = (props: Props) => {
                   <EducationProvider>
                     <Education />
                   </EducationProvider>
-                } 
+                }
               />
               ;
               <Route path="/degerlendirmeler" element={<Evaluation />} />
