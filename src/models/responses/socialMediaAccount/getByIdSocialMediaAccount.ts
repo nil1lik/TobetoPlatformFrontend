@@ -1,1 +1,6 @@
-export interface GetByIdSocialMediaAccount{}
+export interface GetByIdSocialMediaAccount{
+  id: number,
+  userProfileId: number,
+  socialMediaCategoryId: number,
+  mediaUrl: string
+}
