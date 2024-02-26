@@ -11,7 +11,10 @@ body {
   overflow-y: scroll;
   background-color: #ffffff;
 }
-
+a {
+  text-decoration: none !important;
+  color: unset !important;
+}
 .body-height{
   min-height: 83.2vh;
 }
@@ -730,6 +733,7 @@ table {
   bottom: 10px;
   right: 15px;
   cursor: pointer;
+  z-index: 2;
 }
 
 .chatOpen {

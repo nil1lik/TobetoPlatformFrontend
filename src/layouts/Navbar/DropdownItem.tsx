@@ -3,13 +3,14 @@ import { Dropdown } from "react-bootstrap";
 import { GetByUserId } from "../../models/responses/user/getByUserId";
 import { useAuthContext } from "../../contexts/AuthContext";
 import userProfileService from "../../services/userProfileService";
+import { Link } from "react-router-dom";
 
 type Props = {};
 
 const DropdownItem = (props: Props) => {
   const tobetoUserLogo = process.env.PUBLIC_URL + "https://res.cloudinary.com/dcpbbqilg/image/upload/v1707396717/tobeto-logo_t2qnpq.png";
   const [user, setUser] = useState<GetByUserId>()
-  const { userId} = useAuthContext();
+  const { userId, handleSetAuth } = useAuthContext();
 
   const fethUserData = async (userId:number) => {
     const result = await userProfileService.getByUserId(userId)
@@ -64,17 +65,16 @@ const DropdownItem = (props: Props) => {
               </Dropdown.Toggle>
               <Dropdown.Menu className=" dropdown-trans dropdown-menu-navbar">
                 <Dropdown.Item
-                  href="/profilim"
                   className="dropdown-item profil-dropdown-navbar"
                 >
-                  Profil Bilgileri
+                  <Link to={"/profilim"}>Profil Bilgileri</Link>
                 </Dropdown.Item>
                 <Dropdown.Divider />
                 <Dropdown.Item
-                  href="/giris"
                   className="dropdown-item profil-dropdown-navbar"
-                >
-                  Oturumu Kapat
+                  onClick={() => handleSetAuth(false)}
+                  >
+                 <Link to={"/giris"}> Oturumu Kapat</Link>
                 </Dropdown.Item>
               </Dropdown.Menu>
             </div>
