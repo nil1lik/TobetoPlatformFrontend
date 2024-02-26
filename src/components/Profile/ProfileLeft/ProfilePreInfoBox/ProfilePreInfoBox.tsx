@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { Card, Col, Container, Image, Row } from "react-bootstrap";
+import React from "react";
+import { Card } from "react-bootstrap";
 import ProfilePreInfo from "./ProfilePreInfo";
-import { GetByUserId } from "../../../../models/responses/user/getByUserId";
-import { useAuthContext } from "../../../../contexts/AuthContext";
-import ProfileProvider, {
+import {
   useProfileContext,
 } from "../../../../contexts/ProfileContext";
 

@@ -1,4 +1,3 @@
-import { GetSkillItem } from "../responses/skill/getSkillResponse";
 import { GetByUserId } from "../responses/user/getByUserId";
 import { GetSkillByUserId } from "../responses/userProfile/getSkillByUserId";
 import { GetUserDetails } from "../responses/userProfile/getUserDetails"

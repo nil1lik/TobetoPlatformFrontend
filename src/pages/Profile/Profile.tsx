@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, Card, Col, Container, Image, Row } from "react-bootstrap";
+import { Card, Col, Container, Image, Row } from "react-bootstrap";
 import ProfilePreInfoBox from "../../components/Profile/ProfileLeft/ProfilePreInfoBox/ProfilePreInfoBox";
 import "./profile.css";
 import ProfileBox from "../../components/Profile/ProfileBox";
@@ -14,9 +14,7 @@ import ProfileEducationMap from "../../components/Profile/ProfileRight/ProfileEd
 import ProfileHeatMap from "../../components/Profile/ProfileRight/ProfileHeatMap";
 import { useAuthContext } from "../../contexts/AuthContext";
 import userProfileService from "../../services/userProfileService";
-import { GetByUserId } from "../../models/responses/user/getByUserId";
-import { GetUserDetails } from "../../models/responses/userProfile/getUserDetails";
-import ProfileProvider, {
+import {
   useProfileContext,
 } from "../../contexts/ProfileContext";
 import { formatDate } from "@fullcalendar/core";
@@ -246,9 +244,6 @@ const Profile = (props: Props) => {
         {/* PROFILE RIGHT END */}
       </Row>
     </Container>
-    // <Link to={'/profilim/profilimi-duzenle'}>
-    //   <div>Profile</div>
-    // </Link>
   );
 };
 

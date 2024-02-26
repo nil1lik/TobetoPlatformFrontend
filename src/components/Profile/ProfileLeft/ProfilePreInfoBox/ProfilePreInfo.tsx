@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, Col, Image, Row } from 'react-bootstrap'
+import { Card, Image } from 'react-bootstrap'
 
 type Props = {
   cardContClass: string

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Card, Row } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import "../../components/Exam/exam.css";
 import ExamService from "../../services/examService";
 import { GetExamItem } from "../../models/responses/exam/getExam";
