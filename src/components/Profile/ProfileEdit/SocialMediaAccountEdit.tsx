@@ -77,6 +77,22 @@ const SocialMediaAccountEdit = (props: Props) => {
     }
   };
 
+  const socialMediaAccountImage = (accountId: number): string => {
+    switch (accountId) {
+        case 3:
+            return "https://res.cloudinary.com/dcpbbqilg/image/upload/v1708593590/cv-linkedn_ctqmta.svg"; // LinkedIn
+        case 4:
+            return "https://res.cloudinary.com/dcpbbqilg/image/upload/v1708593589/cv-behance_izytxl.svg"; // Behance
+        case 6:
+            return "https://res.cloudinary.com/dcpbbqilg/image/upload/v1708593589/cv-github_foneym.svg"; // GitHub
+        default:
+            return "https://example.com/default-image.jpg"; // Varsayılan resim URL'si
+    }
+}
+
+
+
+
   const handleDeleteExperience = async (smaId: number) => {
     try {
       const result = await socialMediaAccountService.delete(smaId);
@@ -179,14 +195,14 @@ const SocialMediaAccountEdit = (props: Props) => {
                   {sma.socialMediaCategoryName}
                 </label>
                 <div className="section-header tobeto-input">
+                <img src={socialMediaAccountImage(Number(sma.socialMediaCategoryId))} className="input-img"/>
                   <input
                     readOnly
-                    className="form-control  input-linkedin"
+                    className="form-control"
                     name="updateSocialMedia"
                     type="text"
                     value={sma.mediaUrl}
                   />
-
                   <Col xs={1}>
                     <button
                       className="btn social-delete"

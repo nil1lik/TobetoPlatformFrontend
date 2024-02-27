@@ -1,4 +1,6 @@
+import { GetSocialMediaAccountItem } from "../socialMediaAccount/getSocialMediaAccount";
 import { GetSkillByUserId } from "./getSkillByUserId";
+import { GetSocialMediaAccountByUserIdItem } from "./getSocialMediaAccountByUserId";
 
 export interface GetUserDetails {
   userId: number;
@@ -17,5 +19,6 @@ export interface GetUserDetails {
   addressDetail: string;
   description: string;
   message?: string;
-  skillDtoItems?: GetSkillByUserId[]
+  skillDtoItems?: GetSkillByUserId[];
+  socialMediaAccountItems?: GetSocialMediaAccountByUserIdItem[];
 }

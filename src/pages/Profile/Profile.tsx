@@ -27,9 +27,11 @@ const Profile = (props: Props) => {
     AddUserDetails,
     addSkillsToUserDetails,
     addInfoToUserDetails,
+    addSocialMediaAccountToUserDetails,
   } = useProfileContext();
   const { userId } = useAuthContext();
   const [successModel, setSuccessModel] = useState<boolean>(false);
+  
 
   const fetchUserInformation = async (userId: number) => {
     try {
@@ -64,10 +66,40 @@ const Profile = (props: Props) => {
     }
   };
 
+  const fetchSocialMediaAccountByUserId = async (userId: number) => {
+    try {
+      const result = await userProfileService.getSocialMediaAccountByUserId(userId);
+      console.log(result.data.socialMediaAccountsItems);
+      addSocialMediaAccountToUserDetails(result.data.socialMediaAccountsItems);
+    } catch (error) {
+      console.error("API isteği sırasında bir hata oluştu:", error);
+    }
+  };
+
+  const socialMediaAccountImage = (accountId: number): string => {
+    switch (accountId) {
+        case 1:
+            return "https://res.cloudinary.com/dcpbbqilg/image/upload/v1709033485/instagram-icon-logo-free-png_zhnpdh.svg"; //Instagram
+        case 2:
+            return  "https://res.cloudinary.com/dcpbbqilg/image/upload/v1709034955/twitter_circle-512_bwzh59.svg"; //Twitter   
+        case 3:
+            return "https://res.cloudinary.com/dcpbbqilg/image/upload/v1708593590/cv-linkedn_ctqmta.svg"; // LinkedIn
+        case 4:
+            return "https://res.cloudinary.com/dcpbbqilg/image/upload/v1708593589/cv-behance_izytxl.svg"; // Behance
+        case 5:
+            return "https://res.cloudinary.com/dcpbbqilg/image/upload/v1709035073/02-dribbble-512_p2eunc.svg"; //Dribble
+        case 6:
+            return "https://res.cloudinary.com/dcpbbqilg/image/upload/v1708593589/cv-github_foneym.svg"; // GitHub
+        default:
+            return "https://example.com/default-image.jpg"; // Varsayılan resim URL'si
+    }
+}
+
   useEffect(() => {
     fetchUserInformation(Number(userId));
     fetchUserDetails(Number(userId));
     fetchSkillbyUserId(Number(userId));
+    fetchSocialMediaAccountByUserId(Number(userId));
   }, []);
 
   return (
@@ -142,21 +174,13 @@ const Profile = (props: Props) => {
             <Col className="col-12">
               <ProfileBox titleClass="profileBoxTitle" title="Medya Hesaplarım">
                 <div className="profileMediaCont">
-                  <ProfileMediaAccounts
-                    imageSrc="https://res.cloudinary.com/dcpbbqilg/image/upload/v1708593589/cv-github_foneym.svg"
+                  {userDetails.socialMediaAccountItems && userDetails.socialMediaAccountItems.map((sma)=> (
+                    <ProfileMediaAccounts
+                    imageSrc={socialMediaAccountImage(Number(sma.socialMediaCategoryId))}
                     className="mediaAccountPhoto"
-                    Link="https://www.github.com"
+                    Link={sma.mediaUrl}
                   />
-                  <ProfileMediaAccounts
-                    imageSrc="https://res.cloudinary.com/dcpbbqilg/image/upload/v1708593590/cv-linkedn_ctqmta.svg"
-                    className="mediaAccountPhoto"
-                    Link="https://www.linkedin.com"
-                  />
-                  <ProfileMediaAccounts
-                    imageSrc="https://res.cloudinary.com/dcpbbqilg/image/upload/v1708593589/cv-behance_izytxl.svg"
-                    className="mediaAccountPhoto"
-                    Link="https://www.behance.net"
-                  />
+                  ))}
                 </div>
               </ProfileBox>
             </Col>
