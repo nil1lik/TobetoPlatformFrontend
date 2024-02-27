@@ -28,6 +28,7 @@ const Profile = (props: Props) => {
     addSkillsToUserDetails,
     addLanguagesToUserDetails,
     addCertificatesToUserDetails,
+    addSocialMediaAccountsToUserDetails,
   } = useProfileContext();
   const { userId } = useAuthContext();
   const [successModel, setSuccessModel] = useState<boolean>(false);
@@ -53,6 +54,11 @@ const Profile = (props: Props) => {
         const languagesResult = await userProfileService.getLanguagesByUserId(
           Number(userId)
         );
+
+        const socialMediaResult = await userProfileService.getSocialMediaAccountByUserId(Number(userId));
+
+        addSocialMediaAccountsToUserDetails(socialMediaResult.data.socialMediaAccountsItems);
+        
         addLanguagesToUserDetails(languagesResult.data.languageDtoItems);
         const certificatesResult =
           await userProfileService.getCertificatesByUserId(Number(userId));
@@ -68,6 +74,24 @@ const Profile = (props: Props) => {
     fetchData();
   }, []);
 
+  const socialMediaAccountImage = (accountId: number): string => {
+    switch (accountId) {
+        case 1:
+          return "https://res.cloudinary.com/dcpbbqilg/image/upload/v1709045931/instagram_gvzr96.svg"; //Instagram
+          case 2:
+            return "https://res.cloudinary.com/dcpbbqilg/image/upload/v1709046963/icons8-twitter-circled_5_mcyzjo.svg"; //Twitter   
+        case 3:
+            return "https://res.cloudinary.com/dcpbbqilg/image/upload/v1708593590/cv-linkedn_ctqmta.svg"; // LinkedIn
+        case 4:
+            return "https://res.cloudinary.com/dcpbbqilg/image/upload/v1708593589/cv-behance_izytxl.svg"; // Behance
+        case 5:
+            return "https://res.cloudinary.com/dcpbbqilg/image/upload/v1709046040/dribble_keqdag.svg"; //Dribble
+        case 6:
+            return "https://res.cloudinary.com/dcpbbqilg/image/upload/v1708593589/cv-github_foneym.svg"; // GitHub
+        default:
+            return "https://example.com/default-image.jpg"; // Varsayılan resim URL'si
+    }
+}
   return (
     <Container>
       <Row>
@@ -137,14 +161,14 @@ const Profile = (props: Props) => {
             <Col className="col-12">
               <ProfileBox titleClass="profileBoxTitle" title="Medya Hesaplarım">
                 <div className="profileMediaCont">
-                  {/* {userDetails.socialMediaAccountsItems &&
+                  {userDetails.socialMediaAccountsItems &&
                     userDetails.socialMediaAccountsItems.map((medias: any) => (
                       <ProfileMediaAccounts
-                        imageSrc={socialMediaAccountImage(medias.socialMediaCategoryId)}
+                        imageSrc={socialMediaAccountImage(Number(medias.socialMediaCategoryId))}
                         className="mediaAccountPhoto"
                         Link={medias.mediaUrl}
                       />
-                    ))} */}
+                    ))}
                 </div>
               </ProfileBox>
             </Col>
