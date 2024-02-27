@@ -7,6 +7,8 @@ import { useParams } from "react-router-dom";
 import educationService from "../../services/educationService";
 import { useLoadingContext } from "../../contexts/LoadingContext";
 import { GetAllEducationResponse } from "../../models/responses/education/getAllEducationResponse";
+import { useAuthContext } from "../../contexts/AuthContext";
+import { GetEducationbyUserId } from "../../models/responses/userProfile/getEducationByUserId";
 
 type Props = {};
 

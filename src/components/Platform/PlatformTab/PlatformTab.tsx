@@ -27,30 +27,20 @@ import {
 } from "../../../contexts/LoadingContext";
 import { Link, useLoaderData } from "react-router-dom";
 import { useEducation } from "../../../contexts/EducationContext";
+import { useAuthContext } from "../../../contexts/AuthContext";
 
 type Props = {};
 
 const PlatformTab = (props: Props) => {
   const { handleSetLoading } = useLoadingContext();
   const { educationData, fetchEducation } = useEducation();
-  
-  // const [education, setEducation] = useState<GetEducationItem[]>([]);
   const [announcement, setAnnouncement] = useState<GetAnnouncementTypeItem[]>(
     []
   );
+  const {userId} = useAuthContext();
 
   const announcementIconSrc =
     process.env.PUBLIC_URL + `/images/announcementDate.svg`;
-
-  // useEffect(() => {
-  //   handleSetLoading((prev: any) => prev + 1);
-
-  //   const fetchEducation = async () => {
-  //     const result = await educationService.getByFilter(0, 4);
-  //     setEducationData(result.data.items);
-  //     console.log("education bilgileri " + result.data.items);
-
-  //   };
 
   const fetchAnnouncement = async () => {
     const result = await AnnouncementService.getAllAnnouncementTypeList(0, 3);
@@ -58,25 +48,12 @@ const PlatformTab = (props: Props) => {
   };
 
     useEffect(() => {
-      // handleSetLoading((prev: any) => prev + 1);
-  
-      // finally {
-      //   handleSetLoading((prev: any) => prev - 1);
-      //   // setLoadingPagination(true);
-      // }
-      setTimeout(() => fetchEducation(4), 500);
+      setTimeout(() => fetchEducation(Number(userId)), 500);
       fetchAnnouncement();
     }, []);
 
     console.log("PlatformTab " , educationData);
-    
-
-  //   setTimeout(() => {
-  //     fetchEducation();
-  //     fetchAnnouncement();
-  //     handleSetLoading((prev: any) => prev - 1);
-  //   }, 500);
-  // }, [setEducation]);
+  
 
   return (
     <Tabs

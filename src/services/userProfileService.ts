@@ -1,3 +1,4 @@
+import { GetEducationByUserIdList } from './../models/responses/userProfile/getEducationByUserId';
 import { GetSocialMediaAccountByUserIdList } from './../models/responses/userProfile/getSocialMediaAccountByUserId';
 import { GetUserDetails } from './../models/responses/userProfile/getUserDetails';
 import { GetByUserId } from "../models/responses/user/getByUserId";
@@ -29,6 +30,7 @@ class UserProfileService extends BaseService<
   public Experience: string;
   public Skill :string;
   public Language:string;
+  public Education:string;
   public SocialMediaAccount:string;
   constructor() {
     super();
@@ -39,6 +41,7 @@ class UserProfileService extends BaseService<
     this.Experience = this.apiUrl + "/getAllExperience"
     this.Skill = this.apiUrl +"/getAllSkill"
     this.Language = this.apiUrl + "/getAllLanguage"
+    this.Education = this.apiUrl + "/getAllEducation"
     this.SocialMediaAccount = this.apiUrl + "/getAllSocialMediaAccount"
   }
   getByUserId(id: number): Promise<AxiosResponse<GetByUserId, any>> {
@@ -59,6 +62,10 @@ class UserProfileService extends BaseService<
 
   getSkillByUserId(id: number): Promise<AxiosResponse<GetSkillByUserIdList, any>> {
 		return errorInstance.get<GetSkillByUserIdList>(this.Skill + "/" + id);
+	}
+
+  getEducationByUserId(id: number): Promise<AxiosResponse<GetEducationByUserIdList, any>> {
+		return errorInstance.get<GetEducationByUserIdList>(this.Education + "/" + id);
 	}
 
   getLanguageByUserId(id: number): Promise<AxiosResponse<GetLanguageByUserIdList, any>> {
