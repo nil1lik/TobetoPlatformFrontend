@@ -92,6 +92,7 @@ const SkillEdit = (props: Props) => {
             as="select"
             name="skillId"
             className="form-control my-custom-select"
+            selected
           >
             <option value="" disabled selected>
               Seçiniz

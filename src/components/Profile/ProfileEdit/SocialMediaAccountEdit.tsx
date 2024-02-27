@@ -1,45 +1,66 @@
 import React, { useEffect, useState } from "react";
-import { Form, Formik } from "formik";
-import { Col, Container, Row } from "react-bootstrap";
+import { Form, Formik, Field } from "formik";
+import { Col, Container, Modal, Row } from "react-bootstrap";
+import SelectBox from "./SelectBox";
 import { object } from "yup";
 import { UserInformationValidationMessageRule } from "../../../utilities/Validations/validationMessageRules";
 import FormikInput from "../../Formik/FormikInput";
 import socialMediaAccountService from "../../../services/socialMediaAccountService";
 import { GetSocialMediaCategoryItem } from "../../../models/responses/socialMediaAccount/getAllSocialMediaCategory";
-import toastr from "toastr"
+import toastr from "toastr";
 import ControlPopup from "../../Popup/ControlPopup";
-import { SocialMediaAccountAddSuccess, SocialMediaAccountSelect } from "../../../utilities/Constants/constantValues";
+import {
+  SocialMediaAccountAddSuccess,
+  SocialMediaAccountSelect,
+  SocialMediaAccountUpdateSuccess,
+} from "../../../utilities/Constants/constantValues";
 import { AddSocialMediaAccountRequest } from "../../../models/requests/socialMediaAccount/addSocialMediaAccountRequest";
 import { useAuthContext } from "../../../contexts/AuthContext";
 import { GetSocialMediaAccountByUserIdItem } from "../../../models/responses/userProfile/getSocialMediaAccountByUserId";
 import userProfileService from "../../../services/userProfileService";
+import SocialMediaUpdatePopup from "../../Popup/SocialMediaUpdatePopup";
+import { UpdateSocialMediaAccountRequest } from "../../../models/requests/socialMediaAccount/updateSocialMediaAccountRequest";
 
 type Props = {};
 
 const SocialMediaAccountEdit = (props: Props) => {
-  const [socialMediaAccounts, setSocialMediaAccounts] = useState<GetSocialMediaCategoryItem[]>([]);
+  const [socialMediaAccounts, setSocialMediaAccounts] = useState<
+    GetSocialMediaCategoryItem[]
+  >([]);
+  
+  const [initialValuesUpdateId, setInitialValuesUpdateId] = useState<number>();
+  const [socialMediaAccountsUpdateId, setSocialMediaAccountsUpdateId] = 
+    useState<number>(0);
+  const [socialMediaAccountMediaUrl, setSocialMediaAccountMediaUrl] =
+    useState<string>("");
   const [socialMediaAccountsId, setSocialMediaAccountsId] = useState(Number);
-  const [socialMediaAccountsByUserId, setSocialMediaAccountsByUserId] = useState<GetSocialMediaAccountByUserIdItem[]>([]);
-  const [deleteSocialMediaAccounts, setDeleteSocialMediaAccounts] = useState(Number);
+  const [socialMediaAccountsByUserId, setSocialMediaAccountsByUserId] =
+    useState<GetSocialMediaAccountByUserIdItem[]>([]);
+  const [deleteSocialMediaAccounts, setDeleteSocialMediaAccounts] =
+    useState(Number);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const {userId} = useAuthContext();
+
+  const [showUpdate, setUpdateShow] = useState(false);
+  const handleUpdateClose = () => setUpdateShow(false);
+  const handleUpdateShow = () => setUpdateShow(true);
+  const { userId } = useAuthContext();
 
   const validationSchema = object({
-    inputUrl: UserInformationValidationMessageRule.inputsRequired
-  })
+    inputUrl: UserInformationValidationMessageRule.inputsRequired,
+  });
 
   const initialValues: AddSocialMediaAccountRequest = {
-    userProfileId : 0,
+    userProfileId: 0,
     socialMediaCategoryId: 0,
     mediaUrl: "",
   };
 
   const fetchSocialMediaAccount = async () => {
     try {
-      const result = await socialMediaAccountService.getAllCategory(0,6);
-      setSocialMediaAccounts(result.data.items)
+      const result = await socialMediaAccountService.getAllCategory(0, 6);
+      setSocialMediaAccounts(result.data.items);
     } catch (error) {
       console.error("API isteği sırasında bir hata oluştu:", error);
     }
@@ -47,15 +68,16 @@ const SocialMediaAccountEdit = (props: Props) => {
 
   const fetchSocialMediaAccountByUserId = async () => {
     try {
-      const result = await userProfileService.getSocialMediaAccountByUserId(Number(userId));
-      console.log(result.data)
-      setSocialMediaAccountsByUserId(result.data.socialMediaAccountsItems)
+      const result = await userProfileService.getSocialMediaAccountByUserId(
+        Number(userId)
+      );
+      setSocialMediaAccountsByUserId(result.data.socialMediaAccountsItems);
     } catch (error) {
       console.error("API isteği sırasında bir hata oluştu:", error);
     }
   };
 
-  const handleDeleteExperience = async (smaId:number) => {
+  const handleDeleteExperience = async (smaId: number) => {
     try {
       const result = await socialMediaAccountService.delete(smaId);
       fetchSocialMediaAccountByUserId();
@@ -70,15 +92,34 @@ const SocialMediaAccountEdit = (props: Props) => {
     fetchSocialMediaAccountByUserId();
   }, []);
 
-
-
-  const handleMediaAccountSubmit = async (values : AddSocialMediaAccountRequest) => {
+  const handleMediaAccountSubmit = async (
+    values: AddSocialMediaAccountRequest
+  ) => {
     values.userProfileId = Number(userId);
     values.socialMediaCategoryId = socialMediaAccountsId;
-    const result = await socialMediaAccountService.add(values)
-    toastr.success(SocialMediaAccountAddSuccess)
+    const result = await socialMediaAccountService.add(values);
+    toastr.success(SocialMediaAccountAddSuccess);
     fetchSocialMediaAccountByUserId();
-  }
+  };
+
+  const initialValuesUpdate: UpdateSocialMediaAccountRequest = {
+    id: 0,
+    userProfileId: 0,
+    socialMediaCategoryId: 0,
+    mediaUrl: "",
+  };
+
+  const handleMediaAccountUpdateSubmit = async (
+    values: UpdateSocialMediaAccountRequest
+  ) => {
+    values.id = Number(initialValuesUpdateId)
+    values.mediaUrl = socialMediaAccountMediaUrl
+    values.socialMediaCategoryId = socialMediaAccountsUpdateId
+    values.userProfileId= Number(userId)
+    const result = await socialMediaAccountService.update(values);
+    toastr.success(SocialMediaAccountUpdateSuccess);
+    fetchSocialMediaAccountByUserId();
+  };
   return (
     <div className="container mt-5">
       <Formik
@@ -93,7 +134,9 @@ const SocialMediaAccountEdit = (props: Props) => {
                 {/* <SelectBox defaultText="Seçiniz" selectBoxArray={socialMediaAccounts} className="mb-3" /> */}
 
                 <select
-                  onChange={(e) => setSocialMediaAccountsId(parseInt(e.target.value))}
+                  onChange={(e) =>
+                    setSocialMediaAccountsId(parseInt(e.target.value))
+                  }
                   className={`option form-control my-custom-select mb-3`}
                 >
                   <option disabled selected>
@@ -127,66 +170,150 @@ const SocialMediaAccountEdit = (props: Props) => {
       <Container>
         {socialMediaAccountsByUserId.map((sma: any) => (
           <Row>
-          <Col xs={10}>
-            <div className="col-12 my-2">
-              <label
-                className="input-label-text"
-                style={{ display: "block", marginBottom: "5px" }}
-              >
-                {sma.socialMediaCategoryName}
-              </label>
-              <div className="section-header tobeto-input">
-                <input
-                  readOnly
-                  className="form-control  input-linkedin"
-                  name="updateSocialMedia"
-                  type="text"
-                  value={sma.mediaUrl}
-                />
+            <Col xs={10}>
+              <div className="col-12 my-2">
+                <label
+                  className="input-label-text"
+                  style={{ display: "block", marginBottom: "5px" }}
+                >
+                  {sma.socialMediaCategoryName}
+                </label>
+                <div className="section-header tobeto-input">
+                  <input
+                    readOnly
+                    className="form-control  input-linkedin"
+                    name="updateSocialMedia"
+                    type="text"
+                    value={sma.mediaUrl}
+                  />
 
-                <Col xs={1}>
-                  <button className="btn social-delete" onClick={() => {
-                    setDeleteSocialMediaAccounts(sma.id);
-                    handleShow() 
-                    }}>
-                    <i className="grade-delete-img"></i>
-                  </button>
-                  <ControlPopup
-                        title="Seçilen sosyal medyayı silmek istediğinizden emin misiniz?"
-                        description="Bu işlem geri alınmaz."
-                        buttonYes={true}
-                        buttonNo={true}
-                        message="Sosyal medya hesabınız kaldırıldı"
-                        show={show}
-                        hide={handleClose}
-                        delete={() => handleDeleteExperience(deleteSocialMediaAccounts)}
-                      />
-                </Col>
-                <Col xs={1}>
-                  <button className="btn" >
-                    <img
-                      src={
-                        process.env.PUBLIC_URL + "/images/pen-square.svg"
+                  <Col xs={1}>
+                    <button
+                      className="btn social-delete"
+                      onClick={() => {
+                        setDeleteSocialMediaAccounts(sma.id);
+                        handleShow();
+                      }}
+                    >
+                      <i className="grade-delete-img"></i>
+                    </button>
+                    <ControlPopup
+                      title="Seçilen sosyal medyayı silmek istediğinizden emin misiniz?"
+                      description="Bu işlem geri alınmaz."
+                      buttonYes={true}
+                      buttonNo={true}
+                      message="Sosyal medya hesabınız kaldırıldı"
+                      show={show}
+                      hide={handleClose}
+                      delete={() =>
+                        handleDeleteExperience(deleteSocialMediaAccounts)
                       }
-                      style={{ width: 23 }}
                     />
-                  </button>
-                </Col>
+                  </Col>
+                   {/* Update Popup */}
+                  <Col xs={1}>
+                    <button
+                      className="btn"
+                      onClick={() => {
+                        handleUpdateShow();
+                        // Güncelleme butonuna tıklandığında, initialValuesUpdate nesnesine sma verilerini atayalım
+                        setInitialValuesUpdateId(sma.id);
+                        setSocialMediaAccountsUpdateId(sma.socialMediaCategoryId)
+                        setSocialMediaAccountMediaUrl(sma.mediaUrl);
+                      }}
+                    >
+                      <img
+                        src={process.env.PUBLIC_URL + "/images/pen-square.svg"}
+                        style={{ width: 23 }}
+                      />
+                    </button>
+                    {/* <SocialMediaUpdatePopup
+                    socialMediaAccountCategory={socialMediaAccounts}
+                    socialMediaAccountData={sma}
+                    show={showUpdate} 
+                    hide={handleUpdateClose}
+                    /> */}
+                    <Modal
+                      size="lg"
+                      show={showUpdate}
+                      onHide={handleUpdateClose}
+                      centered
+                    >
+                      <Modal.Header closeButton>
+                        <Modal.Title style={{ fontWeight: "600" }}>
+                          {"Sosyal Medya Hesabı Güncelleme"}
+                        </Modal.Title>
+                      </Modal.Header>
+                      <Modal.Body>
+                        <Formik
+                          initialValues={initialValuesUpdate}
+                          onSubmit={handleMediaAccountUpdateSubmit}
+                        >
+                          <Form>
+                            <Container>
+                              <Row className="align-items-center">
+                                <Col lg={4}>
+                                  {/* <SelectBox defaultText="Seçiniz" selectBoxArray={socialMediaAccounts} className="mb-3" /> */}
+
+                                  <select
+                                    onChange={(e) =>
+                                      setSocialMediaAccountsUpdateId(
+                                        parseInt(e.target.value)
+                                      )
+                                    }
+                                    className={`option form-control my-custom-select mt-3`}
+                                    value={socialMediaAccountsUpdateId}
+                                  >
+                                    <option disabled>
+                                      {SocialMediaAccountSelect}
+                                    </option>
+                                    {socialMediaAccounts.map(
+                                      (smac) => (
+                                        <option
+                                          key={smac.id}
+                                          value={smac.id}
+                                          className="form-control my-custom-input"
+                                        >
+                                          {smac.name}
+                                        </option>
+                                      )
+                                    )}
+                                  </select>
+                                </Col>
+                                <Col lg={8}>
+                                  <input
+                                    className="form-control my-custom-input mt-3"
+                                    name="updateSocialMedia"
+                                    type="text"
+                                    value={socialMediaAccountMediaUrl}
+                                    onChange={(mu) =>
+                                      setSocialMediaAccountMediaUrl(
+                                        mu.target.value
+                                      )
+                                    }
+                                  />
+                                </Col>
+                              </Row>
+
+                              <button
+                                type="submit"
+                                className="button-save py-2 mb-3 mt-4 d-inline-block "
+                              >
+                                Güncelle
+                              </button>
+                            </Container>
+                          </Form>
+                        </Formik>
+                      </Modal.Body>
+                    </Modal>
+                  </Col>
+                </div>
               </div>
-            </div>
-          </Col>
-        </Row>
+            </Col>
+          </Row>
         ))}
-        <Col>
-          <label
-            className="attentionText"
-            style={{ display: "block", marginBottom: "5px" }}
-          >
-            En fazla 3 adet medya seçimi yapılabilir.
-          </label>
-        </Col>
       </Container>
-    </div >
+    </div>
   );
 };
 

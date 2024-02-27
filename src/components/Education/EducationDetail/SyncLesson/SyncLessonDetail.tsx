@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Accordion,
   AccordionBody,
@@ -16,11 +16,35 @@ import {
 } from "../../../../utilities/Constants/iconsList";
 import EducationDetailAboutComp from "../EducationDetailAboutComp";
 import "./syncLessonDetail.css";
+import { GetCourseResponseItem } from "../../../../models/responses/course/getCourseResponse";
+import { GetSyncLessonsByCourseIdItem } from "../../../../models/responses/course/getSyncLessonsByCourseId";
+import syncLessonService from "../../../../services/syncLessonService";
 
-type Props = {};
+type Props = {syncLessonId?: number;};
 
 const SyncLessonDetail = (props: Props) => {
   const colSize = 3;
+  const [courses, setCourses] = useState<GetCourseResponseItem[]>([]);
+  const [syncLessons, setSyncLessons] = useState<
+  GetSyncLessonsByCourseIdItem[]
+>([]);
+
+// const fetchSyncLesson = async () => {
+//   try {
+//     if (syncLessonId !== undefined) {
+//       const result = await syncLessonService getByIdAsyncLessonDetail(asyncLessonId); 
+//       setAsyncLessons(result.data);
+
+//     }
+//   } catch (error) {
+//     console.error("API isteği sırasında bir hata oluştu:", error);
+//   }
+// }; 
+
+// useEffect(() => {
+//   fetchAsyncLesson();
+// }, [asyncLessonId]);
+
   return (
     <div className="activity-content-info">
       <div className="activity-largeImageFileName no-video">

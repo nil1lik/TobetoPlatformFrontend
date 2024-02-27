@@ -16,11 +16,9 @@ import {
 } from "react-bootstrap/esm/AccordionContext";
 import { GetCourseResponseItem } from "../../../models/responses/course/getCourseResponse";
 import { GetAsyncLessonsByCourseIdItem } from "../../../models/responses/course/getAsyncLessonsByCourseId";
-import FormattedDate from "../../../utilities/Helpers/FormattedDate";
-import LessonVideoDetailCard from "../LessonVideoDetail/LessonVideoDetailCard";
-import educationService from "../../../services/educationService";
 import SyncLessonDetail from "./SyncLesson/SyncLessonDetail";
 import FormattedTime from "../../../utilities/Helpers/FormattedTime";
+import LessonVideoDetailCard from "../LessonVideoDetail/LessonVideoDetailCard";
 
 type Props = {
   educationDetailId?: number;
@@ -122,7 +120,7 @@ const EducationDetailContent = (props: Props) => {
           <Col>
             <Row>
               <LessonVideoDetailCard asyncLessonId={selectedAsyncLessonId} />
-              {/* <SyncLessonDetail></SyncLessonDetail> */}
+              <SyncLessonDetail syncLessonId={selectedAsyncLessonId}/>
             </Row>
           </Col>
         </Row>
