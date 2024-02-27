@@ -1,5 +1,6 @@
 export interface GetSocialMediaAccountByUserIdItem {
     id: number,
+    socialMediaCategoryId: number,
     socialMediaCategoryName: string,
     mediaUrl: string
 }

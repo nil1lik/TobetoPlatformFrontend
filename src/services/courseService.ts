@@ -4,11 +4,11 @@ import { AddCourseResponse } from './../models/responses/course/addCourseRespons
 import { AddCourseRequest } from './../models/requests/course/addCourseRequest';
 import { GetByIdCourseResponse } from './../models/responses/course/getByIdCourseResponse';
 import { BaseService } from "../core/services/baseService";
-import { toHaveDisplayValue } from '@testing-library/jest-dom/matchers';
 import { BASE_API_URL } from '../core/environment/environment';
 import { GetCourseResponse } from '../models/responses/course/getCourseResponse';
 import axios, { AxiosResponse } from 'axios';
 import { GetAsyncLessonsByCourseIdResponse } from '../models/responses/course/getAsyncLessonsByCourseId';
+import { GetSyncLessonsByCourseIdResponse } from '../models/responses/course/getSyncLessonsByCourseId';
 
 class CourseService extends BaseService<
     GetCourseResponse,
@@ -30,6 +30,14 @@ class CourseService extends BaseService<
             this.apiUrl + "/getAsyncLesson/" + id
         ); 
     }
+
+    getSyncLessonsByCourseId(id:number): Promise<AxiosResponse<GetSyncLessonsByCourseIdResponse, any>>{
+        return axios.get<GetSyncLessonsByCourseIdResponse>(
+            this.apiUrl + "/getSyncLesson/" + id
+        ); 
+    }
+
+   
 }
 
 export default new CourseService();

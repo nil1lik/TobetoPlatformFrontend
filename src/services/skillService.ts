@@ -11,6 +11,7 @@ import { UpdateSkillResponse } from "../models/responses/skill/updateSkillRespon
 import axios, { AxiosResponse } from "axios";
 import { AddProfileSkillRequest } from "../models/requests/skill/addProfileSkillRequest";
 import { AddProfileSkillResponse } from "../models/responses/skill/addProfileSkillResponse";
+import errorInstance from "../core/interceptors/errorInterceptor";
 
 class SkillService extends BaseService<
   GetSkill,
@@ -32,7 +33,7 @@ class SkillService extends BaseService<
   }
 
   addProfilSkill(request: AddProfileSkillRequest): Promise<AxiosResponse<AddProfileSkillResponse, any>> {
-		return axios.post<AddProfileSkillResponse>(this.profileSkill, request);
+		return errorInstance.post<AddProfileSkillResponse>(this.profileSkill, request);
 	}
 
   deleteSkill(id: number) {

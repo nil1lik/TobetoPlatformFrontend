@@ -66,7 +66,7 @@ class UserProfileService extends BaseService<
 	}
 
   addUserProfile(id: number, request: GetUserDetails): Promise<AxiosResponse<GetUserDetails, any>>{
-    return axios.post<GetUserDetails>(this.apiUrl, request)
+    return errorInstance.post<GetUserDetails>(this.apiUrl, request)
   }
 
   updateUserProfile(id: number, request: GetByIdUserProfile): Promise<AxiosResponse<GetUserDetails, any>>{
