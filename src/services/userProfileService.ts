@@ -15,6 +15,7 @@ import { GetExperienceByUserIdList } from "../models/responses/userProfile/getEx
 import errorInstance from '../core/interceptors/errorInterceptor';
 import { GetLanguageByUserIdList } from '../models/responses/userProfile/getLanguageByUserId';
 import { GetSkillByUserIdList } from '../models/responses/userProfile/getSkillByUserId';
+import { GetExamByUserIdList } from '../models/responses/userProfile/getExamByUserId';
 
 class UserProfileService extends BaseService<
   GetUserProfile,
@@ -30,6 +31,7 @@ class UserProfileService extends BaseService<
   public Skill :string;
   public Language:string;
   public SocialMediaAccount:string;
+  public Exam: string;
   constructor() {
     super();
     this.apiUrl = BASE_API_URL + "UserProfiles";
@@ -39,6 +41,7 @@ class UserProfileService extends BaseService<
     this.Experience = this.apiUrl + "/getAllExperience"
     this.Skill = this.apiUrl +"/getAllSkill"
     this.Language = this.apiUrl + "/getAllLanguage"
+    this.Exam = this.apiUrl + "/getAllExams"
     this.SocialMediaAccount = this.apiUrl + "/getAllSocialMediaAccount"
   }
   getByUserId(id: number): Promise<AxiosResponse<GetByUserId, any>> {
@@ -76,6 +79,10 @@ class UserProfileService extends BaseService<
   getSocialMediaAccountByUserId(id: number): Promise<AxiosResponse<GetSocialMediaAccountByUserIdList, any>> {
 		return errorInstance.get<GetSocialMediaAccountByUserIdList>(this.SocialMediaAccount + "/" + id);
 	}
+
+  getExamByUserId(id: number):Promise<AxiosResponse<GetExamByUserIdList, any>> {
+    return errorInstance.get<GetExamByUserIdList>(this.Exam + "/" + id )
+  }
 }
 
 export default new UserProfileService();

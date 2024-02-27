@@ -3,6 +3,7 @@ import { ProfileContextModel } from "../models/contextModels/ProfileContextModel
 import { GetUserDetails } from "../models/responses/userProfile/getUserDetails";
 import { GetSkillByUserId } from "../models/responses/userProfile/getSkillByUserId";
 import { GetByUserId } from "../models/responses/user/getByUserId";
+import { GetExamByUserId } from "../models/responses/userProfile/getExamByUserId";
 import { GetSocialMediaAccountByUserIdItem } from "../models/responses/userProfile/getSocialMediaAccountByUserId";
 
 const initialState: ProfileContextModel = {
@@ -22,13 +23,15 @@ const initialState: ProfileContextModel = {
     country: "",
     addressDetail: "",
     description: "",
-    skillDtoItems: [], // Boş dizi olarak başlatılıyor
-    socialMediaAccountItems: [],
+    skillDtoItems: [],
+    examDtoItems: [],
+    socialMediaAccountsItems: [], 
   },
   AddUserDetails: () => {},
   addSkillsToUserDetails: () => {},
+  addExamsToUserDetails: () => {},
+  addSocialMediaAccountsToUserDetails: () => {},
   addInfoToUserDetails: () => {},
-  addSocialMediaAccountToUserDetails: () => {},
 };
 
 export const ProfileContext = createContext(initialState);
@@ -43,23 +46,28 @@ const ProfileProvider = (props: any) => {
   };
 
   const addSkillsToUserDetails = (skills: GetSkillByUserId[]) => {
-    // setUserDetails fonksiyonu aracılığıyla userDetails'ı güncelle
     setUserDetails((prevState) => ({
       ...prevState,
       skillDtoItems: skills,
     }));
   };
 
-  const addSocialMediaAccountToUserDetails = (socialMediaAccount: GetSocialMediaAccountByUserIdItem[]) => {
-    // setUserDetails fonksiyonu aracılığıyla userDetails'ı güncelle
+  const addExamsToUserDetails = (exams: GetExamByUserId[]) => {
+    console.log(exams)
     setUserDetails((prevState) => ({
       ...prevState,
-      socialMediaAccountItems: socialMediaAccount,
+      examDtoItems: exams,
     }));
   };
 
+  const addSocialMediaAccountsToUserDetails = (socialMediaAccountsItems: GetSocialMediaAccountByUserIdItem[]) => {
+    setUserDetails((prevState) => ({
+      ...prevState,
+      socialMediaAccountsItems: socialMediaAccountsItems,
+    }))
+  }
+
   const addInfoToUserDetails = (value: GetByUserId) => {
-    // setUserDetails fonksiyonu aracılığıyla userDetails'ı güncelle
     setUserDetails((prevState: GetUserDetails) => ({
       ...prevState,
       firstName: value.firstName,
@@ -74,8 +82,9 @@ const ProfileProvider = (props: any) => {
         userDetails,
         AddUserDetails,
         addSkillsToUserDetails,
+        addExamsToUserDetails,
+        addSocialMediaAccountsToUserDetails,
         addInfoToUserDetails,
-        addSocialMediaAccountToUserDetails
       }}
     >
       {props.children}
