@@ -30,6 +30,7 @@ class UserProfileService extends BaseService<
   public Experience: string;
   public Skill :string;
   public Language:string;
+  public Certificate:string;
   public SocialMediaAccount:string;
   constructor() {
     super();
@@ -40,6 +41,7 @@ class UserProfileService extends BaseService<
     this.Experience = this.apiUrl + "/getAllExperience"
     this.Skill = this.apiUrl +"/getAllSkill"
     this.Language = this.apiUrl + "/getAllLanguage"
+    this.Certificate = this.apiUrl + "/getAllCertificates"
     this.SocialMediaAccount = this.apiUrl + "/getAllSocialMediaAccount"
   }
   getByUserId(id: number): Promise<AxiosResponse<GetByUserId, any>> {
@@ -50,23 +52,23 @@ class UserProfileService extends BaseService<
 		return axios.get<GetUserDetails>(this.dtoUrl + "/" + id);
 	}
 
-  getGraduationByUserId(id: number): Promise<AxiosResponse<GetGraduationByUserIdList, any>> {
+  getGraduationsByUserId(id: number): Promise<AxiosResponse<GetGraduationByUserIdList, any>> {
 		return axios.get<GetGraduationByUserIdList>(this.Graduation + "/" + id);
 	}
 
-  getExperienceByUserId(id: number): Promise<AxiosResponse<GetExperienceByUserIdList, any>> {
+  getExperiencesByUserId(id: number): Promise<AxiosResponse<GetExperienceByUserIdList, any>> {
 		return errorInstance.get<GetExperienceByUserIdList>(this.Experience + "/" + id);
 	}
 
-  getSkillByUserId(id: number): Promise<AxiosResponse<GetSkillByUserIdList, any>> {
+  getSkillsByUserId(id: number): Promise<AxiosResponse<GetSkillByUserIdList, any>> {
 		return errorInstance.get<GetSkillByUserIdList>(this.Skill + "/" + id);
 	}
 
-  getLanguageByUserId(id: number): Promise<AxiosResponse<GetLanguageByUserIdList, any>> {
+  getLanguagesByUserId(id: number): Promise<AxiosResponse<GetLanguageByUserIdList, any>> {
 		return axios.get<GetLanguageByUserIdList>(this.Language + "/" + id);
 	}
   getCertificatesByUserId(id: number): Promise<AxiosResponse<getCertificateByUserIdList, any>> {
-		return axios.get<getCertificateByUserIdList>(this.Language + "/" + id);
+		return axios.get<getCertificateByUserIdList>(this.Certificate + "/" + id);
 	}
 
   addUserProfile(id: number, request: GetUserDetails): Promise<AxiosResponse<GetUserDetails, any>>{

@@ -59,7 +59,7 @@ const LanguageEdit = (props: Props) => {
 
   const getLanguageList = async () => {
     try {
-      const result = await userProfileService.getLanguageByUserId(
+      const result = await userProfileService.getLanguagesByUserId(
         Number(userId)
       );
       setGetLanguage(result.data.languageDtoItems);

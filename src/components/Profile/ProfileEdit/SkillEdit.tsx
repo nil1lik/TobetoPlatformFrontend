@@ -40,7 +40,7 @@ const SkillEdit = (props: Props) => {
 
   const fetchSkillbyUserId = async () => {
     try {
-      const result = await userProfileService.getSkillByUserId(Number(userId))
+      const result = await userProfileService.getSkillsByUserId(Number(userId))
       console.log(result.data.skillDtoItems);
       setSkillUserProfile(result.data.skillDtoItems);
     } catch (error) {

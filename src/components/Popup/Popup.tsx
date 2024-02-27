@@ -3,12 +3,13 @@ import { Modal } from "react-bootstrap";
 import ExamResultPopup from "./ExamResultPopup";
 
 type Props = {
-  key: string | number;
-  title: string;
-  description: string;
+  key?: string | number;
+  title?: string;
+  description?: string;
   button?: boolean;
   duration?: string;
   isCompleted?: boolean;
+  imageUrl?: string;
   show: boolean;
   hide: () => void;
 };
@@ -26,6 +27,8 @@ const Popup = (props: Props) => {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
+          {!props.imageUrl ?
+          <>
           {`${props.description}`.split("\n").map((line, index) => (
             <>
               <p key={index} className="modal-text">
@@ -52,6 +55,10 @@ const Popup = (props: Props) => {
                 Raporu Görüntüle
               </button>
             ))}
+          </>
+          :
+          <img src={props.imageUrl} style={{minHeight: "450px", minWidth: "450px", maxHeight: "450px", maxWidth: "450px", display: "block", margin: "0 auto"}}/>
+        }
         </Modal.Body>
       </Modal>
       <ExamResultPopup

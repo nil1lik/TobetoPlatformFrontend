@@ -13,14 +13,6 @@ import Image from "../../Uppy/image";
 type Props = {};
 
 const CertificateEdit = (props: Props) => {
-  // Import the functions you need from the SDKs you need
-
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
-
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);

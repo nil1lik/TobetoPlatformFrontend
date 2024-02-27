@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Card, Col, Container, Image, Row } from "react-bootstrap";
+import { Card, Col, Container, Row } from "react-bootstrap";
 import ProfilePreInfoBox from "../../components/Profile/ProfileLeft/ProfilePreInfoBox/ProfilePreInfoBox";
 import "./profile.css";
 import ProfileBox from "../../components/Profile/ProfileBox";
@@ -14,60 +14,57 @@ import ProfileEducationMap from "../../components/Profile/ProfileRight/ProfileEd
 import ProfileHeatMap from "../../components/Profile/ProfileRight/ProfileHeatMap";
 import { useAuthContext } from "../../contexts/AuthContext";
 import userProfileService from "../../services/userProfileService";
-import {
-  useProfileContext,
-} from "../../contexts/ProfileContext";
+import { useProfileContext } from "../../contexts/ProfileContext";
 import { formatDate } from "@fullcalendar/core";
+import FormattedDate from "../../utilities/Helpers/FormattedDate";
 
 type Props = {};
 
 const Profile = (props: Props) => {
   const {
     userDetails,
-    AddUserDetails,
-    addSkillsToUserDetails,
     addInfoToUserDetails,
+    addUserDetails,
+    addSkillsToUserDetails,
+    addLanguagesToUserDetails,
+    addCertificatesToUserDetails,
   } = useProfileContext();
   const { userId } = useAuthContext();
   const [successModel, setSuccessModel] = useState<boolean>(false);
 
-  const fetchUserInformation = async (userId: number) => {
-    try {
-      const result = await userProfileService.getByUserId(userId);
-      // setUserInformation(result.data);
-      addInfoToUserDetails(result.data);
-    } catch (error) {
-      console.log("Kullanıcı profili bulunamadı.", error);
-    }
-  };
-
-  const fetchUserDetails = async (userId: number) => {
-    try {
-      const result = await userProfileService.getUserDetails(userId);
-
-      AddUserDetails({
-        ...result.data,
-        birthDate: formatDate(result.data.birthDate),
-      });
-    } catch (error) {
-      console.log("Kullanıcı profili bulunamadı.", error);
-    }
-  };
-
-  const fetchSkillbyUserId = async (userId: number) => {
-    try {
-      const result = await userProfileService.getSkillByUserId(userId);
-      console.log(result.data.skillDtoItems);
-      addSkillsToUserDetails(result.data.skillDtoItems);
-    } catch (error) {
-      console.error("API isteği sırasında bir hata oluştu:", error);
-    }
-  };
-
   useEffect(() => {
-    fetchUserInformation(Number(userId));
-    fetchUserDetails(Number(userId));
-    fetchSkillbyUserId(Number(userId));
+    const fetchData = async () => {
+      try {
+        const result = await userProfileService.getByUserId(Number(userId));
+        addInfoToUserDetails(result.data);
+
+        const detailsResult = await userProfileService.getUserDetails(
+          Number(userId)
+        );
+        addUserDetails({
+          ...detailsResult.data,
+          birthDate: formatDate(detailsResult.data.birthDate),
+        });
+        const skillsResult = await userProfileService.getSkillsByUserId(
+          Number(userId)
+        );
+        addSkillsToUserDetails(skillsResult.data.skillDtoItems);
+        const languagesResult = await userProfileService.getLanguagesByUserId(
+          Number(userId)
+        );
+        addLanguagesToUserDetails(languagesResult.data.languageDtoItems);
+        const certificatesResult =
+          await userProfileService.getCertificatesByUserId(Number(userId));
+          console.log(certificatesResult.data.certificateDtoItems);
+        addCertificatesToUserDetails(
+          certificatesResult.data.certificateDtoItems
+        );
+      } catch (error) {
+        console.log("Error fetching user data:", error);
+      }
+    };
+
+    fetchData();
   }, []);
 
   return (
@@ -107,35 +104,32 @@ const Profile = (props: Props) => {
             <Col className="col-12">
               <ProfileBox titleClass="profileBoxTitle" title="Yabancı Diller">
                 <div className="profileRoundItemCont">
-                  <ProfilePreInfo
-                    cardContClass="profileLangCont"
-                    iconContClass=""
-                    headerClass="profileSkillName"
-                    valueClass="profileSkillLevel"
-                    iconSrc="https://res.cloudinary.com/dcpbbqilg/image/upload/v1708593240/globe_amwg5s.svg"
-                    header="İngilizce"
-                    value="Orta Seviye"
-                  />
+                  {userDetails.languageDtoItems &&
+                    userDetails.languageDtoItems.map((language) => (
+                      <ProfilePreInfo
+                        cardContClass="profileLangCont"
+                        iconContClass=""
+                        headerClass="profileSkillName"
+                        valueClass="profileSkillLevel"
+                        iconSrc="https://res.cloudinary.com/dcpbbqilg/image/upload/v1708593240/globe_amwg5s.svg"
+                        header={language.languageName}
+                        value={language.languageLevelName}
+                      />
+                    ))}
                 </div>
               </ProfileBox>
             </Col>
             <Col className="col-12">
               <ProfileBox titleClass="profileBoxTitle" title="Sertifikalarım">
                 <div className="profileRoundItemCont">
-                  <ProfileRoundItem className="profileRoundItem hover">
-                    {
-                      <Card.Text className="profileCertificate">
-                        Lorem, ipsum dolor.
-                      </Card.Text>
-                    }
-                  </ProfileRoundItem>
-                  <ProfileRoundItem className="profileRoundItem hover">
-                    {
-                      <Card.Text className="profileCertificate">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      </Card.Text>
-                    }
-                  </ProfileRoundItem>
+                  {userDetails.certificatesDtoItems &&
+                    userDetails.certificatesDtoItems.map((certificate) => (
+                      <ProfileRoundItem className="profileRoundItem hover" title={certificate.certificateName} imageUrl={certificate.certificateFileUrl}>
+                        <Card.Text className="profileCertificate">
+                          {certificate.certificateName}
+                        </Card.Text>
+                      </ProfileRoundItem>
+                    ))}
                 </div>
               </ProfileBox>
             </Col>
@@ -246,5 +240,4 @@ const Profile = (props: Props) => {
     </Container>
   );
 };
-
 export default Profile;
