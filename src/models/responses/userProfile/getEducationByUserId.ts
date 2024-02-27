@@ -3,6 +3,7 @@ export interface GetEducationbyUserId{
     educationPathId:number
     educationPathName:string
     educationPathImageUrl:string
+    startDate:string
 }
 
 export interface GetEducationByUserIdList{

@@ -28,6 +28,7 @@ import {
 import { Link, useLoaderData } from "react-router-dom";
 import { useEducation } from "../../../contexts/EducationContext";
 import { useAuthContext } from "../../../contexts/AuthContext";
+import { GetEducationbyUserId } from "../../../models/responses/userProfile/getEducationByUserId";
 
 type Props = {};
 
@@ -88,11 +89,11 @@ const PlatformTab = (props: Props) => {
       </Tab>
       <Tab eventKey="egitimler" title={PlatformTabHeaders.educations}>
         <Row>
-          {educationData.map((education: GetEducationItem) => (
+          {educationData.map((education: GetEducationbyUserId) => (
             <EducationCard
-              id={education.id}
-              image={education.imageUrl}
-              text={education.name}
+              id={education.educationPathId}
+              image={education.educationPathImageUrl}
+              text={education.educationPathName}
               date={<FormattedDate date={education.startDate} />}
             />
           ))}
