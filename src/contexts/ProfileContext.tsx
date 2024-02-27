@@ -5,6 +5,8 @@ import { GetSkillByUserId } from "../models/responses/userProfile/getSkillByUser
 import { GetByUserId } from "../models/responses/user/getByUserId";
 import { GetExamByUserId } from "../models/responses/userProfile/getExamByUserId";
 import { GetSocialMediaAccountByUserIdItem } from "../models/responses/userProfile/getSocialMediaAccountByUserId";
+import { GetGraduationByUserId, GetGraduationByUserIdList } from "../models/responses/userProfile/getGraduationByUserId";
+import { GetExperienceByUserId, GetExperienceByUserIdList } from "../models/responses/userProfile/getExperienceByUserId";
 
 const initialState: ProfileContextModel = {
   userDetails: {
@@ -26,11 +28,15 @@ const initialState: ProfileContextModel = {
     skillDtoItems: [],
     examDtoItems: [],
     socialMediaAccountsItems: [], 
+    graduationsDtoItems: [],
+    experiencesDtoItems: [],
   },
   AddUserDetails: () => {},
   addSkillsToUserDetails: () => {},
   addExamsToUserDetails: () => {},
   addSocialMediaAccountsToUserDetails: () => {},
+  addGraduationsToUserDetails: () => {},
+  addExperiencesToUserDetails: () => {},
   addInfoToUserDetails: () => {},
 };
 
@@ -60,6 +66,20 @@ const ProfileProvider = (props: any) => {
     }));
   };
 
+  const addGraduationsToUserDetails = (graduations: GetGraduationByUserId[]) => {
+    setUserDetails((prevState) => ({
+      ...prevState,
+      graduationsDtoItems: graduations,
+    }));
+  };
+
+  const addExperiencesToUserDetails = (experiences: GetExperienceByUserId[]) => {
+    setUserDetails((prevState) => ({
+      ...prevState,
+      experiencesDtoItems: experiences,
+    }));
+  };
+
   const addSocialMediaAccountsToUserDetails = (medias: GetSocialMediaAccountByUserIdItem[]) => {
     setUserDetails((prevState) => ({
       ...prevState,
@@ -84,6 +104,8 @@ const ProfileProvider = (props: any) => {
         addSkillsToUserDetails,
         addExamsToUserDetails,
         addSocialMediaAccountsToUserDetails,
+        addGraduationsToUserDetails,
+        addExperiencesToUserDetails,
         addInfoToUserDetails,
       }}
     >

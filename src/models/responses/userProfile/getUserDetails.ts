@@ -1,4 +1,6 @@
 import { GetExamByUserId } from "./getExamByUserId";
+import { GetExperienceByUserId} from "./getExperienceByUserId";
+import { GetGraduationByUserId} from "./getGraduationByUserId";
 import { GetSkillByUserId } from "./getSkillByUserId";
 import { GetSocialMediaAccountByUserIdItem } from "./getSocialMediaAccountByUserId";
 
@@ -22,4 +24,6 @@ export interface GetUserDetails {
   skillDtoItems?: GetSkillByUserId[]
   examDtoItems?: GetExamByUserId[]
   socialMediaAccountsItems?: GetSocialMediaAccountByUserIdItem[]
+  graduationsDtoItems?: GetGraduationByUserId[]
+  experiencesDtoItems?: GetExperienceByUserId[]
 }

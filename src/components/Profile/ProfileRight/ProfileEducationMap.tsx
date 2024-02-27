@@ -1,8 +1,43 @@
-import React from 'react';
+import React, { useEffect } from "react";
+import { useProfileContext } from "../../../contexts/ProfileContext";
+import userProfileService from "../../../services/userProfileService";
+import { useAuthContext } from "../../../contexts/AuthContext";
+import { formatDate } from "../../../utilities/Helpers/formatDate";
+import FormattedDate from "../../../utilities/Helpers/FormattedDate";
 
 type Props = {};
 
 const ProfileEducationMap = (props: Props) => {
+  const {
+    userDetails,
+    addGraduationsToUserDetails,
+    addExperiencesToUserDetails,
+  } = useProfileContext();
+  const { userId } = useAuthContext();
+
+  const fetchGraduationsByUserId = async (userId: number) => {
+    try {
+      const result = await userProfileService.getGraduationByUserId(userId);
+      addGraduationsToUserDetails(result.data.graduationsDtoItems);
+    } catch (error) {
+      console.error("API isteği sırasında bir hata oluştu:", error);
+    }
+  };
+
+  const fetchExperiencesByUserId = async (userId: number) => {
+    try {
+      const result = await userProfileService.getExperienceByUserId(userId);
+      addExperiencesToUserDetails(result.data.experiencesDtoItems);
+    } catch (error) {
+      console.error("API isteği sırasında bir hata oluştu:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchExperiencesByUserId(Number(userId));
+    fetchGraduationsByUserId(Number(userId));
+  }, []);
+
   return (
     <>
       <div className="timeline">
@@ -10,33 +45,66 @@ const ProfileEducationMap = (props: Props) => {
           <div className="circle">
             <div className="before">
               <div className="content">
-                <ul>
-                  <li>2016/2018</li>
-                  <li className="text-truncate" style={{ maxWidth: '125px' }}>Lorem Ipsum Üniversitesi</li>
-                  <li className="text-truncate" style={{ maxWidth: '125px' }}>Loram Ipsum Programcılığı</li>
-                </ul>
+                {userDetails.graduationsDtoItems &&
+                  userDetails.graduationsDtoItems.map((graduations: any) => (
+                    <ul>
+                      <li>
+                        <FormattedDate
+                          format="year"
+                          date={graduations.startDate}
+                        /> - 
+                         <FormattedDate
+                          format="year"
+                          date={graduations.endDate}
+                        />
+                      </li>
+                      <li
+                        className="text-truncate"
+                        style={{ maxWidth: "125px" }}
+                      >
+                        {graduations.universityName}
+                      </li>
+                      <li
+                        className="text-truncate"
+                        style={{ maxWidth: "125px" }}
+                      >
+                        {graduations.department}
+                      </li>
+                    </ul>
+                  ))}
               </div>
             </div>
           </div>
           <div className="circle2">
             <div className="after">
               <div className="content">
-                <ul>
-                  <li>2018/2018</li>
-                  <li className="text-truncate" style={{ maxWidth: '125px' }}>Lorem Şirketinde</li>
-                  <li className="text-truncate" style={{ maxWidth: '125px' }}>Ipsum</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div className="circle2">
-            <div className="after">
-              <div className="content">
-                <ul>
-                  <li>2019/2020</li>
-                  <li className="text-truncate" style={{ maxWidth: '125px' }}>Ipsum Şirketinde</li>
-                  <li className="text-truncate" style={{ maxWidth: '125px' }}>Lorem</li>
-                </ul>
+                {userDetails.experiencesDtoItems &&
+                  userDetails.experiencesDtoItems.map((experiences: any) => (
+                    <ul>
+                      <li>
+                        <FormattedDate
+                          format="year"
+                          date={experiences.startDate}
+                        />
+                        <FormattedDate
+                          format="year"
+                          date={experiences.endDate}
+                        />
+                      </li>
+                      <li
+                        className="text-truncate"
+                        style={{ maxWidth: "125px" }}
+                      >
+                        {experiences.organizationName}
+                      </li>
+                      <li
+                        className="text-truncate"
+                        style={{ maxWidth: "125px" }}
+                      >
+                        {experiences.position}
+                      </li>
+                    </ul>
+                  ))}
               </div>
             </div>
           </div>

@@ -52,8 +52,7 @@ const ExperienceEdit = (props: Props) => {
       const result = await userProfileService.getExperienceByUserId(
         Number(userId)
       );
-      console.log(result.data.experienceDtoItems);
-      setExperiences(result.data.experienceDtoItems);
+      setExperiences(result.data.experiencesDtoItems);
     } catch (error) {
       console.error("API isteği sırasında bir hata oluştu:", error);
     }

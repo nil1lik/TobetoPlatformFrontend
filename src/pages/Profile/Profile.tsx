@@ -10,13 +10,13 @@ import ProfileSuccessModel from "../../components/Profile/ProfileRight/ProfileSu
 import { Link } from "react-router-dom";
 import ProfileBadge from "../../components/Profile/ProfileRight/ProfileBadge";
 import ProfileExam from "../../components/Profile/ProfileRight/ProfileExam";
-import ProfileEducationMap from "../../components/Profile/ProfileRight/ProfileEducationMap";
 import ProfileHeatMap from "../../components/Profile/ProfileRight/ProfileHeatMap";
 import { useAuthContext } from "../../contexts/AuthContext";
 import userProfileService from "../../services/userProfileService";
 import { useProfileContext } from "../../contexts/ProfileContext";
 import { formatDate } from "@fullcalendar/core";
 import { startButtonText } from "../../utilities/Constants/constantValues";
+import ProfileEducationMap from "../../components/Profile/ProfileRight/ProfileEducationMap";
 
 type Props = {};
 
@@ -35,7 +35,6 @@ const Profile = (props: Props) => {
   const fetchUserInformation = async (userId: number) => {
     try {
       const result = await userProfileService.getByUserId(userId);
-      // setUserInformation(result.data);
       addInfoToUserDetails(result.data);
     } catch (error) {
       console.log("Kullanıcı profili bulunamadı.", error);
