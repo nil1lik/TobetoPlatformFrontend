@@ -41,7 +41,7 @@ class UserProfileService extends BaseService<
     this.Experience = this.apiUrl + "/getAllExperience"
     this.Skill = this.apiUrl +"/getAllSkill"
     this.Language = this.apiUrl + "/getAllLanguage"
-    this.Education = this.apiUrl + "/getAllEducation"
+    this.Education = this.apiUrl + "/getAllEducations"
     this.SocialMediaAccount = this.apiUrl + "/getAllSocialMediaAccount"
   }
   getByUserId(id: number): Promise<AxiosResponse<GetByUserId, any>> {

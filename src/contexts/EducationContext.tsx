@@ -27,6 +27,7 @@ export const EducationProvider = (props: any) => {
     try {
       const result = await userProfileService.getEducationByUserId(userId);
       // setPageCount(pageCalculate(result.data.count, count));
+      console.log(result.data.educationDtoItems)
       setEducationData(result.data.educationDtoItems);
     } catch (error) {
       console.error(
