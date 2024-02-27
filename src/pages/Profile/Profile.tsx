@@ -58,7 +58,6 @@ const Profile = (props: Props) => {
         );
 
         const socialMediaResult = await userProfileService.getSocialMediaAccountByUserId(Number(userId));
-
         addSocialMediaAccountsToUserDetails(socialMediaResult.data.socialMediaAccountsItems);
         
         addLanguagesToUserDetails(languagesResult.data.languageDtoItems);
@@ -203,14 +202,14 @@ const Profile = (props: Props) => {
                 title="Tobeto Seviye Testlerim"
               >
                 <div className="profileExamsCont">
-                  {/* {userDetails.examDtoItems &&
+                  {userDetails.examDtoItems &&
                     userDetails.examDtoItems.map((exam: any) => (
                       <ProfileExam
                         profileExamName={exam.examName}
                         profileExamDate="12-10-2023"
                         profileExamPoint="88.00"
                       />
-                    ))} */}
+                    ))}
                 </div>
               </ProfileBox>
             </Col>

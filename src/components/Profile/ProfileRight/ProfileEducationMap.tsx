@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { useProfileContext } from "../../../contexts/ProfileContext";
 import userProfileService from "../../../services/userProfileService";
 import { useAuthContext } from "../../../contexts/AuthContext";
-import { formatDate } from "../../../utilities/Helpers/formatDate";
 import FormattedDate from "../../../utilities/Helpers/FormattedDate";
 
 type Props = {};
@@ -17,7 +16,7 @@ const ProfileEducationMap = (props: Props) => {
 
   const fetchGraduationsByUserId = async (userId: number) => {
     try {
-      const result = await userProfileService.getGraduationByUserId(userId);
+      const result = await userProfileService.getGraduationsByUserId(userId);
       addGraduationsToUserDetails(result.data.graduationsDtoItems);
     } catch (error) {
       console.error("API isteği sırasında bir hata oluştu:", error);
@@ -26,7 +25,7 @@ const ProfileEducationMap = (props: Props) => {
 
   const fetchExperiencesByUserId = async (userId: number) => {
     try {
-      const result = await userProfileService.getExperienceByUserId(userId);
+      const result = await userProfileService.getExperiencesByUserId(userId);
       addExperiencesToUserDetails(result.data.experiencesDtoItems);
     } catch (error) {
       console.error("API isteği sırasında bir hata oluştu:", error);
@@ -85,7 +84,7 @@ const ProfileEducationMap = (props: Props) => {
                         <FormattedDate
                           format="year"
                           date={experiences.startDate}
-                        />
+                        /> - 
                         <FormattedDate
                           format="year"
                           date={experiences.endDate}

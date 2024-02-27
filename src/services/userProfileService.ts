@@ -86,9 +86,9 @@ class UserProfileService extends BaseService<
 		return errorInstance.get<GetSocialMediaAccountByUserIdList>(this.SocialMediaAccount + "/" + id);
 	}
 
-  // getExamByUserId(id: number):Promise<AxiosResponse<GetExamByUserIdList, any>> {
-  //   return errorInstance.get<GetExamByUserIdList>(this.Exam + "/" + id )
-  // }
+  getExamByUserId(id: number):Promise<AxiosResponse<GetExamByUserIdList, any>> {
+    return errorInstance.get<GetExamByUserIdList>(this.Exam + "/" + id )
+  }
 }
 
 export default new UserProfileService();
