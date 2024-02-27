@@ -5,6 +5,8 @@ import { GetSkillByUserId } from "../models/responses/userProfile/getSkillByUser
 import { GetByUserId } from "../models/responses/user/getByUserId";
 import { GetLanguageByUserId } from "../models/responses/userProfile/getLanguageByUserId";
 import { getCertificateByUserId } from "../models/responses/certificate/getCertificatesByUserId";
+import { GetExamByUserId } from "../models/responses/userProfile/getExamByUserId";
+import { GetSocialMediaAccountByUserIdItem } from "../models/responses/userProfile/getSocialMediaAccountByUserId";
 
 const initialState: ProfileContextModel = {
   userDetails: {
@@ -25,12 +27,16 @@ const initialState: ProfileContextModel = {
     description: "",
     skillDtoItems: [],
     languageDtoItems: [],
+    examDtoItems: [],
+    socialMediaAccountsItems: [],
   },
   addInfoToUserDetails: () => {},
   addUserDetails: () => {},
   addSkillsToUserDetails: () => {},
   addLanguagesToUserDetails: () => {},
   addCertificatesToUserDetails: () => {},
+  addExamsToUserDetails: () => {},
+  addSocialMediaAccountsToUserDetails: () => {},
 };
 
 export const ProfileContext = createContext(initialState);
@@ -54,12 +60,26 @@ const ProfileProvider = (props: any) => {
   };
 
   const addSkillsToUserDetails = (skills: GetSkillByUserId[]) => {
-    // setUserDetails fonksiyonu aracılığıyla userDetails'ı güncelle
     setUserDetails((prevState) => ({
       ...prevState,
       skillDtoItems: skills,
     }));
   };
+
+  const addExamsToUserDetails = (exams: GetExamByUserId[]) => {
+    console.log(exams)
+    setUserDetails((prevState) => ({
+      ...prevState,
+      examDtoItems: exams,
+    }));
+  };
+
+  const addSocialMediaAccountsToUserDetails = (socialMediaAccountsItems: GetSocialMediaAccountByUserIdItem[]) => {
+    setUserDetails((prevState) => ({
+      ...prevState,
+      socialMediaAccountsItems: socialMediaAccountsItems,
+    }))
+  }
 
   const addLanguagesToUserDetails = (languages: GetLanguageByUserId[]) => {
     // setUserDetails fonksiyonu aracılığıyla userDetails'ı güncelle
@@ -85,7 +105,9 @@ const ProfileProvider = (props: any) => {
         addSkillsToUserDetails,
         addInfoToUserDetails,
         addLanguagesToUserDetails,
-        addCertificatesToUserDetails
+        addCertificatesToUserDetails,
+        addExamsToUserDetails,
+        addSocialMediaAccountsToUserDetails,
       }}
     >
       {props.children}

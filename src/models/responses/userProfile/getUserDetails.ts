@@ -1,6 +1,8 @@
 import { getCertificateByUserId } from "../certificate/getCertificatesByUserId";
 import { GetLanguageByUserId } from "./getLanguageByUserId";
+import { GetExamByUserId } from "./getExamByUserId";
 import { GetSkillByUserId } from "./getSkillByUserId";
+import { GetSocialMediaAccountByUserIdItem } from "./getSocialMediaAccountByUserId";
 
 export interface GetUserDetails {
   userId: number;
@@ -22,4 +24,6 @@ export interface GetUserDetails {
   skillDtoItems?: GetSkillByUserId[];
   languageDtoItems?: GetLanguageByUserId[];
   certificatesDtoItems?: getCertificateByUserId[];
+  examDtoItems?: GetExamByUserId[];
+  socialMediaAccountsItems?: GetSocialMediaAccountByUserIdItem[];
 }

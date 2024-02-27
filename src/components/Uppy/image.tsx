@@ -34,7 +34,7 @@ const Image = (props: Props) => {
 
   return (
     <div>
-      <input type="file" onChange={handleChange} />
+      <input id="fileInput" type="file" onChange={handleChange} className="uploadInput"/>
       <button onClick={handleClick}>Upload</button>
     </div>
   );

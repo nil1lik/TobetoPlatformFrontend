@@ -106,7 +106,11 @@ const RouteDefinitions = (props: Props) => {
               />
               <Route
                 path="/profilim/profilimi-duzenle"
-                element={<ProfileEdit />}
+                element={
+                  <ProfileProvider>
+                    <ProfileEdit />
+                  </ProfileProvider>
+                }
               />
               <Route
                 path="/egitimlerim"

@@ -1,3 +1,6 @@
-.upload-area-image{
-    cursor: pointer;
-  }
+.upload-area-image {
+  cursor: pointer;
+}
+.uploadInput {
+  background-image: url("./../../../public/images/upload-file.svg");
+}
