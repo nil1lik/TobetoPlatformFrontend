@@ -14,10 +14,9 @@ import ProfileEducationMap from "../../components/Profile/ProfileRight/ProfileEd
 import ProfileHeatMap from "../../components/Profile/ProfileRight/ProfileHeatMap";
 import { useAuthContext } from "../../contexts/AuthContext";
 import userProfileService from "../../services/userProfileService";
-import {
-  useProfileContext,
-} from "../../contexts/ProfileContext";
+import { useProfileContext } from "../../contexts/ProfileContext";
 import { formatDate } from "@fullcalendar/core";
+import { startButtonText } from "../../utilities/Constants/constantValues";
 
 type Props = {};
 
@@ -26,7 +25,9 @@ const Profile = (props: Props) => {
     userDetails,
     AddUserDetails,
     addSkillsToUserDetails,
+    addExamsToUserDetails,
     addInfoToUserDetails,
+    addSocialMediaAccountsToUserDetails,
   } = useProfileContext();
   const { userId } = useAuthContext();
   const [successModel, setSuccessModel] = useState<boolean>(false);
@@ -44,7 +45,6 @@ const Profile = (props: Props) => {
   const fetchUserDetails = async (userId: number) => {
     try {
       const result = await userProfileService.getUserDetails(userId);
-
       AddUserDetails({
         ...result.data,
         birthDate: formatDate(result.data.birthDate),
@@ -54,10 +54,31 @@ const Profile = (props: Props) => {
     }
   };
 
+  const fetchExamByUserId = async (userId: number) => {
+    try {
+      const result = await userProfileService.getExamByUserId(userId);
+      console.log(result);
+      addExamsToUserDetails(result.data.examDtoItems);
+    } catch (error) {
+      console.error("API isteği sırasında bir hata oluştu:", error);
+    }
+  };
+
+  const fetchSocialMediaAccountByUserId = async (userId: number) => {
+    try {
+      const result = await userProfileService.getSocialMediaAccountByUserId(
+        userId
+      );
+      addSocialMediaAccountsToUserDetails(result.data.socialMediaAccountsItems);
+    } catch (error) {
+      console.error("API isteği sırasında bir hata oluştu:", error);
+    }
+  };
+
   const fetchSkillbyUserId = async (userId: number) => {
     try {
       const result = await userProfileService.getSkillByUserId(userId);
-      console.log(result.data.skillDtoItems);
+      console.log(result);
       addSkillsToUserDetails(result.data.skillDtoItems);
     } catch (error) {
       console.error("API isteği sırasında bir hata oluştu:", error);
@@ -67,7 +88,9 @@ const Profile = (props: Props) => {
   useEffect(() => {
     fetchUserInformation(Number(userId));
     fetchUserDetails(Number(userId));
+    fetchExamByUserId(Number(userId));
     fetchSkillbyUserId(Number(userId));
+    fetchSocialMediaAccountByUserId(Number(userId));
   }, []);
 
   return (
@@ -142,21 +165,14 @@ const Profile = (props: Props) => {
             <Col className="col-12">
               <ProfileBox titleClass="profileBoxTitle" title="Medya Hesaplarım">
                 <div className="profileMediaCont">
-                  <ProfileMediaAccounts
-                    imageSrc="https://res.cloudinary.com/dcpbbqilg/image/upload/v1708593589/cv-github_foneym.svg"
-                    className="mediaAccountPhoto"
-                    Link="https://www.github.com"
-                  />
-                  <ProfileMediaAccounts
-                    imageSrc="https://res.cloudinary.com/dcpbbqilg/image/upload/v1708593590/cv-linkedn_ctqmta.svg"
-                    className="mediaAccountPhoto"
-                    Link="https://www.linkedin.com"
-                  />
-                  <ProfileMediaAccounts
-                    imageSrc="https://res.cloudinary.com/dcpbbqilg/image/upload/v1708593589/cv-behance_izytxl.svg"
-                    className="mediaAccountPhoto"
-                    Link="https://www.behance.net"
-                  />
+                  {userDetails.socialMediaAccountsItems &&
+                    userDetails.socialMediaAccountsItems.map((medias: any) => (
+                      <ProfileMediaAccounts
+                        imageSrc="https://res.cloudinary.com/dcpbbqilg/image/upload/v1709033485/instagram-icon-logo-free-png_zhnpdh.webp"
+                        className="mediaAccountPhoto"
+                        Link={medias.mediaUrl}
+                      />
+                    ))}
                 </div>
               </ProfileBox>
             </Col>
@@ -178,7 +194,7 @@ const Profile = (props: Props) => {
                     <p>
                       İşte Başarı Modeli Değerlendirmesiyle yetkinliklerini ölç
                     </p>
-                    <button>Başla</button>
+                    <button>{startButtonText}</button>
                   </div>
                 )}
               </ProfileBox>
@@ -189,26 +205,14 @@ const Profile = (props: Props) => {
                 title="Tobeto Seviye Testlerim"
               >
                 <div className="profileExamsCont">
-                  <ProfileExam
-                    profileExamName="Herkes için Kodlama 1B Değerlendirme Sınavı"
-                    profileExamDate="12-10-2023"
-                    profileExamPoint="88.00"
-                  />
-                  <ProfileExam
-                    profileExamName="Front End"
-                    profileExamDate="12-10-2023"
-                    profileExamPoint="88.00"
-                  />
-                  <ProfileExam
-                    profileExamName="Herkes için Kodlama 1B Değerlendirme Sınavı"
-                    profileExamDate="17-11-2023"
-                    profileExamPoint="88.00"
-                  />
-                  <ProfileExam
-                    profileExamName="Back End"
-                    profileExamDate="17-11-2023"
-                    profileExamPoint="88.00"
-                  />
+                  {userDetails.examDtoItems &&
+                    userDetails.examDtoItems.map((exam: any) => (
+                      <ProfileExam
+                        profileExamName={exam.examName}
+                        profileExamDate="12-10-2023"
+                        profileExamPoint="88.00"
+                      />
+                    ))}
                 </div>
               </ProfileBox>
             </Col>
@@ -218,11 +222,11 @@ const Profile = (props: Props) => {
                 title="Yetkinlik Rozetlerim"
               >
                 <div className="profileBadgeMainCont">
-                  <ProfileBadge imageSrc="istanbulkodluyorbadge.jpg" />
-                  <ProfileBadge imageSrc="isbecerileribadge.jpg" />
-                  <ProfileBadge imageSrc="isyönetimibecerileribadge.jpg" />
-                  <ProfileBadge imageSrc="isyönetimibecerileribadge2.jpg" />
-                  <ProfileBadge imageSrc="kisiselgelisimbadge.jpg" />
+                  <ProfileBadge imageSrc="https://res.cloudinary.com/dcpbbqilg/image/upload/v1709018545/istanbulkodluyorbadge_ewemqw.png" />
+                  <ProfileBadge imageSrc="https://res.cloudinary.com/dcpbbqilg/image/upload/v1709018545/isbecerileribadge_z4tgsk.png" />
+                  <ProfileBadge imageSrc="https://res.cloudinary.com/dcpbbqilg/image/upload/v1709018545/isy%C3%B6netimibecerileribadge2_eklwq5.png" />
+                  <ProfileBadge imageSrc="https://res.cloudinary.com/dcpbbqilg/image/upload/v1709018545/isy%C3%B6netimibecerileribadge_rklvqx.png" />
+                  <ProfileBadge imageSrc="https://res.cloudinary.com/dcpbbqilg/image/upload/v1709018545/kisiselgelisimbadge_be9duy.png" />
                 </div>
               </ProfileBox>
             </Col>

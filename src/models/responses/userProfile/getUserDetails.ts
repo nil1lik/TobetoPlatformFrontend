@@ -1,4 +1,6 @@
+import { GetExamByUserId } from "./getExamByUserId";
 import { GetSkillByUserId } from "./getSkillByUserId";
+import { GetSocialMediaAccountByUserIdItem } from "./getSocialMediaAccountByUserId";
 
 export interface GetUserDetails {
   userId: number;
@@ -18,4 +20,6 @@ export interface GetUserDetails {
   description: string;
   message?: string;
   skillDtoItems?: GetSkillByUserId[]
+  examDtoItems?: GetExamByUserId[]
+  socialMediaAccountsItems?: GetSocialMediaAccountByUserIdItem[]
 }
