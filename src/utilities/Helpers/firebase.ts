@@ -1,21 +1,18 @@
-import firebase from "firebase/app";
-import "firebase/database";
+import { getAnalytics } from 'firebase/analytics';
+import { initializeApp } from 'firebase/app';
+import { getStorage } from 'firebase/storage';
 
-// Firebase yapılandırması
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_AUTH_DOMAIN",
-  databaseURL: "https://test-8e62e-default-rtdb.firebaseio.com",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_STORAGE_BUCKET",
-  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-  appId: "YOUR_APP_ID"
+    apiKey: "AIzaSyA6Zpe7vtHzsiNZiUpUPj2RRZBAsErw7Lc",
+    authDomain: "tobetoplatformpair1.firebaseapp.com",
+    databaseURL: "https://tobetoplatformpair1-default-rtdb.firebaseio.com",
+    projectId: "tobetoplatformpair1",
+    storageBucket: "tobetoplatformpair1.appspot.com",
+    messagingSenderId: "656800810894",
+    appId: "1:656800810894:web:3e8cd4446237b94ed4c6df",
+    measurementId: "G-YXML3GQQBF",
 };
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
 
-// Firebase uygulamasını başlatma
-const firebaseApp = firebase.initializeApp(firebaseConfig);
-
-// Veritabanı referansını alın
-const dbRef = firebaseApp.database().ref();
-
-export default dbRef;
+export const imageDb = getStorage(app);

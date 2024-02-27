@@ -28,7 +28,7 @@ const GraduationEdit = (props: Props) => {
 
   const fetchGraduation = async () => {
     try {
-      const result = await userProfileService.getGraduationByUserId(Number(userId));
+      const result = await userProfileService.getGraduationsByUserId(Number(userId));
       console.log(result.data.graduationsDtoItems)
       setGraduation(result.data.graduationsDtoItems);
     } catch (error) {

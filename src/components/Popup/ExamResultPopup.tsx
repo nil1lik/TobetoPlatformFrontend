@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Col, Modal, Row } from "react-bootstrap";
+import { Col, Modal, Row } from "react-bootstrap";
 import "../Popup/popup.css";
 
 type Props = {

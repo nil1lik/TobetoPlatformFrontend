@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Card, Col, Container, Image, Row } from "react-bootstrap";
+import { Card, Col, Container, Row } from "react-bootstrap";
 import ProfilePreInfoBox from "../../components/Profile/ProfileLeft/ProfilePreInfoBox/ProfilePreInfoBox";
 import "./profile.css";
 import ProfileBox from "../../components/Profile/ProfileBox";
@@ -10,12 +10,14 @@ import ProfileSuccessModel from "../../components/Profile/ProfileRight/ProfileSu
 import { Link } from "react-router-dom";
 import ProfileBadge from "../../components/Profile/ProfileRight/ProfileBadge";
 import ProfileExam from "../../components/Profile/ProfileRight/ProfileExam";
-import ProfileEducationMap from "../../components/Profile/ProfileRight/ProfileEducationMap";
 import ProfileHeatMap from "../../components/Profile/ProfileRight/ProfileHeatMap";
 import { useAuthContext } from "../../contexts/AuthContext";
 import userProfileService from "../../services/userProfileService";
 
+import { useProfileContext } from "../../contexts/ProfileContext";
 import { formatDate } from "@fullcalendar/core";
+import { startButtonText } from "../../utilities/Constants/constantValues";
+import ProfileEducationMap from "../../components/Profile/ProfileRight/ProfileEducationMap";
 
 type Props = {};
 
@@ -23,64 +25,75 @@ const Profile = (props: Props) => {
   const {
     userDetails,
     addInfoToUserDetails,
-    AddUserDetails,
+    addUserDetails,
     addSkillsToUserDetails,
     addLanguagesToUserDetails,
+    addCertificatesToUserDetails,
+    addSocialMediaAccountsToUserDetails,
+    addExamsToUserDetails,
   } = useProfileContext();
   const { userId } = useAuthContext();
   const [successModel, setSuccessModel] = useState<boolean>(false);
 
-  const fetchUserInformation = async (userId: number) => {
-    try {
-      const result = await userProfileService.getByUserId(userId);
-      // setUserInformation(result.data);
-      addInfoToUserDetails(result.data);
-    } catch (error) {
-      console.log("Kullanıcı profili bulunamadı.", error);
-    }
-  };
-
-  const fetchUserDetails = async (userId: number) => {
-    try {
-      const result = await userProfileService.getUserDetails(userId);
-
-      AddUserDetails({
-        ...result.data,
-        birthDate: formatDate(result.data.birthDate),
-      });
-    } catch (error) {
-      console.log("Kullanıcı profili bulunamadı.", error);
-    }
-  };
-
-  const fetchSkillbyUserId = async (userId: number) => {
-    try {
-      const result = await userProfileService.getSkillByUserId(userId);
-      console.log(result.data.skillDtoItems);
-      addSkillsToUserDetails(result.data.skillDtoItems);
-    } catch (error) {
-      console.error("API isteği sırasında bir hata oluştu:", error);
-    }
-  };
-
-  const fetchLanguagesByUserId = async (userId: number) => {
-    try {
-      const result = await userProfileService.getLanguageByUserId(userId);
-      console.log(result.data);
-      addLanguagesToUserDetails(result.data.languageDtoItems);
-      // setGetLanguage(result.data.languageDtoItems);
-      console.log(result.data.languageDtoItems);
-    } catch (error) {
-      console.log("API isteği sırasında bir hata oluştu:", error);
-    }
-  };
   useEffect(() => {
-    fetchUserInformation(Number(userId));
-    fetchUserDetails(Number(userId));
-    fetchSkillbyUserId(Number(userId));
-    fetchLanguagesByUserId(Number(userId));
+    const fetchData = async () => {
+      try {
+        const result = await userProfileService.getByUserId(Number(userId));
+        addInfoToUserDetails(result.data);
+
+        const detailsResult = await userProfileService.getUserDetails(
+          Number(userId)
+        );
+        const examResult = await userProfileService.getExamByUserId(Number(userId));
+        addExamsToUserDetails(examResult.data.examDtoItems);
+        addUserDetails({
+          ...detailsResult.data,
+          birthDate: formatDate(detailsResult.data.birthDate),
+        });
+        const skillsResult = await userProfileService.getSkillsByUserId(
+          Number(userId)
+        );
+        addSkillsToUserDetails(skillsResult.data.skillDtoItems);
+        const languagesResult = await userProfileService.getLanguagesByUserId(
+          Number(userId)
+        );
+        addLanguagesToUserDetails(languagesResult.data.languageDtoItems);
+        const socialMediaResult = await userProfileService.getSocialMediaAccountByUserId(Number(userId));
+        addSocialMediaAccountsToUserDetails(socialMediaResult.data.socialMediaAccountsItems);
+        
+        addLanguagesToUserDetails(languagesResult.data.languageDtoItems);
+        const certificatesResult =
+          await userProfileService.getCertificatesByUserId(Number(userId));
+          console.log(certificatesResult.data.certificateDtoItems);
+        addCertificatesToUserDetails(
+          certificatesResult.data.certificateDtoItems
+        );
+      } catch (error) {
+        console.log("Error fetching user data:", error);
+      }
+    };
+  
+    fetchData();
   }, []);
 
+  const socialMediaAccountImage = (accountId: number): string => {
+    switch (accountId) {
+        case 1:
+          return "https://res.cloudinary.com/dcpbbqilg/image/upload/v1709045931/instagram_gvzr96.svg"; //Instagram
+          case 2:
+            return "https://res.cloudinary.com/dcpbbqilg/image/upload/v1709046963/icons8-twitter-circled_5_mcyzjo.svg"; //Twitter   
+        case 3:
+            return "https://res.cloudinary.com/dcpbbqilg/image/upload/v1708593590/cv-linkedn_ctqmta.svg"; // LinkedIn
+        case 4:
+            return "https://res.cloudinary.com/dcpbbqilg/image/upload/v1708593589/cv-behance_izytxl.svg"; // Behance
+        case 5:
+            return "https://res.cloudinary.com/dcpbbqilg/image/upload/v1709046040/dribble_keqdag.svg"; //Dribble
+        case 6:
+            return "https://res.cloudinary.com/dcpbbqilg/image/upload/v1708593589/cv-github_foneym.svg"; // GitHub
+        default:
+            return "https://example.com/default-image.jpg"; // Varsayılan resim URL'si
+    }
+}
   return (
     <Container>
       <Row>
@@ -105,7 +118,7 @@ const Profile = (props: Props) => {
             </Col>
             <Col className="col-12">
               <ProfileBox titleClass="profileBoxTitle" title="Yetkinliklerim">
-                <div className="profileRoundItemCont">
+                <div className="profileRoundItemCont" style={{pointerEvents: "none"}}>
                   {userDetails.skillDtoItems &&
                     userDetails.skillDtoItems.map((skill) => (
                       <ProfileRoundItem className="profileRoundItem">
@@ -138,41 +151,28 @@ const Profile = (props: Props) => {
             <Col className="col-12">
               <ProfileBox titleClass="profileBoxTitle" title="Sertifikalarım">
                 <div className="profileRoundItemCont">
-                  <ProfileRoundItem className="profileRoundItem hover">
-                    {
-                      <Card.Text className="profileCertificate">
-                        Lorem, ipsum dolor.
-                      </Card.Text>
-                    }
-                  </ProfileRoundItem>
-                  <ProfileRoundItem className="profileRoundItem hover">
-                    {
-                      <Card.Text className="profileCertificate">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      </Card.Text>
-                    }
-                  </ProfileRoundItem>
+                  {userDetails.certificatesDtoItems &&
+                    userDetails.certificatesDtoItems.map((certificate) => (
+                      <ProfileRoundItem className="profileRoundItem hover" title={certificate.certificateName} imageUrl={certificate.certificateFileUrl}>
+                        <Card.Text className="profileCertificate">
+                          {certificate.certificateName}
+                        </Card.Text>
+                      </ProfileRoundItem>
+                    ))}
                 </div>
               </ProfileBox>
             </Col>
             <Col className="col-12">
               <ProfileBox titleClass="profileBoxTitle" title="Medya Hesaplarım">
                 <div className="profileMediaCont">
-                  <ProfileMediaAccounts
-                    imageSrc="https://res.cloudinary.com/dcpbbqilg/image/upload/v1708593589/cv-github_foneym.svg"
-                    className="mediaAccountPhoto"
-                    Link="https://www.github.com"
-                  />
-                  <ProfileMediaAccounts
-                    imageSrc="https://res.cloudinary.com/dcpbbqilg/image/upload/v1708593590/cv-linkedn_ctqmta.svg"
-                    className="mediaAccountPhoto"
-                    Link="https://www.linkedin.com"
-                  />
-                  <ProfileMediaAccounts
-                    imageSrc="https://res.cloudinary.com/dcpbbqilg/image/upload/v1708593589/cv-behance_izytxl.svg"
-                    className="mediaAccountPhoto"
-                    Link="https://www.behance.net"
-                  />
+                  {userDetails.socialMediaAccountsItems &&
+                    userDetails.socialMediaAccountsItems.map((medias: any) => (
+                      <ProfileMediaAccounts
+                        imageSrc={socialMediaAccountImage(Number(medias.socialMediaCategoryId))}
+                        className="mediaAccountPhoto"
+                        Link={medias.mediaUrl}
+                      />
+                    ))}
                 </div>
               </ProfileBox>
             </Col>
@@ -194,7 +194,7 @@ const Profile = (props: Props) => {
                     <p>
                       İşte Başarı Modeli Değerlendirmesiyle yetkinliklerini ölç
                     </p>
-                    <button>Başla</button>
+                    <button>{startButtonText}</button>
                   </div>
                 )}
               </ProfileBox>
@@ -205,26 +205,14 @@ const Profile = (props: Props) => {
                 title="Tobeto Seviye Testlerim"
               >
                 <div className="profileExamsCont">
-                  <ProfileExam
-                    profileExamName="Herkes için Kodlama 1B Değerlendirme Sınavı"
-                    profileExamDate="12-10-2023"
-                    profileExamPoint="88.00"
-                  />
-                  <ProfileExam
-                    profileExamName="Front End"
-                    profileExamDate="12-10-2023"
-                    profileExamPoint="88.00"
-                  />
-                  <ProfileExam
-                    profileExamName="Herkes için Kodlama 1B Değerlendirme Sınavı"
-                    profileExamDate="17-11-2023"
-                    profileExamPoint="88.00"
-                  />
-                  <ProfileExam
-                    profileExamName="Back End"
-                    profileExamDate="17-11-2023"
-                    profileExamPoint="88.00"
-                  />
+                  {userDetails.examDtoItems &&
+                    userDetails.examDtoItems.map((exam: any) => (
+                      <ProfileExam
+                        profileExamName={exam.examName}
+                        profileExamDate="12-10-2023"
+                        profileExamPoint="88.00"
+                      />
+                    ))}
                 </div>
               </ProfileBox>
             </Col>
@@ -234,11 +222,11 @@ const Profile = (props: Props) => {
                 title="Yetkinlik Rozetlerim"
               >
                 <div className="profileBadgeMainCont">
-                  <ProfileBadge imageSrc="istanbulkodluyorbadge.jpg" />
-                  <ProfileBadge imageSrc="isbecerileribadge.jpg" />
-                  <ProfileBadge imageSrc="isyönetimibecerileribadge.jpg" />
-                  <ProfileBadge imageSrc="isyönetimibecerileribadge2.jpg" />
-                  <ProfileBadge imageSrc="kisiselgelisimbadge.jpg" />
+                  <ProfileBadge imageSrc="https://res.cloudinary.com/dcpbbqilg/image/upload/v1709018545/istanbulkodluyorbadge_ewemqw.png" />
+                  <ProfileBadge imageSrc="https://res.cloudinary.com/dcpbbqilg/image/upload/v1709018545/isbecerileribadge_z4tgsk.png" />
+                  <ProfileBadge imageSrc="https://res.cloudinary.com/dcpbbqilg/image/upload/v1709018545/isy%C3%B6netimibecerileribadge2_eklwq5.png" />
+                  <ProfileBadge imageSrc="https://res.cloudinary.com/dcpbbqilg/image/upload/v1709018545/isy%C3%B6netimibecerileribadge_rklvqx.png" />
+                  <ProfileBadge imageSrc="https://res.cloudinary.com/dcpbbqilg/image/upload/v1709018545/kisiselgelisimbadge_be9duy.png" />
                 </div>
               </ProfileBox>
             </Col>
@@ -262,5 +250,4 @@ const Profile = (props: Props) => {
     </Container>
   );
 };
-
 export default Profile;

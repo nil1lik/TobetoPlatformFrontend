@@ -4,6 +4,11 @@ import { GetUserDetails } from "../models/responses/userProfile/getUserDetails";
 import { GetSkillByUserId } from "../models/responses/userProfile/getSkillByUserId";
 import { GetByUserId } from "../models/responses/user/getByUserId";
 import { GetLanguageByUserId } from "../models/responses/userProfile/getLanguageByUserId";
+import { getCertificateByUserId } from "../models/responses/certificate/getCertificatesByUserId";
+import { GetExamByUserId } from "../models/responses/userProfile/getExamByUserId";
+import { GetSocialMediaAccountByUserIdItem } from "../models/responses/userProfile/getSocialMediaAccountByUserId";
+import { GetGraduationByUserId, GetGraduationByUserIdList } from "../models/responses/userProfile/getGraduationByUserId";
+import { GetExperienceByUserId, GetExperienceByUserIdList } from "../models/responses/userProfile/getExperienceByUserId";
 
 const initialState: ProfileContextModel = {
   userDetails: {
@@ -24,20 +29,28 @@ const initialState: ProfileContextModel = {
     description: "",
     skillDtoItems: [],
     languageDtoItems: [],
+    examDtoItems: [],
+    graduationsDtoItems: [],
+    experiencesDtoItems: [],
+    socialMediaAccountsItems: [],
   },
   addInfoToUserDetails: () => {},
-  AddUserDetails: () => {},
+  addUserDetails: () => {},
   addSkillsToUserDetails: () => {},
   addLanguagesToUserDetails: () => {},
+  addCertificatesToUserDetails: () => {},
+  addExamsToUserDetails: () => {},
+  addSocialMediaAccountsToUserDetails: () => {},
+  addGraduationsToUserDetails: () => {},
+  addExperiencesToUserDetails: () => {},
 };
 
 export const ProfileContext = createContext(initialState);
 
 const ProfileProvider = (props: any) => {
   const [userDetails, setUserDetails] = useState(initialState.userDetails);
-
+  
   const addInfoToUserDetails = (value: GetByUserId) => {
-    // setUserDetails fonksiyonu aracılığıyla userDetails'ı güncelle
     setUserDetails((prevState: GetUserDetails) => ({
       ...prevState,
       firstName: value.firstName,
@@ -45,8 +58,7 @@ const ProfileProvider = (props: any) => {
       email: value.email,
     }));
   };
-
-  const AddUserDetails = (
+  const addUserDetails = (
     value: GetUserDetails | ((prevState: GetUserDetails) => GetUserDetails)
   ) => {
     setUserDetails(value);
@@ -59,20 +71,64 @@ const ProfileProvider = (props: any) => {
     }));
   };
 
+  
+  const addExamsToUserDetails = (exams: GetExamByUserId[]) => {
+    console.log(exams)
+    setUserDetails((prevState) => ({
+      ...prevState,
+      examDtoItems: exams,
+    }));
+  };
+
+  const addGraduationsToUserDetails = (graduations: GetGraduationByUserId[]) => {
+    setUserDetails((prevState) => ({
+      ...prevState,
+      graduationsDtoItems: graduations,
+    }));
+  };
+
+  const addExperiencesToUserDetails = (experiences: GetExperienceByUserId[]) => {
+    setUserDetails((prevState) => ({
+      ...prevState,
+      experiencesDtoItems: experiences,
+    }));
+  };
+
+  const addSocialMediaAccountsToUserDetails = (socialMediaAccountsItems: GetSocialMediaAccountByUserIdItem[]) => {
+    setUserDetails((prevState) => ({
+      ...prevState,
+      socialMediaAccountsItems: socialMediaAccountsItems,
+    }))
+  };
+
   const addLanguagesToUserDetails = (languages: GetLanguageByUserId[]) => {
     setUserDetails((prevState) => ({
       ...prevState,
       languageDtoItems: languages,
     }));
   };
+
+  const addCertificatesToUserDetails = (certificates: getCertificateByUserId[]) => {
+    setUserDetails((prevState) => ({
+      ...prevState,
+      certificatesDtoItems: certificates,
+    }));
+  };
+
+
   return (
     <ProfileContext.Provider
       value={{
         userDetails,
-        AddUserDetails,
+        addUserDetails,
         addSkillsToUserDetails,
         addInfoToUserDetails,
         addLanguagesToUserDetails,
+        addCertificatesToUserDetails,
+        addExamsToUserDetails,
+        addSocialMediaAccountsToUserDetails,
+        addGraduationsToUserDetails,
+        addExperiencesToUserDetails,
       }}
     >
       {props.children}
@@ -83,16 +139,3 @@ const ProfileProvider = (props: any) => {
 export default ProfileProvider;
 
 export const useProfileContext = () => useContext(ProfileContext);
-
-
-
-const firebaseConfig = {
-  apiKey: "AIzaSyCHzJ0TdUSfHyBoS_qwg3CmkWuy4Vzo4_0",
-  authDomain: "test-8e62e.firebaseapp.com",
-  databaseURL: "https://test-8e62e-default-rtdb.firebaseio.com",
-  projectId: "test-8e62e",
-  storageBucket: "test-8e62e.appspot.com",
-  messagingSenderId: "539617133199",
-  appId: "1:539617133199:web:b89b1664c360644ec2e6fa",
-  measurementId: "G-06EXZ3W21Q"
-};

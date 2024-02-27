@@ -1,7 +1,7 @@
 import { Field, Form, Formik } from "formik";
-import React, { useContext, useEffect, useState } from "react";
-import { Button, Card } from "react-bootstrap";
-import { number, object } from "yup";
+import React, { useEffect, useState } from "react";
+import { Card } from "react-bootstrap";
+import { object } from "yup";
 import { UserInformationValidationMessageRule } from "../../../utilities/Validations/validationMessageRules";
 import { GetSkillItem } from "../../../models/responses/skill/getSkillResponse";
 import skillService from "../../../services/skillService";
@@ -40,7 +40,7 @@ const SkillEdit = (props: Props) => {
 
   const fetchSkillbyUserId = async () => {
     try {
-      const result = await userProfileService.getSkillByUserId(Number(userId))
+      const result = await userProfileService.getSkillsByUserId(Number(userId))
       console.log(result.data.skillDtoItems);
       setSkillUserProfile(result.data.skillDtoItems);
     } catch (error) {

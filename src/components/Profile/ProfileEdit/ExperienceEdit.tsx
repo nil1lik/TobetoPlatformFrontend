@@ -49,11 +49,10 @@ const ExperienceEdit = (props: Props) => {
 
   const fetchExperiences = async () => {
     try {
-      const result = await userProfileService.getExperienceByUserId(
+      const result = await userProfileService.getExperiencesByUserId(
         Number(userId)
       );
-      console.log(result.data.experienceDtoItems);
-      setExperiences(result.data.experienceDtoItems);
+      setExperiences(result.data.experiencesDtoItems);
     } catch (error) {
       console.error("API isteği sırasında bir hata oluştu:", error);
     }

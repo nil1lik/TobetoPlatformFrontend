@@ -9,8 +9,8 @@ import { UpdateLanguageRequest } from "../models/requests/language/updateLanguag
 import { BASE_API_URL } from "../core/environment/environment";
 import { GetLanguageLevel } from "../models/responses/language/getLanguageLevel";
 import { AddProfileLanguageRequest } from "../models/requests/language/addProfileLanguageRequest";
-import { AddProfileLanguageResponse } from "../models/responses/language/addProfileLanguageResponse";
 import errorInstance from "../core/interceptors/errorInterceptor";
+import { AddProfileLanguageResponse } from "../models/responses/language/addProfileLanguageResponse";
 
 class LanguageService extends BaseService<
   GetLanguage,
