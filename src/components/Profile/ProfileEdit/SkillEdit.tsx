@@ -1,7 +1,7 @@
 import { Field, Form, Formik } from "formik";
-import React, { useContext, useEffect, useState } from "react";
-import { Button, Card } from "react-bootstrap";
-import { number, object } from "yup";
+import React, { useEffect, useState } from "react";
+import { Card } from "react-bootstrap";
+import { object } from "yup";
 import { UserInformationValidationMessageRule } from "../../../utilities/Validations/validationMessageRules";
 import { GetSkillItem } from "../../../models/responses/skill/getSkillResponse";
 import skillService from "../../../services/skillService";

@@ -3,7 +3,7 @@ import { BaseService } from "../core/services/baseService";
 import { AddCertificateRequest } from "../models/requests/certificate/addCertificateRequest";
 import { UpdateCertificateRequest } from "../models/requests/certificate/updateCertificateRequest";
 import { AddCertificateResponse } from "../models/responses/certificate/addCertificateResponse";
-import { GetByIdCertificateResponse } from "../models/responses/certificate/getByIdCertificateResponse";
+import { GetByIdCertificateResponse } from "../models/responses/certificate/getCertificatesByUserId";
 import { GetCertificate } from "../models/responses/certificate/getCertificate";
 import { UpdateCertificateResponse } from "../models/responses/certificate/updateCertificateResponse";
 

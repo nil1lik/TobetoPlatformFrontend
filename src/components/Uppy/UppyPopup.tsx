@@ -1,47 +1,56 @@
-import React, { useEffect } from 'react'
+import React, { useEffect } from "react";
 import Uppy from "@uppy/core";
 import Dashboard from "@uppy/dashboard";
-import Tus from "@uppy/tus";
+import XHRUpload from "@uppy/xhr-upload"; // XHRUpload eklentisi
 import "@uppy/core/dist/style.css";
 import "@uppy/dashboard/dist/style.css";
+import { useAuthContext } from "../../contexts/AuthContext";
+
 type Props = {
-    handleShow: boolean;
+  handleShow: boolean;
 };
 
-
 function UppyPopup(props: Props) {
-  
-  useEffect(()=>{
+  const { userId } = useAuthContext();
+
+  useEffect(() => {
     if (props.handleShow) {
       handleShow();
     }
-  });
+  }, [props.handleShow]);
 
-    const uppy = new Uppy();
-
-    uppy
-      .use(Dashboard, {
-        showProgressDetails: true,
-        proudlyDisplayPoweredByUppy: true,
-      })
-      
-    uppy
-      .use(Tus, { endpoint: "https://tusd.tusdemo.net/files/", limit: 6 });
-
-    uppy.on("complete", (result) => {
-      if (result.failed.length === 0) {
-        console.log("Upload successful");
-      } else {
-        console.warn("Upload failed");
-      }
-      console.log("successful files:", result.successful);
-      console.log("failed files:", result.failed);
+  const uppy = new Uppy()
+    .use(Dashboard, {
+      showProgressDetails: true,
+      proudlyDisplayPoweredByUppy: true,
+    })
+    .use(XHRUpload, {
+      endpoint: "https://firebasestorage.googleapis.com/v0/b/tobetoplatformpair1.appspot.com/o", // Firebase Storage'un endpoint'i
+      fieldName: "certificates",
+      formData: true,
+      headers: {
+        // Gerekirse, ekstra başlık ekleyebilirsiniz
+        Authorization: "Bearer AIzaSyA6Zpe7vtHzsiNZiUpUPj2RRZBAsErw7Lc", // Bu, Firebase Authentication kullanıyorsanız gerekebilir
+      },
+      timeout: 0,
     });
 
-    const handleShow = () =>{
-      (uppy.getPlugin('Dashboard') as any).openModal();
+  uppy.on("complete", (result) => {
+    if (result.failed.length === 0 && result.successful.length > 0) {
+      console.log("Yükleme başarılı");
+      const fileUrl = result.successful[0].uploadURL;
+      console.log("Dosya URL'si:", fileUrl);
+      // Firebase Storage'dan alınan dosya URL'si
+    } else {
+      console.warn("Yükleme başarısız oldu");
     }
-    return null;
+  });
+
+  const handleShow = () => {
+    (uppy.getPlugin("Dashboard") as any).openModal();
+  };
+
+  return null;
 }
 
 export default UppyPopup;

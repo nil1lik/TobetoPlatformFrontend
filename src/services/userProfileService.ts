@@ -15,6 +15,7 @@ import { GetExperienceByUserIdList } from "../models/responses/userProfile/getEx
 import errorInstance from '../core/interceptors/errorInterceptor';
 import { GetLanguageByUserIdList } from '../models/responses/userProfile/getLanguageByUserId';
 import { GetSkillByUserIdList } from '../models/responses/userProfile/getSkillByUserId';
+import { getCertificateByUserIdList } from '../models/responses/certificate/getCertificatesByUserId';
 
 class UserProfileService extends BaseService<
   GetUserProfile,
@@ -63,6 +64,9 @@ class UserProfileService extends BaseService<
 
   getLanguageByUserId(id: number): Promise<AxiosResponse<GetLanguageByUserIdList, any>> {
 		return axios.get<GetLanguageByUserIdList>(this.Language + "/" + id);
+	}
+  getCertificatesByUserId(id: number): Promise<AxiosResponse<getCertificateByUserIdList, any>> {
+		return axios.get<getCertificateByUserIdList>(this.Language + "/" + id);
 	}
 
   addUserProfile(id: number, request: GetUserDetails): Promise<AxiosResponse<GetUserDetails, any>>{

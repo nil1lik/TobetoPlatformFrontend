@@ -13,24 +13,27 @@ import { GetByUserId } from "../../models/responses/user/getByUserId";
 import UserService from "../../services/userService";
 import userProfileService from "../../services/userProfileService";
 import { useAuthContext } from "../../contexts/AuthContext";
+// import { writeUserData } from "../../utilities/Helpers/firebase";
 
-type Props = {
-};
+type Props = {};
+
 
 const Platform = (props: Props) => {
   const [user, setUser] = useState<GetByUserId>();
-  const {userId} = useAuthContext();
+  const { userId } = useAuthContext();
   const fecthUserData = async (userId: number) => {
     const result = await userProfileService.getByUserId(userId);
     setUser(result.data);
   };
 
- 
   useEffect(() => {
     fecthUserData(Number(userId));
   }, [userId]);
 
-
+  
+useEffect(() => {
+  // writeUserData(1, "contaogli", "contaogli@gmail.com", "imageurlfalan");
+}, []);
   return (
     <>
       <Container className="main-cont">
@@ -51,7 +54,9 @@ const Platform = (props: Props) => {
                         {platformHeader.fragment3}
                       </label>
                     </h3>
-                    <h4 className="fw-normal text-info1 text-info2">{user?.firstName}</h4>{" "}
+                    <h4 className="fw-normal text-info1 text-info2">
+                      {user?.firstName}
+                    </h4>{" "}
                   </div>
                   <TobetoPlatformItem text={platformHeader.subtitle} />
                 </Col>

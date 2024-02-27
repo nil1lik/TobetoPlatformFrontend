@@ -1,29 +1,39 @@
 import React, { useEffect, useState } from "react";
 import { Container, Form } from "react-bootstrap";
 import { Formik } from "formik";
-import toastr from "toastr"
+import toastr from "toastr";
 import UppyPopup from "../../Uppy/UppyPopup";
-import ControlPopup from "../../Popup/ControlPopup";
-import { ProfileSertificateListHeaders, uploadCertificateHeader, uploadFileText } from "../../../utilities/Constants/constantValues";
+import {
+  ProfileSertificateListHeaders,
+  uploadCertificateHeader,
+  uploadFileText,
+} from "../../../utilities/Constants/constantValues";
+import Image from "../../Uppy/image";
 
 type Props = {};
 
 const CertificateEdit = (props: Props) => {
-  
+  // Import the functions you need from the SDKs you need
+
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const initialValues = {};
 
-  
   //Uppy Popup
-  const [showUppy,setShowUppy] = useState<boolean>(false);
+  const [showUppy, setShowUppy] = useState<boolean>(false);
 
   const handleShowUppy = () => {
     setShowUppy(true);
-  }
+  };
 
-  useEffect(()=>{
+  useEffect(() => {
     if (showUppy) {
       setShowUppy(false);
     }
@@ -52,10 +62,11 @@ const CertificateEdit = (props: Props) => {
                         alt="Upload Area"
                         onClick={handleShowUppy}
                       />
-                      <UppyPopup handleShow={showUppy}/>
+                      <UppyPopup handleShow={showUppy} />
+                      <Image />
                     </label>
                   </div>
-                  
+
                   <label className="uploadText">{uploadFileText}</label>
                   <div></div>
                 </div>
@@ -67,9 +78,13 @@ const CertificateEdit = (props: Props) => {
                 <thead>
                   <tr>
                     <th>{ProfileSertificateListHeaders.fileName}</th>
-                    <th className="text-center">{ProfileSertificateListHeaders.fileType}</th>
+                    <th className="text-center">
+                      {ProfileSertificateListHeaders.fileType}
+                    </th>
                     <th>{ProfileSertificateListHeaders.date}</th>
-                    <th style={{ textAlign: "center" }}>{ProfileSertificateListHeaders.process}</th>
+                    <th style={{ textAlign: "center" }}>
+                      {ProfileSertificateListHeaders.process}
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
@@ -78,20 +93,28 @@ const CertificateEdit = (props: Props) => {
                     <td className="png_icon text-center"></td>
                     <td>11.01.2024</td>
                     <td>
-                      <button type="button" className=" btn fileIcon" onClick={() => { toastr.info("Dosya indiriliyor") }}>
+                      <button
+                        type="button"
+                        className=" btn fileIcon"
+                        onClick={() => {
+                          toastr.info("Dosya indiriliyor");
+                        }}
+                      >
                         <img
-                          src={
-                            process.env.PUBLIC_URL + "/images/fileIcon.svg"
-                          }
+                          src={process.env.PUBLIC_URL + "/images/fileIcon.svg"}
                           alt="File Icon"
                           style={{ width: 50 }}
                         />
                       </button>
-                      <button type="button" className=" btn trashIcon" onClick={() => { handleShow()}}>
+                      <button
+                        type="button"
+                        className=" btn trashIcon"
+                        onClick={() => {
+                          handleShow();
+                        }}
+                      >
                         <img
-                          src={
-                            process.env.PUBLIC_URL + "/images/trashIcon.svg"
-                          }
+                          src={process.env.PUBLIC_URL + "/images/trashIcon.svg"}
                           alt="Trash Icon"
                           style={{ width: 50 }}
                         />
