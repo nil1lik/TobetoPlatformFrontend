@@ -214,7 +214,7 @@ const ExperienceEdit = (props: Props) => {
                   height="18px"
                   viewBox="0 0 24 24"
                   fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns="https://res.cloudinary.com/dcpbbqilg/image/upload/v1708981290/svg_xml_base64_PHN2ZyB3aWR0aD0iMThweCIgaGVpZ2h0PSIxOHB4IiB2aWV3Qm94PSIwIDAgMjQgMjQiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgc3R5bGU9Im1hcmdpbi1yaWdodDogNHB4OyI_PHBhdGggZD0iTTMgOUgyMU03IDNWNU0x_in5z9d.svg"
                   style={{marginRight: "4px"}}
                 >
                   <path
