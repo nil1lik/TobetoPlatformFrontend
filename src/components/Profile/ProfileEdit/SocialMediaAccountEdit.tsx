@@ -79,10 +79,16 @@ const SocialMediaAccountEdit = (props: Props) => {
 
   const socialMediaAccountImage = (accountId: number): string => {
     switch (accountId) {
+        case 1:
+            return "https://res.cloudinary.com/dcpbbqilg/image/upload/v1709045931/instagram_gvzr96.svg"; //Instagram
+        case 2:
+            return "https://res.cloudinary.com/dcpbbqilg/image/upload/v1709046963/icons8-twitter-circled_5_mcyzjo.svg"; //Twitter   
         case 3:
             return "https://res.cloudinary.com/dcpbbqilg/image/upload/v1708593590/cv-linkedn_ctqmta.svg"; // LinkedIn
         case 4:
             return "https://res.cloudinary.com/dcpbbqilg/image/upload/v1708593589/cv-behance_izytxl.svg"; // Behance
+        case 5:
+            return "https://res.cloudinary.com/dcpbbqilg/image/upload/v1709046040/dribble_keqdag.svg"; //Dribble
         case 6:
             return "https://res.cloudinary.com/dcpbbqilg/image/upload/v1708593589/cv-github_foneym.svg"; // GitHub
         default:
@@ -113,7 +119,7 @@ const SocialMediaAccountEdit = (props: Props) => {
   ) => {
     values.userProfileId = Number(userId);
     values.socialMediaCategoryId = socialMediaAccountsId;
-    const result = await socialMediaAccountService.add(values);
+    const result = await socialMediaAccountService.addSocialMediaAccount(values);
     toastr.success(SocialMediaAccountAddSuccess);
     fetchSocialMediaAccountByUserId();
   };

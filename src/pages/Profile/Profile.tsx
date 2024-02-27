@@ -88,15 +88,15 @@ const Profile = (props: Props) => {
   const socialMediaAccountImage = (accountId: number): string => {
     switch (accountId) {
         case 1:
-            return "https://res.cloudinary.com/dcpbbqilg/image/upload/v1709033485/instagram-icon-logo-free-png_zhnpdh.svg"; //Instagram
+            return "https://res.cloudinary.com/dcpbbqilg/image/upload/v1709045931/instagram_gvzr96.svg"; //Instagram
         case 2:
-            return  "https://res.cloudinary.com/dcpbbqilg/image/upload/v1709034955/twitter_circle-512_bwzh59.svg"; //Twitter   
+            return  "https://res.cloudinary.com/dcpbbqilg/image/upload/v1709046963/icons8-twitter-circled_5_mcyzjo.svg"; //Twitter   
         case 3:
             return "https://res.cloudinary.com/dcpbbqilg/image/upload/v1708593590/cv-linkedn_ctqmta.svg"; // LinkedIn
         case 4:
             return "https://res.cloudinary.com/dcpbbqilg/image/upload/v1708593589/cv-behance_izytxl.svg"; // Behance
         case 5:
-            return "https://res.cloudinary.com/dcpbbqilg/image/upload/v1709035073/02-dribbble-512_p2eunc.svg"; //Dribble
+            return "https://res.cloudinary.com/dcpbbqilg/image/upload/v1709046040/dribble_keqdag.svg"; //Dribble
         case 6:
             return "https://res.cloudinary.com/dcpbbqilg/image/upload/v1708593589/cv-github_foneym.svg"; // GitHub
         default:
@@ -187,7 +187,7 @@ const Profile = (props: Props) => {
                   {userDetails.socialMediaAccountsItems &&
                     userDetails.socialMediaAccountsItems.map((medias: any) => (
                       <ProfileMediaAccounts
-                        imageSrc="https://res.cloudinary.com/dcpbbqilg/image/upload/v1709033485/instagram-icon-logo-free-png_zhnpdh.webp"
+                        imageSrc={socialMediaAccountImage(medias.socialMediaCategoryId)}
                         className="mediaAccountPhoto"
                         Link={medias.mediaUrl}
                       />
