@@ -92,7 +92,7 @@ const Profile = (props: Props) => {
             </Col>
             <Col className="col-12">
               <ProfileBox titleClass="profileBoxTitle" title="Yetkinliklerim">
-                <div className="profileRoundItemCont">
+                <div className="profileRoundItemCont" style={{pointerEvents: "none"}}>
                   {userDetails.skillDtoItems &&
                     userDetails.skillDtoItems.map((skill) => (
                       <ProfileRoundItem className="profileRoundItem">
