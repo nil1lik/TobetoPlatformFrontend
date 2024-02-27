@@ -1,3 +1,4 @@
+import { UpdateAsyncLessonRequest } from './../models/requests/asyncLesson/updateAsyncLessonRequest';
 import { UpdateAsyncLessonResponse } from "./../models/responses/asyncLesson/updateAsyncLessonResponse";
 import axios,{ AxiosResponse } from "axios";
 import { BASE_API_URL } from "../core/environment/environment";
@@ -7,7 +8,6 @@ import { BaseService } from "../core/services/baseService";
 import { AddAsyncLessonResponse } from "../models/responses/asyncLesson/addAsyncLessonResponse";
 import { GetAsyncLesson } from "../models/responses/asyncLesson/getAsyncLesson";
 import { AddAsyncLessonRequest } from "../models/requests/asyncLesson/addAsyncLessonRequest";
-import { UpdateAsyncLesson } from "../models/requests/asyncLesson/updateAsyncLesson";
 
 class AsyncLessonService extends BaseService<
   GetAsyncLesson,
@@ -15,7 +15,7 @@ class AsyncLessonService extends BaseService<
   AddAsyncLessonResponse,
   AddAsyncLessonRequest,
   UpdateAsyncLessonResponse,
-  UpdateAsyncLesson
+  UpdateAsyncLessonRequest
 > {
   constructor() {
     super();
