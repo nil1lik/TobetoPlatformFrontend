@@ -1,3 +1,5 @@
+import { getCertificateByUserId } from "../certificate/getCertificatesByUserId";
+import { GetLanguageByUserId } from "./getLanguageByUserId";
 import { GetExamByUserId } from "./getExamByUserId";
 import { GetExperienceByUserId} from "./getExperienceByUserId";
 import { GetGraduationByUserId} from "./getGraduationByUserId";
@@ -21,9 +23,11 @@ export interface GetUserDetails {
   addressDetail: string;
   description: string;
   message?: string;
-  skillDtoItems?: GetSkillByUserId[]
-  examDtoItems?: GetExamByUserId[]
-  socialMediaAccountsItems?: GetSocialMediaAccountByUserIdItem[]
   graduationsDtoItems?: GetGraduationByUserId[]
   experiencesDtoItems?: GetExperienceByUserId[]
+  skillDtoItems?: GetSkillByUserId[];
+  languageDtoItems?: GetLanguageByUserId[];
+  certificatesDtoItems?: getCertificateByUserId[];
+  examDtoItems?: GetExamByUserId[];
+  socialMediaAccountsItems?: GetSocialMediaAccountByUserIdItem[];
 }

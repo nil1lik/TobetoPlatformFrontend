@@ -200,8 +200,8 @@ export const ProfileSkillHeader = "Seçiniz";
 
 export const ProfileSertificateListHeaders = {
     fileName: "Dosya Adı",
-    fileType: "Dosya Türü",
-    date: "Tarih",
+    fileType: "Dosya",
+    date: " ",
     process: "İşlem",
 
 }

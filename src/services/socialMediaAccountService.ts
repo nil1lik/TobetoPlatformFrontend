@@ -9,6 +9,7 @@ import { BaseService } from "../core/services/baseService";
 import { BASE_API_URL } from "../core/environment/environment";
 import { GetAllSocialMediaCategory } from "../models/responses/socialMediaAccount/getAllSocialMediaCategory";
 import { GetSocialMediaAccountByUserIdList } from "../models/responses/userProfile/getSocialMediaAccountByUserId";
+import errorInstance from "../core/interceptors/errorInterceptor";
 
 class SocialMediaAccountService extends BaseService<
   GetSocialMediaAccount,
@@ -35,6 +36,10 @@ class SocialMediaAccountService extends BaseService<
 
   getSocialMediaAccountById(id: number): Promise<AxiosResponse<UpdateSocialMediaAccountRequest, any>> {
 		return axios.get<UpdateSocialMediaAccountRequest>(this.apiUrl + "/" + id);
+	}
+
+  addSocialMediaAccount(request: AddSocialMediaAccountRequest): Promise<AxiosResponse<AddSocialMediaAccountResponse, any>> {
+		return errorInstance.post<AddSocialMediaAccountResponse>(this.apiUrl, request);
 	}
 }
 

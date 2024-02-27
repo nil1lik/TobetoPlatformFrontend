@@ -3,6 +3,8 @@ import { ProfileContextModel } from "../models/contextModels/ProfileContextModel
 import { GetUserDetails } from "../models/responses/userProfile/getUserDetails";
 import { GetSkillByUserId } from "../models/responses/userProfile/getSkillByUserId";
 import { GetByUserId } from "../models/responses/user/getByUserId";
+import { GetLanguageByUserId } from "../models/responses/userProfile/getLanguageByUserId";
+import { getCertificateByUserId } from "../models/responses/certificate/getCertificatesByUserId";
 import { GetExamByUserId } from "../models/responses/userProfile/getExamByUserId";
 import { GetSocialMediaAccountByUserIdItem } from "../models/responses/userProfile/getSocialMediaAccountByUserId";
 import { GetGraduationByUserId, GetGraduationByUserIdList } from "../models/responses/userProfile/getGraduationByUserId";
@@ -26,26 +28,37 @@ const initialState: ProfileContextModel = {
     addressDetail: "",
     description: "",
     skillDtoItems: [],
+    languageDtoItems: [],
     examDtoItems: [],
-    socialMediaAccountsItems: [], 
     graduationsDtoItems: [],
     experiencesDtoItems: [],
+    socialMediaAccountsItems: [],
   },
-  AddUserDetails: () => {},
+  addInfoToUserDetails: () => {},
+  addUserDetails: () => {},
   addSkillsToUserDetails: () => {},
+  addLanguagesToUserDetails: () => {},
+  addCertificatesToUserDetails: () => {},
   addExamsToUserDetails: () => {},
   addSocialMediaAccountsToUserDetails: () => {},
   addGraduationsToUserDetails: () => {},
   addExperiencesToUserDetails: () => {},
-  addInfoToUserDetails: () => {},
 };
 
 export const ProfileContext = createContext(initialState);
 
 const ProfileProvider = (props: any) => {
   const [userDetails, setUserDetails] = useState(initialState.userDetails);
-
-  const AddUserDetails = (
+  
+  const addInfoToUserDetails = (value: GetByUserId) => {
+    setUserDetails((prevState: GetUserDetails) => ({
+      ...prevState,
+      firstName: value.firstName,
+      lastName: value.lastName,
+      email: value.email,
+    }));
+  };
+  const addUserDetails = (
     value: GetUserDetails | ((prevState: GetUserDetails) => GetUserDetails)
   ) => {
     setUserDetails(value);
@@ -80,33 +93,41 @@ const ProfileProvider = (props: any) => {
     }));
   };
 
-  const addSocialMediaAccountsToUserDetails = (medias: GetSocialMediaAccountByUserIdItem[]) => {
+  const addSocialMediaAccountsToUserDetails = (socialMediaAccountsItems: GetSocialMediaAccountByUserIdItem[]) => {
     setUserDetails((prevState) => ({
       ...prevState,
-      socialMediaAccountsItems: medias,
+      socialMediaAccountsItems: socialMediaAccountsItems,
     }))
-  }
+  };
 
-  const addInfoToUserDetails = (value: GetByUserId) => {
-    setUserDetails((prevState: GetUserDetails) => ({
+  const addLanguagesToUserDetails = (languages: GetLanguageByUserId[]) => {
+    setUserDetails((prevState) => ({
       ...prevState,
-      firstName: value.firstName,
-      lastName: value.lastName,
-      email: value.email,
+      languageDtoItems: languages,
     }));
   };
+
+  const addCertificatesToUserDetails = (certificates: getCertificateByUserId[]) => {
+    setUserDetails((prevState) => ({
+      ...prevState,
+      certificatesDtoItems: certificates,
+    }));
+  };
+
 
   return (
     <ProfileContext.Provider
       value={{
         userDetails,
-        AddUserDetails,
+        addUserDetails,
         addSkillsToUserDetails,
+        addInfoToUserDetails,
+        addLanguagesToUserDetails,
+        addCertificatesToUserDetails,
         addExamsToUserDetails,
         addSocialMediaAccountsToUserDetails,
         addGraduationsToUserDetails,
         addExperiencesToUserDetails,
-        addInfoToUserDetails,
       }}
     >
       {props.children}

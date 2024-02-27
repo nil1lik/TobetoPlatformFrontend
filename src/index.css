@@ -341,6 +341,12 @@ footer {
   padding-left: 2.5em !important;
   background-size: 1.5em 1.5em;
 }
+.input-img{
+  margin: 0 5px 0px 5px !important;
+  width: 30px;
+  height: 30px;
+  background-size: 1.5em 1.5em;
+}
 
 .tobeto-input {
   border-radius: 8px !important;
@@ -1043,9 +1049,6 @@ input[type="number"]::-webkit-outer-spin-button {
   margin: 0;
 }
 
-input[type="number"] {
-  -moz-appearance: textfield;
-}
 
 /*searchBox icon*/
 .search-icon {

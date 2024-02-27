@@ -49,7 +49,7 @@ const ExperienceEdit = (props: Props) => {
 
   const fetchExperiences = async () => {
     try {
-      const result = await userProfileService.getExperienceByUserId(
+      const result = await userProfileService.getExperiencesByUserId(
         Number(userId)
       );
       setExperiences(result.data.experiencesDtoItems);

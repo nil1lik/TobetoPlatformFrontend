@@ -1,3 +1,41 @@
-.upload-area-image{
-    cursor: pointer;
-  }
+.upload-area-image {
+  cursor: pointer;
+}
+
+.uploader-cont {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+}
+
+.custom-file-upload {
+  position: relative;
+  display: inline-block;
+  text-align: center;
+}
+
+.custom-upload-btn {
+  background-image: url("../../../public/images/upload-file.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 100px;
+  height: 100px;
+  cursor: pointer;
+}
+
+.uploadInput {
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.file-name {
+  text-align: center;
+}
+
+button.btn.trashIcon::before{
+  content: none !important;
+}
