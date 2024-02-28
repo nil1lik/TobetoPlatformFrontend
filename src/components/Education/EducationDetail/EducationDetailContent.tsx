@@ -120,7 +120,7 @@ const EducationDetailContent = (props: Props) => {
           <Col>
             <Row>
               <LessonVideoDetailCard asyncLessonId={selectedAsyncLessonId} />
-              <SyncLessonDetail syncLessonId={selectedAsyncLessonId}/>
+              {/* <SyncLessonDetail syncLessonId={selectedAsyncLessonId}/> */}
             </Row>
           </Col>
         </Row>

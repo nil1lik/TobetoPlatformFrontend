@@ -75,7 +75,7 @@ class UserProfileService extends BaseService<
 	}
 
   getLanguagesByUserId(id: number): Promise<AxiosResponse<GetLanguageByUserIdList, any>> {
-		return axios.get<GetLanguageByUserIdList>(this.Language + "/" + id);
+		return errorInstance.get<GetLanguageByUserIdList>(this.Language + "/" + id);
 	}
   getCertificatesByUserId(id: number): Promise<AxiosResponse<getCertificateByUserIdList, any>> {
 		return axios.get<getCertificateByUserIdList>(this.Certificate + "/" + id);

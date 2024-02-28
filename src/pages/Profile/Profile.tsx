@@ -41,30 +41,40 @@ const Profile = (props: Props) => {
         const result = await userProfileService.getByUserId(Number(userId));
         addInfoToUserDetails(result.data);
 
+        const examResult = await userProfileService.getExamByUserId(
+          Number(userId)
+        );
+        addExamsToUserDetails(examResult.data.examDtoItems);
+
         const detailsResult = await userProfileService.getUserDetails(
           Number(userId)
         );
-        const examResult = await userProfileService.getExamByUserId(Number(userId));
-        addExamsToUserDetails(examResult.data.examDtoItems);
         addUserDetails({
           ...detailsResult.data,
           birthDate: formatDate(detailsResult.data.birthDate),
         });
+
         const skillsResult = await userProfileService.getSkillsByUserId(
           Number(userId)
         );
         addSkillsToUserDetails(skillsResult.data.skillDtoItems);
+
         const languagesResult = await userProfileService.getLanguagesByUserId(
           Number(userId)
         );
         addLanguagesToUserDetails(languagesResult.data.languageDtoItems);
-        const socialMediaResult = await userProfileService.getSocialMediaAccountByUserId(Number(userId));
-        addSocialMediaAccountsToUserDetails(socialMediaResult.data.socialMediaAccountsItems);
-        
-        addLanguagesToUserDetails(languagesResult.data.languageDtoItems);
+
+        const socialMediaResult =
+          await userProfileService.getSocialMediaAccountByUserId(
+            Number(userId)
+          );
+        addSocialMediaAccountsToUserDetails(
+          socialMediaResult.data.socialMediaAccountsItems
+        );
+
+        // addLanguagesToUserDetails(languagesResult.data.languageDtoItems);
         const certificatesResult =
           await userProfileService.getCertificatesByUserId(Number(userId));
-          console.log(certificatesResult.data.certificateDtoItems);
         addCertificatesToUserDetails(
           certificatesResult.data.certificateDtoItems
         );
@@ -72,28 +82,28 @@ const Profile = (props: Props) => {
         console.log("Error fetching user data:", error);
       }
     };
-  
+
     fetchData();
   }, []);
 
   const socialMediaAccountImage = (accountId: number): string => {
     switch (accountId) {
-        case 1:
-          return "https://res.cloudinary.com/dcpbbqilg/image/upload/v1709045931/instagram_gvzr96.svg"; //Instagram
-          case 2:
-            return "https://res.cloudinary.com/dcpbbqilg/image/upload/v1709046963/icons8-twitter-circled_5_mcyzjo.svg"; //Twitter   
-        case 3:
-            return "https://res.cloudinary.com/dcpbbqilg/image/upload/v1708593590/cv-linkedn_ctqmta.svg"; // LinkedIn
-        case 4:
-            return "https://res.cloudinary.com/dcpbbqilg/image/upload/v1708593589/cv-behance_izytxl.svg"; // Behance
-        case 5:
-            return "https://res.cloudinary.com/dcpbbqilg/image/upload/v1709046040/dribble_keqdag.svg"; //Dribble
-        case 6:
-            return "https://res.cloudinary.com/dcpbbqilg/image/upload/v1708593589/cv-github_foneym.svg"; // GitHub
-        default:
-            return "https://example.com/default-image.jpg"; // Varsayılan resim URL'si
+      case 1:
+        return "https://res.cloudinary.com/dcpbbqilg/image/upload/v1709045931/instagram_gvzr96.svg"; //Instagram
+      case 2:
+        return "https://res.cloudinary.com/dcpbbqilg/image/upload/v1709046963/icons8-twitter-circled_5_mcyzjo.svg"; //Twitter
+      case 3:
+        return "https://res.cloudinary.com/dcpbbqilg/image/upload/v1708593590/cv-linkedn_ctqmta.svg"; // LinkedIn
+      case 4:
+        return "https://res.cloudinary.com/dcpbbqilg/image/upload/v1708593589/cv-behance_izytxl.svg"; // Behance
+      case 5:
+        return "https://res.cloudinary.com/dcpbbqilg/image/upload/v1709046040/dribble_keqdag.svg"; //Dribble
+      case 6:
+        return "https://res.cloudinary.com/dcpbbqilg/image/upload/v1708593589/cv-github_foneym.svg"; // GitHub
+      default:
+        return "https://example.com/default-image.jpg"; // Varsayılan resim URL'si
     }
-}
+  };
   return (
     <Container>
       <Row>
@@ -118,7 +128,10 @@ const Profile = (props: Props) => {
             </Col>
             <Col className="col-12">
               <ProfileBox titleClass="profileBoxTitle" title="Yetkinliklerim">
-                <div className="profileRoundItemCont" style={{pointerEvents: "none"}}>
+                <div
+                  className="profileRoundItemCont"
+                  style={{ pointerEvents: "none" }}
+                >
                   {userDetails.skillDtoItems &&
                     userDetails.skillDtoItems.map((skill) => (
                       <ProfileRoundItem className="profileRoundItem">
@@ -131,8 +144,7 @@ const Profile = (props: Props) => {
             <Col className="col-12">
               <ProfileBox titleClass="profileBoxTitle" title="Yabancı Diller">
                 <div className="profileRoundItemCont">
-                  {
-                    userDetails.languageDtoItems &&
+                  {userDetails.languageDtoItems &&
                     userDetails.languageDtoItems.map((language) => (
                       <ProfilePreInfo
                         cardContClass="profileLangCont"
@@ -143,8 +155,7 @@ const Profile = (props: Props) => {
                         header={language.languageName}
                         value={language.languageLevelName}
                       />
-                    ))
-                  }
+                    ))}
                 </div>
               </ProfileBox>
             </Col>
@@ -153,7 +164,11 @@ const Profile = (props: Props) => {
                 <div className="profileRoundItemCont">
                   {userDetails.certificatesDtoItems &&
                     userDetails.certificatesDtoItems.map((certificate) => (
-                      <ProfileRoundItem className="profileRoundItem hover" title={certificate.certificateName} imageUrl={certificate.certificateFileUrl}>
+                      <ProfileRoundItem
+                        className="profileRoundItem hover"
+                        title={certificate.certificateName}
+                        imageUrl={certificate.certificateFileUrl}
+                      >
                         <Card.Text className="profileCertificate">
                           {certificate.certificateName}
                         </Card.Text>
@@ -168,7 +183,9 @@ const Profile = (props: Props) => {
                   {userDetails.socialMediaAccountsItems &&
                     userDetails.socialMediaAccountsItems.map((medias: any) => (
                       <ProfileMediaAccounts
-                        imageSrc={socialMediaAccountImage(Number(medias.socialMediaCategoryId))}
+                        imageSrc={socialMediaAccountImage(
+                          Number(medias.socialMediaCategoryId)
+                        )}
                         className="mediaAccountPhoto"
                         Link={medias.mediaUrl}
                       />

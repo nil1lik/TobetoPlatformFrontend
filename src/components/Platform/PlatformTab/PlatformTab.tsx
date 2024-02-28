@@ -72,10 +72,10 @@ const PlatformTab = (props: Props) => {
                 cardText1="İstanbul Kodluyor Başvuru Formu onaylandı."
                 cardText2="İstanbul Kodluyor Belge Yükleme Formu onaylandı."
                 iconClass1={applicationApproved}
-                iconClass2={applicationNotApproved}
+                iconClass2={applicationApproved}
               />
             </Col>
-            <Col className="col-6">
+            {/* <Col className="col-6">
               <ApplicationCard
                 cardHeader="İstanbul Kodluyor Bilgilendirme"
                 cardText1="İstanbul Kodluyor Başvuru Formu onaylandı."
@@ -83,7 +83,7 @@ const PlatformTab = (props: Props) => {
                 iconClass1={applicationPending}
                 iconClass2={applicationWaiting}
               />
-            </Col>
+            </Col> */}
           </Row>
         </Container>
       </Tab>

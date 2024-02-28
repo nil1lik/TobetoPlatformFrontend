@@ -62,9 +62,9 @@ const Education = (props: Props) => {
           {educationData.map((education) => (
             <EducationCard
               key={education.id}
-              id={education.id}
-              image={education.imageUrl}
-              text={education.name}
+              id={education.educationPathId}
+              image={education.educationPathImageUrl}
+              text={education.educationPathName}
               date={<FormattedDate date={education.startDate} />}
             />
           ))}

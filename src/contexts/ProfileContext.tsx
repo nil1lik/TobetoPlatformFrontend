@@ -88,6 +88,7 @@ const ProfileProvider = (props: any) => {
   };
 
   const addExperiencesToUserDetails = (experiences: GetExperienceByUserId[]) => {
+    console.log("context", experiences);
     setUserDetails((prevState) => ({
       ...prevState,
       experiencesDtoItems: experiences,
