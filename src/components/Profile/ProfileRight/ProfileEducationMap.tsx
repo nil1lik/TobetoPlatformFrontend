@@ -3,39 +3,20 @@ import { useProfileContext } from "../../../contexts/ProfileContext";
 import userProfileService from "../../../services/userProfileService";
 import { useAuthContext } from "../../../contexts/AuthContext";
 import FormattedDate from "../../../utilities/Helpers/FormattedDate";
+import { GetGraduationByUserId } from "../../../models/responses/userProfile/getGraduationByUserId";
+import { GetExperienceByUserId } from "../../../models/responses/userProfile/getExperienceByUserId";
 
-type Props = {};
+type Props = {
+  graduationsDtoItems?: GetGraduationByUserId[]
+  experiencesDtoItems?: GetExperienceByUserId[]
+};
 
 const ProfileEducationMap = (props: Props) => {
   const {
     userDetails,
-    addGraduationsToUserDetails,
-    addExperiencesToUserDetails,
+
   } = useProfileContext();
   const { userId } = useAuthContext();
-
-  const fetchGraduationsByUserId = async (userId: number) => {
-    try {
-      const result = await userProfileService.getGraduationsByUserId(userId);
-      addGraduationsToUserDetails(result.data.graduationsDtoItems);
-    } catch (error) {
-      console.error("API isteği sırasında bir hata oluştu:", error);
-    }
-  };
-
-  const fetchExperiencesByUserId = async (userId: number) => {
-    try {
-      const result = await userProfileService.getExperiencesByUserId(userId);
-      addExperiencesToUserDetails(result.data.experiencesDtoItems);
-    } catch (error) {
-      console.error("API isteği sırasında bir hata oluştu:", error);
-    }
-  };
-
-  useEffect(() => {
-    fetchExperiencesByUserId(Number(userId));
-    fetchGraduationsByUserId(Number(userId));
-  }, []);
 
   return (
     <>
@@ -61,7 +42,7 @@ const ProfileEducationMap = (props: Props) => {
                         className="text-truncate"
                         style={{ maxWidth: "125px" }}
                       >
-                        {graduations.universityName}
+                        {graduations.univercityName}
                       </li>
                       <li
                         className="text-truncate"

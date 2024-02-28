@@ -31,6 +31,8 @@ const Profile = (props: Props) => {
     addCertificatesToUserDetails,
     addSocialMediaAccountsToUserDetails,
     addExamsToUserDetails,
+    addGraduationsToUserDetails,
+    addExperiencesToUserDetails,
   } = useProfileContext();
   const { userId } = useAuthContext();
   const [successModel, setSuccessModel] = useState<boolean>(false);
@@ -78,6 +80,14 @@ const Profile = (props: Props) => {
         addCertificatesToUserDetails(
           certificatesResult.data.certificateDtoItems
         );
+
+        const graduationsresult =
+          await userProfileService.getGraduationsByUserId(Number(userId));
+        addGraduationsToUserDetails(graduationsresult.data.graduationsDtoItems);
+
+        const experiencesResult =
+          await userProfileService.getExperiencesByUserId(Number(userId));
+        addExperiencesToUserDetails(experiencesResult.data.experiencesDtoItems);
       } catch (error) {
         console.log("Error fetching user data:", error);
       }
@@ -257,7 +267,7 @@ const Profile = (props: Props) => {
                 titleClass="profileBoxTitle"
                 title="Eğitim Hayatım ve Deneyimlerim"
               >
-                <ProfileEducationMap />
+                <ProfileEducationMap experiencesDtoItems={userDetails.experiencesDtoItems} graduationsDtoItems={userDetails.graduationsDtoItems} />
               </ProfileBox>
             </Col>
           </Row>
