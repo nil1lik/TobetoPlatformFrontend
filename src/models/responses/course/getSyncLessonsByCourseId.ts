@@ -9,5 +9,5 @@ export interface GetSyncLessonsByCourseIdItem {
 }
 
 export interface GetSyncLessonsByCourseIdResponse {
-    syncLessons: GetSyncLessonsByCourseIdItem[];
+    items: GetSyncLessonsByCourseIdItem[];
   }

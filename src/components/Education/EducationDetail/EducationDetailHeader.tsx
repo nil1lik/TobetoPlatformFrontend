@@ -45,7 +45,7 @@ const EducationDetailHeader = (props: Props) => {
                       <label className="first-of-type">
                         <div className="date-info text-green">
                           <i className="ss-icon ss-like" />
-                          <label>Tamamladın</label>
+                          <label>Hadi Başlayalım!</label>
                         </div>
                         <img
                           className="question-circle"

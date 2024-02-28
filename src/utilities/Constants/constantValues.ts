@@ -295,6 +295,9 @@ export const offcanvasButton = "EĞİTİME GİT"
 export const pointText = "PUAN" 
 export const detailButton = "DETAY"
 
+/* SyncLesson */
+export const sessionRecord = "Oturumlara ilişkin kayıtlar, canlı oturumlar tamamlandıktan sonra izlenebilir."
+
 
 // Error Handler Values
 export const errHandlerErrNetwork = "Sunucuya ulaşılamıyor..."

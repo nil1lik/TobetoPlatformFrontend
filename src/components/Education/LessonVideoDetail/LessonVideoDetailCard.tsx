@@ -24,6 +24,7 @@ const LessonVideoDetailCard = (props: Props) => {
       if (asyncLessonId !== undefined) {
         const result = await asyncLessonService.getByIdAsyncLessonDetail(asyncLessonId); 
         setAsyncLessons(result.data);
+        console.log("async" , result.data);
 
       }
     } catch (error) {
@@ -66,7 +67,7 @@ const LessonVideoDetailCard = (props: Props) => {
                 </div>
                 <div className="unit-detail-col unit-detail-col-status last-child text-green">
                   <i className="ss-icon ss-like" />
-                  Tebrikler, tamamladın!
+                  Hadi Başlayalım!
                 </div>
               </Col>
               <Col lg={3}>

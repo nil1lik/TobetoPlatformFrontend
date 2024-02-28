@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Accordion,
   AccordionBody,
@@ -19,51 +19,54 @@ import "./syncLessonDetail.css";
 import { GetCourseResponseItem } from "../../../../models/responses/course/getCourseResponse";
 import { GetSyncLessonsByCourseIdItem } from "../../../../models/responses/course/getSyncLessonsByCourseId";
 import syncLessonService from "../../../../services/syncLessonService";
+import courseService from "../../../../services/courseService";
+import { GetByIdSyncLessonResponse } from "../../../../models/responses/syncLesson/getByIdSyncLessonResponse";
+import { sessionRecord } from "../../../../utilities/Constants/constantValues";
 
-type Props = {syncLessonId?: number;};
+type Props = { syncLessonId?: number };
 
 const SyncLessonDetail = (props: Props) => {
   const colSize = 3;
-  const [courses, setCourses] = useState<GetCourseResponseItem[]>([]);
-  const [syncLessons, setSyncLessons] = useState<
-  GetSyncLessonsByCourseIdItem[]
->([]);
+  const { syncLessonId } = props;
+  const [syncLessons, setSyncLessons] = useState<GetByIdSyncLessonResponse>();
 
-// const fetchSyncLesson = async () => {
-//   try {
-//     if (syncLessonId !== undefined) {
-//       const result = await syncLessonService getByIdAsyncLessonDetail(asyncLessonId); 
-//       setAsyncLessons(result.data);
+  const fetchSyncLesson = async () => {
+    try {
+      if (syncLessonId !== undefined) {
+        const result = await syncLessonService.getByIdSyncLessonDetail(
+          syncLessonId
+        );
+        setSyncLessons(result.data);
+        console.log("sync", result.data);
+      }
+    } catch (error) {
+      console.error("API isteği sırasında bir hata oluştu:", error);
+    }
+  };
 
-//     }
-//   } catch (error) {
-//     console.error("API isteği sırasında bir hata oluştu:", error);
-//   }
-// }; 
-
-// useEffect(() => {
-//   fetchAsyncLesson();
-// }, [asyncLessonId]);
+  useEffect(() => {
+    fetchSyncLesson();
+  }, [syncLessonId]);
 
   return (
     <div className="activity-content-info">
       <div className="activity-largeImageFileName no-video">
-        <img src="https://tobeto.s3.cloud.ngn.com.tr/23_EAH_1_45f7232003.jpg" />
+        <img src="https://wallpapers.com/images/featured/blue-dgmxybg4kb7eab7x.jpg" />
       </div>
       <Card className="activity-card">
         <div className="activity-unit-detail">
           <Row>
             <Col lg={9}>
-              <div className="unit-detail-title">.NET & React Fullstack</div>
+              <div className="unit-detail-title">.NET & React Fullstack </div>
               <div className="unit-detail-col unit-detail-col-default">
                 Sanal Sınıf
               </div>
-              <div className="unit-detail-col unit-detail-col-status last-child text-green">
+              {/* <div className="unit-detail-col unit-detail-col-status last-child text-green">
                 <i className="ss-icon ss-like" />
                 Tebrikler, tamamladın!
-              </div>
+              </div> */}
             </Col>
-            <Col lg={3}>
+            {/* <Col lg={3}>
               <div className="ant-space ant-space-vertical">
                 <button
                   type="button"
@@ -72,7 +75,7 @@ const SyncLessonDetail = (props: Props) => {
                   <label className="ant-btn-text">DETAY</label>
                 </button>
               </div>
-            </Col>
+            </Col> */}
           </Row>
           {/* buraya kadar lessonVideoDetail ile aynı */}
           <Row className="unit-detail-session-row">
@@ -82,7 +85,7 @@ const SyncLessonDetail = (props: Props) => {
                 <Accordion defaultActiveKey="0">
                   <Accordion.Item eventKey="0">
                     <AccordionHeader className="accordion-button-session">
-                      1. Oturum
+                      "1. OTURUM"
                     </AccordionHeader>
                     <AccordionBody>
                       <div className="ant-collapse-content-box">
@@ -90,35 +93,32 @@ const SyncLessonDetail = (props: Props) => {
                           <EducationDetailAboutComp
                             colSize={colSize}
                             {...startDateIcon}
-                            educationData="23 EKİ 2023 13:00"
+                            educationData= "10 OCAK 2024 12.00"
                           />
                           <EducationDetailAboutComp
                             colSize={colSize}
                             {...endDateIcon}
-                            educationData="23 EKİ 2023 16:00"
+                            educationData="23 EKİM 2024 16:00"
                           />
                         </Row>
                         <Row className="instructors-list">
                           <EducationDetailAboutComp
                             colSize={colSize}
                             {...userIcon}
-                            educationData="burayı düzenle iconu ve yazıyı"
+                            educationData="Engin Demiroğ"
                           />
                         </Row>
                         <Row>
                           <EducationDetailAboutComp {...cameraIcon} />
                           <div className="session-record">
-                            <span>
-                              Oturumlara ilişkin kayıtlar, canlı oturumlar
-                              tamamlandıktan sonra izlenebilir.
-                            </span>
+                            <span>{sessionRecord}</span>
                           </div>
                           <div className="unit-session-list">
                             <Row>
                               <Col lg={9}>
-                                <div className="session-archive-title">
+                                {/* <div className="session-archive-title">
                                   <span>903_6887_1-23.10.2023 13:00:00</span>
-                                </div>
+                                </div> */}
                               </Col>
                               <Col lg={3}>
                                 <div className="ant-space ant-space-vertical">

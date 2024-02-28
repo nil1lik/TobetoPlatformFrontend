@@ -68,7 +68,6 @@ const PlatformTab = (props: Props) => {
       fetchAnnouncement();
     }, []);
 
-    console.log("PlatformTab " , educationData);
     
 
   //   setTimeout(() => {

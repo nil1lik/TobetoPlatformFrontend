@@ -34,7 +34,9 @@ const EducationDetailContent = (props: Props) => {
   const [asyncLessons, setAsyncLessons] = useState<
     GetAsyncLessonsByCourseIdItem[]
   >([]);
-  const [selectedAsyncLessonId, setSelectedAsyncLessonId] = useState<number>();
+  const [selectedAsyncLessonId, setSelectedAsyncLessonId] = useState<number>()
+  const [selectedSyncLessonId, setSelectedSyncLessonId] = useState<number>();
+  ;
 
   const fetchEducationDetail = async () => {
     try {
@@ -44,7 +46,7 @@ const EducationDetailContent = (props: Props) => {
       //   );
       //   setCourses(result.data.items);
       // }
-      const result = await courseService.getAll(0, 10);
+      const result = await courseService.getAll(0, 40);
       const filteredCourses = result.data.items.filter(
         (course) => course.educationPathId == props.educationDetailId
       );
@@ -63,6 +65,7 @@ const EducationDetailContent = (props: Props) => {
   const handleHeaderClick = async (courseId: number) => {
     try {
       setAsyncLessons([]);
+      // setSyncLessons([]);
 
       const response = await courseService.getAsyncLessonsByCourseId(courseId);
       const lessons = response.data.asyncLessons;
