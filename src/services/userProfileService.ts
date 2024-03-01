@@ -1,3 +1,4 @@
+import { GetEducationByUserIdList } from './../models/responses/userProfile/getEducationByUserId';
 import { GetSocialMediaAccountByUserIdList } from './../models/responses/userProfile/getSocialMediaAccountByUserId';
 import { GetUserDetails } from './../models/responses/userProfile/getUserDetails';
 import { GetByUserId } from "../models/responses/user/getByUserId";
@@ -31,6 +32,7 @@ class UserProfileService extends BaseService<
   public Experience: string;
   public Skill :string;
   public Language:string;
+  public Education:string;
   public Certificate:string;
   public SocialMediaAccount:string;
   public Exam: string;
@@ -43,6 +45,7 @@ class UserProfileService extends BaseService<
     this.Experience = this.apiUrl + "/getAllExperience"
     this.Skill = this.apiUrl +"/getAllSkill"
     this.Language = this.apiUrl + "/getAllLanguage"
+    this.Education = this.apiUrl + "/getAllEducations"
     this.Certificate = this.apiUrl + "/getAllCertificates"
     this.Exam = this.apiUrl + "/getAllExams"
     this.SocialMediaAccount = this.apiUrl + "/getAllSocialMediaAccount"
@@ -67,8 +70,12 @@ class UserProfileService extends BaseService<
 		return errorInstance.get<GetSkillByUserIdList>(this.Skill + "/" + id);
 	}
 
+  getEducationByUserId(id: number): Promise<AxiosResponse<GetEducationByUserIdList, any>> {
+		return errorInstance.get<GetEducationByUserIdList>(this.Education + "/" + id);
+	}
+
   getLanguagesByUserId(id: number): Promise<AxiosResponse<GetLanguageByUserIdList, any>> {
-		return axios.get<GetLanguageByUserIdList>(this.Language + "/" + id);
+		return errorInstance.get<GetLanguageByUserIdList>(this.Language + "/" + id);
 	}
   getCertificatesByUserId(id: number): Promise<AxiosResponse<getCertificateByUserIdList, any>> {
 		return axios.get<getCertificateByUserIdList>(this.Certificate + "/" + id);
@@ -86,9 +93,9 @@ class UserProfileService extends BaseService<
 		return errorInstance.get<GetSocialMediaAccountByUserIdList>(this.SocialMediaAccount + "/" + id);
 	}
 
-  // getExamByUserId(id: number):Promise<AxiosResponse<GetExamByUserIdList, any>> {
-  //   return errorInstance.get<GetExamByUserIdList>(this.Exam + "/" + id )
-  // }
+  getExamByUserId(id: number):Promise<AxiosResponse<GetExamByUserIdList, any>> {
+    return errorInstance.get<GetExamByUserIdList>(this.Exam + "/" + id )
+  }
 }
 
 export default new UserProfileService();

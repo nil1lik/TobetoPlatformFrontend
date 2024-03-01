@@ -6,4 +6,5 @@ export interface GetByIdSyncLessonResponse {
     isJoin: boolean;
     startDate: string;
     endDate: string;
+    instructorNames: string;
 }

@@ -22,6 +22,7 @@ import syncLessonService from "../../../../services/syncLessonService";
 import courseService from "../../../../services/courseService";
 import { GetByIdSyncLessonResponse } from "../../../../models/responses/syncLesson/getByIdSyncLessonResponse";
 import { sessionRecord } from "../../../../utilities/Constants/constantValues";
+import FormattedDate from "../../../../utilities/Helpers/FormattedDate";
 
 type Props = { syncLessonId?: number };
 
@@ -47,6 +48,7 @@ const SyncLessonDetail = (props: Props) => {
   useEffect(() => {
     fetchSyncLesson();
   }, [syncLessonId]);
+  console.log("sync", syncLessonId);
 
   return (
     <div className="activity-content-info">
@@ -57,7 +59,7 @@ const SyncLessonDetail = (props: Props) => {
         <div className="activity-unit-detail">
           <Row>
             <Col lg={9}>
-              <div className="unit-detail-title">.NET & React Fullstack </div>
+              <div className="unit-detail-title">{syncLessons?.id} </div>
               <div className="unit-detail-col unit-detail-col-default">
                 Sanal Sınıf
               </div>
@@ -85,7 +87,7 @@ const SyncLessonDetail = (props: Props) => {
                 <Accordion defaultActiveKey="0">
                   <Accordion.Item eventKey="0">
                     <AccordionHeader className="accordion-button-session">
-                      "1. OTURUM"
+                      {syncLessons?.sessionName}
                     </AccordionHeader>
                     <AccordionBody>
                       <div className="ant-collapse-content-box">
@@ -93,19 +95,19 @@ const SyncLessonDetail = (props: Props) => {
                           <EducationDetailAboutComp
                             colSize={colSize}
                             {...startDateIcon}
-                            educationData= "10 OCAK 2024 12.00"
+                            educationData= {<FormattedDate date={syncLessons?.startDate}/>}
                           />
                           <EducationDetailAboutComp
                             colSize={colSize}
                             {...endDateIcon}
-                            educationData="23 EKİM 2024 16:00"
+                            educationData={<FormattedDate date={syncLessons?.endDate}/>}
                           />
                         </Row>
                         <Row className="instructors-list">
                           <EducationDetailAboutComp
                             colSize={colSize}
                             {...userIcon}
-                            educationData="Engin Demiroğ"
+                            educationData= {syncLessons?.instructorNames}
                           />
                         </Row>
                         <Row>

@@ -1,8 +1,23 @@
-import React from 'react';
+import React, { useEffect } from "react";
+import { useProfileContext } from "../../../contexts/ProfileContext";
+import userProfileService from "../../../services/userProfileService";
+import { useAuthContext } from "../../../contexts/AuthContext";
+import FormattedDate from "../../../utilities/Helpers/FormattedDate";
+import { GetGraduationByUserId } from "../../../models/responses/userProfile/getGraduationByUserId";
+import { GetExperienceByUserId } from "../../../models/responses/userProfile/getExperienceByUserId";
 
-type Props = {};
+type Props = {
+  graduationsDtoItems?: GetGraduationByUserId[]
+  experiencesDtoItems?: GetExperienceByUserId[]
+};
 
 const ProfileEducationMap = (props: Props) => {
+  const {
+    userDetails,
+
+  } = useProfileContext();
+  const { userId } = useAuthContext();
+
   return (
     <>
       <div className="timeline">
@@ -10,33 +25,66 @@ const ProfileEducationMap = (props: Props) => {
           <div className="circle">
             <div className="before">
               <div className="content">
-                <ul>
-                  <li>2016/2018</li>
-                  <li className="text-truncate" style={{ maxWidth: '125px' }}>Lorem Ipsum Üniversitesi</li>
-                  <li className="text-truncate" style={{ maxWidth: '125px' }}>Loram Ipsum Programcılığı</li>
-                </ul>
+                {userDetails.graduationsDtoItems &&
+                  userDetails.graduationsDtoItems.map((graduations: any) => (
+                    <ul>
+                      <li>
+                        <FormattedDate
+                          format="year"
+                          date={graduations.startDate}
+                        /> - 
+                         <FormattedDate
+                          format="year"
+                          date={graduations.endDate}
+                        />
+                      </li>
+                      <li
+                        className="text-truncate"
+                        style={{ maxWidth: "125px" }}
+                      >
+                        {graduations.univercityName}
+                      </li>
+                      <li
+                        className="text-truncate"
+                        style={{ maxWidth: "125px" }}
+                      >
+                        {graduations.department}
+                      </li>
+                    </ul>
+                  ))}
               </div>
             </div>
           </div>
           <div className="circle2">
             <div className="after">
               <div className="content">
-                <ul>
-                  <li>2018/2018</li>
-                  <li className="text-truncate" style={{ maxWidth: '125px' }}>Lorem Şirketinde</li>
-                  <li className="text-truncate" style={{ maxWidth: '125px' }}>Ipsum</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div className="circle2">
-            <div className="after">
-              <div className="content">
-                <ul>
-                  <li>2019/2020</li>
-                  <li className="text-truncate" style={{ maxWidth: '125px' }}>Ipsum Şirketinde</li>
-                  <li className="text-truncate" style={{ maxWidth: '125px' }}>Lorem</li>
-                </ul>
+                {userDetails.experiencesDtoItems &&
+                  userDetails.experiencesDtoItems.map((experiences: any) => (
+                    <ul>
+                      <li>
+                        <FormattedDate
+                          format="year"
+                          date={experiences.startDate}
+                        /> - 
+                        <FormattedDate
+                          format="year"
+                          date={experiences.endDate}
+                        />
+                      </li>
+                      <li
+                        className="text-truncate"
+                        style={{ maxWidth: "125px" }}
+                      >
+                        {experiences.organizationName}
+                      </li>
+                      <li
+                        className="text-truncate"
+                        style={{ maxWidth: "125px" }}
+                      >
+                        {experiences.position}
+                      </li>
+                    </ul>
+                  ))}
               </div>
             </div>
           </div>

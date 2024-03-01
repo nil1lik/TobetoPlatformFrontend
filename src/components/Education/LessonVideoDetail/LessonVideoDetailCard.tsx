@@ -9,11 +9,13 @@ import FormattedTime from "../../../utilities/Helpers/FormattedTime";
 
 type Props = {
   asyncLessonId?: number;
+  onLessonCompletion?: (percentage: number) => void; 
 };
 
 const LessonVideoDetailCard = (props: Props) => {
-  const { asyncLessonId } = props;
-  const [asyncLesson, setAsyncLessons] = useState<GetByIdAsyncLessonResponse>();
+  const { asyncLessonId, onLessonCompletion } = props;
+  const [asyncLesson, setAsyncLesson] = useState<GetByIdAsyncLessonResponse>();
+  const [lastWatchedLessonId, setLastWatchedLessonId] = useState<number | null>(null);
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -23,32 +25,42 @@ const LessonVideoDetailCard = (props: Props) => {
     try {
       if (asyncLessonId !== undefined) {
         const result = await asyncLessonService.getByIdAsyncLessonDetail(asyncLessonId); 
-        setAsyncLessons(result.data);
-        console.log("async" , result.data);
-
+        setAsyncLesson(result.data);
+        setLastWatchedLessonId(asyncLessonId);
       }
     } catch (error) {
       console.error("API isteği sırasında bir hata oluştu:", error);
     }
   }; 
 
+  const handleVideoEnded = (lessonId: number | undefined) => {
+    if (lessonId && asyncLesson && asyncLesson.videoPoint !== undefined) {
+      setLastWatchedLessonId(lessonId);
+      const completionPercentage = (asyncLesson.videoPoint / 100) * 100; 
+      if (onLessonCompletion) {
+        onLessonCompletion(completionPercentage);
+      }
+    }
+  };
+  
+
   useEffect(() => {
     fetchAsyncLesson();
   }, [asyncLessonId]);
+
   return (
     <Col>
       <div className="activity-content-info">
         <div className="activity-largeImageFileName activity-video">
           <div className="locked">
-            {/* <img src="https://tobeto.s3.cloud.ngn.com.tr/23_EAH_1_45f7232003.jpg" /> */}
             <ReactPlayer
               url={asyncLesson?.videoUrl}
               className="react-player"
               width="100%"
               height="100%"
               controls
+              onEnded={() => handleVideoEnded(asyncLesson?.id)}
             /> 
-            {/* <i className="ss-icon ss-lock" /> */}  
           </div>
         </div>
         <Card className="activity-card">
@@ -60,7 +72,6 @@ const LessonVideoDetailCard = (props: Props) => {
                 </div>
                 <div className="unit-detail-col unit-detail-col-default">
                   {asyncLesson?.lessonTypeName} - {<FormattedTime time={asyncLesson?.time}/>}               
-
                 </div>
                 <div className="unit-detail-col unit-detail-col-score text-green">
                   {asyncLesson?.videoPoint} {pointText}
@@ -71,33 +82,33 @@ const LessonVideoDetailCard = (props: Props) => {
                 </div>
               </Col>
               <Col lg={3}>
-                  <div className="ant-space ant-space-vertical">
-                    <button
-                      type="button"
-                      className="ant-btn ant-btn-default ant-btn-lg ant-btn-block btn"
-                      onClick={handleShow}
-                    >
-                      <label className="ant-btn-text">{detailButton}</label> 
-                      <div className="drawer">
-                        <EducationOffcanvas 
-                          imageUrl="https://lms.tobeto.com/tobjEKnwKDQVcjzXYj%2bUxp8rPm9JXZ"
-                          educationName={asyncLesson?.name}
-                          educationType= {asyncLesson?.lessonTypeName}
-                          time={asyncLesson?.time}
-                          category={asyncLesson?.videoDetailCategoryName}
-                          language={asyncLesson?.languageName}
-                          company={asyncLesson?.companyName}
-                          subcategory={asyncLesson?.subcategoryName}
-                          likeCount= {100}
-                          point={asyncLesson?.videoPoint}
-                          button={true} 
-                          show={show} 
-                          hide={handleClose}
-                        />
-                      </div>
-                    </button>
-                  </div>
-                </Col>
+                <div className="ant-space ant-space-vertical">
+                  <button
+                    type="button"
+                    className="ant-btn ant-btn-default ant-btn-lg ant-btn-block btn"
+                    onClick={handleShow}
+                  >
+                    <label className="ant-btn-text">{detailButton}</label> 
+                    <div className="drawer">
+                      <EducationOffcanvas 
+                        imageUrl="https://lms.tobeto.com/tobjEKnwKDQVcjzXYj%2bUxp8rPm9JXZ"
+                        educationName={asyncLesson?.name}
+                        educationType= {asyncLesson?.lessonTypeName}
+                        time={asyncLesson?.time}
+                        category={asyncLesson?.videoDetailCategoryName}
+                        language={asyncLesson?.languageName}
+                        company={asyncLesson?.companyName}
+                        subcategory={asyncLesson?.subcategoryName}
+                        likeCount= {100}
+                        point={asyncLesson?.videoPoint}
+                        button={true} 
+                        show={show} 
+                        hide={handleClose}
+                      />
+                    </div>
+                  </button>
+                </div>
+              </Col>
             </Row>
           </div>
         </Card>

@@ -39,11 +39,7 @@ class LanguageService extends BaseService<
   addProfilLanguage(request: AddProfileLanguageRequest): Promise<AxiosResponse<AddProfileLanguageResponse, any>> {
 		return errorInstance.post<AddProfileLanguageResponse>(this.profileLanguage, request);
 	}
-
-  deletedLanguage(userId:number, languageId: number, levelId:number){
-    return axios.delete(this.profileLanguage + "/" + userId +"/" + languageId +"/" + levelId );
-  }
-
+  
   deleteProfileLanguage(id: number) {
 		return axios.delete(this.profileLanguage + "/" + id);
 	}

@@ -5,7 +5,6 @@ type Props = { liked: boolean; toggleLike: () => void };
 const HeartIcon = (props: Props) => {
     const handleClick = () => {
         props.toggleLike(); 
-        console.log(props.toggleLike);
       };
 
   return (

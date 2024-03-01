@@ -27,30 +27,21 @@ import {
 } from "../../../contexts/LoadingContext";
 import { Link, useLoaderData } from "react-router-dom";
 import { useEducation } from "../../../contexts/EducationContext";
+import { useAuthContext } from "../../../contexts/AuthContext";
+import { GetEducationbyUserId } from "../../../models/responses/userProfile/getEducationByUserId";
 
 type Props = {};
 
 const PlatformTab = (props: Props) => {
   const { handleSetLoading } = useLoadingContext();
   const { educationData, fetchEducation } = useEducation();
-  
-  // const [education, setEducation] = useState<GetEducationItem[]>([]);
   const [announcement, setAnnouncement] = useState<GetAnnouncementTypeItem[]>(
     []
   );
+  const {userId} = useAuthContext();
 
   const announcementIconSrc =
     process.env.PUBLIC_URL + `/images/announcementDate.svg`;
-
-  // useEffect(() => {
-  //   handleSetLoading((prev: any) => prev + 1);
-
-  //   const fetchEducation = async () => {
-  //     const result = await educationService.getByFilter(0, 4);
-  //     setEducationData(result.data.items);
-  //     console.log("education bilgileri " + result.data.items);
-
-  //   };
 
   const fetchAnnouncement = async () => {
     const result = await AnnouncementService.getAllAnnouncementTypeList(0, 3);
@@ -58,13 +49,7 @@ const PlatformTab = (props: Props) => {
   };
 
     useEffect(() => {
-      // handleSetLoading((prev: any) => prev + 1);
-  
-      // finally {
-      //   handleSetLoading((prev: any) => prev - 1);
-      //   // setLoadingPagination(true);
-      // }
-      setTimeout(() => fetchEducation(4), 500);
+      setTimeout(() => fetchEducation(Number(userId)), 500);
       fetchAnnouncement();
     }, []);
 
@@ -76,6 +61,8 @@ const PlatformTab = (props: Props) => {
   //     handleSetLoading((prev: any) => prev - 1);
   //   }, 500);
   // }, [setEducation]);
+    console.log("PlatformTab " , educationData);
+  
 
   return (
     <Tabs
@@ -93,10 +80,10 @@ const PlatformTab = (props: Props) => {
                 cardText1="İstanbul Kodluyor Başvuru Formu onaylandı."
                 cardText2="İstanbul Kodluyor Belge Yükleme Formu onaylandı."
                 iconClass1={applicationApproved}
-                iconClass2={applicationNotApproved}
+                iconClass2={applicationApproved}
               />
             </Col>
-            <Col className="col-6">
+            {/* <Col className="col-6">
               <ApplicationCard
                 cardHeader="İstanbul Kodluyor Bilgilendirme"
                 cardText1="İstanbul Kodluyor Başvuru Formu onaylandı."
@@ -104,17 +91,17 @@ const PlatformTab = (props: Props) => {
                 iconClass1={applicationPending}
                 iconClass2={applicationWaiting}
               />
-            </Col>
+            </Col> */}
           </Row>
         </Container>
       </Tab>
       <Tab eventKey="egitimler" title={PlatformTabHeaders.educations}>
         <Row>
-          {educationData.map((education: GetEducationItem) => (
+          {educationData.map((education: GetEducationbyUserId) => (
             <EducationCard
-              id={education.id}
-              image={education.imageUrl}
-              text={education.name}
+              id={education.educationPathId}
+              image={education.educationPathImageUrl}
+              text={education.educationPathName}
               date={<FormattedDate date={education.startDate} />}
             />
           ))}

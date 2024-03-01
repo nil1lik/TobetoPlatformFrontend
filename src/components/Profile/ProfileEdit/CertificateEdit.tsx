@@ -6,7 +6,6 @@ import toastr from "toastr";
 import {
   ProfileSertificateListHeaders,
   uploadCertificateHeader,
-  uploadFileText,
 } from "../../../utilities/Constants/constantValues";
 import Image from "../../Uppy/image";
 import { useAuthContext } from "../../../contexts/AuthContext";
@@ -18,24 +17,9 @@ type Props = {};
 const CertificateEdit = (props: Props) => {
   const { userDetails, addCertificatesToUserDetails } = useProfileContext();
   const { userId } = useAuthContext();
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+
   const initialValues = {};
 
-  //Uppy Popup
-  const [showUppy, setShowUppy] = useState<boolean>(false);
-
-  const handleShowUppy = () => {
-    setShowUppy(true);
-  };
-
-  useEffect(() => {
-    if (showUppy) {
-      setShowUppy(false);
-    }
-  });
-  //-------------------
   useEffect(() => {
     const fetchData = async () => {
       if (!userDetails.certificatesDtoItems) {
@@ -70,18 +54,9 @@ const CertificateEdit = (props: Props) => {
                 <div className="upload-area">
                   <div className="cursor-pointer">
                     <label htmlFor="fileInput">
-                      {/* <img
-                        className="upload-area-image"
-                        src={process.env.PUBLIC_URL + "/images/upload-file.svg"}
-                        alt="Upload Area"
-                        // onClick={handleShowUppy}
-                      /> */}
-                      {/* <UppyPopup handleShow={showUppy} /> */}
                       <Image />
                     </label>
                   </div>
-
-                  {/* <label className="uploadText">{uploadFileText}</label> */}
                   <div></div>
                 </div>
               </div>
@@ -95,7 +70,6 @@ const CertificateEdit = (props: Props) => {
                     <th className="text-center">
                       {ProfileSertificateListHeaders.fileType}
                     </th>
-                    <th>{ProfileSertificateListHeaders.date}</th>
                     <th style={{ textAlign: "center" }}>
                       {ProfileSertificateListHeaders.process}
                     </th>
@@ -121,14 +95,13 @@ const CertificateEdit = (props: Props) => {
                               }}
                             />
                           </td>
-                          {/* <td className="png_icon text-center"></td> */}
-                          {/* <td>11.01.2024</td> */}
-                          <td>
+                          <td style={{ textAlign: "center" }}>
                             <button
                               type="button"
-                              className=" btn fileIcon"
+                              className="btn fileIcon"
                               onClick={() => {
                                 toastr.info("Dosya indiriliyor");
+                                window.open(certificate.certificateFileUrl, "_blank");
                               }}
                             >
                               <img
@@ -143,9 +116,7 @@ const CertificateEdit = (props: Props) => {
                             <button
                               type="button"
                               className=" btn trashIcon"
-                              onClick={() => {
-                                handleShow();
-                              }}
+                              onClick={() => {}}
                             >
                               <img
                                 src={

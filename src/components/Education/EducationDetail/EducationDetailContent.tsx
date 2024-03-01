@@ -19,6 +19,7 @@ import { GetAsyncLessonsByCourseIdItem } from "../../../models/responses/course/
 import SyncLessonDetail from "./SyncLesson/SyncLessonDetail";
 import FormattedTime from "../../../utilities/Helpers/FormattedTime";
 import LessonVideoDetailCard from "../LessonVideoDetail/LessonVideoDetailCard";
+import { GetSyncLessonsByCourseIdItem } from "../../../models/responses/course/getSyncLessonsByCourseId";
 
 type Props = {
   educationDetailId?: number;
@@ -34,9 +35,15 @@ const EducationDetailContent = (props: Props) => {
   const [asyncLessons, setAsyncLessons] = useState<
     GetAsyncLessonsByCourseIdItem[]
   >([]);
-  const [selectedAsyncLessonId, setSelectedAsyncLessonId] = useState<number>()
-  const [selectedSyncLessonId, setSelectedSyncLessonId] = useState<number>();
-  ;
+  const [syncLessons, setSyncLessons] = useState<
+    GetSyncLessonsByCourseIdItem[]
+  >([]);
+  const [selectedAsyncLessonId, setSelectedAsyncLessonId] = useState<
+    number | null
+  >(null);
+  const [selectedSyncLessonId, setSelectedSyncLessonId] = useState<
+    number | null
+  >(10); //null
 
   const fetchEducationDetail = async () => {
     try {
@@ -65,7 +72,7 @@ const EducationDetailContent = (props: Props) => {
   const handleHeaderClick = async (courseId: number) => {
     try {
       setAsyncLessons([]);
-      // setSyncLessons([]);
+      setSyncLessons([]);
 
       const response = await courseService.getAsyncLessonsByCourseId(courseId);
       const lessons = response.data.asyncLessons;
@@ -75,13 +82,14 @@ const EducationDetailContent = (props: Props) => {
     }
   };
 
-  const handleSubtitleClick = async (asyncLessonId: number) => {
-    setSelectedAsyncLessonId(asyncLessonId);
+  const handleSubtitleClick = async (syncLessonId: number) => {
+    setSelectedSyncLessonId(syncLessonId);
+    console.log("syncLessonId", syncLessonId);
   };
 
   useEffect(() => {
     fetchEducationDetail();
-  }, [educationDetailId, selectedAsyncLessonId]);
+  }, [educationDetailId, selectedAsyncLessonId, selectedSyncLessonId]);
   return (
     <Container>
       <div className="accordion-container">
@@ -100,20 +108,20 @@ const EducationDetailContent = (props: Props) => {
                     </AccordionHeader>
                     <div>
                       {asyncLessons.map((lesson, lessonIndex) => (
-                        <AccordionBody
-                          className="education-subtitle"
-                          role="button"
-                          onClick={() => handleSubtitleClick(lesson.id)}
-                        >
-                          <div key={lessonIndex}>
-                            {lesson.name}
-                            <AccordionBody className="education-type">
-                              {lesson.lessonType} -{" "}
-                              {<FormattedTime time={lesson.time} />}
-                            </AccordionBody>
-                          </div>
-                        </AccordionBody>
-                      ))}
+                          <AccordionBody
+                            className="education-subtitle"
+                            role="button"
+                            onClick={() => handleSubtitleClick(lesson.id)}
+                          >
+                            <div key={lessonIndex}>
+                              {lesson.name}
+                              <AccordionBody className="education-type">
+                                {lesson.lessonType} -{" "}
+                                {<FormattedTime time={lesson.time} />}
+                              </AccordionBody>
+                            </div>
+                          </AccordionBody>
+                        ))}
                     </div>
                   </AccordionItem>
                 ))}
@@ -122,8 +130,12 @@ const EducationDetailContent = (props: Props) => {
 
           <Col>
             <Row>
-              <LessonVideoDetailCard asyncLessonId={selectedAsyncLessonId} />
-              <SyncLessonDetail syncLessonId={selectedAsyncLessonId}/>
+              {selectedAsyncLessonId !== null && (
+                <LessonVideoDetailCard asyncLessonId={selectedAsyncLessonId} />
+              )}
+              {selectedSyncLessonId !== null && (
+                <SyncLessonDetail syncLessonId={10} />
+              )}
             </Row>
           </Col>
         </Row>

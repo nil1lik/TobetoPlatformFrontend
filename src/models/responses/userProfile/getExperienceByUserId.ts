@@ -11,5 +11,5 @@ export interface GetExperienceByUserId{
 
 export interface GetExperienceByUserIdList{
     userProfileId: number,
-    experienceDtoItems: GetExperienceByUserId[];
+    experiencesDtoItems: GetExperienceByUserId[];
 }

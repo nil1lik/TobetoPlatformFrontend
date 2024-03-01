@@ -23,10 +23,6 @@ const EducationDetailHeader = (props: Props) => {
     setLikeCount((prevCount) => (liked ? prevCount - 1 : prevCount + 1));
   };
 
-  console.log("isLiked: ", props.isLiked);
-  console.log("heart ", liked);
-  console.log(props.likeCount);
-
   return (
     <Container>
       <Row className="education-detail-header">

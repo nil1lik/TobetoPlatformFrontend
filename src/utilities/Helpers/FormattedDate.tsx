@@ -1,12 +1,13 @@
 import React from "react";
 
 type Props = {
-  date: string; 
+  date: string | undefined; 
   format?: "full" | "year" | "month" | "day" | "time" | "minute";
 };
 
 const FormattedDate: React.FC<Props> = ({ date, format = "full" }) => {
-  const formatDate = (date: string) => {
+  const formatDate = (date: string | undefined) => {
+    if (!date) return "";
     const formattedDate = new Date(date);
     switch (format) {
       case "year":
