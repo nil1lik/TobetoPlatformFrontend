@@ -1,3 +1,11 @@
+.form-bg {
+  height: 100vh;
+  background-image: url("../public/images/bg5.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: bottom;
+}
+
 body {
   font-family: "Poppins", sans-serif !important;
   -webkit-font-smoothing: antialiased;
@@ -6,16 +14,18 @@ body {
   padding: 0;
   display: flex;
   flex-direction: column;
-  min-height: 905px;
+  /* min-height: 905px; */
   /* Minimum sayfa yüksekliği */
   overflow-y: scroll;
   background-color: #ffffff;
 }
+
 a {
   text-decoration: none !important;
   color: unset !important;
 }
-.body-height{
+
+.body-height {
   min-height: 82vh;
 }
 
@@ -25,7 +35,7 @@ main {
 
 footer {
   margin-top: auto !important;
-  position: fixed!important;
+  position: fixed !important;
   margin-top: 500px;
 }
 
@@ -110,11 +120,15 @@ footer {
 }
 
 .my-custom-input input {
-  border: none; /* Input alanının border'ını kaldırma */
+  border: none;
+  /* Input alanının border'ını kaldırma */
 }
+
 .my-custom-input input:focus {
-  outline: none; /* Input alanının border'ını kaldırma */
+  outline: none;
+  /* Input alanının border'ını kaldırma */
 }
+
 .my-custom-date {
   width: 360px;
   height: 50px;
@@ -341,7 +355,8 @@ footer {
   padding-left: 2.5em !important;
   background-size: 1.5em 1.5em;
 }
-.input-img{
+
+.input-img {
   margin: 0 5px 0px 5px !important;
   width: 30px;
   height: 30px;
@@ -747,16 +762,34 @@ table {
   padding: 1rem;
   border-radius: 50%;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  animation: shake 5s ease-in-out infinite;;
+  animation: shake 5s ease-in-out infinite;
+  ;
 }
 
 @keyframes shake {
-  0% { transform: translateX(0); }
-  20% { transform: translateX(15px); } 
-  40% { transform: translateX(-15px); } 
-  60% { transform: translateX(10px); } 
-  80% { transform: translateX(-10px); } 
-  100% { transform: translateX(0); } 
+  0% {
+    transform: translateX(0);
+  }
+
+  20% {
+    transform: translateX(15px);
+  }
+
+  40% {
+    transform: translateX(-15px);
+  }
+
+  60% {
+    transform: translateX(10px);
+  }
+
+  80% {
+    transform: translateX(-10px);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
 }
 
 .chatOpenIcon {
@@ -898,6 +931,7 @@ table {
   min-height: 38px;
   height: 50px;
 }
+
 .dropdown-toggle.dropdown-toggle-profil::after {
   display: none;
 }
@@ -939,6 +973,7 @@ table {
   outline: none !important;
   font-size: 16px;
 }
+
 .w-100 {
   width: 100% !important;
 }
@@ -960,11 +995,12 @@ table {
   background-color: var(--white) !important;
   position: relative;
 }
-.select-control.btn{
+
+.select-control.btn {
   padding: 6px !important;
 }
 
-.dropdown-toggle::after{
+.dropdown-toggle::after {
   content: url("../public/images/down-arrow.svg") !important;
   border: unset !important;
   width: 12px;
@@ -1017,6 +1053,7 @@ table {
   color: #828282;
   cursor: pointer;
 }
+
 /* Show more button*/
 
 /* delete-filter */
@@ -1039,6 +1076,7 @@ table {
   height: 1.5em;
   display: block;
 }
+
 /* delete-filter */
 
 /* type'ı number olan input'lara harf girilmemesini sağlıyor. 
@@ -1057,14 +1095,30 @@ input[type="number"]::-webkit-outer-spin-button {
   fill: none;
   padding-top: 5px;
 }
+
 /*-----------------*/
 
 
 
 /* heatmap start */
-.react-calendar-heatmap .color-scale-0 { fill: #eee; }
-.react-calendar-heatmap .color-scale-1 { fill: #b6f; }
-.react-calendar-heatmap .color-scale-2 { fill: #93f; }
-.react-calendar-heatmap .color-scale-3 { fill: #5c1f99; }
-.react-calendar-heatmap .color-scale-4 { fill: #361259; }
+.react-calendar-heatmap .color-scale-0 {
+  fill: #eee;
+}
+
+.react-calendar-heatmap .color-scale-1 {
+  fill: #b6f;
+}
+
+.react-calendar-heatmap .color-scale-2 {
+  fill: #93f;
+}
+
+.react-calendar-heatmap .color-scale-3 {
+  fill: #5c1f99;
+}
+
+.react-calendar-heatmap .color-scale-4 {
+  fill: #361259;
+}
+
 /* heatmap end */

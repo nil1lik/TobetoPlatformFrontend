@@ -4,7 +4,6 @@ import {
   SocialMediaAccountSelect,
   SocialMediaAccountUpdateSuccess,
 } from "../../utilities/Constants/constantValues";
-import FormikInput from "../Formik/FormikInput";
 import { GetSocialMediaAccountByUserIdItem } from "../../models/responses/userProfile/getSocialMediaAccountByUserId";
 import { GetSocialMediaCategoryItem } from "../../models/responses/socialMediaAccount/getAllSocialMediaCategory";
 import { UpdateSocialMediaAccountRequest } from "../../models/requests/socialMediaAccount/updateSocialMediaAccountRequest";

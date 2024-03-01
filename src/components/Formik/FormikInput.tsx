@@ -9,11 +9,13 @@ type Props = {
   maxLength?: number;
   className?: string;
   disabled?: boolean;
+  login?: boolean;
 };
 
 const FormikInput = (props: Props) => {
+  const loginClass = props.login ? "mb-4" : "mb-3"; 
   return (
-    <div className="mb-3">
+    <div className={loginClass}>
       {props.label && <label className="input-label-text">{props.label}</label>}
       <Field
         name={props.name}

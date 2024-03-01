@@ -1,6 +1,6 @@
-import React, { useContext, useEffect, useReducer } from "react";
+import React, { useContext } from "react";
 import LoginPageBox from "../../components/Login/LoginPageBox";
-import { Container, Image, Row } from "react-bootstrap";
+import { Container, Image } from "react-bootstrap";
 import "./login.css";
 import { Link, useNavigate } from "react-router-dom";
 import AppForm from "../../components/Login/AppForm";
@@ -40,8 +40,12 @@ const Login = (props: Props) => {
       handleSetAuth(true);
       handleSetLoading((prev: any) => prev - 1);
 
-      firstLoginCheck(result.headers.userId, navigate, "/profilim/profilimi-duzenle", "/");
-
+      firstLoginCheck(
+        result.headers.userId,
+        navigate,
+        "/profilim/profilimi-duzenle",
+        "/"
+      );
     } catch (error) {
       console.error("Kullanıcı girişi sırasında hata oluştu:", error);
     }
@@ -53,10 +57,10 @@ const Login = (props: Props) => {
   };
 
   return (
-    <Container className="form-cont">
-      <LoginPageBox className="login-box">
-        <div className="div">
-          <div className="center">
+    <div className="form-bg">
+      <Container className="form-cont">
+        <LoginPageBox className="login-box">
+          <>
             <Formik
               initialValues={initialValues}
               validationSchema={validationSchema}
@@ -64,55 +68,55 @@ const Login = (props: Props) => {
                 handleLogin(values);
               }}
             >
-              <Form className={"login-form-cont"}>
-                <Row className="image-control">
+              <Form className="login-form-cont mb-4">
+                <div className="image-control">
                   <Image
                     className="login-form-img"
                     src="https://res.cloudinary.com/dcpbbqilg/image/upload/v1707396717/tobeto-logo_t2qnpq.png"
                   />
-                </Row>
-                <Row>
-                  <FormikInput
-                    type="text"
-                    name="email"
-                    label=""
-                    placeHolder="E-posta"
-                  />
-                  <FormikInput
-                    type="password"
-                    name="password"
-                    label=""
-                    placeHolder="Şifre"
-                  />
-                </Row>
-                <Row className="row-btn">
-                  <button
-                    type="submit"
-                    className="button-save py-2 mb-3 mt-4 d-inline-block"
-                  >
+                </div>
+                <FormikInput
+                  type="text"
+                  name="email"
+                  label=""
+                  placeHolder="E-posta"
+                  login={true}
+                />
+                <FormikInput
+                  type="password"
+                  name="password"
+                  label=""
+                  placeHolder="Şifre"
+                  login={true}
+                />
+                <div className="login-btn-cont mt-4">
+                  <button type="submit" className="login-btn">
                     {loginButtonText}
                   </button>
-                </Row>
+                </div>
               </Form>
             </Formik>
-            <Link className="forget-pass-btn" to="/sifremi-unuttum">
-              {forgetPasswordButtonText}
-            </Link>
-          </div>
-          <div className="center">
-            <span>
-              {loginBoxBottomText}{" "}
-              <Link className="register-btn" to="/kayit-ol">
-                {registerButtonText}
-              </Link>
-            </span>
-          </div>
-        </div>
-      </LoginPageBox>
-      <LoginPageBox className="app-box">
+            <div className="pass-reg-cont">
+              <div className="forget-pass-cont mb-5">
+                <Link className="forget-pass-btn" to="/sifremi-unuttum">
+                  {forgetPasswordButtonText}
+                </Link>
+              </div>
+
+              <div className="register-cont">
+                {loginBoxBottomText}
+                <Link className="register-btn" to="/kayit-ol">
+                  {registerButtonText}
+                </Link>
+              </div>
+            </div>
+          </>
+        </LoginPageBox>
+        {/* <LoginPageBox className="app-box">
         <AppForm />
-      </LoginPageBox>
-    </Container>
+      </LoginPageBox> */}
+      </Container>
+    </div>
   );
 };
 

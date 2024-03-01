@@ -6,7 +6,7 @@ export const applyButtonText = "Başvur";
 export const loginButtonText = "Giriş Yap";
 export const uploadFileText = "Dosya Yükle";
 export const forgetPasswordButtonText = "Şifremi Unuttum";
-export const registerButtonText = "Kayıt Ol";
+export const registerButtonText = " Kayıt Ol";
 export const saveButtonText = "Kaydet";
 export const sendButtonText = "Gönder";
 
