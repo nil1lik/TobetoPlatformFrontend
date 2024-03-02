@@ -24,6 +24,7 @@ const SkillEdit = (props: Props) => {
   const [skills, setSkills] = useState<GetSkillItem[]>([]);
   const [skillUserProfile, setSkillUserProfile] = useState<GetSkillByUserId[]>([]);
   const [deleteSkills, setDeleteSkills] = useState(Number);
+  const [selectSkillId, setSelectSkillId] = useState(Number);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -41,7 +42,6 @@ const SkillEdit = (props: Props) => {
   const fetchSkillbyUserId = async () => {
     try {
       const result = await userProfileService.getSkillsByUserId(Number(userId))
-      console.log(result.data.skillDtoItems);
       setSkillUserProfile(result.data.skillDtoItems);
     } catch (error) {
       console.error("API isteği sırasında bir hata oluştu:", error);
@@ -70,7 +70,7 @@ const SkillEdit = (props: Props) => {
 
   const handleSkillSubmit = async (values: AddProfileSkillRequest) => {
     values.userProfileId = Number(userId);
-    console.log(values.skillId)
+    values.skillId = selectSkillId
     const result = await skillService.addProfilSkill(values);
     toastr.success(ProfileSkillToastrMsg.skillAddSuccess);
     fetchSkillbyUserId();
@@ -88,22 +88,23 @@ const SkillEdit = (props: Props) => {
           >
             Yetkinlik
           </label>
-          <Field
-            as="select"
-            name="skillId"
-            className="form-control my-custom-select"
-            selected
-          >
-            <option value="" disabled selected>
-              Seçiniz
-            </option>
-            {skills.map((skill) => (
-              <option  key={skill.id} value={skill.id}>
-                {skill.name}
-              </option>
-            ))}
-          </Field>
-          {/* {skillContext.setSkill} */}
+          <select
+                  onChange={(e) => setSelectSkillId(parseInt(e.target.value))}
+                  className={`option form-control my-custom-select`}
+                >
+                  <option disabled selected>
+                    {"Yetenek Seçiniz"}
+                  </option>
+                  {skills.map((element) => (
+                    <option
+                      key={element.id || String(element)}
+                      value={element.id}
+                      className="form-control my-custom-input"
+                    >
+                      {element.name || String(element)}
+                    </option>
+                  ))}
+                </select>
           <button
             type="submit"
             className="button-save py-2 mb-3 mt-4 d-inline-block "

@@ -63,7 +63,6 @@ const LanguageEdit = (props: Props) => {
         Number(userId)
       );
       setGetLanguage(result.data.languageDtoItems);
-      console.log(result.data.languageDtoItems);
     } catch (error) {
       console.log("API isteği sırasında bir hata oluştu:", error);
     }
@@ -72,13 +71,13 @@ const LanguageEdit = (props: Props) => {
   const handleDeletedLanguage = async (id:number) => {
     try {
       const result = await languageServices.deleteProfileLanguage(id);
-      console.log(result)
       getLanguageList();
       setShow(false);
     } catch (error) {
       console.error("Delete işlemi sırasında bir hata oluştu:", error);
     }
   };
+
   useEffect(() => {
     fetchLanguages();
     fetchLanguageLevel();
@@ -96,9 +95,9 @@ const LanguageEdit = (props: Props) => {
     values.languageId = languageId;
     values.languageLevelId = languageLevelId;
     const result = await languageServices.addProfilLanguage(values);
-    console.log(result);
-    toastr.success(ProfileLanguageToastrMsg.languageAddSuccess);
     getLanguageList();
+    toastr.success(ProfileLanguageToastrMsg.languageAddSuccess);
+    
   };
 
   return (
