@@ -23,8 +23,8 @@
 
 .login-form-img {
   object-fit: scale-down;
-  width: 200px !important;
-  height: 90px !important;
+  width: 250px !important;
+  height: 125px !important;
   align-items: center;
   justify-content: center;
 }
@@ -38,7 +38,8 @@
   background-color: #ffffff;
   padding: 1rem 5vw;
   border-radius: 1em;
-  width: 100%;
+  width: 60%;
+  margin: 0 auto;
 }
 
 /* .loginform-cont{

@@ -6,13 +6,13 @@ export const applyButtonText = "Başvur";
 export const loginButtonText = "Giriş Yap";
 export const uploadFileText = "Dosya Yükle";
 export const forgetPasswordButtonText = "Şifremi Unuttum";
-export const registerButtonText = " Kayıt Ol";
+export const registerButtonText = "Kayıt Ol";
 export const saveButtonText = "Kaydet";
 export const sendButtonText = "Gönder";
 
 /* LOGIN PAGE */
-export const loginBoxBottomText = "Henüz üye değil misin?";
-export const RegisterBoxBottomText = "Zaten hesabın var mı?";
+export const loginBoxBottomText = "Henüz üye değil misin? ";
+export const RegisterBoxBottomText = "Zaten hesabın var mı? ";
 
 /* PLATFORM PAGE */
 export const platformPageBottomCards = {
