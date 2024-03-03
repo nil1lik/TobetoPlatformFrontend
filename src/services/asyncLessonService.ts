@@ -22,9 +22,9 @@ class AsyncLessonService extends BaseService<
     this.apiUrl = BASE_API_URL + "AsyncLessons/";
   }
 
-  getById(id: number): Promise<AxiosResponse<GetByIdAsyncLessonResponse, any>> {
-    return axios.get<GetByIdAsyncLessonResponse>(this.apiUrl + id);
-  } 
+  // getById(id: number): Promise<AxiosResponse<GetByIdAsyncLessonResponse, any>> {
+  //   return axios.get<GetByIdAsyncLessonResponse>(this.apiUrl + id);
+  // } 
 
   getByIdAsyncLessonDetail( 
     id:number):Promise<AxiosResponse<GetByIdAsyncLessonResponse,any>>{

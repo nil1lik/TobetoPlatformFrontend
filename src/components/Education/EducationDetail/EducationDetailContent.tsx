@@ -23,7 +23,6 @@ import { GetSyncLessonsByCourseIdItem } from "../../../models/responses/course/g
 
 type Props = {
   educationDetailId?: number;
-  courseId?: number;
 };
 
 const EducationDetailContent = (props: Props) => {
@@ -35,28 +34,29 @@ const EducationDetailContent = (props: Props) => {
   const [asyncLessons, setAsyncLessons] = useState<
     GetAsyncLessonsByCourseIdItem[]
   >([]);
-  const [syncLessons, setSyncLessons] = useState<
-    GetSyncLessonsByCourseIdItem[]
-  >([]);
+
   const [selectedAsyncLessonId, setSelectedAsyncLessonId] = useState<
     number | null
   >(null);
-  const [selectedSyncLessonId, setSelectedSyncLessonId] = useState<
-    number | null
-  >(10); //null
+  const [selectedCourseId, setSelectedCourseId] = useState<number | null>(null);
 
-  const fetchEducationDetail = async () => {
+  const fetchDefaultLesson = async () => {
     try {
-      // if (educationDetailId !== undefined) {
-      //   const result = await educationService.getCoursesByEducationId(
-      //     educationDetailId
-      //   );
-      //   setCourses(result.data.items);
-      // }
       const result = await courseService.getAll(0, 40);
       const filteredCourses = result.data.items.filter(
-        (course) => course.educationPathId == props.educationDetailId
+        (course) => course.educationPathId === educationDetailId
       );
+      if (filteredCourses.length > 0) {
+        const defaultCourseId = filteredCourses[0].id;
+        setSelectedCourseId(defaultCourseId);
+        const asyncResponse = await courseService.getAsyncLessonsByCourseId(
+          defaultCourseId
+        );
+        setAsyncLessons(asyncResponse.data.asyncLessons);
+        if (asyncResponse.data.asyncLessons.length > 0) {
+          setSelectedAsyncLessonId(asyncResponse.data.asyncLessons[0].id);
+        }
+      }
       setCourses(filteredCourses);
     } catch (error) {
       console.error("API isteği sırasında bir hata oluştu:", error);
@@ -71,25 +71,24 @@ const EducationDetailContent = (props: Props) => {
 
   const handleHeaderClick = async (courseId: number) => {
     try {
-      setAsyncLessons([]);
-      setSyncLessons([]);
+      const asyncResponse = await courseService.getAsyncLessonsByCourseId(
+        courseId
+      );
 
-      const response = await courseService.getAsyncLessonsByCourseId(courseId);
-      const lessons = response.data.asyncLessons;
-      setAsyncLessons(lessons);
+      setAsyncLessons(asyncResponse.data.asyncLessons);
     } catch (error) {
       console.error("Error fetching async lessons:", error);
     }
   };
 
-  const handleSubtitleClick = async (syncLessonId: number) => {
-    setSelectedSyncLessonId(syncLessonId);
-    console.log("syncLessonId", syncLessonId);
+  const handleSubtitleClick = async (asyncLessonId: number) => {
+    setSelectedAsyncLessonId(asyncLessonId);
   };
 
   useEffect(() => {
-    fetchEducationDetail();
-  }, [educationDetailId, selectedAsyncLessonId, selectedSyncLessonId]);
+    fetchDefaultLesson();
+  }, [educationDetailId]);
+  console.log("selectedCourseId ", selectedCourseId);
   return (
     <Container>
       <div className="accordion-container">
@@ -108,20 +107,21 @@ const EducationDetailContent = (props: Props) => {
                     </AccordionHeader>
                     <div>
                       {asyncLessons.map((lesson, lessonIndex) => (
-                          <AccordionBody
-                            className="education-subtitle"
-                            role="button"
-                            onClick={() => handleSubtitleClick(lesson.id)}
-                          >
-                            <div key={lessonIndex}>
-                              {lesson.name}
-                              <AccordionBody className="education-type">
-                                {lesson.lessonType} -{" "}
-                                {<FormattedTime time={lesson.time} />}
-                              </AccordionBody>
-                            </div>
-                          </AccordionBody>
-                        ))}
+                        <AccordionBody
+                          key={lessonIndex}
+                          className="education-subtitle"
+                          role="button"
+                          onClick={() => handleSubtitleClick(lesson.id)}
+                        >
+                          <div>
+                            {lesson.name}
+                            <AccordionBody className="education-type">
+                              {lesson.lessonType} -{" "}
+                              {<FormattedTime time={lesson.time} />}
+                            </AccordionBody>
+                          </div>
+                        </AccordionBody>
+                      ))}
                     </div>
                   </AccordionItem>
                 ))}
@@ -130,14 +130,14 @@ const EducationDetailContent = (props: Props) => {
 
           <Col>
             <Row>
-              {selectedAsyncLessonId !== null && (
+              {selectedAsyncLessonId && (
                 <LessonVideoDetailCard asyncLessonId={selectedAsyncLessonId} />
               )}
-              {selectedSyncLessonId !== null && (
-                <SyncLessonDetail syncLessonId={10} />
+              {selectedCourseId !== null && !selectedAsyncLessonId && (
+                <SyncLessonDetail courseId={selectedCourseId} />
               )}
             </Row>
-          </Col>
+          </Col> 
         </Row>
       </div>
     </Container>

@@ -6,6 +6,7 @@ import ReactPlayer from "react-player";
 import EducationOffcanvas from "../EducationDetail/EducationOffcanvas";
 import { detailButton, pointText } from "../../../utilities/Constants/constantValues";
 import FormattedTime from "../../../utilities/Helpers/FormattedTime";
+import courseService from "../../../services/courseService";
 
 type Props = {
   asyncLessonId?: number;
@@ -17,7 +18,7 @@ const LessonVideoDetailCard = (props: Props) => {
   const [asyncLesson, setAsyncLesson] = useState<GetByIdAsyncLessonResponse>();
   const [lastWatchedLessonId, setLastWatchedLessonId] = useState<number | null>(null);
 
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState(false); 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
    
@@ -26,12 +27,13 @@ const LessonVideoDetailCard = (props: Props) => {
       if (asyncLessonId !== undefined) {
         const result = await asyncLessonService.getByIdAsyncLessonDetail(asyncLessonId); 
         setAsyncLesson(result.data);
-        setLastWatchedLessonId(asyncLessonId);
+        setLastWatchedLessonId(asyncLessonId);  
       }
     } catch (error) {
       console.error("API isteği sırasında bir hata oluştu:", error);
     }
   }; 
+
 
   const handleVideoEnded = (lessonId: number | undefined) => {
     if (lessonId && asyncLesson && asyncLesson.videoPoint !== undefined) {
@@ -91,7 +93,7 @@ const LessonVideoDetailCard = (props: Props) => {
                     <label className="ant-btn-text">{detailButton}</label> 
                     <div className="drawer">
                       <EducationOffcanvas 
-                        imageUrl="https://lms.tobeto.com/tobjEKnwKDQVcjzXYj%2bUxp8rPm9JXZ"
+                        imageUrl="https://buffer.com/library/content/images/size/w1200/2023/10/free-images.jpg"
                         educationName={asyncLesson?.name}
                         educationType= {asyncLesson?.lessonTypeName}
                         time={asyncLesson?.time}
