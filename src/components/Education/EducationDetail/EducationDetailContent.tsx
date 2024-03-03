@@ -127,7 +127,6 @@ const EducationDetailContent = (props: Props) => {
                 ))}
             </Accordion>
           </Col>
-
           <Col>
             <Row>
               {selectedAsyncLessonId !== null && (
