@@ -4,6 +4,5 @@ export interface AddGraduationRequest{
     universityName: string,
     department: string,
     startDate: Date | null,
-    endDate: Date | null,
-    graduationDate: Date
+    endDate: Date | null
 }

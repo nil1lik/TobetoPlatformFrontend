@@ -5,7 +5,6 @@ export interface GetGraduationByUserId{
     department: string,
     startDate : Date,
     endDate: Date,
-    graduationDate: Date
 }
 
 export interface GetGraduationByUserIdList{

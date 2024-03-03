@@ -12,6 +12,10 @@ class UserService {
   loginUser(userData: userLoginRequest) {
     return axiosInstance.post(BASE_API_URL + "Auth/Login", userData);
   }
+
+  refreshToken(){
+    return axiosInstance.get(BASE_API_URL + "Auth/RefreshToken");
+  }
 }
 
 export default new UserService();

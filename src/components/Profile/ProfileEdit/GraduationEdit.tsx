@@ -61,7 +61,7 @@ const GraduationEdit = (props: Props) => {
     values.userProfileId = Number(userId);
     values.startDate = selectedStartDate;
     values.endDate = selectedEndDate;
-    const result = await graduationService.add(values);
+    const result = await graduationService.addGraduation(values);
     toastr.success("Eğitim bilgisi eklendi");
     fetchGraduation();
   }
@@ -72,8 +72,7 @@ const GraduationEdit = (props: Props) => {
     universityName: "",
     department: "",
     startDate: new Date(),
-    endDate: new Date(),
-    graduationDate: new Date(),
+    endDate: new Date()
   };
 
   return (

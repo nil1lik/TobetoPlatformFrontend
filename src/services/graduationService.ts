@@ -7,6 +7,7 @@ import { AddGraduationResponse } from "../models/responses/graduation/addGraduat
 import { GetByIdGraduation } from "../models/responses/graduation/getByIdGraduation";
 import { GetGraduation } from "../models/responses/graduation/getGraduation";
 import { UpdateGraduationResponse } from "../models/responses/graduation/updateGraduationResponse";
+import errorInstance from "../core/interceptors/errorInterceptor";
 
 class GraduationService extends BaseService<
   GetGraduation,
@@ -25,6 +26,10 @@ class GraduationService extends BaseService<
   getByFilter(pageIndex: number=0, pageSize: number=10){
     return this.getAll(pageIndex, pageSize)
 }
+
+  addGraduation(request: AddGraduationRequest): Promise<AxiosResponse<AddGraduationResponse, any>> {
+    return errorInstance.post<AddGraduationResponse>(this.apiUrl, request);
+  }
 }
 
 export default new GraduationService();

@@ -59,7 +59,7 @@ class UserProfileService extends BaseService<
 	}
 
   getGraduationsByUserId(id: number): Promise<AxiosResponse<GetGraduationByUserIdList, any>> {
-		return axios.get<GetGraduationByUserIdList>(this.Graduation + "/" + id);
+		return errorInstance.get<GetGraduationByUserIdList>(this.Graduation + "/" + id);
 	}
 
   getExperiencesByUserId(id: number): Promise<AxiosResponse<GetExperienceByUserIdList, any>> {
