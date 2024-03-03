@@ -1,15 +1,34 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import BannerTop from "../../components/Banner/BannerTop";
 import { Col, Container, Row } from "react-bootstrap";
 import CatalogCard from "../../components/Catalog/CatalogCard";
 import FilterBar from "../../components/FilterBar/FilterBar";
 import CatalogFilter from "../../components/Catalog/CatalogFilter";
-import { BannerTexts } from "../../utilities/Constants/constantValues";
+import { BannerTexts} from "../../utilities/Constants/constantValues";
 import SearchBar from "../../components/SearchBar/SearchBar";
+import { GetCatalogResponseItem } from "../../models/responses/catalog/getCatalogResponse";
+import catalogService from "../../services/catalogService";
 
 type Props = {};
 
 const Catalog = (props: Props) => {
+  const [childState, setChildState] = useState<number>(0);
+  const [getCatalog, setGetCatalog] = useState<GetCatalogResponseItem[]>([]);
+
+  const fetchgetCatalogList = async () => {
+    try {
+      const result = await catalogService.getCatalogAll(0,9);
+      setGetCatalog(result.data.items);
+    } catch (error) {
+      console.error("Veri getirme işlemi sırasında hata oluştu:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchgetCatalogList(
+    );
+  }, []);
+
   return (
     <>
       <BannerTop
@@ -28,9 +47,15 @@ const Catalog = (props: Props) => {
                 <SearchBar formClassName="w-100 mr-sm-2 " />
               </Col>
               <Row>
-                <CatalogCard />
-                <CatalogCard />
-                <CatalogCard />
+                {getCatalog.map((catalog: any) => (
+                  <CatalogCard
+                    name={catalog.name}
+                    imageUrl={catalog.imageUrl}
+                    instructorName={catalog.instructorName}
+                    instructorSurname={catalog.instructorSurname}
+                    time={catalog.time}
+                  />
+                ))}
               </Row>
             </Container>
           </Col>

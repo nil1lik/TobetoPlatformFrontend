@@ -242,6 +242,9 @@ export const AnnouncementFilterBarTextValues = {
     ]
 }
 
+/*Catalog Values */
+export const catalogPageItemCountByPage : number = 9;
+
 /* PLATFORM */
 export const PlatformTabHeaders = {
     announcements: "Duyuru ve Haberler",

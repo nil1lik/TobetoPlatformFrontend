@@ -4,9 +4,11 @@ import { Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 type Props = {
-  name?: string;
-  instructor?: string;
-  time? : string
+  name: string;
+  imageUrl : string
+  instructorName: string;
+  instructorSurname: string;
+  time : number
 };
 
 const CatalogCard = (props: Props) => {
@@ -14,24 +16,24 @@ const CatalogCard = (props: Props) => {
     
     <div className="col-12 col-lg-4 col-md-5 mb-3">
       <div className="education-box-new fade-in ">
-      <Link to={"/education-detail"}>
+      <Link to={"/catalog-detail"} >
         <Image
           className="edubox-img"
-          src="https://tobeto.s3.cloud.ngn.com.tr/ENK_36573_a8546fa0ff.jpg"
+          src={props.imageUrl}
         />
         <div className="content">
           <div>
             <div className="property">
               <div>
                 <i className="bi bi-person text-white" />
-                <label className="pro">{props.instructor}Gürkan İlişen</label>
+                <label className="pro">{props.instructorName} {props.instructorSurname}</label>
               </div>
               <div className="ml-auto">
                 <i className="bi bi-alarm text-white" />
-                <label className="pro">{props.time}36</label>
+                <label className="pro">{props.time}</label>
               </div>
             </div>
-            <div className="name">{props.name}Programlamanın Tarihçesi ve Gelişimi</div>
+            <div className="name">{props.name}</div>
           </div>
         </div>
         <div className="prog-cont">

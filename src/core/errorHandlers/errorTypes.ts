@@ -1,5 +1,5 @@
 const errorTypes = {
-    BUSINESS_ERROR: "http://example.com/probs/business",
+    BUSINESS_ERROR: "https://example.com/probs/business",
     VALIDATION_ERROR: "https://www.example.com/probs/validation-error",
 };
 

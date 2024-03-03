@@ -34,6 +34,7 @@ import { SearchbarProvider } from "../../contexts/SearchBarContext";
 import { EducationProvider } from "../../contexts/EducationContext";
 import ProfileProvider, { ProfileContext } from "../../contexts/ProfileContext";
 
+
 type Props = {};
 const profileEditUrl = "/profilim/profilimi-duzenle";
 
@@ -61,7 +62,8 @@ const RouteDefinitions = (props: Props) => {
     "/yabanci-dil",
     "/ayarlar",
   ];
-
+  
+  console.log(auth)
   return (
     <LoadingContextProvider>
       <OverlayLoader />
