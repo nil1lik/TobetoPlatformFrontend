@@ -6,8 +6,9 @@ export interface GetSyncLessonsByCourseIdItem {
     isJoin: boolean;
     startDate: string;
     endDate: string;
+    instructorNames: string;
 }
 
 export interface GetSyncLessonsByCourseIdResponse {
-    items: GetSyncLessonsByCourseIdItem[];
+    syncLessons: GetSyncLessonsByCourseIdItem[];
   }

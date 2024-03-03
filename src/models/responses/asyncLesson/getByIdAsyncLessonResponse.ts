@@ -1,5 +1,6 @@
 export interface GetByIdAsyncLessonResponse {
   id: number;
+  imageUrl: string;
   name: string;
   lessonTypeName: string;
   time?: string;
