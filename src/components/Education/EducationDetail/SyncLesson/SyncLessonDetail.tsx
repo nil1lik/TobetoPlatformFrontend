@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import {
   Accordion,
@@ -21,7 +22,7 @@ import { GetSyncLessonsByCourseIdItem } from "../../../../models/responses/cours
 import syncLessonService from "../../../../services/syncLessonService";
 import courseService from "../../../../services/courseService";
 import { GetByIdSyncLessonResponse } from "../../../../models/responses/syncLesson/getByIdSyncLessonResponse";
-import { sessionRecord } from "../../../../utilities/Constants/constantValues";
+import { sessionRecord, sessionTitle } from "../../../../utilities/Constants/constantValues";
 import FormattedDate from "../../../../utilities/Helpers/FormattedDate";
 
 type Props = { courseId?: number };
@@ -83,7 +84,7 @@ const SyncLessonDetail = (props: Props) => {
           </Row>
           {/* buraya kadar lessonVideoDetail ile aynı */}
           <Row className="unit-detail-session-row">
-            <div className="session-title">Oturumlar</div>
+            <div className="session-title">{sessionTitle}</div>
             <div className="session-detail">
               <div className="unit-detail-session-row">
                 <Accordion defaultActiveKey="0">
@@ -117,7 +118,7 @@ const SyncLessonDetail = (props: Props) => {
                             <EducationDetailAboutComp
                               colSize={colSize}
                               {...userIcon}
-                              educationData={lesson.instructorNames}
+                              educationData ={lesson.instructorNames} dataClassName="instructor-name"
                             />
                           </Row>
                           <Row>

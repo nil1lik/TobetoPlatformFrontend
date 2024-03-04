@@ -8,6 +8,7 @@ type Props = {
   image: string;
   valueHeader: string;
   colSize? : number;
+  dataClassName?: string;
 };
 
 const EducationDetailAboutComp = (props: Props) => {
@@ -18,7 +19,7 @@ const EducationDetailAboutComp = (props: Props) => {
         <img className={props.className} src={props.image} />
         <strong>{props.valueHeader}</strong>
       </Col>
-      <Col lg={remainingColSize}>{props.educationData}</Col>
+      <Col className={props.dataClassName} lg={remainingColSize}>{props.educationData}</Col>
     </>
   );
 };

@@ -93,7 +93,7 @@ const LessonVideoDetailCard = (props: Props) => {
                     <label className="ant-btn-text">{detailButton}</label> 
                     <div className="drawer">
                       <EducationOffcanvas 
-                        imageUrl="https://buffer.com/library/content/images/size/w1200/2023/10/free-images.jpg"
+                        imageUrl="https://res.cloudinary.com/dcpbbqilg/image/upload/v1707391804/%C3%96%C4%9Frenme_Yolculu%C4%9Fu_ju5euf.jpg"
                         educationName={asyncLesson?.name}
                         educationType= {asyncLesson?.lessonTypeName}
                         time={asyncLesson?.time}

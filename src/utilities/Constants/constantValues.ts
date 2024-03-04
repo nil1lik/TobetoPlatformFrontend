@@ -300,7 +300,7 @@ export const detailButton = "DETAY"
 
 /* SyncLesson */
 export const sessionRecord = "Oturumlara ilişkin kayıtlar, canlı oturumlar tamamlandıktan sonra izlenebilir."
-
+export const sessionTitle = "Oturumlar";
 
 // Error Handler Values
 export const errHandlerErrNetwork = "Sunucuya ulaşılamıyor..."

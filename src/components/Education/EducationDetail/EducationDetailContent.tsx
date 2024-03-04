@@ -28,7 +28,7 @@ type Props = {
 const EducationDetailContent = (props: Props) => {
   const { educationDetailId } = props;
   const completedIcon = "/images/completed.svg";
-  const [activeKey, setActiveKey] = useState<string | null>(null);
+  const [activeKey, setActiveKey] = useState<string | null>("0");
 
   const [courses, setCourses] = useState<GetCourseResponseItem[]>([]);
   const [asyncLessons, setAsyncLessons] = useState<
@@ -40,23 +40,12 @@ const EducationDetailContent = (props: Props) => {
   >(null);
   const [selectedCourseId, setSelectedCourseId] = useState<number | null>(null);
 
-  const fetchDefaultLesson = async () => {
+  const fetchEducationDetail = async () => {
     try {
       const result = await courseService.getAll(0, 40);
       const filteredCourses = result.data.items.filter(
         (course) => course.educationPathId === educationDetailId
       );
-      if (filteredCourses.length > 0) {
-        const defaultCourseId = filteredCourses[0].id;
-        setSelectedCourseId(defaultCourseId);
-        const asyncResponse = await courseService.getAsyncLessonsByCourseId(
-          defaultCourseId
-        );
-        setAsyncLessons(asyncResponse.data.asyncLessons);
-        if (asyncResponse.data.asyncLessons.length > 0) {
-          setSelectedAsyncLessonId(asyncResponse.data.asyncLessons[0].id);
-        }
-      }
       setCourses(filteredCourses);
     } catch (error) {
       console.error("API isteği sırasında bir hata oluştu:", error);
@@ -71,24 +60,43 @@ const EducationDetailContent = (props: Props) => {
 
   const handleHeaderClick = async (courseId: number) => {
     try {
-      const asyncResponse = await courseService.getAsyncLessonsByCourseId(
-        courseId
-      );
-
-      setAsyncLessons(asyncResponse.data.asyncLessons);
+      const asyncResponse = await courseService.getAsyncLessonsByCourseId(courseId);
+      const asyncLessonsData = asyncResponse.data.asyncLessons;
+      if (asyncLessonsData.length > 0) {
+        setAsyncLessons(asyncLessonsData);
+        setSelectedAsyncLessonId(null);
+      } 
     } catch (error) {
       console.error("Error fetching async lessons:", error);
     }
   };
+  
 
   const handleSubtitleClick = async (asyncLessonId: number) => {
     setSelectedAsyncLessonId(asyncLessonId);
   };
 
   useEffect(() => {
-    fetchDefaultLesson();
+    if (courses.length === 1 && courses[0] && courses[0].id) {
+      setSelectedCourseId(courses[0].id);
+    } else if (courses.length > 1 && asyncLessons.length > 0) {
+      setSelectedAsyncLessonId(asyncLessons[0].id);
+    }
+  
+    if (courses.length > 0) {
+      const firstCourseId = courses[0].id;
+      if (asyncLessons.length === 0) {
+        handleHeaderClick(firstCourseId);
+      }
+    }
+  }, [courses, asyncLessons]);
+  
+  
+
+  useEffect(() => {
+    fetchEducationDetail();
   }, [educationDetailId]);
-  console.log("selectedCourseId ", selectedCourseId);
+
   return (
     <Container>
       <div className="accordion-container">
@@ -127,6 +135,7 @@ const EducationDetailContent = (props: Props) => {
                 ))}
             </Accordion>
           </Col>
+
           <Col>
             <Row>
               {selectedAsyncLessonId && (
@@ -136,7 +145,7 @@ const EducationDetailContent = (props: Props) => {
                 <SyncLessonDetail courseId={selectedCourseId} />
               )}
             </Row>
-          </Col> 
+          </Col>
         </Row>
       </div>
     </Container>

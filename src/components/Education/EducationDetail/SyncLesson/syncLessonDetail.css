@@ -18,6 +18,10 @@
   font-weight: 600 !important;
 }
 
+.instructor-name {
+  color: #1677ff;
+}
+
 .session-record {
   color: #e02020;
   margin-left: 23px;
