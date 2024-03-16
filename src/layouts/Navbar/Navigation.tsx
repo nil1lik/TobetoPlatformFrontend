@@ -72,6 +72,16 @@ const Navigation = (props: Props) => {
                       </Link>
                     </Nav.Item>
                   </li>
+                  <li>
+                    <Nav.Item>
+                      <Link
+                        to={"/admin"}
+                        className="navbar-tab"
+                      >
+                        Dashboard
+                      </Link>
+                    </Nav.Item>
+                  </li>
                 </ul>
               </Nav>
               <Nav style={{ maxHeight: "100px" }}>

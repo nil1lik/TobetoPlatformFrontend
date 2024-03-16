@@ -33,7 +33,8 @@ import NotFoundPage from "../../pages/NotFound/NotFound";
 import { SearchbarProvider } from "../../contexts/SearchBarContext";
 import { EducationProvider } from "../../contexts/EducationContext";
 import ProfileProvider, { ProfileContext } from "../../contexts/ProfileContext";
-
+import AdminDashboard from "../AdminDashboard/AdminDashboard";
+import Admin from "../../pages/AdminDashboard/Admin";
 
 type Props = {};
 const profileEditUrl = "/profilim/profilimi-duzenle";
@@ -62,15 +63,24 @@ const RouteDefinitions = (props: Props) => {
     "/yabanci-dil",
     "/ayarlar",
   ];
-  
-  console.log(auth)
+
+  console.log(auth);
   return (
     <LoadingContextProvider>
       <OverlayLoader />
       <Navigation />
+
       {/* <Container> */}
       <div className="body-height">
         <Routes>
+          <Route
+            path="/admin"
+            element={
+              <ProfileProvider>
+                <Admin />
+              </ProfileProvider>
+            }
+          />
           <Route
             path="/*"
             element={
