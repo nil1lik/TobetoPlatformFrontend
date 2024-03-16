@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Form, Formik, Field } from "formik";
+import { Form, Formik } from "formik";
 import { Col, Container, Modal, Row } from "react-bootstrap";
-import SelectBox from "./SelectBox";
 import { object } from "yup";
 import { UserInformationValidationMessageRule } from "../../../utilities/Validations/validationMessageRules";
 import FormikInput from "../../Formik/FormikInput";
@@ -18,7 +17,6 @@ import { AddSocialMediaAccountRequest } from "../../../models/requests/socialMed
 import { useAuthContext } from "../../../contexts/AuthContext";
 import { GetSocialMediaAccountByUserIdItem } from "../../../models/responses/userProfile/getSocialMediaAccountByUserId";
 import userProfileService from "../../../services/userProfileService";
-import SocialMediaUpdatePopup from "../../Popup/SocialMediaUpdatePopup";
 import { UpdateSocialMediaAccountRequest } from "../../../models/requests/socialMediaAccount/updateSocialMediaAccountRequest";
 
 type Props = {};

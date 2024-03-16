@@ -7,7 +7,6 @@ import { AddSyncLessonResponse } from "../models/responses/syncLesson/addSyncLes
 import { GetByIdSyncLessonResponse } from "../models/responses/syncLesson/getByIdSyncLessonResponse";
 import { GetSyncLesson } from "../models/responses/syncLesson/getSyncLesson";
 import { UpdateSyncLessonResponse } from "../models/responses/syncLesson/updateSyncLessonResponse";
-import {  GetSyncLessonsByCourseIdResponse } from "../models/responses/course/getSyncLessonsByCourseId";
 
 class SyncLessonService extends BaseService<
 GetSyncLesson,

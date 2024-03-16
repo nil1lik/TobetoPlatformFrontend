@@ -6,7 +6,6 @@ import ReactPlayer from "react-player";
 import EducationOffcanvas from "../EducationDetail/EducationOffcanvas";
 import { detailButton, pointText } from "../../../utilities/Constants/constantValues";
 import FormattedTime from "../../../utilities/Helpers/FormattedTime";
-import courseService from "../../../services/courseService";
 
 type Props = {
   asyncLessonId?: number;

@@ -1,4 +1,3 @@
-import axios from "axios"
 import { userRegisterRequest } from "../models/requests/user/userRegisterRequest";
 import { BASE_API_URL } from "../core/environment/environment";
 import { userLoginRequest } from "../models/requests/user/userLoginRequest";

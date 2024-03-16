@@ -1,5 +1,4 @@
-import { GetExperienceByUserId, GetExperienceByUserIdList } from './../responses/userProfile/getExperienceByUserId';
-import { AddSocialMediaAccountRequest } from './../requests/socialMediaAccount/addSocialMediaAccountRequest';
+import { GetExperienceByUserId } from './../responses/userProfile/getExperienceByUserId';
 import { getCertificateByUserId } from "../responses/certificate/getCertificatesByUserId";
 import { GetByUserId } from "../responses/user/getByUserId";
 import { GetLanguageByUserId } from "../responses/userProfile/getLanguageByUserId";

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import RouteDefinitions from "./components/Routes/RouteDefinitions";
 import AuthProvider from "./contexts/AuthContext";
 

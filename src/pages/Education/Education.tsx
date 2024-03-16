@@ -1,9 +1,7 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import "./education.css";
 import { Container, Row } from "react-bootstrap";
 import TobetoPlatformTab from "../../components/Education/EducationsTab";
-import { GetEducationItem } from "../../models/responses/education/getEducation";
-import educationService from "../../services/educationService";
 import EducationCard from "../../components/Education/EducationCard/EducationCard";
 import FilterBar from "../../components/FilterBar/FilterBar";
 import BannerTop from "../../components/Banner/BannerTop";
@@ -11,9 +9,7 @@ import Pagi from "../../components/Pagination/Pagi";
 import {
   BannerTexts,
   EducationFilterBarTextValues,
-  educationPageItemCountByPageMax,
 } from "../../utilities/Constants/constantValues";
-import { pageCalculate } from "../../utilities/Helpers/pageCountByItemsCalculator";
 import { useEducation } from "../../contexts/EducationContext";
 import FormattedDate from "../../utilities/Helpers/FormattedDate";
 import { useLoadingContext } from "../../contexts/LoadingContext";

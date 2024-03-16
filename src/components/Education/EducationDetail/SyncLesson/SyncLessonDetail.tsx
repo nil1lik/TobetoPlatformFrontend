@@ -10,18 +10,14 @@ import {
 } from "react-bootstrap";
 import {
   cameraIcon,
-  companyIcon,
   endDateIcon,
   startDateIcon,
   userIcon,
 } from "../../../../utilities/Constants/iconsList";
 import EducationDetailAboutComp from "../EducationDetailAboutComp";
 import "./syncLessonDetail.css";
-import { GetCourseResponseItem } from "../../../../models/responses/course/getCourseResponse";
 import { GetSyncLessonsByCourseIdItem } from "../../../../models/responses/course/getSyncLessonsByCourseId";
-import syncLessonService from "../../../../services/syncLessonService";
 import courseService from "../../../../services/courseService";
-import { GetByIdSyncLessonResponse } from "../../../../models/responses/syncLesson/getByIdSyncLessonResponse";
 import { sessionRecord, sessionTitle } from "../../../../utilities/Constants/constantValues";
 import FormattedDate from "../../../../utilities/Helpers/FormattedDate";
 

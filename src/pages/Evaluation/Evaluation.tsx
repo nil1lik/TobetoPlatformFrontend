@@ -7,7 +7,6 @@ import {
   EvaluationPageBottomCardsHeader,
   EvaluationPageBottomLeftCardTexts,
   EvaluationPageBottomRightCardTexts,
-  EvaluationPageExamLinkTexts,
   EvaluationPageHeader,
   EvaluationPageSuccessModelCardTexts,
   EvaluationPageTestCardTexts,

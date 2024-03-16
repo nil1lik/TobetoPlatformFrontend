@@ -1,5 +1,5 @@
-import React, { ReactNode } from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import React from "react";
+import { Container, Row } from "react-bootstrap";
 import "./educationDetailAbout.css";
 import EducationDetailAboutComp from "./EducationDetailAboutComp";
 import {
@@ -19,7 +19,7 @@ type Props = {
   timeSpent: string;
   estimatedDuration: string;
   category: string;
-  company: string; 
+  company: string;
 };
 
 const EducationDetailAbout = (props: Props) => {
@@ -31,19 +31,19 @@ const EducationDetailAbout = (props: Props) => {
           <Row>
             <EducationDetailAboutComp
               colSize={colSize}
-              {...startDateIcon} 
-              educationData={<FormattedDate date={props.startDate} />} 
+              {...startDateIcon}
+              educationData={<FormattedDate date={props.startDate} />}
             />
             <EducationDetailAboutComp
               colSize={colSize}
-              {...endDateIcon} 
-              educationData={<FormattedDate date={props.endDate} />} 
+              {...endDateIcon}
+              educationData={<FormattedDate date={props.endDate} />}
             />
-          </Row> 
+          </Row>
         </div>
         <div className="info-section row">
           <EducationDetailAboutComp
-            colSize={colSize} 
+            colSize={colSize}
             {...timeSpentIcon}
             educationData={props.timeSpent}
           />

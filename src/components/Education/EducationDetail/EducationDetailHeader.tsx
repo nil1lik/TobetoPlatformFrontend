@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Col, Container, ProgressBar, Row } from "react-bootstrap";
 import "./educationDetailHeader.css";
 import { pointText } from "../../../utilities/Constants/constantValues";

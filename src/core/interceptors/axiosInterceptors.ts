@@ -1,7 +1,6 @@
 import toastr from "toastr";
 import axios from 'axios';
 import { BASE_API_URL } from '../environment/environment';
-import { request } from "http";
 
 const axiosInstance = axios.create({
     baseURL: BASE_API_URL,

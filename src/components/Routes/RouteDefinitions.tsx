@@ -1,6 +1,5 @@
 import React from "react";
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
-import NotFound from "../../pages/NotFound/NotFound";
 import Platform from "../../pages/Platform/Platform";
 import { LoadingContextProvider } from "../../contexts/LoadingContext";
 import { OverlayLoader } from "../OverlayLoader/OverlayLoader";
@@ -32,8 +31,7 @@ import { useAuthContext } from "../../contexts/AuthContext";
 import NotFoundPage from "../../pages/NotFound/NotFound";
 import { SearchbarProvider } from "../../contexts/SearchBarContext";
 import { EducationProvider } from "../../contexts/EducationContext";
-import ProfileProvider, { ProfileContext } from "../../contexts/ProfileContext";
-import AdminDashboard from "../AdminDashboard/AdminDashboard";
+import ProfileProvider from "../../contexts/ProfileContext";
 import Admin from "../../pages/AdminDashboard/Admin";
 
 type Props = {};

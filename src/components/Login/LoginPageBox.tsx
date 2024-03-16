@@ -1,5 +1,4 @@
 import React, { ReactNode } from 'react'
-import { Container } from 'react-bootstrap'
 
 type Props = {children: ReactNode, className: string}
 

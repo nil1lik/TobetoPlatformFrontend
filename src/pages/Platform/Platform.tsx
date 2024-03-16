@@ -10,7 +10,6 @@ import {
   platformTabTexts,
 } from "../../utilities/Constants/constantValues";
 import { GetByUserId } from "../../models/responses/user/getByUserId";
-import UserService from "../../services/userService";
 import userProfileService from "../../services/userProfileService";
 import { useAuthContext } from "../../contexts/AuthContext";
 // import { writeUserData } from "../../utilities/Helpers/firebase";

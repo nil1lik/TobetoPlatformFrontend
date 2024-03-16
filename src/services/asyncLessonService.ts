@@ -3,7 +3,6 @@ import { UpdateAsyncLessonResponse } from "./../models/responses/asyncLesson/upd
 import axios,{ AxiosResponse } from "axios";
 import { BASE_API_URL } from "../core/environment/environment";
 import { GetByIdAsyncLessonResponse } from "../models/responses/asyncLesson/getByIdAsyncLessonResponse";
-import axiosInstance from "../core/interceptors/axiosInterceptors";
 import { BaseService } from "../core/services/baseService";
 import { AddAsyncLessonResponse } from "../models/responses/asyncLesson/addAsyncLessonResponse";
 import { GetAsyncLesson } from "../models/responses/asyncLesson/getAsyncLesson";

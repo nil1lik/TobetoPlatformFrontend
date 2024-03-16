@@ -1,7 +1,5 @@
 import React from "react";
-import { object } from "yup";
 import Password from "../../components/ForgotPassword/Password";
-import { UserInformationValidationMessageRule } from "../../utilities/Validations/validationMessageRules";
 
 const ResetPassword = () => {
   const initialValues = {};

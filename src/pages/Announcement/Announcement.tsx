@@ -16,7 +16,6 @@ import { pageCalculate } from "../../utilities/Helpers/pageCountByItemsCalculato
 import FilterByCheckbox from "../../components/FilterBar/FilterByCheckbox";
 import { useLoadingContext } from "../../contexts/LoadingContext";
 import {
-  SearchbarProvider,
   useSearchbarContext,
 } from "../../contexts/SearchBarContext";
 

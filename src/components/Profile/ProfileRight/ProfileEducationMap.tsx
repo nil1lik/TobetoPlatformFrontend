@@ -1,6 +1,5 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useProfileContext } from "../../../contexts/ProfileContext";
-import userProfileService from "../../../services/userProfileService";
 import { useAuthContext } from "../../../contexts/AuthContext";
 import FormattedDate from "../../../utilities/Helpers/FormattedDate";
 import { GetGraduationByUserId } from "../../../models/responses/userProfile/getGraduationByUserId";

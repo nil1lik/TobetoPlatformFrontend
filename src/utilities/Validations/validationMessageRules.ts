@@ -1,10 +1,6 @@
 
 import { ref, string } from "yup";
 import {
-  identityNumberLength,
-  identityNumberLengthMessage,
-  textAreaLength,
-  textAreaLengthMessage,
   userLastnameMinLength,
   userLastnameMinLengthMessage,
   emailMustBeValid,

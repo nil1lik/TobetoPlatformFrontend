@@ -19,7 +19,6 @@ import { GetAsyncLessonsByCourseIdItem } from "../../../models/responses/course/
 import SyncLessonDetail from "./SyncLesson/SyncLessonDetail";
 import FormattedTime from "../../../utilities/Helpers/FormattedTime";
 import LessonVideoDetailCard from "../LessonVideoDetail/LessonVideoDetailCard";
-import { GetSyncLessonsByCourseIdItem } from "../../../models/responses/course/getSyncLessonsByCourseId";
 
 type Props = {
   educationDetailId?: number;

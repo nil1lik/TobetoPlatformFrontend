@@ -1,7 +1,6 @@
 // Register.tsx
 import React from "react";
 import LoginPageBox from "../../components/Login/LoginPageBox";
-import AppForm from "../../components/Login/AppForm";
 import { Container, Image, Row } from "react-bootstrap";
 import FormikInput from "../../components/Formik/FormikInput";
 import { Formik, Form } from "formik";

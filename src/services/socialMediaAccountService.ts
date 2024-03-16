@@ -8,7 +8,6 @@ import { UpdateSocialMediaAccountRequest } from "../models/requests/socialMediaA
 import { BaseService } from "../core/services/baseService";
 import { BASE_API_URL } from "../core/environment/environment";
 import { GetAllSocialMediaCategory } from "../models/responses/socialMediaAccount/getAllSocialMediaCategory";
-import { GetSocialMediaAccountByUserIdList } from "../models/responses/userProfile/getSocialMediaAccountByUserId";
 import errorInstance from "../core/interceptors/errorInterceptor";
 
 class SocialMediaAccountService extends BaseService<

@@ -11,7 +11,7 @@ import { AddUserProfileRequest } from "../models/requests/userProfile/addUserPro
 import { AddUserProfileResponse } from "../models/responses/userProfile/addUserProfileResponse";
 import { UpdateUserProfileRequest } from "../models/requests/userProfile/updateUserProfileRequest";
 import { UpdateUserProfileResponse } from "../models/responses/userProfile/updateUserProfileResponse";
-import { GetGraduationByUserId, GetGraduationByUserIdList } from "../models/responses/userProfile/getGraduationByUserId";
+import { GetGraduationByUserIdList } from "../models/responses/userProfile/getGraduationByUserId";
 import { GetExperienceByUserIdList } from "../models/responses/userProfile/getExperienceByUserId";
 import errorInstance from '../core/interceptors/errorInterceptor';
 import { GetLanguageByUserIdList } from '../models/responses/userProfile/getLanguageByUserId';

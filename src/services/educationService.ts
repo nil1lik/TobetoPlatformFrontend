@@ -9,7 +9,6 @@ import { BaseService } from "../core/services/baseService";
 import axios, { AxiosResponse } from "axios";
 import { GetAllEducationAboutResponse } from "../models/responses/education/getAllEducationAboutResponse";
 import { GetCourseResponse } from "../models/responses/course/getCourseResponse";
-import { GetByIdAsyncLessonResponse } from "../models/responses/asyncLesson/getByIdAsyncLessonResponse";
 import { GetAllEducationResponse } from "../models/responses/education/getAllEducationResponse";
 
 class EducationService extends BaseService<

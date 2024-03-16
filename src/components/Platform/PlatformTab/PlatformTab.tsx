@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import EducationCard from "../../Education/EducationCard/EducationCard";
 import SurveyNotFound from "../../Survey/SurveyNotFound";
 import AnnouncementCard from "../../Announcement/AnnouncementCard";
@@ -7,25 +7,18 @@ import { Button, Col, Container, Row, Tab, Tabs } from "react-bootstrap";
 import "./platformTab.css";
 import AnnouncementService from "../../../services/announcementService";
 import { GetAnnouncementTypeItem } from "../../../models/responses/announcement/getAnnouncementTypeList";
-import { GetEducationItem } from "../../../models/responses/education/getEducation";
-import educationService from "../../../services/educationService";
 import {
   PlatformTabHeaders,
-  educationPageItemCountByPageMax,
   showMoreText,
 } from "../../../utilities/Constants/constantValues";
 import {
-  applicationApproved,
-  applicationNotApproved,
-  applicationPending,
-  applicationWaiting,
+  applicationApproved
 } from "../../../utilities/Constants/ApplicationCardIconClasses";
 import FormattedDate from "../../../utilities/Helpers/FormattedDate";
 import {
-  LoadingContext,
   useLoadingContext,
 } from "../../../contexts/LoadingContext";
-import { Link, useLoaderData } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useEducation } from "../../../contexts/EducationContext";
 import { useAuthContext } from "../../../contexts/AuthContext";
 import { GetEducationbyUserId } from "../../../models/responses/userProfile/getEducationByUserId";

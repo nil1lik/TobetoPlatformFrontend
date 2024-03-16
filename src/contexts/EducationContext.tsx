@@ -1,9 +1,6 @@
 import React, { createContext, useState, useContext } from "react";
 import { EducationContextModel } from "../models/contextModels/educationContextModel";
-import educationService from "../services/educationService";
-import { pageCalculate } from "../utilities/Helpers/pageCountByItemsCalculator";
 import userProfileService from "../services/userProfileService";
-import { useAuthContext } from "./AuthContext";
 
 const initialState: EducationContextModel = {
   educationData: [],

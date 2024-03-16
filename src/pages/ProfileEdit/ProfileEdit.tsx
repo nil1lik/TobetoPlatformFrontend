@@ -1,4 +1,4 @@
-import { Card, Col, Container, Nav, Navbar, Row, TabContainer } from "react-bootstrap";
+import { Card, Col, Container, Navbar, Row } from "react-bootstrap";
 import ProfileInformationEdit from "../../components/Profile/ProfileEdit/ProfileInformationEdit";
 import ExperienceEdit from "../../components/Profile/ProfileEdit/ExperienceEdit";
 import GradutionEdit from "../../components/Profile/ProfileEdit/GraduationEdit";
