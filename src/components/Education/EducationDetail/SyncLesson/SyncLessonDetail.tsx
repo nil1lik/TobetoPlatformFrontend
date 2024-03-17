@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import {
   Accordion,
@@ -21,9 +20,14 @@ import { GetCourseResponseItem } from "../../../../models/responses/course/getCo
 import { GetSyncLessonsByCourseIdItem } from "../../../../models/responses/course/getSyncLessonsByCourseId";
 import syncLessonService from "../../../../services/syncLessonService";
 import courseService from "../../../../services/courseService";
-import { GetByIdSyncLessonResponse } from "../../../../models/responses/syncLesson/getByIdSyncLessonResponse";
-import { sessionRecord, sessionTitle } from "../../../../utilities/Constants/constantValues";
+import {
+  detailButton,
+  sessionRecord,
+  sessionTitle,
+} from "../../../../utilities/Constants/constantValues";
 import FormattedDate from "../../../../utilities/Helpers/FormattedDate";
+import EducationOffcanvas from "../EducationOffcanvas";
+import { GetLessonDetailBySyncLessonId } from "../../../../models/responses/syncLesson/getLessonDetailBySyncLessonId";
 
 type Props = { courseId?: number };
 
@@ -33,23 +37,26 @@ const SyncLessonDetail = (props: Props) => {
   const [syncLessons, setSyncLessons] = useState<
     GetSyncLessonsByCourseIdItem[]
   >([]);
-
+  const [syncLessonDetail, setSyncLessonDetail] = useState<GetLessonDetailBySyncLessonId | undefined>();
 
   const fetchSyncLesson = async () => {
     try {
       if (courseId !== undefined) {
         const result = await courseService.getSyncLessonsByCourseId(courseId);
         setSyncLessons(result.data.syncLessons);
+        console.log("syncLessson: ", result.data.syncLessons);
       }
     } catch (error) {
       console.error("API isteği sırasında bir hata oluştu:", error);
     }
   };
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   useEffect(() => {
     fetchSyncLesson();
   }, [courseId]);
-
 
   return (
     <div className="activity-content-info">
@@ -71,16 +78,40 @@ const SyncLessonDetail = (props: Props) => {
                 Tebrikler, tamamladın!
               </div> */}
             </Col>
-            {/* <Col lg={3}>
+            <Col lg={3}>
               <div className="ant-space ant-space-vertical">
-              <button
-              type="button"
-              className="ant-btn ant-btn-default ant-btn-lg ant-btn-block btn"
-              >
-              <label className="ant-btn-text">DETAY</label>
-              </button>
+                <button
+                  type="button"
+                  className="ant-btn ant-btn-default ant-btn-lg ant-btn-block btn"
+                  onClick={async () => {
+                    handleShow();
+                    try {
+                      const detailResult = await syncLessonService.getLessonDetailBySyncLessonId(syncLessons[0].id);
+                      setSyncLessonDetail(detailResult.data);
+                    } catch (error) {
+                      console.error("SyncLessonDetail getirirken bir hata oluştu:", error);
+                    }
+                  }}
+                >
+                  <label className="ant-btn-text">{detailButton}</label>
+                  <div className="drawer">
+                    <EducationOffcanvas
+                      imageUrl="https://res.cloudinary.com/dcpbbqilg/image/upload/v1707391804/%C3%96%C4%9Frenme_Yolculu%C4%9Fu_ju5euf.jpg"
+                      educationName={syncLessonDetail?.name} 
+                      educationType="Sanal Sınıf"
+                      category={syncLessonDetail?.videoDetailCategoryName}
+                      language={syncLessonDetail?.languageName}
+                      subcategory={syncLessonDetail?.subcategoryName}
+                      likeCount={28}
+                      button={true}
+                      show={show}
+                      hide={handleClose}
+                    />
+                    
+                  </div>
+                </button>
               </div>
-            </Col> */}
+            </Col>
           </Row>
           {/* buraya kadar lessonVideoDetail ile aynı */}
           <Row className="unit-detail-session-row">
@@ -118,7 +149,8 @@ const SyncLessonDetail = (props: Props) => {
                             <EducationDetailAboutComp
                               colSize={colSize}
                               {...userIcon}
-                              educationData ={lesson.instructorNames} dataClassName="instructor-name"
+                              educationData={lesson.instructorNames}
+                              dataClassName="instructor-name"
                             />
                           </Row>
                           <Row>
@@ -134,16 +166,16 @@ const SyncLessonDetail = (props: Props) => {
                                 </div> */}
                                 </Col>
                                 <Col lg={3}>
-                                <div className="ant-space ant-space-vertical">
-                                  <a
-                                    href={lesson.syncVideoUrl}
-                                    target="_blank"
-                                    className="ant-btn ant-btn-default ant-btn-lg ant-btn-block btn"
-                                  >
-                                    <label className="ant-btn-text">
-                                      KAYDI AÇ
-                                    </label>
-                                  </a>
+                                  <div className="ant-space ant-space-vertical">
+                                    <a
+                                      href={lesson.syncVideoUrl}
+                                      target="_blank"
+                                      className="ant-btn ant-btn-default ant-btn-lg ant-btn-block btn"
+                                    >
+                                      <label className="ant-btn-text">
+                                        KAYDI AÇ
+                                      </label>
+                                    </a>
                                   </div>
                                 </Col>
                               </Row>

@@ -27,7 +27,7 @@ type Props = {
 
 const EducationDetailContent = (props: Props) => {
   const { educationDetailId } = props;
-  const completedIcon = "/images/completed.svg";
+  const completedIcon = "/public/images/completed.svg";
   const [activeKey, setActiveKey] = useState<string | null>("0");
 
   const [courses, setCourses] = useState<GetCourseResponseItem[]>([]);
@@ -97,6 +97,9 @@ const EducationDetailContent = (props: Props) => {
     fetchEducationDetail();
   }, [educationDetailId]);
 
+  console.log("educationdetailcontent" , asyncLessons);
+
+
   return (
     <Container>
       <div className="accordion-container">
@@ -127,6 +130,8 @@ const EducationDetailContent = (props: Props) => {
                               {lesson.lessonType} -{" "}
                               {<FormattedTime time={lesson.time} />}
                             </AccordionBody>
+                            {lesson.isCompleted &&
+                            <img className="completed-icon" src={completedIcon} />}
                           </div>
                         </AccordionBody>
                       ))}
