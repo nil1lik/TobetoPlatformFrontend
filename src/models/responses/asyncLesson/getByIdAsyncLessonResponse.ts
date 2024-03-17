@@ -1,4 +1,4 @@
-export interface GetByIdAsyncLessonResponse {
+export interface GetByIdAsyncLessonResponse { //AsyncLessonDetail
   id: number;
   imageUrl: string;
   name: string;
@@ -10,5 +10,6 @@ export interface GetByIdAsyncLessonResponse {
   subcategoryName: string;
   videoDetailCategoryName: string;
   videoPoint: number;
+  isCompleted: boolean;
 } 
 

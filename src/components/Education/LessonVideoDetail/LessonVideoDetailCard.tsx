@@ -35,15 +35,20 @@ const LessonVideoDetailCard = (props: Props) => {
 
 
   const handleVideoEnded = (lessonId: number | undefined) => {
-    if (lessonId && asyncLesson && asyncLesson.videoPoint !== undefined) {
-      setLastWatchedLessonId(lessonId);
-      const completionPercentage = (asyncLesson.videoPoint / 100) * 100; 
-      if (onLessonCompletion) {
-        onLessonCompletion(completionPercentage);
-      }
+    if (lessonId !== undefined && asyncLesson) {
+      const updatedAsyncLesson = { ...asyncLesson, isCompleted: true };
+      setAsyncLesson(updatedAsyncLesson);
     }
+    // if (lessonId && asyncLesson && asyncLesson.videoPoint !== undefined) {
+    //   setLastWatchedLessonId(lessonId);
+    //   const completionPercentage = (asyncLesson.videoPoint / 100) * 100; 
+    //   if (onLessonCompletion) {
+    //     onLessonCompletion(completionPercentage);
+    //   }
+    // }
   };
   
+  console.log("lessonVideoDetail" , asyncLesson?.isCompleted);
 
   useEffect(() => {
     fetchAsyncLesson();

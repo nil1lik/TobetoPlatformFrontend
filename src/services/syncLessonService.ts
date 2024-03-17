@@ -7,6 +7,7 @@ import { AddSyncLessonResponse } from "../models/responses/syncLesson/addSyncLes
 import { GetByIdSyncLessonResponse } from "../models/responses/syncLesson/getByIdSyncLessonResponse";
 import { GetSyncLesson } from "../models/responses/syncLesson/getSyncLesson";
 import { UpdateSyncLessonResponse } from "../models/responses/syncLesson/updateSyncLessonResponse";
+import { GetLessonDetailBySyncLessonId } from "../models/responses/syncLesson/getLessonDetailBySyncLessonId";
 
 class SyncLessonService extends BaseService<
 GetSyncLesson,
@@ -21,12 +22,18 @@ UpdateSyncLessonRequest
         this.apiUrl = BASE_API_URL + "SyncLessons/";
     }
 
-    getByIdSyncLessonDetail( 
-        id:number):Promise<AxiosResponse<GetByIdSyncLessonResponse,any>>{
-          return axios.get<GetByIdSyncLessonResponse>(
-            this.apiUrl + "getLessonDetail/" + id
-          );
-        }
+    // getByIdSyncLessonDetail( 
+    //     id:number):Promise<AxiosResponse<GetByIdSyncLessonResponse,any>>{
+    //       return axios.get<GetByIdSyncLessonResponse>(
+    //         this.apiUrl + "getLessonDetail/" + id
+    //       );
+    //     }
+
+    getLessonDetailBySyncLessonId(id: number): Promise<AxiosResponse<GetLessonDetailBySyncLessonId,any>>{
+      return axios.get<GetLessonDetailBySyncLessonId>(
+        this.apiUrl + "getLessonDetail/" + id
+      );
+    }
 }
 
 export default new SyncLessonService();

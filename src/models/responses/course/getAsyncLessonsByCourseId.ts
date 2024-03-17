@@ -3,6 +3,7 @@ export interface GetAsyncLessonsByCourseIdItem {
   name: string;
   lessonType: string;
   time: string;
+  isCompleted: boolean;
 }
 
 export interface GetAsyncLessonsByCourseIdResponse {
