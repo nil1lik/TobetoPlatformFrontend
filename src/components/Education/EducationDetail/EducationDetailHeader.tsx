@@ -3,6 +3,7 @@ import { Col, Container, ProgressBar, Row } from "react-bootstrap";
 import "./educationDetailHeader.css";
 import { pointText } from "../../../utilities/Constants/constantValues";
 import HeartIcon from "../../../utilities/Helpers/HeartIcon";
+import { GetAdmirationsByUserId } from "../../../models/responses/userProfile/getAdmirationsByUserId";
 
 type Props = {
   imageUrl: string;

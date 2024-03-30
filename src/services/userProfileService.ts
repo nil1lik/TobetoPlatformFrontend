@@ -19,6 +19,7 @@ import { GetLanguageByUserIdList } from '../models/responses/userProfile/getLang
 import { GetSkillByUserIdList } from '../models/responses/userProfile/getSkillByUserId';
 import { getCertificateByUserIdList } from '../models/responses/certificate/getCertificatesByUserId';
 import { GetExamByUserIdList } from '../models/responses/userProfile/getExamByUserId';
+import { GetAdmirationsByUserIdList } from '../models/responses/userProfile/getAdmirationsByUserId';
 
 class UserProfileService extends BaseService<
   GetUserProfile,
@@ -38,6 +39,7 @@ class UserProfileService extends BaseService<
   public SocialMediaAccount:string;
   public Exam: string;
   public AsyncLesson: string;
+  public Admiration: string;
   constructor() {
     super();
     this.apiUrl = BASE_API_URL + "UserProfiles";
@@ -52,6 +54,7 @@ class UserProfileService extends BaseService<
     this.Exam = this.apiUrl + "/getAllExams"
     this.SocialMediaAccount = this.apiUrl + "/getAllSocialMediaAccount"
     this.AsyncLesson = this.apiUrl + "/getAsyncLesson"
+    this.Admiration = this.apiUrl + "/profileAdmirations"
 
   }
   getByUserId(id: number): Promise<AxiosResponse<GetByUserId, any>> {
@@ -98,11 +101,15 @@ class UserProfileService extends BaseService<
 	}
 
   getExamByUserId(id: number):Promise<AxiosResponse<GetExamByUserIdList, any>> {
-    return errorInstance.get<GetExamByUserIdList>(this.Exam + "/" + id )
+    return errorInstance.get<GetExamByUserIdList>(this.Exam + "/" + id );
   }
 
   getAsyncLessonByUserId(id: number): Promise<AxiosResponse<GetAsyncLessonByUserIdList, any>>{
-    return errorInstance.get<GetAsyncLessonByUserIdList>(this.AsyncLesson + "/" +id)
+    return errorInstance.get<GetAsyncLessonByUserIdList>(this.AsyncLesson + "/" +id);
+  }
+
+  getAdmirationsByUserId(id: number) : Promise<AxiosResponse<GetAdmirationsByUserIdList, any>>{
+    return errorInstance.get<GetAdmirationsByUserIdList>(this.Admiration + "/" + id);
   }
 }
 
