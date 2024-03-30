@@ -57,6 +57,7 @@ const SyncLessonDetail = (props: Props) => {
   }, [courseId]);
 
   return (
+
     <div className="activity-content-info">
       <div className="activity-largeImageFileName no-video">
         <img src="https://wallpapers.com/images/featured/blue-dgmxybg4kb7eab7x.jpg" />

@@ -34,7 +34,7 @@ axiosInstance.interceptors.response.use(
         }
         toastr.success("Giriş Başarılı");
         return response;
-    },
+    }, 
     error => {
         console.error(error);
         if (error.response && error.response.data && error.response.data.detail) {
